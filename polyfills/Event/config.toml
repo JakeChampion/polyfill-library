@@ -13,6 +13,8 @@ notes = [
 
 [browsers]
 firefox = "6 - 10"
+edge = "*"
+edge_mob = "*"
 ie = "6 - 11"
 ie_mob = "10"
 opera = "10 - 11.5"
