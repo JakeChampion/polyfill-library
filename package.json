@@ -47,6 +47,7 @@
     "@financial-times/polyfill-useragent-normaliser": "1.0.6",
     "Base64": "^1.0.0",
     "array.of": "^0.1.1",
+    "array.prototype.flatmap": "^1.2.1",
     "audio-context-polyfill": "^1.0.0",
     "babel-core": "^6.23.1",
     "babel-preset-es2015": "^6.1.18",

@@ -352,6 +352,8 @@ jobs:
           --browserstack
       - run: npm run test-polyfills -- --features=String.prototype.trim
           --browserstack
+      - run: npm run test-polyfills -- --features=Array.prototype.flatMap
+          --browserstack
 workflows:
   test:
     jobs:

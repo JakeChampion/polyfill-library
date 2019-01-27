@@ -1,0 +1,32 @@
+{
+    "aliases": [
+        "es6",
+        "es2015",
+        "modernizr:es6array"
+    ],
+    "browsers": {
+        "bb": "*",
+        "chrome": "<68",
+        "edge": "*",
+        "edge_mob": "*",
+        "firefox": "<62",
+        "ie": "*",
+        "ie_mob": "*",
+        "opera": "<56",
+        "safari": "<12",
+        "ios_saf": "<12",
+        "ios_chr": "<69",
+        "android": "<69",
+        "firefox_mob": "<62",
+        "samsung_mob": "*"
+    },
+    "spec": "https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatMap",
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap",
+    "repo": "https://github.com/es-shims/Array.prototype.flatMap",
+    "install": {
+        "module": "array.prototype.flatmap",
+        "paths": [
+            "auto"
+        ]
+    }
+}

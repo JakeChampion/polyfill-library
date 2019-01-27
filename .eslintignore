@@ -8,6 +8,7 @@ polyfills/__dist/**
 polyfills/_ArrayIterator/polyfill.js
 polyfills/_TypedArray/polyfill.js
 polyfills/Array/of/polyfill.js
+polyfills/Array/prototype/flatMap/polyfill.js
 polyfills/Array/prototype/values/polyfill.js
 polyfills/atob/polyfill.js
 polyfills/AudioContext/polyfill.js

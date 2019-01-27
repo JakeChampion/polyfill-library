@@ -19,3 +19,4 @@ polyfills/_TypedArray/polyfill.js
 polyfills/atob/polyfill.js
 polyfills/fetch/polyfill.js
 .nyc_output/
+polyfills/Array/prototype/flatMap/polyfill.js
