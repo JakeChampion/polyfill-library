@@ -137,7 +137,7 @@ module.exports = async function (config) {
 	});
 	if (process.env.CI) {
 
-		const latestCommit = execa.shellSync('git rev-parse HEAD');
+		const latestCommit = execa.shellSync('git rev-parse master');
 		// if feature folders latest commit is same as latest commit, run the tests
 		const featureFolderCommit = latestCommitInFolder(`./polyfills/${featureToFolder(feature)}`);
 
