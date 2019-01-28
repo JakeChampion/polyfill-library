@@ -295,7 +295,7 @@ Promise.resolve()
 	)
 	.then(() => console.log('Sources built successfully'))
 	.catch(e => {
-		console.log(e)
+		console.log(e);
 		console.log(JSON.stringify(e));
 		process.exit(1);
 	})
