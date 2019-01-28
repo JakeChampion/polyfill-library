@@ -25,9 +25,9 @@
 		"android": "<47",
 		"ios_saf": "<10"
 	},
-	"license": "Copyright 2010, Linden Research, Inc. Copyright 2014, Joshua Bell.",
+	"license": "MIT",
 	"repo": "https://github.com/inexorabletash/polyfill",
-	"docs": "https://developer.mozilla.org/en-US/docs/Web/API/URL",
+	"docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
 	"install": {
 		"module": "js-polyfills",
 		"paths": ["typedarray.js"]
