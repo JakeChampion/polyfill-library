@@ -14,7 +14,7 @@ it('has correct name', function () {
 });
 
 it('is not enumerable', function () {
-	proclaim.isNotEnumerable(Object, 'entries');
+	proclaim.nonEnumerable(Object, 'entries');
 });
 
 // Modified version of the test262 tests located at
@@ -279,4 +279,30 @@ it('does not include Symbol keys', function() {
 	} else {
 		this.skip();
 	}
+});
+
+it('works as expected', function () {
+	proclaim.deepEqual(Object.entries({
+		q: 1,
+		w: 2,
+		e: 3
+	}), [['q', 1], ['w', 2], ['e', 3]]);
+	proclaim.deepEqual(Object.entries(new String('qwe')), [['0', 'q'], ['1', 'w'], ['2', 'e']]);
+	if ('assign' in Object && 'create' in Object) {
+		proclaim.deepEqual(Object.entries(Object.assign(Object.create({
+			q: 1,
+			w: 2,
+			e: 3
+		}), {
+				a: 4,
+				s: 5,
+				d: 6
+			})), [['a', 4], ['s', 5], ['d', 6]]);
+	}
+	try {
+		proclaim.deepEqual(Function('return Object.entries({a: 1, get b(){delete this.c;return 2},c: 3})')(), [['a', 1], ['b', 2]]);
+	} catch (e$) { }
+	try {
+		proclaim.deepEqual(Function('return Object.entries({a: 1, get b(){Object.defineProperty(this, "c", {value:4,enumerable:false});return 2},c: 3})')(), [['a', 1], ['b', 2]]);
+	} catch (e$) { }
 });
