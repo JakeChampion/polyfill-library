@@ -17,6 +17,7 @@
 		"safari": "<12",
 		"firefox_mob": "<29",
 		"opera": "<36",
+		"op_mob": "*",
 		"op_mini": "*",
 		"android": "*",
 		"samsung_mob": "<5",
