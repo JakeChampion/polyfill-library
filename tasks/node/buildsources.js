@@ -9,6 +9,7 @@ const toposort = require('toposort');
 const denodeify = require('denodeify');
 const vm = require('vm');
 const spdxLicenses = require('spdx-licenses');
+const UA = require('@financial-times/polyfill-useragent-normaliser');
 
 const writeFile = denodeify(fs.writeFile);
 const readFile = denodeify(fs.readFile);
@@ -134,6 +135,17 @@ class Polyfill {
 			})
 			.then(data => {
 				this.config = JSON.parse(data);
+				
+				// Each internal polyfill needs to target all supported browsers at all versions.
+				if (this.path.relative.startsWith('_')) {
+					const supportedBrowsers = Object.keys(UA.getBaselines()).sort((a, b) => a.localeCompare(b));
+					if (!supportedBrowsers.every(browser => this.config.browsers[browser] === "*")){
+						const browserSupport = {};
+						supportedBrowsers.forEach(browser => browserSupport[browser] = "*");
+						throw new Error("Internal polyfill called " + this.name + " is not targeting all supported browsers correctly. It should be: \n" + JSON.stringify(browserSupport));
+					}
+				}
+
 				this.config.detectSource = '';
 				this.config.baseDir = this.path.relative;
 
