@@ -18,6 +18,9 @@
 		"firefox_mob": "<4",
 		"ios_saf": "<9"
 	},
+	"dependencies": [
+		"_ESAbstract.CreateMethodProperty"
+	],
 	"repo": "https://github.com/es-shims/object-keys",
 	"license": "MIT",
 	"docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys",
