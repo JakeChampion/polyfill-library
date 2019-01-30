@@ -1,35 +1,42 @@
 {
-	"aliases": [
-		"Int8Array",
-		"Uint8Array",
-		"Uint8ClampedArray",
-		"Int16Array",
-		"Uint16Array",
-		"Int32Array",
-		"Uint32Array",
-		"Float32Array",
-		"Float64Array",
-		"DataView",
- 		"ArrayBuffer"
-	],
-	"browsers": {
-		"chrome": "<47",
-		"edge": "<14",
-		"edge_mob": "<14",
-		"firefox": "<55",
-		"ie": "*",
-		"ie_mob": "*",
-		"safari": "<10",
-		"firefox_mob": "<55",
-		"opera": "<36",
-		"android": "<47",
-		"ios_saf": "<10"
-	},
-	"license": "MIT",
-	"repo": "https://github.com/inexorabletash/polyfill",
-	"docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
-	"install": {
-		"module": "js-polyfills",
-		"paths": ["typedarray.js"]
-	}
+    "aliases": [
+        "Int8Array",
+        "Uint8Array",
+        "Uint8ClampedArray",
+        "Int16Array",
+        "Uint16Array",
+        "Int32Array",
+        "Uint32Array",
+        "Float32Array",
+        "Float64Array",
+        "DataView",
+        "ArrayBuffer"
+    ],
+    "browsers": {
+        "android": "*",
+        "bb": "*",
+        "chrome": "*",
+        "edge": "*",
+        "edge_mob": "*",
+        "firefox": "*",
+        "firefox_mob": "*",
+        "ie": "*",
+        "ie_mob": "*",
+        "ios_chr": "*",
+        "ios_saf": "*",
+        "op_mini": "*",
+        "op_mob": "*",
+        "opera": "*",
+        "safari": "*",
+        "samsung_mob": "*"
+    },
+    "license": "MIT",
+    "repo": "https://github.com/inexorabletash/polyfill",
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
+    "install": {
+        "module": "js-polyfills",
+        "paths": [
+            "typedarray.js"
+        ]
+    }
 }
