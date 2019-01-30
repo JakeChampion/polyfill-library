@@ -1,6 +1,7 @@
 /* global CreateMethodProperty */
 // 20.2.2.21. Math.log1p ( x )
 CreateMethodProperty(Math, 'log1p', function log1p(x) {
+	x = Number(x);
 	if (-1 < x && x < 1) {
 		// Polyfill.io - For numbers in the range −1 < x < 1
 		// Because we are using log, the precision of the result will be identical to log(1).
