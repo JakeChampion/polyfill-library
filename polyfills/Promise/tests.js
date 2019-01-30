@@ -14,7 +14,7 @@ it('has correct name', function () {
 });
 
 it('is not enumerable', function () {
-	proclaim.nonEnumerable(window, 'Promise');
+	proclaim.isNotEnumerable(window, 'Promise');
 });
 
 describe('Section 2.1.2.1: When fulfilled, a promise: must not transition to any other state.', function () {

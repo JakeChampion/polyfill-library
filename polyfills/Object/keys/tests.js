@@ -14,7 +14,7 @@ it('has correct name', function () {
 });
 
 it('is not enumerable', function () {
-	proclaim.nonEnumerable(Object, 'keys');
+	proclaim.isNotEnumerable(Object, 'keys');
 });
 
 it('works as expected', function () {
