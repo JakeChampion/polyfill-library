@@ -92,6 +92,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: node ./test/polyfills/test-individual-feature.js Math.expm1
       - run: node ./test/polyfills/test-individual-feature.js Math.hypot
+      - run: node ./test/polyfills/test-individual-feature.js Math.imul
       - run: node ./test/polyfills/test-individual-feature.js Math.log10
       - run: node ./test/polyfills/test-individual-feature.js Math.log2
       - run: node ./test/polyfills/test-individual-feature.js Math.sign
@@ -99,14 +100,14 @@ jobs:
       - run: node ./test/polyfills/test-individual-feature.js Math.tanh
       - run: node ./test/polyfills/test-individual-feature.js Math.trunc
       - run: node ./test/polyfills/test-individual-feature.js Number.Epsilon
-      - run: node ./test/polyfills/test-individual-feature.js
-          Number.MAX_SAFE_INTEGER
   test_4:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js
+          Number.MAX_SAFE_INTEGER
       - run: node ./test/polyfills/test-individual-feature.js
           Number.MIN_SAFE_INTEGER
       - run: node ./test/polyfills/test-individual-feature.js Number.isFinite
@@ -117,14 +118,14 @@ jobs:
       - run: node ./test/polyfills/test-individual-feature.js Number.parseInt
       - run: node ./test/polyfills/test-individual-feature.js Object.assign
       - run: node ./test/polyfills/test-individual-feature.js Object.create
-      - run: node ./test/polyfills/test-individual-feature.js
-          Object.defineProperties
   test_5:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js
+          Object.defineProperties
       - run: node ./test/polyfills/test-individual-feature.js Object.defineProperty
       - run: node ./test/polyfills/test-individual-feature.js Object.entries
       - run: node ./test/polyfills/test-individual-feature.js Object.freeze
@@ -136,13 +137,13 @@ jobs:
       - run: node ./test/polyfills/test-individual-feature.js Object.is
       - run: node ./test/polyfills/test-individual-feature.js Object.keys
       - run: node ./test/polyfills/test-individual-feature.js Object.setPrototypeOf
-      - run: node ./test/polyfills/test-individual-feature.js Object.values
   test_6:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js Object.values
       - run: node ./test/polyfills/test-individual-feature.js String.fromCodePoint
       - run: node ./test/polyfills/test-individual-feature.js Symbol.hasInstance
       - run: node ./test/polyfills/test-individual-feature.js
@@ -153,13 +154,13 @@ jobs:
       - run: node ./test/polyfills/test-individual-feature.js Symbol.search
       - run: node ./test/polyfills/test-individual-feature.js Symbol.species
       - run: node ./test/polyfills/test-individual-feature.js Symbol.split
-      - run: node ./test/polyfills/test-individual-feature.js Symbol.toPrimitive
   test_7:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js Symbol.toPrimitive
       - run: node ./test/polyfills/test-individual-feature.js Symbol.toStringTag
       - run: node ./test/polyfills/test-individual-feature.js Symbol.unscopables
       - run: node ./test/polyfills/test-individual-feature.js console.assert
@@ -169,13 +170,13 @@ jobs:
       - run: node ./test/polyfills/test-individual-feature.js console.dir
       - run: node ./test/polyfills/test-individual-feature.js console.dirxml
       - run: node ./test/polyfills/test-individual-feature.js console.error
-      - run: node ./test/polyfills/test-individual-feature.js console.exception
   test_8:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js console.exception
       - run: node ./test/polyfills/test-individual-feature.js console.group
       - run: node ./test/polyfills/test-individual-feature.js console.groupCollapsed
       - run: node ./test/polyfills/test-individual-feature.js console.groupEnd
@@ -185,13 +186,13 @@ jobs:
       - run: node ./test/polyfills/test-individual-feature.js console.profile
       - run: node ./test/polyfills/test-individual-feature.js console.profileEnd
       - run: node ./test/polyfills/test-individual-feature.js console.profiles
-      - run: node ./test/polyfills/test-individual-feature.js console.table
   test_9:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js console.table
       - run: node ./test/polyfills/test-individual-feature.js console.time
       - run: node ./test/polyfills/test-individual-feature.js console.timeEnd
       - run: node ./test/polyfills/test-individual-feature.js console.timeStamp
@@ -202,13 +203,13 @@ jobs:
       - run: node ./test/polyfills/test-individual-feature.js document.currentScript
       - run: node ./test/polyfills/test-individual-feature.js
           document.getElementsByClassName
-      - run: node ./test/polyfills/test-individual-feature.js document.querySelector
   test_10:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js document.querySelector
       - run: node ./test/polyfills/test-individual-feature.js
           document.visibilityState
       - run: node ./test/polyfills/test-individual-feature.js location.origin
@@ -222,13 +223,13 @@ jobs:
       - run: node ./test/polyfills/test-individual-feature.js Array.prototype.every
       - run: node ./test/polyfills/test-individual-feature.js Array.prototype.fill
       - run: node ./test/polyfills/test-individual-feature.js Array.prototype.filter
-      - run: node ./test/polyfills/test-individual-feature.js Array.prototype.find
   test_11:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js Array.prototype.find
       - run: node ./test/polyfills/test-individual-feature.js
           Array.prototype.findIndex
       - run: node ./test/polyfills/test-individual-feature.js
@@ -244,13 +245,13 @@ jobs:
       - run: node ./test/polyfills/test-individual-feature.js Array.prototype.reduce
       - run: node ./test/polyfills/test-individual-feature.js
           Array.prototype.reduceRight
-      - run: node ./test/polyfills/test-individual-feature.js Array.prototype.some
   test_12:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js Array.prototype.some
       - run: node ./test/polyfills/test-individual-feature.js Array.prototype.values
       - run: node ./test/polyfills/test-individual-feature.js
           DOMTokenList.prototype.@@iterator
@@ -268,14 +269,14 @@ jobs:
           Element.prototype.before
       - run: node ./test/polyfills/test-individual-feature.js
           Element.prototype.classList
-      - run: node ./test/polyfills/test-individual-feature.js
-          Element.prototype.cloneNode
   test_13:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js
+          Element.prototype.cloneNode
       - run: node ./test/polyfills/test-individual-feature.js
           Element.prototype.closest
       - run: node ./test/polyfills/test-individual-feature.js
@@ -294,14 +295,14 @@ jobs:
           Function.prototype.name
       - run: node ./test/polyfills/test-individual-feature.js
           HTMLCanvasElement.prototype.toBlob
-      - run: node ./test/polyfills/test-individual-feature.js
-          Node.prototype.contains
   test_14:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js
+          Node.prototype.contains
       - run: node ./test/polyfills/test-individual-feature.js
           NodeList.prototype.@@iterator
       - run: node ./test/polyfills/test-individual-feature.js
@@ -319,14 +320,14 @@ jobs:
           String.prototype.includes
       - run: node ./test/polyfills/test-individual-feature.js
           String.prototype.padEnd
-      - run: node ./test/polyfills/test-individual-feature.js
-          String.prototype.padStart
   test_15:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
+      - run: node ./test/polyfills/test-individual-feature.js
+          String.prototype.padStart
       - run: node ./test/polyfills/test-individual-feature.js
           String.prototype.repeat
       - run: node ./test/polyfills/test-individual-feature.js

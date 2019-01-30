@@ -1,4 +1,5 @@
-Object.keys = (function() {
+/* global CreateMethodProperty */
+CreateMethodProperty(Object, "keys", (function() {
 	'use strict';
 
 	// modified from https://github.com/es-shims/object-keys
@@ -127,4 +128,4 @@ Object.keys = (function() {
 		}
 		return theKeys;
 	};
-}());
+}()));
