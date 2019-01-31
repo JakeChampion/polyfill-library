@@ -23,7 +23,7 @@ _.chunk(polyfillsWhichHaveTests, 10).map(polyfillsWhichHaveTests => {
         steps: [
         'checkout',
         {
-            run: 'yarn install --frozen-lockfile'
+            run: 'npm ci'
         },
         ...testCommands
     ]};

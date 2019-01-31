@@ -7,7 +7,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: cd ./.circleci/ && shasum -a 256 config.yml > checksum
       - run: npm run build-circleci-config
       - run: cd ./.circleci/ && shasum -a 256 -c checksum || (echo "oh no, it looks
@@ -18,21 +18,21 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: npm run lint
   unit_tests:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: npm run test-library
   publish_to_npm:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
       - run: npm publish
   test_0:
@@ -40,7 +40,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js Blob
       - run: node ./test/polyfills/test-individual-feature.js CustomEvent
       - run: node ./test/polyfills/test-individual-feature.js DocumentFragment
@@ -57,7 +57,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js UserTiming
       - run: node ./test/polyfills/test-individual-feature.js WeakMap
       - run: node ./test/polyfills/test-individual-feature.js WeakSet
@@ -73,7 +73,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js Array.isArray
       - run: node ./test/polyfills/test-individual-feature.js Array.of
       - run: node ./test/polyfills/test-individual-feature.js Event.focusin
@@ -89,7 +89,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js Math.expm1
       - run: node ./test/polyfills/test-individual-feature.js Math.hypot
       - run: node ./test/polyfills/test-individual-feature.js Math.imul
@@ -105,7 +105,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js Number.Epsilon
       - run: node ./test/polyfills/test-individual-feature.js
           Number.MAX_SAFE_INTEGER
@@ -123,7 +123,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js Object.create
       - run: node ./test/polyfills/test-individual-feature.js
           Object.defineProperties
@@ -142,7 +142,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js Object.setPrototypeOf
       - run: node ./test/polyfills/test-individual-feature.js Object.values
       - run: node ./test/polyfills/test-individual-feature.js String.fromCodePoint
@@ -159,7 +159,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js Symbol.split
       - run: node ./test/polyfills/test-individual-feature.js Symbol.toPrimitive
       - run: node ./test/polyfills/test-individual-feature.js Symbol.toStringTag
@@ -175,7 +175,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js console.error
       - run: node ./test/polyfills/test-individual-feature.js console.exception
       - run: node ./test/polyfills/test-individual-feature.js console.group
@@ -191,7 +191,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js console.profiles
       - run: node ./test/polyfills/test-individual-feature.js console.table
       - run: node ./test/polyfills/test-individual-feature.js console.time
@@ -207,7 +207,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js
           document.getElementsByClassName
       - run: node ./test/polyfills/test-individual-feature.js document.querySelector
@@ -228,7 +228,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js Array.prototype.filter
       - run: node ./test/polyfills/test-individual-feature.js Array.prototype.find
       - run: node ./test/polyfills/test-individual-feature.js
@@ -249,7 +249,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js
           Array.prototype.reduceRight
       - run: node ./test/polyfills/test-individual-feature.js Array.prototype.some
@@ -273,7 +273,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js
           Element.prototype.classList
       - run: node ./test/polyfills/test-individual-feature.js
@@ -299,7 +299,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js
           HTMLCanvasElement.prototype.toBlob
       - run: node ./test/polyfills/test-individual-feature.js
@@ -324,7 +324,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: node ./test/polyfills/test-individual-feature.js
           String.prototype.padEnd
       - run: node ./test/polyfills/test-individual-feature.js
