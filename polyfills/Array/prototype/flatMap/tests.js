@@ -17,17 +17,25 @@ it('is not enumerable', function () {
     proclaim.isNotEnumerable(Array.prototype, 'flatMap');
 });
 
-it('throws TypeError if thisArg is null', function () {
-    proclaim.throws(function () {
-        [].flatMap.call(null, function () {});
-    }, TypeError);
-});
+var supportsStrictModeTests = (function () {
+    'use strict';
 
-it('throws TypeError if thisArg is undefined', function () {
-    proclaim.throws(function () {
-        [].flatMap.call(undefined, function () {});
-    }, TypeError);
-});
+    return this === undefined;
+}).call(undefined);
+
+if (supportsStrictModeTests) {
+    it('throws TypeError if thisArg is null', function () {
+        proclaim.throws(function () {
+            [].flatMap.call(null, function () {});
+        }, TypeError);
+    });
+
+    it('throws TypeError if thisArg is undefined', function () {
+        proclaim.throws(function () {
+            [].flatMap.call(undefined, function () {});
+        }, TypeError);
+    });
+}
 
 it('throws TypeError if argument is not callable', function () {
     proclaim.throws(function () {
@@ -63,46 +71,76 @@ it('throws a TypeError if constructor property is neither undefined nor an Objec
     proclaim.throws(function () {
         var a = [];
         a.constructor = null;
-        a.flatMap(function() {});
+        a.flatMap(function () {});
     }, TypeError);
 
-     proclaim.throws(function () {
+    proclaim.throws(function () {
         var a = [];
         a.constructor = 1;
-        a.flatMap(function() {});
+        a.flatMap(function () {});
     }, TypeError);
 
-     proclaim.throws(function () {
+    proclaim.throws(function () {
         var a = [];
         a.constructor = 'string';
-        a.flatMap(function() {});
+        a.flatMap(function () {});
     }, TypeError);
 
-     proclaim.throws(function () {
+    proclaim.throws(function () {
         var a = [];
         a.constructor = true;
-        a.flatMap(function() {});
+        a.flatMap(function () {});
     }, TypeError);
 });
 
-it('calls mapper function for each item in the array and flattens one level deep if mapper function returns an array', function() {
-    var actual = [1, [2], [[3]], [[[4]]]].flatMap(function (item, index) {
+it('calls mapper function for each item in the array and flattens one level deep if mapper function returns an array', function () {
+    var actual = [1, [2],
+        [
+            [3]
+        ],
+        [
+            [
+                [4]
+            ]
+        ]
+    ].flatMap(function (item, index) {
         return [item, index];
     });
 
-    var expected = [1, 0, [2], 1, [[3]], 2, [[[4]]], 3];
-    proclaim.deepStrictEqual(actual, [1, 0, [2], 1, [[3]], 2, [[[4]]], 3]);
+    var expected = [1, 0, [2], 1, [
+        [3]
+    ], 2, [
+        [
+            [4]
+        ]
+    ], 3];
+    proclaim.deepStrictEqual(actual, [1, 0, [2], 1, [
+        [3]
+    ], 2, [
+        [
+            [4]
+        ]
+    ], 3]);
     proclaim.deepStrictEqual(actual.length, expected.length);
 });
 
-it('can change context of mapper function with second argument', function() {
+it('can change context of mapper function with second argument', function () {
     var actual = [1, 2, 3, 4].flatMap(function (item) {
         return [this.x + item];
-    }, { x: 'hello '});
+    }, {
+        x: 'hello '
+    });
 
     proclaim.deepStrictEqual(actual, ["hello 1", "hello 2", "hello 3", "hello 4"]);
 });
 
 it('fills in sparse/holey arrays with empty arrays', function () {
-    proclaim.deepStrictEqual([, [1]].flatMap(function (x) { return x; }), [[], [1]].flatMap( function (x) { return x; }));
+    proclaim.deepStrictEqual([, [1]].flatMap(function (x) {
+        return x;
+    }), [
+        [],
+        [1]
+    ].flatMap(function (x) {
+        return x;
+    }));
 });
