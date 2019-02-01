@@ -384,6 +384,10 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js Symbol.species
       - run:
+          name: Testing Symbol.species
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.species
+      - run:
           name: Testing Symbol.split
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js Symbol.split
@@ -425,6 +429,10 @@ jobs:
           name: Testing console.dir
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js console.dir
+      - run:
+          name: Testing console.dirxml
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.dirxml
       - run:
           name: Testing console.dirxml
           no_output_timeout: 60m
@@ -477,6 +485,10 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js console.profileEnd
       - run:
+          name: Testing console.profileEnd
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.profileEnd
+      - run:
           name: Testing console.profiles
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js console.profiles
@@ -518,6 +530,11 @@ jobs:
           name: Testing console.warn
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js console.warn
+      - run:
+          name: Testing document.currentScript
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            document.currentScript
       - run:
           name: Testing document.currentScript
           no_output_timeout: 60m
@@ -577,6 +594,10 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js Array.prototype.fill
       - run:
+          name: Testing Array.prototype.fill
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Array.prototype.fill
+      - run:
           name: Testing Array.prototype.filter
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
@@ -624,6 +645,11 @@ jobs:
           name: Testing Array.prototype.map
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js Array.prototype.map
+      - run:
+          name: Testing Array.prototype.reduce
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.reduce
       - run:
           name: Testing Array.prototype.reduce
           no_output_timeout: 60m
@@ -679,6 +705,11 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             Element.prototype.append
+      - run:
+          name: Testing Element.prototype.before
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.before
       - run:
           name: Testing Element.prototype.before
           no_output_timeout: 60m
@@ -741,6 +772,11 @@ jobs:
           command: node ./test/polyfills/test-individual-feature.js
             Function.prototype.name
       - run:
+          name: Testing Function.prototype.name
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Function.prototype.name
+      - run:
           name: Testing HTMLCanvasElement.prototype.toBlob
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
@@ -791,6 +827,11 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.endsWith
+      - run:
+          name: Testing String.prototype.includes
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.includes
       - run:
           name: Testing String.prototype.includes
           no_output_timeout: 60m
