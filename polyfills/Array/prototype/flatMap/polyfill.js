@@ -1,6 +1,7 @@
 /* global CreateMethodProperty, ToObject, ToLength, Get, IsCallable, ArraySpeciesCreate, FlattenIntoArray */
 // 22.1.3.11 Array.prototype.flatMap ( mapperFunction [ , thisArg ] )
 CreateMethodProperty(Array.prototype, 'flatMap', function flatMap(mapperFunction /* , thisArg */ ) {
+    "use strict";
     // 1. Let O be ? ToObject(this value).
     var O = ToObject(this);
     // 2. Let sourceLen be ? ToLength(? Get(O, "length")).
