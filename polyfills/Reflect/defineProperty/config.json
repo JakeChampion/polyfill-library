@@ -20,7 +20,6 @@
     "dependencies": [
         "Reflect",
         "_ESAbstract.CreateMethodProperty",
-        "_ESAbstract.Reflect",
         "_ESAbstract.Type",
         "_ESAbstract.ToPropertyKey",
         "_ESAbstract.ToPropertyDescriptor"
