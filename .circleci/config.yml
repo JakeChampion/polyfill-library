@@ -591,6 +591,11 @@ jobs:
           command: node ./test/polyfills/test-individual-feature.js
             Array.prototype.findIndex
       - run:
+          name: Testing Array.prototype.flatMap
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.flatMap
+      - run:
           name: Testing Array.prototype.forEach
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
@@ -609,17 +614,17 @@ jobs:
           name: Testing Array.prototype.keys
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js Array.prototype.keys
-      - run:
-          name: Testing Array.prototype.lastIndexOf
-          no_output_timeout: 60m
-          command: node ./test/polyfills/test-individual-feature.js
-            Array.prototype.lastIndexOf
   test_12:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Array.prototype.lastIndexOf
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.lastIndexOf
       - run:
           name: Testing Array.prototype.map
           no_output_timeout: 60m
@@ -663,17 +668,17 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             DocumentFragment.prototype.prepend
-      - run:
-          name: Testing Element.prototype.after
-          no_output_timeout: 60m
-          command: node ./test/polyfills/test-individual-feature.js
-            Element.prototype.after
   test_13:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Element.prototype.after
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.after
       - run:
           name: Testing Element.prototype.append
           no_output_timeout: 60m
@@ -719,17 +724,17 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             Element.prototype.remove
-      - run:
-          name: Testing Element.prototype.replaceWith
-          no_output_timeout: 60m
-          command: node ./test/polyfills/test-individual-feature.js
-            Element.prototype.replaceWith
   test_14:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Element.prototype.replaceWith
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.replaceWith
       - run:
           name: Testing Function.prototype.bind
           no_output_timeout: 60m
@@ -775,17 +780,17 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.@@iterator
-      - run:
-          name: Testing String.prototype.codePointAt
-          no_output_timeout: 60m
-          command: node ./test/polyfills/test-individual-feature.js
-            String.prototype.codePointAt
   test_15:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing String.prototype.codePointAt
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.codePointAt
       - run:
           name: Testing String.prototype.endsWith
           no_output_timeout: 60m
