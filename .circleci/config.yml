@@ -71,6 +71,10 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Promise
       - run:
+          name: Testing Reflect
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Reflect
+      - run:
           name: Testing Set
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Set
@@ -94,16 +98,16 @@ jobs:
           name: Testing WeakSet
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js WeakSet
-      - run:
-          name: Testing XMLHttpRequest
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js XMLHttpRequest
   test_1:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing XMLHttpRequest
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js XMLHttpRequest
       - run:
           name: Testing atob
           no_output_timeout: 180m
@@ -157,16 +161,16 @@ jobs:
           name: Testing Math.asinh
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Math.asinh
-      - run:
-          name: Testing Math.atanh
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js Math.atanh
   test_2:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Math.atanh
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Math.atanh
       - run:
           name: Testing Math.cbrt
           no_output_timeout: 180m
@@ -219,16 +223,16 @@ jobs:
           name: Testing Math.trunc
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Math.trunc
-      - run:
-          name: Testing Number.Epsilon
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js Number.Epsilon
   test_3:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Number.Epsilon
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Number.Epsilon
       - run:
           name: Testing Number.MAX_SAFE_INTEGER
           no_output_timeout: 180m
@@ -285,16 +289,16 @@ jobs:
           name: Testing Object.entries
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Object.entries
-      - run:
-          name: Testing Object.freeze
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js Object.freeze
   test_4:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Object.freeze
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Object.freeze
       - run:
           name: Testing Object.fromEntries
           no_output_timeout: 180m
@@ -352,11 +356,75 @@ jobs:
           name: Testing Object.values
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Object.values
+  test_5:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: Testing Reflect.apply
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Reflect.apply
+      - run:
+          name: Testing Reflect.construct
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Reflect.construct
+      - run:
+          name: Testing Reflect.defineProperty
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            Reflect.defineProperty
+      - run:
+          name: Testing Reflect.deleteProperty
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            Reflect.deleteProperty
+      - run:
+          name: Testing Reflect.get
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Reflect.get
+      - run:
+          name: Testing Reflect.getOwnPropertyDescriptor
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            Reflect.getOwnPropertyDescriptor
+      - run:
+          name: Testing Reflect.getPrototypeOf
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            Reflect.getPrototypeOf
+      - run:
+          name: Testing Reflect.has
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Reflect.has
+      - run:
+          name: Testing Reflect.isExtensible
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Reflect.isExtensible
+      - run:
+          name: Testing Reflect.ownKeys
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Reflect.ownKeys
+      - run:
+          name: Testing Reflect.preventExtensions
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            Reflect.preventExtensions
+      - run:
+          name: Testing Reflect.set
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Reflect.set
+      - run:
+          name: Testing Reflect.setPrototypeOf
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            Reflect.setPrototypeOf
       - run:
           name: Testing String.fromCodePoint
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js String.fromCodePoint
-  test_5:
+  test_6:
     docker:
       - image: circleci/node:10
     steps:
@@ -419,7 +487,7 @@ jobs:
           name: Testing console.count
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js console.count
-  test_6:
+  test_7:
     docker:
       - image: circleci/node:10
     steps:
@@ -482,7 +550,7 @@ jobs:
           name: Testing console.profiles
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js console.profiles
-  test_7:
+  test_8:
     docker:
       - image: circleci/node:10
     steps:
@@ -548,7 +616,7 @@ jobs:
           name: Testing screen.orientation
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js screen.orientation
-  test_8:
+  test_9:
     docker:
       - image: circleci/node:10
     steps:
@@ -620,7 +688,7 @@ jobs:
           name: Testing Array.prototype.keys
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Array.prototype.keys
-  test_9:
+  test_10:
     docker:
       - image: circleci/node:10
     steps:
@@ -694,7 +762,7 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             Element.prototype.classList
-  test_10:
+  test_11:
     docker:
       - image: circleci/node:10
     steps:
@@ -770,7 +838,7 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             NodeList.prototype.forEach
-  test_11:
+  test_12:
     docker:
       - image: circleci/node:10
     steps:
@@ -989,4 +1057,15 @@ workflows:
             - lint_js
             - unit_tests
             - test_10
+      - test_12:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - check_circle_config
+            - lint_js
+            - unit_tests
+            - test_11
 
