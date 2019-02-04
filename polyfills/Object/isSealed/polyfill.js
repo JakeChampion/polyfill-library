@@ -3,7 +3,7 @@
     // 19.1.2.15 Object.isSealed ( O )
     CreateMethodProperty(Object, 'isSealed', function isSealed(O) {
         // 1. If Type(O) is not Object, return true.
-        if (TypeError(O) !== "object") {
+        if (Type(O) !== "object") {
             return true;
         }
         // 2. Return ? TestIntegrityLevel(O, "sealed").
