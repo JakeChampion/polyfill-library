@@ -1,4 +1,4 @@
-/* global CreateMethodProperty */
+/* global CreateMethodProperty, Type */
 (function (nativeisSealed) {
     // 19.1.2.15 Object.isSealed ( O )
     CreateMethodProperty(Object, 'isSealed', function isSealed(O) {

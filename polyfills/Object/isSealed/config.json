@@ -18,7 +18,8 @@
         "samsung_mob": "*"
     },
     "dependencies": [
-		"_ESAbstract.CreateMethodProperty"
+		"_ESAbstract.CreateMethodProperty",
+		"_ESAbstract.Type"
 	],
     "spec": "https://tc39.github.io/ecma262/#sec-object.isesealed",
     "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed"
