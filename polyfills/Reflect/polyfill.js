@@ -1,10 +1,10 @@
 // 26.1 The Reflect Object
-Object.defineProperty(this, "Reflect", {
-    value: this.Reflect || {},
+Object.defineProperty(self, "Reflect", {
+    value: self.Reflect || {},
     writable: true,
     configurable: true
 });
-Object.defineProperty(this, "Reflect", {
-    value: this.Reflect || {},
+Object.defineProperty(self, "Reflect", {
+    value: self.Reflect || {},
     enumerable: false
 });
