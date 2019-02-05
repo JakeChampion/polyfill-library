@@ -6,7 +6,7 @@ it('is an object', function () {
 });
 
 it('is not enumerable', function () {
-    proclaim.isNotEnumerable(String, 'fromCodePoint');
+    proclaim.isNotEnumerable(window, 'Reflect');
 });
 
 it('has a prototype of Object.prototype', function () {
