@@ -2,6 +2,9 @@
 Object.defineProperty(this, "Reflect", {
     value: this.Reflect || {},
     writable: true,
-    enumerable: false,
     configurable: true
+});
+Object.defineProperty(this, "Reflect", {
+    value: this.Reflect || {},
+    enumerable: false
 });
