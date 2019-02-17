@@ -21,3 +21,4 @@ polyfills/atob/polyfill.js
 polyfills/fetch/polyfill.js
 polyfills/HTMLTemplateElement/polyfill.js
 .nyc_output/
+polyfills/String/prototype/normalize/polyfill.js

@@ -879,6 +879,11 @@ jobs:
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.includes
       - run:
+          name: Testing String.prototype.normalize
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.normalize
+      - run:
           name: Testing String.prototype.padEnd
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
