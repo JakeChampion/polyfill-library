@@ -17,8 +17,8 @@ it('is not enumerable', function () {
     proclaim.isNotEnumerable(String, 'raw');
 });
 
-it('throws a TypeError if nextKey is a Symbol', function () {
-    if ('Symbol' in self) {
+if ('Symbol' in self) {
+    it('throws a TypeError if nextKey is a Symbol', function () {
         proclaim.throws(function () {
             String.raw({
                 raw: {
@@ -27,11 +27,11 @@ it('throws a TypeError if nextKey is a Symbol', function () {
                 }
             });
         });
-    }
-});
+    });
+}
 
-it('throws a TypeError if length is a Symbol', function () {
-    if ('Symbol' in self) {
+if ('Symbol' in self) {
+    it('throws a TypeError if length is a Symbol', function () {
         proclaim.throws(function () {
             String.raw({
                 raw: {
@@ -39,8 +39,8 @@ it('throws a TypeError if length is a Symbol', function () {
                 }
             });
         });
-    }
-});
+    });
+}
 
 it('calls the toString method on the keys', function () {
     proclaim.throws(function () {
@@ -57,19 +57,21 @@ it('calls the toString method on the keys', function () {
     }, Error);
 });
 
-it('throws a TypeError if a Symbol is used as a substitution', function () {
-    proclaim.throws(function () {
-        String.raw({
-            raw: ['a', 'b', 'c']
-        }, '', Symbol(''));
-    }, TypeError);
+if ('Symbol' in self) {
+    it('throws a TypeError if a Symbol is used as a substitution', function () {
+        proclaim.throws(function () {
+            String.raw({
+                raw: ['a', 'b', 'c']
+            }, '', Symbol(''));
+        }, TypeError);
 
-    proclaim.throws(function () {
-        String.raw({
-            raw: ['a', 'b', 'c']
-        }, Symbol(''), '');
-    }, TypeError);
-});
+        proclaim.throws(function () {
+            String.raw({
+                raw: ['a', 'b', 'c']
+            }, Symbol(''), '');
+        }, TypeError);
+    });
+}
 
 it('returns empty string if template.raw is an empty Array', function () {
     proclaim.deepStrictEqual(String.raw({
@@ -193,15 +195,19 @@ it('only appends template.raw.length - 1 amount of substitutions', function () {
     }), 'abdf');
 });
 
-it('works with unicode sequences', function() {
+it('works with unicode sequences', function () {
     proclaim.deepStrictEqual(
-        String.raw({raw:['\\u0065\\`\\r\\r\\n\\n', 'check']}, 'test'),
+        String.raw({
+            raw: ['\\u0065\\`\\r\\r\\n\\n', 'check']
+        }, 'test'),
         '\\u0065\\`\\r\\r\\n\\ntestcheck',
         'Unicode escape sequences'
-      );
-      proclaim.deepStrictEqual(
-        String.raw({raw: '\\\\\n      \\\n      '}),
+    );
+    proclaim.deepStrictEqual(
+        String.raw({
+            raw: '\\\\\n      \\\n      '
+        }),
         '\\\n\\\n\\\n',
         'Literal characters'
-      );
+    );
 });
