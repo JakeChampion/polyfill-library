@@ -16,7 +16,6 @@ describe("polyfillio", () => {
 	let UA;
 	let sourceslib;
 	let handlebars;
-	let lodash;
 	let streamFromPromise;
 	let lazystream;
 	let from2String;
@@ -46,9 +45,6 @@ describe("polyfillio", () => {
 
 		handlebars = require('../mock/handlebars.mock');
 		mockery.registerMock('handlebars', handlebars);
-
-		lodash = require('../mock/lodash.mock');
-		mockery.registerMock('lodash', lodash);
 
 		streamFromPromise = require('../mock/stream-from-promise.mock');
 		mockery.registerMock('stream-from-promise', streamFromPromise);
