@@ -13,8 +13,7 @@ it('has correct name', function () {
     proclaim.hasName(String.prototype.normalize, 'normalize');
 });
 
-// Pull-request for this has been opened at https://github.com/walling/unorm/pull/44
-it.skip('is not enumerable', function () {
+it('is not enumerable', function () {
     proclaim.isNotEnumerable(String.prototype, 'normalize');
 });
 

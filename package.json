@@ -72,7 +72,7 @@
     "stream-to-string": "^1.1.0",
     "toposort": "^2.0.2",
     "uglify-js": "^2.7.5",
-    "unorm": "^1.4.1",
+    "unorm": "^1.5.0",
     "usertiming": "^0.1.8",
     "web-animations-js": "^2.2.5",
     "whatwg-fetch": "^2.0.3",
