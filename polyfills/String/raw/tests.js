@@ -43,7 +43,7 @@ it('throws a TypeError if length is a Symbol', function () {
 });
 
 it('calls the toString method on the keys', function () {
-    proclaim.throws(Error, function () {
+    proclaim.throws(function () {
         String.raw({
             raw: {
                 length: 1,
@@ -54,7 +54,7 @@ it('calls the toString method on the keys', function () {
                 }
             }
         });
-    });
+    }, Error);
 });
 
 it('throws a TypeError if a Symbol is used as a substitution', function () {
