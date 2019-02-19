@@ -58,17 +58,17 @@ it('calls the toString method on the keys', function () {
 });
 
 it('throws a TypeError if a Symbol is used as a substitution', function () {
-    proclaim.throws(TypeError, function () {
+    proclaim.throws(function () {
         String.raw({
             raw: ['a', 'b', 'c']
         }, '', Symbol(''));
-    });
+    }, TypeError);
 
-    proclaim.throws(TypeError, function () {
+    proclaim.throws(function () {
         String.raw({
             raw: ['a', 'b', 'c']
         }, Symbol(''), '');
-    });
+    }, TypeError);
 });
 
 it('returns empty string if template.raw is an empty Array', function () {
