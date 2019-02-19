@@ -30,5 +30,5 @@
         "_ESAbstract.FlattenIntoArray"
     ],
     "spec": "https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatMap",
-    "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap",
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap"
 }
