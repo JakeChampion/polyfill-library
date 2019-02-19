@@ -466,6 +466,12 @@ describe('Map', function () {
 		proclaim.ok(o.has(0));
 		proclaim.equal(o.get(-0), generic);
 		proclaim.equal(o.get(0), generic);
+		if ('create' in Object) {
+			var o = new Map();
+			var key = Object.create(null);
+			o.set(key, key);
+			proclaim.equal(o.get(key), key);
+		}
 	});
 
 	it("implements .delete()", function () {
