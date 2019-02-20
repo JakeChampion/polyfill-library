@@ -903,6 +903,11 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.trim
+      - run:
+          name: Testing Symbol.prototype.description
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Symbol.prototype.description
 workflows:
   test:
     jobs:
