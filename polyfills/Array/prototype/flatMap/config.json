@@ -1,20 +1,23 @@
 {
+    "aliases": [
+        "es2019"
+    ],
     "browsers": {
-        "android": "*",
+        "android": "<69",
         "bb": "*",
-        "chrome": "*",
+        "chrome": "<68",
         "edge": "*",
         "edge_mob": "*",
-        "firefox": "*",
-        "firefox_mob": "*",
+        "firefox": "<62",
+        "firefox_mob": "<62",
         "ie": "*",
         "ie_mob": "*",
-        "ios_chr": "*",
-        "ios_saf": "*",
+        "ios_chr": "<69",
+        "ios_saf": "<12",
         "op_mini": "*",
         "op_mob": "*",
-        "opera": "*",
-        "safari": "*",
+        "opera": "<56",
+        "safari": "<12",
         "samsung_mob": "*"
     },
     "dependencies": [
@@ -26,5 +29,6 @@
         "_ESAbstract.ArraySpeciesCreate",
         "_ESAbstract.FlattenIntoArray"
     ],
-    "spec": "https://tc39.github.io/ecma262/#sec-array.prototype.flatmap"
+    "spec": "https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatMap",
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap"
 }
