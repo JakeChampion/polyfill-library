@@ -15,8 +15,6 @@ it('is configurable', function () {
     }
 });
 
-var things = [1, true, null, undefined, [], {}, /./, NaN, function(){}]
-
 it('works with numbers', function () {
     proclaim.strictEqual(Symbol(1).description, "1");
 });
