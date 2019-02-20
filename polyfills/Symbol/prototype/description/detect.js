@@ -1,0 +1,1 @@
+'description' in Symbol.prototype
