@@ -256,4 +256,10 @@ describe('Set', function() {
 			o.clear();
 			proclaim.equal(o.size, 0);
 		});
+
+		it("throws for non-iterable arguments", function() {
+			proclaim.throws(function() {
+				new Set(1);
+			}, TypeError);
+		});
 	});
