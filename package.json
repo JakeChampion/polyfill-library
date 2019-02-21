@@ -17,10 +17,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/financial-times/polyfill-service.git"
+    "url": "https://github.com/financial-times/polyfill-library.git"
   },
   "bugs": {
-    "url": "https://github.com/financial-times/polyfill-service/issues"
+    "url": "https://github.com/financial-times/polyfill-library/issues"
   },
   "scripts": {
     "lint": "eslint polyfills/**/polyfill.js lib tasks test",
