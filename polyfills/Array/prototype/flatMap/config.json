@@ -1,23 +1,20 @@
 {
-    "aliases": [
-        "es2019"
-    ],
     "browsers": {
-        "android": "<69",
+        "android": "*",
         "bb": "*",
-        "chrome": "<68",
+        "chrome": "*",
         "edge": "*",
         "edge_mob": "*",
-        "firefox": "<62",
-        "firefox_mob": "<62",
+        "firefox": "*",
+        "firefox_mob": "*",
         "ie": "*",
         "ie_mob": "*",
-        "ios_chr": "<69",
-        "ios_saf": "<12",
+        "ios_chr": "*",
+        "ios_saf": "*",
         "op_mini": "*",
         "op_mob": "*",
-        "opera": "<56",
-        "safari": "<12",
+        "opera": "*",
+        "safari": "*",
         "samsung_mob": "*"
     },
     "dependencies": [
