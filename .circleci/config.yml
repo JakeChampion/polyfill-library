@@ -82,6 +82,12 @@ jobs:
           name: Testing URL
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js URL
+  test_1:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing UserTiming
           no_output_timeout: 60m
@@ -98,12 +104,6 @@ jobs:
           name: Testing XMLHttpRequest
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js XMLHttpRequest
-  test_1:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: npm ci
       - run:
           name: Testing atob
           no_output_timeout: 60m
@@ -129,6 +129,12 @@ jobs:
           name: Testing Array.from
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js Array.from
+  test_2:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing Array.isArray
           no_output_timeout: 60m
@@ -161,12 +167,6 @@ jobs:
           name: Testing Math.cbrt
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js Math.cbrt
-  test_2:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: npm ci
       - run:
           name: Testing Math.clz32
           no_output_timeout: 60m
@@ -175,6 +175,12 @@ jobs:
           name: Testing Math.cosh
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js Math.cosh
+  test_3:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing Math.expm1
           no_output_timeout: 60m
@@ -215,6 +221,12 @@ jobs:
           name: Testing Math.trunc
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js Math.trunc
+  test_4:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing Number.Epsilon
           no_output_timeout: 60m
@@ -224,12 +236,6 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             Number.MAX_SAFE_INTEGER
-  test_3:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: npm ci
       - run:
           name: Testing Number.MIN_SAFE_INTEGER
           no_output_timeout: 60m
@@ -263,6 +269,12 @@ jobs:
           name: Testing Object.assign
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js Object.assign
+  test_5:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing Object.create
           no_output_timeout: 60m
@@ -290,12 +302,6 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             Object.getOwnPropertyDescriptor
-  test_4:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: npm ci
       - run:
           name: Testing Object.getOwnPropertyNames
           no_output_timeout: 60m
@@ -314,6 +320,12 @@ jobs:
           name: Testing Object.isExtensible
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js Object.isExtensible
+  test_6:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing Object.isFrozen
           no_output_timeout: 60m
@@ -357,7 +369,7 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             Symbol.isConcatSpreadable
-  test_5:
+  test_7:
     docker:
       - image: circleci/node:10
     steps:
@@ -403,6 +415,12 @@ jobs:
           name: Testing console.assert
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js console.assert
+  test_8:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing console.clear
           no_output_timeout: 60m
@@ -419,12 +437,6 @@ jobs:
           name: Testing console.dir
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js console.dir
-  test_6:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: npm ci
       - run:
           name: Testing console.dirxml
           no_output_timeout: 60m
@@ -450,6 +462,12 @@ jobs:
           name: Testing console.groupEnd
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js console.groupEnd
+  test_9:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing console.info
           no_output_timeout: 60m
@@ -482,12 +500,6 @@ jobs:
           name: Testing console.time
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js console.time
-  test_7:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: npm ci
       - run:
           name: Testing console.timeEnd
           no_output_timeout: 60m
@@ -496,6 +508,12 @@ jobs:
           name: Testing console.timeStamp
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js console.timeStamp
+  test_10:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing console.timeline
           no_output_timeout: 60m
@@ -540,6 +558,12 @@ jobs:
           name: Testing screen.orientation
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js screen.orientation
+  test_11:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing Array.prototype.@@iterator
           no_output_timeout: 60m
@@ -550,12 +574,6 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             Array.prototype.copyWithin
-  test_8:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: npm ci
       - run:
           name: Testing Array.prototype.entries
           no_output_timeout: 60m
@@ -585,10 +603,20 @@ jobs:
           command: node ./test/polyfills/test-individual-feature.js
             Array.prototype.findIndex
       - run:
+          name: Testing Array.prototype.flat
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Array.prototype.flat
+      - run:
           name: Testing Array.prototype.flatMap
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             Array.prototype.flatMap
+  test_12:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing Array.prototype.forEach
           no_output_timeout: 60m
@@ -622,12 +650,6 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             Array.prototype.reduce
-  test_9:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: npm ci
       - run:
           name: Testing Array.prototype.reduceRight
           no_output_timeout: 60m
@@ -642,6 +664,12 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             Array.prototype.values
+  test_13:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing DOMTokenList.prototype.@@iterator
           no_output_timeout: 60m
@@ -692,17 +720,17 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             Element.prototype.closest
-      - run:
-          name: Testing Element.prototype.dataset
-          no_output_timeout: 60m
-          command: node ./test/polyfills/test-individual-feature.js
-            Element.prototype.dataset
-  test_10:
+  test_14:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Element.prototype.dataset
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.dataset
       - run:
           name: Testing Element.prototype.matches
           no_output_timeout: 60m
@@ -748,6 +776,12 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             NodeList.prototype.@@iterator
+  test_15:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing NodeList.prototype.forEach
           no_output_timeout: 60m
@@ -773,12 +807,6 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.codePointAt
-  test_11:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: npm ci
       - run:
           name: Testing String.prototype.endsWith
           no_output_timeout: 60m
@@ -804,6 +832,12 @@ jobs:
           no_output_timeout: 60m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.repeat
+  test_16:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing String.prototype.startsWith
           no_output_timeout: 60m
@@ -1027,4 +1061,124 @@ workflows:
             - test_8
             - test_9
             - test_10
+      - test_12:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - check_circle_config
+            - lint_js
+            - unit_tests
+            - test_0
+            - test_1
+            - test_2
+            - test_3
+            - test_4
+            - test_5
+            - test_6
+            - test_7
+            - test_8
+            - test_9
+            - test_10
+            - test_11
+      - test_13:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - check_circle_config
+            - lint_js
+            - unit_tests
+            - test_0
+            - test_1
+            - test_2
+            - test_3
+            - test_4
+            - test_5
+            - test_6
+            - test_7
+            - test_8
+            - test_9
+            - test_10
+            - test_11
+            - test_12
+      - test_14:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - check_circle_config
+            - lint_js
+            - unit_tests
+            - test_0
+            - test_1
+            - test_2
+            - test_3
+            - test_4
+            - test_5
+            - test_6
+            - test_7
+            - test_8
+            - test_9
+            - test_10
+            - test_11
+            - test_12
+            - test_13
+      - test_15:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - check_circle_config
+            - lint_js
+            - unit_tests
+            - test_0
+            - test_1
+            - test_2
+            - test_3
+            - test_4
+            - test_5
+            - test_6
+            - test_7
+            - test_8
+            - test_9
+            - test_10
+            - test_11
+            - test_12
+            - test_13
+            - test_14
+      - test_16:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - check_circle_config
+            - lint_js
+            - unit_tests
+            - test_0
+            - test_1
+            - test_2
+            - test_3
+            - test_4
+            - test_5
+            - test_6
+            - test_7
+            - test_8
+            - test_9
+            - test_10
+            - test_11
+            - test_12
+            - test_13
+            - test_14
+            - test_15
 
