@@ -48,7 +48,7 @@ it('works with NaNs', function () {
 });
 
 it('works with functions', function () {
-    proclaim.strictEqual(Symbol(function(){}).description, "function(){}");
+    proclaim.strictEqual(Symbol(function(){}).description, String(function(){}));
 });
 
 it('works with no input', function () {
