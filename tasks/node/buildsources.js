@@ -158,7 +158,7 @@ class Polyfill {
 
 				if (fs.existsSync(this.detectPath)) {
 					this.config.detectSource = fs.readFileSync(this.detectPath, 'utf8').replace(/\s*$/, '') || '';
-					this.config.detectSource = this.minify(this.config.detectSource).min;
+					this.config.detectSource = this.minifyDetect(this.config.detectSource).min;
 					validateSource(`if (${this.config.detectSource}) true;`, `${this.name} feature detect from ${this.detectPath}`);
 				}
 			});
@@ -189,7 +189,7 @@ class Polyfill {
 					error
 				};
 			})
-			.then(raw => this.minify(raw))
+			.then(raw => this.minifyPolyfill(raw))
 			.catch(error => {
 				throw {
 					message: `Error minifying ${this.name}`,
@@ -202,7 +202,30 @@ class Polyfill {
 			});
 	}
 
-	minify(source) {
+	minifyPolyfill(source) {
+		const raw = `\n// ${this.name}\n${source}`;
+
+		if (this.config.build && this.config.build.minify === false) {
+			// skipping any validation or minification process since
+			// the raw source is supposed to be production ready.
+			// Add a line break in case the final line is a comment
+			return { raw: raw + '\n', min: source + '\n' };
+		}
+		else {
+			validateSource(source, `${this.name} from ${this.sourcePath}`);
+
+			const minified = uglify.minify(source, {
+				fromString: true,
+				compress: { screw_ie8: false },
+				mangle: { screw_ie8: false },
+				output: { screw_ie8: false, beautify: false }
+			});
+
+			return { raw, min: minified.code };
+		}
+	}
+
+	minifyDetect(source) {
 		const raw = `\n// ${this.name}\n${source}`;
 
 		if (this.config.build && this.config.build.minify === false) {
