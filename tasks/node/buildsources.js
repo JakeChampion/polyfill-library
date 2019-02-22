@@ -158,6 +158,7 @@ class Polyfill {
 
 				if (fs.existsSync(this.detectPath)) {
 					this.config.detectSource = fs.readFileSync(this.detectPath, 'utf8').replace(/\s*$/, '') || '';
+					this.config.detectSource = this.minify(this.config.detectSource).min;
 					validateSource(`if (${this.config.detectSource}) true;`, `${this.name} feature detect from ${this.detectPath}`);
 				}
 			});
@@ -215,9 +216,9 @@ class Polyfill {
 
 			const minified = uglify.minify(source, {
 				fromString: true,
-				compress: { screw_ie8: false },
+				compress: { screw_ie8: false, expression: true },
 				mangle: { screw_ie8: false },
-				output: { screw_ie8: false, beautify: false }
+				output: { screw_ie8: false, beautify: false, semicolons: false }
 			});
 
 			return { raw, min: minified.code };
