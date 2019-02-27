@@ -11,7 +11,6 @@ describe('lib/sources', () => {
 	let sources;
 	let process;
 	let consoleMock;
-	let pathMock;
 
 	beforeEach(() => {
 
@@ -24,9 +23,6 @@ describe('lib/sources', () => {
 
 		consoleMock = require('../mock/console.mock');
 		mockery.registerMock('console', consoleMock);
-
-		pathMock = require('../mock/path.mock');
-		mockery.registerMock('path', pathMock);
 
 		aliases = {};
 		mockery.registerMock('../polyfills/__dist/aliases.json', aliases);
@@ -83,48 +79,26 @@ describe('lib/sources', () => {
 
 	describe('sources.getConfigAliases()', () => {
 		it('returns a promise which resolves with  an array of polyfills which are under the alias', () => {
-			const polyfills = ["Array.from", "Array.of", "Map", "Object.assign", "Object.is", "Promise", "Set", "Symbol", "WeakMap", "WeakSet"];
-			fs.readFile.yields(undefined, JSON.stringify({
-				es6: polyfills
-			}));
 			const sources = require('../../../lib/sources');
-			return sources.getConfigAliases('es6').then(config => assert.deepEqual(config, polyfills));
+			return sources.getConfigAliases('es6').then(config => assert.isDefined(config));
 		});
 
 		it('returns a promise which resolves to undefined if alias does not exist', () => {
-			fs.readFile.yields(undefined, JSON.stringify({
-				es6: ["Array.from", "Array.of", "Map", "Object.assign", "Object.is", "Promise", "Set", "Symbol", "WeakMap", "WeakSet"]
-			}));
 			const sources = require('../../../lib/sources');
-			return sources.getConfigAliases('es7').then(config => assert.isUndefined(config));
+			return sources.getConfigAliases('fake-alias').then(config => assert.isUndefined(config));
 		});
 	});
 
-	describe('sources.getPolyfillMeta()', () => {
-		const metadata = {
-			"aliases": ["es6"],
-			"browsers": {
-				"chrome": "<45"
-			},
-			"dependencies": ["Object.defineProperty"],
-			"spec": "https://tc39.github.io/ecma262/#sec-array.from",
-			"docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from"
-		};
-
-		beforeEach(() => {
-			fs.readdir.yields(undefined, ['Array.from']);
-			fs.readFile.yields(undefined, JSON.stringify(metadata));
-		});
-
+	describe.only('sources.getPolyfillMeta()', () => {
 		it('returns a promise which resolves with the metadata for a feature if it exists', () => {
 			const sources = require('../../../lib/sources');
-			return sources.getPolyfillMeta('Array.from').then(meta => assert.deepEqual(meta, metadata));
+			return sources.getPolyfillMeta('Array.from').then(meta => assert.isDefined(meta));
 		});
 
 		it('returns a promise which resolves with undefined for a feature if it does not exist', () => {
 			fs.readFile.yields(new Error);
 			const sources = require('../../../lib/sources');
-			return sources.getPolyfillMeta('Array.of').then(meta => {
+			return sources.getPolyfillMeta('Array.smoosh').then(meta => {
 				assert.isUndefined(meta);
 			});
 		});
@@ -139,6 +113,13 @@ describe('lib/sources', () => {
 	});
 
 	describe('sources.streamPolyfillSource()', () => {
+		let pathMock;
+
+		beforeEach(() => {
+			pathMock = require('../mock/path.mock');
+			mockery.registerMock('path', pathMock);
+		});
+
 		it('returns a read-stream', () => {
 			pathMock.join.resetHistory();
 			pathMock.join.withArgs('../polyfills/__dist', 'Array.from', 'min.js').returns('../polyfills/__dist/Array.from/min.js');
