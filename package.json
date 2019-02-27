@@ -3,6 +3,7 @@
   "version": "3.30.1",
   "description": "A polyfill combinator",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "contributors": [
     {
       "name": "Jonathan Neal",
