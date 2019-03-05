@@ -1,6 +1,6 @@
 {
   "name": "polyfill-library",
-  "version": "3.29.0",
+  "version": "3.31.1",
   "description": "A polyfill combinator",
   "main": "lib/index.js",
   "contributors": [
@@ -37,7 +37,7 @@
     "test-node-coverage": "nyc check-coverage --lines 90 --branches 90 --functions 90",
     "test-coverage": "nyc report --reporter=lcov",
     "test": "npm run build && npm run test-node && npm run test-node-unit && npm run test-polyfills",
-    "postinstall": "npm run build"
+    "prepare": "npm run build"
   },
   "license": "MIT",
   "engines": {
