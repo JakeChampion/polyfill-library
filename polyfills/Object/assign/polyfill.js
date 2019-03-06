@@ -38,10 +38,11 @@ CreateMethodProperty(Object, 'assign', function assign(target, source) { // esli
 		// c. For each element nextKey of keys in List order, do
 		for (index2 = 0; index2 < keys.length; index2++) {
 			var nextKey = keys[index2];
+			// Polyfill.io - We combine these steps and use Object.prototype.propertyIsEnumerable instead of checking the descriptor ourselves
+			// because `Object.getOwnPropertyDescriptor(window.location, 'hash')` causes Internet Explorer 11 to crash.
 			// i. Let desc be ? from.[[GetOwnProperty]](nextKey).
-			var desc = Object.getOwnPropertyDescriptor(from, nextKey);
 			// ii. If desc is not undefined and desc.[[Enumerable]] is true, then
-			if (desc !== undefined && desc.enumerable) {
+			if (Object.prototype.propertyIsEnumerable.call(from, nextKey)) {
 				// 1. Let propValue be ? Get(from, nextKey).
 				var propValue = Get(from, nextKey);
 				// 2. Perform ? Set(to, nextKey, propValue, true).
