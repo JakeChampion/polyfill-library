@@ -77,3 +77,9 @@ it('converts primitives as the target into Objects', function() {
 	proclaim.deepEqual(target, booleanObject);
 });
 
+it('works with window.location', function() {
+	var target = Object.assign({}, window.location);
+	for (var prop in window.location) {
+		proclaim.deepStrictEqual(target[prop], window.location[prop]);
+	}
+});
