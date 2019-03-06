@@ -80,6 +80,8 @@ it('converts primitives as the target into Objects', function() {
 it('works with window.location', function() {
 	var target = Object.assign({}, window.location);
 	for (var prop in window.location) {
-		proclaim.deepStrictEqual(target[prop], window.location[prop]);
+		if (Object.prototype.hasOwnProperty.call(window.location, prop)) {
+			proclaim.deepStrictEqual(target[prop], window.location[prop]);
+		}
 	}
 });
