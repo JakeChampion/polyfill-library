@@ -1,0 +1,10 @@
+{
+	"browsers": {
+		"ie": "* - 11"
+	},
+	"dependencies": [
+		"document"
+	],
+	"spec": "https://www.w3.org/TR/html4/struct/links.html#edef-BASE",
+	"docs": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base"
+}
