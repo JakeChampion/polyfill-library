@@ -95,8 +95,8 @@ Read our [contributing guide][contributing-guide] to learn about our development
 
 ```
 npm run test-all-polyfills # Run the tests for all polyfills using BrowserStack
-npm run test-polyfills -- --feature=Array.from # Run the tests for Array.from
-npm run test-polyfills -- --feature=Array.from --browserstack # Run the tests for Array.from using BrowserStack
+npm run test-polyfills -- --features=Array.from # Run the tests for Array.from
+npm run test-polyfills -- --features=Array.from --browserstack # Run the tests for Array.from using BrowserStack
 ```
 
 ### License
