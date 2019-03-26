@@ -2,9 +2,7 @@
 
 const path = require('path');
 const karmaPolyfillLibraryPlugin = require('./karma-polyfill-library-plugin');
-const polyfillLibrary = require("./lib/index.js");
 const globby = require('globby');
-const execa = require('execa');
 
 const proclaim = path.resolve(require.resolve('proclaim'));
 
@@ -132,53 +130,9 @@ module.exports = async function (config) {
 	const features = config.features.split(',').map(feature => feature.trim());
 	const feature = features[0];
 	const featureToFolder = feature => feature.replace(/\./g, path.sep);
-	const latestCommitInFolder = folder => execa.shellSync(`git log -1 --format=format:%H --full-diff ${folder}`, {
-		cwd: __dirname
-	});
-	if (process.env.CI) {
 
-		const latestCommit = execa.shellSync('git rev-parse HEAD');
-		// if feature folders latest commit is same as latest commit, run the tests
-		const featureFolderCommit = latestCommitInFolder(`./polyfills/${featureToFolder(feature)}`);
-
-		// if any of the dependencies in the tree from the feature is the same as latest commit, run the tests
-		const dependencies = Object.keys(await polyfillLibrary.getPolyfills({
-			features: {
-				[feature]: {}
-			},
-			unknown: 'polyfill',
-			uaString: ''
-		}));
-
-		const latestCommitOfDependencies = dependencies.map(dep => latestCommitInFolder(`./polyfills/${featureToFolder(dep)}`));
-
-		// if the lib folder contains the latest commit, run the tests
-		const libCommit = latestCommitInFolder(`./lib`);
-		// if the test/polyfills folder contains the latest commit, run the tests,
-		const testFolderCommit = latestCommitInFolder(`./test/polyfills`);
-		
-		// if the karma.conf.js contains the latest commit, run the tests
-		// const karmaCommit = latestCommitInFolder(`./karma.conf.js`);
-		// if the karma-polyfill-library-plugin.js contains the latest commit, run the tests
-		const karmaPluginCommit = latestCommitInFolder(`./karma-polyfill-library-plugin.js`);
-		// if the package.json contains the latest commit, run the tests?
-		const packageJsonCommit = latestCommitInFolder(`./package.json`);
-
-		if (
-			latestCommit !== featureFolderCommit &&
-			!latestCommitOfDependencies.includes(latestCommit) &&
-			latestCommit !== libCommit &&
-			latestCommit !== testFolderCommit &&
-			// latestCommit !== karmaCommit &&
-			latestCommit !== karmaPluginCommit &&
-			latestCommit !== packageJsonCommit
-		) {
-			console.log(`${feature} has not changed, no need to run the tests.`);
-			process.exit(0);
-		}
-	}
 	if (config.browserstack) {
-		const browsers = getBrowsersFor(feature);
+		const browsers = getBrowsersFor(featureToFolder(feature));
 		config.set(Object.assign(config,{
 			// if true, Karma captures browsers, runs the tests and exits
 			singleRun: true,

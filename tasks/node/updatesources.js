@@ -1,6 +1,6 @@
 'use strict';
 
-const fs = require('fs');
+const fs = require('graceful-fs');
 const path = require('path');
 const denodeify = require('denodeify');
 const glob = denodeify(require('glob'));

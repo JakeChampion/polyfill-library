@@ -7,7 +7,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: cd ./.circleci/ && shasum -a 256 config.yml > checksum
       - run: npm run build-circleci-config
       - run: cd ./.circleci/ && shasum -a 256 -c checksum || (echo "oh no, it looks
@@ -18,21 +18,21 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: npm run lint
   unit_tests:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: npm run test-library
   publish_to_npm:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
       - run: npm publish
   test_0:
@@ -40,318 +40,784 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=Blob --browserstack
-      - run: npm run test-polyfills -- --features=CustomEvent --browserstack
-      - run: npm run test-polyfills -- --features=DocumentFragment --browserstack
-      - run: npm run test-polyfills -- --features=Event --browserstack
-      - run: npm run test-polyfills -- --features=IntersectionObserverEntry
-          --browserstack
-      - run: npm run test-polyfills -- --features=Map --browserstack
-      - run: npm run test-polyfills -- --features=Promise --browserstack
-      - run: npm run test-polyfills -- --features=Set --browserstack
-      - run: npm run test-polyfills -- --features=Symbol --browserstack
-      - run: npm run test-polyfills -- --features=URL --browserstack
+      - run: npm ci
+      - run:
+          name: Testing Blob
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Blob
+      - run:
+          name: Testing CustomEvent
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js CustomEvent
+      - run:
+          name: Testing DocumentFragment
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js DocumentFragment
+      - run:
+          name: Testing Event
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Event
+      - run:
+          name: Testing IntersectionObserverEntry
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            IntersectionObserverEntry
+      - run:
+          name: Testing Map
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Map
+      - run:
+          name: Testing Promise
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Promise
+      - run:
+          name: Testing Set
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Set
+      - run:
+          name: Testing Symbol
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol
+      - run:
+          name: Testing URL
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js URL
+      - run:
+          name: Testing UserTiming
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js UserTiming
+      - run:
+          name: Testing WeakMap
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js WeakMap
+      - run:
+          name: Testing WeakSet
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js WeakSet
+      - run:
+          name: Testing XMLHttpRequest
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js XMLHttpRequest
   test_1:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=UserTiming --browserstack
-      - run: npm run test-polyfills -- --features=WeakMap --browserstack
-      - run: npm run test-polyfills -- --features=WeakSet --browserstack
-      - run: npm run test-polyfills -- --features=XMLHttpRequest --browserstack
-      - run: npm run test-polyfills -- --features=atob --browserstack
-      - run: npm run test-polyfills -- --features=console --browserstack
-      - run: npm run test-polyfills -- --features=matchMedia --browserstack
-      - run: npm run test-polyfills -- --features=requestAnimationFrame
-          --browserstack
-      - run: npm run test-polyfills -- --features=setImmediate --browserstack
-      - run: npm run test-polyfills -- --features=Array.from --browserstack
+      - run: npm ci
+      - run:
+          name: Testing atob
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js atob
+      - run:
+          name: Testing console
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console
+      - run:
+          name: Testing matchMedia
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js matchMedia
+      - run:
+          name: Testing requestAnimationFrame
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            requestAnimationFrame
+      - run:
+          name: Testing setImmediate
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js setImmediate
+      - run:
+          name: Testing Array.from
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Array.from
+      - run:
+          name: Testing Array.isArray
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Array.isArray
+      - run:
+          name: Testing Array.of
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Array.of
+      - run:
+          name: Testing Event.focusin
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Event.focusin
+      - run:
+          name: Testing Event.hashchange
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Event.hashchange
+      - run:
+          name: Testing Math.acosh
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.acosh
+      - run:
+          name: Testing Math.asinh
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.asinh
+      - run:
+          name: Testing Math.atanh
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.atanh
+      - run:
+          name: Testing Math.cbrt
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.cbrt
   test_2:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=Array.isArray --browserstack
-      - run: npm run test-polyfills -- --features=Array.of --browserstack
-      - run: npm run test-polyfills -- --features=Event.focusin --browserstack
-      - run: npm run test-polyfills -- --features=Event.hashchange --browserstack
-      - run: npm run test-polyfills -- --features=Math.acosh --browserstack
-      - run: npm run test-polyfills -- --features=Math.asinh --browserstack
-      - run: npm run test-polyfills -- --features=Math.atanh --browserstack
-      - run: npm run test-polyfills -- --features=Math.cbrt --browserstack
-      - run: npm run test-polyfills -- --features=Math.clz32 --browserstack
-      - run: npm run test-polyfills -- --features=Math.cosh --browserstack
+      - run: npm ci
+      - run:
+          name: Testing Math.clz32
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.clz32
+      - run:
+          name: Testing Math.cosh
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.cosh
+      - run:
+          name: Testing Math.expm1
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.expm1
+      - run:
+          name: Testing Math.hypot
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.hypot
+      - run:
+          name: Testing Math.imul
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.imul
+      - run:
+          name: Testing Math.log10
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.log10
+      - run:
+          name: Testing Math.log1p
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.log1p
+      - run:
+          name: Testing Math.log2
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.log2
+      - run:
+          name: Testing Math.sign
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.sign
+      - run:
+          name: Testing Math.sinh
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.sinh
+      - run:
+          name: Testing Math.tanh
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.tanh
+      - run:
+          name: Testing Math.trunc
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Math.trunc
+      - run:
+          name: Testing Number.Epsilon
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Number.Epsilon
+      - run:
+          name: Testing Number.MAX_SAFE_INTEGER
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Number.MAX_SAFE_INTEGER
   test_3:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=Math.expm1 --browserstack
-      - run: npm run test-polyfills -- --features=Math.hypot --browserstack
-      - run: npm run test-polyfills -- --features=Math.log10 --browserstack
-      - run: npm run test-polyfills -- --features=Math.log2 --browserstack
-      - run: npm run test-polyfills -- --features=Math.sign --browserstack
-      - run: npm run test-polyfills -- --features=Math.sinh --browserstack
-      - run: npm run test-polyfills -- --features=Math.tanh --browserstack
-      - run: npm run test-polyfills -- --features=Math.trunc --browserstack
-      - run: npm run test-polyfills -- --features=Number.Epsilon --browserstack
-      - run: npm run test-polyfills -- --features=Number.MAX_SAFE_INTEGER
-          --browserstack
+      - run: npm ci
+      - run:
+          name: Testing Number.MIN_SAFE_INTEGER
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Number.MIN_SAFE_INTEGER
+      - run:
+          name: Testing Number.isFinite
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Number.isFinite
+      - run:
+          name: Testing Number.isInteger
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Number.isInteger
+      - run:
+          name: Testing Number.isNaN
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Number.isNaN
+      - run:
+          name: Testing Number.isSafeInteger
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Number.isSafeInteger
+      - run:
+          name: Testing Number.parseFloat
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Number.parseFloat
+      - run:
+          name: Testing Number.parseInt
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Number.parseInt
+      - run:
+          name: Testing Object.assign
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Object.assign
+      - run:
+          name: Testing Object.create
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Object.create
+      - run:
+          name: Testing Object.defineProperties
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Object.defineProperties
+      - run:
+          name: Testing Object.defineProperty
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Object.defineProperty
+      - run:
+          name: Testing Object.entries
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Object.entries
+      - run:
+          name: Testing Object.freeze
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Object.freeze
+      - run:
+          name: Testing Object.getOwnPropertyDescriptor
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Object.getOwnPropertyDescriptor
   test_4:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=Number.MIN_SAFE_INTEGER
-          --browserstack
-      - run: npm run test-polyfills -- --features=Number.isFinite --browserstack
-      - run: npm run test-polyfills -- --features=Number.isInteger --browserstack
-      - run: npm run test-polyfills -- --features=Number.isNaN --browserstack
-      - run: npm run test-polyfills -- --features=Number.isSafeInteger
-          --browserstack
-      - run: npm run test-polyfills -- --features=Number.parseFloat --browserstack
-      - run: npm run test-polyfills -- --features=Number.parseInt --browserstack
-      - run: npm run test-polyfills -- --features=Object.assign --browserstack
-      - run: npm run test-polyfills -- --features=Object.create --browserstack
-      - run: npm run test-polyfills -- --features=Object.defineProperties
-          --browserstack
+      - run: npm ci
+      - run:
+          name: Testing Object.getOwnPropertyNames
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Object.getOwnPropertyNames
+      - run:
+          name: Testing Object.getPrototypeOf
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Object.getPrototypeOf
+      - run:
+          name: Testing Object.is
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Object.is
+      - run:
+          name: Testing Object.isExtensible
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Object.isExtensible
+      - run:
+          name: Testing Object.isFrozen
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Object.isFrozen
+      - run:
+          name: Testing Object.isSealed
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Object.isSealed
+      - run:
+          name: Testing Object.keys
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Object.keys
+      - run:
+          name: Testing Object.preventExtensions
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Object.preventExtensions
+      - run:
+          name: Testing Object.seal
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Object.seal
+      - run:
+          name: Testing Object.setPrototypeOf
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Object.setPrototypeOf
+      - run:
+          name: Testing Object.values
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Object.values
+      - run:
+          name: Testing String.fromCodePoint
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js String.fromCodePoint
+      - run:
+          name: Testing Symbol.hasInstance
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.hasInstance
+      - run:
+          name: Testing Symbol.isConcatSpreadable
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Symbol.isConcatSpreadable
   test_5:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=Object.defineProperty
-          --browserstack
-      - run: npm run test-polyfills -- --features=Object.entries --browserstack
-      - run: npm run test-polyfills -- --features=Object.freeze --browserstack
-      - run: npm run test-polyfills -- --features=Object.getOwnPropertyDescriptor
-          --browserstack
-      - run: npm run test-polyfills -- --features=Object.getOwnPropertyNames
-          --browserstack
-      - run: npm run test-polyfills -- --features=Object.getPrototypeOf
-          --browserstack
-      - run: npm run test-polyfills -- --features=Object.is --browserstack
-      - run: npm run test-polyfills -- --features=Object.keys --browserstack
-      - run: npm run test-polyfills -- --features=Object.setPrototypeOf
-          --browserstack
-      - run: npm run test-polyfills -- --features=Object.values --browserstack
+      - run: npm ci
+      - run:
+          name: Testing Symbol.iterator
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.iterator
+      - run:
+          name: Testing Symbol.match
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.match
+      - run:
+          name: Testing Symbol.replace
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.replace
+      - run:
+          name: Testing Symbol.search
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.search
+      - run:
+          name: Testing Symbol.species
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.species
+      - run:
+          name: Testing Symbol.split
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.split
+      - run:
+          name: Testing Symbol.toPrimitive
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.toPrimitive
+      - run:
+          name: Testing Symbol.toStringTag
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.toStringTag
+      - run:
+          name: Testing Symbol.unscopables
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.unscopables
+      - run:
+          name: Testing console.assert
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.assert
+      - run:
+          name: Testing console.clear
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.clear
+      - run:
+          name: Testing console.count
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.count
+      - run:
+          name: Testing console.debug
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.debug
+      - run:
+          name: Testing console.dir
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.dir
   test_6:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=String.fromCodePoint
-          --browserstack
-      - run: npm run test-polyfills -- --features=Symbol.hasInstance --browserstack
-      - run: npm run test-polyfills -- --features=Symbol.isConcatSpreadable
-          --browserstack
-      - run: npm run test-polyfills -- --features=Symbol.iterator --browserstack
-      - run: npm run test-polyfills -- --features=Symbol.match --browserstack
-      - run: npm run test-polyfills -- --features=Symbol.replace --browserstack
-      - run: npm run test-polyfills -- --features=Symbol.search --browserstack
-      - run: npm run test-polyfills -- --features=Symbol.species --browserstack
-      - run: npm run test-polyfills -- --features=Symbol.split --browserstack
-      - run: npm run test-polyfills -- --features=Symbol.toPrimitive --browserstack
+      - run: npm ci
+      - run:
+          name: Testing console.dirxml
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.dirxml
+      - run:
+          name: Testing console.error
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.error
+      - run:
+          name: Testing console.exception
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.exception
+      - run:
+          name: Testing console.group
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.group
+      - run:
+          name: Testing console.groupCollapsed
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            console.groupCollapsed
+      - run:
+          name: Testing console.groupEnd
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.groupEnd
+      - run:
+          name: Testing console.info
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.info
+      - run:
+          name: Testing console.log
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.log
+      - run:
+          name: Testing console.markTimeline
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.markTimeline
+      - run:
+          name: Testing console.profile
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.profile
+      - run:
+          name: Testing console.profileEnd
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.profileEnd
+      - run:
+          name: Testing console.profiles
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.profiles
+      - run:
+          name: Testing console.table
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.table
+      - run:
+          name: Testing console.time
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.time
   test_7:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=Symbol.toStringTag --browserstack
-      - run: npm run test-polyfills -- --features=Symbol.unscopables --browserstack
-      - run: npm run test-polyfills -- --features=console.assert --browserstack
-      - run: npm run test-polyfills -- --features=console.clear --browserstack
-      - run: npm run test-polyfills -- --features=console.count --browserstack
-      - run: npm run test-polyfills -- --features=console.debug --browserstack
-      - run: npm run test-polyfills -- --features=console.dir --browserstack
-      - run: npm run test-polyfills -- --features=console.dirxml --browserstack
-      - run: npm run test-polyfills -- --features=console.error --browserstack
-      - run: npm run test-polyfills -- --features=console.exception --browserstack
+      - run: npm ci
+      - run:
+          name: Testing console.timeEnd
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.timeEnd
+      - run:
+          name: Testing console.timeStamp
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.timeStamp
+      - run:
+          name: Testing console.timeline
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.timeline
+      - run:
+          name: Testing console.timelineEnd
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.timelineEnd
+      - run:
+          name: Testing console.trace
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.trace
+      - run:
+          name: Testing console.warn
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js console.warn
+      - run:
+          name: Testing document.currentScript
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            document.currentScript
+      - run:
+          name: Testing document.getElementsByClassName
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            document.getElementsByClassName
+      - run:
+          name: Testing document.querySelector
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            document.querySelector
+      - run:
+          name: Testing document.visibilityState
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            document.visibilityState
+      - run:
+          name: Testing location.origin
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js location.origin
+      - run:
+          name: Testing screen.orientation
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js screen.orientation
+      - run:
+          name: Testing Array.prototype.@@iterator
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.@@iterator
+      - run:
+          name: Testing Array.prototype.copyWithin
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.copyWithin
   test_8:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=console.group --browserstack
-      - run: npm run test-polyfills -- --features=console.groupCollapsed
-          --browserstack
-      - run: npm run test-polyfills -- --features=console.groupEnd --browserstack
-      - run: npm run test-polyfills -- --features=console.info --browserstack
-      - run: npm run test-polyfills -- --features=console.log --browserstack
-      - run: npm run test-polyfills -- --features=console.markTimeline
-          --browserstack
-      - run: npm run test-polyfills -- --features=console.profile --browserstack
-      - run: npm run test-polyfills -- --features=console.profileEnd --browserstack
-      - run: npm run test-polyfills -- --features=console.profiles --browserstack
-      - run: npm run test-polyfills -- --features=console.table --browserstack
+      - run: npm ci
+      - run:
+          name: Testing Array.prototype.entries
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.entries
+      - run:
+          name: Testing Array.prototype.every
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.every
+      - run:
+          name: Testing Array.prototype.fill
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Array.prototype.fill
+      - run:
+          name: Testing Array.prototype.filter
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.filter
+      - run:
+          name: Testing Array.prototype.find
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Array.prototype.find
+      - run:
+          name: Testing Array.prototype.findIndex
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.findIndex
+      - run:
+          name: Testing Array.prototype.flat
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Array.prototype.flat
+      - run:
+          name: Testing Array.prototype.flatMap
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.flatMap
+      - run:
+          name: Testing Array.prototype.forEach
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.forEach
+      - run:
+          name: Testing Array.prototype.includes
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.includes
+      - run:
+          name: Testing Array.prototype.indexOf
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.indexOf
+      - run:
+          name: Testing Array.prototype.keys
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Array.prototype.keys
+      - run:
+          name: Testing Array.prototype.lastIndexOf
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.lastIndexOf
+      - run:
+          name: Testing Array.prototype.map
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Array.prototype.map
   test_9:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=console.time --browserstack
-      - run: npm run test-polyfills -- --features=console.timeEnd --browserstack
-      - run: npm run test-polyfills -- --features=console.timeStamp --browserstack
-      - run: npm run test-polyfills -- --features=console.timeline --browserstack
-      - run: npm run test-polyfills -- --features=console.timelineEnd --browserstack
-      - run: npm run test-polyfills -- --features=console.trace --browserstack
-      - run: npm run test-polyfills -- --features=console.warn --browserstack
-      - run: npm run test-polyfills -- --features=document.currentScript
-          --browserstack
-      - run: npm run test-polyfills -- --features=document.getElementsByClassName
-          --browserstack
-      - run: npm run test-polyfills -- --features=document.querySelector
-          --browserstack
+      - run: npm ci
+      - run:
+          name: Testing Array.prototype.reduce
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.reduce
+      - run:
+          name: Testing Array.prototype.reduceRight
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.reduceRight
+      - run:
+          name: Testing Array.prototype.some
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js Array.prototype.some
+      - run:
+          name: Testing Array.prototype.values
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Array.prototype.values
+      - run:
+          name: Testing DOMTokenList.prototype.@@iterator
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            DOMTokenList.prototype.@@iterator
+      - run:
+          name: Testing Date.prototype.toISOString
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Date.prototype.toISOString
+      - run:
+          name: Testing DocumentFragment.prototype.append
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            DocumentFragment.prototype.append
+      - run:
+          name: Testing DocumentFragment.prototype.prepend
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            DocumentFragment.prototype.prepend
+      - run:
+          name: Testing Element.prototype.after
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.after
+      - run:
+          name: Testing Element.prototype.append
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.append
+      - run:
+          name: Testing Element.prototype.before
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.before
+      - run:
+          name: Testing Element.prototype.classList
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.classList
+      - run:
+          name: Testing Element.prototype.cloneNode
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.cloneNode
+      - run:
+          name: Testing Element.prototype.closest
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.closest
   test_10:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=document.visibilityState
-          --browserstack
-      - run: npm run test-polyfills -- --features=location.origin --browserstack
-      - run: npm run test-polyfills -- --features=screen.orientation --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.@@iterator
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.copyWithin
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.entries
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.every
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.fill
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.filter
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.find
-          --browserstack
+      - run: npm ci
+      - run:
+          name: Testing Element.prototype.dataset
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.dataset
+      - run:
+          name: Testing Element.prototype.matches
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.matches
+      - run:
+          name: Testing Element.prototype.prepend
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.prepend
+      - run:
+          name: Testing Element.prototype.remove
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.remove
+      - run:
+          name: Testing Element.prototype.replaceWith
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.replaceWith
+      - run:
+          name: Testing Function.prototype.bind
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Function.prototype.bind
+      - run:
+          name: Testing Function.prototype.name
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Function.prototype.name
+      - run:
+          name: Testing HTMLCanvasElement.prototype.toBlob
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            HTMLCanvasElement.prototype.toBlob
+      - run:
+          name: Testing Node.prototype.contains
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Node.prototype.contains
+      - run:
+          name: Testing NodeList.prototype.@@iterator
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            NodeList.prototype.@@iterator
+      - run:
+          name: Testing NodeList.prototype.forEach
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            NodeList.prototype.forEach
+      - run:
+          name: Testing Promise.prototype.finally
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            Promise.prototype.finally
+      - run:
+          name: Testing RegExp.prototype.flags
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            RegExp.prototype.flags
+      - run:
+          name: Testing String.prototype.@@iterator
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.@@iterator
   test_11:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=Array.prototype.findIndex
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.forEach
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.includes
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.indexOf
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.keys
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.lastIndexOf
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.map --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.reduce
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.reduceRight
-          --browserstack
-      - run: npm run test-polyfills -- --features=Array.prototype.some
-          --browserstack
-  test_12:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=Array.prototype.values
-          --browserstack
-      - run: npm run test-polyfills -- --features=DOMTokenList.prototype.@@iterator
-          --browserstack
-      - run: npm run test-polyfills -- --features=Date.prototype.toISOString
-          --browserstack
-      - run: npm run test-polyfills -- --features=DocumentFragment.prototype.append
-          --browserstack
-      - run: npm run test-polyfills --
-          --features=DocumentFragment.prototype.prepend --browserstack
-      - run: npm run test-polyfills -- --features=Element.prototype.after
-          --browserstack
-      - run: npm run test-polyfills -- --features=Element.prototype.append
-          --browserstack
-      - run: npm run test-polyfills -- --features=Element.prototype.before
-          --browserstack
-      - run: npm run test-polyfills -- --features=Element.prototype.classList
-          --browserstack
-      - run: npm run test-polyfills -- --features=Element.prototype.cloneNode
-          --browserstack
-  test_13:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=Element.prototype.closest
-          --browserstack
-      - run: npm run test-polyfills -- --features=Element.prototype.dataset
-          --browserstack
-      - run: npm run test-polyfills -- --features=Element.prototype.matches
-          --browserstack
-      - run: npm run test-polyfills -- --features=Element.prototype.prepend
-          --browserstack
-      - run: npm run test-polyfills -- --features=Element.prototype.remove
-          --browserstack
-      - run: npm run test-polyfills -- --features=Element.prototype.replaceWith
-          --browserstack
-      - run: npm run test-polyfills -- --features=Function.prototype.bind
-          --browserstack
-      - run: npm run test-polyfills -- --features=Function.prototype.name
-          --browserstack
-      - run: npm run test-polyfills --
-          --features=HTMLCanvasElement.prototype.toBlob --browserstack
-      - run: npm run test-polyfills -- --features=Node.prototype.contains
-          --browserstack
-  test_14:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=NodeList.prototype.@@iterator
-          --browserstack
-      - run: npm run test-polyfills -- --features=NodeList.prototype.forEach
-          --browserstack
-      - run: npm run test-polyfills -- --features=Promise.prototype.finally
-          --browserstack
-      - run: npm run test-polyfills -- --features=RegExp.prototype.flags
-          --browserstack
-      - run: npm run test-polyfills -- --features=String.prototype.@@iterator
-          --browserstack
-      - run: npm run test-polyfills -- --features=String.prototype.codePointAt
-          --browserstack
-      - run: npm run test-polyfills -- --features=String.prototype.endsWith
-          --browserstack
-      - run: npm run test-polyfills -- --features=String.prototype.includes
-          --browserstack
-      - run: npm run test-polyfills -- --features=String.prototype.padEnd
-          --browserstack
-      - run: npm run test-polyfills -- --features=String.prototype.padStart
-          --browserstack
-  test_15:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: yarn install --frozen-lockfile
-      - run: npm run test-polyfills -- --features=String.prototype.repeat
-          --browserstack
-      - run: npm run test-polyfills -- --features=String.prototype.startsWith
-          --browserstack
-      - run: npm run test-polyfills -- --features=String.prototype.trim
-          --browserstack
+      - run: npm ci
+      - run:
+          name: Testing String.prototype.codePointAt
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.codePointAt
+      - run:
+          name: Testing String.prototype.endsWith
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.endsWith
+      - run:
+          name: Testing String.prototype.includes
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.includes
+      - run:
+          name: Testing String.prototype.padEnd
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.padEnd
+      - run:
+          name: Testing String.prototype.padStart
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.padStart
+      - run:
+          name: Testing String.prototype.repeat
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.repeat
+      - run:
+          name: Testing String.prototype.startsWith
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.startsWith
+      - run:
+          name: Testing String.prototype.trim
+          no_output_timeout: 60m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.trim
 workflows:
   test:
     jobs:
@@ -410,7 +876,6 @@ workflows:
             - check_circle_config
             - lint_js
             - unit_tests
-            - test_0
             - test_1
       - test_3:
           filters:
@@ -422,8 +887,6 @@ workflows:
             - check_circle_config
             - lint_js
             - unit_tests
-            - test_0
-            - test_1
             - test_2
       - test_4:
           filters:
@@ -435,9 +898,6 @@ workflows:
             - check_circle_config
             - lint_js
             - unit_tests
-            - test_0
-            - test_1
-            - test_2
             - test_3
       - test_5:
           filters:
@@ -449,10 +909,6 @@ workflows:
             - check_circle_config
             - lint_js
             - unit_tests
-            - test_0
-            - test_1
-            - test_2
-            - test_3
             - test_4
       - test_6:
           filters:
@@ -464,11 +920,6 @@ workflows:
             - check_circle_config
             - lint_js
             - unit_tests
-            - test_0
-            - test_1
-            - test_2
-            - test_3
-            - test_4
             - test_5
       - test_7:
           filters:
@@ -480,12 +931,6 @@ workflows:
             - check_circle_config
             - lint_js
             - unit_tests
-            - test_0
-            - test_1
-            - test_2
-            - test_3
-            - test_4
-            - test_5
             - test_6
       - test_8:
           filters:
@@ -497,13 +942,6 @@ workflows:
             - check_circle_config
             - lint_js
             - unit_tests
-            - test_0
-            - test_1
-            - test_2
-            - test_3
-            - test_4
-            - test_5
-            - test_6
             - test_7
       - test_9:
           filters:
@@ -515,14 +953,6 @@ workflows:
             - check_circle_config
             - lint_js
             - unit_tests
-            - test_0
-            - test_1
-            - test_2
-            - test_3
-            - test_4
-            - test_5
-            - test_6
-            - test_7
             - test_8
       - test_10:
           filters:
@@ -534,15 +964,6 @@ workflows:
             - check_circle_config
             - lint_js
             - unit_tests
-            - test_0
-            - test_1
-            - test_2
-            - test_3
-            - test_4
-            - test_5
-            - test_6
-            - test_7
-            - test_8
             - test_9
       - test_11:
           filters:
@@ -554,109 +975,5 @@ workflows:
             - check_circle_config
             - lint_js
             - unit_tests
-            - test_0
-            - test_1
-            - test_2
-            - test_3
-            - test_4
-            - test_5
-            - test_6
-            - test_7
-            - test_8
-            - test_9
             - test_10
-      - test_12:
-          filters:
-            tags:
-              ignore: /^v.*/
-            branches:
-              ignore: master
-          requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
-            - test_0
-            - test_1
-            - test_2
-            - test_3
-            - test_4
-            - test_5
-            - test_6
-            - test_7
-            - test_8
-            - test_9
-            - test_10
-            - test_11
-      - test_13:
-          filters:
-            tags:
-              ignore: /^v.*/
-            branches:
-              ignore: master
-          requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
-            - test_0
-            - test_1
-            - test_2
-            - test_3
-            - test_4
-            - test_5
-            - test_6
-            - test_7
-            - test_8
-            - test_9
-            - test_10
-            - test_11
-            - test_12
-      - test_14:
-          filters:
-            tags:
-              ignore: /^v.*/
-            branches:
-              ignore: master
-          requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
-            - test_0
-            - test_1
-            - test_2
-            - test_3
-            - test_4
-            - test_5
-            - test_6
-            - test_7
-            - test_8
-            - test_9
-            - test_10
-            - test_11
-            - test_12
-            - test_13
-      - test_15:
-          filters:
-            tags:
-              ignore: /^v.*/
-            branches:
-              ignore: master
-          requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
-            - test_0
-            - test_1
-            - test_2
-            - test_3
-            - test_4
-            - test_5
-            - test_6
-            - test_7
-            - test_8
-            - test_9
-            - test_10
-            - test_11
-            - test_12
-            - test_13
-            - test_14
 

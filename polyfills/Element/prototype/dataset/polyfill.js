@@ -16,7 +16,7 @@ Object.defineProperty(Element.prototype, 'dataset', {
 				});
 
 				Object.defineProperty(map, propName, {
-					enumerable: this.enumerable,
+					enumerable: true,
 					get: function() {
 						return this.value;
 					}.bind({value: value || ''}),

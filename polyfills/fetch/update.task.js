@@ -1,7 +1,7 @@
 /* eslint-env node */
 'use strict';
 
-var fs = require('fs');
+var fs = require('graceful-fs');
 var diff = require('diff');
 var process = require('process');
 var path = require('path');

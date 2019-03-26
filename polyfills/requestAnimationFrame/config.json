@@ -22,8 +22,7 @@
 		"firefox_mob": "3.6"
 	},
 	"dependencies": [
-		"Date.now",
-		"performance.now"
+		"Date.now"
 	],
 	"license": "MIT",
 	"docs": "https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"

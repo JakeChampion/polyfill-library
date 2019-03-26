@@ -1,6 +1,19 @@
 (function (global) {
 	var rafPrefix;
 
+	// do not inject RAF in order to avoid broken performance
+	var nowOffset = Date.now();
+
+	// use performance api if exist, otherwise use Date.now.
+	// Date.now polyfill required.
+	var pnow = function () {
+		if (global.performance && typeof global.performance.now === 'function') {
+			return global.performance.now();
+		}
+		// fallback
+		return Date.now() - nowOffset;
+	};
+
 	if ('mozRequestAnimationFrame' in global) {
 		rafPrefix = 'moz';
 
@@ -12,7 +25,7 @@
 	if (rafPrefix) {
 		global.requestAnimationFrame = function (callback) {
 		    return global[rafPrefix + 'RequestAnimationFrame'](function () {
-		        callback(performance.now());
+		        callback(pnow());
 		    });
 		};
 		global.cancelAnimationFrame = global[rafPrefix + 'CancelAnimationFrame'];
@@ -38,7 +51,7 @@
 			return setTimeout(function () {
 				lastTime = Date.now();
 
-				callback(performance.now());
+				callback(pnow());
 			}, delay);
 		};
 

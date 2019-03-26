@@ -12,6 +12,7 @@
 		"ie_mob": "*",
 		"opera": "*",
 		"op_mini": "*",
+		"op_mob": "*",
 		"safari": "*",
 		"firefox_mob": "*",
 		"samsung_mob": "*"

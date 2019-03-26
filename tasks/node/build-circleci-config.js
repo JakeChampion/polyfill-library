@@ -1,7 +1,7 @@
 "use strict";
 
 const path = require('path');
-const fs = require('fs');
+const fs = require('graceful-fs');
 const yaml = require('yaml');
 const globby = require('globby');
 const _ = require('lodash');
@@ -12,23 +12,31 @@ const polyfillsWhichHaveTests = globby.sync(['polyfills/**/tests.js', '!polyfill
     transform: (entry) => entry.replace('polyfills/', '').replace('/tests.js', '').replace(/\//g, '.')
 });
 
-_.chunk(polyfillsWhichHaveTests, 10).map(polyfillsWhichHaveTests => {
+_.chunk(polyfillsWhichHaveTests, 14).map(polyfillsWhichHaveTests => {
     const testCommands = polyfillsWhichHaveTests.map(feature => {
-        return {run:`npm run test-polyfills -- --features=${feature} --browserstack`};
+        return {
+            run: {
+                name: `Testing ${feature}`,
+                no_output_timeout: "60m",
+                command: `node ./test/polyfills/test-individual-feature.js ${feature}`
+            }
+        };
     });
     return {
         docker: [{
             image: 'circleci/node:10'
         }],
         steps: [
-        'checkout',
-        {
-            run: 'yarn install --frozen-lockfile'
-        },
-        ...testCommands
-    ]};
+            'checkout',
+            {
+                run: 'npm ci'
+            },
+            ...testCommands
+        ]
+    };
 }).forEach((job, index) => {
     const jobName = `test_${index}`;
+    const previousJob = `test_${index - 1}`;
     circleConfig.jobs[jobName] = job;
     circleConfig.workflows.test.jobs.push({
         [jobName]: {
@@ -40,12 +48,12 @@ _.chunk(polyfillsWhichHaveTests, 10).map(polyfillsWhichHaveTests => {
                     ignore: "master"
                 }
             },
-            requires: ["check_circle_config", "lint_js", "unit_tests", ...Object.keys(circleConfig.jobs).filter(job => job.startsWith('test_') && job !== jobName)]
+            requires: ["check_circle_config", "lint_js", "unit_tests"].concat(index > 0 ? previousJob:[])
         }
     });
 });
 fs.writeFileSync(
-    path.join(__dirname, '../../.circleci/config.yml'), 
+    path.join(__dirname, '../../.circleci/config.yml'),
     `
 # Do not modify this file directly, it is built by ./tasks/node/build-circleci-config.js.
 ${yaml.stringify(circleConfig)}

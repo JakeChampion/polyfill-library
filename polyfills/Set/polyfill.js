@@ -92,6 +92,8 @@
 				for (index = 0; index < length; index++) {
 					adder.call(set, iterable[index]);
 				}
+			} else {
+				throw (e);
 			}
 		}
 		return set;

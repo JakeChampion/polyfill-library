@@ -31,5 +31,6 @@
 		"_ESAbstract.SameValueZero",
 		"Symbol"
 	],
-	"docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
+	"docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+	"license": "MIT"
 }

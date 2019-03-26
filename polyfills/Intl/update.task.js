@@ -15,7 +15,7 @@
 
 'use strict';
 
-var fs = require('fs');
+var fs = require('graceful-fs');
 var path = require('path');
 var LocalesPath = path.dirname(require.resolve('intl/locale-data/jsonp/en.js'));
 var IntlPolyfillOutput = path.resolve('polyfills/Intl');

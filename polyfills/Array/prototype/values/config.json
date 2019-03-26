@@ -10,6 +10,7 @@
 		"ie": "*",
 		"ie_mob": "*",
 		"firefox": "<60",
+		"firefox_mob": "<60",
 		"chrome": "<66",
 		"safari": "<9",
 		"android": "*",
