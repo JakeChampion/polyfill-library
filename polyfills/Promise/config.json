@@ -20,6 +20,7 @@
 		"ie": "*",
 		"ie_mob": "*",
 		"ios_saf": "* - 7.1",
+		"op_mob": "*",
 		"op_mini": "*",
 		"opera": "* - 19",
 		"safari": "* - 7",
