@@ -216,7 +216,7 @@ class Polyfill {
 
 			const minified = uglify.minify(source, {
 				fromString: true,
-				compress: { screw_ie8: false },
+				compress: { screw_ie8: false, keep_fnames: true },
 				mangle: { screw_ie8: false },
 				output: { screw_ie8: false, beautify: false }
 			});
@@ -239,7 +239,7 @@ class Polyfill {
 
 			const minified = uglify.minify(source, {
 				fromString: true,
-				compress: { screw_ie8: false, expression: true },
+				compress: { screw_ie8: false, expression: true, keep_fnames: true },
 				mangle: { screw_ie8: false },
 				output: { screw_ie8: false, beautify: false, semicolons: false }
 			});
