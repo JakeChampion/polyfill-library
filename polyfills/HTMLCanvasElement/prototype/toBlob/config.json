@@ -14,7 +14,7 @@
 	},
 	"dependencies": [
 		"_ESAbstract.CreateMethodProperty",
-		"_TypedArray",
+		"TypedArray",
 		"atob",
 		"Blob"
 	],

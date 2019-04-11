@@ -20,7 +20,7 @@
 	},
 	"dependencies": [
 		"_ESAbstract.CreateMethodProperty",
-		"_TypedArray"
+		"TypedArray"
 	],
 	"docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/fround",
 	"spec": "https://tc39.github.io/ecma262/#sec-math.fround"
