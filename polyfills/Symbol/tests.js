@@ -58,6 +58,10 @@ it('should return "[object Symbol]" when called with Object.prototype.toString()
 	proclaim.equal(Object.prototype.toString.call(Symbol()), '[object Symbol]');
 });
 
+it('should retain browser toString behavior for nulls', function() {
+	proclaim.equal(Object.prototype.toString.call(null), '[object Null]');
+});
+
 if (supportsDescriptors) {
 	it('should silently fail when overwriting properties', function() {
 		var sym = Symbol("2");
