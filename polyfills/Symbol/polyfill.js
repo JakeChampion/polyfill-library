@@ -213,6 +213,7 @@
 	defineProperty(Object, 'create', descriptor);
 
 	descriptor.value = function () {
+		'use strict'; //so that ({}).toString.call(null) returns the correct [object Null] rather than [object Window]
 		var str = toString.call(this);
 		return (str === '[object String]' && onlySymbols(this)) ? '[object Symbol]' : str;
 	};
