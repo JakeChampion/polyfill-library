@@ -58,9 +58,22 @@ it('should return "[object Symbol]" when called with Object.prototype.toString()
 	proclaim.equal(Object.prototype.toString.call(Symbol()), '[object Symbol]');
 });
 
-it('should retain browser toString behavior for nulls', function() {
-	proclaim.equal(Object.prototype.toString.call(null), '[object Null]');
-});
+if(document.documentMode && document.documentMode <= 8) {
+	it('IE8: Object.prototype.toString.call(window) should be [object Object]', function() {
+		proclaim.equal(Object.prototype.toString.call(window), '[object Object]');
+	});
+} else if(document.documentMode && document.documentMode === 9) {
+	it('IE9: Object.prototype.toString.call(window) should be [object Window]', function() {
+		proclaim.equal(Object.prototype.toString.call(window), '[object Window]');
+	});
+} else {
+	it('Object.prototype.toString.call(null) should be [object Null]', function() {
+		proclaim.equal(Object.prototype.toString.call(null), '[object Null]');
+	});
+	it('Object.prototype.toString.call(window) should be [object Window]', function() {
+		proclaim.equal(Object.prototype.toString.call(window), '[object Window]');
+	});
+}
 
 if (supportsDescriptors) {
 	it('should silently fail when overwriting properties', function() {
