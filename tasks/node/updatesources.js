@@ -2,8 +2,8 @@
 
 const fs = require('graceful-fs');
 const path = require('path');
-const denodeify = require('denodeify');
-const glob = denodeify(require('glob'));
+const {promisify} = require('util');
+const glob = promisify(require('glob'));
 const crypto = require('crypto');
 const existsSync = require('exists-sync');
 

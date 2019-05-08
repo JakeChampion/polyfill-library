@@ -5,14 +5,14 @@ const path = require('path');
 const uglify = require('uglify-js');
 const mkdirp = require('mkdirp');
 const toposort = require('toposort');
-const denodeify = require('denodeify');
+const {promisify} = require('util');
 const vm = require('vm');
 const spdxLicenses = require('spdx-licenses');
 const UA = require('@financial-times/polyfill-useragent-normaliser');
 
-const writeFile = denodeify(fs.writeFile);
-const readFile = denodeify(fs.readFile);
-const makeDirectory = denodeify(mkdirp);
+const writeFile = promisify(fs.writeFile);
+const readFile = promisify(fs.readFile);
+const makeDirectory = promisify(mkdirp);
 
 function validateSource(code, label) {
 	try {
@@ -134,7 +134,7 @@ class Polyfill {
 			})
 			.then(data => {
 				this.config = JSON.parse(data);
-				
+
 				// Each internal polyfill needs to target all supported browsers at all versions.
 				if (this.path.relative.startsWith('_')) {
 					const supportedBrowsers = Object.keys(UA.getBaselines()).sort((a, b) => a.localeCompare(b));
