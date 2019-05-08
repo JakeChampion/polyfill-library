@@ -17,7 +17,7 @@ _.chunk(polyfillsWhichHaveTests, 14).map(polyfillsWhichHaveTests => {
         return {
             run: {
                 name: `Testing ${feature}`,
-                no_output_timeout: "60m",
+                no_output_timeout: "180m",
                 command: `node ./test/polyfills/test-individual-feature.js ${feature}`
             }
         };
