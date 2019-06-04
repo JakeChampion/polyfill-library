@@ -22,7 +22,6 @@
 	"dependencies": [
         "_ESAbstract.CreateMethodProperty",
         "_ESAbstract.RequireObjectCoercible",
-        "_ESAbstract.ObjectCreate",
         "_ESAbstract.ToPropertyKey",
         "_ESAbstract.CreateDataPropertyOrThrow",
         "_ESAbstract.AddEntriesFromIterable"
