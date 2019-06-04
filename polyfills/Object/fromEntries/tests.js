@@ -27,6 +27,7 @@ if ('getOwnPropertyDescriptor' in Object) {
             ['key', 'value']
         ]);
         proclaim.deepStrictEqual(Object.getOwnPropertyDescriptor(result, "key"), {
+            value: 'value',
             enumerable: true,
             writable: true,
             configurable: true,
