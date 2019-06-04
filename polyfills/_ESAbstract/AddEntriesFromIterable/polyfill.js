@@ -1,4 +1,4 @@
-/* global IsCallable, getIterator, IteratorStep, IteratorValue, IteratorClose, Get, Call */
+/* global IsCallable, GetIterator, IteratorStep, IteratorValue, IteratorClose, Get, Call */
 // 23.1.1.2 AddEntriesFromIterable ( target, iterable, adder )
 function AddEntriesFromIterable(target, iterable, adder) { // eslint-disable-line no-unused-vars
     // 1. If IsCallable(adder) is false, throw a TypeError exception.
@@ -7,7 +7,7 @@ function AddEntriesFromIterable(target, iterable, adder) { // eslint-disable-lin
     }
     // 2. Assert: iterable is present, and is neither undefined nor null.
     // 3. Let iteratorRecord be ? GetIterator(iterable).
-    var iteratorRecord = getIterator(iterable);
+    var iteratorRecord = GetIterator(iterable);
     // 4. Repeat,
     while (true) {
         // a. Let next be ? IteratorStep(iteratorRecord).

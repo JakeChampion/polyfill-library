@@ -19,7 +19,7 @@
     },
     "dependencies": [
         "_ESAbstract.IsCallable", 
-        "_ESAbstract.getIterator",
+        "_ESAbstract.GetIterator",
         "_ESAbstract.IteratorStep",
         "_ESAbstract.IteratorValue",
         "_ESAbstract.IteratorClose",
