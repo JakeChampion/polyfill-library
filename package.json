@@ -65,7 +65,7 @@
     "mutationobserver-shim": "^0.3.2",
     "picturefill": "^3.0.1",
     "rimraf": "^2.6.2",
-    "spdx-licenses": "^0.0.3",
+    "spdx-licenses": "^1.0.0",
     "stream-from-promise": "^1.0.0",
     "stream-to-string": "^1.1.0",
     "toposort": "^2.0.2",
