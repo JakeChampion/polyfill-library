@@ -72,7 +72,7 @@ it('uses second argument as the `this` for the `target` function', function () {
     }, context, []), context);
 });
 
-it('uses spreads third argument as the `arguments` for the `target` function', function () {
+it('spreads third argument as the `arguments` for the `target` function', function () {
     proclaim.deepStrictEqual(Reflect.apply(function () {
         return Array.prototype.slice.call(arguments);
     }, 1, [1, 2, 3]), [1, 2, 3]);
