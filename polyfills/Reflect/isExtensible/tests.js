@@ -46,7 +46,9 @@ it('throws a TypeError if target is not an Object', function () {
         Reflect.isExtensible('');
     }, TypeError);
 
-    proclaim.throws(function () {
-        Reflect.isExtensible(Symbol());
-    }, TypeError);
+    if ('Symbol' in this) {
+        proclaim.throws(function () {
+            Reflect.isExtensible(Symbol());
+        }, TypeError);
+    }
 });

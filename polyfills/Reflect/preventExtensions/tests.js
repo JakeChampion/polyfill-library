@@ -22,7 +22,9 @@ it('returns true after preventing extentions on an object', function () {
 });
 
 it('returns true even if the object already prevents extentions', function () {
-    proclaim.isTrue(Reflect.preventExtensions(Reflect.preventExtensions({})));
+    var obj = {};
+    Reflect.preventExtensions(obj);
+    proclaim.isTrue(Reflect.preventExtensions(obj));
 });
 
 if ('isExtensible' in Object) {
@@ -50,7 +52,9 @@ it('throws a TypeError if target is not an Object', function () {
         Reflect.isExtensible('');
     }, TypeError);
 
-    proclaim.throws(function () {
-        Reflect.isExtensible(Symbol());
-    }, TypeError);
+    if ('Symbol' in this) {
+        proclaim.throws(function () {
+            Reflect.isExtensible(Symbol());
+        }, TypeError);
+    }
 });

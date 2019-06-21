@@ -46,7 +46,9 @@ it('throws a TypeError if target is not an Object', function () {
         Reflect.getPrototypeOf('');
     }, TypeError);
 
-    proclaim.throws(function () {
-        Reflect.getPrototypeOf(Symbol());
-    }, TypeError);
+    if ('Symbol' in this) {
+        proclaim.throws(function () {
+            Reflect.getPrototypeOf(Symbol());
+        }, TypeError);
+    }
 });

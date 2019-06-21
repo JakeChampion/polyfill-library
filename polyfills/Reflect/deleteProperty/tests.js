@@ -27,15 +27,17 @@ it('can delete a string property', function () {
     proclaim.isFalse(Object.prototype.hasOwnProperty.call(o, 'a'));
 });
 
-it('can delete a Symbol property', function () {
-    var a = Symbol();
-    var o = {};
-    o[a] = 1;
+if('Symbol' in this) {
+    it('can delete a Symbol property', function () {
+        var a = Symbol();
+        var o = {};
+        o[a] = 1;
 
-    Reflect.deleteProperty(o, a);
+        Reflect.deleteProperty(o, a);
 
-    proclaim.isFalse(Object.prototype.hasOwnProperty.call(o, a));
-});
+        proclaim.isFalse(Object.prototype.hasOwnProperty.call(o, a));
+    });
+}
 
 it('returns true if deleting property was a success', function () {
     var o = {
@@ -71,7 +73,9 @@ it('throws a TypeError if target is not an Object', function () {
         Reflect.deleteProperty('', 'a');
     }, TypeError);
     
-    proclaim.throws(function () {
-        Reflect.deleteProperty(Symbol(), 'a');
-    }, TypeError);
+    if ('Symbol' in this) {
+        proclaim.throws(function () {
+            Reflect.deleteProperty(Symbol(), 'a');
+        }, TypeError);
+    }
 });

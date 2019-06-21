@@ -15,7 +15,7 @@ CreateMethodProperty(Reflect, 'setPrototypeOf', function setPrototypeOf(target, 
     }
     // 3. Return ? target.[[SetPrototypeOf]](proto).
     try {
-        target.__proto__ = proto;
+        Object.setPrototypeOf(target, proto);
         return Reflect.getPrototypeOf(target) === proto;
       } catch(_) {
         return false;

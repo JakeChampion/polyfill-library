@@ -34,7 +34,9 @@ it('throws a TypeError if target is not an Object', function () {
         Reflect.set('', 'a', 1);
     }, TypeError);
 
-    proclaim.throws(function () {
-        Reflect.set(Symbol(), 'p', 42);
-    }, TypeError);
+    if ('Symbol' in this) {
+        proclaim.throws(function () {
+            Reflect.set(Symbol(), 'p', 42);
+        }, TypeError);
+    }
 });

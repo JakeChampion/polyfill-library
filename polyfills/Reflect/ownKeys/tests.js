@@ -43,9 +43,11 @@ it('throws a TypeError if target is not an Object', function () {
         Reflect.ownKeys('');
     }, TypeError);
 
-    proclaim.throws(function () {
-        Reflect.ownKeys(Symbol());
-    }, TypeError);
+    if ('Symbol' in this) {
+        proclaim.throws(function () {
+            Reflect.ownKeys(Symbol());
+        }, TypeError);
+    }
 });
 
 it('Returns target\'s own property keys', function () {

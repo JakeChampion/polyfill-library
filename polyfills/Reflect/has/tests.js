@@ -51,7 +51,9 @@ it('throws a TypeError if `target` is not an Object', function () {
         Reflect.has('', 'a');
     }, TypeError);
 
-    proclaim.throws(function () {
-        Reflect.has(Symbol(), 'a');
-    }, TypeError);
+    if('Symbol' in this) {
+        proclaim.throws(function () {
+            Reflect.has(Symbol(), 'a');
+        }, TypeError);
+    }
 });

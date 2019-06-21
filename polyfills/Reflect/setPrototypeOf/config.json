@@ -21,7 +21,8 @@
         "Reflect",
         "Reflect.getPrototypeOf",
         "_ESAbstract.CreateMethodProperty",
-        "_ESAbstract.Type"
+        "_ESAbstract.Type",
+        "Object.setPrototypeOf"
     ],
     "spec": "https://tc39.github.io/ecma262/#sec-reflect.setprototypeof"
 }

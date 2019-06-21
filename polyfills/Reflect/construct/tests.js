@@ -82,7 +82,7 @@ it('throws TypeError is `target` is not a constructor', function () {
 
 it('spreads `argumentsList` as the arguments for the `target` constructor', function () {
     proclaim.deepStrictEqual(Reflect.construct(function E() {
-        this.args = arguments;
+        this.args = Array.prototype.slice.call(arguments);
     }, [1, 2, 3]).args, [1, 2, 3]);
 });
 
