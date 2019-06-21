@@ -21,7 +21,8 @@
         "_ESAbstract.Type",
         "_ESAbstract.ToLength",
         "_ESAbstract.Get",
-        "_ESAbstract.ToString"
+		"_ESAbstract.ToString",
+		"Array.prototype.includes"
 	],
 	"spec": "https://tc39.github.io/ecma262/#sec-createlistfromarraylike"
 }
