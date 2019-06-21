@@ -38,13 +38,15 @@ it('throws a TypeError if `target` is not callable', function () {
         Reflect.apply(/./);
     }, TypeError);
 
-    proclaim.throws(function () {
-        Reflect.apply(Symbol());
-    }, TypeError);
+    if ('Symbol' in this) {
+        proclaim.throws(function () {
+            Reflect.apply(Symbol());
+        }, TypeError);
 
-    proclaim.throws(function () {
-        Reflect.apply(Symbol('a'));
-    }, TypeError);
+        proclaim.throws(function () {
+            Reflect.apply(Symbol('a'));
+        }, TypeError);
+    }
 
     proclaim.throws(function () {
         Reflect.apply(true);
