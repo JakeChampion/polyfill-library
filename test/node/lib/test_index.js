@@ -84,30 +84,30 @@ describe("polyfillio", function () {
 		});
 
 		it("should return polyfills for unknown UA when unknown is set to `polyfill` and `uaString` param is not set", () => {
-				// ... even when `uaString` param is missing entirely
-				return polyfillio.getPolyfills({
-					features: {
-						'Math.sign': {}
-					},
-					unknown: 'polyfill',
-				}).then(result => assert.deepEqual(setsToArrays(result), {
-					'Math.sign': {
-						"flags": ["gated"]
-					},
-					"Object.defineProperty": {
-						"aliasOf": [
-							"Math.sign",
-							"_ESAbstract.CreateMethodProperty"
-						],
-						"flags": ["gated"]
-					},
-					"_ESAbstract.CreateMethodProperty": {
-						"aliasOf": [
-							"Math.sign"
-						],
-						"flags": ["gated"]
-					}
-				}));
+			// ... even when `uaString` param is missing entirely
+			return polyfillio.getPolyfills({
+				features: {
+					'Math.sign': {}
+				},
+				unknown: 'polyfill',
+			}).then(result => assert.deepEqual(setsToArrays(result), {
+				'Math.sign': {
+					"flags": ["gated"]
+				},
+				"Object.defineProperty": {
+					"aliasOf": [
+						"Math.sign",
+						"_ESAbstract.CreateMethodProperty"
+					],
+					"flags": ["gated"]
+				},
+				"_ESAbstract.CreateMethodProperty": {
+					"aliasOf": [
+						"Math.sign"
+					],
+					"flags": ["gated"]
+				}
+			}));
 		});
 
 		it("should understand the 'all' alias", () => {
@@ -129,6 +129,51 @@ describe("polyfillio", function () {
 					},
 					uaString: 'chrome/30'
 				}).then(result => assert.deepEqual(setsToArrays(result), {
+					"Object.keys": {
+						"aliasOf": [
+							"Object.create",
+							"Object.defineProperties",
+							"Symbol",
+							"Symbol.iterator",
+							"fetch",
+						],
+						"flags": []
+					},
+					"Symbol": {
+						"aliasOf": [
+							"Symbol.iterator",
+							"fetch",
+						],
+						"flags": []
+					},
+					"Symbol.iterator": {
+						"aliasOf": [
+							"fetch"
+						],
+						"flags": []
+					},
+					"_ESAbstract.CreateMethodProperty": {
+						"aliasOf": [
+							"Array.prototype.filter",
+							"Array.prototype.forEach",
+							"Array.prototype.map",
+							"Function.prototype.bind",
+							"Object.create",
+							"Object.defineProperties",
+							"Object.freeze",
+							"Object.getOwnPropertyDescriptor",
+							"Object.getOwnPropertyNames",
+							"Object.getPrototypeOf",
+							"Object.keys",
+							"Symbol",
+							"Symbol.iterator",
+							"_ESAbstract.ArraySpeciesCreate",
+							"_ESAbstract.Construct",
+							"_ESAbstract.OrdinaryCreateFromConstructor",
+							"fetch",
+						],
+						"flags": []
+					},
 					fetch: {
 						flags: []
 					},
@@ -144,6 +189,51 @@ describe("polyfillio", function () {
 					excludes: ["Promise", "non-existent-feature"],
 					uaString: 'chrome/30'
 				}).then(result => assert.deepEqual(setsToArrays(result), {
+					"Object.keys": {
+						"aliasOf": [
+							"Object.create",
+							"Object.defineProperties",
+							"Symbol",
+							"Symbol.iterator",
+							"fetch",
+						],
+						"flags": []
+					},
+					"Symbol": {
+						"aliasOf": [
+							"Symbol.iterator",
+							"fetch",
+						],
+						"flags": []
+					},
+					"Symbol.iterator": {
+						"aliasOf": [
+							"fetch"
+						],
+						"flags": []
+					},
+					"_ESAbstract.CreateMethodProperty": {
+						"aliasOf": [
+							"Array.prototype.filter",
+							"Array.prototype.forEach",
+							"Array.prototype.map",
+							"Function.prototype.bind",
+							"Object.create",
+							"Object.defineProperties",
+							"Object.freeze",
+							"Object.getOwnPropertyDescriptor",
+							"Object.getOwnPropertyNames",
+							"Object.getPrototypeOf",
+							"Object.keys",
+							"Symbol",
+							"Symbol.iterator",
+							"_ESAbstract.ArraySpeciesCreate",
+							"_ESAbstract.Construct",
+							"_ESAbstract.OrdinaryCreateFromConstructor",
+							"fetch",
+						],
+						"flags": []
+					},
 					fetch: {
 						flags: []
 					}
