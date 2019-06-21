@@ -1,4 +1,6 @@
-aliases = [ ]
+aliases = [
+  "IntersectionObserverEntry"
+]
 dependencies = [
   "getComputedStyle",
   "Array.isArray",
