@@ -42,18 +42,24 @@ it('throws a TypeError if target is not an Object', function () {
 });
 
 it('returns value from a receiver', function () {
-    var o = {};
-    var n = {
-        b: 2
-    };
+    try {
+        var o = {};
+        var n = {
+            b: 2
+        };
 
-    Object.defineProperty(o, 'a', {
-        get: function () {
-            return this.b;
+        Object.defineProperty(o, 'a', {
+            get: function () {
+                return this.b;
+            }
+        });
+
+        proclaim.deepStrictEqual(Reflect.get(o, 'a', n), 2);
+    } catch (e) {
+        if (e.message !== "Getters & setters cannot be defined on this javascript engine") {
+            throw e;
         }
-    });
-
-    proclaim.deepStrictEqual(Reflect.get(o, 'a', n), 2);
+    }
 });
 
 if ('create' in Object) {
@@ -77,7 +83,6 @@ it('if no receiver argument, reciever is set to target', function () {
     var o = {
         a: 1
     };
-
     proclaim.deepStrictEqual(Reflect.get(o, 'a'), 1);
 });
 
