@@ -21,7 +21,7 @@ function ToPropertyDescriptor(Obj) { // eslint-disable-line no-unused-vars
     // 6. If hasConfigurable is true, then
     if (hasConfigurable) {
         // a. Let configurable be ToBoolean(? Get(Obj, "configurable")).
-        var configurable = ToBoolean(Obj.configurable);
+        var configurable = ToBoolean(Get(Obj, 'configurable'));
         // b. Set desc.[[Configurable]] to configurable.
         desc['[[Configurable]]'] = configurable;
     }
