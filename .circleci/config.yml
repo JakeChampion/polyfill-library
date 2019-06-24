@@ -381,6 +381,10 @@ jobs:
           command: node ./test/polyfills/test-individual-feature.js
             Reflect.deleteProperty
       - run:
+          name: Testing Reflect.get
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Reflect.get
+      - run:
           name: Testing Reflect.getOwnPropertyDescriptor
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
