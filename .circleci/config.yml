@@ -363,11 +363,6 @@ jobs:
       - checkout
       - run: npm ci
       - run:
-          name: Testing Reflect.defineProperty
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js
-            Reflect.defineProperty
-      - run:
           name: Testing String.fromCodePoint
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js String.fromCodePoint
