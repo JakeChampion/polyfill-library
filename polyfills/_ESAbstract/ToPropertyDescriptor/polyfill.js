@@ -12,7 +12,7 @@ function ToPropertyDescriptor(Obj) { // eslint-disable-line no-unused-vars
     // 4. If hasEnumerable is true, then
     if (hasEnumerable) {
         // a. Let enumerable be ToBoolean(? Get(Obj, "enumerable")).
-        var enumerable = ToBoolean(Obj.enumerable);
+        var enumerable = ToBoolean(Get(Obj, 'enumerable'));
         // b. Set desc.[[Enumerable]] to enumerable.
         desc['[[Enumerable]]'] = enumerable;
     }
