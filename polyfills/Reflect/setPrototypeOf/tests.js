@@ -41,9 +41,10 @@ it('returns false if target and proto are the same, without setting a new protot
     proclaim.equal(Object.getPrototypeOf(o), Object.prototype);
 });
 
-if (Object.setPrototypeOf) {
+if (Object.setPrototypeOf || '__proto__' in Object.prototype) {
     it('returns true if the new prototype is set', function () {
         var o1 = {};
+        debugger;
         proclaim.isTrue(Reflect.setPrototypeOf(o1, null));
         proclaim.equal(Object.getPrototypeOf(o1), null);
 
