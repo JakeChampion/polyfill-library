@@ -47,12 +47,6 @@ if ('__proto__' in Object.prototype) {
         proclaim.isTrue(Reflect.setPrototypeOf(o1, null));
         proclaim.equal(Object.getPrototypeOf(o1), null);
 
-        if ('create' in Object) {
-            var o2 = Object.create(null);
-            proclaim.isTrue(Reflect.setPrototypeOf(o2, Object.prototype));
-            proclaim.equal(Object.getPrototypeOf(o2), Object.prototype);
-        }
-
         var o3 = {};
         var proto = {};
         proclaim.isTrue(Reflect.setPrototypeOf(o3, proto));
