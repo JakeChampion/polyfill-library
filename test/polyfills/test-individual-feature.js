@@ -1,5 +1,8 @@
 "use strict";
 
+// Ensure Array.prototype.flatMap exists
+require('array.prototype.flatmap').shim();
+const intersection = require('lodash').intersection;
 const path = require('path');
 const execa = require('execa');
 const polyfillLibrary = require("../../lib/index.js");
@@ -23,18 +26,30 @@ async function featureRequiresTesting(feature) {
 
     // if any of the dependencies in the tree from the feature is the same as latest commit, run the tests
     const dependencies = generateDependencyTreeForFeature(feature);
-    const dependencyPaths = dependencies.map(feature => `polyfills/${featureToFolder(feature)}`);
+    const dependencyFolders = dependencies.map(feature => `polyfills/${featureToFolder(feature)}`);
 
-    const configs = dependencyPaths.map(d => d + '/config.json');
-    const polyfills = dependencyPaths.map(d => d + '/polyfill.js');
-    const detects = dependencyPaths.map(d => d + '/detect.js');
-    const tests = dependencyPaths.map(d => d + '/tests.js');
-    const files = [].concat(configs, polyfills, detects, tests);
+    const filesRequiredByFeature = dependencyFolders.flatMap(folder => {
+        return [
+            folder + '/config.json',
+            folder + '/polyfill.js',
+            folder + '/detect.js',
+            folder + '/tests.js'
+        ];
+    });
+    
+    const fileRequiredByFeatureHasChanged = intersection(filesRequiredByFeature, filesWhichChanged);
+    const anyFileInLibFolderHasChanged = filesWhichChanged.some(file => file.startsWith('lib/'));
+    const karmaPolyfillPluginHasChanged = filesWhichChanged.some(file => file.startsWith('karma-polyfill-library-plugin.js'));
+    const packageJsonHasChanged = filesWhichChanged.some(file => file.startsWith('package.json'));
 
-    if (!files.some(file => filesWhichChanged.includes(file))) {
-        if (!filesWhichChanged.some(file => file.startsWith('lib/'))) {
-            if (!filesWhichChanged.some(file => file.startsWith('karma-polyfill-library-plugin.js'))) {
-                if (!filesWhichChanged.some(file => file.startsWith('package.json'))) {
+    if (!fileRequiredByFeatureHasChanged) {
+        if (!anyFileInLibFolderHasChanged) {
+            if (!karmaPolyfillPluginHasChanged) {
+                if (packageJsonHasChanged) {
+                    // If the change in package.json was in the `dependencies` object
+                    // check if it was a dependency that is being used as a third-party-polyfill.
+                    // If it is, only run the tests if that polyfill is within the `filesRequiredByFeature` array.
+                } else {
                     return false;
                 }
             }
