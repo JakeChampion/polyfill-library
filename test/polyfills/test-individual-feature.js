@@ -3,6 +3,8 @@
 // Ensure Array.prototype.flatMap exists
 require('array.prototype.flatmap').shim();
 const intersection = require('lodash').intersection;
+const deepEqual = require('lodash').equal;
+const fs = require('fs');
 const path = require('path');
 const execa = require('execa');
 const polyfillLibrary = require("../../lib/index.js");
@@ -18,6 +20,23 @@ function generateDependencyTreeForFeature(feature) {
         unknown: 'polyfill',
         uaString: ''
     }).then(Object.keys);
+}
+
+function hasOwnProperty (object, property) {
+    return Object.prototype.hasOwnProperty.call(object, property);
+} 
+
+function findDifferenceInObjects(inclusionObject, exclusionObject) {
+    const result = {};
+    for (const [key, value] of inclusionObject) {
+        if (hasOwnProperty(exclusionObject, key)) {
+            if (exclusionObject[key] !== value) {
+                result[key] = value;
+            }
+        } else {
+            result[key] = value;
+        }
+    }
 }
 
 async function featureRequiresTesting(feature) {
@@ -49,6 +68,22 @@ async function featureRequiresTesting(feature) {
                     // If the change in package.json was in the `dependencies` object
                     // check if it was a dependency that is being used as a third-party-polyfill.
                     // If it is, only run the tests if that polyfill is within the `filesRequiredByFeature` array.
+                    const packageJsonDependenciesFromMaster = JSON.parse(execa.shellSync('git show origin/master:package.json').stdout).dependencies;
+                    const packageJsonDependenciesFromHead = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')).dependencies;
+                    const packageJsonDependenciesHasChanged = !deepEqual(packageJsonDependenciesFromMaster, packageJsonDependenciesFromHead);
+
+                    if (packageJsonDependenciesHasChanged) {
+                        const packageJsonDependenciesChanges = Object.keys(findDifferenceInObjects(packageJsonDependenciesFromHead, packageJsonDependenciesFromMaster));
+                        const thirdPartyDependenciesForFeature = filesRequiredByFeature.filter(file => file.endsWith('/config.json')).map(file => {
+                            const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../../', file), 'utf-8'));
+                            return config.install && config.install.module;
+                        }).filter(thirdPartyPolyfills => thirdPartyPolyfills !== undefined);
+                        if (intersection(thirdPartyDependenciesForFeature, packageJsonDependenciesChanges)) {
+                            return true;
+                        }
+                    } else {
+                        return false;
+                    }
                 } else {
                     return false;
                 }
