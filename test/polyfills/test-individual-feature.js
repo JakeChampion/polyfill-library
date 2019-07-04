@@ -7,21 +7,28 @@ const feature = process.argv.slice(2)[0];
 
 const featureToFolder = feature => feature.replace(/\./g, path.sep);
 
-async function featureRequiresTesting(feature) {
-    const filesWhichChanged = execa.shellSync('git diff --name-only origin/master').stdout.split('\n');
-    // if any of the dependencies in the tree from the feature is the same as latest commit, run the tests
-    const dependencies = Object.keys(await polyfillLibrary.getPolyfills({
+function generateDependencyTreeForFeature(feature) {
+    return polyfillLibrary.getPolyfills({
         features: {
             [feature]: {}
         },
         unknown: 'polyfill',
         uaString: ''
-    })).map(feature => `polyfills/${featureToFolder(feature)}`);
+    }).then(Object.keys);
+}
 
-    const configs = dependencies.map(d => d + '/config.json');
-    const polyfills = dependencies.map(d => d + '/polyfill.js');
-    const detects = dependencies.map(d => d + '/detect.js');
-    const tests = dependencies.map(d => d + '/tests.js');
+async function featureRequiresTesting(feature) {
+    
+    const filesWhichChanged = execa.shellSync('git diff --name-only origin/master').stdout.split('\n');
+
+    // if any of the dependencies in the tree from the feature is the same as latest commit, run the tests
+    const dependencies = generateDependencyTreeForFeature(feature);
+    const dependencyPaths = dependencies.map(feature => `polyfills/${featureToFolder(feature)}`);
+
+    const configs = dependencyPaths.map(d => d + '/config.json');
+    const polyfills = dependencyPaths.map(d => d + '/polyfill.js');
+    const detects = dependencyPaths.map(d => d + '/detect.js');
+    const tests = dependencyPaths.map(d => d + '/tests.js');
     const files = [].concat(configs, polyfills, detects, tests);
 
     if (!files.some(file => filesWhichChanged.includes(file))) {
