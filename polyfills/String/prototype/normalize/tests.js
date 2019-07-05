@@ -74,14 +74,22 @@ it('works correctly for NFKD form', function () {
     );
 });
 
-it('throws TypeError if `this` is null', function () {
-    proclaim.throws(function () {
-        String.prototype.normalize.call(null);
-    }, TypeError);
-});
+var supportsStrictModeTests = (function () {
+	'use strict';
 
-it('throws TypeError if `this` is undefined', function () {
-    proclaim.throws(function () {
-        String.prototype.normalize.call(undefined);
-    }, TypeError);
-});
+	return this === undefined;
+}).call(undefined);
+
+if (supportsStrictModeTests) {
+    it('throws TypeError if `this` is null', function () {
+        proclaim.throws(function () {
+            String.prototype.normalize.call(null);
+        }, TypeError);
+    });
+
+    it('throws TypeError if `this` is undefined', function () {
+        proclaim.throws(function () {
+            String.prototype.normalize.call(undefined);
+        }, TypeError);
+    });
+}
