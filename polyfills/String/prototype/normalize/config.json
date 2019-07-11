@@ -19,7 +19,8 @@
     },
     "install": {
         "module": "unorm",
-        "paths": ["lib/unorm.js"]
+        "paths": ["lib/unorm.js"],
+        "postinstall": "update.task.js"
     },
     "dependencies": [
         "Array.prototype.reduceRight"
