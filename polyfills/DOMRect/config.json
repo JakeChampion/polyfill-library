@@ -1,8 +1,8 @@
 {
 	"aliases": [],
 	"browsers": {
-		"ie": "*",
-		"ie_mob": "*",
+		"ie": "9 - *",
+		"ie_mob": "9 - *",
 		"chrome": "<60",
 		"ios_chr": "<10.1",
 		"safari": "<10.1",
