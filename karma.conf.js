@@ -14,7 +14,7 @@ function getBrowsersFor(feature) {
 	const browserlist = TOML.parse(fs.readFileSync("./test/polyfills/browsers.toml", 'utf-8'));
 	const browserstackBrowsers = TOML.parse(fs.readFileSync('./test/polyfills/browserstackBrowsers.toml', 'utf-8'));
 
-	const browsersWeSupport = browserlist.filter(uaString => new UA(uaString).meetsBaseline());
+	const browsersWeSupport = browserlist.browsers.filter(uaString => new UA(uaString).meetsBaseline());
 	const browsersWeSupportForThisFeature = browsersWeSupport.filter(uaString => {
 		const meta = TOML.parse(fs.readFileSync(path.resolve(__dirname, 'polyfills', feature, 'config.toml'), 'utf-8'));
 		const ua = new UA(uaString);
@@ -24,7 +24,7 @@ function getBrowsersFor(feature) {
 
 	function useragentToBrowserObj(browserWithVersion) {
 		const [browser, version] = browserWithVersion.split("/");
-		const browserObj = browserstackBrowsers.find(browserObject => {
+		const browserObj = browserstackBrowsers.browsers.find(browserObject => {
 			if (browser === browserObject.os && version === browserObject.os_version) {
 				return true;
 			} else if (browser === browserObject.browser && version === browserObject.browser_version) {
