@@ -40,11 +40,11 @@ function findDifferenceInObjects(inclusionObject, exclusionObject) {
     }
     return result;
 }
-
+const TOML = require('@iarna/toml');
 async function findAllThirdPartyPolyfills () {
-    const configs = await globby(['polyfills/**/config.json', '!polyfills/__dist']);
+    const configs = await globby(['polyfills/**/config.toml', '!polyfills/__dist']);
     return configs.map(file => {
-        const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../../', file), 'utf-8'));
+        const config = TOML.parse(fs.readFileSync(path.join(__dirname, '../../', file), 'utf-8'));
         return config.install && config.install.module;
     }).filter(thirdPartyPolyfills => thirdPartyPolyfills !== undefined);
 }
@@ -60,7 +60,7 @@ async function featureRequiresTesting(feature) {
 
     const filesRequiredByFeature = dependencyFolders.flatMap(folder => {
         return [
-            folder + '/config.json',
+            folder + '/config.toml',
             folder + '/polyfill.js',
             folder + '/detect.js',
             folder + '/tests.js'
@@ -90,8 +90,8 @@ async function featureRequiresTesting(feature) {
         return true;
     }
 
-    const thirdPartyDependenciesForFeature = filesRequiredByFeature.filter(file => file.endsWith('/config.json')).map(file => {
-        const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../../', file), 'utf-8'));
+    const thirdPartyDependenciesForFeature = filesRequiredByFeature.filter(file => file.endsWith('/config.toml')).map(file => {
+        const config = TOML.parse(fs.readFileSync(path.join(__dirname, '../../', file), 'utf-8'));
         return config.install && config.install.module;
     }).filter(thirdPartyPolyfills => thirdPartyPolyfills !== undefined);
 

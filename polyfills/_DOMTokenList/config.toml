@@ -1,0 +1,22 @@
+dependencies = [ "Object.defineProperty" ]
+license = "ISC"
+repo = "https://github.com/Alhadis/DOMTokenList"
+
+[browsers]
+android = "*"
+bb = "*"
+chrome = "*"
+edge = "*"
+edge_mob = "*"
+firefox = "*"
+ios_chr = "*"
+ios_saf = "*"
+ie = "*"
+ie_mob = "*"
+opera = "*"
+op_mini = "*"
+op_mob = "*"
+safari = "*"
+firefox_mob = "*"
+samsung_mob = "*"
+

@@ -3,7 +3,7 @@ node_modules
 polyfills/Intl/~locale/**/detect.js
 polyfills/Intl/~locale/**/tests.js
 polyfills/Intl/~locale/**/polyfill.js
-polyfills/Intl/~locale/**/config.json
+polyfills/Intl/~locale/**/config.toml
 polyfills/__dist/
 polyfills/~html5-elements/polyfill.js
 polyfills/AudioContext/polyfill.js

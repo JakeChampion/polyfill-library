@@ -7,7 +7,7 @@
  * The detect.js file used for Intl is copied into every ~locale polyfill for
  * use on detecting whether that locale needs to be polyfilled.
  *
- * The config.json file for each locale polyfill is based off of the one for
+ * The config.toml file for each locale polyfill is based off of the one for
  * Intl. The changes made ot it are:
  *  - Removing the "install" section
  *  - Adding Intl as a dependency
@@ -23,6 +23,7 @@ var LocalesPolyfillOutput = path.resolve('polyfills/Intl/~locale');
 var crypto = require('crypto');
 var existsSync = require('exists-sync');
 var mkdirp = require('mkdirp');
+var TOML = require('@iarna/toml');
 
 function md5 (contents) {
 	return crypto.createHash('md5').update(contents).digest('hex');
@@ -42,7 +43,7 @@ function writeFileIfChanged (filePath, newFile) {
 	}
 }
 
-var configSource = require(path.join(IntlPolyfillOutput, 'config.json'));
+var configSource = TOML.parse(fs.readFileSync(path.join(IntlPolyfillOutput, 'config.toml'), 'utf-8'));
 delete configSource.install;
 
 if (!existsSync(LocalesPolyfillOutput)) {
@@ -55,7 +56,7 @@ configSource.dependencies.push('Intl');
 // don't test every single locale - it will be too slow
 configSource.test = { ci: false };
 
-var configFileSource = JSON.stringify(configSource, null, 4);
+var configFileSource = TOML.stringify(configSource);
 
 function intlLocaleDetectFor(locale) {
 	return "'Intl' in this && " +
@@ -83,7 +84,7 @@ locales.forEach(function (file) {
 	var localePolyfillSource = fs.readFileSync(path.join(LocalesPath, file));
 	var polyfillOutputPath = path.join(localeOutputPath, 'polyfill.js');
 	var detectOutputPath = path.join(localeOutputPath, 'detect.js');
-	var configOutputPath = path.join(localeOutputPath, 'config.json');
+	var configOutputPath = path.join(localeOutputPath, 'config.toml');
 	writeFileIfChanged(polyfillOutputPath, localePolyfillSource);
 	writeFileIfChanged(detectOutputPath, intlLocaleDetectFor(locale));
 	writeFileIfChanged(configOutputPath, configFileSource);
