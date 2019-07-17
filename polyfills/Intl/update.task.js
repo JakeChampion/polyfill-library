@@ -23,6 +23,7 @@ var LocalesPolyfillOutput = path.resolve('polyfills/Intl/~locale');
 var crypto = require('crypto');
 var existsSync = require('exists-sync');
 var mkdirp = require('mkdirp');
+var TOML = require('@iarna/toml');
 
 function md5 (contents) {
 	return crypto.createHash('md5').update(contents).digest('hex');
@@ -42,7 +43,7 @@ function writeFileIfChanged (filePath, newFile) {
 	}
 }
 
-var configSource = require(path.join(IntlPolyfillOutput, 'config.toml'));
+var configSource = TOML.parse(fs.readFileSync(path.join(IntlPolyfillOutput, 'config.toml'), 'utf-8'));
 delete configSource.install;
 
 if (!existsSync(LocalesPolyfillOutput)) {
@@ -54,7 +55,6 @@ configSource.dependencies.push('Intl');
 
 // don't test every single locale - it will be too slow
 configSource.test = { ci: false };
-var TOML = require('@iarna/toml');
 
 var configFileSource = TOML.stringify(configSource);
 

@@ -56,7 +56,7 @@ glob('polyfills/**/config.toml', globOptions)
         files
 			.map(src => {
 				try {
-					return Object.assign({ src }, TOML.parse(fs.readFileSync(src)));
+					return Object.assign({ src }, TOML.parse(fs.readFileSync(src, 'utf-8')));
 				} catch (e) {
 					throw new Error('Failed on ' + src + '. Error: ' + e);
 				}
