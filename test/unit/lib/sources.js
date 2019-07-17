@@ -29,7 +29,7 @@ describe('lib/sources', () => {
 		mockery.registerMock('path', pathMock);
 
 		aliases = {};
-		mockery.registerMock('../polyfills/__dist/aliases.json', aliases);
+		mockery.registerMock('../polyfills/__dist/aliases.toml', aliases);
 	});
 
 	it('exports an object', () => {
@@ -63,14 +63,14 @@ describe('lib/sources', () => {
 	});
 
 	describe('sources.listPolyfills()', () => {
-		it('filters out json files from the polyfill directory', () => {
+		it('filters out toml files from the polyfill directory', () => {
 			const spy = sinon.spy(Array.prototype, 'filter');
 			const sources = require('../../../lib/sources');
 
 			return sources.listPolyfills().then(() => {
 				spy.restore();
-				assert.equal(spy.lastCall.args[0]('aliases.json'), false);
-				assert.equal(spy.lastCall.args[0]('example.json'), false);
+				assert.equal(spy.lastCall.args[0]('aliases.toml'), false);
+				assert.equal(spy.lastCall.args[0]('example.toml'), false);
 			});
 		});
 
@@ -83,8 +83,9 @@ describe('lib/sources', () => {
 
 	describe('sources.getConfigAliases()', () => {
 		it('returns a promise which resolves with  an array of polyfills which are under the alias', () => {
+			const TOML = require('@iarna/toml');
 			const polyfills = ["Array.from", "Array.of", "Map", "Object.assign", "Object.is", "Promise", "Set", "Symbol", "WeakMap", "WeakSet"];
-			fs.readFile.yields(undefined, JSON.stringify({
+			fs.readFile.yields(undefined, TOML.stringify({
 				es6: polyfills
 			}));
 			const sources = require('../../../lib/sources');
@@ -92,7 +93,8 @@ describe('lib/sources', () => {
 		});
 
 		it('returns a promise which resolves to undefined if alias does not exist', () => {
-			fs.readFile.yields(undefined, JSON.stringify({
+			const TOML = require('@iarna/toml');
+			fs.readFile.yields(undefined, TOML.stringify({
 				es6: ["Array.from", "Array.of", "Map", "Object.assign", "Object.is", "Promise", "Set", "Symbol", "WeakMap", "WeakSet"]
 			}));
 			const sources = require('../../../lib/sources');
@@ -112,8 +114,9 @@ describe('lib/sources', () => {
 		};
 
 		beforeEach(() => {
+			const TOML = require('@iarna/toml');
 			fs.readdir.yields(undefined, ['Array.from']);
-			fs.readFile.yields(undefined, JSON.stringify(metadata));
+			fs.readFile.yields(undefined, TOML.stringify(metadata));
 		});
 
 		it('returns a promise which resolves with the metadata for a feature if it exists', () => {

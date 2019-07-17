@@ -8,14 +8,14 @@ const proclaim = path.resolve(require.resolve('proclaim'));
 
 function getBrowsersFor(feature) {
 	const UA = require('@financial-times/polyfill-useragent-normaliser');
-
+	const TOML = require('@iarna/toml');
 	// Grab all the browsers from BrowserStack which are officially supported by the polyfil service.
-	const browserlist = require("./test/polyfills/browsers.json");
-	const browserstackBrowsers = require('./test/polyfills/browserstackBrowsers.json');
+	const browserlist = TOML.parse("./test/polyfills/browsers.toml");
+	const browserstackBrowsers = TOML.parse('./test/polyfills/browserstackBrowsers.toml');
 
 	const browsersWeSupport = browserlist.filter(uaString => new UA(uaString).meetsBaseline());
 	const browsersWeSupportForThisFeature = browsersWeSupport.filter(uaString => {
-		const meta = require(path.resolve(__dirname, 'polyfills', feature, 'config.json'));
+		const meta = TOML.parse(path.resolve(__dirname, 'polyfills', feature, 'config.toml'));
 		const ua = new UA(uaString);
 		const isBrowserMatch = meta.browsers && meta.browsers[ua.getFamily()] && ua.satisfies(meta.browsers[ua.getFamily()]);
 		return isBrowserMatch;

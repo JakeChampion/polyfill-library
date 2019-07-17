@@ -6,7 +6,7 @@ const {promisify} = require('util');
 const glob = promisify(require('glob'));
 const crypto = require('crypto');
 const existsSync = require('exists-sync');
-
+const TOML = require('@iarna/toml');
 const cwd = path.join(__dirname, '../../');
 const globOptions = { cwd: cwd };
 
@@ -51,12 +51,12 @@ const installPolyfill = config => {
 };
 
 console.log('Updating third-party polyfills...');
-glob('polyfills/**/config.json', globOptions)
+glob('polyfills/**/config.toml', globOptions)
     .then(files => {
         files
 			.map(src => {
 				try {
-					return Object.assign({ src }, JSON.parse(fs.readFileSync(src)));
+					return Object.assign({ src }, TOML.parse(fs.readFileSync(src)));
 				} catch (e) {
 					throw new Error('Failed on ' + src + '. Error: ' + e);
 				}

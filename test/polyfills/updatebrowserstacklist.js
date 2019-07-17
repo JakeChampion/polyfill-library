@@ -17,12 +17,14 @@ if (!process.env.BROWSER_STACK_USERNAME || !process.env.BROWSER_STACK_ACCESS_KEY
 }
 
 const automateClient = BrowserStack.createAutomateClient(browserStackCredentials);
-
+const TOML = require('@iarna/toml');
 automateClient.getBrowsers(function(error, browsers) {
 	console.log("Updated the browser list for automated testing via BrowserStack.");
-	fs.writeFileSync(path.join(__dirname, "browserstackBrowsers.json"), JSON.stringify(browsers, null, 4));
+	fs.writeFileSync(path.join(__dirname, "browserstackBrowsers.toml"), TOML.stringify({browsers}));
 	fs.writeFileSync(
-		path.join(__dirname, "browsers.json"),
-		JSON.stringify(Array.from(new Set(browsers.map(b => (b.browser_version ? `${b.browser}/${b.browser_version}` : `${b.os}/${b.os_version}`)))).sort(), null, 4)
+		path.join(__dirname, "browsers.toml"),
+		TOML.stringify({
+			browsers: Array.from(new Set(browsers.map(b => (b.browser_version ? `${b.browser}/${b.browser_version}` : `${b.os}/${b.os_version}`)))).sort()
+		})
 	);
 });
