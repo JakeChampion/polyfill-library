@@ -1,0 +1,27 @@
+dependencies = [
+  "Reflect",
+  "_ESAbstract.CreateMethodProperty",
+  "_ESAbstract.IsConstructor",
+  "_ESAbstract.CreateListFromArrayLike",
+  "_ESAbstract.Construct"
+]
+spec = "https://tc39.github.io/ecma262/#sec-reflect.construct"
+
+[browsers]
+android = "*"
+bb = "*"
+chrome = "*"
+edge = "*"
+edge_mob = "*"
+firefox = "*"
+firefox_mob = "*"
+ie = "*"
+ie_mob = "*"
+ios_chr = "*"
+ios_saf = "*"
+op_mini = "*"
+op_mob = "*"
+opera = "*"
+safari = "*"
+samsung_mob = "*"
+
