@@ -195,19 +195,20 @@ it('only appends template.raw.length - 1 amount of substitutions', function () {
     }), 'abdf');
 });
 
-it('works with unicode sequences', function () {
+it('works with unicode escape sequences', function () {
     proclaim.deepStrictEqual(
         String.raw({
             raw: ['\\u0065\\`\\r\\r\\n\\n', 'check']
         }, 'test'),
-        '\\u0065\\`\\r\\r\\n\\ntestcheck',
-        'Unicode escape sequences'
+        '\\u0065\\`\\r\\r\\n\\ntestcheck'
     );
+});
+
+it('works with unicode literal characters', function () {
     proclaim.deepStrictEqual(
         String.raw({
-            raw: '\\\\\n      \\\n      '
+            raw: "\\\n\\\n\\\n"
         }),
-        '\\\n\\\n\\\n',
-        'Literal characters'
+        '\\\n\\\n\\\n'
     );
 });
