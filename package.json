@@ -44,7 +44,7 @@
     "node": ">=8"
   },
   "dependencies": {
-    "@financial-times/polyfill-useragent-normaliser": "^1.1.0",
+    "@financial-times/polyfill-useragent-normaliser": "^1.2.0",
     "@iarna/toml": "^2.2.3",
     "@webcomponents/template": "^1.4.0",
     "Base64": "^1.0.0",
