@@ -1,4 +1,6 @@
-aliases = []
+aliases = [
+    "es2017"
+]
 dependencies = [
     "Object.getOwnPropertyDescriptor",
     "Object.defineProperty",
