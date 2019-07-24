@@ -21,7 +21,6 @@ var LocalesPath = path.dirname(require.resolve('intl/locale-data/jsonp/en.js'));
 var IntlPolyfillOutput = path.resolve('polyfills/Intl');
 var LocalesPolyfillOutput = path.resolve('polyfills/Intl/~locale');
 var crypto = require('crypto');
-var existsSync = require('exists-sync');
 var mkdirp = require('mkdirp');
 var TOML = require('@iarna/toml');
 
@@ -30,7 +29,7 @@ function md5 (contents) {
 }
 
 function writeFileIfChanged (filePath, newFile) {
-	if (existsSync(filePath)) {
+	if (fs.existsSync(filePath)) {
 		var currentFile = fs.readFileSync(filePath);
 		var currentFileHash = md5(currentFile);
 		var newFileHash = md5(newFile);
@@ -46,7 +45,7 @@ function writeFileIfChanged (filePath, newFile) {
 var configSource = TOML.parse(fs.readFileSync(path.join(IntlPolyfillOutput, 'config.toml'), 'utf-8'));
 delete configSource.install;
 
-if (!existsSync(LocalesPolyfillOutput)) {
+if (!fs.existsSync(LocalesPolyfillOutput)) {
 	mkdirp.sync(LocalesPolyfillOutput);
 }
 
@@ -77,7 +76,7 @@ locales.forEach(function (file) {
 	var locale = file.slice(0, file.indexOf('.'));
 	var localeOutputPath = path.join(LocalesPolyfillOutput, locale);
 
-	if (!existsSync(localeOutputPath)) {
+	if (!fs.existsSync(localeOutputPath)) {
 		mkdirp.sync(localeOutputPath);
 	}
 

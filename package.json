@@ -51,7 +51,6 @@
     "audio-context-polyfill": "^1.0.0",
     "diff": "1.4.0",
     "event-source-polyfill": "^0.0.9",
-    "exists-sync": "0.0.4",
     "from2-string": "^1.1.0",
     "glob": "^7.1.1",
     "graceful-fs": "^4.1.10",

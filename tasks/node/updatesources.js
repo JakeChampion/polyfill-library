@@ -5,7 +5,6 @@ const path = require('path');
 const {promisify} = require('util');
 const glob = promisify(require('glob'));
 const crypto = require('crypto');
-const existsSync = require('exists-sync');
 const TOML = require('@iarna/toml');
 const cwd = path.join(__dirname, '../../');
 const globOptions = { cwd: cwd };
@@ -19,7 +18,7 @@ const loadSource = polyfillPaths => {
 const installPolyfill = config => {
     const polyfillOutputFolder = path.dirname(config.src);
 	const polyfillOutputPath = path.join(polyfillOutputFolder, 'polyfill.js');
-	const polyfillAlreadyExists = existsSync(polyfillOutputPath);
+	const polyfillAlreadyExists = fs.existsSync(polyfillOutputPath);
 
 	const polyfillSourcePaths = (config.install.paths || [''])
         .map(p => require.resolve(path.join(config.install.module, p)))
