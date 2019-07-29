@@ -916,6 +916,11 @@ jobs:
       - checkout
       - run: npm ci
       - run:
+          name: Testing String.prototype.fontsize
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.fontsize
+      - run:
           name: Testing String.prototype.includes
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
@@ -978,6 +983,12 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.trim
+  test_14:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing Symbol.prototype.description
           no_output_timeout: 180m
@@ -1163,4 +1174,15 @@ workflows:
             - lint_js
             - unit_tests
             - test_12
+      - test_14:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - check_circle_config
+            - lint_js
+            - unit_tests
+            - test_13
 
