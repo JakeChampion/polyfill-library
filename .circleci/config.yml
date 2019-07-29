@@ -882,6 +882,11 @@ jobs:
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.@@iterator
       - run:
+          name: Testing String.prototype.anchor
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.anchor
+      - run:
           name: Testing String.prototype.codePointAt
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
@@ -906,17 +911,17 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.padEnd
-      - run:
-          name: Testing String.prototype.padStart
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js
-            String.prototype.padStart
   test_13:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing String.prototype.padStart
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.padStart
       - run:
           name: Testing String.prototype.repeat
           no_output_timeout: 180m

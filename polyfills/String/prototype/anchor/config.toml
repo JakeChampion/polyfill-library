@@ -1,0 +1,26 @@
+dependencies = [
+  "_ESAbstract.CreateHTML",
+  "_ESAbstract.CreateMethodProperty",
+]
+spec = "https://tc39.es/ecma262/#sec-createhtml"
+docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/anchor"
+
+# Browsers which have always supported the feature are commented out.
+[browsers]
+# android = "*"
+bb = "*"
+# chrome = "*"
+# edge = "*"
+# edge_mob = "*"
+firefox = "< 4"
+# ios_chr = "*"
+# ios_saf = "*"
+ie = "*"
+ie_mob = "*"
+# opera = "*"
+op_mini = "*"
+# op_mob = "*"
+# safari = "*"
+firefox_mob = "< 4"
+# samsung_mob = "*"
+
