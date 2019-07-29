@@ -895,6 +895,11 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js String.prototype.big
       - run:
+          name: Testing String.prototype.blink
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.blink
+      - run:
           name: Testing String.prototype.codePointAt
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
@@ -904,17 +909,17 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.endsWith
-      - run:
-          name: Testing String.prototype.fixed
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js
-            String.prototype.fixed
   test_13:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing String.prototype.fixed
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.fixed
       - run:
           name: Testing String.prototype.fontcolor
           no_output_timeout: 180m
@@ -979,16 +984,16 @@ jobs:
           name: Testing String.prototype.sub
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js String.prototype.sub
-      - run:
-          name: Testing String.prototype.sup
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js String.prototype.sup
   test_14:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing String.prototype.sup
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js String.prototype.sup
       - run:
           name: Testing String.prototype.trim
           no_output_timeout: 180m
