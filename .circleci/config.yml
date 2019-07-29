@@ -891,6 +891,10 @@ jobs:
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.anchor
       - run:
+          name: Testing String.prototype.big
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js String.prototype.big
+      - run:
           name: Testing String.prototype.codePointAt
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
@@ -905,6 +909,12 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.includes
+  test_13:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
       - run:
           name: Testing String.prototype.normalize
           no_output_timeout: 180m
@@ -915,12 +925,6 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.padEnd
-  test_13:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: npm ci
       - run:
           name: Testing String.prototype.padStart
           no_output_timeout: 180m
