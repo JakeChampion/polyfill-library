@@ -916,6 +916,11 @@ jobs:
       - checkout
       - run: npm ci
       - run:
+          name: Testing String.prototype.fontcolor
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.fontcolor
+      - run:
           name: Testing String.prototype.fontsize
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
@@ -978,17 +983,17 @@ jobs:
           name: Testing String.prototype.sup
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js String.prototype.sup
-      - run:
-          name: Testing String.prototype.trim
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js
-            String.prototype.trim
   test_14:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing String.prototype.trim
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.trim
       - run:
           name: Testing Symbol.prototype.description
           no_output_timeout: 180m
