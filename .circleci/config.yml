@@ -961,6 +961,11 @@ jobs:
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.startsWith
       - run:
+          name: Testing String.prototype.strike
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.strike
+      - run:
           name: Testing String.prototype.sub
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js String.prototype.sub
