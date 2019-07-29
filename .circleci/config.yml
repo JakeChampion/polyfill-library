@@ -921,21 +921,15 @@ jobs:
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.includes
       - run:
-          name: Testing String.prototype.link
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js
-            String.prototype.link
-      - run:
           name: Testing String.prototype.italics
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.italics
-  test_13:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: npm ci
+      - run:
+          name: Testing String.prototype.link
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.link
       - run:
           name: Testing String.prototype.normalize
           no_output_timeout: 180m
@@ -966,6 +960,10 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.startsWith
+      - run:
+          name: Testing String.prototype.sup
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js String.prototype.sup
       - run:
           name: Testing String.prototype.trim
           no_output_timeout: 180m
