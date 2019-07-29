@@ -900,21 +900,26 @@ jobs:
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.blink
       - run:
+          name: Testing String.prototype.bold
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.bold
+      - run:
           name: Testing String.prototype.codePointAt
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.codePointAt
-      - run:
-          name: Testing String.prototype.endsWith
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js
-            String.prototype.endsWith
   test_13:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing String.prototype.endsWith
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.endsWith
       - run:
           name: Testing String.prototype.fixed
           no_output_timeout: 180m
@@ -980,16 +985,16 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.strike
-      - run:
-          name: Testing String.prototype.sub
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js String.prototype.sub
   test_14:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing String.prototype.sub
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js String.prototype.sub
       - run:
           name: Testing String.prototype.sup
           no_output_timeout: 180m
