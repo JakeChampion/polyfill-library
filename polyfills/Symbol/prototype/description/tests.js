@@ -72,55 +72,55 @@ if (Object.getOwnPropertyDescriptor) {
 
     it('throws an error if context is a number', function () {
         proclaim.throws(function() {
-            getter.call(1)
+            getter.call(1);
         }, TypeError);
     });
     
     it('throws an error if context is null', function () {
         proclaim.throws(function() {
-            getter.call(null)
+            getter.call(null);
         }, TypeError);
     });
     
     it('throws an error if context is undefined', function () {
         proclaim.throws(function() {
-            getter.call(undefined)
+            getter.call(undefined);
         }, TypeError);
     });
     
     it('throws an error if context is an array', function () {
         proclaim.throws(function() {
-            getter.call([])
+            getter.call([]);
         }, TypeError);
     });
     
     it('throws an error if context is an object', function () {
         proclaim.throws(function() {
-            getter.call({})
+            getter.call({});
         }, TypeError);
     });
     
     it('throws an error if context is a regex', function () {
         proclaim.throws(function() {
-            getter.call(/./)
+            getter.call(/./);
         }, TypeError);
     });
     
     it('throws an error if context is NaN', function () {
         proclaim.throws(function() {
-            getter.call(NaN)
+            getter.call(NaN);
         }, TypeError);
     });
     
     it('throws an error if context is a function', function () {
         proclaim.throws(function() {
-            getter.call(function(){})
+            getter.call(function(){});
         }, TypeError);
     });
 
     it('throws an error if context is a string', function () {
         proclaim.throws(function() {
-            getter.call('kate')
+            getter.call('kate');
         }, TypeError);
     });
 };

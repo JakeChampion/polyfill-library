@@ -24,7 +24,7 @@ describe("Template", function() {
     } catch (e) {
       return false;
     }
-  })();
+  }());
   function setupTemplate(template, string) {
     if (canInnerHTML) {
       template.innerHTML = string;
