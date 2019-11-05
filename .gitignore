@@ -24,3 +24,4 @@ polyfills/Element/prototype/inert/polyfill.js
 .nyc_output/
 polyfills/String/prototype/normalize/polyfill.js
 polyfills/AbortController/polyfill.js
+polyfills/smoothscroll/polyfill.js
