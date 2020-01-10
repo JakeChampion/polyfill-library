@@ -23,7 +23,7 @@
     "url": "https://github.com/financial-times/polyfill-library/issues"
   },
   "scripts": {
-    "lint": "eslint polyfills/**/polyfill.js lib tasks test",
+    "lint": "eslint polyfills lib tasks test",
     "clean": "rimraf ./polyfills/__dist",
     "build": "npm run clean && node tasks/node/updatesources && node tasks/node/buildsources",
     "build-circleci-config": "node ./tasks/node/build-circleci-config.js",
