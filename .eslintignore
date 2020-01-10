@@ -22,7 +22,6 @@ polyfills/UserTiming/polyfill.js
 polyfills/~html5-elements/polyfill.js
 polyfills/WebAnimations/polyfill.js
 tasks/**/node_modules
-polyfills/**/detect.js
 polyfills/HTMLTemplateElement/polyfill.js
 polyfills/ResizeObserver/polyfill.js
 polyfills/AbortController/polyfill.js
