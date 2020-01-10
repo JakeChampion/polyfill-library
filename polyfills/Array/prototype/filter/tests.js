@@ -22,10 +22,10 @@ var stringsOnly = function(val) {
 };
 
 it('throws a TypeError when applied to non-array-like types', function() {
-	proclaim.throws(function() {
+	proclaim["throws"](function() {
 		Array.prototype.filter.call(undefined);
 	}, TypeError);
-	proclaim.throws(function() {
+	proclaim["throws"](function() {
 		Array.prototype.filter.call(null);
 	}, TypeError);
 });

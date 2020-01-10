@@ -37,9 +37,9 @@ it('should be instantiable', function(){
 });
 
 it('has add, delete and has methods', function(){
-	proclaim.notEqual(WeakSet.prototype['add'], undefined);
+	proclaim.notEqual(WeakSet.prototype.add, undefined);
 	proclaim.notEqual(WeakSet.prototype['delete'], undefined);
-	proclaim.notEqual(WeakSet.prototype['has'], undefined);
+	proclaim.notEqual(WeakSet.prototype.has, undefined);
 });
 
 it('should perform as expected', function() {

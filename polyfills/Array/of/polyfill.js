@@ -31,7 +31,7 @@ CreateMethodProperty(Array, 'of', function of() {
 
 	}
 	// 8. Perform ? Set(A, "length", len, true)
-	A["length"] = len;
+	A.length = len;
 	// 9. Return A.
 	return A;
 });

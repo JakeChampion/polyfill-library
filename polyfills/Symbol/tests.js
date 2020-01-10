@@ -37,7 +37,7 @@ it('should throw if being used via `new`', function() {
 	var test = function () {
 		return new Symbol();
 	};
-	proclaim.throws(test);
+	proclaim["throws"](test);
 });
 
 it('should have Symbol as the constructor property', function() {
@@ -115,12 +115,12 @@ it('Symbol.keyFor should throw if not given a symbol', function() {
 		return Symbol.keyFor(Symbol("4"));
 	};
 
-	proclaim.throws(stringKeyFor);
-	proclaim.throws(numberKeyFor);
-	proclaim.throws(arrayKeyFor);
-	proclaim.throws(objectKeyFor);
-	proclaim.throws(boolKeyFor);
-	proclaim.throws(undefinedKeyFor);
+	proclaim["throws"](stringKeyFor);
+	proclaim["throws"](numberKeyFor);
+	proclaim["throws"](arrayKeyFor);
+	proclaim["throws"](objectKeyFor);
+	proclaim["throws"](boolKeyFor);
+	proclaim["throws"](undefinedKeyFor);
 	proclaim.doesNotThrow(symbolKeyFor);
 });
 
@@ -151,8 +151,8 @@ it('Symbol.keyFor should return key of symbol if can find symbol in global regis
 });
 
 it('has toString and valueOf instance methods', function() {
-	proclaim.isInstanceOf(Symbol.prototype['toString'], Function);
-	proclaim.isInstanceOf(Symbol.prototype['valueOf'], Function);
+	proclaim.isInstanceOf(Symbol.prototype.toString, Function);
+	proclaim.isInstanceOf(Symbol.prototype.valueOf, Function);
 });
 
 if (supportsDescriptors) {
@@ -211,7 +211,7 @@ xit('should not allow implicit string coercion', function() {
 	var implicitStringCoercion = function() {
 		return Symbol('10') + '';
 	};
-	proclaim.throws(implicitStringCoercion);
+	proclaim["throws"](implicitStringCoercion);
 });
 
 it('should create Object without symbols', function () {

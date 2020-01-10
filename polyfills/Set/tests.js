@@ -258,7 +258,7 @@ describe('Set', function() {
 		});
 
 		it("throws for non-iterable arguments", function() {
-			proclaim.throws(function() {
+			proclaim["throws"](function() {
 				new Set(1);
 			}, TypeError);
 		});

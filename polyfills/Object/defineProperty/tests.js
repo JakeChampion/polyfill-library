@@ -98,29 +98,29 @@ describe('Error handling', function () {
 	value = 'bar';
 
 	it('Throws an error when called on a non-object', function() {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty();
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(undefined);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(null);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty('');
 		});
 	});
 
 	it('Throws an error when descriptor is a non-object', function() {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(object, property);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(object, property, undefined);
 		});
 
@@ -129,17 +129,17 @@ describe('Error handling', function () {
 		//	Object.defineProperty(object, property, null);
 		//});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(object, property, '');
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(object, property);
 		}, /^Property description must be an object/);
 	});
 
 	it('Throws an error when both an accessor and a value are specified', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(object, property, {
 				value: value,
 				writable: true,
@@ -149,7 +149,7 @@ describe('Error handling', function () {
 			});
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(object, property, {
 				value: value,
 				writable: true,
@@ -161,28 +161,28 @@ describe('Error handling', function () {
 	});
 
 	it('Throws an error when an accessor is specified and writable is set', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(object, property, {
 				get: function () {},
 				writable: false
 			});
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(object, property, {
 				get: function () {},
 				writable: true
 			});
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(object, property, {
 				set: function () {},
 				writable: false
 			});
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Object.defineProperty(object, property, {
 				set: function () {},
 				writable: true

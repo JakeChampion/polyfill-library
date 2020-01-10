@@ -90,13 +90,13 @@ var supportsStrictModeTests = (function () {
 
 if (supportsStrictModeTests) {
 	it('throws if called with null context', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			return Array.prototype.copyWithin.call(null, 0);
 		}, TypeError);
 	});
 
 	it('throws if called with undefined context', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			return Array.prototype.copyWithin.call(undefined, 0);
 		}, TypeError);
 	});

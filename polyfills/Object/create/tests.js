@@ -22,7 +22,7 @@ it("Should create inherited object from a Native Object", function() {
 });
 
 it("Should throw a TypeError if called with undefined", function() {
-	proclaim.throws(function() { Object.create(undefined); }, TypeError);
+	proclaim["throws"](function() { Object.create(undefined); }, TypeError);
 });
 
 it("Should create an object if called with null", function() {
@@ -30,11 +30,11 @@ it("Should create an object if called with null", function() {
 });
 
 it("Should throw a TypeError if called with a boolean primitive", function() {
-	proclaim.throws(function() { Object.create(true); }, TypeError);
+	proclaim["throws"](function() { Object.create(true); }, TypeError);
 });
 
 it("Should throw a TypeError if called with a number primitive", function() {
-	proclaim.throws(function() { Object.create(100); }, TypeError);
+	proclaim["throws"](function() { Object.create(100); }, TypeError);
 });
 
 it("Should not throw a TypeError if called with Function objects", function() {

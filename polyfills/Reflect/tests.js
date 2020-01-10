@@ -16,10 +16,10 @@ if ('getPrototypeOf' in Object) {
 }
 
 it('cannot be called or constructed', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect();
     });
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         new Reflect;
     });
 });

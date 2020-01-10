@@ -54,7 +54,7 @@ var objectKeysWorksWithPrimitives = (function() {
 
 if (supportsDescriptors) {
 	it('should terminate if getting a value throws an exception', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			var obj = {};
 			Object.defineProperty(obj, 'a', {
 				enumerable: true,
@@ -74,13 +74,13 @@ if (supportsDescriptors) {
 }
 
 it('should throw TypeError when called with `null`', function() {
-	proclaim.throws(function() {
+	proclaim["throws"](function() {
 		Object.entries(null);
 	}, TypeError);
 });
 
 it('should throw TypeError when called with `undefined`', function() {
-	proclaim.throws(function() {
+	proclaim["throws"](function() {
 		Object.entries(undefined);
 	}, TypeError);
 });

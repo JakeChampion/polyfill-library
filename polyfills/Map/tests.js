@@ -241,7 +241,7 @@ describe('Map', function () {
 		});
 
 		it('throws error if called without NewTarget set. I.E. Called as a normal function and not a constructor', function () {
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map(); // eslint-disable-line new-cap
 			});
 		});
@@ -327,31 +327,31 @@ describe('Map', function () {
 		});
 
 		it('throws a TypeError if `this` is not an Object', function () {
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call('');
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call(1);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call(true);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call(/ /);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call(null);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call(undefined);
 			}, TypeError);
 		});
 
 		it('throws a TypeError if `this` is not an a Map Object', function () {
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call([]);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call({});
 			}, TypeError);
 		});
@@ -367,31 +367,31 @@ describe('Map', function () {
 		});
 
 		it('throws a TypeError if `this` is not an Object', function () {
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call('');
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call(1);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call(true);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call(/ /);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call(null);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call(undefined);
 			}, TypeError);
 		});
 
 		it('throws a TypeError if `this` is not an a Map Object', function () {
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call([]);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call({});
 			}, TypeError);
 		});

@@ -70,7 +70,7 @@
 				// iv. If next is false, then
 				if (next === false) {
 					// 1. Perform ? Set(A, "length", k, true).
-					A["length"] = k;
+					A.length = k;
 					// 2. Return A.
 					return A;
 				}
@@ -145,7 +145,7 @@
 			k = k + 1;
 		}
 		// 13. Perform ? Set(A, "length", len, true).
-		A["length"] = len;
+		A.length = len;
 		// 14. Return A.
 		return A;
 	});

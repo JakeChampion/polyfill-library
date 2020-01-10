@@ -27,24 +27,24 @@ it('returns an empty array if target has no own properties', function () {
 });
 
 it('throws a TypeError if target is not an Object', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.ownKeys(1);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.ownKeys(null);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.ownKeys(undefined);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.ownKeys('');
     }, TypeError);
 
     if ('Symbol' in this) {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             Reflect.ownKeys(Symbol());
         }, TypeError);
     }

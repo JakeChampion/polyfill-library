@@ -260,7 +260,7 @@
 
     function Iterator(source, kind) {
       var index = 0;
-      this['next'] = function() {
+      this.next = function() {
         if (index >= source.length)
           return {done: true, value: undefined};
         var pair = source[index++];
@@ -338,7 +338,7 @@
         if (!('defineProperties' in Object)) return false;
         try {
           var obj = {};
-          Object.defineProperties(obj, { prop: { 'get': function () { return true; } } });
+          Object.defineProperties(obj, { prop: { get: function () { return true; } } });
           return obj.prop;
         } catch (_) {
           return false;
