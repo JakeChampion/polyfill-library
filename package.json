@@ -84,7 +84,7 @@
   },
   "devDependencies": {
     "array.prototype.flatmap": "^1.2.1",
-    "dotenv": "^6.2.0",
+    "dotenv": "^8.2.0",
     "eslint": "^4.9.0",
     "execa": "^1.0.0",
     "globby": "^9.0.0",
