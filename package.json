@@ -95,7 +95,7 @@
     "karma-summary-optional-console-reporter": "^1.6.1",
     "lodash": "^4.17.14",
     "mocha": "^3.5.3",
-    "mockery": "^1.7.0",
+    "mockery": "^2.1.0",
     "nyc": "^14.1.1",
     "proclaim": "^3.6.0",
     "sinon": "^8.0.4",
