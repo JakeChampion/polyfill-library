@@ -216,10 +216,9 @@ class Polyfill {
 			validateSource(source, `${this.name} from ${this.sourcePath}`);
 
 			const minified = uglify.minify(source, {
-				fromString: true,
-				compress: { screw_ie8: false, keep_fnames: true },
-				mangle: { screw_ie8: false },
-				output: { screw_ie8: false, beautify: false }
+				compress: { ie8: true, keep_fnames: true },
+				mangle: { ie8: true },
+				output: { ie8: true, beautify: false }
 			});
 
 			return { raw, min: minified.code };
@@ -239,10 +238,9 @@ class Polyfill {
 			validateSource(source, `${this.name} from ${this.sourcePath}`);
 
 			const minified = uglify.minify(source, {
-				fromString: true,
-				compress: { screw_ie8: false, expression: true, keep_fnames: true },
-				mangle: { screw_ie8: false },
-				output: { screw_ie8: false, beautify: false, semicolons: false }
+				compress: { ie8: true, expression: true, keep_fnames: true },
+				mangle: { ie8: true },
+				output: { ie8: true, beautify: false, semicolons: false }
 			});
 
 			return { raw, min: minified.code };
