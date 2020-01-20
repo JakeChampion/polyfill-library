@@ -48,6 +48,7 @@
 				}
 				nativeURL = undefined;
       }
+    // eslint-disable-next-line no-empty
     } catch (_) {}
 
     // NOTE: Doesn't do the encoding/decoding dance
@@ -304,7 +305,7 @@
               doc.documentElement.appendChild(doc.createElement('body'));
             } else if (window.ActiveXObject) {
               doc = new window.ActiveXObject('htmlfile');
-              doc.write('<head><\/head><body><\/body>');
+              doc.write('<head></head><body></body>');
               doc.close();
             }
 
@@ -452,7 +453,7 @@
 
     if (origURL) {
       for (var i in origURL) {
-        if (origURL.hasOwnProperty(i) && typeof origURL[i] === 'function')
+        if (Object.prototype.hasOwnProperty.call(origURL, i) && typeof origURL[i] === 'function')
           URL[i] = origURL[i];
       }
     }

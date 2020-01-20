@@ -1,6 +1,6 @@
 (function (nativeDefineProperty) {
 
-	var supportsAccessors = Object.prototype.hasOwnProperty('__defineGetter__');
+	var supportsAccessors = Object.prototype.hasOwnProperty.call(Object.prototype, '__defineGetter__');
 	var ERR_ACCESSORS_NOT_SUPPORTED = 'Getters & setters cannot be defined on this javascript engine';
 	var ERR_VALUE_ACCESSORS = 'A property cannot both have accessors and be writable or have a value';
 

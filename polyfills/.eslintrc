@@ -1,4 +1,5 @@
 {
+  "extends": "eslint:recommended",
   "env": {
     "es6": false,
     "browser": true,
@@ -9,11 +10,12 @@
     "sourceType": "script"
   },
   "rules": {
-	"comma-dangle"          : [ 2, "never" ],
-	"quote-props"           : [ 2, "as-needed", { "keywords" : true } ],
-	"dot-notation"          : [ 2, { "allowKeywords" : false } ],
-	"radix"                 : 2,
-	"no-catch-shadow"       : 2
+    "comma-dangle": ["error", "never"],
+    "quote-props": ["error", "as-needed", { "keywords": true }],
+    "dot-notation": ["error", { "allowKeywords": false }],
+    "radix": "error",
+    "no-catch-shadow": "error",
+    "no-dupe-else-if": "error"
   },
   "root": true
 }

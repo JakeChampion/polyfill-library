@@ -66,6 +66,7 @@
 		try {
 			var iteratorRecord = GetIterator(iterable);
 			// 9. Repeat,
+			// eslint-disable-next-line no-constant-condition
 			while (true) {
 				// a. Let next be ? IteratorStep(iteratorRecord).
 				var next = IteratorStep(iteratorRecord);
@@ -337,7 +338,8 @@
 				}
 			}
 			// 6. If key is -0, let key be +0.
-			if (key === -0) {
+
+			if (key === 0 &&  1/key === -Infinity) {
 				key = 0;
 			}
 			// 7. Let p be the Record {[[Key]]: key, [[Value]]: value}.

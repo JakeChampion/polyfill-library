@@ -15,7 +15,7 @@ CreateMethodProperty(String, 'fromCodePoint', function fromCodePoint(_) { // esl
 	// 5. Repeat, while nextIndex < length
 	while (nextIndex < length) {
 		// Polyfill.io - We reset the elements List as we store the partial results in the result List.
-		var elements = [];
+		elements = [];
 		// a. Let next be codePoints[nextIndex].
 		var next = codePoints[nextIndex];
 		// b. Let nextCP be ? ToNumber(next).

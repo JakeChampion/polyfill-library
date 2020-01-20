@@ -135,6 +135,7 @@ it('can change context of mapper function with second argument', function () {
 });
 
 it('fills in sparse/holey arrays with empty arrays', function () {
+    // eslint-disable-next-line no-sparse-arrays
     proclaim.deepStrictEqual([, [1]].flatMap(function (x) {
         return x;
     }), [

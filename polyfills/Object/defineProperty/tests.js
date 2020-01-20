@@ -1,5 +1,5 @@
 /* eslint-env mocha, browser*/
-/* global proclaim, it */
+/* global proclaim */
 
 it('is a function', function () {
 	proclaim.isFunction(Object.defineProperty);
@@ -145,7 +145,9 @@ describe('Error handling', function () {
 				writable: true,
 				enumerable: true,
 				configurable: true,
-				get: function () {}
+				get: function () {
+					return 1;
+				}
 			});
 		});
 
@@ -163,14 +165,18 @@ describe('Error handling', function () {
 	it('Throws an error when an accessor is specified and writable is set', function () {
 		proclaim["throws"](function () {
 			Object.defineProperty(object, property, {
-				get: function () {},
+				get: function () {
+					return 1;
+				},
 				writable: false
 			});
 		});
 
 		proclaim["throws"](function () {
 			Object.defineProperty(object, property, {
-				get: function () {},
+				get: function () {
+					return 1;
+				},
 				writable: true
 			});
 		});

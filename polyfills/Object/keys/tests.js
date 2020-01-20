@@ -43,7 +43,8 @@ it('works as expected', function () {
       try {
         Object.keys(value);
         return true;
-      } catch (e$) {}
+      // eslint-disable-next-line no-empty
+      } catch (e) {}
     }
     function fn1$(){
       Object.keys(value);

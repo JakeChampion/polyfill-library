@@ -12,7 +12,7 @@
         } catch (e) {
             return false;
         }
-    };
+    }
     // 26.1.12 Reflect.set ( target, propertyKey, V [ , receiver ] )
     CreateMethodProperty(Reflect, 'set', function set(target, propertyKey, V /*[ , receiver ]*/ ) {
         var receiver = arguments[3];

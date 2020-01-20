@@ -1,1 +1,1 @@
-'set' in Reflect
+'set' in self.Reflect

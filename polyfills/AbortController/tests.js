@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-/* globals proclaim, AbortSignal */
+/* globals proclaim */
 
 describe('AbortSignal', function () {
     it('is a function', function () {
@@ -19,7 +19,7 @@ describe('AbortSignal', function () {
                 signal: signal
             });
             proclaim.ok(request.signal);
-            proclaim.ok(Request.prototype.isPrototypeOf(request));
+            proclaim.isInstanceOf(request, Request);
         });
 
         it('abort during fetch', function (done) {

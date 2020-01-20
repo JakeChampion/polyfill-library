@@ -23,7 +23,7 @@ it("has valid constructor", function () {
 	proclaim.equal((new WeakMap()).constructor, WeakMap);
 	proclaim.equal((new WeakMap()).constructor.name, "WeakMap");
 	if ("__proto__" in {}) {
-		proclaim.equal((new WeakMap).__proto__.isPrototypeOf(new WeakMap()), true);
+		proclaim.equal(Object.prototype.isPrototypeOf.call((new WeakMap).__proto__, new WeakMap()), true);
 		proclaim.equal((new WeakMap).__proto__ === WeakMap.prototype, true);
 	}
 

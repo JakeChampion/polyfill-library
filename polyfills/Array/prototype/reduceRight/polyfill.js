@@ -34,7 +34,7 @@ CreateMethodProperty(Array.prototype, 'reduceRight', function reduceRight(callba
 			// i. Let Pk be ! ToString(k).
 			var Pk = ToString(k);
 			// ii. Let kPresent be ? HasProperty(O, Pk).
-			var kPresent = HasProperty(arraylike, Pk);
+			kPresent = HasProperty(arraylike, Pk);
 			// iii. If kPresent is true, then
 			if (kPresent) {
 				// 1. Set accumulator to ? Get(O, Pk).
@@ -51,9 +51,9 @@ CreateMethodProperty(Array.prototype, 'reduceRight', function reduceRight(callba
 	// 9. Repeat, while k ≥ 0
 	while (k >= 0) {
 		// a. Let Pk be ! ToString(k).
-		var Pk = ToString(k);
+		Pk = ToString(k);
 		// b. Let kPresent be ? HasProperty(O, Pk).
-		var kPresent = HasProperty(arraylike, Pk);
+		kPresent = HasProperty(arraylike, Pk);
 		// c. If kPresent is true, then
 		if (kPresent) {
 			// i. Let kValue be ? Get(O, Pk).

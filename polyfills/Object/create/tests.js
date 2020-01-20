@@ -91,7 +91,7 @@ it("If the second argument is present and not undefined, add own properties to r
 		}
 	});
 
-	var result1 = newObj.hasOwnProperty("prop");
+	var result1 = Object.prototype.hasOwnProperty.call(newObj, "prop");
 
 	// Avoid Object.defineProperty's writable test in old IE
 	// delete newObj.prop;

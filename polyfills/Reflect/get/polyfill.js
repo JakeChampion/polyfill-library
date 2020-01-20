@@ -22,7 +22,7 @@
         }
 
         return undefined;
-    };
+    }
     // 26.1.5 Reflect.get ( target, propertyKey [ , receiver ] )
     CreateMethodProperty(Reflect, 'get', function get(target, propertyKey /*[ , receiver ]*/ ) {
         var receiver = arguments[2];

@@ -148,6 +148,7 @@ it('flattens all levels deep if argument is Infinity', function () {
 });
 
 it('fills holes in holey/sparse arrays', function () {
+    // eslint-disable-next-line no-sparse-arrays
     proclaim.deepStrictEqual([, [2]].flat(), [
         [],
         [2]

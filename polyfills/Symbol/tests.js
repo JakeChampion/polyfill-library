@@ -35,6 +35,7 @@ var strictModeSupported = (function(){ return this; }).call(null) === null;
 // https://tc39.github.io/ecma262/#sec-symbol-constructor
 it('should throw if being used via `new`', function() {
 	var test = function () {
+		// eslint-disable-next-line no-new-symbol
 		return new Symbol();
 	};
 	proclaim["throws"](test);
@@ -162,6 +163,7 @@ if (supportsDescriptors) {
 		var symbol = Symbol();
 		object[symbol] = 1;
 
+		// eslint-disable-next-line no-empty
 		for (var x in object){}
 		var passed = !x;
 
@@ -176,6 +178,7 @@ if (supportsDescriptors) {
 		var symbol = Symbol();
 		Object.defineProperty(object, symbol, { enumerable: false });
 
+		// eslint-disable-next-line no-empty
 		for (var x in object){}
 		var passed = !x;
 

@@ -55,6 +55,7 @@
 			// d. Let k be 0.
 			var k = 0;
 			// e. Repeat,
+			// eslint-disable-next-line no-constant-condition
 			while (true) {
 				// i. If k ≥ 2^53-1, then
 				if (k >= (Math.pow(2, 53) - 1)) {

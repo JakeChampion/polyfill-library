@@ -16,7 +16,7 @@ describe('IdleDeadline', function () {
     // the prototype didTimeout method should be a getter which throws a type
     // error, except where getters aren't supported return undefined.
     it('has a didTimeout prototype property which throws a type error when getters are supported or undefined otherwise', function () {
-        if (Object.prototype.hasOwnProperty('__defineGetter__')) {
+        if (Object.prototype.hasOwnProperty.call(Object.prototype, '__defineGetter__')) {
             proclaim["throws"](function () {
                 return IdleDeadline.prototype.didTimeout;
             }, TypeError);
@@ -37,8 +37,8 @@ describe('requestIdleCallback', function () {
     function sleep(busyFor) {
         busyFor = busyFor + Math.random(); // Prevent Safari while loop optimisation.
         var start = performance.now();
-        while (performance.now() - start < busyFor) {
-        }
+        // eslint-disable-next-line no-empty
+        while (performance.now() - start < busyFor) {}
     }
 
     it('is defined', function () {

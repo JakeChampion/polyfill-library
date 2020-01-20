@@ -252,7 +252,7 @@ describe('Map', function () {
 			proclaim.equal((new Map()).constructor, Map);
 			proclaim.equal((new Map()).constructor.name, "Map");
 			if ("__proto__" in {}) {
-				proclaim.equal((new Map).__proto__.isPrototypeOf(new Map()), true);
+				proclaim.equal(Object.prototype.isPrototypeOf.call((new Map).__proto__, new Map()), true);
 				proclaim.equal((new Map).__proto__ === Map.prototype, true);
 			}
 		});
@@ -467,7 +467,7 @@ describe('Map', function () {
 		proclaim.equal(o.get(-0), generic);
 		proclaim.equal(o.get(0), generic);
 		if ('create' in Object) {
-			var o = new Map();
+			o = new Map();
 			var key = Object.create(null);
 			o.set(key, key);
 			proclaim.equal(o.get(key), key);
@@ -545,7 +545,7 @@ describe('Map', function () {
 		// interfaces recognize it as a valid iterator
 		var lastResult = entriesagain.next();
 		proclaim.equal(lastResult.done, true);
-		proclaim.ok(lastResult.hasOwnProperty('value'));
+		proclaim.ok(Object.prototype.hasOwnProperty.call(lastResult, 'value'));
 		proclaim.equal(lastResult.value, void 0);
 	});
 
@@ -593,7 +593,6 @@ describe('Map', function () {
 
 	it("implements .forEach()", function () {
 		var o = new Map();
-		var o = new Map();
 		o.set("key 0", 0);
 		o.set("key 1", 1);
 		o.forEach(function (value, key, obj) {
@@ -606,7 +605,6 @@ describe('Map', function () {
 	});
 
 	it("supports mutations during forEach loops", function () {
-		var o = new Map();
 		var o = new Map([["0", 0], ["1", 1], ["2", 2]]), seen = [];
 		o.forEach(function (value, key, obj) {
 			seen += ','+value;
@@ -626,7 +624,6 @@ describe('Map', function () {
 
 	it("implements .clear()", function(){
 		var o = new Map();
-		var o = new Map();
 		o.set(1, '1');
 		o.set(2, '2');
 		o.set(3, '3');
@@ -635,7 +632,6 @@ describe('Map', function () {
 	});
 
 	it("allows set after clear", function(){
-		var o = new Map();
 		var o = new Map();
 		o.set(1, '1');
 		o.clear();

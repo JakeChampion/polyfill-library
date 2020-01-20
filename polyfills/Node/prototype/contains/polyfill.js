@@ -9,6 +9,7 @@
 			if (this === node) {
 				return true;
 			}
+		// eslint-disable-next-line no-cond-assign
 		} while (node = node && node.parentNode);
 
 		return false;
@@ -18,6 +19,7 @@
 	if ('HTMLElement' in this && 'contains' in HTMLElement.prototype) {
 		try {
 			delete HTMLElement.prototype.contains;
+		// eslint-disable-next-line no-empty
 		} catch (e) {}
 	}
 

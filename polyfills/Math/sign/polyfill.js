@@ -1,7 +1,7 @@
 /* global CreateMethodProperty */
 // 20.2.2.29. Math.sign ( x )
 CreateMethodProperty(Math, 'sign', function sign(x) {
-	var x = Number(x);
+	x = Number(x);
 	// If x is NaN, the result is NaN.
 	if (isNaN(x)) {
 		return NaN;

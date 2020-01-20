@@ -53,6 +53,7 @@ it('throws a TypeError if target is not an Object', function () {
 it('Returns target\'s own property keys', function () {
     proclaim.deepStrictEqual(Reflect.ownKeys([]), ['length']);
 
+    // eslint-disable-next-line no-sparse-arrays
     proclaim.deepStrictEqual(Reflect.ownKeys([, 1]), ['1', 'length']);
     proclaim.deepStrictEqual(Reflect.ownKeys({
         a: 1

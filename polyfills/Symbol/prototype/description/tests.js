@@ -123,4 +123,4 @@ if (Object.getOwnPropertyDescriptor) {
             getter.call('kate');
         }, TypeError);
     });
-};
+}
