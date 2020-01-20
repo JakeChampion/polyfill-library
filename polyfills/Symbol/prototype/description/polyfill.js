@@ -5,6 +5,7 @@
   try {
     // eslint-disable-next-line no-new-func
     getInferredName = Function("s", "return { [s]() {} }[s].name;");
+  // eslint-disable-next-line no-empty
   } catch (e) {}
 
   var inferred = function() {};

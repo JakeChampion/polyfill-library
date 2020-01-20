@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 /* global ToString, ToPrimitive, CreateMethodProperty, Type */
 (function() {
   "use strict";
@@ -60,7 +61,7 @@
   var nativeObjectCreate = Object.create;
 
   var wrap = function(tag, description) {
-    var symbol = (allSymbols[tag] = nativeObjectCreate(Symbol["prototype"]));
+    var symbol = (allSymbols[tag] = nativeObjectCreate(Symbol.prototype));
     setInternalState(symbol, {
       type: "Symbol",
       tag: tag,
@@ -98,7 +99,7 @@
       var descString = undefined;
       // 3. Else, let descString be ? ToString(description).
     } else {
-      var descString = ToString(arguments[0]);
+      descString = ToString(arguments[0]);
     }
 
     // 4. Return a new unique Symbol value whose [[Description]] value is descString.
@@ -162,7 +163,7 @@
     return nativeDefineProperty(O, key, Attributes);
   };
 
-  Object["defineProperty"] = defineProperty;
+  Object.defineProperty = defineProperty;
 
   var toString = {}.toString;
   var split = "".split;
@@ -383,6 +384,6 @@
   } catch (e) {
     // IE8 throws an error here if we set enumerable to false.
     // More info on table 2: https://msdn.microsoft.com/en-us/library/dd229916(v=vs.85).aspx
-    self["Symbol"] = Symbol;
+    self.Symbol = Symbol;
   }
 }());
