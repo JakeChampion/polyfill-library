@@ -39,7 +39,7 @@
       if (supportsInferredNames) {
         var name = getInferredName(sym);
         if (name === "") {
-          return;
+          return undefined;
         }
         return name.slice(1, -1); // name.slice('['.length, -']'.length);
       }
