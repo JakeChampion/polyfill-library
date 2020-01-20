@@ -27,7 +27,7 @@ chrome = "*"
 ios_saf = "*"
 firefox_mob = "*"
 android = "*"
-op_mob = "*"
+op_mob = "*" 
 
 [install]
 module = "wicg-inert"

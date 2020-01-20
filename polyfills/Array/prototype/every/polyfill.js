@@ -31,7 +31,7 @@ CreateMethodProperty(Array.prototype, 'every', function every(callbackfn /* [ , 
 			}
 		}
 		// d. Increase k by 1.
-		var k = k + 1;
+		k = k + 1;
 	}
 	// 7. Return true.
 	return true;

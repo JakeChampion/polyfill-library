@@ -1,1 +1,1 @@
-'preventExtensions' in Reflect
+'preventExtensions' in self.Reflect

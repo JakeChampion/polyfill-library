@@ -37,13 +37,14 @@ it('works as expected', function () {
     }
     for (i$ = 0, len$ = (ref$ = [null, void 8]).length; i$ < len$; ++i$) {
       value = ref$[i$];
-      proclaim.throws(fn1$, TypeError, "throws on " + value);
+      proclaim["throws"](fn1$, TypeError, "throws on " + value);
     }
     function fn$(){
       try {
         Object.keys(value);
         return true;
-      } catch (e$) {}
+      // eslint-disable-next-line no-empty
+      } catch (e) {}
     }
     function fn1$(){
       Object.keys(value);
@@ -85,13 +86,13 @@ it('works with objects containing otherwise non-enumerable keys', function () {
 });
 
 it('throws on empty, undefined, or null arguments', function () {
-  proclaim.throws(function () {
+  proclaim["throws"](function () {
     Object.keys();
   });
-  proclaim.throws(function () {
+  proclaim["throws"](function () {
     Object.keys(null);
   });
-  proclaim.throws(function () {
+  proclaim["throws"](function () {
     Object.keys(undefined);
   });
 });

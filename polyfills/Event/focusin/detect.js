@@ -17,6 +17,7 @@
 	}
 
 	a.href = '#';
+	a.style='position: fixed';
 
 	if ('addEventListener' in a) {
 		a.addEventListener('focusin', onfocusin);

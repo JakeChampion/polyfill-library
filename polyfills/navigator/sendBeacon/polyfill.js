@@ -1,3 +1,4 @@
+/* global ActiveXObject */
 if (!('navigator' in self)) self.navigator = {};
 self.navigator.sendBeacon = function sendBeacon(url, data) {
 	var xhr = ('XMLHttpRequest' in window) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');

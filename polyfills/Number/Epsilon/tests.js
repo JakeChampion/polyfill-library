@@ -1,5 +1,5 @@
 /* eslint-env mocha, browser*/
-/* global proclaim, it */
+/* global proclaim */
 
 it('is correct type', function () {
 	proclaim.isTypeOf(Number.EPSILON, 'number');

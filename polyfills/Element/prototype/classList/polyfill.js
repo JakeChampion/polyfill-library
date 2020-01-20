@@ -1,3 +1,4 @@
+/* global _DOMTokenList */
 /*
 Copyright (c) 2016, John Gardner
 

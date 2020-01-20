@@ -20,26 +20,26 @@
 
 	try {
 		Object.defineProperties(global, {
-			'innerWidth': {
+			innerWidth: {
 				get: function () {
 					return docEl.clientWidth;
 				}
 			},
-			'innerHeight': {
+			innerHeight: {
 				get: function () {
 					return docEl.clientHeight;
 				}
 			},
-			'pageXOffset': {
+			pageXOffset: {
 				get: scrollX
 			},
-			'pageYOffset': {
+			pageYOffset: {
 				get: scrollY
 			},
-			'scrollX': {
+			scrollX: {
 				get: scrollX
 			},
-			'scrollY': {
+			scrollY: {
 				get: scrollY
 			}
 		});

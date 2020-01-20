@@ -39,10 +39,10 @@ it('works as expected', function () {
 	}).call(undefined);
 
 	if (supportsStrictModeTests) {
-		proclaim.throws(function(){
+		proclaim["throws"](function(){
 			String.prototype.padStart.call(null, 0);
 		}, TypeError);
-		proclaim.throws(function(){
+		proclaim["throws"](function(){
 			String.prototype.padStart.call(undefined, 0);
 		}, TypeError);
 	}

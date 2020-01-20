@@ -24,9 +24,9 @@
 
 	if (rafPrefix) {
 		global.requestAnimationFrame = function (callback) {
-		    return global[rafPrefix + 'RequestAnimationFrame'](function () {
-		        callback(pnow());
-		    });
+			return global[rafPrefix + 'RequestAnimationFrame'](function () {
+				callback(pnow());
+			});
 		};
 		global.cancelAnimationFrame = global[rafPrefix + 'CancelAnimationFrame'];
 	} else {

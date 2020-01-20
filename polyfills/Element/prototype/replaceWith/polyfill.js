@@ -1,3 +1,4 @@
+/* global _mutation */
 Document.prototype.replaceWith = Element.prototype.replaceWith = function replaceWith() {
 	if (this.parentNode) {
 		this.parentNode.replaceChild(_mutation(arguments), this);

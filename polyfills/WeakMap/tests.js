@@ -23,20 +23,20 @@ it("has valid constructor", function () {
 	proclaim.equal((new WeakMap()).constructor, WeakMap);
 	proclaim.equal((new WeakMap()).constructor.name, "WeakMap");
 	if ("__proto__" in {}) {
-		proclaim.equal((new WeakMap).__proto__.isPrototypeOf(new WeakMap()), true);
+		proclaim.equal(Object.prototype.isPrototypeOf.call((new WeakMap).__proto__, new WeakMap()), true);
 		proclaim.equal((new WeakMap).__proto__ === WeakMap.prototype, true);
 	}
 
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		WeakMap();
 	}, TypeError);
 });
 
 it('has get, set, delete, and has functions', function() {
-	proclaim.isFunction(WeakMap.prototype['get']);
-	proclaim.isFunction(WeakMap.prototype['set']);
+	proclaim.isFunction(WeakMap.prototype.get);
+	proclaim.isFunction(WeakMap.prototype.set);
 	proclaim.isFunction(WeakMap.prototype['delete']);
-	proclaim.isFunction(WeakMap.prototype['has']);
+	proclaim.isFunction(WeakMap.prototype.has);
 });
 it('should perform as expected', function() {
 	var wm = new WeakMap();
@@ -171,7 +171,7 @@ it('WeakMap.prototype.set', function () {
 	proclaim.isNotEnumerable(WeakMap.prototype, 'set');
 	wmap.set(a, 42);
 	proclaim.strictEqual(wmap.get(a), 42);
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		new WeakMap().set(42, 42);
 	}, TypeError);
 	proclaim.deepEqual(wmap.set({}, 1), wmap);
