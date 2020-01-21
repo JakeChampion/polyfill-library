@@ -7,11 +7,11 @@ const globby = require('globby');
 const proclaim = path.resolve(require.resolve('proclaim'));
 const fs = require('fs');
 
-function getBrowsersFor(feature) {
+function getBrowsersFor() {
 	const UA = require('@financial-times/polyfill-useragent-normaliser');
 	const TOML = require('@iarna/toml');
 	// Grab all the browsers from BrowserStack which are officially supported by the polyfil service.
-	const browserlist = TOML.parse(fs.readFileSync("./test/polyfills/browsers.toml", 'utf-8'));
+	const { browserlist } = TOML.parse(fs.readFileSync("./test/polyfills/browsers.toml", 'utf-8'));
 	const browserstackBrowsers = TOML.parse(fs.readFileSync('./test/polyfills/browserstackBrowsers.toml', 'utf-8'));
 
 	const browsersWeSupport = browserlist.filter(uaString => new UA(uaString).meetsBaseline());
