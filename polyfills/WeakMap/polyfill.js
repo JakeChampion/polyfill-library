@@ -38,6 +38,7 @@
 		try {
 			var iteratorRecord = GetIterator(iterable);
 			// 9. Repeat,
+			// eslint-disable-next-line no-constant-condition
 			while (true) {
 				// a. Let next be ? IteratorStep(iteratorRecord).
 				var next = IteratorStep(iteratorRecord);
@@ -82,8 +83,8 @@
 				var index;
 				var length = iterable.length;
 				for (index = 0; index < length; index++) {
-					var k = iterable[index][0];
-					var v = iterable[index][1];
+					k = iterable[index][0];
+					v = iterable[index][1];
 					Call(adder, map, [k, v]);
 				}
 			}
@@ -258,6 +259,6 @@
 	} catch (e) {
 		// IE8 throws an error here if we set enumerable to false.
 		// More info on table 2: https://msdn.microsoft.com/en-us/library/dd229916(v=vs.85).aspx
-		global['WeakMap'] = WeakMap;
+		global.WeakMap = WeakMap;
 	}
 }(this));

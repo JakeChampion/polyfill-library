@@ -29,10 +29,10 @@ it('works as expected', function () {
 	}).call(undefined);
 
 	if (supportsStrictModeTests) {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.trim.call(null, 0);
 		}, TypeError);
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.trim.call(void 8, 0);
 		}, TypeError);
 	}

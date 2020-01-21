@@ -1,1 +1,1 @@
-'description' in Symbol.prototype
+'description' in self.Symbol.prototype

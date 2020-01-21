@@ -1,3 +1,4 @@
+/* global Symbol */
 var NativeSymbol = Symbol;
 
 var symbolDescriptionStore = {};

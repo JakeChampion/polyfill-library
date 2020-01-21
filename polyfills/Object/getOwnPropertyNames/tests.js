@@ -35,10 +35,10 @@ it('does not include properties inherited from a prototype', function () {
 });
 
 it('throws an error when the arg is undefined or null', function() {
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.getOwnPropertyNames(undefined);
 	});
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.getOwnPropertyNames(null);
 	});
 });

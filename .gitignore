@@ -3,7 +3,7 @@ node_modules
 polyfills/Intl/~locale/**/detect.js
 polyfills/Intl/~locale/**/tests.js
 polyfills/Intl/~locale/**/polyfill.js
-polyfills/Intl/~locale/**/config.json
+polyfills/Intl/~locale/**/config.toml
 polyfills/__dist/
 polyfills/~html5-elements/polyfill.js
 polyfills/AudioContext/polyfill.js
@@ -20,5 +20,8 @@ polyfills/_TypedArray/polyfill.js
 polyfills/atob/polyfill.js
 polyfills/fetch/polyfill.js
 polyfills/HTMLTemplateElement/polyfill.js
+polyfills/Element/prototype/inert/polyfill.js
 .nyc_output/
 polyfills/String/prototype/normalize/polyfill.js
+polyfills/AbortController/polyfill.js
+polyfills/smoothscroll/polyfill.js

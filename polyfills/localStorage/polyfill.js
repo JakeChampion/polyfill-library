@@ -83,6 +83,7 @@
 		try {
 			element.addBehavior('#default#' + userdata);
 			element.load(userdata);
+		// eslint-disable-next-line no-empty
 		} catch (error) {}
 
 		// get keys

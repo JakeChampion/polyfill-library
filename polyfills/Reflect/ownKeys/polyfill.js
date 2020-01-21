@@ -8,5 +8,5 @@ CreateMethodProperty(Reflect, 'ownKeys', function ownKeys(target) {
     // polyfill-library - These steps are taken care of by Object.getOwnPropertyNames.
     // 2. Let keys be ? target.[[OwnPropertyKeys]]().
     // 3. Return CreateArrayFromList(keys).
-    return Object.getOwnPropertyNames(target);
+    return Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target));
 });

@@ -25,7 +25,7 @@ function generateDependencyTreeForFeature(feature) {
 
 function hasOwnProperty (object, property) {
     return Object.prototype.hasOwnProperty.call(object, property);
-} 
+}
 
 function findDifferenceInObjects(inclusionObject, exclusionObject) {
     const result = {};
@@ -40,18 +40,18 @@ function findDifferenceInObjects(inclusionObject, exclusionObject) {
     }
     return result;
 }
-
+const TOML = require('@iarna/toml');
 async function findAllThirdPartyPolyfills () {
-    const configs = await globby(['polyfills/**/config.json', '!polyfills/__dist']);
+    const configs = await globby(['polyfills/**/config.toml', '!polyfills/__dist']);
     return configs.map(file => {
-        const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../../', file), 'utf-8'));
+        const config = TOML.parse(fs.readFileSync(path.join(__dirname, '../../', file), 'utf-8'));
         return config.install && config.install.module;
     }).filter(thirdPartyPolyfills => thirdPartyPolyfills !== undefined);
 }
 
 async function featureRequiresTesting(feature) {
-    
-    const filesWhichChanged = execa.shellSync('git diff --name-only origin/master').stdout.split('\n');
+
+    const filesWhichChanged = execa.shellSync('git diff --name-only origin/master HEAD').stdout.split('\n');
 
     // if any of the dependencies in the tree from the feature is the same as latest commit, run the tests
     const dependencies = await generateDependencyTreeForFeature(feature);
@@ -60,28 +60,38 @@ async function featureRequiresTesting(feature) {
 
     const filesRequiredByFeature = dependencyFolders.flatMap(folder => {
         return [
-            folder + '/config.json',
+            folder + '/config.toml',
             folder + '/polyfill.js',
             folder + '/detect.js',
             folder + '/tests.js'
         ];
     });
-    
-    const fileRequiredByFeatureHasNotChanged = intersection(filesRequiredByFeature, filesWhichChanged).length === 0;
+
+    const filesRequiredByFeatureWhichHaveChanged = intersection(filesRequiredByFeature, filesWhichChanged);
+    const filesRequiredByFeatureHasNotChanged = filesRequiredByFeatureWhichHaveChanged.length === 0;
     const libFolderHasNotChanged = !filesWhichChanged.some(file => file.startsWith('lib/'));
     const karmaPolyfillPluginHasNotChanged = !filesWhichChanged.includes('karma-polyfill-library-plugin.js');
-    const packageJsonHasChanged = filesWhichChanged.includes('package.json');
     const packageJsonDependenciesFromMaster = JSON.parse(execa.shellSync('git show origin/master:package.json').stdout).dependencies;
     const packageJsonDependenciesFromHead = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')).dependencies;
     const packageJsonDependenciesChanges = Object.keys(findDifferenceInObjects(packageJsonDependenciesFromHead, packageJsonDependenciesFromMaster));
     const thirdPartyPolyfillsWhichHaveBeenAddedOrChanged = intersection(packageJsonDependenciesChanges, thirdPartyPolyfills);
 
-    if (fileRequiredByFeatureHasNotChanged && libFolderHasNotChanged && karmaPolyfillPluginHasNotChanged && !packageJsonHasChanged) {
-        return false;
+    if (!filesRequiredByFeatureHasNotChanged) {
+        console.log(`Running tests for ${feature} because one or more of the files it depends on has changed.`);
+        console.log(`The files which changed were ${filesRequiredByFeatureWhichHaveChanged}`);
+        return true;
+    }
+    if (!libFolderHasNotChanged) {
+        console.log(`Running tests for ${feature} because one or more of the files of the core polyfill-library has changed.`);
+        return true;
+    }
+    if (!karmaPolyfillPluginHasNotChanged) {
+        console.log(`Running tests for ${feature} because the Karma plugin used for testing has changed.`);
+        return true;
     }
 
-    const thirdPartyDependenciesForFeature = filesRequiredByFeature.filter(file => file.endsWith('/config.json')).map(file => {
-        const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../../', file), 'utf-8'));
+    const thirdPartyDependenciesForFeature = filesRequiredByFeature.filter(file => file.endsWith('/config.toml')).map(file => {
+        const config = TOML.parse(fs.readFileSync(path.join(__dirname, '../../', file), 'utf-8'));
         return config.install && config.install.module;
     }).filter(thirdPartyPolyfills => thirdPartyPolyfills !== undefined);
 
@@ -89,11 +99,14 @@ async function featureRequiresTesting(feature) {
     const packageJsonHasOnlyHadThirdPartyPolyfillChangesAppliedToIt = packageJsonDependenciesChanges.every(dep => thirdPartyPolyfills.includes(dep));
 
     if (thirdPartyPolyfillHasBeenAddedOrChangedForFeature) {
+        console.log(`Running tests for ${feature} because one of the package.json.dependencies it is built from has changed.`);
         return true;
     }
     if (packageJsonHasOnlyHadThirdPartyPolyfillChangesAppliedToIt) {
         return false;
     }
+
+    console.log(`Running tests for ${feature} because... Well, I'm not sure why. One of these might be why ${filesWhichChanged.join(' ')}`);
     return true;
 }
 

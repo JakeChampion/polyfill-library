@@ -48,6 +48,7 @@
 				}
 				nativeURL = undefined;
       }
+    // eslint-disable-next-line no-empty
     } catch (_) {}
 
     // NOTE: Doesn't do the encoding/decoding dance
@@ -260,7 +261,7 @@
 
     function Iterator(source, kind) {
       var index = 0;
-      this['next'] = function() {
+      this.next = function() {
         if (index >= source.length)
           return {done: true, value: undefined};
         var pair = source[index++];
@@ -304,7 +305,7 @@
               doc.documentElement.appendChild(doc.createElement('body'));
             } else if (window.ActiveXObject) {
               doc = new window.ActiveXObject('htmlfile');
-              doc.write('<head><\/head><body><\/body>');
+              doc.write('<head></head><body></body>');
               doc.close();
             }
 
@@ -338,7 +339,7 @@
         if (!('defineProperties' in Object)) return false;
         try {
           var obj = {};
-          Object.defineProperties(obj, { prop: { 'get': function () { return true; } } });
+          Object.defineProperties(obj, { prop: { get: function () { return true; } } });
           return obj.prop;
         } catch (_) {
           return false;
@@ -452,7 +453,7 @@
 
     if (origURL) {
       for (var i in origURL) {
-        if (origURL.hasOwnProperty(i) && typeof origURL[i] === 'function')
+        if (Object.prototype.hasOwnProperty.call(origURL, i) && typeof origURL[i] === 'function')
           URL[i] = origURL[i];
       }
     }

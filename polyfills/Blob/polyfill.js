@@ -10,7 +10,6 @@
  *   See https://github.com/eligrey/Blob.js/blob/master/LICENSE.md
  */
 
-/*global self, unescape */
 /*jslint bitwise: true, regexp: true, confusion: true, es5: true, vars: true, white: true,
   plusplus: true */
 
@@ -56,7 +55,7 @@
 		var URL = real_URL;
 		var btoa = view.btoa;
 		var atob = view.atob;
-		var origin = /^[\w-]+:\/*\[?[\w\.:-]+\]?(?::[0-9]+)?/;
+		var origin = /^[\w-]+:\/*\[?[\w.:-]+\]?(?::[0-9]+)?/;
 		FakeBlob.fake = FB_proto.fake = true;
 		while (file_ex_code--) {
 			FileException.prototype[file_ex_codes[file_ex_code]] = file_ex_code + 1;

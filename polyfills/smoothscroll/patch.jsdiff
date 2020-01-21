@@ -1,0 +1,19 @@
+===================================================================
+--- a/polyfills/smoothscroll/polyfill.js
++++ b/polyfills/smoothscroll/polyfill.js
+@@ -421,13 +421,8 @@
+       }
+     };
+   }
+ 
+-  if (typeof exports === 'object' && typeof module !== 'undefined') {
+-    // commonjs
+-    module.exports = { polyfill: polyfill };
+-  } else {
+-    // global
+-    polyfill();
+-  }
++  // global
++  polyfill();
+ 
+ }());

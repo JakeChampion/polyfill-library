@@ -32,7 +32,7 @@ it("Handles new BoundFunction", function(done) {
 	function MyClass(){
 		proclaim.notDeepEqual(this, thisVal);
 		done();
-	};
+	}
 	var MyClassThing = MyClass.bind(thisVal);
 	new MyClassThing();
 });

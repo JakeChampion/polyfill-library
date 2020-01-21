@@ -8,7 +8,7 @@ describe('IdleDeadline', function () {
     });
 
     it('throws a type type error when used as a constructor', function () {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             new IdleDeadline();
         }, TypeError);
     });
@@ -16,8 +16,8 @@ describe('IdleDeadline', function () {
     // the prototype didTimeout method should be a getter which throws a type
     // error, except where getters aren't supported return undefined.
     it('has a didTimeout prototype property which throws a type error when getters are supported or undefined otherwise', function () {
-        if (Object.prototype.hasOwnProperty('__defineGetter__')) {
-            proclaim.throws(function () {
+        if (Object.prototype.hasOwnProperty.call(Object.prototype, '__defineGetter__')) {
+            proclaim["throws"](function () {
                 return IdleDeadline.prototype.didTimeout;
             }, TypeError);
         } else {
@@ -27,7 +27,7 @@ describe('IdleDeadline', function () {
 
     it('has a timeRemaining prototype function which throws a type error', function () {
         proclaim.isTypeOf(IdleDeadline.prototype.timeRemaining, 'function');
-        proclaim.throws(IdleDeadline.prototype.timeRemaining, TypeError);
+        proclaim["throws"](IdleDeadline.prototype.timeRemaining, TypeError);
     });
 
 });
@@ -37,8 +37,8 @@ describe('requestIdleCallback', function () {
     function sleep(busyFor) {
         busyFor = busyFor + Math.random(); // Prevent Safari while loop optimisation.
         var start = performance.now();
-        while (performance.now() - start < busyFor) {
-        }
+        // eslint-disable-next-line no-empty
+        while (performance.now() - start < busyFor) {}
     }
 
     it('is defined', function () {
@@ -313,7 +313,7 @@ describe('cancelIdleCallback', function () {
     });
 
     it('should throw a type error if given no arguments', function () {
-        proclaim.throws(cancelIdleCallback, TypeError);
+        proclaim["throws"](cancelIdleCallback, TypeError);
     });
 
     it('cancels an idle callback', function (done) {

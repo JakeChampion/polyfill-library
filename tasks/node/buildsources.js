@@ -9,6 +9,7 @@ const {promisify} = require('util');
 const vm = require('vm');
 const spdxLicenses = require('spdx-licenses');
 const UA = require('@financial-times/polyfill-useragent-normaliser');
+const TOML = require('@iarna/toml');
 
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
@@ -210,7 +211,7 @@ function writeAliasFile(polyfills, dir) {
 		}
 	}
 
-	return writeFile(path.join(dir, 'aliases.json'), JSON.stringify(aliases));
+	return writeFile(path.join(dir, 'aliases.toml'), TOML.stringify(aliases));
 }
 
 class Polyfill {
@@ -230,7 +231,7 @@ class Polyfill {
 	}
 
 	get configPath() {
-		return path.join(this.path.absolute, 'config.json');
+		return path.join(this.path.absolute, 'config.toml');
 	}
 
 	get detectPath() {
@@ -259,7 +260,7 @@ class Polyfill {
 				};
 			})
 			.then(data => {
-				this.config = JSON.parse(data);
+				this.config = TOML.parse(data);
 
 				// Each internal polyfill needs to target all supported browsers at all versions.
 				if (this.path.relative.startsWith('_')) {
@@ -267,7 +268,7 @@ class Polyfill {
 					if (!supportedBrowsers.every(browser => this.config.browsers[browser] === "*")){
 						const browserSupport = {};
 						supportedBrowsers.forEach(browser => browserSupport[browser] = "*");
-						throw new Error("Internal polyfill called " + this.name + " is not targeting all supported browsers correctly. It should be: \n" + JSON.stringify(browserSupport));
+						throw new Error("Internal polyfill called " + this.name + " is not targeting all supported browsers correctly. It should be: \n" + TOML.stringify(browserSupport));
 					}
 				}
 
@@ -383,10 +384,10 @@ class Polyfill {
 	writeOutput(root) {
 		const dest = path.join(root, this.name);
 		const files = [
-			['meta.json', JSON.stringify(this.config)],
-			['raw.js', this.sources.raw],
-			['min.js', this.sources.min]
-		];
+				['meta.toml', TOML.stringify(this.config)],
+				['raw.js', this.sources.raw],
+				['min.js', this.sources.min]
+			];
 
 		return makeDirectory(dest)
 			.then(() => Promise.all(files

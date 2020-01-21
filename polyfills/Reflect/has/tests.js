@@ -35,24 +35,24 @@ it('returns false if the property is not anywhere in the prototype chain', funct
 });
 
 it('throws a TypeError if `target` is not an Object', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.has(1, 'a');
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.has(null, 'a');
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.has(undefined, 'a');
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.has('', 'a');
     }, TypeError);
 
     if('Symbol' in this) {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             Reflect.has(Symbol(), 'a');
         }, TypeError);
     }
