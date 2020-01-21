@@ -11,10 +11,10 @@ function getBrowsersFor() {
 	const UA = require('@financial-times/polyfill-useragent-normaliser');
 	const TOML = require('@iarna/toml');
 	// Grab all the browsers from BrowserStack which are officially supported by the polyfil service.
-	const { browserlist } = TOML.parse(fs.readFileSync("./test/polyfills/browsers.toml", 'utf-8'));
+	const { browsers } = TOML.parse(fs.readFileSync("./test/polyfills/browsers.toml", 'utf-8'));
 	const browserstackBrowsers = TOML.parse(fs.readFileSync('./test/polyfills/browserstackBrowsers.toml', 'utf-8'));
 
-	const browsersWeSupport = browserlist.filter(uaString => new UA(uaString).meetsBaseline());
+	const browsersWeSupport = browsers.filter(uaString => new UA(uaString).meetsBaseline());
 
 	function useragentToBrowserObj(browserWithVersion) {
 		const [browser, version] = browserWithVersion.split("/");
