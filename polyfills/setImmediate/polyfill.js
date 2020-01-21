@@ -54,14 +54,6 @@
         delete tasksByHandle[handle];
     }
 
-    function installNextTickImplementation() {
-        setImmediatePolyfill = function setImmediate(handler) { // eslint-disable-line no-unused-vars
-            var handle = addFromSetImmediateArguments(arguments);
-            process.nextTick(partiallyApplied(runIfPresent, handle));
-            return handle;
-        };
-    }
-
     function canUsePostMessage() {
         // The test against `importScripts` prevents this implementation from being installed inside a web worker,
         // where `global.postMessage` means something completely different and can't be used for this purpose.
@@ -148,12 +140,7 @@
     var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
     attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
 
-    // Don't get fooled by e.g. browserify environments.
-    if ({}.toString.call(global.process) === "[object process]") {
-        // For Node.js before 0.9
-        installNextTickImplementation();
-
-    } else if (canUsePostMessage()) {
+    if (canUsePostMessage()) {
         // For non-IE10 modern browsers
         installPostMessageImplementation();
 

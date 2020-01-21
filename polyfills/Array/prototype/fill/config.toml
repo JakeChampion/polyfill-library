@@ -20,6 +20,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 
 [browsers]
 ie = "*"
+ie_mob = "*"
 safari = "<= 7"
 firefox = "< 31"
 chrome = "< 45"

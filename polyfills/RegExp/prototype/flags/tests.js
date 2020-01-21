@@ -61,7 +61,7 @@ if (supportsDescriptors) {
 	ifCallAllowsPrimitivesIt('throws when not called on an object', function () {
 		var nonObjects = ['', false, true, 42, NaN, null, undefined];
 		nonObjects.forEach(function (nonObject) {
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				testGenericRegExpFlags(nonObject);
 			}, TypeError);
 		});

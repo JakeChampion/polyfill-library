@@ -2,7 +2,7 @@
 
 	var
 	accessorName = 'name',
-	fnNameMatchRegex = /^\s*function\s+([^\(\s]*)\s*/,
+	fnNameMatchRegex = /^\s*function\s+([^(\s]*)\s*/,
 	$Function = Function,
 	FunctionName = 'Function',
 	FunctionProto = $Function.prototype,

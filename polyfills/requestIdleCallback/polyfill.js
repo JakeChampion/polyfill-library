@@ -83,7 +83,7 @@
         // Defensive coding. Time remaining should never be more than 50ms.
         // This is sometimes the case in Safari 9.
         return Math.min(frameDeadline - performance.now(), 50);
-    };
+    }
 
     function getDeadline(callbackObject) {
         var timeout = callbackObject.options.timeout;
@@ -101,13 +101,13 @@
             value: timeRemaining
         });
         return deadline;
-    };
+    }
 
     function runCallback(callbackObject) {
         var deadline = getDeadline(callbackObject);
         var callback = callbackObject.callback;
         callback(deadline);
-    };
+    }
 
     function scheduleIdleWork() {
         if (!isIdleScheduled) {
@@ -207,7 +207,7 @@
         // While there is deadline time remaining, run remaining scheduled
         // callbacks.
         while (scheduledCallbacks.length > 0 && timeRemaining() > 0) {
-            var callbackObject = scheduledCallbacks.shift();
+            callbackObject = scheduledCallbacks.shift();
             runCallback(callbackObject);
         }
 
@@ -224,7 +224,7 @@
         }
 
         isCallbackRunning = false;
-    };
+    }
 
     /**
      * @param {function} callback
@@ -294,7 +294,7 @@
         }
     });
 
-    if (Object.prototype.hasOwnProperty('__defineGetter__')) {
+    if (Object.prototype.hasOwnProperty.call(Object.prototype, '__defineGetter__')) {
         Object.defineProperty(global.IdleDeadline.prototype, 'didTimeout', {
             get: function () {
                 throw new TypeError('Illegal invocation');

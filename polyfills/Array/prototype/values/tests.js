@@ -16,7 +16,7 @@ it('has correct name', function () {
 		// Chrome 40 implements the Symbol.iterator function for Arrays but has it named ArrayValues.
 		try {
 			proclaim.equal([].values.name, 'ArrayValues');
-		} catch (e) {
+		} catch (er) {
 			// Firefox 44 has it named [Symbol.iterator].
 			proclaim.equal([].values.name, '[Symbol.iterator]');
 		}

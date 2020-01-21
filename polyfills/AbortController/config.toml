@@ -26,6 +26,7 @@ safari = "3.1 - 12"
 chrome = "4 - 65"
 ios_saf = "3.2 - 11.2"
 firefox_mob = "<64"
+samsung_mob = "*"
 android = "<67"
 
 [install]

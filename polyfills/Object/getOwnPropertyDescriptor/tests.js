@@ -21,9 +21,9 @@ var propertyDescriptorsSupported = (function () {
 	var obj = {};
 	try {
 		Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
-        /* eslint-disable no-unused-vars, no-restricted-syntax */
-        for (var _ in obj) { return false; }
-        /* eslint-enable no-unused-vars, no-restricted-syntax */
+		/* eslint-disable no-unused-vars, no-restricted-syntax */
+		for (var _ in obj) { return false; }
+		/* eslint-enable no-unused-vars, no-restricted-syntax */
 		return obj.x === obj;
 	} catch (e) { // this is IE 8.
 		return false;
@@ -75,51 +75,51 @@ it('works as expected', function () {
 
 describe('Basic functionality', function () {
 	it('should return undefined because the object does not own the property', function () {
-        var descr = Object.getOwnPropertyDescriptor({}, 'name');
+		var descr = Object.getOwnPropertyDescriptor({}, 'name');
 
-        proclaim.equal(descr, undefined);
-    });
+		proclaim.equal(descr, undefined);
+	});
 
-    it('should return a data descriptor', function () {
-        var descr = Object.getOwnPropertyDescriptor({ name: 'Testing' }, 'name');
-        var expected = {
-            enumerable: true,
-            configurable: true,
-            value: 'Testing',
-            writable: true
-        };
+	it('should return a data descriptor', function () {
+		var descr = Object.getOwnPropertyDescriptor({ name: 'Testing' }, 'name');
+		var expected = {
+			enumerable: true,
+			configurable: true,
+			value: 'Testing',
+			writable: true
+		};
 
-        proclaim.deepEqual(descr, expected);
-    });
+		proclaim.deepEqual(descr, expected);
+	});
 
-    if ('create' in Object) {
-	    it('should return undefined because the object does not own the property', function () {
-	        var descr = Object.getOwnPropertyDescriptor(Object.create({ name: 'Testing' }, {}), 'name');
+	if ('create' in Object) {
+		it('should return undefined because the object does not own the property', function () {
+			var descr = Object.getOwnPropertyDescriptor(Object.create({ name: 'Testing' }, {}), 'name');
 
-	        proclaim.equal(descr, undefined);
-	    });
+			proclaim.equal(descr, undefined);
+		});
 
-    	it('should return a data descriptor', function () {
-	        var expected = {
-	            value: 'Testing',
-	            configurable: true,
-	            enumerable: true,
-	            writable: true
-	        };
-	        var obj = Object.create({}, { name: expected });
+		it('should return a data descriptor', function () {
+			var expected = {
+				value: 'Testing',
+				configurable: true,
+				enumerable: true,
+				writable: true
+			};
+			var obj = Object.create({}, { name: expected });
 
-	        var descr = Object.getOwnPropertyDescriptor(obj, 'name');
+			var descr = Object.getOwnPropertyDescriptor(obj, 'name');
 
-	        proclaim.deepEqual(descr, expected);
-	    });
-    }
+			proclaim.deepEqual(descr, expected);
+		});
+	}
 
-    it('should throw error for non object', function () {
+	it('should throw error for non object', function () {
 	try {
 		// note: in ES6, we expect this to return undefined.
 		proclaim.isUndefined(Object.getOwnPropertyDescriptor(42, 'name'));
 	} catch (err) {
 		proclaim.isInstanceOf(err, TypeError);
 	}
-    });
+	});
 });

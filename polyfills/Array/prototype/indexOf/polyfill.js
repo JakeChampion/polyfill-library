@@ -18,11 +18,11 @@ CreateMethodProperty(Array.prototype, 'indexOf', function indexOf(searchElement 
 	// 6. If n ≥ 0, then
 	if (n >= 0) {
 		// a. If n is -0, let k be +0; else let k be n.
-		var k = n === -0 ? 0 : n;
+		var k = 1/n === -Infinity ? 0 : n;
 		// 7. Else n < 0,
 	} else {
 		// a. Let k be len + n.
-		var k = len + n;
+		k = len + n;
 		// b. If k < 0, let k be 0.
 		if (k < 0) {
 			k = 0;

@@ -64,6 +64,7 @@
 			// 8. Let iteratorRecord be ? GetIterator(iterable).
 			var iteratorRecord = GetIterator(iterable);
 			// 9. Repeat,
+			// eslint-disable-next-line no-constant-condition
 			while (true) {
 				// a. Let next be ? IteratorStep(iteratorRecord).
 				var next = IteratorStep(iteratorRecord);
@@ -148,7 +149,7 @@
 				}
 			}
 			// 6. If value is -0, let value be +0.
-			if (1/value === -Infinity) {
+			if (value === 0 && 1/value === -Infinity) {
 				value = 0;
 			}
 			// 7. Append value as the last element of entries.
@@ -485,7 +486,7 @@
 	} catch (e) {
 		// IE8 throws an error here if we set enumerable to false.
 		// More info on table 2: https://msdn.microsoft.com/en-us/library/dd229916(v=vs.85).aspx
-		global['Set'] = Set;
+		global.Set = Set;
 	}
 
 }(this));

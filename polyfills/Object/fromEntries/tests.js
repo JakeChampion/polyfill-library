@@ -18,23 +18,23 @@ it('is not enumerable', function () {
 });
 
 it('throws when an entry object is a primitive string', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Object.fromEntries(['ab']);
     }, TypeError);
 });
 
 it('throws when an entry object is a undefined', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Object.fromEntries(undefined);
     }, TypeError);
 });
 it('throws when an entry object is null', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Object.fromEntries(null);
     }, TypeError);
 });
 it('throws when an entry object is absent', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Object.fromEntries();
     }, TypeError);
 });
@@ -53,17 +53,17 @@ if('Symbol' in this && 'iterator' in this.Symbol && !!Array.prototype[Symbol.ite
                 value: 'value',
                 enumerable: true,
                 writable: true,
-                configurable: true,
+                configurable: true
             });
         });
     }
     
     it('succeeds when an entry object is a boxed Object', function () {
-        proclaim.deepStrictEqual(Object.fromEntries([Object('ab')])['a'], 'b');
+        proclaim.deepStrictEqual(Object.fromEntries([Object('ab')]).a, 'b');
     });
     
     it('succeeds when an entry object is a boxed String', function () {
-        proclaim.deepStrictEqual(Object.fromEntries([new String('ab')])['a'], 'b');
+        proclaim.deepStrictEqual(Object.fromEntries([new String('ab')]).a, 'b');
     });
     it('works with Symbols', function () {
         var key = Symbol();

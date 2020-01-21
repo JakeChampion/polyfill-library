@@ -63,6 +63,7 @@ document.attachEvent('onreadystatechange', function () {
 	if (document.readyState === 'complete') {
 		for (var elements = document.querySelectorAll('input,textarea'), index = 0, length = elements.length; index < length; ++index) {
 			if (elements[index].placeholder) {
+				// eslint-disable-next-line no-self-assign
 				elements[index].placeholder = elements[index].placeholder;
 			}
 		}

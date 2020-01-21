@@ -30,24 +30,24 @@ if ('preventExtensions' in Object) {
 }
 
 it('throws a TypeError if target is not an Object', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.isExtensible(1);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.isExtensible(null);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.isExtensible(undefined);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.isExtensible('');
     }, TypeError);
 
     if ('Symbol' in this) {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             Reflect.isExtensible(Symbol());
         }, TypeError);
     }

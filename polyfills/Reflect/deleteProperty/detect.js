@@ -1,1 +1,1 @@
-'deleteProperty' in Reflect
+'deleteProperty' in self.Reflect

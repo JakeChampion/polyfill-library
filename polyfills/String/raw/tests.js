@@ -19,7 +19,7 @@ it('is not enumerable', function () {
 
 if ('Symbol' in self) {
     it('throws a TypeError if nextKey is a Symbol', function () {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             String.raw({
                 raw: {
                     length: 1,
@@ -32,7 +32,7 @@ if ('Symbol' in self) {
 
 if ('Symbol' in self) {
     it('throws a TypeError if length is a Symbol', function () {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             String.raw({
                 raw: {
                     length: Symbol()
@@ -43,7 +43,7 @@ if ('Symbol' in self) {
 }
 
 it('calls the toString method on the keys', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         String.raw({
             raw: {
                 length: 1,
@@ -59,13 +59,13 @@ it('calls the toString method on the keys', function () {
 
 if ('Symbol' in self) {
     it('throws a TypeError if a Symbol is used as a substitution', function () {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             String.raw({
                 raw: ['a', 'b', 'c']
             }, '', Symbol(''));
         }, TypeError);
 
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             String.raw({
                 raw: ['a', 'b', 'c']
             }, Symbol(''), '');
@@ -149,19 +149,19 @@ it('returns empty string if template.raw.length is less than 1.', function () {
 });
 
 it('throws a TypeError if called with null', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         String.raw(null);
     });
 });
 
 it('throws a TypeError if called with undefined', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         String.raw(undefined);
     });
 });
 
 it('throws a TypeError if called with raw as null', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         String.raw({
             raw: null
         });
@@ -169,7 +169,7 @@ it('throws a TypeError if called with raw as null', function () {
 });
 
 it('throws a TypeError if called with raw as undefined', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         String.raw({
             raw: undefined
         });
@@ -205,7 +205,7 @@ it('works with unicode escape sequences', function () {
 });
 
 it('works with unicode literal characters', function () {
-    debugger;
+    
     proclaim.deepStrictEqual(
         String.raw({
             raw: ["\\\n\\\n\\\n"]

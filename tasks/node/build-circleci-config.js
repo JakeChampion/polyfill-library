@@ -8,9 +8,9 @@ const _ = require('lodash');
 
 const circleConfig = yaml.parse(fs.readFileSync(path.join(__dirname, './circleci-config.yml'), 'utf8'));
 
-const polyfillsWhichHaveTests = globby.sync(['polyfills/**/tests.js', '!polyfills/__dist'], {
-    transform: (entry) => entry.replace('polyfills/', '').replace('/tests.js', '').replace(/\//g, '.')
-});
+const polyfillsWhichHaveTests = globby.sync(['polyfills/**/tests.js', '!polyfills/__dist']).map(
+    entry => entry.replace('polyfills/', '').replace('/tests.js', '').replace(/\//g, '.')
+);
 
 _.chunk(polyfillsWhichHaveTests, 14).map(polyfillsWhichHaveTests => {
     const testCommands = polyfillsWhichHaveTests.map(feature => {

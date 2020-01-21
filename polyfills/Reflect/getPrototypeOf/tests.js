@@ -30,24 +30,24 @@ it('returns the internal [[Prototype]] of an object', function () {
 });
 
 it('throws a TypeError if target is not an Object', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.getPrototypeOf(1);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.getPrototypeOf(null);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.getPrototypeOf(undefined);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.getPrototypeOf('');
     }, TypeError);
 
     if ('Symbol' in this) {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             Reflect.getPrototypeOf(Symbol());
         }, TypeError);
     }

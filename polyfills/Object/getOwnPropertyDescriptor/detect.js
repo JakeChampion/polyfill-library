@@ -1,6 +1,6 @@
 'getOwnPropertyDescriptor' in Object && typeof Object.getOwnPropertyDescriptor === 'function' && (function() {
     try {
-    	var object = {};
+        var object = {};
         object.test = 0;
         return Object.getOwnPropertyDescriptor(
             object,

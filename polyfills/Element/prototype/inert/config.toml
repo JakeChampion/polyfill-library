@@ -23,10 +23,11 @@ ie_mob = "9 - *"
 firefox = "*"
 opera = "*"
 safari = "*"
-chrome = "<76"
+chrome = "*"
 ios_saf = "*"
 firefox_mob = "*"
 android = "*"
+op_mob = "*" 
 
 [install]
 module = "wicg-inert"
