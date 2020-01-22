@@ -15,7 +15,8 @@
     "dot-notation": ["error", { "allowKeywords": false }],
     "radix": "error",
     "no-catch-shadow": "error",
-    "no-dupe-else-if": "error"
+    "no-dupe-else-if": "error",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
   },
   "root": true
 }
