@@ -129,6 +129,10 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js console
       - run:
+          name: Testing globalThis
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js globalThis
+      - run:
           name: Testing matchMedia
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js matchMedia
@@ -157,16 +161,16 @@ jobs:
           name: Testing Array.isArray
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Array.isArray
-      - run:
-          name: Testing Array.of
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js Array.of
   test_2:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Array.of
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Array.of
       - run:
           name: Testing Event.focusin
           no_output_timeout: 180m
@@ -219,16 +223,16 @@ jobs:
           name: Testing Math.log1p
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Math.log1p
-      - run:
-          name: Testing Math.log2
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js Math.log2
   test_3:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Math.log2
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Math.log2
       - run:
           name: Testing Math.sign
           no_output_timeout: 180m
@@ -283,16 +287,16 @@ jobs:
           name: Testing Number.parseInt
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Number.parseInt
-      - run:
-          name: Testing Object.assign
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js Object.assign
   test_4:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Object.assign
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Object.assign
       - run:
           name: Testing Object.create
           no_output_timeout: 180m
@@ -351,16 +355,16 @@ jobs:
           name: Testing Object.isFrozen
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Object.isFrozen
-      - run:
-          name: Testing Object.isSealed
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js Object.isSealed
   test_5:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Object.isSealed
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Object.isSealed
       - run:
           name: Testing Object.keys
           no_output_timeout: 180m
@@ -419,16 +423,16 @@ jobs:
           name: Testing Reflect.has
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Reflect.has
-      - run:
-          name: Testing Reflect.isExtensible
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js Reflect.isExtensible
   test_6:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Reflect.isExtensible
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Reflect.isExtensible
       - run:
           name: Testing Reflect.ownKeys
           no_output_timeout: 180m
@@ -484,16 +488,16 @@ jobs:
           name: Testing Symbol.search
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js Symbol.search
-      - run:
-          name: Testing Symbol.species
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js Symbol.species
   test_7:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Symbol.species
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Symbol.species
       - run:
           name: Testing Symbol.split
           no_output_timeout: 180m
@@ -546,17 +550,17 @@ jobs:
           name: Testing console.group
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js console.group
-      - run:
-          name: Testing console.groupCollapsed
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js
-            console.groupCollapsed
   test_8:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing console.groupCollapsed
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            console.groupCollapsed
       - run:
           name: Testing console.groupEnd
           no_output_timeout: 180m
@@ -609,16 +613,16 @@ jobs:
           name: Testing console.timelineEnd
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js console.timelineEnd
-      - run:
-          name: Testing console.trace
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js console.trace
   test_9:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing console.trace
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js console.trace
       - run:
           name: Testing console.warn
           no_output_timeout: 180m
@@ -680,16 +684,16 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             Array.prototype.filter
-      - run:
-          name: Testing Array.prototype.find
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js Array.prototype.find
   test_10:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Array.prototype.find
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js Array.prototype.find
       - run:
           name: Testing Array.prototype.findIndex
           no_output_timeout: 180m
@@ -751,17 +755,17 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             Array.prototype.values
-      - run:
-          name: Testing DOMTokenList.prototype.@@iterator
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js
-            DOMTokenList.prototype.@@iterator
   test_11:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing DOMTokenList.prototype.@@iterator
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            DOMTokenList.prototype.@@iterator
       - run:
           name: Testing Date.prototype.toISOString
           no_output_timeout: 180m
@@ -827,17 +831,17 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             Element.prototype.prepend
-      - run:
-          name: Testing Element.prototype.remove
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js
-            Element.prototype.remove
   test_12:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing Element.prototype.remove
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            Element.prototype.remove
       - run:
           name: Testing Element.prototype.replaceWith
           no_output_timeout: 180m
@@ -902,17 +906,17 @@ jobs:
           name: Testing String.prototype.big
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js String.prototype.big
-      - run:
-          name: Testing String.prototype.blink
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js
-            String.prototype.blink
   test_13:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing String.prototype.blink
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.blink
       - run:
           name: Testing String.prototype.bold
           no_output_timeout: 180m
@@ -978,17 +982,17 @@ jobs:
           no_output_timeout: 180m
           command: node ./test/polyfills/test-individual-feature.js
             String.prototype.repeat
-      - run:
-          name: Testing String.prototype.small
-          no_output_timeout: 180m
-          command: node ./test/polyfills/test-individual-feature.js
-            String.prototype.small
   test_14:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: npm ci
+      - run:
+          name: Testing String.prototype.small
+          no_output_timeout: 180m
+          command: node ./test/polyfills/test-individual-feature.js
+            String.prototype.small
       - run:
           name: Testing String.prototype.startsWith
           no_output_timeout: 180m
