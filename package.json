@@ -37,8 +37,7 @@
     "test-node-coverage": "nyc check-coverage --lines 90 --branches 90 --functions 90",
     "test-coverage": "nyc report --reporter=lcov",
     "test": "npm run build && npm run test-node && npm run test-node-unit && npm run test-polyfills",
-    "prepare": "npm run build",
-    "prepublishOnly": "mv polyfills/__dist __dist && rimraf polyfills && mkdir polyfills && mv __dist polyfills/__dist"
+    "prepublishOnly": "npm run build && mv polyfills/__dist __dist && rimraf polyfills && mkdir polyfills && mv __dist polyfills/__dist"
   },
   "license": "MIT",
   "engines": {
