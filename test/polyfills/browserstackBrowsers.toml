@@ -241,6 +241,12 @@ browser_version = "7.0"
 [[browsers]]
 os = "Windows"
 os_version = "XP"
+browser = "ie"
+browser_version = "8.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "XP"
 browser = "firefox"
 browser_version = "3.6"
 

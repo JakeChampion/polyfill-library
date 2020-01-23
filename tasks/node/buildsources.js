@@ -85,7 +85,7 @@ function writeAliasFile(polyfills, dir) {
 		}
 	}
 
-	return writeFile(path.join(dir, 'aliases.toml'), TOML.stringify(aliases));
+	return writeFile(path.join(dir, 'aliases.json'), JSON.stringify(aliases));
 }
 
 class Polyfill {
@@ -258,7 +258,7 @@ class Polyfill {
 	writeOutput(root) {
 		const dest = path.join(root, this.name);
 		const files = [
-				['meta.toml', TOML.stringify(this.config)],
+				['meta.json', JSON.stringify(this.config)],
 				['raw.js', this.sources.raw],
 				['min.js', this.sources.min]
 			];
