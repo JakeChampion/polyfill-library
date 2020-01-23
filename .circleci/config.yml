@@ -1065,9 +1065,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_0
       - test_2:
           filters:
@@ -1076,9 +1073,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_1
       - test_3:
           filters:
@@ -1087,9 +1081,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_2
       - test_4:
           filters:
@@ -1098,9 +1089,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_3
       - test_5:
           filters:
@@ -1109,9 +1097,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_4
       - test_6:
           filters:
@@ -1120,9 +1105,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_5
       - test_7:
           filters:
@@ -1131,9 +1113,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_6
       - test_8:
           filters:
@@ -1142,9 +1121,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_7
       - test_9:
           filters:
@@ -1153,9 +1129,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_8
       - test_10:
           filters:
@@ -1164,9 +1137,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_9
       - test_11:
           filters:
@@ -1175,9 +1145,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_10
       - test_12:
           filters:
@@ -1186,9 +1153,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_11
       - test_13:
           filters:
@@ -1197,9 +1161,6 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_12
       - test_14:
           filters:
@@ -1208,8 +1169,5 @@ workflows:
             branches:
               ignore: master
           requires:
-            - check_circle_config
-            - lint_js
-            - unit_tests
             - test_13
 
