@@ -51,7 +51,7 @@ async function findAllThirdPartyPolyfills () {
 
 async function featureRequiresTesting(feature) {
 
-    const filesWhichChanged = execa.shellSync('git diff --name-only origin/master HEAD').stdout.split('\n');
+    const filesWhichChanged = execa.commandSync('git diff --name-only origin/master HEAD').stdout.split('\n');
 
     // if any of the dependencies in the tree from the feature is the same as latest commit, run the tests
     const dependencies = await generateDependencyTreeForFeature(feature);
@@ -73,7 +73,7 @@ async function featureRequiresTesting(feature) {
     const filesRequiredByFeatureHasNotChanged = filesRequiredByFeatureWhichHaveChanged.length === 0;
     const libFolderHasNotChanged = !filesWhichChanged.some(file => file.startsWith('lib/'));
     const karmaPolyfillPluginHasNotChanged = !filesWhichChanged.includes('karma-polyfill-library-plugin.js');
-    const packageJsonDependenciesFromMaster = JSON.parse(execa.shellSync('git show origin/master:package.json').stdout).dependencies;
+    const packageJsonDependenciesFromMaster = JSON.parse(execa.commandSync('git show origin/master:package.json').stdout).dependencies;
     const packageJsonDependenciesFromHead = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')).dependencies;
     const packageJsonDependenciesChanges = Object.keys(findDifferenceInObjects(packageJsonDependenciesFromHead, packageJsonDependenciesFromMaster));
     const thirdPartyPolyfillsWhichHaveBeenAddedOrChanged = intersection(packageJsonDependenciesChanges, thirdPartyPolyfills);
