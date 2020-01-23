@@ -77,7 +77,7 @@
     "usertiming": "^0.1.8",
     "web-animations-js": "^2.2.5",
     "whatwg-fetch": "^3.0.0",
-    "wicg-inert": "^2.1.2",
+    "wicg-inert": "^3.0.0",
     "yaku": "0.19.3"
   },
   "devDependencies": {
