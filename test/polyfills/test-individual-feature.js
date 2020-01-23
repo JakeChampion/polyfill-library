@@ -73,7 +73,7 @@ async function featureRequiresTesting(feature) {
     const filesRequiredByFeatureHasNotChanged = filesRequiredByFeatureWhichHaveChanged.length === 0;
     const libFolderHasNotChanged = !filesWhichChanged.some(file => file.startsWith('lib/'));
     const karmaPolyfillPluginHasNotChanged = !filesWhichChanged.includes('karma-polyfill-library-plugin.js');
-    const packageJsonDependenciesFromMaster = JSON.parse(execa.shellSync('git show origin/master:package.json').stdout).dependencies;
+    const packageJsonDependenciesFromMaster = JSON.parse(execa.commandSync('git show origin/master:package.json').stdout).dependencies;
     const packageJsonDependenciesFromHead = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')).dependencies;
     const packageJsonDependenciesChanges = Object.keys(findDifferenceInObjects(packageJsonDependenciesFromHead, packageJsonDependenciesFromMaster));
     const thirdPartyPolyfillsWhichHaveBeenAddedOrChanged = intersection(packageJsonDependenciesChanges, thirdPartyPolyfills);
