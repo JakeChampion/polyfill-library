@@ -78,7 +78,7 @@
     "web-animations-js": "^2.2.5",
     "whatwg-fetch": "^3.0.0",
     "wicg-inert": "^2.1.2",
-    "yaku": "0.18.6"
+    "yaku": "0.19.3"
   },
   "devDependencies": {
     "@iarna/toml": "^2.2.3",
