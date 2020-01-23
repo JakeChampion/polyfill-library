@@ -61,12 +61,14 @@ async function featureRequiresTesting(feature) {
     const filesRequiredByFeature = dependencyFolders.flatMap(folder => {
         return [
             folder + '/config.toml',
-            folder + '/polyfill.js',
-            folder + '/detect.js',
-            folder + '/tests.js'
+            folder + '/polyfill.js'
         ];
     });
 
+    const testsForFeature = `polyfills/${featureToFolder(feature)}/tests.js`;
+    // const detectForFeature = `polyfills/${featureToFolder(feature)}/detect.js`;
+
+    const testsForFeatureHaveNotChanged = !filesWhichChanged.includes(testsForFeature);
     const filesRequiredByFeatureWhichHaveChanged = intersection(filesRequiredByFeature, filesWhichChanged);
     const filesRequiredByFeatureHasNotChanged = filesRequiredByFeatureWhichHaveChanged.length === 0;
     const libFolderHasNotChanged = !filesWhichChanged.some(file => file.startsWith('lib/'));
@@ -75,6 +77,11 @@ async function featureRequiresTesting(feature) {
     const packageJsonDependenciesFromHead = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')).dependencies;
     const packageJsonDependenciesChanges = Object.keys(findDifferenceInObjects(packageJsonDependenciesFromHead, packageJsonDependenciesFromMaster));
     const thirdPartyPolyfillsWhichHaveBeenAddedOrChanged = intersection(packageJsonDependenciesChanges, thirdPartyPolyfills);
+
+    if (!testsForFeatureHaveNotChanged) {
+        console.log(`Running tests for ${feature} because the tests have changed.`);
+        return true;
+    }
 
     if (!filesRequiredByFeatureHasNotChanged) {
         console.log(`Running tests for ${feature} because one or more of the files it depends on has changed.`);

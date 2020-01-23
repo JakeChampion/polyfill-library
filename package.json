@@ -37,7 +37,8 @@
     "test-node-coverage": "nyc check-coverage --lines 90 --branches 90 --functions 90",
     "test-coverage": "nyc report --reporter=lcov",
     "test": "npm run build && npm run test-node && npm run test-node-unit && npm run test-polyfills",
-    "prepare": "npm run build"
+    "prepublishOnly": "mv polyfills/__dist __dist && rimraf polyfills && mkdir polyfills && mv __dist polyfills/__dist",
+    "prepublish": "npm run build"
   },
   "license": "MIT",
   "engines": {
@@ -45,7 +46,6 @@
   },
   "dependencies": {
     "@financial-times/polyfill-useragent-normaliser": "^1.2.0",
-    "@iarna/toml": "^2.2.3",
     "@webcomponents/template": "^1.4.0",
     "Base64": "^1.0.0",
     "abort-controller": "^3.0.0",
@@ -77,12 +77,13 @@
     "usertiming": "^0.1.8",
     "web-animations-js": "^2.2.5",
     "whatwg-fetch": "^3.0.0",
-    "wicg-inert": "^2.1.2",
-    "yaku": "0.18.6"
+    "wicg-inert": "^3.0.0",
+    "yaku": "0.19.3"
   },
   "devDependencies": {
+    "@iarna/toml": "^2.2.3",
     "array.prototype.flatmap": "^1.2.1",
-    "browserstack": "^1.5.3",
+    "browserstack": "1.5.2",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "execa": "^1.0.0",
@@ -95,7 +96,7 @@
     "lodash": "^4.17.14",
     "mocha": "^3.5.3",
     "mockery": "^2.1.0",
-    "nyc": "^14.1.1",
+    "nyc": "^15.0.0",
     "proclaim": "^3.6.0",
     "sinon": "^8.0.4",
     "yaml": "^1.1.0"
