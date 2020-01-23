@@ -51,7 +51,7 @@ async function findAllThirdPartyPolyfills () {
 
 async function featureRequiresTesting(feature) {
 
-    const filesWhichChanged = execa.shellSync('git diff --name-only origin/master HEAD').stdout.split('\n');
+    const filesWhichChanged = execa.commandSync('git diff --name-only origin/master HEAD').stdout.split('\n');
 
     // if any of the dependencies in the tree from the feature is the same as latest commit, run the tests
     const dependencies = await generateDependencyTreeForFeature(feature);
