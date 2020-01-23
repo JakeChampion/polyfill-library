@@ -48,7 +48,7 @@ _.chunk(polyfillsWhichHaveTests, 14).map(polyfillsWhichHaveTests => {
                     ignore: "master"
                 }
             },
-            requires: ["check_circle_config", "lint_js", "unit_tests"].concat(index > 0 ? previousJob:[])
+            requires: index === 0 ? ["check_circle_config", "lint_js", "unit_tests"] : [previousJob]
         }
     });
 });
