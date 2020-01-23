@@ -89,7 +89,7 @@
             global.attachEvent("onmessage", onGlobalMessage);
         }
 
-        setImmediatePolyfill = function setImmediate(handler) { // eslint-disable-line no-unused-vars
+        setImmediatePolyfill = function setImmediate(_) {
             var handle = addFromSetImmediateArguments(arguments);
             global.postMessage(messagePrefix + handle, "*");
             return handle;
@@ -103,7 +103,7 @@
             runIfPresent(handle);
         };
 
-        setImmediatePolyfill = function setImmediate(handler) { // eslint-disable-line no-unused-vars
+        setImmediatePolyfill = function setImmediate(_) {
             var handle = addFromSetImmediateArguments(arguments);
             channel.port2.postMessage(handle);
             return handle;
@@ -112,7 +112,7 @@
 
     function installReadyStateChangeImplementation() {
         var html = doc.documentElement;
-        setImmediatePolyfill = function setImmediate(handler) { // eslint-disable-line no-unused-vars
+        setImmediatePolyfill = function setImmediate(_) {
             var handle = addFromSetImmediateArguments(arguments);
             // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
             // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
@@ -129,7 +129,7 @@
     }
 
     function installSetTimeoutImplementation() {
-        setImmediatePolyfill = function setImmediate(handler) { // eslint-disable-line no-unused-vars
+        setImmediatePolyfill = function setImmediate(_) {
             var handle = addFromSetImmediateArguments(arguments);
             setTimeout(partiallyApplied(runIfPresent, handle), 0);
             return handle;
