@@ -83,7 +83,7 @@
   "devDependencies": {
     "@iarna/toml": "^2.2.3",
     "array.prototype.flatmap": "^1.2.1",
-    "browserstack": "1.5.2",
+    "browserstack": "1.5.3",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "execa": "^4.0.0",
