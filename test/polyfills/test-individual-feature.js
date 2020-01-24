@@ -121,7 +121,9 @@ async function featureRequiresTesting(feature) {
     try {
         if (await featureRequiresTesting(feature)) {
             console.log(`Testing ${feature}`);
-            const result = execa('karma', ['start', path.join(__dirname, '../../', 'karma.conf.js'), `--browserstack`, `--features=${feature}`]);
+            const result = execa('karma', ['start', path.join(__dirname, '../../', 'karma.conf.js'), `--browserstack`, `--features=${feature}`], {
+                preferLocal: true
+            });
             result.stdout.pipe(process.stdout);
             result.stderr.pipe(process.stderr);
             await result;
