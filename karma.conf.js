@@ -19,7 +19,7 @@ function getBrowsersFor(feature) {
 		const meta = TOML.parse(fs.readFileSync(path.resolve(__dirname, 'polyfills', feature, 'config.toml'), 'utf-8'));
 		const ua = new UA(uaString);
 		const isBrowserMatch = meta.browsers && meta.browsers[ua.getFamily()] && ua.satisfies(meta.browsers[ua.getFamily()]);
-		return isBrowserMatch;
+		return isBrowserMatch && UA.normalize(ua) !== 'ie/8.0.0';
 	});
 
 	function useragentToBrowserObj(browserWithVersion) {
