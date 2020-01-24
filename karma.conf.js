@@ -19,7 +19,7 @@ function getBrowsersFor(feature) {
 		const meta = TOML.parse(fs.readFileSync(path.resolve(__dirname, 'polyfills', feature, 'config.toml'), 'utf-8'));
 		const ua = new UA(uaString);
 		const isBrowserMatch = meta.browsers && meta.browsers[ua.getFamily()] && ua.satisfies(meta.browsers[ua.getFamily()]);
-		return isBrowserMatch && UA.normalize(ua) !== 'ie/8.0.0';
+		return isBrowserMatch;
 	});
 
 	function useragentToBrowserObj(browserWithVersion) {
@@ -134,6 +134,10 @@ module.exports = async function (config) {
 
 	if (config.browserstack) {
 		const browsers = getBrowsersFor(featureToFolder(feature));
+		if (Object.keys(browsers).length === 0) {
+			console.log('No browsers we support require this polyfill, not running the tests');
+			process.exit(0);
+		}
 		config.set(Object.assign(config,{
 			// if true, Karma captures browsers, runs the tests and exits
 			singleRun: true,
