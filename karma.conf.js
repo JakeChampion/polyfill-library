@@ -141,7 +141,10 @@ module.exports = async function (config) {
 				'karma-browserstack-launcher'
 			]),
 			browserStack: {
-				startTunnel: true
+				startTunnel: true,
+				name: feature,
+				project: 'polyfill-library',
+				retryLimit: 10
 			},
 			reporters: config.reporters.concat(['summary-optional-console', 'BrowserStack']),
 			summaryOptionalConsoleReporter: {
