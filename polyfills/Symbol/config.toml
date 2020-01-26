@@ -6,14 +6,11 @@ aliases = [
   "Symbol.keyFor"
 ]
 dependencies = [
-  "_ESAbstract.CreateMethodProperty",
-  "_ESAbstract.ToString",
-  "_ESAbstract.ToPrimitive",
-  "_ESAbstract.Type",
   "Array.prototype.forEach",
+  "Array.prototype.filter",
+  "Array.prototype.map",
   "Object.create",
   "Object.defineProperty",
-  "Object.defineProperties",
   "Object.getOwnPropertyNames",
   "Object.getOwnPropertyDescriptor",
   "Object.freeze",
