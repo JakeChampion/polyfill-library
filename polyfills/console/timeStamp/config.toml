@@ -4,6 +4,8 @@ spec = "https://console.spec.whatwg.org"
 docs = "https://developer.mozilla.org/en/docs/Web/API/console"
 
 [browsers]
+edge = "<12"
+edge_mob = "<12"
 edge = "*"
 edge_mob = "*"
 ie = "*"
