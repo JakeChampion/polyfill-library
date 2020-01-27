@@ -7,8 +7,8 @@ license = "MIT"
 
 [browsers]
 chrome = "<39"
-edge = "*"
-edge_mob = "*"
+edge = "<14"
+edge_mob = "<14"
 firefox = "<31"
 ie = "*"
 opera = "<26"
