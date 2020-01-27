@@ -26,5 +26,5 @@ opera = ">19 <50"
 op_mini = "*"
 safari = ">7 <11.1"
 firefox_mob = ">28 <58"
-samsung_mob = "*"
+samsung_mob = ">2 <8"
 
