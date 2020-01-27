@@ -10,7 +10,7 @@ notes = [
   "The Promise polyfill includes `Promise.prototype.finally`, to avoid needlessly serving this polyfill to those browsers, we have configured the browser targets for this polyfill to not include those configured in the Promise polyfill."
 ]
 license = "MIT"
-docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"
+docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally"
 
 [browsers]
 android = ">4.4 <63"
