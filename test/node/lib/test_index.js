@@ -130,28 +130,36 @@ describe("polyfillio", function () {
 			});
 			const expectedFetchPolyfill = {
 				fetch: { flags: [] },
-				Promise: { flags: [], aliasOf: ["fetch"]},
-				'Symbol.iterator': { flags: [], aliasOf: ["fetch"]},
+				Promise: { flags: [], aliasOf: [ 'fetch' ] },
+				'Symbol.iterator': { flags: [], aliasOf: [ 'fetch' ] },
 				'_ESAbstract.CreateMethodProperty': {
 				  flags: [],
 				  aliasOf: [
+					'Array.prototype.filter',
 					'Array.prototype.forEach',
+					'Array.prototype.map',
 					'Function.prototype.bind',
 					'Object.create',
 					'Object.defineProperties',
 					'Object.freeze',
 					'Object.getOwnPropertyDescriptor',
 					'Object.getOwnPropertyNames',
+					'Object.getPrototypeOf',
 					'Object.keys',
 					'Symbol',
 					'Symbol.iterator',
-					'fetch',
+					'_ESAbstract.ArraySpeciesCreate',
+					'_ESAbstract.Construct',
+					'_ESAbstract.OrdinaryCreateFromConstructor',
+					'fetch'
 				  ]
 				},
 				'_ESAbstract.ToObject': {
 				  flags: [],
 				  aliasOf: [
+					'Array.prototype.filter',
 					'Array.prototype.forEach',
+					'Array.prototype.map',
 					'Object.create',
 					'Object.defineProperties',
 					'Object.getOwnPropertyDescriptor',
@@ -161,37 +169,47 @@ describe("polyfillio", function () {
 					'_ESAbstract.GetV',
 					'_ESAbstract.ToPrimitive',
 					'_ESAbstract.ToString',
-					'fetch',
+					'fetch'
 				  ]
 				},
 				'_ESAbstract.ToLength': {
 				  flags: [],
 				  aliasOf: [
-					"Array.prototype.forEach",
-					"fetch",
-				  ],
+					'Array.prototype.filter',
+					'Array.prototype.forEach',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'fetch'
+				  ]
 				},
 				'_ESAbstract.Get': {
 				  flags: [],
 				  aliasOf: [
+					'Array.prototype.filter',
 					'Array.prototype.forEach',
+					'Array.prototype.map',
 					'Object.create',
 					'Object.defineProperties',
 					'Symbol',
 					'Symbol.iterator',
+					'_ESAbstract.ArraySpeciesCreate',
+					'_ESAbstract.Construct',
+					'_ESAbstract.GetPrototypeFromConstructor',
+					'_ESAbstract.OrdinaryCreateFromConstructor',
 					'_ESAbstract.OrdinaryToPrimitive',
 					'_ESAbstract.ToPrimitive',
 					'_ESAbstract.ToString',
-					'fetch',
+					'fetch'
 				  ]
 				},
 				'_ESAbstract.IsCallable': {
 				  flags: [],
 				  aliasOf: [
+					'Array.prototype.filter',
 					'Array.prototype.forEach',
+					'Array.prototype.map',
 					'Function.prototype.bind',
-					'Object.create',
-					'Object.defineProperties',
 					'Object.getOwnPropertyDescriptor',
 					'Symbol',
 					'Symbol.iterator',
@@ -199,88 +217,92 @@ describe("polyfillio", function () {
 					'_ESAbstract.OrdinaryToPrimitive',
 					'_ESAbstract.ToPrimitive',
 					'_ESAbstract.ToString',
-					'fetch',
+					'fetch'
 				  ]
 				},
 				'_ESAbstract.HasProperty': {
 				  flags: [],
 				  aliasOf: [
-					"Array.prototype.forEach",
-					"fetch"
-				  ],
+					'Array.prototype.filter',
+					'Array.prototype.forEach',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'fetch'
+				  ]
 				},
 				'_ESAbstract.Call': {
 				  flags: [],
 				  aliasOf: [
+					'Array.prototype.filter',
 					'Array.prototype.forEach',
+					'Array.prototype.map',
 					'Symbol',
 					'Symbol.iterator',
 					'_ESAbstract.OrdinaryToPrimitive',
 					'_ESAbstract.ToPrimitive',
 					'_ESAbstract.ToString',
-					'fetch',
+					'fetch'
 				  ]
 				},
 				'_ESAbstract.ToString': {
 				  flags: [],
 				  aliasOf: [
+					'Array.prototype.filter',
 					'Array.prototype.forEach',
-					'Object.create',
-					'Object.defineProperties',
+					'Array.prototype.map',
 					'Object.getOwnPropertyDescriptor',
 					'Symbol',
 					'Symbol.iterator',
 					'_ESAbstract.ToPropertyKey',
-					'fetch',
-				  ]
-				},
-				Symbol: { flags: [], aliasOf: [
-					"Symbol.iterator",
-					"fetch"
-				]},
-				'_ESAbstract.ToInteger': {
-				  flags: [],
-				  aliasOf: [
-					  'Array.prototype.forEach',
-					  '_ESAbstract.ToLength',
 					'fetch'
 				  ]
+				},
+				Symbol: { flags: [], aliasOf: [ 'Symbol.iterator', 'fetch' ] },
+				'_ESAbstract.ToInteger': {
+				  flags: [],
+				  aliasOf: [ 'Array.prototype.forEach', '_ESAbstract.ToLength', 'fetch' ]
 				},
 				'_ESAbstract.ToPrimitive': {
 				  flags: [],
 				  aliasOf: [
-					  'Array.prototype.forEach',
-					  'Object.create',
-					  'Object.defineProperties',
-					  'Object.getOwnPropertyDescriptor',
-					  'Symbol',
-					  'Symbol.iterator',
-					  '_ESAbstract.ToPropertyKey',
+					'Array.prototype.forEach',
+					'Object.getOwnPropertyDescriptor',
+					'Symbol',
+					'Symbol.iterator',
+					'_ESAbstract.ToPropertyKey',
 					'_ESAbstract.ToString',
-					'fetch',
+					'fetch'
 				  ]
 				},
 				'_ESAbstract.Type': {
 				  flags: [],
 				  aliasOf: [
-					  'Array.prototype.forEach',
-					  'Object.create',
-					  'Object.defineProperties',
-					  'Object.getOwnPropertyDescriptor',
-					  'Symbol',
-					  'Symbol.iterator',
-					  '_ESAbstract.OrdinaryToPrimitive',
-					  '_ESAbstract.ToPrimitive',
-					  '_ESAbstract.ToPropertyKey',
-					  '_ESAbstract.ToString',
-					'fetch',
+					'Array.prototype.filter',
+					'Array.prototype.forEach',
+					'Array.prototype.map',
+					'Object.create',
+					'Object.defineProperties',
+					'Object.getOwnPropertyDescriptor',
+					'Symbol',
+					'Symbol.iterator',
+					'_ESAbstract.ArraySpeciesCreate',
+					'_ESAbstract.Construct',
+					'_ESAbstract.GetPrototypeFromConstructor',
+					'_ESAbstract.IsConstructor',
+					'_ESAbstract.OrdinaryCreateFromConstructor',
+					'_ESAbstract.OrdinaryToPrimitive',
+					'_ESAbstract.ToPrimitive',
+					'_ESAbstract.ToPropertyKey',
+					'_ESAbstract.ToString',
+					'fetch'
 				  ]
 				},
 				'Object.getOwnPropertyDescriptor': {
 				  flags: [],
 				  aliasOf: [
-					  'Object.create',
-					  'Object.defineProperties',
+					'Object.create',
+					'Object.defineProperties',
 					'Symbol',
 					'Symbol.iterator',
 					'fetch'
@@ -289,67 +311,168 @@ describe("polyfillio", function () {
 				'Object.keys': {
 				  flags: [],
 				  aliasOf: [
-					  'Object.create',
-					  'Object.defineProperties',
-					  'Symbol',
-					  'Symbol.iterator',
-					'fetch',
+					'Object.create',
+					'Object.defineProperties',
+					'Symbol',
+					'Symbol.iterator',
+					'fetch'
 				  ]
 				},
 				'_ESAbstract.GetMethod': {
 				  flags: [],
 				  aliasOf: [
-					  'Array.prototype.forEach',
-					  'Symbol',
-					  'Symbol.iterator',
-					  '_ESAbstract.ToPrimitive',
-					  '_ESAbstract.ToString',
-					'fetch',
+					'Array.prototype.filter',
+					'Array.prototype.forEach',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'_ESAbstract.ArraySpeciesCreate',
+					'_ESAbstract.IsConstructor',
+					'_ESAbstract.ToPrimitive',
+					'_ESAbstract.ToString',
+					'fetch'
 				  ]
 				},
 				'_ESAbstract.OrdinaryToPrimitive': {
 				  flags: [],
 				  aliasOf: [
-					  'Array.prototype.forEach',
-					  'Symbol',
-					  'Symbol.iterator',
-					  '_ESAbstract.ToPrimitive',
+					'Array.prototype.forEach',
+					'_ESAbstract.ToPrimitive',
 					'_ESAbstract.ToString',
-					'fetch',
+					'fetch'
+				  ]
+				},
+				'_ESAbstract.ArraySpeciesCreate': {
+				  flags: [],
+				  aliasOf: [
+					'Array.prototype.filter',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'fetch'
+				  ]
+				},
+				'_ESAbstract.ToBoolean': {
+				  flags: [],
+				  aliasOf: [ 'Array.prototype.filter', 'Symbol', 'Symbol.iterator', 'fetch' ]
+				},
+				'_ESAbstract.CreateDataPropertyOrThrow': {
+				  flags: [],
+				  aliasOf: [
+					'Array.prototype.filter',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'fetch'
 				  ]
 				},
 				'_ESAbstract.HasOwnProperty': {
 				  flags: [],
 				  aliasOf: [
-					  'Object.create',
-					  'Object.defineProperties',
-					  'Object.getOwnPropertyDescriptor',
+					'Object.getOwnPropertyDescriptor',
 					'Symbol',
 					'Symbol.iterator',
-					'fetch',
+					'fetch'
 				  ]
 				},
 				'_ESAbstract.ToPropertyKey': {
 				  flags: [],
 				  aliasOf: [
-					  'Object.create',
-					  'Object.defineProperties',
 					'Object.getOwnPropertyDescriptor',
 					'Symbol',
 					'Symbol.iterator',
-					'fetch',
+					'fetch'
 				  ]
 				},
 				'_ESAbstract.GetV': {
 				  flags: [],
 				  aliasOf: [
-					  'Array.prototype.forEach',
-					  'Symbol',
-					  'Symbol.iterator',
-					  '_ESAbstract.GetMethod',
-					  '_ESAbstract.ToPrimitive',
-					  '_ESAbstract.ToString',
-					'fetch',
+					'Array.prototype.forEach',
+					'_ESAbstract.GetMethod',
+					'_ESAbstract.ToPrimitive',
+					'_ESAbstract.ToString',
+					'fetch'
+				  ]
+				},
+				'_ESAbstract.IsArray': {
+				  flags: [],
+				  aliasOf: [
+					'Array.prototype.filter',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'_ESAbstract.ArraySpeciesCreate',
+					'fetch'
+				  ]
+				},
+				'_ESAbstract.ArrayCreate': {
+				  flags: [],
+				  aliasOf: [
+					'Array.prototype.filter',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'_ESAbstract.ArraySpeciesCreate',
+					'fetch'
+				  ]
+				},
+				'_ESAbstract.IsConstructor': {
+				  flags: [],
+				  aliasOf: [
+					'Array.prototype.filter',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'_ESAbstract.ArraySpeciesCreate',
+					'_ESAbstract.Construct',
+					'fetch'
+				  ]
+				},
+				'_ESAbstract.Construct': {
+				  flags: [],
+				  aliasOf: [
+					'Array.prototype.filter',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'_ESAbstract.ArraySpeciesCreate',
+					'fetch'
+				  ]
+				},
+				'_ESAbstract.CreateDataProperty': {
+				  flags: [],
+				  aliasOf: [
+					'Array.prototype.filter',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'_ESAbstract.CreateDataPropertyOrThrow',
+					'fetch'
+				  ]
+				},
+				'_ESAbstract.OrdinaryCreateFromConstructor': {
+				  flags: [],
+				  aliasOf: [
+					'Array.prototype.filter',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'_ESAbstract.ArraySpeciesCreate',
+					'_ESAbstract.Construct',
+					'fetch'
+				  ]
+				},
+				'_ESAbstract.GetPrototypeFromConstructor': {
+				  flags: [],
+				  aliasOf: [
+					'Array.prototype.filter',
+					'Array.prototype.map',
+					'Symbol',
+					'Symbol.iterator',
+					'_ESAbstract.ArraySpeciesCreate',
+					'_ESAbstract.Construct',
+					'_ESAbstract.OrdinaryCreateFromConstructor',
+					'fetch'
 				  ]
 				}
 			  };
