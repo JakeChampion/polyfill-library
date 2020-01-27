@@ -6,7 +6,7 @@ spec = "https://tc39.github.io/ecma262/#sec-object.preventextensions"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions"
 
 [browsers]
-android = "*"
+android = "<5"
 bb = "*"
 chrome = "<44"
 edge = "*"
