@@ -14,7 +14,7 @@ safari = "*"
 android = "<67"
 firefox_mob = "*"
 ie_mob = "*"
-op_mob = "*"
+op_mob = "<47"
 ios_saf = "*"
 
 [install]
