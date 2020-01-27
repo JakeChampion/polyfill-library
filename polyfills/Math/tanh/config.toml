@@ -4,7 +4,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 spec = "https://tc39.github.io/ecma262/#sec-math.tanh"
 
 [browsers]
-android = "*"
+android = "<5"
 bb = "*"
 chrome = "1 - 37"
 edge = "*"
