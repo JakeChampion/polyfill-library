@@ -5,8 +5,8 @@ spec = "http://www.ecma-international.org/ecma-262/6.0/#sec-parseint-string-radi
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseInt"
 
 [browsers]
-edge = "*"
-edge_mob = "*"
+edge = "<12"
+edge_mob = "<12"
 ie = "*"
 ie_mob = "*"
 firefox = "<25"
