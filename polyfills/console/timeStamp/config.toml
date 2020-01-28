@@ -1,11 +1,12 @@
 aliases = [ "caniuse:console-basic" ]
 dependencies = [ "Window", "console" ]
 spec = "https://console.spec.whatwg.org"
-docs = "https://developer.mozilla.org/en/docs/Web/API/console"
+docs = "https://developer.mozilla.org/en-US/docs/Web/API/Console/timeStamp"
 
 [browsers]
-edge = "*"
-edge_mob = "*"
-ie = "*"
+edge = "<12"
+edge_mob = "<12"
+ie = "<11"
 firefox = "1 - 4"
+firefox_mob = "<10"
 
