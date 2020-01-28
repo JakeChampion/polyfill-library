@@ -10,7 +10,7 @@ notes = [
   "The Promise polyfill includes `Promise.prototype.finally`, to avoid needlessly serving this polyfill to those browsers, we have configured the browser targets for this polyfill to not include those configured in the Promise polyfill."
 ]
 license = "MIT"
-docs = "https://tc39.github.io/proposal-promise-finally/"
+docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally"
 
 [browsers]
 android = ">4.4 <63"
@@ -18,13 +18,13 @@ bb = ">10"
 chrome = ">31 <63"
 firefox = ">28 <58"
 ios_saf = ">7.1 <11.3"
-edge = "*"
-edge_mob = "*"
+edge = ">12 <18"
+edge_mob = ">12 <18"
 ie = ">12"
-ie_mob = "*"
+ie_mob = ">12"
 opera = ">19 <50"
 op_mini = "*"
 safari = ">7 <11.1"
 firefox_mob = ">28 <58"
-samsung_mob = "*"
+samsung_mob = ">2 <8"
 
