@@ -15,6 +15,6 @@ edge_mob = "*"
 firefox = "<19"
 safari = "<11"
 ie = ">=10"
-opera = "*"
+opera = "<37"
 ios_saf = "<11"
 
