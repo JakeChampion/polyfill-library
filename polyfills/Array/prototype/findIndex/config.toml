@@ -14,7 +14,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 
 [browsers]
 bb = "6 - 10"
-chrome = "<=45"
+chrome = "<45"
 edge = "<12"
 edge_mob = "<12"
 firefox = "3.6 - 24"
