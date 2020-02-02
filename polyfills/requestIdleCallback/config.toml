@@ -26,5 +26,5 @@ op_mini = "*"
 op_mob = "*"
 safari = "9 - *"
 firefox_mob = "<55"
-samsung_mob = "*"
+samsung_mob = "<5"
 
