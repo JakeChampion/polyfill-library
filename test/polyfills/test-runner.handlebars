@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Mocha test suite for polyfill-library</title>
+
+	<style>{{{styles}}}</style>
+	{{#testSetup}}
+		<script>{{{.}}}</script>
+	{{/testSetup}}
+
+	<script>
+	{{{beforeTestSuite}}}
+	</script>
+
+	<script>
+	{{{testSuite}}}
+	</script>
+</head>
+<body>
+
+	<div id="mocha"></div>
+
+	<script>
+	{{{afterTestSuite}}}
+	</script>
+</body>
+</html>
