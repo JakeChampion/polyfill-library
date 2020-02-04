@@ -81,6 +81,7 @@
   },
   "devDependencies": {
     "@iarna/toml": "^2.2.3",
+    "apicache": "^1.5.3",
     "array.prototype.flatmap": "^1.2.1",
     "browserstack": "1.5.3",
     "browserstack-local": "^1.4.5",

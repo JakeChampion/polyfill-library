@@ -34,34 +34,97 @@ const express = require("express");
 
 const app = express();
 const port = 9876;
+const apicache = require('apicache');
+const cache = apicache.middleware;
+
+const cacheFor1Day = cache("1 day", () => true, {
+  appendKey: request => {
+    let key =
+      request.query.feature +
+      request.query.includePolyfills +
+      request.query.always;
+    if (request.query.always === "no") {
+      const ua = request.get("User-Agent");
+      key += polyfillio.normalizeUserAgent(ua);
+    }
+    return key;
+  }
+});
 
 app.get(["/test"], createEndpoint(runnerTemplate, polyfillio));
 app.get(["/"], createEndpoint(directorTemplate, polyfillio));
-app.get("/mocha.js", (request, response) => {
-  response.sendfile(require.resolve("mocha/mocha.js"));
+app.get("/mocha.js", cacheFor1Day,(request, response) => {
+  response.sendFile(require.resolve("mocha/mocha.js"));
 });
-app.get("/proclaim.js", (request, response) => {
-  response.sendfile(require.resolve("proclaim/lib/proclaim.js"), "utf-8");
+app.get("/mocha.css", cacheFor1Day, (request, response) => {
+  response.sendFile(require.resolve("mocha/mocha.css"));
+});
+app.get("/proclaim.js", cacheFor1Day, (request, response) => {
+  response.sendFile(require.resolve("proclaim/lib/proclaim.js"), "utf-8");
 });
 
-app.get("/polyfill.js", async (request, response) => {
-  const polyfillsWithTests = await testablePolyfills();
-  const features = polyfillsWithTests.map(polyfill => polyfill.feature);
-  const params = {
-    features: createPolyfillLibraryConfigFor(features.join(",")),
-    minify: false,
-    stream: true,
-    uaString: "other/0.0.0"
-  };
+app.get(
+  "/polyfill.js",
+  cacheFor1Day,
+  async (request, response) => {
+    const ua = request.get("User-Agent");
+    const isIE8 = polyfillio.normalizeUserAgent(ua) === "ie/8.0.0";
+    const feature = request.query.feature || "";
+    const includePolyfills = request.query.includePolyfills || "no";
+    const always = request.query.always || "no";
 
-  const headers = {
-    "Content-Type": "text/javascript; charset=utf-8"
-  };
-  response.status(200);
-  response.set(headers);
+    const headers = {
+      "Content-Type": "text/javascript; charset=utf-8"
+    };
+    response.status(200);
+    response.set(headers);
 
-  polyfillio.getPolyfillString(params).pipe(response);
-});
+    if (includePolyfills === "yes") {
+      const polyfillsWithTests = await testablePolyfills(isIE8);
+      const features = polyfillsWithTests.map(polyfill => polyfill.feature);
+      const params = {
+        features: createPolyfillLibraryConfigFor(
+          feature ? feature : features.join(","),
+          always === "yes"
+        ),
+        minify: false,
+        stream: false,
+        uaString: always === "yes" ? "other/0.0.0" : request.get("user-agent")
+      };
+      const bundle = await polyfillio.getPolyfillString(params);
+      response.send(bundle);
+    } else {
+      response.send("");
+    }
+  }
+);
+
+app.get(
+  "/tests.js",
+  cacheFor1Day,
+  async (request, response) => {
+    const ua = request.get("User-Agent");
+    const isIE8 = polyfillio.normalizeUserAgent(ua) === "ie/8.0.0";
+    const feature = request.query.feature || "";
+
+    const headers = {
+      "Content-Type": "text/javascript; charset=utf-8"
+    };
+    response.status(200);
+    response.set(headers);
+
+    const polyfills = await testablePolyfills(isIE8);
+
+    // Filter for querystring args
+    const features = feature
+      ? polyfills.filter(polyfill => feature.split(',').includes(polyfill.feature))
+      : polyfills;
+
+    const testSuite = features.map(feature => feature.testSuite).join("\n");
+
+    response.send(testSuite);
+  }
+);
 
 app.listen(port, () => console.log(`Test server listening on port ${port}!`));
 
@@ -130,35 +193,6 @@ function createEndpoint(template) {
     const features = feature
       ? polyfills.filter(polyfill => feature === polyfill.feature)
       : polyfills;
-
-    const testSuite = features.map(feature => feature.testSuite).join("\n");
-    const testSetup = [
-      await readFile(require.resolve("mocha/mocha.js"), "utf-8"),
-      await readFile(require.resolve("proclaim/lib/proclaim.js"), "utf-8"),
-      "mocha.setup('bdd');"
-    ];
-
-    let beforeTestSuite = "";
-    if (includePolyfills === "yes") {
-      const polyfillsWithTests = await testablePolyfills(isIE8);
-      const features = polyfillsWithTests.map(polyfill => polyfill.feature);
-      const params = {
-        features: createPolyfillLibraryConfigFor(feature ? feature : features.join(","), always === "yes"),
-        minify: false,
-        stream: false,
-        uaString: always === "yes" ? "other/0.0.0" : request.get('user-agent')
-      };
-
-      beforeTestSuite = await polyfillio.getPolyfillString(params);
-    }
-
-    if (testSuite.length === 0) {
-      response.status(400);
-
-      response.send(
-        "no polyfills match the requested feature in the feature query parameter."
-      );
-    } else {
       response.status(200);
 
       response.set({
@@ -168,10 +202,6 @@ function createEndpoint(template) {
       response.send(
         template({
           features: features,
-          styles: await readFile(require.resolve("mocha/mocha.css"), "utf-8"),
-          testSetup: Array.isArray(testSetup) ? testSetup : [testSetup],
-          beforeTestSuite: beforeTestSuite,
-          testSuite: testSuite,
           includePolyfills: includePolyfills,
           always: always,
           afterTestSuite: `
@@ -231,6 +261,5 @@ function createEndpoint(template) {
           run();`
         })
       );
-    }
   };
 }
