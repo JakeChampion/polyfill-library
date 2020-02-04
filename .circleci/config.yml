@@ -33,6 +33,13 @@ jobs:
           name: Start test-server
           command: node ./test/polyfills/server.js
           background: true
+      - run: node ./test/polyfills/remotetest.js targeted director browser=android
+      - run: node ./test/polyfills/remotetest.js targeted director browser=chrome
+      - run: node ./test/polyfills/remotetest.js targeted director browser=edge
+      - run: node ./test/polyfills/remotetest.js targeted director browser=firefox
+      - run: node ./test/polyfills/remotetest.js targeted director browser=ie
+      - run: node ./test/polyfills/remotetest.js targeted director browser=ios
+      - run: node ./test/polyfills/remotetest.js targeted director browser=safari
       - run:
           name: Testing polyfills
           command: node ./test/polyfills/remotetest.js targeted director
