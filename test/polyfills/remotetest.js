@@ -31,10 +31,23 @@ const browserstacklist = TOML.parse(
   fs.readFileSync(path.join(__dirname, "./browserstackBrowsers.toml"), "utf-8")
 ).browsers;
 
-const browsers = browserlist.filter(uaString => {
-  if (uaString.startsWith('ios/')) {
-    uaString = uaString.replace('ios', 'ios_saf');
+const browser = (process.argv
+  .find(a => {
+    return a.startsWith("browser=");
+  }) || "")
+  .replace("browser=");
+const browsers = browserlist
+  .filter(b => {
+    if (browser) {
+      return b.startsWith(browser);
+    } else {
+      return true;
   }
+  })
+  .filter(uaString => {
+    if (uaString.startsWith("ios/")) {
+      uaString = uaString.replace("ios", "ios_saf");
+    }
   return normalizeUserAgent(uaString) !== "other/0.0.0";
 });
 
