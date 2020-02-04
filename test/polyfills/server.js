@@ -134,10 +134,10 @@ async function testablePolyfills(isIE8) {
 
   for (const polyfill of polyfills) {
     const config = await polyfillio.describePolyfill(polyfill);
-    if (config.isTestable && config.isPublic && config.hasTests && isIE8 && !semver.satisfies("8.0.0", config.browsers.ie)) {
+    if (config && config.isTestable && config.isPublic && config.hasTests && isIE8 && !semver.satisfies("8.0.0", config.browsers.ie)) {
       continue;
     }
-    if (config.isTestable && config.isPublic && config.hasTests) {
+    if (config && config.isTestable && config.isPublic && config.hasTests) {
       const baseDir = path.resolve(__dirname, "../../polyfills");
       const testFile = path.join(baseDir, config.baseDir, "/tests.js");
       const testSuite = `describe('${polyfill}', function() { 
