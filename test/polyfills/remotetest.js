@@ -35,7 +35,7 @@ const browser = (process.argv
   .find(a => {
     return a.startsWith("browser=");
   }) || "")
-  .replace("browser=");
+  .replace("browser=", "");
 const browsers = browserlist
   .filter(b => {
     if (browser) {
