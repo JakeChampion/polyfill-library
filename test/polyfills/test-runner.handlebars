@@ -5,18 +5,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Mocha test suite for polyfill-library</title>
 
-	<style>{{{styles}}}</style>
-	{{#testSetup}}
-		<script>{{{.}}}</script>
-	{{/testSetup}}
-
-	<script>
-	{{{beforeTestSuite}}}
-	</script>
-
-	<script>
-	{{{testSuite}}}
-	</script>
+	 <link rel="stylesheet" type="text/css" href="/mocha.css">
+	<script src="/polyfill.js?includePolyfills={{{includePolyfills}}}&always={{{always}}}&feature={{#features}}{{{feature}}},{{/features}}"></script>
+	<script src="/mocha.js"></script>
+	<script src="/proclaim.js"></script>
+	<script>mocha.setup('bdd');</script>
+	<script src="/tests.js?feature={{#features}}{{{feature}}},{{/features}}"></script>
 </head>
 <body>
 
