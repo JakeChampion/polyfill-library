@@ -80,6 +80,7 @@ const mode =
 const director = process.argv.includes("director");
 const always = "always=" + mode === "all" ? "yes" : "no";
 const includePolyfills = "includePolyfills=" +(mode === "all" ? "yes" : "no");
+// https://www.browserstack.com/question/759
 const url = `http://bs-local.com:9876/${director ? '' : 'test'}?${includePolyfills}&${always}`;
 const tunnelId =
   "build:" +
