@@ -1,1 +1,1 @@
-'document' in this && "toggleAttribute " in document.documentElement
+'document' in this && "toggleAttribute" in document.documentElement
