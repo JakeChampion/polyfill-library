@@ -140,6 +140,8 @@ async function testablePolyfills(isIE8, ua) {
       }
       if (ua) {
         const [family, version] = ua.split('/');
+        console.log({family, version});
+        console.log(config.browsers[family], !semver.satisfies(version, config.browsers[family]));
         if (config.browsers[family] && !semver.satisfies(version, config.browsers[family])){
           continue;
         }
