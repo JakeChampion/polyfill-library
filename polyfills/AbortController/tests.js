@@ -2,6 +2,7 @@
 /* globals proclaim */
 
 describe('AbortSignal', function () {
+    this.timeout(10 * 1000);
     it('is a function', function () {
         proclaim.isFunction(AbortSignal);
     });
