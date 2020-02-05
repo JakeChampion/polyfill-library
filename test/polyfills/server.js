@@ -145,6 +145,9 @@ async function testablePolyfills(isIE8, ua) {
         if (config.browsers[family] && !semver.satisfies(version, config.browsers[family])){
           continue;
         }
+        if (!config.browsers[family]) {
+          continue;
+        }
       }
     }
     if (config && config.isTestable && config.isPublic && config.hasTests) {
