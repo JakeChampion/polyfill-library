@@ -40,10 +40,24 @@ jobs:
       - run: node ./test/polyfills/remotetest.js targeted director browser=ie
       - run: node ./test/polyfills/remotetest.js targeted director browser=ios
       - run: node ./test/polyfills/remotetest.js targeted director browser=safari
-      - run:
-          name: Testing polyfills
-          command: node ./test/polyfills/remotetest.js targeted director
+  # update_polyfill_targets:
+  #   docker:
+  #     - image: circleci/node:10
+  #   steps:
+  #     - checkout
+  #     - run: npm ci
+  #     - run:
+  #         name: Start test-server
+  #         command: node ./test/polyfills/server.js
+  #         background: true
+  #     - run: node ./test/polyfills/remotetest.js compat
+  #     - run: node ./test/polyfills/remotetest.js all
+  #     - run: node ./test/polyfills/compat.js
+  #     - run: node ./test/polyfills/update-polyfill-targeting.js
 workflows:
+  # update_polyfill_targets:
+  #   jobs:
+  #     - update_polyfill_targets
   test:
     jobs:
       - lint_js:
