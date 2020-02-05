@@ -3,6 +3,8 @@
 
 describe('AbortSignal', function () {
     this.timeout(10 * 1000);
+    this.retries(3);
+
     it('is a function', function () {
         proclaim.isFunction(AbortSignal);
     });
