@@ -128,14 +128,22 @@ app.get(
 
 app.listen(port, () => console.log(`Test server listening on port ${port}!`));
 
-async function testablePolyfills(isIE8) {
+async function testablePolyfills(isIE8, ua) {
   const polyfills = await polyfillio.listAllPolyfills();
   const polyfilldata = [];
 
   for (const polyfill of polyfills) {
     const config = await polyfillio.describePolyfill(polyfill);
-    if (config && config.isTestable && config.isPublic && config.hasTests && isIE8 && !semver.satisfies("8.0.0", config.browsers.ie)) {
-      continue;
+    if (config && config.isTestable && config.isPublic && config.hasTests) {
+      if (isIE8 && !semver.satisfies("8.0.0", config.browsers.ie)) {
+        continue;
+      }
+      if (ua) {
+        const [family, version] = ua.split('/');
+        if (config.browsers[family] && !semver.satisfies(version, config.browsers[family])){
+          continue;
+        }
+      }
     }
     if (config && config.isTestable && config.isPublic && config.hasTests) {
       const baseDir = path.resolve(__dirname, "../../polyfills");
@@ -186,8 +194,12 @@ function createEndpoint(template) {
       );
       return;
     }
-
-    const polyfills = await testablePolyfills(isIE8);
+    let polyfills;
+    if (includePolyfills === 'yes' && always === 'no') {
+      polyfills = await testablePolyfills(isIE8, polyfillio.normalizeUserAgent(ua));
+    } else {
+      polyfills = await testablePolyfills(isIE8);
+    }
 
     // Filter for querystring args
     const features = feature
