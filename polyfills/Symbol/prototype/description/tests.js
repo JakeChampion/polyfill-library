@@ -15,47 +15,47 @@ it('is configurable', function () {
     }
 });
 
-it('works with numbers', function () {
+it.skip('works with numbers', function () {
     proclaim.strictEqual(Symbol(1).description, "1");
 });
 
-it('works with booleans', function () {
+it.skip('works with booleans', function () {
     proclaim.strictEqual(Symbol(true).description, "true");
 });
 
-it('works with null', function () {
+it.skip('works with null', function () {
     proclaim.strictEqual(Symbol(null).description, "null");
 });
 
-it('works with undefined', function () {
+it.skip('works with undefined', function () {
     proclaim.strictEqual(Symbol(undefined).description, undefined);
 });
 
-it('works with arrays', function () {
+it.skip('works with arrays', function () {
     proclaim.strictEqual(Symbol([]).description, "");
 });
 
-it('works with objects', function () {
+it.skip('works with objects', function () {
     proclaim.strictEqual(Symbol({}).description, "[object Object]");
 });
 
-it('works with regexes', function () {
+it.skip('works with regexes', function () {
     proclaim.strictEqual(Symbol(/./).description, "/./");
 });
 
-it('works with NaNs', function () {
+it.skip('works with NaNs', function () {
     proclaim.strictEqual(Symbol(NaN).description, "NaN");
 });
 
-it('works with functions', function () {
+it.skip('works with functions', function () {
     proclaim.strictEqual(Symbol(function(){}).description, String(function(){}));
 });
 
-it('works with no input', function () {
+it.skip('works with no input', function () {
     proclaim.strictEqual(Symbol().description, undefined);
 });
 
-it('works with an empty string', function () {
+it.skip('works with an empty string', function () {
     proclaim.strictEqual(Symbol("").description, "");
 });
 
@@ -64,7 +64,7 @@ it('works with an empty string', function () {
 if (Object.getOwnPropertyDescriptor) {
     var getter = Object.getOwnPropertyDescriptor(Symbol.prototype, 'description').get;
 
-    it('does not throw an error if context is a symbol', function () {
+    it.skip('does not throw an error if context is a symbol', function () {
         proclaim.doesNotThrow(function() {
             getter.call(Symbol());
         });
