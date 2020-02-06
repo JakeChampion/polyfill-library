@@ -255,14 +255,15 @@ const printProgress = (function() {
                       return job;
                     })
                     .catch(e => {
-              console.log(e.stack || e);
-              reject(e);
-            })
-        );
+                      console.log(e.stack || e);
+                      process.exitCode = 1;
+                      process.exit(1);
+                    }));
               } else {
-              console.log(e.stack || e);
-              reject(e);
-      }
+                console.log(e.stack || e);
+                process.exitCode = 1;
+                process.exit(1);
+              }
             })
         );
       }
