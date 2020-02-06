@@ -1,18 +1,11 @@
 (function() {
-	var support = false;
-	var parent = document.lastChild;
-    var a = document.createElement('a');
-	var addSupport = function () {
-		support = true;
-	};
+  var support = false;
 
-	a.href = '#';
+  document.body.addEventListener("focusin", function() {
+    support = true;
+  });
 
-	a.addEventListener ? a.addEventListener('focusin', addSupport) : a.onfocusin = addSupport;
+  document.body.dispatchEvent(new Event("focusin"));
 
-	parent.appendChild(a).focus();
-
-	parent.removeChild(a);
-
-	return support;
+  return support;
 })()
