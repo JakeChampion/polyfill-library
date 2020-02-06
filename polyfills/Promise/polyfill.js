@@ -61,7 +61,7 @@
     /*! all exports used */
     /*! ModuleConcatenation bailout: Module is not an ECMAScript module */ function(
       n,
-      t
+      _t
     ) {
       var e;
       e = (function() {
@@ -69,7 +69,7 @@
       })();
       try {
         e = e || Function("return this")() || (0, eval)("this");
-      } catch (n) {
+      } catch (_n) {
         "object" == typeof window && (e = window);
       }
       n.exports = e;
@@ -145,7 +145,7 @@
           function Y() {
             try {
               return r.apply(o, arguments);
-            } catch (n) {
+            } catch (_n) {
               return (C.e = n), C;
             }
           }
@@ -416,7 +416,7 @@
           }
           try {
             n.exports = E;
-          } catch (n) {
+          } catch (_n) {
             c.Yaku = E;
           }
         })();
@@ -437,7 +437,8 @@
         var t = e(/*! ./yaku */ 5);
         try {
           (n.Promise = t), (window.Promise = t);
-        } catch (n) {}
+        // eslint-disable-next-line no-empty
+        } catch (_n) {}
       }.call(this, e(/*! ./../node_modules/webpack/buildin/global.js */ 2)));
     }
 });
