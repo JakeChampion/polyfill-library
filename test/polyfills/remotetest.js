@@ -87,7 +87,7 @@ const useragentToBrowserObj = browserWithVersion => {
 
 const testResults = {};
 const pollTick = 1000;
-const testBrowserTimeout = 120000;
+const testBrowserTimeout = 10 * 60 * 1000;
 const mode =
   ["all", "control", "targeted"].filter(x => process.argv.includes(x))[0] || "all";
 const testResultsFile = path.join(__dirname, `results-${mode}.json`);
