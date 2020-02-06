@@ -1,3 +1,4 @@
+/* global Symbol */
 !(function(n) {
   var t = {};
   function e(r) {
