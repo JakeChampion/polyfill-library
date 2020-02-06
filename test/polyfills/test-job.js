@@ -109,12 +109,13 @@ module.exports = class TestJob {
         this.setState("error");
         throw e;
       }
+    }
 
       this.lastUpdateTime = 0;
       this.setState("initialising browser");
       this.startTime = Date.now();
 
-      try {
+    try {
       await this.setState("started");
       await this.browser.navigateTo(this.url);
       await this.setState("loaded URL");
