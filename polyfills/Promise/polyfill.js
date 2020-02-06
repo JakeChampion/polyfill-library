@@ -39,7 +39,7 @@
       var t =
         n && n.__esModule
           ? function() {
-              return n.default;
+              return n["default"];
             }
           : function() {
               return n;
@@ -193,7 +193,7 @@
           function D(n) {
             return (n ? "" : P) + new v().stack;
           }
-          (E.default = E),
+          (E["default"] = E),
             (function(n, t) {
               for (var e in t) n[e] = t[e];
             })(E.prototype, {
@@ -207,10 +207,10 @@
                   return t;
                 })(this, Q(E.speciesConstructor(this, E)), n, t);
               },
-              catch: function(n) {
+              "catch": function(n) {
                 return this.then(e, n);
               },
-              finally: function(n) {
+              "finally": function(n) {
                 return this.then(
                   function(t) {
                     return E.resolve(n()).then(function() {
