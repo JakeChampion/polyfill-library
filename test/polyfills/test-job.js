@@ -81,9 +81,8 @@ module.exports = class TestJob {
   }
 
   async run() {
-    this.runCount += 1;
     try {
-      this.setState("connecting to browser");
+      // this.setState("connecting to browser");
       this.browser = await remote({
         maxInstances: 1,
         logLevel: "warn",
@@ -102,8 +101,11 @@ module.exports = class TestJob {
         We will also try more for these exceptions.
        */
       if (e.message.includes("There was an error. Please try again.") && this.runCount < 3) {
-          await wait(30 * 1000);
-          return this.run();
+        this.runCount += 1;
+        this.setState("waiting 30 seconds to retry");
+        await wait(30 * 1000);
+        this.setState(`retrying browser -- attempt ${this.runCount}`);
+        return this.run();
       } else {
         this.results = e;
         this.setState("error");
