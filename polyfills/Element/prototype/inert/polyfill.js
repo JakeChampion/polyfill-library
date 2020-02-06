@@ -1,5 +1,7 @@
+/* global Set, Map */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+  // eslint-disable-next-line no-undef
   typeof define === 'function' && define.amd ? define('inert', factory) :
   (factory());
 }(this, (function () { 'use strict';
@@ -260,7 +262,7 @@
 
     }, {
       key: '_onMutation',
-      value: function _onMutation(records, self) {
+      value: function _onMutation(records, _self) {
         records.forEach(function (record) {
           var target = /** @type {!Element} */record.target;
           if (record.type === 'childList') {
@@ -703,7 +705,7 @@
 
     }, {
       key: '_watchForInert',
-      value: function _watchForInert(records, self) {
+      value: function _watchForInert(records, _self) {
         var _this = this;
         records.forEach(function (record) {
           switch (record.type) {
@@ -816,6 +818,7 @@
   /** @type {!InertManager} */
   var inertManager = new InertManager(document);
 
+  // eslint-disable-next-line no-prototype-builtins
   if (!Element.prototype.hasOwnProperty('inert')) {
     Object.defineProperty(Element.prototype, 'inert', {
       enumerable: true,
