@@ -200,7 +200,7 @@ const printProgress = (function() {
     });
     const cliFeedbackTimer = setInterval(() => printProgress(jobs), pollTick);
     // Run jobs within concurrency limits
-    await new Promise((resolve, reject) => {
+    await new Promise((resolve, _reject) => {
       const results = [];
       let resolvedCount = 0;
       function pushJob() {
