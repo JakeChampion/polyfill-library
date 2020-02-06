@@ -43,6 +43,7 @@ module.exports = class TestJob {
     this.testBrowserTimeout = testBrowserTimeout;
     this.pollTick = pollTick;
     this.setState("ready");
+    this.runCount = 0;
   }
 
   async pollForResults() {
@@ -80,20 +81,40 @@ module.exports = class TestJob {
   }
 
   async run() {
-    this.browser = await remote({
-      maxInstances: 1,
-      logLevel: "warn",
-      capabilities: this.capabilities,
-      services: ["browserstack"],
-      user: process.env.BROWSERSTACK_USERNAME,
-      key: process.env.BROWSERSTACK_ACCESS_KEY,
-      browserstackLocal: true
-    });
-    this.lastUpdateTime = 0;
-    this.setState("initialising browser");
-    this.startTime = Date.now();
-
+    this.runCount += 1;
     try {
+      this.setState("connecting to browser");
+      this.browser = await remote({
+        maxInstances: 1,
+        logLevel: "warn",
+        capabilities: this.capabilities,
+        services: ["browserstack"],
+        user: process.env.BROWSERSTACK_USERNAME,
+        key: process.env.BROWSERSTACK_ACCESS_KEY,
+        browserstackLocal: true
+      });
+    } catch (e) {
+      /* 
+        This is an exception that Browserstack is throwing when it 
+        fails to open a session using a real device. I think that
+        there aren't real devices available.
+        We need to wait some time to try again because it depends on time.
+        We will also try more for these exceptions.
+       */
+      if (e.message.includes("There was an error. Please try again.") && this.runCount < 3) {
+          await wait(30 * 1000);
+          return this.run();
+      } else {
+        this.results = e;
+        this.setState("error");
+        throw e;
+      }
+
+      this.lastUpdateTime = 0;
+      this.setState("initialising browser");
+      this.startTime = Date.now();
+
+      try {
       await this.setState("started");
       await this.browser.navigateTo(this.url);
       await this.setState("loaded URL");
