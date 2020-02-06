@@ -29,7 +29,7 @@ firefox_mob = "*"
 android = "*"
 op_mob = "*" 
 
-[install]
-module = "wicg-inert"
-paths = [ "dist/inert.js" ]
+# [install]
+# module = "wicg-inert"
+# paths = [ "dist/inert.js" ]
 

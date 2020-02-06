@@ -21,7 +21,7 @@ polyfills/_TypedArray/polyfill.js
 polyfills/atob/polyfill.js
 polyfills/fetch/polyfill.js
 polyfills/HTMLTemplateElement/polyfill.js
-polyfills/Element/prototype/inert/polyfill.js
+# polyfills/Element/prototype/inert/polyfill.js
 .nyc_output/
 polyfills/String/prototype/normalize/polyfill.js
 polyfills/AbortController/polyfill.js

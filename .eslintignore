@@ -8,7 +8,7 @@ polyfills/__dist/**
 polyfills/_TypedArray/polyfill.js
 polyfills/atob/polyfill.js
 polyfills/AudioContext/polyfill.js
-polyfills/Element/prototype/inert/polyfill.js
+# polyfills/Element/prototype/inert/polyfill.js
 polyfills/EventSource/polyfill.js
 polyfills/fetch/polyfill.js
 polyfills/HTMLPictureElement/polyfill.js
