@@ -14,7 +14,7 @@ polyfills/Intl/polyfill.js
 polyfills/JSON/polyfill.js
 polyfills/MutationObserver/polyfill.js
 polyfills/ResizeObserver/polyfill.js
-polyfills/Promise/polyfill.js
+# polyfills/Promise/polyfill.js
 polyfills/UserTiming/polyfill.js
 polyfills/WebAnimations/polyfill.js
 polyfills/_TypedArray/polyfill.js
