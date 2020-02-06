@@ -6,6 +6,8 @@ Promise.config({
   longStackTraces: true
 });
 
+const wait = duration => new Promise(resolve => setTimeout(resolve, duration));
+
 // By default, promises fail silently if you don't attach a .catch() handler to them.
 //This tool keeps track of unhandled rejections globally. If any remain unhandled at the end of your process, it logs them to STDERR and exits with code 1.
 const hardRejection = require("hard-rejection");
@@ -224,8 +226,43 @@ const printProgress = (function() {
               return job;
             })
             .catch(e => {
+              if (e.message.includes("There was an error. Please try again.")) {
+                /* 
+                  This is an exception that Browserstack is throwing when it 
+                  fails to open a session using a real device. I think that
+                  there aren't real devices available.
+                  We need to wait some time to try again because it depends on time.
+                  We will also try more for these exceptions.
+                 */
+                return wait(30 * 1000).then(() =>
+                  job
+                    .run()
+                    .then(job => {
+                      if (job.state === "complete") {
+                        const [family, version] = job.name.split("/");
+                        _.set(
+                          testResults,
+                          [family, version, job.mode],
+                          job.getResultSummary()
+                        );
+                      }
+                      resolvedCount++;
+                      if (results.length < jobs.length) {
+                        pushJob();
+                      } else if (resolvedCount === jobs.length) {
+                        resolve();
+                      }
+                      return job;
+                    })
+                    .catch(e => {
               console.log(e.stack || e);
               reject(e);
+            })
+        );
+              } else {
+              console.log(e.stack || e);
+              reject(e);
+      }
             })
         );
       }
