@@ -9,6 +9,9 @@ aliases = [
   "es6",
   "es2015"
 ]
+dependencies = [
+  "Symbol.toStringTag",
+]
 notes = [
   "In IE8, the `catch` & `finally` method cannot be invoked directly since they are reserved words.  Instead, use `[\"catch\"]` and `[\"finally\"]` if intend to run your code in IE8"
 ]
@@ -31,8 +34,4 @@ op_mini = "*"
 opera = "* - 19"
 safari = "* - 7"
 firefox_mob = "6 - 28"
-
-[install]
-module = "yaku"
-paths = [ "dist/yaku.browser.global.min.js" ]
 

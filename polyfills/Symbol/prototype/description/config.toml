@@ -7,8 +7,8 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 [browsers]
 edge = "*"
 edge_mob = "*"
-ie = "*"
-ie_mob = "*"
+ie = "9 - *"
+ie_mob = "9 - *"
 safari = "*"
 chrome = "< 70"
 firefox = "< 63"
