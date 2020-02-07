@@ -35,7 +35,3 @@ opera = "* - 19"
 safari = "* - 7"
 firefox_mob = "6 - 28"
 
-# [install]
-# module = "yaku"
-# paths = [ "dist/yaku.browser.global.min.js" ]
-
