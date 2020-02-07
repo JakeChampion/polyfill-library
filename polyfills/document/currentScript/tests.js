@@ -14,7 +14,7 @@ it('returns the current script element when invoked during synchronous evaluatio
 	
 	// The rest of this test is highly dependent on the inner workings of
 	// Polyfill.io's test runner...
-	proclaim.include(cs.src, 'http://localhost:9876/base/polyfills/document/currentScript/tests.js');
+	proclaim.include(cs.src, 'http://bs-local.com:9876/tests.js');
 	proclaim.equal(cs.innerHTML, '');
 });
 

@@ -89,6 +89,15 @@ locales.forEach(function (file) {
 	writeFileIfChanged(configOutputPath, configFileSource);
 });
 
+var intlPolyfillDetect = "'Intl' in this && \n Intl.Collator && \n Intl.DateTimeFormat && \n Intl.NumberFormat && \n Intl.NumberFormat.supportedLocalesOf ";
 
+locales.forEach(function (locale) {
+	intlPolyfillDetect += "&& \n Intl.Collator.supportedLocalesOf('"+locale+"').length === 1 ";
+	intlPolyfillDetect += "&& \n Intl.DateTimeFormat.supportedLocalesOf('"+locale+"').length === 1 ";
+	intlPolyfillDetect += "&& \n Intl.NumberFormat.supportedLocalesOf('"+locale+"').length === 1 ";
+})
+
+var detectOutputPath = path.join(IntlPolyfillOutput, 'detect.js');
+writeFileIfChanged(detectOutputPath, intlPolyfillDetect);
 console.log(locales.length + ' imported locales');
 console.log('Intl polyfill imported successfully');
