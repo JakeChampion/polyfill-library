@@ -23,7 +23,7 @@ jobs:
       - run: npm ci
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
       - run: npm publish
-  polyfill_tests:
+  polyfill_tests_android:
     docker:
       - image: circleci/node:10
     steps:
@@ -34,11 +34,71 @@ jobs:
           command: node ./test/polyfills/server.js
           background: true
       - run: node ./test/polyfills/remotetest.js targeted director browser=android
+  polyfill_tests_chrome:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: Start test-server
+          command: node ./test/polyfills/server.js
+          background: true
       - run: node ./test/polyfills/remotetest.js targeted director browser=chrome
+  polyfill_tests_edge:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: Start test-server
+          command: node ./test/polyfills/server.js
+          background: true
       - run: node ./test/polyfills/remotetest.js targeted director browser=edge
+  polyfill_tests_firefox:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: Start test-server
+          command: node ./test/polyfills/server.js
+          background: true
       - run: node ./test/polyfills/remotetest.js targeted director browser=firefox
+  polyfill_tests_ie:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: Start test-server
+          command: node ./test/polyfills/server.js
+          background: true
       - run: node ./test/polyfills/remotetest.js targeted director browser=ie
+  polyfill_tests_ios:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: Start test-server
+          command: node ./test/polyfills/server.js
+          background: true
       - run: node ./test/polyfills/remotetest.js targeted director browser=ios
+  polyfill_tests_safari:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: Start test-server
+          command: node ./test/polyfills/server.js
+          background: true
       - run: node ./test/polyfills/remotetest.js targeted director browser=safari
   # update_polyfill_targets:
   #   docker:
@@ -78,7 +138,7 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-      - polyfill_tests:
+      - polyfill_tests_android:
           filters:
             tags:
               ignore: /^v.*/
@@ -87,3 +147,51 @@ workflows:
           requires:
             - lint_js
             - unit_tests
+      - polyfill_tests_chrome:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - polyfill_tests_android
+      - polyfill_tests_edge:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - polyfill_tests_chrome
+      - polyfill_tests_firefox:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - polyfill_tests_edge
+      - polyfill_tests_ie:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - polyfill_tests_firefox
+      - polyfill_tests_ios:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - polyfill_tests_ie
+      - polyfill_tests_safari:
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: master
+          requires:
+            - polyfill_tests_ios
