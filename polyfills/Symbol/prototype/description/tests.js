@@ -15,6 +15,7 @@ it('is configurable', function () {
     }
 });
 
+// TODO -- rewrite Symbol.prototype.description because it does not work correctly
 it.skip('works with numbers', function () {
     proclaim.strictEqual(Symbol(1).description, "1");
 });
