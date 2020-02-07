@@ -67,6 +67,7 @@ var someRejectionReason = { message: 'some rejection reason' };
 var anotherReason = { message: 'another rejection reason' };
 
 describe('onFinally', function() {
+	this.timeout(10000);
 	describe('no callback', function() {
 		specify('from resolved', function() {
 			return Promise.resolve(3)

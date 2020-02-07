@@ -121,690 +121,743 @@ describe("polyfillio", function () {
 			}).then(result => assert(Object.keys(result).length > 0));
 		});
 
-		it("should respect the excludes option", () => {
-			return Promise.all([
-				polyfillio.getPolyfills({
-					features: {
-						'fetch': {}
-					},
-					uaString: 'chrome/30'
-				}).then(result => assert.deepEqual(setsToArrays(result), {
-					"Object.keys": {
-						"aliasOf": [
-							"Object.create",
-							"Object.defineProperties",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"Symbol": {
-						"aliasOf": [
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"Symbol.iterator": {
-						"aliasOf": [
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ArrayCreate": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"fetch",
-						],
-						"flags": []
-					},
-					"_ESAbstract.ArraySpeciesCreate": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.Call": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.OrdinaryToPrimitive",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.Construct": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"fetch",
-						],
-						"flags": []
-					},
-					"_ESAbstract.CreateDataProperty": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.CreateDataPropertyOrThrow",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.CreateDataPropertyOrThrow": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.CreateMethodProperty": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Function.prototype.bind",
-							"Object.create",
-							"Object.defineProperties",
-							"Object.freeze",
-							"Object.getOwnPropertyDescriptor",
-							"Object.getOwnPropertyNames",
-							"Object.getPrototypeOf",
-							"Object.keys",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"_ESAbstract.OrdinaryCreateFromConstructor",
-							"fetch",
-						],
-						"flags": []
-					},
-					"_ESAbstract.Get": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Object.create",
-							"Object.defineProperties",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"_ESAbstract.GetPrototypeFromConstructor",
-							"_ESAbstract.OrdinaryCreateFromConstructor",
-							"_ESAbstract.OrdinaryToPrimitive",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.GetMethod": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.IsConstructor",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.GetPrototypeFromConstructor": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"_ESAbstract.OrdinaryCreateFromConstructor",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.GetV": {
-						"aliasOf": [
-							"Array.prototype.forEach",
-							"_ESAbstract.GetMethod",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.HasProperty": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.IsArray": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.IsCallable": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Function.prototype.bind",
-							"Object.getOwnPropertyDescriptor",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.GetMethod",
-							"_ESAbstract.OrdinaryToPrimitive",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.IsConstructor": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.OrdinaryCreateFromConstructor": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.OrdinaryToPrimitive": {
-						"aliasOf": [
-							"Array.prototype.forEach",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToBoolean": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToInteger": {
-						"aliasOf": [
-							"Array.prototype.forEach",
-							"_ESAbstract.ToLength",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToLength": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToObject": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Object.create",
-							"Object.defineProperties",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.GetMethod",
-							"_ESAbstract.GetV",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToPrimitive": {
-						"aliasOf": [
-							"Array.prototype.forEach",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToString": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.Type": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Object.create",
-							"Object.defineProperties",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"_ESAbstract.GetPrototypeFromConstructor",
-							"_ESAbstract.IsConstructor",
-							"_ESAbstract.OrdinaryCreateFromConstructor",
-							"_ESAbstract.OrdinaryToPrimitive",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"fetch": {
-						"flags": []
-					},
-					"Promise": {
-						"aliasOf": [
-							"fetch"
-						],
-						"flags": []
-					}
-				})),
-				polyfillio.getPolyfills({
-					features: {
-						'fetch': {}
-					},
-					excludes: ["Promise", "non-existent-feature"],
-					uaString: 'chrome/30'
-				}).then(result => assert.deepEqual(setsToArrays(result), {
-					"Object.keys": {
-						"aliasOf": [
-							"Object.create",
-							"Object.defineProperties",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"Symbol": {
-						"aliasOf": [
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"Symbol.iterator": {
-						"aliasOf": [
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ArrayCreate": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"fetch",
-						],
-						"flags": []
-					},
-					"_ESAbstract.ArraySpeciesCreate": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.Call": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.OrdinaryToPrimitive",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.Construct": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"fetch",
-						],
-						"flags": []
-					},
-					"_ESAbstract.CreateDataProperty": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.CreateDataPropertyOrThrow",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.CreateDataPropertyOrThrow": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.CreateMethodProperty": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Function.prototype.bind",
-							"Object.create",
-							"Object.defineProperties",
-							"Object.freeze",
-							"Object.getOwnPropertyDescriptor",
-							"Object.getOwnPropertyNames",
-							"Object.getPrototypeOf",
-							"Object.keys",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"_ESAbstract.OrdinaryCreateFromConstructor",
-							"fetch",
-						],
-						"flags": []
-					},
-					"_ESAbstract.Get": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Object.create",
-							"Object.defineProperties",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"_ESAbstract.GetPrototypeFromConstructor",
-							"_ESAbstract.OrdinaryCreateFromConstructor",
-							"_ESAbstract.OrdinaryToPrimitive",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.GetMethod": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.IsConstructor",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.GetPrototypeFromConstructor": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"_ESAbstract.OrdinaryCreateFromConstructor",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.GetV": {
-						"aliasOf": [
-							"Array.prototype.forEach",
-							"_ESAbstract.GetMethod",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.HasProperty": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.IsArray": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.IsCallable": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Function.prototype.bind",
-							"Object.getOwnPropertyDescriptor",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.GetMethod",
-							"_ESAbstract.OrdinaryToPrimitive",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.IsConstructor": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.OrdinaryCreateFromConstructor": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.OrdinaryToPrimitive": {
-						"aliasOf": [
-							"Array.prototype.forEach",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToBoolean": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToInteger": {
-						"aliasOf": [
-							"Array.prototype.forEach",
-							"_ESAbstract.ToLength",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToLength": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToObject": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Object.create",
-							"Object.defineProperties",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.GetMethod",
-							"_ESAbstract.GetV",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToPrimitive": {
-						"aliasOf": [
-							"Array.prototype.forEach",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.ToString": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Symbol",
-							"Symbol.iterator",
-							"fetch"
-						],
-						"flags": []
-					},
-					"_ESAbstract.Type": {
-						"aliasOf": [
-							"Array.prototype.filter",
-							"Array.prototype.forEach",
-							"Array.prototype.map",
-							"Object.create",
-							"Object.defineProperties",
-							"Symbol",
-							"Symbol.iterator",
-							"_ESAbstract.ArraySpeciesCreate",
-							"_ESAbstract.Construct",
-							"_ESAbstract.GetPrototypeFromConstructor",
-							"_ESAbstract.IsConstructor",
-							"_ESAbstract.OrdinaryCreateFromConstructor",
-							"_ESAbstract.OrdinaryToPrimitive",
-							"_ESAbstract.ToPrimitive",
-							"_ESAbstract.ToString",
-							"fetch"
-						],
-						"flags": []
-					},
-					"fetch": {
-						"flags": []
-					}
-				}))
-			]);
+		it("should respect the excludes option", async () => {
+			const chrome30NoExcludes = await polyfillio.getPolyfills({
+				features: {
+					'fetch': {}
+				},
+				uaString: 'chrome/30'
+			});
+			assert.deepEqual(setsToArrays(chrome30NoExcludes), {
+				"fetch": {
+					"flags": []
+				},
+				"Promise": {
+					"flags": [],
+					"aliasOf": [
+						"fetch"
+					]
+				},
+				"Symbol.iterator": {
+					"flags": [],
+					"aliasOf": [
+						"fetch"
+					]
+				},
+				"_ESAbstract.CreateMethodProperty": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Function.prototype.bind",
+						"Object.create",
+						"Object.defineProperties",
+						"Object.freeze",
+						"Object.getOwnPropertyDescriptor",
+						"Object.getOwnPropertyNames",
+						"Object.getPrototypeOf",
+						"Object.keys",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"_ESAbstract.OrdinaryCreateFromConstructor",
+						"fetch"
+					]
+				},
+				"_ESAbstract.ToObject": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Object.create",
+						"Object.defineProperties",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.GetMethod",
+						"_ESAbstract.GetV",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					]
+				},
+				"_ESAbstract.ToLength": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"fetch"
+					]
+				},
+				"_ESAbstract.Get": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Object.create",
+						"Object.defineProperties",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"_ESAbstract.GetPrototypeFromConstructor",
+						"_ESAbstract.OrdinaryCreateFromConstructor",
+						"_ESAbstract.OrdinaryToPrimitive",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					]
+				},
+				"_ESAbstract.IsCallable": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Function.prototype.bind",
+						"Object.getOwnPropertyDescriptor",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.GetMethod",
+						"_ESAbstract.OrdinaryToPrimitive",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					]
+				},
+				"_ESAbstract.HasProperty": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"fetch"
+					]
+				},
+				"_ESAbstract.Call": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.OrdinaryToPrimitive",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					]
+				},
+				"_ESAbstract.ToString": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"fetch"
+					]
+				},
+				"Symbol.toStringTag": {
+					"flags": [],
+					"aliasOf": [
+						"Promise",
+						"fetch"
+					]
+				},
+				"Symbol": {
+					"flags": [],
+					"aliasOf": [
+						"Promise",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"fetch"
+					]
+				},
+				"_ESAbstract.ToInteger": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.forEach",
+						"_ESAbstract.ToLength",
+						"fetch"
+					]
+				},
+				"_ESAbstract.ToPrimitive": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.forEach",
+						"_ESAbstract.ToString",
+						"fetch"
+					]
+				},
+				"_ESAbstract.Type": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Object.create",
+						"Object.defineProperties",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"_ESAbstract.GetPrototypeFromConstructor",
+						"_ESAbstract.IsConstructor",
+						"_ESAbstract.OrdinaryCreateFromConstructor",
+						"_ESAbstract.OrdinaryToPrimitive",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					]
+				},
+				"Object.keys": {
+					"flags": [],
+					"aliasOf": [
+						"Object.create",
+						"Object.defineProperties",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"fetch"
+					]
+				},
+				"_ESAbstract.GetMethod": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.IsConstructor",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					]
+				},
+				"_ESAbstract.OrdinaryToPrimitive": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.forEach",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					]
+				},
+				"_ESAbstract.ArraySpeciesCreate": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"fetch"
+					]
+				},
+				"_ESAbstract.ToBoolean": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"fetch"
+					]
+				},
+				"_ESAbstract.CreateDataPropertyOrThrow": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"fetch"
+					]
+				},
+				"_ESAbstract.GetV": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.forEach",
+						"_ESAbstract.GetMethod",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					]
+				},
+				"_ESAbstract.IsArray": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.ArraySpeciesCreate",
+						"fetch"
+					]
+				},
+				"_ESAbstract.ArrayCreate": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.ArraySpeciesCreate",
+						"fetch"
+					]
+				},
+				"_ESAbstract.IsConstructor": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"fetch"
+					]
+				},
+				"_ESAbstract.Construct": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.ArraySpeciesCreate",
+						"fetch"
+					]
+				},
+				"_ESAbstract.CreateDataProperty": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.CreateDataPropertyOrThrow",
+						"fetch"
+					]
+				},
+				"_ESAbstract.OrdinaryCreateFromConstructor": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"fetch"
+					]
+				},
+				"_ESAbstract.GetPrototypeFromConstructor": {
+					"flags": [],
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Promise",
+						"Symbol",
+						"Symbol.iterator",
+						"Symbol.toStringTag",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"_ESAbstract.OrdinaryCreateFromConstructor",
+						"fetch"
+					]
+				}
+			});
+
+			const chrome30ExcludePromise = await polyfillio.getPolyfills({
+				features: {
+					'fetch': {}
+				},
+				excludes: ["Promise", "non-existent-feature"],
+				uaString: 'chrome/30'
+			});
+
+			assert.deepEqual(setsToArrays(chrome30ExcludePromise), {
+				"Object.keys": {
+					"aliasOf": [
+						"Object.create",
+						"Object.defineProperties",
+						"Symbol",
+						"Symbol.iterator",
+						"fetch"
+					],
+					"flags": []
+				},
+				"Symbol": {
+					"aliasOf": [
+						"Symbol.iterator",
+						"fetch"
+					],
+					"flags": []
+				},
+				"Symbol.iterator": {
+					"aliasOf": [
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.ArrayCreate": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.ArraySpeciesCreate",
+						"fetch",
+					],
+					"flags": []
+				},
+				"_ESAbstract.ArraySpeciesCreate": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.Call": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.OrdinaryToPrimitive",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.Construct": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.ArraySpeciesCreate",
+						"fetch",
+					],
+					"flags": []
+				},
+				"_ESAbstract.CreateDataProperty": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.CreateDataPropertyOrThrow",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.CreateDataPropertyOrThrow": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.CreateMethodProperty": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Function.prototype.bind",
+						"Object.create",
+						"Object.defineProperties",
+						"Object.freeze",
+						"Object.getOwnPropertyDescriptor",
+						"Object.getOwnPropertyNames",
+						"Object.getPrototypeOf",
+						"Object.keys",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"_ESAbstract.OrdinaryCreateFromConstructor",
+						"fetch",
+					],
+					"flags": []
+				},
+				"_ESAbstract.Get": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Object.create",
+						"Object.defineProperties",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"_ESAbstract.GetPrototypeFromConstructor",
+						"_ESAbstract.OrdinaryCreateFromConstructor",
+						"_ESAbstract.OrdinaryToPrimitive",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.GetMethod": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.IsConstructor",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.GetPrototypeFromConstructor": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"_ESAbstract.OrdinaryCreateFromConstructor",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.GetV": {
+					"aliasOf": [
+						"Array.prototype.forEach",
+						"_ESAbstract.GetMethod",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.HasProperty": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.IsArray": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.ArraySpeciesCreate",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.IsCallable": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Function.prototype.bind",
+						"Object.getOwnPropertyDescriptor",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.GetMethod",
+						"_ESAbstract.OrdinaryToPrimitive",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.IsConstructor": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.OrdinaryCreateFromConstructor": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.OrdinaryToPrimitive": {
+					"aliasOf": [
+						"Array.prototype.forEach",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.ToBoolean": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Symbol",
+						"Symbol.iterator",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.ToInteger": {
+					"aliasOf": [
+						"Array.prototype.forEach",
+						"_ESAbstract.ToLength",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.ToLength": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.ToObject": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Object.create",
+						"Object.defineProperties",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.GetMethod",
+						"_ESAbstract.GetV",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.ToPrimitive": {
+					"aliasOf": [
+						"Array.prototype.forEach",
+						"_ESAbstract.ToString",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.ToString": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Symbol",
+						"Symbol.iterator",
+						"fetch"
+					],
+					"flags": []
+				},
+				"_ESAbstract.Type": {
+					"aliasOf": [
+						"Array.prototype.filter",
+						"Array.prototype.forEach",
+						"Array.prototype.map",
+						"Object.create",
+						"Object.defineProperties",
+						"Symbol",
+						"Symbol.iterator",
+						"_ESAbstract.ArraySpeciesCreate",
+						"_ESAbstract.Construct",
+						"_ESAbstract.GetPrototypeFromConstructor",
+						"_ESAbstract.IsConstructor",
+						"_ESAbstract.OrdinaryCreateFromConstructor",
+						"_ESAbstract.OrdinaryToPrimitive",
+						"_ESAbstract.ToPrimitive",
+						"_ESAbstract.ToString",
+						"fetch"
+					],
+					"flags": []
+				},
+				"fetch": {
+					"flags": []
+				}
+			});
 		});
 	});
 

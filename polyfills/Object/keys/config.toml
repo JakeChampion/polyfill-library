@@ -15,11 +15,10 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 spec = "https://tc39.github.io/ecma262/#sec-object.keys"
 
 [browsers]
-ie = "<11"
+ie = "*"
 safari = "<9"
 chrome = "<47"
 opera = "<34"
 firefox = "<38"
 firefox_mob = "<4"
 ios_saf = "<9"
-
