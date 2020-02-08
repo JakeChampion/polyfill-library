@@ -693,7 +693,7 @@ describe('Map', function () {
 		proclaim.equal(callCount, 1);
 	});
 
-	it("has reasonable runtime performance with .has(), .delete(), .get() and .set()", function (done) {
+	it.skip("has reasonable runtime performance with .has(), .delete(), .get() and .set()", function (done) {
 		this.timeout(10 * 1000);
 		var map = new Map();
 		var operations = 10000;
