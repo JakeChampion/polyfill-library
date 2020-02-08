@@ -1,3 +1,4 @@
+/* global _mutation */
 Document.prototype.after = Element.prototype.after = function after() {
 	if (this.parentNode) {
 		var args = Array.prototype.slice.call(arguments),

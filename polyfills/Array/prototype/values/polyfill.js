@@ -1,4 +1,4 @@
-/* global CreateMethodProperty, Symbol, ToObject */
+/* global CreateMethodProperty, Symbol, ToObject, ArrayIterator */
 // 22.1.3.30/ Array.prototype.values ( )
 // Polyfill.io - Firefox, Chrome and Opera have Array.prototype[Symbol.iterator], which is the exact same function as Array.prototype.values.
 if ('Symbol' in this && 'iterator' in Symbol && typeof Array.prototype[Symbol.iterator] === 'function') {

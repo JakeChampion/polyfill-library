@@ -1,3 +1,6 @@
+/* eslint-env mocha, browser */
+/* global proclaim */
+
 describe("Template", function() {
   var template;
   before(function() {
@@ -24,7 +27,7 @@ describe("Template", function() {
     } catch (e) {
       return false;
     }
-  })();
+  }());
   function setupTemplate(template, string) {
     if (canInnerHTML) {
       template.innerHTML = string;

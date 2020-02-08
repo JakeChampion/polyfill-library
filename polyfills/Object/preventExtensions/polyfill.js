@@ -1,4 +1,4 @@
-/* global CreateMethodProperty */
+/* global CreateMethodProperty, Type */
 (function (nativePreventExtensions) {
     // 19.1.2.17 Object.preventExtensions ( O )
     CreateMethodProperty(Object, 'preventExtensions', function preventExtensions(O) {

@@ -1,7 +1,13 @@
 /* eslint-env mocha */
-/* globals proclaim, AbortSignal */
+/* globals proclaim */
 
 describe('AbortSignal', function () {
+    // Because these tests make use of the network, they can be unreliable and fail for reasons outside of the polyfills concern such as a Network Timeout.
+    // We increase mocha timeout from 2 seconds to 10 seconds to cater for slow responses.
+    // We also retry the tests up to 3 times if they fail, this caters for failed requests.
+    this.timeout(10 * 1000);
+    this.retries(3);
+
     it('is a function', function () {
         proclaim.isFunction(AbortSignal);
     });
@@ -19,7 +25,7 @@ describe('AbortSignal', function () {
                 signal: signal
             });
             proclaim.ok(request.signal);
-            proclaim.ok(Request.prototype.isPrototypeOf(request));
+            proclaim.isInstanceOf(request, Request);
         });
 
         it('abort during fetch', function (done) {

@@ -1,3 +1,4 @@
+/* global _mutation */
 Document.prototype.before = Element.prototype.before = function before() {
 	if (this.parentNode) {
 		var args = Array.prototype.slice.call(arguments),

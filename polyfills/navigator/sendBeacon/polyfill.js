@@ -1,5 +1,6 @@
-if (!('navigator' in this)) this.navigator = {};
-this.navigator.sendBeacon = function sendBeacon(url, data) {
+/* global ActiveXObject */
+if (!('navigator' in self)) self.navigator = {};
+self.navigator.sendBeacon = function sendBeacon(url, data) {
 	var xhr = ('XMLHttpRequest' in window) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	xhr.open('POST', url, false);
 	xhr.setRequestHeader('Accept', '*/*');

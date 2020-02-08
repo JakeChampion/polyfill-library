@@ -23,12 +23,9 @@ ie_mob = "9 - *"
 firefox = "*"
 opera = "*"
 safari = "*"
-chrome = "<76"
+chrome = "*"
 ios_saf = "*"
 firefox_mob = "*"
 android = "*"
-
-[install]
-module = "wicg-inert"
-paths = [ "dist/inert.js" ]
+op_mob = "*" 
 

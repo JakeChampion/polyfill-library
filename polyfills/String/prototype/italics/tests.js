@@ -23,13 +23,13 @@ it('is not enumerable', function () {
 });
 
 ifHasStrictModeIt('should throw a TypeError when called with undefined context', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         String.prototype.italics.call(undefined);
     }, TypeError);
 });
 
 ifHasStrictModeIt('should throw a TypeError when called with null context', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         String.prototype.italics.call(null);
     }, TypeError);
 });

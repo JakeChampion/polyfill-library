@@ -17,6 +17,6 @@ CreateMethodProperty(Math, 'sinh', function sinh(x) {
 		return (s * Math.exp(absx))/2;
 	}
 	var w = Math.exp(0.5 * absx);
-	var t = (s * w)/2;
+	t = (s * w)/2;
 	return t * w;
 });

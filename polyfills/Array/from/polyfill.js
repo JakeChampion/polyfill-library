@@ -55,6 +55,7 @@
 			// d. Let k be 0.
 			var k = 0;
 			// e. Repeat,
+			// eslint-disable-next-line no-constant-condition
 			while (true) {
 				// i. If k ≥ 2^53-1, then
 				if (k >= (Math.pow(2, 53) - 1)) {
@@ -70,7 +71,7 @@
 				// iv. If next is false, then
 				if (next === false) {
 					// 1. Perform ? Set(A, "length", k, true).
-					A["length"] = k;
+					A.length = k;
 					// 2. Return A.
 					return A;
 				}
@@ -145,7 +146,7 @@
 			k = k + 1;
 		}
 		// 13. Perform ? Set(A, "length", len, true).
-		A["length"] = len;
+		A.length = len;
 		// 14. Return A.
 		return A;
 	});

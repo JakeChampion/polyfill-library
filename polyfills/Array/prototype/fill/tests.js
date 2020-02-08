@@ -23,12 +23,12 @@ it('fills whole array when using only one argument', function () {
 
 function compareArray(a, b) {
   if (b.length !== a.length) {
-    return proclaim.fail(a, b, 'proclaim.deepEqualed an array of length ' + b.length + ', received array of length ' + a.length);;
+    return proclaim.fail(a, b, 'proclaim.deepEqualed an array of length ' + b.length + ', received array of length ' + a.length);
   }
 
   for (var i = 0; i < a.length; i++) {
     if (b[i] !== a[i]) {
-      return proclaim.fail(a[i], b[i], 'proclaim.deepEqualed item in array index ' + i + ' to be ' + b[i] + ', received ' + a[i]);;
+      return proclaim.fail(a[i], b[i], 'proclaim.deepEqualed item in array index ' + i + ' to be ' + b[i] + ', received ' + a[i]);
     }
   }
   return true;

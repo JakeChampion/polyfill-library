@@ -34,11 +34,11 @@ CreateMethodProperty(Array.prototype, 'reduce', function reduce(callbackfn /* [ 
 			// i. Let Pk be ! ToString(k).
 			var Pk = ToString(k);
 			// ii. Let kPresent be ? HasProperty(O, Pk).
-			var kPresent = HasProperty(arraylike, Pk);
+			kPresent = HasProperty(arraylike, Pk);
 			// iii. If kPresent is true, then
 			if (kPresent) {
 				// 1. Set accumulator to ? Get(O, Pk).
-				var accumulator = Get(arraylike, Pk);
+				accumulator = Get(arraylike, Pk);
 			}
 			// iv. Increase k by 1.
 			k = k + 1;
@@ -51,9 +51,9 @@ CreateMethodProperty(Array.prototype, 'reduce', function reduce(callbackfn /* [ 
 	// 9. Repeat, while k < len
 	while (k < len) {
 		// a. Let Pk be ! ToString(k).
-		var Pk = ToString(k);
+		Pk = ToString(k);
 		// b. Let kPresent be ? HasProperty(O, Pk).
-		var kPresent = HasProperty(arraylike, Pk);
+		kPresent = HasProperty(arraylike, Pk);
 		// c. If kPresent is true, then
 		if (kPresent) {
 			// i. Let kValue be ? Get(O, Pk).

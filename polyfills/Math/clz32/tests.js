@@ -18,16 +18,16 @@ it('is not enumerable', function () {
 });
 
 var supportsGetOwnPropertyDescriptor = 'getOwnPropertyDescriptor' in Object && typeof Object.getOwnPropertyDescriptor === 'function' && (function() {
-    try {
-    	var object = {};
-        object.test = 0;
-        return Object.getOwnPropertyDescriptor(
-            object,
-            "test"
-        ).value === 0;
-    } catch (exception) {
-        return false;
-    }
+		try {
+			var object = {};
+				object.test = 0;
+				return Object.getOwnPropertyDescriptor(
+						object,
+						"test"
+				).value === 0;
+		} catch (exception) {
+				return false;
+		}
 }());
 
 var functionsHaveNames = (function foo() {}).name === 'foo';
@@ -72,19 +72,19 @@ it('should return 0 if passed 2147483648', function() {
 es6id: 20.2.2.11
 esid: sec-math.clz32
 description: >
-  Return 32 if x is NaN
+	Return 32 if x is NaN
 info: |
-  Math.clz32 ( x )
+	Math.clz32 ( x )
 
-  1. Let n be ToUint32(x).
-  2. Let p be the number of leading zero bits in the 32-bit binary representation of n.
-  3. Return p.
+	1. Let n be ToUint32(x).
+	2. Let p be the number of leading zero bits in the 32-bit binary representation of n.
+	3. Return p.
 
-  7.1.6 ToUint32 ( argument )
+	7.1.6 ToUint32 ( argument )
 
-  [...]
-  2. If number is NaN, +0, -0, +∞, or -∞, return +0.
-  [...]
+	[...]
+	2. If number is NaN, +0, -0, +∞, or -∞, return +0.
+	[...]
 ---*/
 
 it('should return 32 if x is NaN', function() {
@@ -98,18 +98,18 @@ it('should return 32 if x is NaN', function() {
 /*---
 es6id: 20.2.2.11
 description: >
-  Math.clz32.name is "clz32".
+	Math.clz32.name is "clz32".
 info: >
-  Math.clz32 ( x )
+	Math.clz32 ( x )
 
-  17 ECMAScript Standard Built-in Objects:
-    Every built-in Function object, including constructors, that is not
-    identified as an anonymous function has a name property whose value
-    is a String.
+	17 ECMAScript Standard Built-in Objects:
+		Every built-in Function object, including constructors, that is not
+		identified as an anonymous function has a name property whose value
+		is a String.
 
-    Unless otherwise specified, the name property of a built-in Function
-    object, if it exists, has the attributes { [[Writable]]: false,
-    [[Enumerable]]: false, [[Configurable]]: true }.
+		Unless otherwise specified, the name property of a built-in Function
+		object, if it exists, has the attributes { [[Writable]]: false,
+		[[Enumerable]]: false, [[Configurable]]: true }.
 includes: [propertyHelper.js]
 ---*/
 
@@ -144,21 +144,21 @@ xit('should have name as non-enumerable', function() {
 /*---
 es6id: 20.2.2.11
 description: >
-  Math.clz32.length is 1.
+	Math.clz32.length is 1.
 info: >
-  Math.clz32 ( x )
+	Math.clz32 ( x )
 
-  17 ECMAScript Standard Built-in Objects:
-    Every built-in Function object, including constructors, has a length
-    property whose value is an integer. Unless otherwise specified, this
-    value is equal to the largest number of named arguments shown in the
-    subclause headings for the function description, including optional
-    parameters. However, rest parameters shown using the form “...name”
-    are not included in the default argument count.
+	17 ECMAScript Standard Built-in Objects:
+		Every built-in Function object, including constructors, has a length
+		property whose value is an integer. Unless otherwise specified, this
+		value is equal to the largest number of named arguments shown in the
+		subclause headings for the function description, including optional
+		parameters. However, rest parameters shown using the form “...name”
+		are not included in the default argument count.
 
-    Unless otherwise specified, the length property of a built-in Function
-    object has the attributes { [[Writable]]: false, [[Enumerable]]: false,
-    [[Configurable]]: true }.
+		Unless otherwise specified, the length property of a built-in Function
+		object has the attributes { [[Writable]]: false, [[Enumerable]]: false,
+		[[Configurable]]: true }.
 includes: [propertyHelper.js]
 ---*/
 
@@ -191,19 +191,19 @@ xit('should have length as non-enumerable', function() {
 es6id: 20.2.2.11
 esid: sec-math.clz32
 description: >
-  Return 32 if x is Infinity or -Infinity
+	Return 32 if x is Infinity or -Infinity
 info: |
-  Math.clz32 ( x )
+	Math.clz32 ( x )
 
-  1. Let n be ToUint32(x).
-  2. Let p be the number of leading zero bits in the 32-bit binary representation of n.
-  3. Return p.
+	1. Let n be ToUint32(x).
+	2. Let p be the number of leading zero bits in the 32-bit binary representation of n.
+	3. Return p.
 
-  7.1.6 ToUint32 ( argument )
+	7.1.6 ToUint32 ( argument )
 
-  [...]
-  2. If number is NaN, +0, -0, +∞, or -∞, return +0.
-  [...]
+	[...]
+	2. If number is NaN, +0, -0, +∞, or -∞, return +0.
+	[...]
 ---*/
 
 it('should return 32 if x is Infinity or -Infinity', function() {
@@ -219,22 +219,22 @@ it('should return 32 if x is Infinity or -Infinity', function() {
 es6id: 20.2.2.11
 esid: sec-math.clz32
 description: >
-  Catches the int32bit value in the ToUint32 operation
+	Catches the int32bit value in the ToUint32 operation
 info: |
-  Math.clz32 ( x )
+	Math.clz32 ( x )
 
-  1. Let n be ToUint32(x).
-  2. Let p be the number of leading zero bits in the 32-bit binary representation of n.
-  3. Return p.
+	1. Let n be ToUint32(x).
+	2. Let p be the number of leading zero bits in the 32-bit binary representation of n.
+	3. Return p.
 
-  7.1.6 ToUint32 ( argument )
+	7.1.6 ToUint32 ( argument )
 
-  [...]
-  3. Let int be the mathematical value that is the same sign as number and whose
-  magnitude is floor(abs(number)).
-  4. Let int32bit be int modulo 232.
-  5. Return int32bit.
-  [...]
+	[...]
+	3. Let int be the mathematical value that is the same sign as number and whose
+	magnitude is floor(abs(number)).
+	4. Let int32bit be int modulo 232.
+	5. Return int32bit.
+	[...]
 ---*/
 
 it('catches the int32bit value in the ToUint32 operation', function() {

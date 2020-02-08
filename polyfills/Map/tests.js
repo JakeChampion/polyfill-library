@@ -24,11 +24,9 @@ var arePropertyDescriptorsSupported = function() {
 			enumerable: false,
 			value: obj
 		});
-		/* eslint-disable no-unused-vars, no-restricted-syntax */
 		for (var _ in obj) {
 			return false;
 		}
-		/* eslint-enable no-unused-vars, no-restricted-syntax */
 		return obj.x === obj;
 	} catch (e) { // this is IE 8.
 		return false;
@@ -241,7 +239,7 @@ describe('Map', function () {
 		});
 
 		it('throws error if called without NewTarget set. I.E. Called as a normal function and not a constructor', function () {
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map(); // eslint-disable-line new-cap
 			});
 		});
@@ -252,7 +250,7 @@ describe('Map', function () {
 			proclaim.equal((new Map()).constructor, Map);
 			proclaim.equal((new Map()).constructor.name, "Map");
 			if ("__proto__" in {}) {
-				proclaim.equal((new Map).__proto__.isPrototypeOf(new Map()), true);
+				proclaim.equal(Object.prototype.isPrototypeOf.call((new Map).__proto__, new Map()), true);
 				proclaim.equal((new Map).__proto__ === Map.prototype, true);
 			}
 		});
@@ -327,31 +325,31 @@ describe('Map', function () {
 		});
 
 		it('throws a TypeError if `this` is not an Object', function () {
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call('');
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call(1);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call(true);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call(/ /);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call(null);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call(undefined);
 			}, TypeError);
 		});
 
 		it('throws a TypeError if `this` is not an a Map Object', function () {
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call([]);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype.clear.call({});
 			}, TypeError);
 		});
@@ -367,31 +365,31 @@ describe('Map', function () {
 		});
 
 		it('throws a TypeError if `this` is not an Object', function () {
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call('');
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call(1);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call(true);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call(/ /);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call(null);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call(undefined);
 			}, TypeError);
 		});
 
 		it('throws a TypeError if `this` is not an a Map Object', function () {
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call([]);
 			}, TypeError);
-			proclaim.throws(function () {
+			proclaim["throws"](function () {
 				Map.prototype['delete'].call({});
 			}, TypeError);
 		});
@@ -438,6 +436,10 @@ describe('Map', function () {
 	it("implements .set()", function () {
 		var o = new Map();
 		var generic = {};
+		var frozenObject = {};
+		if (Object.freeze) {
+			Object.freeze(frozenObject);
+		}
 		var callback = function () {};
 		o.set(callback, generic);
 		proclaim.equal(o.get(callback), generic);
@@ -467,11 +469,15 @@ describe('Map', function () {
 		proclaim.equal(o.get(-0), generic);
 		proclaim.equal(o.get(0), generic);
 		if ('create' in Object) {
-			var o = new Map();
+			o = new Map();
 			var key = Object.create(null);
 			o.set(key, key);
 			proclaim.equal(o.get(key), key);
 		}
+		// test frozen object key
+		o.set(frozenObject, 'frozen solid');
+		proclaim.ok(o.has(frozenObject));
+		proclaim.equal(o.get(frozenObject), 'frozen solid');
 	});
 
 	it("implements .delete()", function () {
@@ -545,7 +551,7 @@ describe('Map', function () {
 		// interfaces recognize it as a valid iterator
 		var lastResult = entriesagain.next();
 		proclaim.equal(lastResult.done, true);
-		proclaim.ok(lastResult.hasOwnProperty('value'));
+		proclaim.ok(Object.prototype.hasOwnProperty.call(lastResult, 'value'));
 		proclaim.equal(lastResult.value, void 0);
 	});
 
@@ -593,7 +599,6 @@ describe('Map', function () {
 
 	it("implements .forEach()", function () {
 		var o = new Map();
-		var o = new Map();
 		o.set("key 0", 0);
 		o.set("key 1", 1);
 		o.forEach(function (value, key, obj) {
@@ -606,7 +611,6 @@ describe('Map', function () {
 	});
 
 	it("supports mutations during forEach loops", function () {
-		var o = new Map();
 		var o = new Map([["0", 0], ["1", 1], ["2", 2]]), seen = [];
 		o.forEach(function (value, key, obj) {
 			seen += ','+value;
@@ -626,7 +630,6 @@ describe('Map', function () {
 
 	it("implements .clear()", function(){
 		var o = new Map();
-		var o = new Map();
 		o.set(1, '1');
 		o.set(2, '2');
 		o.set(3, '3');
@@ -635,7 +638,6 @@ describe('Map', function () {
 	});
 
 	it("allows set after clear", function(){
-		var o = new Map();
 		var o = new Map();
 		o.set(1, '1');
 		o.clear();
@@ -689,5 +691,46 @@ describe('Map', function () {
 		});
 
 		proclaim.equal(callCount, 1);
+	});
+
+	it.skip("has reasonable runtime performance with .has(), .delete(), .get() and .set()", function (done) {
+		this.timeout(10 * 1000);
+		var map = new Map();
+		var operations = 10000;
+		var timeout = setTimeout(function() {
+			timeout = null;
+			proclaim.fail('Map performance was unreasonably slow');
+			done();
+		}, 1000);
+		function operateOnMap(map, i) {
+			if (!timeout) {
+				return; // timeout has been cleared, signaling test has failed
+			}
+			if (i <= 0) {
+				clearTimeout(timeout);
+				proclaim.ok(true, 'Map performance is good');
+				done();
+				return;
+			}
+			for (var j = 0; j < operations / 10; j++) {
+				var key = 'item-' + i;
+				var value = 'mock-value-' + i;
+				map.set(key, value);
+				map.has(key);
+				map.get(key);
+				i--;
+			}
+			if (i <= 0) {
+				// Remove all entries
+				map.forEach(function(val, key) {
+					map["delete"](key);
+				});
+			}
+			// release this frame in case timeout has occurred
+			setTimeout(function() {
+				operateOnMap(map, i);
+			}, 1);
+		}
+		operateOnMap(map, operations);
 	});
 });

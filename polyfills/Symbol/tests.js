@@ -21,9 +21,7 @@ var arePropertyDescriptorsSupported = function () {
 	var obj = {};
 	try {
 		Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
-        /* eslint-disable no-unused-vars, no-restricted-syntax */
         for (var _ in obj) { return false; }
-        /* eslint-enable no-unused-vars, no-restricted-syntax */
 		return obj.x === obj;
 	} catch (e) { // this is IE 8.
 		return false;
@@ -35,9 +33,10 @@ var strictModeSupported = (function(){ return this; }).call(null) === null;
 // https://tc39.github.io/ecma262/#sec-symbol-constructor
 it('should throw if being used via `new`', function() {
 	var test = function () {
+		// eslint-disable-next-line no-new-symbol
 		return new Symbol();
 	};
-	proclaim.throws(test);
+	proclaim["throws"](test);
 });
 
 it('should have Symbol as the constructor property', function() {
@@ -115,12 +114,12 @@ it('Symbol.keyFor should throw if not given a symbol', function() {
 		return Symbol.keyFor(Symbol("4"));
 	};
 
-	proclaim.throws(stringKeyFor);
-	proclaim.throws(numberKeyFor);
-	proclaim.throws(arrayKeyFor);
-	proclaim.throws(objectKeyFor);
-	proclaim.throws(boolKeyFor);
-	proclaim.throws(undefinedKeyFor);
+	proclaim["throws"](stringKeyFor);
+	proclaim["throws"](numberKeyFor);
+	proclaim["throws"](arrayKeyFor);
+	proclaim["throws"](objectKeyFor);
+	proclaim["throws"](boolKeyFor);
+	proclaim["throws"](undefinedKeyFor);
 	proclaim.doesNotThrow(symbolKeyFor);
 });
 
@@ -151,8 +150,8 @@ it('Symbol.keyFor should return key of symbol if can find symbol in global regis
 });
 
 it('has toString and valueOf instance methods', function() {
-	proclaim.isInstanceOf(Symbol.prototype['toString'], Function);
-	proclaim.isInstanceOf(Symbol.prototype['valueOf'], Function);
+	proclaim.isInstanceOf(Symbol.prototype.toString, Function);
+	proclaim.isInstanceOf(Symbol.prototype.valueOf, Function);
 });
 
 if (supportsDescriptors) {
@@ -162,6 +161,7 @@ if (supportsDescriptors) {
 		var symbol = Symbol();
 		object[symbol] = 1;
 
+		// eslint-disable-next-line no-empty
 		for (var x in object){}
 		var passed = !x;
 
@@ -176,6 +176,7 @@ if (supportsDescriptors) {
 		var symbol = Symbol();
 		Object.defineProperty(object, symbol, { enumerable: false });
 
+		// eslint-disable-next-line no-empty
 		for (var x in object){}
 		var passed = !x;
 
@@ -211,7 +212,7 @@ xit('should not allow implicit string coercion', function() {
 	var implicitStringCoercion = function() {
 		return Symbol('10') + '';
 	};
-	proclaim.throws(implicitStringCoercion);
+	proclaim["throws"](implicitStringCoercion);
 });
 
 it('should create Object without symbols', function () {

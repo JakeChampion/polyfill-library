@@ -1,9 +1,9 @@
-'Map' in this && (function(self) {
+'Map' in self && (function() {
 	try {
-		var m = new Map([[1, 1], [2, 2]]);
-		if (Map.length === 0) {
+		var m = new self.Map([[1, 1], [2, 2]]);
+		if (self.Map.length === 0) {
 			if (m.size === 2) {
-				if ('Symbol' in self && 'iterator' in Symbol && typeof m[Symbol.iterator] === 'function') {
+				if ('Symbol' in self && 'iterator' in self.Symbol && typeof m[self.Symbol.iterator] === 'function') {
 					return true;
 				}
 			}
@@ -12,4 +12,4 @@
 	} catch (e) {
 		return false;
 	}
-}(this))
+}())

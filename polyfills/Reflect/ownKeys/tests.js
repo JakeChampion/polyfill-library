@@ -27,24 +27,24 @@ it('returns an empty array if target has no own properties', function () {
 });
 
 it('throws a TypeError if target is not an Object', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.ownKeys(1);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.ownKeys(null);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.ownKeys(undefined);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.ownKeys('');
     }, TypeError);
 
     if ('Symbol' in this) {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             Reflect.ownKeys(Symbol());
         }, TypeError);
     }
@@ -53,6 +53,7 @@ it('throws a TypeError if target is not an Object', function () {
 it('Returns target\'s own property keys', function () {
     proclaim.deepStrictEqual(Reflect.ownKeys([]), ['length']);
 
+    // eslint-disable-next-line no-sparse-arrays
     proclaim.deepStrictEqual(Reflect.ownKeys([, 1]), ['1', 'length']);
     proclaim.deepStrictEqual(Reflect.ownKeys({
         a: 1
