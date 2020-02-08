@@ -25,7 +25,7 @@ describe('Set', function() {
 			proclaim.equal((new Set()).constructor, Set);
 			proclaim.equal((new Set()).constructor.name, "Set");
 			if ("__proto__" in {}) {
-				proclaim.equal((new Set).__proto__.isPrototypeOf(new Set()), true);
+				proclaim.equal(Object.prototype.isPrototypeOf.call((new Set).__proto__, new Set()), true);
 				proclaim.equal((new Set).__proto__ === Set.prototype, true);
 			}
 		});
@@ -120,7 +120,7 @@ describe('Set', function() {
 			// interfaces recognize it as a valid iterator
 			var lastResult = entriesagain.next();
 			proclaim.equal(lastResult.done, true);
-			proclaim.ok(lastResult.hasOwnProperty('value'));
+			proclaim.ok(Object.prototype.hasOwnProperty.call(lastResult, 'value'));
 			proclaim.equal(lastResult.value, void 0);
 		});
 
@@ -258,7 +258,7 @@ describe('Set', function() {
 		});
 
 		it("throws for non-iterable arguments", function() {
-			proclaim.throws(function() {
+			proclaim["throws"](function() {
 				new Set(1);
 			}, TypeError);
 		});

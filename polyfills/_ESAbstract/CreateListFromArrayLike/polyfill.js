@@ -26,7 +26,7 @@ function CreateListFromArrayLike(obj /*[ , elementTypes ]*/) { // eslint-disable
         // d. Append next as the last element of list.
         list.push(next);
         // e. Increase index by 1.
-        var index = index + 1;
+        index = index + 1;
     }
     // 7. Return list.
     return list;

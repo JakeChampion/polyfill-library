@@ -1,0 +1,6 @@
+aliases = [ "caniuse:input-placeholder", "modernizr:placeholder" ]
+dependencies = [ "Object.defineProperty", "document.querySelector", "Element" ]
+
+[browsers]
+ie = "8 - 9"
+

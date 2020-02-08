@@ -24,25 +24,25 @@ it('is not enumerable', function () {
 });
 
 it('throws a TypeError if constructor property is neither undefined nor an Object', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         var a = [];
         a.constructor = null;
         a.flat();
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         var a = [];
         a.constructor = 1;
         a.flat();
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         var a = [];
         a.constructor = 'string';
         a.flat();
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         var a = [];
         a.constructor = true;
         a.flat();
@@ -51,24 +51,24 @@ it('throws a TypeError if constructor property is neither undefined nor an Objec
 
 if (supportsStrictModeTests) {
     it('throws TypeError if thisArg is null', function () {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             [].flat.call(null);
         }, TypeError);
     });
     it('throws TypeError if thisArg is missing', function () {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             [].flat.call();
         }, TypeError);
     });
     it('throws TypeError if thisArg is undefined', function () {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             [].flat.call(undefined);
         }, TypeError);
     });
 }
 if ('Symbol' in self) {
     it('throws TypeError if argument is a Symbol', function () {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             [].flat(Symbol());
         }, TypeError);
     });
@@ -148,6 +148,7 @@ it('flattens all levels deep if argument is Infinity', function () {
 });
 
 it('fills holes in holey/sparse arrays', function () {
+    // eslint-disable-next-line no-sparse-arrays
     proclaim.deepStrictEqual([, [2]].flat(), [
         [],
         [2]
@@ -184,11 +185,11 @@ it('can be rebound', function () {
 it('works with array-like objects', function () {
     proclaim.deepStrictEqual([].flat.call({
         length: 1,
-        0: [1],
+        0: [1]
     }), [1]);
 
     proclaim.deepStrictEqual([].flat.call({
         length: undefined,
-        0: [1],
+        0: [1]
     }), []);
 });

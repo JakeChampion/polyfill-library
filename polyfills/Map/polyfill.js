@@ -17,6 +17,99 @@
 		}
 	}());
 
+	// Need an internal counter to assign unique IDs to a key map
+	var _uniqueHashId = 0;
+	// Create a unique key name for storing meta data on functions and objects to enable lookups in hash table
+	var _metaKey = Symbol('meta_' + (Math.random() * 100000000) + ''.replace('.', ''));
+		
+	/**
+	 * hashKey()
+	 * Function that given a key of `any` type, returns a string key value to enable hash map optimization for accessing Map data structure
+	 * @param {string|integer|function|object} recordKey - Record key to normalize to string accessor for hash map
+	 * @returns {string|false} - Returns a hashed string value or false if non extensible object key
+	 */
+	var hashKey = function(recordKey) {
+		// Check to see if we are dealing with object or function type.  
+		if (typeof recordKey === 'object' ? recordKey !== null : typeof recordKey === 'function') {
+			// Check to see if we are dealing with a non extensible object
+			if (!Object.isExtensible(recordKey)) {
+				// Return `false`
+				return false;
+			}
+			if (!recordKey[_metaKey]) {
+				var uniqueHashKey = typeof(recordKey)+'-'+(++_uniqueHashId);
+				Object.defineProperty(recordKey, _metaKey, {
+					configurable: false,
+					enumerable: false,
+					writable: false,
+					value: uniqueHashKey
+				});
+			}
+			// Return previously defined hashed key
+			return recordKey[_metaKey];
+		}
+		// If this is just a primitive, we can cast it to a string and return it
+		return ''+recordKey;
+	};
+
+	/**
+	 * getRecordIndex()
+	 * Function that given a Map and a key of `any` type, returns an index number that coorelates with a record found in `this._keys[index]` and `this._values[index]`
+	 * @param {Map} map - Map structure 
+	 * @param {string|number|function|object} recordKey - Record key to normalize to string accessor for hash map
+	 * @returns {number|false} - Returns either a index to access map._keys and map._values, or false if not found
+	 */
+	var getRecordIndex = function(map, recordKey) {
+		var hashedKey = hashKey(recordKey); // Casts key to unique string (unless already string or number)
+		if (hashedKey === false) {
+			// We have to iterate through our Map structure because `recordKey` is non-primitive and not extensible
+			return getRecordIndexSlow(map, recordKey);
+		}
+		var recordIndex = map._table[hashedKey]; // O(1) access to record
+		return recordIndex !== undefined ? recordIndex : false;
+	};
+
+	/**
+	 * getRecordIndexSlow()
+	 * Alternative (and slower) function to `getRecordIndex()`.  Necessary for looking up non-extensible object keys.
+	 * @param {Map} map - Map structure 
+	 * @param {string|number|function|object} recordKey - Record key to normalize to string accessor for hash map
+	 * @returns {number|false} - Returns either a index to access map._keys and map._values, or false if not found
+	 */
+	var getRecordIndexSlow = function(map, recordKey) {
+		// We have to iterate through our Map structure because `recordKey` is non-primitive and not extensible
+		for (var i = 0; i < map._keys.length; i++) {
+			var _recordKey = map._keys[i];
+			if (_recordKey !== undefMarker && SameValueZero(_recordKey, recordKey)) {
+				return i;
+			}
+		}
+		return false;
+	};
+	
+	/**
+	 * setHashIndex()
+	 * Function that given a map, key of `any` type, and a value, creates a new entry in Map hash table
+	 * @param {Map} map 
+	 * @param {string|number|function|object} recordKey - Key to translate into normalized key for hash map
+	 * @param {number} recordIndex - record index 
+	 * @returns {bool} - indicates success of operation
+	 */
+	var setHashIndex = function(map, recordKey, recordIndex) {
+		var hashedKey = hashKey(recordKey);
+		if (!hashedKey) {
+			// If hashed key is false, the recordKey is an object which is not extensible.
+			// That indicates we cannot use the hash map for it, so this operation becomes no-op.
+			return false;
+		}
+		if (recordIndex === false) {
+			delete map._table[hashedKey];
+		} else {
+			map._table[hashedKey] = recordIndex;
+		}
+		return true;
+	};
+
 	// Deleted map items mess with iterator pointers, so rather than removing them mark them as deleted. Can't use undefined or null since those both valid keys so use a private symbol.
 	var undefMarker = Symbol('undef');
 	// 23.1.1.1 Map ( [ iterable ] )
@@ -27,6 +120,7 @@
 		}
 		// 2. Let map be ? OrdinaryCreateFromConstructor(NewTarget, "%MapPrototype%", « [[MapData]] »).
 		var map = OrdinaryCreateFromConstructor(this, Map.prototype, {
+			_table: {}, // O(1) access table for retrieving records
 			_keys: [],
 			_values: [],
 			_size: 0,
@@ -66,6 +160,7 @@
 		try {
 			var iteratorRecord = GetIterator(iterable);
 			// 9. Repeat,
+			// eslint-disable-next-line no-constant-condition
 			while (true) {
 				// a. Let next be ? IteratorStep(iteratorRecord).
 				var next = IteratorStep(iteratorRecord);
@@ -167,6 +262,8 @@
 			if (!supportsGetters) {
 				this.size = this._size;
 			}
+			// 5a. Clear lookup table
+			this._table = {};
 			// 6. Return undefined.
 			return undefined;
 		}
@@ -188,23 +285,39 @@
 				throw new TypeError('Method Map.prototype.clear called on incompatible receiver ' + Object.prototype.toString.call(M));
 			}
 			// 4. Let entries be the List that is M.[[MapData]].
-			var entries = M._keys;
 			// 5. For each Record {[[Key]], [[Value]]} p that is an element of entries, do
-			for (var i = 0; i < entries.length; i++) {
-				// a. If p.[[Key]] is not empty and SameValueZero(p.[[Key]], key) is true, then
-				if (M._keys[i] !== undefMarker && SameValueZero(M._keys[i], key)) {
+				// 5a. If p.[[Key]] is not empty and SameValueZero(p.[[Key]], key) is true, then
 					// i. Set p.[[Key]] to empty.
-					this._keys[i] = undefMarker;
 					// ii. Set p.[[Value]] to empty.
-					this._values[i] = undefMarker;
+					// ii-a. Remove key from lookup table
+					// iii. Return true.
+			// 6. Return false.
+
+			// Implement steps 4-6 with a more optimal algo
+	
+			// Steps 4-5: Access record
+			var recordIndex = getRecordIndex(M, key); // O(1) access to record index
+			
+			if (recordIndex !== false) {
+				// Get record's `key` (could be `any` type);
+				var recordKey = M._keys[recordIndex];
+				// 5a. If p.[[Key]] is not empty and SameValueZero(p.[[Key]], key) is true, then
+				if (recordKey !== undefMarker && SameValueZero(recordKey, key)) {
+					// i. Set p.[[Key]] to empty.
+					this._keys[recordIndex] = undefMarker;
+					// ii. Set p.[[Value]] to empty.
+					this._values[recordIndex] = undefMarker;
 					this._size = --this._size;
 					if (!supportsGetters) {
 						this.size = this._size;
 					}
+					// iia. Remove key from lookup table
+					setHashIndex(this, key, false);
 					// iii. Return true.
 					return true;
 				}
 			}
+
 			// 6. Return false.
 			return false;
 		}
@@ -267,15 +380,19 @@
 				throw new TypeError('Method Map.prototype.get called on incompatible receiver ' + Object.prototype.toString.call(M));
 			}
 			// 4. Let entries be the List that is M.[[MapData]].
-			var entries = M._keys;
 			// 5. For each Record {[[Key]], [[Value]]} p that is an element of entries, do
-			for (var i = 0; i < entries.length; i++) {
 				// a. If p.[[Key]] is not empty and SameValueZero(p.[[Key]], key) is true, return p.[[Value]].
-				if (M._keys[i] !== undefMarker && SameValueZero(M._keys[i], key)) {
-					return M._values[i];
+			// 6. Return undefined.
+
+			// Implement steps 4-6 with a more optimal algo
+			var recordIndex = getRecordIndex(M, key); // O(1) access to record index
+			if (recordIndex !== false) {
+				var recordKey = M._keys[recordIndex];
+				if (recordKey !== undefMarker && SameValueZero(recordKey, key)) {
+					return M._values[recordIndex];
 				}
 			}
-			// 6. Return undefined.
+			
 			return undefined;
 		});
 
@@ -292,15 +409,19 @@
 				throw new TypeError('Method Map.prototype.has called on incompatible receiver ' + Object.prototype.toString.call(M));
 			}
 			// 4. Let entries be the List that is M.[[MapData]].
-			var entries = M._keys;
 			// 5. For each Record {[[Key]], [[Value]]} p that is an element of entries, do
-			for (var i = 0; i < entries.length; i++) {
 				// a. If p.[[Key]] is not empty and SameValueZero(p.[[Key]], key) is true, return true.
-				if (M._keys[i] !== undefMarker && SameValueZero(M._keys[i], key)) {
+			// 6. Return false.
+
+			// Implement steps 4-6 with a more optimal algo
+			var recordIndex = getRecordIndex(M, key); // O(1) access to record index
+			if (recordIndex !== false) {
+				var recordKey = M._keys[recordIndex];
+				if (recordKey !== undefMarker && SameValueZero(recordKey, key)) {
 					return true;
 				}
 			}
-			// 6. Return false.
+
 			return false;
 		});
 
@@ -325,33 +446,35 @@
 				throw new TypeError('Method Map.prototype.set called on incompatible receiver ' + Object.prototype.toString.call(M));
 			}
 			// 4. Let entries be the List that is M.[[MapData]].
-			var entries = M._keys;
 			// 5. For each Record {[[Key]], [[Value]]} p that is an element of entries, do
-			for (var i = 0; i < entries.length; i++) {
-				// a. If p.[[Key]] is not empty and SameValueZero(p.[[Key]], key) is true, then
-				if (M._keys[i] !== undefMarker && SameValueZero(M._keys[i], key)) {
-					// i. Set p.[[Value]] to value.
-					M._values[i] = value;
-					// Return M.
-					return M;
+			// 6. If key is -0, let key be +0.
+			// 7. Let p be the Record {[[Key]]: key, [[Value]]: value}.
+			// 8. Append p as the last element of entries.
+			// 9. Return M.
+
+			// Strictly following the above steps 4-9 will lead to an inefficient algorithm.  
+			// Step 8 also doesn't seem to be required if an entry already exists
+			var recordIndex = getRecordIndex(M, key); // O(1) access to record index
+			if (recordIndex !== false) {
+				// update path
+				M._values[recordIndex] = value;
+			} else {
+				// eslint-disable-next-line no-compare-neg-zero
+				if (key === -0) {
+					key = 0;
+				}
+				var p = {
+					'[[Key]]': key,
+					'[[Value]]': value
+				};
+				M._keys.push(p['[[Key]]']);
+				M._values.push(p['[[Value]]']);
+				setHashIndex(M, key, M._keys.length - 1); // update lookup table
+				++M._size;
+				if (!supportsGetters) {
+					M.size = M._size;
 				}
 			}
-			// 6. If key is -0, let key be +0.
-			if (key === -0) {
-				key = 0;
-			}
-			// 7. Let p be the Record {[[Key]]: key, [[Value]]: value}.
-			var p = {};
-			p['[[Key]]'] = key;
-			p['[[Value]]'] = value;
-			// 8. Append p as the last element of entries.
-			M._keys.push(p['[[Key]]']);
-			M._values.push(p['[[Value]]']);
-			++M._size;
-			if (!supportsGetters) {
-				M.size = M._size;
-			}
-			// 9. Return M.
 			return M;
 		});
 
@@ -372,18 +495,13 @@
 					throw new TypeError('Method Map.prototype.size called on incompatible receiver ' + Object.prototype.toString.call(M));
 				}
 				// 4. Let entries be the List that is M.[[MapData]].
-				var entries = M._keys;
 				// 5. Let count be 0.
-				var count = 0;
 				// 6. For each Record {[[Key]], [[Value]]} p that is an element of entries, do
-				for (var i = 0; i < entries.length; i++) {
-					// a. If p.[[Key]] is not empty, set count to count+1.
-					if (M._keys[i] !== undefMarker) {
-						count = count + 1;
-					}
-				}
+					// 6a. If p.[[Key]] is not empty, set count to count+1.
 				// 7. Return count.
-				return count;
+
+				// Implement 4-7 more efficently by returning pre-computed property
+				return this._size;
 			},
 			set: undefined
 		});
@@ -551,6 +669,6 @@
 	} catch (e) {
 		// IE8 throws an error here if we set enumerable to false.
 		// More info on table 2: https://msdn.microsoft.com/en-us/library/dd229916(v=vs.85).aspx
-		global['Map'] = Map;
+		global.Map = Map;
 	}
 }(this));

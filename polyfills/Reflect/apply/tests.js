@@ -18,45 +18,45 @@ it('is not enumerable', function () {
 });
 
 it('throws a TypeError if `target` is not callable', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.apply('');
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.apply(9);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.apply({});
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.apply([]);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.apply(/./);
     }, TypeError);
 
     if ('Symbol' in this) {
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             Reflect.apply(Symbol());
         }, TypeError);
 
-        proclaim.throws(function () {
+        proclaim["throws"](function () {
             Reflect.apply(Symbol('a'));
         }, TypeError);
     }
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.apply(true);
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.apply(Number(9));
     }, TypeError);
 
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.apply(new Number(9));
     }, TypeError);
 });
@@ -81,7 +81,7 @@ it('spreads third argument as the `arguments` for the `target` function', functi
 });
 
 it('throws a TypeError if third argument is not ArrayLike', function () {
-    proclaim.throws(function () {
+    proclaim["throws"](function () {
         Reflect.apply(function () {}, 1, 1);
     }, TypeError);
 });

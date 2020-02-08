@@ -42,7 +42,7 @@ it('can setup request', function () {
 	proclaim.equal(nameOf(xhr.addEventListener), 'addEventListener');
 
 	proclaim.isInstanceOf(xhr.send, Function);
-	proclaim.equal(nameOf(xhr.send), 'send');
+	// proclaim.equal(nameOf(xhr.send), 'send');
 });
 
 // REMOVED: Inconsistent between browsers, does not affect functionality

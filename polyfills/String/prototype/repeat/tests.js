@@ -35,15 +35,15 @@ it('works with strings', function () {
 });
 
 it('throws invalid counts', function () {
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		'abc'.repeat(-Infinity);
 	}, RangeError);
 
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		'abc'.repeat(-1);
 	}, RangeError);
 
-	proclaim.throws(function() {
+	proclaim["throws"](function() {
 		'abc'.repeat(+Infinity);
 	}, RangeError);
 });
@@ -74,35 +74,35 @@ var supportsStrictModeTests = (function () {
 
 if (supportsStrictModeTests) {
 	it('throws incoercible objects', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.repeat.call(undefined);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.repeat.call(undefined, 4);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.repeat.call(null);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.repeat.call(null, 4);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.repeat.apply(undefined);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.repeat.apply(undefined, [4]);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.repeat.apply(null);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.repeat.apply(null, [4]);
 		});
 	});

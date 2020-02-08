@@ -34,11 +34,11 @@ CreateMethodProperty(Object, 'defineProperties', function defineProperties(O, Pr
 		}
 	}
 	// 6. For each pair from descriptors in list order, do
-	for (var i = 0; i < descriptors.length; i++){
+	for (var j = 0; j < descriptors.length; j++){
 		// a. Let P be the first element of pair.
-		var P = descriptors[i][0];
+		var P = descriptors[j][0];
 		// b. Let desc be the second element of pair.
-		var desc = descriptors[i][1];
+		desc = descriptors[j][1];
 		// c. Perform ? DefinePropertyOrThrow(O, P, desc).
 		Object.defineProperty(O, P, desc);
 	}

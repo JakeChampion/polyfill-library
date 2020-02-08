@@ -2,6 +2,7 @@
 // (C) Andrea Giammarchi - MIT Licensed
 
 (function (Object, GOPS, global) {
+	'use strict'; //so that ({}).toString.call(null) returns the correct [object Null] rather than [object Window]
 
 	var	setDescriptor;
 	var id = 0;
@@ -19,7 +20,7 @@
 	var pIE = ObjectProto[PIE];
 	var toString = ObjectProto.toString;
 	var concat = Array.prototype.concat;
-	var cachedWindowNames = typeof window === 'object' ? Object.getOwnPropertyNames(window) : [];
+	var cachedWindowNames = Object.getOwnPropertyNames ? Object.getOwnPropertyNames(window) : [];
 	var nGOPN = Object[GOPN];
 	var gOPN = function getOwnPropertyNames (obj) {
 		if (toString.call(obj) === '[object Window]') {
@@ -212,12 +213,31 @@
 	};
 	defineProperty(Object, 'create', descriptor);
 
-	descriptor.value = function () {
-		var str = toString.call(this);
-		return (str === '[object String]' && onlySymbols(this)) ? '[object Symbol]' : str;
-	};
-	defineProperty(ObjectProto, 'toString', descriptor);
+	var strictModeSupported = (function(){ 'use strict'; return this; }).call(null) === null;
+	if (strictModeSupported) {
+		descriptor.value = function () {
+			var str = toString.call(this);
+			return (str === '[object String]' && onlySymbols(this)) ? '[object Symbol]' : str;
+		};
+	} else {
+		descriptor.value = function () {
+			// https://github.com/Financial-Times/polyfill-library/issues/164#issuecomment-486965300
+			// Polyfill.io this code is here for the situation where a browser does not
+			// support strict mode and is executing `Object.prototype.toString.call(null)`.
+			// This code ensures that we return the correct result in that situation however,
+			// this code also introduces a bug where it will return the incorrect result for
+			// `Object.prototype.toString.call(window)`. We can't have the correct result for
+			// both `window` and `null`, so we have opted for `null` as we believe this is the more 
+			// common situation. 
+			if (this === window) {
+				return '[object Null]';
+			}
 
+			var str = toString.call(this);
+			return (str === '[object String]' && onlySymbols(this)) ? '[object Symbol]' : str;
+		};
+	}
+	defineProperty(ObjectProto, 'toString', descriptor);
 
 	setDescriptor = function (o, key, descriptor) {
 		var protoDescriptor = gOPD(ObjectProto, key);

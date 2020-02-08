@@ -1,3 +1,4 @@
+/* global ActiveXObject */
 (function (global, NativeXMLHttpRequest) {
 	// <Global>.XMLHttpRequest
 	global.XMLHttpRequest = function XMLHttpRequest() {

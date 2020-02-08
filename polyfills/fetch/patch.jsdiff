@@ -1,16 +1,21 @@
-Index: polyfill.js
-===================================================================
---- polyfill.js
-+++ polyfill.js
-@@ -1,11 +1,7 @@
- (function(self) {
-   'use strict';
+diff --git a/polyfills/fetch/polyfill.js b/polyfills/fetch/polyfill.js
+index f9b44fd7..2d27e672 100644
+--- a/polyfills/fetch/polyfill.js
++++ b/polyfills/fetch/polyfill.js
+@@ -514,12 +514,10 @@
  
--  if (self.fetch) {
--    return
+   fetch.polyfill = true;
+ 
+-  if (!self.fetch) {
+-    self.fetch = fetch;
+-    self.Headers = Headers;
+-    self.Request = Request;
+-    self.Response = Response;
 -  }
--
-   var support = {
-     searchParams: 'URLSearchParams' in self,
-     iterable: 'Symbol' in self && 'iterator' in Symbol,
-     blob: 'FileReader' in self && 'Blob' in self && (function() {
++  self.fetch = fetch;
++  self.Headers = Headers;
++  self.Request = Request;
++  self.Response = Response;
+ 
+   exports.Headers = Headers;
+   exports.Request = Request;

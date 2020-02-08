@@ -1,0 +1,1 @@
+"AbortController" in this && typeof this.AbortController === "function"
