@@ -1,5 +1,5 @@
 (function (global) {
-	var promise = Promise.resolve();
+	var promise = global.Promise.resolve();
 	global.queueMicrotask = function queueMicrotask(microtask) {
 		if (arguments.length > 1) {
 			throw new TypeError();
