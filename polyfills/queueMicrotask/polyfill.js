@@ -1,6 +1,13 @@
 (function (global) {
-	var promise = new Promise(function(resolve, reject){resolve()});
+	var promise = Promise.resolve();
 	global.queueMicrotask = function queueMicrotask(microtask) {
+		if (arguments.length > 1) {
+			throw new TypeError();
+		}
+		if (typeof(microtask) != 'function'){
+			throw new TypeError();
+		}
+
 		promise = promise.then(function(){
 			try {
 				microtask();
