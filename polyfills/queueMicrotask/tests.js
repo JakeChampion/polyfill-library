@@ -6,7 +6,7 @@ describe('queueMicrotask', function() {
         proclaim.isTypeOf(window.queueMicrotask, 'function');
 	});
 
-	it('throws type error if an argument is 0', function(){
+	it('throws type error if an argument is 0', function() {
 		proclaim["throws"](function() { window.queueMicrotask(0) }, TypeError);
 	});
 
@@ -18,28 +18,34 @@ describe('queueMicrotask', function() {
 		proclaim["throws"](function() { window.queueMicrotask(undefined) }, TypeError);
 	});
 
-	it('throws type error if an argument is null', function(){
+	it('throws type error if an argument is null', function() {
 		proclaim["throws"](function() { window.queueMicrotask(null) }, TypeError);
 	});
 
-	it('throws type error if an argument is of a String type', function(){
+	it('throws type error if an argument is of a String type', function() {
 		proclaim["throws"](function() { window.queueMicrotask('test') }, TypeError);
 	});
 
-	it('array elements are inserted in correct order', async () => {
+	it('array elements are inserted in the correct order',  function(done) {
 		var testArray = [];
 		Promise.resolve().then(function() { testArray.push('1')} );
 		queueMicrotask(function () { testArray.push('2') } );
-		await Promise.resolve().then(function() { testArray.push('3')})
-		proclaim.deepEqual(testArray, ['1', '2', '3']);
+		Promise.resolve().then(function() {
+			testArray.push('3');
+			proclaim.deepEqual(testArray, ['1', '2', '3']);
+			done();
+		})
 	});
 
-	it('microtask runs before timeout 0', async () => {
+	it('microtask runs before timeout 0', function(done) {
 		var testvalue = 0;
 		setTimeout(function() {
 			testvalue = 1;
 		}, 0);
-		await queueMicrotask(function () { testvalue = 2 });
+		queueMicrotask(function () {
+			testvalue = 2;
+		});
+		done();
 		proclaim.equal(testvalue, 2);
 	});
 
