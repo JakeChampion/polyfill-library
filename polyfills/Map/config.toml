@@ -18,7 +18,8 @@ dependencies = [
   "Symbol.iterator",
   "Symbol.species",
   "Object.create",
-  "Object.defineProperty"
+  "Object.defineProperty",
+  "Object.isExtensible"
 ]
 notes = [
   "For compatibility with very old engines, `Map.prototype.delete` must be accessed using square bracket notation because 'delete' is a reserved word. `myMap.delete()` is an error in IE8. Use `myMap['delete']()` instead.",

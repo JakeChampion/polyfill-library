@@ -436,6 +436,10 @@ describe('Map', function () {
 	it("implements .set()", function () {
 		var o = new Map();
 		var generic = {};
+		var frozenObject = {};
+		if (Object.freeze) {
+			Object.freeze(frozenObject);
+		}
 		var callback = function () {};
 		o.set(callback, generic);
 		proclaim.equal(o.get(callback), generic);
@@ -470,6 +474,10 @@ describe('Map', function () {
 			o.set(key, key);
 			proclaim.equal(o.get(key), key);
 		}
+		// test frozen object key
+		o.set(frozenObject, 'frozen solid');
+		proclaim.ok(o.has(frozenObject));
+		proclaim.equal(o.get(frozenObject), 'frozen solid');
 	});
 
 	it("implements .delete()", function () {
@@ -683,5 +691,46 @@ describe('Map', function () {
 		});
 
 		proclaim.equal(callCount, 1);
+	});
+
+	it.skip("has reasonable runtime performance with .has(), .delete(), .get() and .set()", function (done) {
+		this.timeout(10 * 1000);
+		var map = new Map();
+		var operations = 10000;
+		var timeout = setTimeout(function() {
+			timeout = null;
+			proclaim.fail('Map performance was unreasonably slow');
+			done();
+		}, 1000);
+		function operateOnMap(map, i) {
+			if (!timeout) {
+				return; // timeout has been cleared, signaling test has failed
+			}
+			if (i <= 0) {
+				clearTimeout(timeout);
+				proclaim.ok(true, 'Map performance is good');
+				done();
+				return;
+			}
+			for (var j = 0; j < operations / 10; j++) {
+				var key = 'item-' + i;
+				var value = 'mock-value-' + i;
+				map.set(key, value);
+				map.has(key);
+				map.get(key);
+				i--;
+			}
+			if (i <= 0) {
+				// Remove all entries
+				map.forEach(function(val, key) {
+					map["delete"](key);
+				});
+			}
+			// release this frame in case timeout has occurred
+			setTimeout(function() {
+				operateOnMap(map, i);
+			}, 1);
+		}
+		operateOnMap(map, operations);
 	});
 });
