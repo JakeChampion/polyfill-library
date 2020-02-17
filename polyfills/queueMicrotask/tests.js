@@ -68,4 +68,11 @@ describe('queueMicrotask', function() {
 			testvalue = 2;
 		});
 	});
+
+	it('does not pass any arguments to the callback', function() {
+		queueMicrotask(function () {
+			proclaim.deepStrictEqual(arguments, []);
+		}, 1, 2);
+
+	});
 });
