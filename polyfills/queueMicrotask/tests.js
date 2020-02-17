@@ -31,7 +31,7 @@ describe('queueMicrotask', function() {
 		self.addEventListener("error", function(event) {
 			proclaim.deepStrictEquals(event.error, error);
 			done();
-		}));
+		});
 		queueMicrotask(function () { throw error; });
 	});
 
