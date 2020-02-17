@@ -25,6 +25,15 @@ describe('queueMicrotask', function() {
 	it('throws type error if an argument is of a String type', function() {
 		proclaim["throws"](function() { window.queueMicrotask('test') }, TypeError);
 	});
+	
+	it('rethrows exceptions from the microtask callback', function(done) {
+		var error = new Error("uh oh");
+		self.addEventListener("error", function(event) {
+			proclaim.deepStrictEquals(event.error, error);
+			done();
+		}));
+		queueMicrotask(function () { throw error; });
+	});
 
 	it('array elements are inserted in the correct order',  function(done) {
 		var testArray = [];
