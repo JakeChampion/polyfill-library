@@ -48,8 +48,4 @@ describe('queueMicrotask', function() {
 		done();
 		proclaim.equal(testvalue, 2);
 	});
-
-	it('throws type error if more than one argument has been supplied', function() {
-		proclaim["throws"](function() { window.queueMicrotask(function() {}, [], []) }, TypeError);
-	});
 });
