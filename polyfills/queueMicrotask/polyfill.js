@@ -9,12 +9,6 @@
 			throw new TypeError('Argument 1 of Window.queueMicrotask is not callable.');
 		}
 
-		promise = promise.then(function(){
-			try {
-				microtask();
-			} catch(error) {
-				console.log('error: ', error);
-			}
-		});
+		promise = promise.then(microtask);
 	};
 }(this))
