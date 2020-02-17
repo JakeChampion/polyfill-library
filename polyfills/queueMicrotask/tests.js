@@ -36,6 +36,18 @@ describe('queueMicrotask', function() {
 			done();
 		})
 	});
+	
+	it('runs all queued microtasks even if previous ones threw errors',  function(done) {
+		var testArray = [];
+		queueMicrotask(function () { testArray.push('1') } );
+		queueMicrotask(function () { throw new Error('uh oh')} );
+		queueMicrotask(function () { testArray.push('2') } );
+		Promise.resolve().then(function() {
+			testArray.push('3');
+			proclaim.deepEqual(testArray, ['1', '2', '3']);
+			done();
+		})
+	});
 
 	it('microtask runs before timeout 0', function(done) {
 		var testvalue = 0;
