@@ -2,8 +2,8 @@
 /* global proclaim Promise*/
 
 describe('queueMicrotask', function() {
-    it('is defined as a function on window', function() {
-        proclaim.isTypeOf(window.queueMicrotask, 'function');
+	it('is defined as a function in the global scope', function() {
+        	proclaim.deepStrictEqual(typeof queueMicrotask, 'function');
 	});
 
 	it('throws type error if an argument is 0', function() {
