@@ -4,6 +4,7 @@
 		if (arguments.length > 1) {
 			throw new TypeError();
 		}
+
 		if (typeof(microtask) != 'function'){
 			throw new TypeError();
 		}
