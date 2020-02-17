@@ -52,12 +52,11 @@ describe('queueMicrotask', function() {
 	it('microtask runs before timeout 0', function(done) {
 		var testvalue = 0;
 		setTimeout(function() {
-			testvalue = 1;
+			proclaim.equal(testvalue, 2);
+			done();
 		}, 0);
 		queueMicrotask(function () {
 			testvalue = 2;
 		});
-		done();
-		proclaim.equal(testvalue, 2);
 	});
 });
