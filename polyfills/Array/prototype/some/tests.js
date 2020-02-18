@@ -23,7 +23,7 @@ beforeEach(function() {
 
 it("Should not accept a function argument that is not callable", function() {
 	var array = this.array;
-	proclaim.throws(function() { array.some({}); }, TypeError);
+	proclaim["throws"](function() { array.some({}); }, TypeError);
 });
 
 it("Should accept a function with three parameters: the value of the element, the index of the element and the object being traversed", function() {

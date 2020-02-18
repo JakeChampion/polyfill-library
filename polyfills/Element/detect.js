@@ -1,1 +1,1 @@
-'Element' in this && 'HTMLElement' in this
+'Element' in self && 'HTMLElement' in self

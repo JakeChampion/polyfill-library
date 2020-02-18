@@ -32,7 +32,7 @@ CreateMethodProperty(String.prototype, 'endsWith', function endsWith(searchStrin
 	// 12. If the sequence of elements of S starting at start of length searchLength is the same as the full element sequence of searchStr, return true.
 	if (S.substr(start, searchLength) === searchStr) {
 		return true;
-	 }
+	}
 	// 13. Otherwise, return false.
 	return false;
 });

@@ -5,17 +5,18 @@ const karmaPolyfillLibraryPlugin = require('./karma-polyfill-library-plugin');
 const globby = require('globby');
 
 const proclaim = path.resolve(require.resolve('proclaim'));
+const fs = require('fs');
 
 function getBrowsersFor(feature) {
 	const UA = require('@financial-times/polyfill-useragent-normaliser');
-
+	const TOML = require('@iarna/toml');
 	// Grab all the browsers from BrowserStack which are officially supported by the polyfil service.
-	const browserlist = require("./test/polyfills/browsers.json");
-	const browserstackBrowsers = require('./test/polyfills/browserstackBrowsers.json');
+	const browserlist = TOML.parse(fs.readFileSync("./test/polyfills/browsers.toml", 'utf-8'));
+	const browserstackBrowsers = TOML.parse(fs.readFileSync('./test/polyfills/browserstackBrowsers.toml', 'utf-8'));
 
-	const browsersWeSupport = browserlist.filter(uaString => new UA(uaString).meetsBaseline());
+	const browsersWeSupport = browserlist.browsers.filter(uaString => new UA(uaString).meetsBaseline());
 	const browsersWeSupportForThisFeature = browsersWeSupport.filter(uaString => {
-		const meta = require(path.resolve(__dirname, 'polyfills', feature, 'config.json'));
+		const meta = TOML.parse(fs.readFileSync(path.resolve(__dirname, 'polyfills', feature, 'config.toml'), 'utf-8'));
 		const ua = new UA(uaString);
 		const isBrowserMatch = meta.browsers && meta.browsers[ua.getFamily()] && ua.satisfies(meta.browsers[ua.getFamily()]);
 		return isBrowserMatch;
@@ -23,7 +24,7 @@ function getBrowsersFor(feature) {
 
 	function useragentToBrowserObj(browserWithVersion) {
 		const [browser, version] = browserWithVersion.split("/");
-		const browserObj = browserstackBrowsers.find(browserObject => {
+		const browserObj = browserstackBrowsers.browsers.find(browserObject => {
 			if (browser === browserObject.os && version === browserObject.os_version) {
 				return true;
 			} else if (browser === browserObject.browser && version === browserObject.browser_version) {
@@ -94,7 +95,7 @@ module.exports = async function (config) {
 		],
 
 		beforeMiddleware: ['polyfill-library'],
-		
+
 		// We need to add mocha after polyfill-library to ensure that the scripts loaded in the browser are in the correct order.
 		// TODO: This is really a bug in the Symbol polyfill that we should fix, which is that it adds enumerable properties onto Object.prototype which gets exposed in `for (var o in {})`.
 		frameworks: [
@@ -133,6 +134,10 @@ module.exports = async function (config) {
 
 	if (config.browserstack) {
 		const browsers = getBrowsersFor(featureToFolder(feature));
+		if (Object.keys(browsers).length === 0) {
+			console.log('No browsers we support require this polyfill, not running the tests');
+			process.exit(0);
+		}
 		config.set(Object.assign(config,{
 			// if true, Karma captures browsers, runs the tests and exits
 			singleRun: true,
@@ -140,7 +145,10 @@ module.exports = async function (config) {
 				'karma-browserstack-launcher'
 			]),
 			browserStack: {
-				startTunnel: true
+				startTunnel: true,
+				name: feature,
+				project: 'polyfill-library',
+				retryLimit: 10
 			},
 			reporters: config.reporters.concat(['summary-optional-console', 'BrowserStack']),
 			summaryOptionalConsoleReporter: {
@@ -156,9 +164,9 @@ module.exports = async function (config) {
 				browserSummary: true
 			},
 			concurrency: 5,
-	
+
 			customLaunchers: browsers,
-	
+
 			browsers: Object.keys(browsers)
 		}));
 	}

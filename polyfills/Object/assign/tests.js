@@ -6,11 +6,11 @@ it('has the correct length', function() {
 });
 
 it('throws when target is not an object', function() {
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.assign(null);
 	}, TypeError);
 
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.assign(undefined);
 	}, TypeError);
 });
@@ -32,15 +32,15 @@ it('Ignores null and undefined sources', function () {
 });
 
 it('throws on null or undefined targets', function() {
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.assign(null, {});
 	});
 
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.assign(undefined, {});
 	});
 
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.assign(undefined, undefined);
 	});
 });
@@ -77,3 +77,11 @@ it('converts primitives as the target into Objects', function() {
 	proclaim.deepEqual(target, booleanObject);
 });
 
+it('works with window.location', function() {
+	var target = Object.assign({}, window.location);
+	for (var prop in window.location) {
+		if (Object.prototype.hasOwnProperty.call(window.location, prop)) {
+			proclaim.deepStrictEqual(target[prop], window.location[prop]);
+		}
+	}
+});

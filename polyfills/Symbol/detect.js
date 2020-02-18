@@ -1,1 +1,1 @@
-'Symbol' in this && this.Symbol.length === 0
+'Symbol' in self && self.Symbol.length === 0

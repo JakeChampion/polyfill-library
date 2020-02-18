@@ -1,0 +1,1 @@
+'getPrototypeOf' in self.Reflect

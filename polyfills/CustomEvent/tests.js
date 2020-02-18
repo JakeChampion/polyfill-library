@@ -11,7 +11,7 @@ it('should have an initCustomEvent function', function() {
 // Safari allows you to instantiate with no parameters, all this means is you create an event that you can never
 // listen for - pointless, but will not break anything...
 it.skip('should throw exception when instantiated with no parameters', function() {
-	proclaim.throws(function() {
+	proclaim["throws"](function() {
 		new CustomEvent();
 	});
 });

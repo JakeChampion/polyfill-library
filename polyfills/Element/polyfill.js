@@ -34,6 +34,7 @@
 			}
 		}
 
+		// eslint-disable-next-line no-cond-assign
 		while (childNode = deep && childNodes[++index]) {
 			shiv(childNode, deep);
 		}
@@ -49,12 +50,13 @@
 	prototype.attachEvent('onpropertychange', function (event) {
 		var
 		propertyName = event.propertyName,
-		nonValue = !cache.hasOwnProperty(propertyName),
+		nonValue = !Object.prototype.hasOwnProperty.call(cache, propertyName),
 		newValue = prototype[propertyName],
 		oldValue = cache[propertyName],
 		index = -1,
 		element;
 
+		// eslint-disable-next-line no-cond-assign
 		while (element = elements[++index]) {
 			if (element.nodeType === 1) {
 				if (nonValue || element[propertyName] === oldValue) {

@@ -36,7 +36,7 @@
 	else if ('msOrientation' in screen) propName = 'msOrientation';
 
 	nativeGetter = ('getOwnPropertyDescriptor' in Object && Object.getOwnPropertyDescriptor(window.screen, propName)) ||
-	               ('__lookupGetter__' in window.screen && window.screen.__lookupGetter__(propName));
+					('__lookupGetter__' in window.screen && window.screen.__lookupGetter__(propName));
 
 	// For completeness, but no browser above our baseline lacks the screen property
 	if (!('screen' in window)) window.screen = {};
@@ -54,6 +54,7 @@
 			// screen is read-only in some browsers
 			try {
 				window.screen.orientation = getVal();
+			// eslint-disable-next-line no-empty
 			} catch (e2) {}
 		}
 	}

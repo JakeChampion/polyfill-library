@@ -1,0 +1,1 @@
+'isExtensible' in self.Reflect

@@ -1,1 +1,1 @@
-'document' in this && 'currentScript' in this.document
+'document' in self && 'currentScript' in self.document

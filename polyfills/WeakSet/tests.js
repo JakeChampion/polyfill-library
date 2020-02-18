@@ -23,7 +23,7 @@ it("has valid constructor", function () {
 	proclaim.equal((new WeakSet()).constructor, WeakSet);
 	proclaim.equal((new WeakSet()).constructor.name, "WeakSet");
 	if ("__proto__" in {}) {
-		proclaim.equal((new WeakSet).__proto__.isPrototypeOf(new WeakSet()), true);
+		proclaim.equal(Object.prototype.isPrototypeOf.call((new WeakSet).__proto__, new WeakSet()), true);
 		proclaim.equal((new WeakSet).__proto__ === WeakSet.prototype, true);
 	}
 });
@@ -37,9 +37,9 @@ it('should be instantiable', function(){
 });
 
 it('has add, delete and has methods', function(){
-	proclaim.notEqual(WeakSet.prototype['add'], undefined);
+	proclaim.notEqual(WeakSet.prototype.add, undefined);
 	proclaim.notEqual(WeakSet.prototype['delete'], undefined);
-	proclaim.notEqual(WeakSet.prototype['has'], undefined);
+	proclaim.notEqual(WeakSet.prototype.has, undefined);
 });
 
 it('should perform as expected', function() {

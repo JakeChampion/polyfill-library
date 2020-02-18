@@ -1,0 +1,1 @@
+'construct' in self.Reflect

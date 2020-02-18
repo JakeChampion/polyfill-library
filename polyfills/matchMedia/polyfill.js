@@ -90,4 +90,4 @@
 
 		return list;
 	};
-}(this));
+}(self));

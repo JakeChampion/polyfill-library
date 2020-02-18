@@ -1,0 +1,8 @@
+dependencies = [ "document" ]
+spec = "http://www.w3.org/TR/html5/dom.html#dom-tree-accessors"
+docs = "https://developer.mozilla.org/en-US/docs/Web/API/Document/head"
+
+[browsers]
+ie = "6 - 8"
+safari = "4"
+

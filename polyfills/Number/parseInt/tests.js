@@ -25,10 +25,10 @@ it('returns NaN with NaN values', function () {
 it('returns 15 for valid numbers and non-number data types', function () {
 	proclaim.equal(Number.parseInt(15, 10), 15);
 	proclaim.equal(Number.parseInt("15", 10), 15);
-  proclaim.equal(Number.parseInt("15"), 15);
-  proclaim.equal(Number.parseInt("15px"), 15);
-  proclaim.equal(Number.parseInt("15.2"), 15);
-  proclaim.equal(Number.parseInt("0xf"), 15);
+	proclaim.equal(Number.parseInt("15"), 15); // eslint-disable-line radix
+	proclaim.equal(Number.parseInt("15px"), 15); // eslint-disable-line radix
+	proclaim.equal(Number.parseInt("15.2"), 15); // eslint-disable-line radix
+	proclaim.equal(Number.parseInt("0xf"), 15); // eslint-disable-line radix
 });
 it('works as expected', function () {
 	// TODO: Make this test pass

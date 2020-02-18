@@ -37,14 +37,14 @@ it('works as expected', function () {
 	}).call(undefined);
 
 	if (supportsStrictModeTests) {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.startsWith.call(null, '.');
 		}, TypeError);
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.startsWith.call(undefined, '.');
 		}, TypeError);
 	}
-	proclaim.throws(function(){
+	proclaim["throws"](function(){
 		'/./'.startsWith(/./);
 	}, TypeError);
 	proclaim.isTrue('[object Object]'.startsWith({}));

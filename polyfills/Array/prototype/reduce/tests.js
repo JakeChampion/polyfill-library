@@ -50,13 +50,13 @@ it('should not affect elements added to the array after it has begun', function 
 	proclaim.equal(i, 2);
 });
 it('should work as expected for empty arrays', function () {
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		[].reduce(spy);
 	});
 	proclaim.equal(spycalls.length, 0);
 });
 it('should throw correctly if no callback is given', function () {
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		[1,2,3].reduce();
 	});
 });

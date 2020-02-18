@@ -1,1 +1,1 @@
-'console' in this && 'dirxml' in this.console
+'console' in self && 'dirxml' in self.console
