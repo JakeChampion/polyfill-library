@@ -10,7 +10,7 @@
 
 		// Non-enumerable properties cannot be discovered but can be checked for by name.
 		// Define those used internally by JS to allow an incomplete solution
-		var commonProps = ['length', "name", "arguments", "caller", "prototype", "observe", "unobserve", "__proto__"];
+		var commonProps = ['length', "name", "arguments", "caller", "prototype", "observe", "unobserve"];
 
 		if (typeof object === 'undefined' || object === null) {
 			throw new TypeError('Cannot convert undefined or null to object');
@@ -21,7 +21,7 @@
 
 		// Enumerable properties only
 		for (key in object) {
-			if (Object.prototype.hasOwnProperty.call(object, key)) {
+			if (key !== "__proto__" && Object.prototype.hasOwnProperty.call(object, key)) {
 				buffer.push(key);
 			}
 		}
