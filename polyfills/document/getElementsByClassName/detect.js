@@ -1,1 +1,1 @@
-'document' in this && 'getElementsByClassName' in this.document
+'document' in self && 'getElementsByClassName' in self.document

@@ -1,1 +1,1 @@
-'document' in this && "matches" in document.documentElement
+'document' in self && "matches" in document.documentElement

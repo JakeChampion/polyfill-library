@@ -1,1 +1,1 @@
-"document" in this
+"document" in self

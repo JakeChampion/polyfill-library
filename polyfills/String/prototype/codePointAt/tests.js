@@ -21,9 +21,7 @@ var arePropertyDescriptorsSupported = function () {
 	var obj = {};
 	try {
 		Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
-        /* eslint-disable no-unused-vars, no-restricted-syntax */
         for (var _ in obj) { return false; }
-        /* eslint-enable no-unused-vars, no-restricted-syntax */
 		return obj.x === obj;
 	} catch (e) { // this is IE 8.
 		return false;
@@ -55,19 +53,19 @@ describe('#codePointAt()', function () {
 	});
 
 	ifHasStrictModeIt('should throw a TypeError when called on null or undefined', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.codePointAt.call(undefined);
 		}, TypeError);
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.codePointAt.call(null);
 		}, TypeError);
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.codePointAt.apply(undefined);
 		}, TypeError);
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.codePointAt.apply(null);
 		}, TypeError);
 	});
@@ -147,10 +145,10 @@ it('works as expected', function () {
 	proclaim.strictEqual('\uDF06abc'.codePointAt(null), 0xDF06);
 	proclaim.strictEqual('\uDF06abc'.codePointAt(undefined), 0xDF06);
 	if (hasStrictMode) {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.codePointAt.call(null, 0);
 		}, TypeError);
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			String.prototype.codePointAt.call(undefined, 0);
 		}, TypeError);
 	}

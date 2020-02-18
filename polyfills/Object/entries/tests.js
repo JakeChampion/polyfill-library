@@ -29,11 +29,9 @@ var arePropertyDescriptorsSupported = function() {
 			enumerable: false,
 			value: obj
 		});
-		/* eslint-disable no-unused-vars, no-restricted-syntax */
 		for (var _ in obj) {
 			return false;
 		}
-		/* eslint-enable no-unused-vars, no-restricted-syntax */
 		return obj.x === obj;
 	} catch (e) { // this is IE 8.
 		return false;
@@ -54,7 +52,7 @@ var objectKeysWorksWithPrimitives = (function() {
 
 if (supportsDescriptors) {
 	it('should terminate if getting a value throws an exception', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			var obj = {};
 			Object.defineProperty(obj, 'a', {
 				enumerable: true,
@@ -74,13 +72,13 @@ if (supportsDescriptors) {
 }
 
 it('should throw TypeError when called with `null`', function() {
-	proclaim.throws(function() {
+	proclaim["throws"](function() {
 		Object.entries(null);
 	}, TypeError);
 });
 
 it('should throw TypeError when called with `undefined`', function() {
-	proclaim.throws(function() {
+	proclaim["throws"](function() {
 		Object.entries(undefined);
 	}, TypeError);
 });
@@ -279,4 +277,34 @@ it('does not include Symbol keys', function() {
 	} else {
 		this.skip();
 	}
+});
+
+it('works as expected', function () {
+	proclaim.deepEqual(Object.entries({
+		q: 1,
+		w: 2,
+		e: 3
+	}), [['q', 1], ['w', 2], ['e', 3]]);
+
+	proclaim.deepEqual(Object.entries(new String('qwe')), [['0', 'q'], ['1', 'w'], ['2', 'e']]);
+
+	if ('assign' in Object && 'create' in Object) {
+		proclaim.deepEqual(Object.entries(Object.assign(Object.create({
+			q: 1,
+			w: 2,
+			e: 3
+		}), {
+				a: 4,
+				s: 5,
+				d: 6
+			})), [['a', 4], ['s', 5], ['d', 6]]);
+	}
+	try {
+		proclaim.deepEqual(Function('return Object.entries({a: 1, get b(){delete this.c;return 2},c: 3})')(), [['a', 1], ['b', 2]]);
+	// eslint-disable-next-line no-empty
+	} catch (e) {}
+	try {
+		proclaim.deepEqual(Function('return Object.entries({a: 1, get b(){Object.defineProperty(this, "c", {value:4,enumerable:false});return 2},c: 3})')(), [['a', 1], ['b', 2]]);
+	// eslint-disable-next-line no-empty
+	} catch (e) {}
 });

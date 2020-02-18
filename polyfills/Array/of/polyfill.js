@@ -14,7 +14,7 @@ CreateMethodProperty(Array, 'of', function of() {
 		// 5. Else,
 	} else {
 		// a. Let A be ? ArrayCreate(len).
-		var A = ArrayCreate(len);
+		A = ArrayCreate(len);
 	}
 	// 6. Let k be 0.
 	var k = 0;
@@ -27,11 +27,11 @@ CreateMethodProperty(Array, 'of', function of() {
 		// c. Perform ? CreateDataPropertyOrThrow(A, Pk, kValue).
 		CreateDataPropertyOrThrow(A, Pk, kValue);
 		// d. Increase k by 1.
-		var k = k + 1;
+		k = k + 1;
 
 	}
 	// 8. Perform ? Set(A, "length", len, true)
-	A["length"] = len;
+	A.length = len;
 	// 9. Return A.
 	return A;
 });

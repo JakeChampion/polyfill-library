@@ -1,55 +1,64 @@
 /* eslint-env mocha, browser */
 /* global proclaim */
 
-// Copied from ES5-Shim
+it('is a function', function () {
+	proclaim.isFunction(Object.getOwnPropertyDescriptor);
+});
 
-describe('Basic functionality', function () {
-	it('should return undefined because the object does not own the property', function () {
-        var descr = Object.getOwnPropertyDescriptor({}, 'name');
+it('has correct arity', function () {
+	proclaim.arity(Object.getOwnPropertyDescriptor, 2);
+});
 
-        proclaim.equal(descr, undefined);
-    });
+it('has correct name', function () {
+	proclaim.hasName(Object.getOwnPropertyDescriptor, 'getOwnPropertyDescriptor');
+});
 
-    it('should return a data descriptor', function () {
-        var descr = Object.getOwnPropertyDescriptor({ name: 'Testing' }, 'name');
-        var expected = {
-            enumerable: true,
-            configurable: true,
-            value: 'Testing',
-            writable: true
-        };
+it('is not enumerable', function () {
+	proclaim.isNotEnumerable(Object, 'getOwnPropertyDescriptor');
+});
 
-        proclaim.deepEqual(descr, expected);
-    });
+it('returns undefined for properties which the object does not own', function () {
+	proclaim.isUndefined(Object.getOwnPropertyDescriptor({}, 'carrot'));
+});
 
-    if ('create' in Object) {
-	    it('should return undefined because the object does not own the property', function () {
-	        var descr = Object.getOwnPropertyDescriptor(Object.create({ name: 'Testing' }, {}), 'name');
+it('does not throw an error for numbers', function() {
+	proclaim.doesNotThrow(function() {
+		Object.getOwnPropertyDescriptor(13.7);
+	});
+});
 
-	        proclaim.equal(descr, undefined);
-	    });
+it('does not throw an error for strings', function() {
+	proclaim.doesNotThrow(function() {
+		Object.getOwnPropertyDescriptor('13.7');
+	});
+});
 
-    	it('should return a data descriptor', function () {
-	        var expected = {
-	            value: 'Testing',
-	            configurable: true,
-	            enumerable: true,
-	            writable: true
-	        };
-	        var obj = Object.create({}, { name: expected });
+it('does not throw an error for booleans', function() {
+	proclaim.doesNotThrow(function() {
+		Object.getOwnPropertyDescriptor(true);
+	});
+});
 
-	        var descr = Object.getOwnPropertyDescriptor(obj, 'name');
+it('throws a TypeError for null', function() {
+	proclaim["throws"](function() {
+		Object.getOwnPropertyDescriptor(null);
+	});
+});
 
-	        proclaim.deepEqual(descr, expected);
-	    });
-    }
+it('throws a TypeError for undefined', function() {
+	proclaim["throws"](function() {
+		Object.getOwnPropertyDescriptor(undefined);
+	});
+});
 
-    it('should throw error for non object', function () {
-	try {
-		// note: in ES6, we expect this to return undefined.
-		proclaim.isUndefined(Object.getOwnPropertyDescriptor(42, 'name'));
-	} catch (err) {
-		proclaim.isInstanceOf(err, TypeError);
-	}
-    });
+it('returns the data-descriptor for the requested property on the object', function() {
+	var descr = Object.getOwnPropertyDescriptor({ name: 'polyfill-library' }, 'name');
+	var expected = {
+		enumerable: true,
+		configurable: true,
+		value: 'polyfill-library',
+		writable: true
+	};
+
+	proclaim.deepEqual(descr, expected);
 });

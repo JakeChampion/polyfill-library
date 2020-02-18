@@ -20,7 +20,7 @@ CreateMethodProperty(String.prototype, 'padStart', function padStart(maxLength /
 		var filler = ' ';
 		// 7. Else, let filler be ? ToString(fillString).
 	} else {
-		var filler = ToString(fillString);
+		filler = ToString(fillString);
 	}
 	// 8. If filler is the empty String, return S.
 	if (filler === '') {

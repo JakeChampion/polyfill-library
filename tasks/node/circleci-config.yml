@@ -9,7 +9,7 @@ jobs:
       - image: "circleci/node:10"
     steps:
       - "checkout"
-      - run: "yarn install --frozen-lockfile"
+      - run: "npm ci"
       - run: "cd ./.circleci/ && shasum -a 256 config.yml > checksum"
       - run: "npm run build-circleci-config"
       - run: "cd ./.circleci/ && shasum -a 256 -c checksum || (echo \"oh no, it looks like the circleci is out of date. Please run `npm run build-circleci-config` and commit the changes it has made.\" && exit 1)"
@@ -18,21 +18,21 @@ jobs:
       - image: "circleci/node:10"
     steps:
       - "checkout"
-      - run: "yarn install --frozen-lockfile"
+      - run: "npm ci"
       - run: "npm run lint"
   unit_tests:
     docker:
       - image: "circleci/node:10"
     steps:
       - "checkout"
-      - run: "yarn install --frozen-lockfile"
+      - run: "npm ci"
       - run: "npm run test-library"
   publish_to_npm:
     docker:
       - image: "circleci/node:10"
     steps:
       - "checkout"
-      - run: "yarn install --frozen-lockfile"
+      - run: "npm ci"
       - run: "echo \"//registry.npmjs.org/:_authToken=$NPM_TOKEN\" > ~/.npmrc"
       - run: "npm publish"
 

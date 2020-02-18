@@ -1,1 +1,1 @@
-"MutationObserver" in this
+"MutationObserver" in self

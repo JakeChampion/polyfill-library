@@ -28,13 +28,13 @@
 			// 6. Else,
 		} else {
 			// a. Let thenFinally be a new built-in function object as defined in ThenFinally Function.
-			var thenFinally = function (x) {
+			thenFinally = function (x) {
 				return then(getPromise(C, onFinally), function () {
 					return x;
 				});
 			};
 			// b. Let catchFinally be a new built-in function object as defined in CatchFinally Function.
-			var catchFinally = function (e) {
+			catchFinally = function (e) {
 				return then(getPromise(C, onFinally), function () {
 					throw e;
 				});

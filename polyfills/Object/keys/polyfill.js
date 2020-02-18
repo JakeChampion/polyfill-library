@@ -1,4 +1,5 @@
-Object.keys = (function() {
+/* global CreateMethodProperty */
+CreateMethodProperty(Object, "keys", (function() {
 	'use strict';
 
 	// modified from https://github.com/es-shims/object-keys
@@ -44,7 +45,6 @@ Object.keys = (function() {
 		$window: true
 	};
 	var hasAutomationEqualityBug = (function () {
-		/* global window */
 		if (typeof window === 'undefined') { return false; }
 		for (var k in window) {
 			try {
@@ -62,7 +62,6 @@ Object.keys = (function() {
 		return false;
 	}());
 	var equalsConstructorPrototypeIfNotBuggy = function (o) {
-		/* global window */
 		if (typeof window === 'undefined' || !hasAutomationEqualityBug) {
 			return equalsConstructorPrototype(o);
 		}
@@ -127,4 +126,4 @@ Object.keys = (function() {
 		}
 		return theKeys;
 	};
-}());
+}()));

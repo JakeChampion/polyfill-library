@@ -1,1 +1,1 @@
-'getComputedStyle' in this
+'getComputedStyle' in self

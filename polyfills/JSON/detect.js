@@ -1,1 +1,1 @@
-'JSON' in this
+'JSON' in self

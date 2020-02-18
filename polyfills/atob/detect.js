@@ -1,1 +1,1 @@
-'atob' in this
+'atob' in self

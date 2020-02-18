@@ -1,1 +1,1 @@
-'Symbol' in this && 'unscopables' in this.Symbol
+'Symbol' in self && 'unscopables' in self.Symbol

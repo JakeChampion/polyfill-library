@@ -33,7 +33,7 @@ describe('on an element', function () {
 
 	// Native implementations on Safari (desktop and iOS) as of v9 return false when no argument is supplied
 	it.skip('throws when missing the argument', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			documentElement.contains();
 		});
 	});
@@ -60,7 +60,7 @@ describe('on the document', function () {
 
 	// Native implementations on Safari (desktop and iOS) as of v9 return false when no argument is supplied
 	it.skip('throws when missing the argument', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			document.contains();
 		});
 	});

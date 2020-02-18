@@ -1,17 +1,10 @@
 /**
  * Copyright 2016 Google Inc. All Rights Reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the W3C SOFTWARE AND DOCUMENT NOTICE AND LICENSE.
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *  https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
 (function(window, document) {
@@ -19,7 +12,7 @@
 
 /**
  * An IntersectionObserver registry. This registry exists to hold a strong
- * reference to IntersectionObserver instances currently observering a target
+ * reference to IntersectionObserver instances currently observing a target
  * element. Without this registry, instances without another reference may be
  * garbage collected.
  */
@@ -28,7 +21,7 @@ var registry = [];
 
 /**
  * Creates the global IntersectionObserverEntry constructor.
- * https://wicg.github.io/IntersectionObserver/#intersection-observer-entry
+ * https://w3c.github.io/IntersectionObserver/#intersection-observer-entry
  * @param {Object} entry A dictionary of instance properties.
  * @constructor
  */
@@ -39,9 +32,9 @@ function IntersectionObserverEntry(entry) {
   this.boundingClientRect = entry.boundingClientRect;
   this.intersectionRect = entry.intersectionRect || getEmptyRect();
   try {
-    this.isIntersecting = !!entry.intersectionRect;
-  } catch (err) {
-    // This means we are using the IntersectionObserverEntry polyfill which has only defined a getter
+    this.isIntersecting = !!entry.intersectionRect;	
+  } catch (err) {	
+    // This means we are using the IntersectionObserverEntry polyfill which has only defined a getter	
   }
 
   // Calculates the intersection ratio.
@@ -52,7 +45,9 @@ function IntersectionObserverEntry(entry) {
 
   // Sets intersection ratio.
   if (targetArea) {
-    this.intersectionRatio = intersectionArea / targetArea;
+    // Round the intersection ratio to avoid floating point math issues:
+    // https://github.com/w3c/IntersectionObserver/issues/324
+    this.intersectionRatio = Number((intersectionArea / targetArea).toFixed(4));
   } else {
     // If area is zero and is intersecting, sets to 1, otherwise to 0
     this.intersectionRatio = this.isIntersecting ? 1 : 0;
@@ -62,7 +57,7 @@ function IntersectionObserverEntry(entry) {
 
 /**
  * Creates the global IntersectionObserver constructor.
- * https://wicg.github.io/IntersectionObserver/#intersection-observer-interface
+ * https://w3c.github.io/IntersectionObserver/#intersection-observer-interface
  * @param {Function} callback The function to be invoked after intersection
  *     changes have queued. The function is not invoked if the queue has
  *     been emptied by calling the `takeRecords` method.
@@ -114,6 +109,12 @@ IntersectionObserver.prototype.THROTTLE_TIMEOUT = 100;
  */
 IntersectionObserver.prototype.POLL_INTERVAL = null;
 
+/**
+ * Use a mutation observer on the root element
+ * to detect intersection changes.
+ */
+IntersectionObserver.prototype.USE_MUTATION_OBSERVER = true;
+
 
 /**
  * Starts observing a target element for intersection changes based on
@@ -121,10 +122,11 @@ IntersectionObserver.prototype.POLL_INTERVAL = null;
  * @param {Element} target The DOM element to observe.
  */
 IntersectionObserver.prototype.observe = function(target) {
-  // If the target is already being observed, do nothing.
-  if (this._observationTargets.some(function(item) {
+  var isTargetAlreadyObserved = this._observationTargets.some(function(item) {
     return item.element == target;
-  })) {
+  });
+
+  if (isTargetAlreadyObserved) {
     return;
   }
 
@@ -135,6 +137,7 @@ IntersectionObserver.prototype.observe = function(target) {
   this._registerInstance();
   this._observationTargets.push({element: target, entry: null});
   this._monitorIntersections();
+  this._checkForIntersections();
 };
 
 
@@ -232,14 +235,12 @@ IntersectionObserver.prototype._parseRootMargin = function(opt_rootMargin) {
 
 /**
  * Starts polling for intersection changes if the polling is not already
- * happening, and if the page's visibilty state is visible.
+ * happening, and if the page's visibility state is visible.
  * @private
  */
 IntersectionObserver.prototype._monitorIntersections = function() {
   if (!this._monitoringIntersections) {
     this._monitoringIntersections = true;
-
-    this._checkForIntersections();
 
     // If a poll interval is set, use polling instead of listening to
     // resize and scroll events or DOM mutations.
@@ -251,7 +252,7 @@ IntersectionObserver.prototype._monitorIntersections = function() {
       addEvent(window, 'resize', this._checkForIntersections, true);
       addEvent(document, 'scroll', this._checkForIntersections, true);
 
-      if ('MutationObserver' in window) {
+      if (this.USE_MUTATION_OBSERVER && 'MutationObserver' in window) {
         this._domObserver = new MutationObserver(this._checkForIntersections);
         this._domObserver.observe(document, {
           attributes: true,
@@ -341,7 +342,7 @@ IntersectionObserver.prototype._checkForIntersections = function() {
  * Accepts a target and root rect computes the intersection between then
  * following the algorithm in the spec.
  * TODO(philipwalton): at this time clip-path is not considered.
- * https://wicg.github.io/IntersectionObserver/#calculate-intersection-rect-algo
+ * https://w3c.github.io/IntersectionObserver/#calculate-intersection-rect-algo
  * @param {Element} target The target DOM element
  * @param {Object} rootRect The bounding rect of the root after being
  *     expanded by the rootMargin value.
@@ -536,7 +537,7 @@ function now() {
 
 
 /**
- * Throttles a function and delays its executiong, so it's only called at most
+ * Throttles a function and delays its execution, so it's only called at most
  * once within a given time period.
  * @param {Function} fn The function to throttle.
  * @param {number} timeout The amount of time that must pass before the
@@ -630,7 +631,7 @@ function getBoundingClientRect(el) {
     rect = el.getBoundingClientRect();
   } catch (err) {
     // Ignore Windows 7 IE11 "Unspecified error"
-    // https://github.com/WICG/IntersectionObserver/pull/205
+    // https://github.com/w3c/IntersectionObserver/pull/205
   }
 
   if (!rect) return getEmptyRect();
@@ -667,7 +668,7 @@ function getEmptyRect() {
 }
 
 /**
- * Checks to see if a parent element contains a child elemnt (including inside
+ * Checks to see if a parent element contains a child element (including inside
  * shadow DOM).
  * @param {Node} parent The parent element.
  * @param {Node} child The child element.
@@ -697,6 +698,12 @@ function getParentNode(node) {
     // If the parent is a shadow root, return the host element.
     return parent.host;
   }
+
+  if (parent && parent.assignedSlot) {
+    // If the parent is distributed in a <slot>, return the parent of a slot.
+    return parent.assignedSlot.parentNode;
+  }
+
   return parent;
 }
 

@@ -197,41 +197,41 @@ describe('returns an array with', function () {
 
 describe('throws', function () {
 	it('non-iterable objects', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Array.from();
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Array.from(undefined);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Array.from(null);
 		});
 	});
 
 	it('specified, invalid mapping functions', function () {
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Array.from([1, 2, 3], null);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Array.from([1, 2, 3], /\*/);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Array.from([1, 2, 3], '');
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Array.from([1, 2, 3], []);
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Array.from([1, 2, 3], {});
 		});
 
-		proclaim.throws(function () {
+		proclaim["throws"](function () {
 			Array.from([1, 2, 3], 3);
 		});
 	});

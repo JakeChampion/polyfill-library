@@ -1,0 +1,1 @@
+'deleteProperty' in self.Reflect

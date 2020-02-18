@@ -61,7 +61,7 @@
 		event.cancelable = eventInitDict && eventInitDict.cancelable !== undefined ? eventInitDict.cancelable : false;
 
 		return event;
-	};
+	}
 	Event.NONE = 0;
 	Event.CAPTURING_PHASE = 1;
 	Event.AT_TARGET = 2;

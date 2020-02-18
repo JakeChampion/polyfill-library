@@ -1,3 +1,4 @@
+/* global _DOMTokenList */
 (function (global) {
 	var nativeImpl = "DOMTokenList" in global && global.DOMTokenList;
 
@@ -65,4 +66,4 @@
 		};
 	}());
 
-}(this));
+}(self));

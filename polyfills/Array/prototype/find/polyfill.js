@@ -26,7 +26,7 @@ CreateMethodProperty(Array.prototype, 'find', function find( predicate /* [ , th
 			return kValue;
 		}
 		// e. Increase k by 1.
-		var k = k + 1;
+		k = k + 1;
 	}
 	// 7. Return undefined.
 	return undefined;

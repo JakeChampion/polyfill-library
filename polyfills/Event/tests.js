@@ -5,7 +5,7 @@
 // as it would just create an event that can never be dispatched/listened for
 // it doesn't cause any problem
 it.skip('should throw exception when instantiated with no parameters', function() {
-	proclaim.throws(function() {
+	proclaim["throws"](function() {
 		new Event();
 	});
 });

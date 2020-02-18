@@ -33,6 +33,7 @@
 			}
 		}
 
+		// eslint-disable-next-line no-cond-assign
 		while (childNode = childNodes[++index]) {
 			elements = elements.concat(getElements(childNode, selector, one, id));
 

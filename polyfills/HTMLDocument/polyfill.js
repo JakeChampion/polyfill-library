@@ -1,1 +1,1 @@
-this.HTMLDocument = this.Document;
+self.HTMLDocument = self.Document;

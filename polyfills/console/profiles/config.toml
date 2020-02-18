@@ -1,0 +1,14 @@
+dependencies = [ "Window", "console" ]
+spec = "https://console.spec.whatwg.org"
+docs = "https://developer.mozilla.org/en/docs/Web/API/console"
+notes = [
+  "`console.profiles` used to be an array storing profile data. It was removed in Chrome and Safari"
+]
+
+[browsers]
+ie = "*"
+firefox = "1 - 4"
+
+[test]
+ci = false
+
