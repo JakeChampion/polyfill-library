@@ -14,7 +14,7 @@
 		// aside from Object.prototype itself. Instead, create a new global
 		// object and *steal* its Object.prototype and strip it bare. This is
 		// used as the prototype to create nullary objects.
-		var createEmpty = function () {
+		createEmpty = function () {
 			// Determine which approach to use
 			// see https://github.com/es-shims/es5-shim/issues/150
 			var iframe = document.createElement('iframe');
