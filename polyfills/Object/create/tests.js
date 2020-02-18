@@ -149,10 +149,11 @@ it('Object.create', function () {
 	}
 	function getPropertyNames(object) {
 		var result = Object.getOwnPropertyNames(object);
+		// eslint-disable-next-line no-cond-assign
 		while (object = Object.getPrototypeOf(object)) {
 			var i = 0;
 			var ref = Object.getOwnPropertyNames(object);
-			var len = ref.length;
+			var len;
 			for (len = ref.length; i < len; ++i) {
 				var x = ref[i];
 				has(x, result) || result.push(x);
