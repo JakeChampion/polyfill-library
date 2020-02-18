@@ -15,7 +15,7 @@ function Type(x) { // eslint-disable-line no-unused-vars
 			// typeof null is 'object'
 			if (x === null) return 'null';
 			// Polyfill.io - This is here because a Symbol polyfill will have a typeof `object`.
-			if ('Symbol' in self && x instanceof self.Symbol) return 'symbol';
+			if ('Symbol' in self && (x instanceof self.Symbol || x.constructor === self.Symbol)) return 'symbol';
 			return 'object';
 	}
 }
