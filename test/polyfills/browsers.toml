@@ -121,7 +121,7 @@ browsers = [
   "firefox/44.0",
   "firefox/45.0",
   "firefox/46.0",
-  "firefox/47.0",
+  # "firefox/47.0",
   "firefox/48.0",
   "firefox/49.0",
   "firefox/5.0",
