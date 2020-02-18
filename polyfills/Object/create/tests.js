@@ -143,10 +143,10 @@ it('Object.create', function () {
   }
 	function isObject(it) {
 		return it === Object(it);
-	};
+	}
 	function isPrototype(a, b) {
 		return {}.isPrototypeOf.call(a, b);
-	};
+	}
 	function getPropertyNames(object) {
 		var result = Object.getOwnPropertyNames(object);
 		while (object = Object.getPrototypeOf(object)) {
@@ -159,7 +159,7 @@ it('Object.create', function () {
 			}
 		}
 		return result;
-	};
+	}
 	proclaim.isFunction(Object.create);
 	proclaim.arity(Object.create, 2);
 	proclaim.hasName(Object.create, 'create');
@@ -168,7 +168,7 @@ it('Object.create', function () {
 	proclaim.ok(Object.create(obj).q === 1);
 	function fn() {
 		return this.a = 1;
-	};
+	}
 	proclaim.ok(Object.create(new fn) instanceof fn);
 	if ('getPrototypeOf' in Object) {
 		proclaim.ok(fn.prototype === Object.getPrototypeOf(Object.getPrototypeOf(Object.create(new fn))));
