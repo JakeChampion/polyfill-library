@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-env mocha */
 /* globals proclaim */
 
