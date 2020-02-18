@@ -13,23 +13,6 @@ proclaim.hasName = function (fn, expected) {
 		proclaim.equal(Function.prototype.toString.call(fn).match(/function\s*([^\s]*)\s*\(/)[1], expected);
 	}
 };
-proclaim.nonEnumerable = function (obj, prop) {
-	var arePropertyDescriptorsSupported = function () {
-		var obj = {};
-		try {
-			Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
-			/* eslint-disable no-unused-vars, no-restricted-syntax */
-			for (var _ in obj) { return false; }
-			/* eslint-enable no-unused-vars, no-restricted-syntax */
-			return obj.x === obj;
-		} catch (e) { // this is IE 8.
-			return false;
-		}
-	};
-	if (Object.defineProperty && arePropertyDescriptorsSupported()) {
-		proclaim.isFalse(Object.prototype.propertyIsEnumerable.call(obj[prop]));
-	}
-};
 
 it("Should create inherited object", function() {
 	var parent = { foo: 'bar', obj: {} };
@@ -164,7 +147,7 @@ it('Object.create', function () {
 	proclaim.isFunction(Object.create);
 	proclaim.arity(Object.create, 2);
 	proclaim.hasName(Object.create, 'create');
-	proclaim.nonEnumerable(Object, 'create');
+	proclaim.isNotEnumerable(Object, 'create');
 	proclaim.ok(isPrototype(obj, Object.create(obj)));
 	proclaim.ok(Object.create(obj).q === 1);
 	function fn() {
