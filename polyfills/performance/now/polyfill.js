@@ -10,4 +10,4 @@ global.performance.now = function () {
     return Date.now() - startTime;
 };
 
-}(this));
+}(self));

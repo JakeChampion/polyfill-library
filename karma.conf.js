@@ -134,6 +134,10 @@ module.exports = async function (config) {
 
 	if (config.browserstack) {
 		const browsers = getBrowsersFor(featureToFolder(feature));
+		if (Object.keys(browsers).length === 0) {
+			console.log('No browsers we support require this polyfill, not running the tests');
+			process.exit(0);
+		}
 		config.set(Object.assign(config,{
 			// if true, Karma captures browsers, runs the tests and exits
 			singleRun: true,

@@ -285,7 +285,9 @@ it('works as expected', function () {
 		w: 2,
 		e: 3
 	}), [['q', 1], ['w', 2], ['e', 3]]);
+
 	proclaim.deepEqual(Object.entries(new String('qwe')), [['0', 'q'], ['1', 'w'], ['2', 'e']]);
+
 	if ('assign' in Object && 'create' in Object) {
 		proclaim.deepEqual(Object.entries(Object.assign(Object.create({
 			q: 1,

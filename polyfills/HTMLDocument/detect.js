@@ -1,1 +1,1 @@
-"HTMLDocument" in this
+"HTMLDocument" in self

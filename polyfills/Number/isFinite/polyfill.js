@@ -1,6 +1,6 @@
 /* global CreateMethodProperty, Type */
 (function () {
-	var that = this;
+	var that = self;
 	// 20.1.2.2. Number.isFinite ( number )
 	CreateMethodProperty(Number, 'isFinite', function isFinite(number) {
 		// 1. If Type(number) is not Number, return false.

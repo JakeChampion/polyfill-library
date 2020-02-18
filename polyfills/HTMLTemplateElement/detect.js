@@ -1,1 +1,1 @@
-'HTMLTemplateElement' in this
+'HTMLTemplateElement' in self

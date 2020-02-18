@@ -3,7 +3,7 @@ if ((typeof WorkerGlobalScope === "undefined") && (typeof importScripts !== "fun
 		if (global.constructor) {
 			global.Window = global.constructor;
 		} else {
-			(global.Window = global.constructor = new Function('return function Window() {}')()).prototype = this;
+			(global.Window = global.constructor = new Function('return function Window() {}')()).prototype = self;
 		}
-	}(this));
+	}(self));
 }

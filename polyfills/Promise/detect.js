@@ -1,1 +1,1 @@
-'Promise' in this
+'Promise' in self

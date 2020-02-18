@@ -1,1 +1,1 @@
-'performance' in this && 'now' in this.performance
+'performance' in self && 'now' in self.performance
