@@ -7,5 +7,11 @@
 		"email": "origami.support@ft.com",
 		"slack": "financialtimes/origami-support"
 	},
-	"supportStatus": "active"
+	"supportStatus": "active",
+	"keywords": [
+		"javascript",
+		"polyfill",
+		"262",
+		"ecmascript"
+	]
 }

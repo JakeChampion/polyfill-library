@@ -1,5 +1,5 @@
-aliases = [ "es6", "es2015" ]
-dependencies = [ "_ESAbstract.CreateMethodProperty" ]
+aliases = ["es6", "es2015"]
+dependencies = ["_ESAbstract.CreateMethodProperty", "String.prototype.trim"]
 license = "MIT"
 spec = "http://www.ecma-international.org/ecma-262/6.0/#sec-parsefloat-string"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseFloat"
@@ -17,4 +17,3 @@ opera = "<21"
 op_mini = "*"
 op_mob = "<21"
 bb = "*"
-
