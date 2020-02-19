@@ -10,4 +10,4 @@
 	} catch (err) {
 		return false;
 	}
-}(this))
+}(self))

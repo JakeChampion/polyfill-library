@@ -1,1 +1,1 @@
-'setImmediate' in this
+'setImmediate' in self

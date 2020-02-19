@@ -29,7 +29,7 @@ function ArraySpeciesCreate(originalArray, length) { // eslint-disable-line no-u
 	// 7. If Type(C) is Object, then
 	if (Type(C) === 'object') {
 		// a. Set C to ? Get(C, @@species).
-		C = 'Symbol' in this && 'species' in this.Symbol ? Get(C, this.Symbol.species) : undefined;
+		C = 'Symbol' in self && 'species' in self.Symbol ? Get(C, self.Symbol.species) : undefined;
 		// b. If C is null, set C to undefined.
 		if (C === null) {
 			C = undefined;

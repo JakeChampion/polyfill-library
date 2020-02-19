@@ -1,1 +1,1 @@
-'console' in this && 'error' in this.console
+'console' in self && 'error' in self.console

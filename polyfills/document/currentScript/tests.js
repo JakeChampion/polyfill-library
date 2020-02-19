@@ -22,7 +22,7 @@ it('returns null when not invoked during synchronous evaluation', function () {
 	proclaim.isNull(document.currentScript);
 });
 
-// TOdO: Investigate why this fails when run under Karma iframe mode
+// TODO: Investigate why this fails when run under Karma iframe mode
 it.skip('returns the current script element when invoked during dynamic evaluation', function () {
 	var script = document.createElement('script');
 	script.id = 'rnd' + (Math.random() * 1e9 | 0);

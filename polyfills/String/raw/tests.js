@@ -205,7 +205,6 @@ it('works with unicode escape sequences', function () {
 });
 
 it('works with unicode literal characters', function () {
-    
     proclaim.deepStrictEqual(
         String.raw({
             raw: ["\\\n\\\n\\\n"]

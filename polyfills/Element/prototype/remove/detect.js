@@ -1,1 +1,1 @@
-'Element' in this && 'remove' in Element.prototype
+'Element' in self && 'remove' in Element.prototype

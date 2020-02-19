@@ -34,7 +34,7 @@ it('throws a TypeError if target is not an Object', function () {
         Reflect.set('', 'a', 1);
     }, TypeError);
 
-    if ('Symbol' in this) {
+    if ('Symbol' in self) {
         proclaim["throws"](function () {
             Reflect.set(Symbol(), 'p', 42);
         }, TypeError);

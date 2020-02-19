@@ -1,1 +1,1 @@
-'EventSource' in this && typeof this.EventSource  === 'function'
+'EventSource' in self && typeof self.EventSource  === 'function'

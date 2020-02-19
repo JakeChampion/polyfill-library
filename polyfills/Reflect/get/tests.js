@@ -34,7 +34,7 @@ it('throws a TypeError if target is not an Object', function () {
         Reflect.get('', 'a');
     }, TypeError);
 
-    if ('Symbol' in this) {
+    if ('Symbol' in self) {
         proclaim["throws"](function () {
             Reflect.get(Symbol(), 'a');
         }, TypeError);
@@ -79,14 +79,14 @@ if ('create' in Object) {
     });
 }
 
-it('if no receiver argument, reciever is set to target', function () {
+it('if no receiver argument, receiver is set to target', function () {
     var o = {
         a: 1
     };
     proclaim.deepStrictEqual(Reflect.get(o, 'a'), 1);
 });
 
-if ('Symbol' in this) {
+if ('Symbol' in self) {
     it('can return value where property key is a symbol', function () {
         var o = {};
         var a = Symbol('');

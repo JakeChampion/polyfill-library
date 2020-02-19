@@ -1,1 +1,1 @@
-'performance' in this && typeof this.performance.getEntriesByType === 'function' && typeof this.performance.mark === 'function'
+'performance' in self && typeof self.performance.getEntriesByType === 'function' && typeof self.performance.mark === 'function'

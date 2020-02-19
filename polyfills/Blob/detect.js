@@ -1,4 +1,4 @@
-'Blob' in this && (function () {
+'Blob' in self && (function () {
 	try {
 		new Blob();
 		return true;
