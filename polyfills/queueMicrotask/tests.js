@@ -48,8 +48,12 @@ describe('queueMicrotask', function() {
 		queueMicrotask(function () { testArray.push('2') } );
 		Promise.resolve().then(function() {
 			testArray.push('3');
-			proclaim.deepEqual(testArray, ['1', '2', '3']);
-			done();
+			try {
+				proclaim.deepEqual(testArray, ['1', '2', '3']);
+				done();
+			} catch (e) {
+				done(e);
+			}
 		})
 	});
 	
@@ -58,25 +62,18 @@ describe('queueMicrotask', function() {
 		self.onerror = Function.prototype;
 		var testArray = [];
 		queueMicrotask(function () { testArray.push('1') } );
-		queueMicrotask(function () { throw new Error('uh oh')} );
+		queueMicrotask(function () { throw new Error('oops')} );
 		queueMicrotask(function () { testArray.push('2') } );
 		Promise.resolve().then(function() {
 			testArray.push('3');
-			proclaim.deepEqual(testArray, ['1', '2', '3']);
-			self.onerror = mochaError;
-			done();
+			try {
+				proclaim.deepEqual(testArray, ['1', '2', '3']);
+				self.onerror = mochaError;
+				done();
+			} catch (e) {
+				done(e);
+			}
 		})
-	});
-
-	it('microtask runs before timeout 0', function(done) {
-		var testvalue = 0;
-		setTimeout(function() {
-			proclaim.equal(testvalue, 2);
-			done();
-		}, 0);
-		queueMicrotask(function () {
-			testvalue = 2;
-		});
 	});
 
 	it('does not pass any arguments to the callback', function() {

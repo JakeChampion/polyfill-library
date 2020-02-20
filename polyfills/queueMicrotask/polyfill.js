@@ -11,23 +11,35 @@ self.queueMicrotask = function queueMicrotask(microtask) {
   }
 
   Promise.resolve()
-    .then(function() {
-      try {
-        microtask();
-      } catch (e) {
-        self.dispatchEvent(
-          new ErrorEvent("error", {
-            message: e.message,
-            filename: e.filename,
-            lineno: e.lineno,
-            colno: e.colno,
-            error: e,
-            bubbles: true,
-            cancelable: true,
-            composed: false
-          })
-        );
-        throw e;
-      }
-    })["catch"](function() {});
+    .then(microtask)["catch"](function(e) {
+
+      // TODO: implement a ErrorEvent polyfill and use that instead
+      // new ErrorEvent("error", {
+      //   message: e.message,
+      //   filename: e.filename,
+      //   lineno: e.lineno,
+      //   colno: e.colno,
+      //   error: e,
+      //   bubbles: true,
+      //   cancelable: true,
+      //   composed: false
+      // })
+
+      var event = new Event('error', {
+        cancelable: true,
+        bubbles: true,
+        composed: false
+      });
+      event.message = e.message;
+      event.filename = e.filename
+      event.lineno = e.lineno;
+      event.error = e;
+
+      self.dispatchEvent(
+        event
+      );
+
+
+    
+    });
 };
