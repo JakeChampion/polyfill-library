@@ -27,12 +27,18 @@ describe('queueMicrotask', function() {
 	});
 	
 	it('rethrows exceptions from the microtask callback', function(done) {
-		var error = new Error("uh oh");
-		self.addEventListener("error", function(event) {
-			proclaim.deepStrictEquals(event.error, error);
+		var mochaError = self.onerror;
+		self.onerror = Function.prototype;
+		var taskError = new Error("uh oh");
+		self.addEventListener('error', function checkError(event) {
+			proclaim.deepStrictEqual(event.error, taskError);
+			self.onerror = mochaError;
+			self.removeEventListener('error', checkError);
 			done();
 		});
-		queueMicrotask(function () { throw error; });
+		queueMicrotask(function () {
+			throw taskError;
+		});
 	});
 
 	it('array elements are inserted in the correct order',  function(done) {
@@ -47,6 +53,8 @@ describe('queueMicrotask', function() {
 	});
 	
 	it('runs all queued microtasks even if previous ones threw errors',  function(done) {
+		var mochaError = self.onerror;
+		self.onerror = Function.prototype;
 		var testArray = [];
 		queueMicrotask(function () { testArray.push('1') } );
 		queueMicrotask(function () { throw new Error('uh oh')} );
@@ -54,6 +62,7 @@ describe('queueMicrotask', function() {
 		Promise.resolve().then(function() {
 			testArray.push('3');
 			proclaim.deepEqual(testArray, ['1', '2', '3']);
+			self.onerror = mochaError;
 			done();
 		})
 	});
