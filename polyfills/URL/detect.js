@@ -29,4 +29,4 @@
 	} catch (error) {
 		return false;
 	}
-}(this))
+}(self))

@@ -1,1 +1,1 @@
-"ResizeObserver" in this
+"ResizeObserver" in self

@@ -9,7 +9,7 @@ if ((typeof WorkerGlobalScope === "undefined") && (typeof importScripts !== "fun
 			supportsScriptReadyState = 'readyState' in document.createElement('script'),
 
 			// Unfortunately necessary browser detection for Opera.
-			isOpera = this.opera && this.opera.toString() === '[object Opera]',
+			isOpera = self.opera && self.opera.toString() === '[object Opera]',
 
 			// Has support for `Object.defineProperty`.
 			// Even IE8's incomplete implementation is sufficient here since it works on

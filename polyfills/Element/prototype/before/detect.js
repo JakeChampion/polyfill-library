@@ -1,1 +1,1 @@
-'Element' in this && 'before' in Element.prototype
+'Element' in self && 'before' in Element.prototype

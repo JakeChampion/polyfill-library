@@ -1,4 +1,4 @@
-this.CustomEvent = function CustomEvent(type, eventInitDict) {
+self.CustomEvent = function CustomEvent(type, eventInitDict) {
 	if (!type) {
 		throw Error('TypeError: Failed to construct "CustomEvent": An event name must be provided.');
 	}

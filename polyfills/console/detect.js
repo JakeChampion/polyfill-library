@@ -1,1 +1,1 @@
-'console' in this
+'console' in self

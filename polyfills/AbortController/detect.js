@@ -1,1 +1,1 @@
-"AbortController" in this && typeof this.AbortController === "function"
+"AbortController" in self && typeof self.AbortController === "function"
