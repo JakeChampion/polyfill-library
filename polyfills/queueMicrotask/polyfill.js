@@ -29,6 +29,5 @@ self.queueMicrotask = function queueMicrotask(microtask) {
         );
         throw e;
       }
-    })
-    .catch(function() {});
+    })["catch"](function() {});
 };
