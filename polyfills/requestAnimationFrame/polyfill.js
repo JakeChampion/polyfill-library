@@ -59,4 +59,4 @@
 			clearTimeout(id);
 		};
 	}
-}(this));
+}(self));

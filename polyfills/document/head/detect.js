@@ -1,1 +1,1 @@
-'document' in this && 'head' in this.document
+'document' in self && 'head' in self.document

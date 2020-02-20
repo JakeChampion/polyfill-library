@@ -94,6 +94,6 @@
 			}
 		});
 	}
-
+	
 	global.DOMRect = DOMRect;
-}(this));
+}(self));

@@ -21,7 +21,7 @@
 
 		// Enumerable properties only
 		for (key in object) {
-			if (Object.prototype.hasOwnProperty.call(object, key)) {
+			if (key !== "__proto__" && Object.prototype.hasOwnProperty.call(object, key)) {
 				buffer.push(key);
 			}
 		}

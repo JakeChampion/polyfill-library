@@ -50,7 +50,7 @@ it('throws a TypeError if target is not an Object.', function () {
         Reflect.defineProperty('', 'a', {});
     }, TypeError);
 
-    if ('Symbol' in this) {
+    if ('Symbol' in self) {
         proclaim["throws"](function() {
             Reflect.defineProperty(Symbol(), 'a', {});
         }, TypeError);

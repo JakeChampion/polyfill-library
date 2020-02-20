@@ -1,1 +1,1 @@
-'requestIdleCallback' in this
+'requestIdleCallback' in self

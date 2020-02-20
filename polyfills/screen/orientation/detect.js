@@ -1,1 +1,1 @@
-'screen' in this && 'orientation' in this.screen && typeof this.screen.orientation === 'object'
+'screen' in self && 'orientation' in self.screen && typeof self.screen.orientation === 'object'
