@@ -29,7 +29,7 @@ describe('queueMicrotask', function() {
 	it('rethrows exceptions from the microtask callback', function(done) {
 		var mochaError = self.onerror;
 		self.onerror = Function.prototype;
-		var taskError = new Error("uh oh");
+		var taskError;
 		self.addEventListener('error', function checkError(event) {
 			proclaim.deepStrictEqual(event.error, taskError);
 			self.onerror = mochaError;
@@ -37,6 +37,7 @@ describe('queueMicrotask', function() {
 			done();
 		});
 		queueMicrotask(function () {
+			taskError = new Error("uh oh");
 			throw taskError;
 		});
 	});
