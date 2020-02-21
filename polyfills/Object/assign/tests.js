@@ -77,6 +77,53 @@ it('converts primitives as the target into Objects', function() {
 	proclaim.deepEqual(target, booleanObject);
 });
 
+it('works as expected', function () {
+	var foo, str, ref$, O, string, i$, x$, len$;
+	foo = {
+		q: 1
+	};
+	proclaim.strictEqual(foo, Object.assign(foo, {
+		bar: 2
+	}), 'assign return target');
+	proclaim.strictEqual(foo.bar, 2, 'assign define properties');
+	proclaim.deepEqual(Object.assign({}, {
+		q: 1
+	}, {
+		w: 2
+	}), {
+		q: 1,
+		w: 2
+	});
+	proclaim.deepEqual(Object.assign({}, 'qwe'), {
+		0: 'q',
+		1: 'w',
+		2: 'e'
+	});
+	proclaim["throws"](function(){
+		return Object.assign(null, {
+			q: 1
+		});
+	}, TypeError);
+	proclaim["throws"](function(){
+		return Object.assign(void 8, {
+			q: 1
+		});
+	}, TypeError);
+	str = Object.assign('qwe', {
+		q: 1
+	});
+	proclaim.strictEqual(typeof str, 'object');
+	proclaim.strictEqual(String(str), 'qwe');
+	proclaim.strictEqual(str.q, 1);
+	string = 'abcdefghijklmnopqrst';
+    O = {};
+    for (i$ = 0, len$ = (ref$ = string.split('')).length; i$ < len$; ++i$) {
+      x$ = ref$[i$];
+      O[x$] = x$;
+    }
+    proclaim.strictEqual(Object.keys(Object.assign({}, O)).join(''), string);
+});
+
 it('works with window.location', function() {
 	var target = Object.assign({}, window.location);
 	for (var prop in window.location) {

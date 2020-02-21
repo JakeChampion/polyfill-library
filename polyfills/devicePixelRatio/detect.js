@@ -1,1 +1,1 @@
-'devicePixelRatio' in this
+'devicePixelRatio' in self

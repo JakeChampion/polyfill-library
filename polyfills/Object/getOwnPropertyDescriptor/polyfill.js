@@ -1,103 +1,49 @@
-/* global CreateMethodProperty */
+/* global CreateMethodProperty, ToObject, ToPropertyKey, HasOwnProperty, Type */
 (function () {
-	var call = Function.prototype.call;
-	var prototypeOfObject = Object.prototype;
-	var owns = call.bind(prototypeOfObject.hasOwnProperty);
+	var nativeGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 
-	var lookupGetter;
-	var lookupSetter;
-	var supportsAccessors;
-	if ((supportsAccessors = owns(prototypeOfObject, "__defineGetter__"))) {
-		lookupGetter = call.bind(prototypeOfObject.__lookupGetter__);
-		lookupSetter = call.bind(prototypeOfObject.__lookupSetter__);
-	}
-	function doesGetOwnPropertyDescriptorWork(object) {
+	var supportsDOMDescriptors = (function () {
 		try {
-			object.sentinel = 0;
-			return Object.getOwnPropertyDescriptor(
-				object,
-				"sentinel"
-			).value === 0;
-		} catch (exception) {
-			// returns falsy
-		}
-	}
-	// check whether getOwnPropertyDescriptor works if it's given. Otherwise,
-	// shim partially.
-	if (Object.defineProperty) {
-		var getOwnPropertyDescriptorWorksOnObject =
-			doesGetOwnPropertyDescriptorWork({});
-		var getOwnPropertyDescriptorWorksOnDom = typeof document == "undefined" ||
-			doesGetOwnPropertyDescriptorWork(document.createElement("div"));
-		if (!getOwnPropertyDescriptorWorksOnDom ||
-			!getOwnPropertyDescriptorWorksOnObject
-		) {
-			var getOwnPropertyDescriptorFallback = Object.getOwnPropertyDescriptor;
-		}
-	}
-
-	if (!Object.getOwnPropertyDescriptor || getOwnPropertyDescriptorFallback) {
-		var ERR_NON_OBJECT = "Object.getOwnPropertyDescriptor called on a non-object: ";
-
-		CreateMethodProperty(Object, 'getOwnPropertyDescriptor', function getOwnPropertyDescriptor(object, property) {
-			if ((typeof object != "object" && typeof object != "function") || object === null) {
-				throw new TypeError(ERR_NON_OBJECT + object);
-			}
-
-			// make a valiant attempt to use the real getOwnPropertyDescriptor
-			// for I8's DOM elements.
-			if (getOwnPropertyDescriptorFallback) {
-				try {
-					return getOwnPropertyDescriptorFallback.call(Object, object, property);
-				} catch (exception) {
-					// try the shim if the real one doesn't work
+			return Object.defineProperty(document.createElement('div'), 'one', {
+				get: function () {
+					return 1;
 				}
-			}
+			}).one === 1;
+		} catch (e) {
+			return false;
+		}
+	});
 
-			// If object does not owns property return undefined immediately.
-			if (!owns(object, property)) {
-				return;
-			}
+	var toString = ({}).toString;
+	var split = ''.split;
 
-			// If object has a property then it's for sure both `enumerable` and
-			// `configurable`.
-			var descriptor = { enumerable: true, configurable: true };
+	// 19.1.2.8 Object.getOwnPropertyDescriptor ( O, P )
+	CreateMethodProperty(Object, 'getOwnPropertyDescriptor', function getOwnPropertyDescriptor(O, P) {
+		// 1. Let obj be ? ToObject(O).
+		var obj = ToObject(O);
+		// Polyfill.io fallback for non-array-like strings which exist in some ES3 user-agents (IE 8)
+		obj = (Type(obj) === 'string' || obj instanceof String) && toString.call(O) == '[object String]' ? split.call(O, '') : Object(O);
 
-			// If JS engine supports accessor properties then property may be a
-			// getter or setter.
-			if (supportsAccessors) {
-				// Unfortunately `__lookupGetter__` will return a getter even
-				// if object has own non getter property along with a same named
-				// inherited getter. To avoid misbehavior we temporary remove
-				// `__proto__` so that `__lookupGetter__` will return getter only
-				// if it's owned by an object.
-				var prototype = object.__proto__;
-				object.__proto__ = prototypeOfObject;
+		// 2. Let key be ? ToPropertyKey(P).
+		var key = ToPropertyKey(P);
 
-				var getter = lookupGetter(object, property);
-				var setter = lookupSetter(object, property);
-
-				// Once we have getter and setter we can put values back.
-				object.__proto__ = prototype;
-
-				if (getter || setter) {
-					if (getter) {
-						descriptor.get = getter;
-					}
-					if (setter) {
-						descriptor.set = setter;
-					}
-					// If it was accessor property we're done and return here
-					// in order to avoid adding `value` to the descriptor.
-					return descriptor;
-				}
-			}
-
-			// If we got this far we know that object has an own property that is
-			// not an accessor so we set it as a value and return descriptor.
-			descriptor.value = object[property];
-			descriptor.writable = true;
-			return descriptor;
-		});
-	}
+		// 3. Let desc be ? obj.[[GetOwnProperty]](key).
+		// 4. Return FromPropertyDescriptor(desc). 
+		// Polyfill.io Internet Explorer 8 natively supports property descriptors only on DOM objects.
+		// We will fallback to the polyfill implementation if the native implementation throws an error.
+		if (supportsDOMDescriptors) {
+			try {
+				return nativeGetOwnPropertyDescriptor(obj, key);
+			// eslint-disable-next-line no-empty
+			} catch (error) {}
+		}
+		if (HasOwnProperty(obj, key)) {
+			return {
+				enumerable: true,
+				configurable: true,
+				writable: true,
+				value: obj[key]
+			};
+		}
+	});
 }());

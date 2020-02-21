@@ -1,4 +1,4 @@
-'Map' in self && (function() {
+'Map' in self && (function(self) {
 	try {
 		var m = new self.Map([[1, 1], [2, 2]]);
 		if (self.Map.length === 0) {
@@ -12,4 +12,4 @@
 	} catch (e) {
 		return false;
 	}
-}())
+}(self))

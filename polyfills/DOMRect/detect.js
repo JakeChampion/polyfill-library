@@ -1,4 +1,4 @@
-'DOMRect' in this && (function (DOMRect) {
+'DOMRect' in self && (function (DOMRect) {
 	try { return new DOMRect(); }
 	catch (e) { return false; }
-}(this.DOMRect))
+}(self.DOMRect))

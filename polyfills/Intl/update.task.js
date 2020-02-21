@@ -58,7 +58,7 @@ configSource.test = { ci: false };
 var configFileSource = TOML.stringify(configSource);
 
 function intlLocaleDetectFor(locale) {
-	return "'Intl' in this && " +
+	return "'Intl' in self && " +
 			"Intl.Collator && " +
 			"Intl.Collator.supportedLocalesOf && " +
 			"Intl.Collator.supportedLocalesOf('"+locale+"').length === 1 && " +

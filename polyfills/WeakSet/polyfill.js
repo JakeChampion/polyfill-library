@@ -201,4 +201,4 @@
 		global.WeakSet = WeakSet;
 	}
 
-}(this));
+}(self));

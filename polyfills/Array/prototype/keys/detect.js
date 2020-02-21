@@ -1,1 +1,1 @@
-'Symbol' in this && 'iterator' in this.Symbol && !!Array.prototype.keys
+'Symbol' in self && 'iterator' in self.Symbol && !!Array.prototype.keys

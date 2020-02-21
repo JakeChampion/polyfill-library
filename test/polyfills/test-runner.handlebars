@@ -10,7 +10,7 @@
 	<script src="/mocha.js"></script>
 	<script src="/proclaim.js"></script>
 	<script>mocha.setup('bdd');</script>
-	<script src="/tests.js?feature={{#features}}{{{feature}}},{{/features}}"></script>
+	<script src="/tests.js{{#requestedFeature}}?feature={{#features}}{{{feature}}},{{/features}}{{/requestedFeature}}"></script>
 </head>
 <body>
 

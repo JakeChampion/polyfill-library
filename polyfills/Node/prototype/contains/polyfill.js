@@ -16,14 +16,14 @@
 	}
 
 	// IE
-	if ('HTMLElement' in this && 'contains' in HTMLElement.prototype) {
+	if ('HTMLElement' in self && 'contains' in HTMLElement.prototype) {
 		try {
 			delete HTMLElement.prototype.contains;
 		// eslint-disable-next-line no-empty
 		} catch (e) {}
 	}
 
-	if ('Node' in this) {
+	if ('Node' in self) {
 		Node.prototype.contains = contains;
 	} else {
 		document.contains = Element.prototype.contains = contains;

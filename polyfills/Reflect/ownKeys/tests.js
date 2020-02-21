@@ -43,7 +43,7 @@ it('throws a TypeError if target is not an Object', function () {
         Reflect.ownKeys('');
     }, TypeError);
 
-    if ('Symbol' in this) {
+    if ('Symbol' in self) {
         proclaim["throws"](function () {
             Reflect.ownKeys(Symbol());
         }, TypeError);
@@ -60,7 +60,7 @@ it('Returns target\'s own property keys', function () {
     }), ['a']);
 
     var obj = { a: 1 };
-    if ('Symbol' in this) {
+    if ('Symbol' in self) {
         var b = Symbol('b');
         obj[b] = 2;
         proclaim.deepStrictEqual(Reflect.ownKeys(obj), ['a', b]);

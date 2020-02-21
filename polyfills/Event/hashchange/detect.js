@@ -1,1 +1,1 @@
-'onhashchange' in this && (this.onhashchange == null || typeof this.onhashchange === 'function')
+'onhashchange' in self && (self.onhashchange == null || typeof self.onhashchange === 'function')

@@ -38,7 +38,7 @@ it('throws a TypeError if `target` is not callable', function () {
         Reflect.apply(/./);
     }, TypeError);
 
-    if ('Symbol' in this) {
+    if ('Symbol' in self) {
         proclaim["throws"](function () {
             Reflect.apply(Symbol());
         }, TypeError);

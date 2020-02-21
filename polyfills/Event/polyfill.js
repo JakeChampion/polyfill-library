@@ -22,20 +22,6 @@
 	// support for `Event` within the worker
 	if (typeof document === 'undefined' || typeof window === 'undefined') return;
 
-	function indexOf(array, element) {
-		var
-		index = -1,
-		length = array.length;
-
-		while (++index < length) {
-			if (index in array && array[index] === element) {
-				return index;
-			}
-		}
-
-		return -1;
-	}
-
 	var existingProto = (window.Event && window.Event.prototype) || null;
 	function Event(type, eventInitDict) {
 		if (!type) {
@@ -129,7 +115,7 @@
 						if (index in events) {
 							eventElement = events[index];
 
-							if (indexOf(list, eventElement) !== -1 && typeof eventElement === 'function') {
+							if (list.includes(eventElement) && typeof eventElement === 'function') {
 								eventElement.call(element, event);
 							}
 						}
@@ -154,7 +140,7 @@
 			index;
 
 			if (element._events && element._events[type] && element._events[type].list) {
-				index = indexOf(element._events[type].list, listener);
+				index = element._events[type].list.indexOf(listener);
 
 				if (index !== -1) {
 					element._events[type].list.splice(index, 1);

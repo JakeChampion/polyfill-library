@@ -39,7 +39,7 @@ it('throws when an entry object is absent', function () {
     }, TypeError);
 });
 
-if('Symbol' in this && 'iterator' in this.Symbol && !!Array.prototype[Symbol.iterator]) {
+if('Symbol' in self && 'iterator' in self.Symbol && !!Array.prototype[Symbol.iterator]) {
     it('returns empty object if given an empty array', function () {
         proclaim.deepStrictEqual(Object.fromEntries([]), {});
     });

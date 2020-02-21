@@ -261,4 +261,4 @@
 		// More info on table 2: https://msdn.microsoft.com/en-us/library/dd229916(v=vs.85).aspx
 		global.WeakMap = WeakMap;
 	}
-}(this));
+}(self));

@@ -6,7 +6,7 @@ function IsRegExp(argument) { // eslint-disable-line no-unused-vars
 		return false;
 	}
 	// 2. Let matcher be ? Get(argument, @@match).
-	var matcher = 'Symbol' in this && 'match' in this.Symbol ? Get(argument, this.Symbol.match) : undefined;
+	var matcher = 'Symbol' in self && 'match' in self.Symbol ? Get(argument, self.Symbol.match) : undefined;
 	// 3. If matcher is not undefined, return ToBoolean(matcher).
 	if (matcher !== undefined) {
 		return ToBoolean(matcher);
