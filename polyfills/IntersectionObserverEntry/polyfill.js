@@ -1,5 +1,5 @@
 // Minimal polyfill for Edge 15's lack of `isIntersecting`
-// See: https://github.com/WICG/IntersectionObserver/issues/211
+// See: https://github.com/w3c/IntersectionObserver/issues/211
 Object.defineProperty(IntersectionObserverEntry.prototype,
 	'isIntersecting', {
 		get: function () {

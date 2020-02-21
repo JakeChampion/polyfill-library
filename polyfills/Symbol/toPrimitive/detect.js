@@ -1,1 +1,1 @@
-'Symbol' in this && 'toPrimitive' in this.Symbol
+'Symbol' in self && 'toPrimitive' in self.Symbol

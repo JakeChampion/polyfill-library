@@ -144,6 +144,7 @@ describe('lib/sources', () => {
 			pathMock.join.withArgs('../polyfills/__dist', 'Array.from', 'min.js').returns('../polyfills/__dist/Array.from/min.js');
 			pathMock.join.returnsArg(1);
 
+			fs.createReadStream.returns({ pipe: sinon.stub() });
 			const sources = require('../../../lib/sources');
 			sources.streamPolyfillSource('Array.from', 'min');
 			assert.calledWithExactly(fs.createReadStream, '../polyfills/__dist/Array.from/min.js',

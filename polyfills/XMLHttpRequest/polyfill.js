@@ -1,3 +1,4 @@
+/* global ActiveXObject */
 (function (global, NativeXMLHttpRequest) {
 	// <Global>.XMLHttpRequest
 	global.XMLHttpRequest = function XMLHttpRequest() {
@@ -66,4 +67,4 @@
 	XMLHttpRequestPrototype.setRequestHeader = function setRequestHeader(header, value) {
 		this._request.setRequestHeader(header, value);
 	};
-}(this, this.XMLHttpRequest));
+}(self, self.XMLHttpRequest));

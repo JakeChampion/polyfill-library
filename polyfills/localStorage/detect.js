@@ -1,10 +1,10 @@
-'localStorage' in this && (function() {
+'localStorage' in self && (function() {
 	try {
 		// Needed for Safari private browsing.
-		this.localStorage.setItem('storage_test', 1);
-		this.localStorage.removeItem('storage_test');
+		self.localStorage.setItem('storage_test', 1);
+		self.localStorage.removeItem('storage_test');
 		return true;
 	} catch (e) {
 		return false;
 	}
-}).call(this)
+}).call(self)

@@ -6,11 +6,11 @@ it('has the correct length', function() {
 });
 
 it('throws when target is not an object', function() {
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.assign(null);
 	}, TypeError);
 
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.assign(undefined);
 	}, TypeError);
 });
@@ -32,15 +32,15 @@ it('Ignores null and undefined sources', function () {
 });
 
 it('throws on null or undefined targets', function() {
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.assign(null, {});
 	});
 
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.assign(undefined, {});
 	});
 
-	proclaim.throws(function () {
+	proclaim["throws"](function () {
 		Object.assign(undefined, undefined);
 	});
 });
@@ -113,12 +113,12 @@ it('works as expected', function () {
 		1: 'w',
 		2: 'e'
 	});
-	proclaim.throws(function(){
+	proclaim["throws"](function(){
 		return Object.assign(null, {
 			q: 1
 		});
 	}, TypeError);
-	proclaim.throws(function(){
+	proclaim["throws"](function(){
 		return Object.assign(void 8, {
 			q: 1
 		});
@@ -137,7 +137,8 @@ it('works as expected', function () {
     }
     proclaim.strictEqual(Object.keys(Object.assign({}, O)).join(''), string);
 });
- ifSupportsDescriptors('works as expected', function () {
+
+ifSupportsDescriptors('works as expected', function () {
 	var foo, c, d, D, ref$, O;
 	foo = {
 		q: 1
@@ -171,8 +172,21 @@ it('works as expected', function () {
 	}
 	try {
 		proclaim.strictEqual(Function('return Object.assign({b: 1}, {get a(){delete this.b;},b: 2})')().b, 1);
-	} catch (e$) { }
+	} catch (e$) {
+		// empty
+	}
 	try {
 		proclaim.strictEqual(Function('return Object.assign({b: 1}, {get a(){Object.defineProperty(this, "b", {value:4,enumerable:false});},b: 2})')().b, 1);
-	} catch (e$) { }
- });
+	} catch (e$) {
+		// empty
+	}
+});
+
+it('works with window.location', function() {
+	var target = Object.assign({}, window.location);
+	for (var prop in window.location) {
+		if (Object.prototype.hasOwnProperty.call(window.location, prop)) {
+			proclaim.deepStrictEqual(target[prop], window.location[prop]);
+		}
+	}
+});

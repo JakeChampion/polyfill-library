@@ -1,1 +1,1 @@
-'Symbol' in this && 'iterator' in this.Symbol
+'Symbol' in self && 'iterator' in self.Symbol

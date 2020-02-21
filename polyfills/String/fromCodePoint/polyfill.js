@@ -1,7 +1,7 @@
 /* global CreateMethodProperty, IsArray, SameValue, ToInteger, ToNumber, UTF16Encoding */
 
 // 21.1.2.2. String.fromCodePoint ( ...codePoints )
-CreateMethodProperty(String, 'fromCodePoint', function fromCodePoint(_) { // eslint-disable-line no-unused-vars
+CreateMethodProperty(String, 'fromCodePoint', function fromCodePoint(_) {
 	// Polyfill.io - List to store the characters whilst iterating over the code points.
 	var result = [];
 	// 1. Let codePoints be a List containing the arguments passed to this function.
@@ -15,7 +15,7 @@ CreateMethodProperty(String, 'fromCodePoint', function fromCodePoint(_) { // esl
 	// 5. Repeat, while nextIndex < length
 	while (nextIndex < length) {
 		// Polyfill.io - We reset the elements List as we store the partial results in the result List.
-		var elements = [];
+		elements = [];
 		// a. Let next be codePoints[nextIndex].
 		var next = codePoints[nextIndex];
 		// b. Let nextCP be ? ToNumber(next).

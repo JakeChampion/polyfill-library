@@ -1,1 +1,1 @@
-'document' in this && "placeholder" in document.createElement("input")
+'document' in self && "placeholder" in document.createElement("input")

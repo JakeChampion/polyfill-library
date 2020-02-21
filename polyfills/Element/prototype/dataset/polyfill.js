@@ -7,7 +7,7 @@ Object.defineProperty(Element.prototype, 'dataset', {
 		for (var i = 0; i < attributes.length; i++) {
 			var attribute = attributes[i];
 
-			if (attribute && attribute.name && (/^data-\w[\w\-]*$/).test(attribute.name)) {
+			if (attribute && attribute.name && (/^data-\w[\w-]*$/).test(attribute.name)) {
 				var name = attribute.name;
 				var value = attribute.value;
 
@@ -16,7 +16,7 @@ Object.defineProperty(Element.prototype, 'dataset', {
 				});
 
 				Object.defineProperty(map, propName, {
-					enumerable: this.enumerable,
+					enumerable: true,
 					get: function() {
 						return this.value;
 					}.bind({value: value || ''}),

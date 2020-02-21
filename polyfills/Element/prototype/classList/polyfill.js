@@ -1,3 +1,4 @@
+/* global _DOMTokenList */
 /*
 Copyright (c) 2016, John Gardner
 
@@ -61,7 +62,7 @@ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH RE
 				visage || (visage = mirror.appendChild(document.createElement("div")));
 
 				tokenList = DOMTokenList.call(visage, THIS, attr);
-			} else tokenList = new DOMTokenList(THIS, attr);
+			} else tokenList = new _DOMTokenList(THIS, attr);
 
 			defineGetter(THIS, name, function () {
 				return tokenList;
@@ -77,4 +78,4 @@ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH RE
 	addProp(global.HTMLLinkElement, "relList", "rel");
 	addProp(global.HTMLAnchorElement, "relList", "rel");
 	addProp(global.HTMLAreaElement, "relList", "rel");
-}(this));
+}(self));

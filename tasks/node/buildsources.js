@@ -3,16 +3,17 @@
 const fs = require('graceful-fs');
 const path = require('path');
 const uglify = require('uglify-js');
-const babel = require('babel-core');
 const mkdirp = require('mkdirp');
 const toposort = require('toposort');
-const denodeify = require('denodeify');
+const {promisify} = require('util');
 const vm = require('vm');
 const spdxLicenses = require('spdx-licenses');
+const UA = require('@financial-times/polyfill-useragent-normaliser');
+const TOML = require('@iarna/toml');
 
-const writeFile = denodeify(fs.writeFile);
-const readFile = denodeify(fs.readFile);
-const makeDirectory = denodeify(mkdirp);
+const writeFile = promisify(fs.writeFile);
+const readFile = promisify(fs.readFile);
+const makeDirectory = promisify(mkdirp);
 
 function validateSource(code, label) {
 	try {
@@ -104,7 +105,7 @@ class Polyfill {
 	}
 
 	get configPath() {
-		return path.join(this.path.absolute, 'config.json');
+		return path.join(this.path.absolute, 'config.toml');
 	}
 
 	get detectPath() {
@@ -133,7 +134,18 @@ class Polyfill {
 				};
 			})
 			.then(data => {
-				this.config = JSON.parse(data);
+				this.config = TOML.parse(data);
+
+				// Each internal polyfill needs to target all supported browsers at all versions.
+				if (this.path.relative.startsWith('_')) {
+					const supportedBrowsers = Object.keys(UA.getBaselines()).sort((a, b) => a.localeCompare(b));
+					if (!supportedBrowsers.every(browser => this.config.browsers[browser] === "*")){
+						const browserSupport = {};
+						supportedBrowsers.forEach(browser => browserSupport[browser] = "*");
+						throw new Error("Internal polyfill called " + this.name + " is not targeting all supported browsers correctly. It should be: \n" + TOML.stringify(browserSupport));
+					}
+				}
+
 				this.config.detectSource = '';
 				this.config.baseDir = this.path.relative;
 
@@ -147,6 +159,7 @@ class Polyfill {
 
 				if (fs.existsSync(this.detectPath)) {
 					this.config.detectSource = fs.readFileSync(this.detectPath, 'utf8').replace(/\s*$/, '') || '';
+					this.config.detectSource = this.minifyDetect(this.config.detectSource).min;
 					validateSource(`if (${this.config.detectSource}) true;`, `${this.name} feature detect from ${this.detectPath}`);
 				}
 			});
@@ -177,14 +190,7 @@ class Polyfill {
 					error
 				};
 			})
-			.then(raw => this.transpile(raw))
-			.catch(error => {
-				throw {
-					message: `Error transpiling ${this.name}`,
-					error
-				};
-			})
-			.then(transpiled => this.minify(transpiled))
+			.then(raw => this.minifyPolyfill(raw))
 			.catch(error => {
 				throw {
 					message: `Error minifying ${this.name}`,
@@ -197,34 +203,7 @@ class Polyfill {
 			});
 	}
 
-	transpile(source) {
-		// At time of writing no current browsers support the full ES6 language syntax,
-		// so for simplicity, polyfills written in ES6 will be transpiled to ES5 in all
-		// cases (also note that uglify currently cannot minify ES6 syntax).  When browsers
-		// start shipping with complete ES6 support, the ES6 source versions should be served
-		// where appropriate, which will require another set of variations on the source properties
-		// of the polyfill.  At this point it might be better to create a collection of sources with
-		// different properties, eg config.sources = [{code:'...', esVersion:6, minified:true},{...}] etc.
-		if (this.config.esversion && this.config.esversion > 5) {
-			if (this.config.esversion === 6) {
-				const transpiled = babel.transform(source, { presets: ["es2015"] });
-
-				// Don't add a "use strict"
-				// Super annoying to have to drop the preset and list all babel plugins individually, so hack to remove the "use strict" added by Babel (see also http://stackoverflow.com/questions/33821312/how-to-remove-global-use-strict-added-by-babel)
-				return transpiled.code.replace(/^\s*"use strict";\s*/i, '');
-
-			} else {
-				throw {
-					name: "Unsupported ES version",
-					message: `Feature ${this.name} uses ES${this.config.esversion} but no transpiler is available for that version`
-				};
-			}
-		}
-
-		return source;
-	}
-
-	minify(source) {
+	minifyPolyfill(source) {
 		const raw = `\n// ${this.name}\n${source}`;
 
 		if (this.config.build && this.config.build.minify === false) {
@@ -238,9 +217,32 @@ class Polyfill {
 
 			const minified = uglify.minify(source, {
 				fromString: true,
-				compress: { screw_ie8: false },
+				compress: { screw_ie8: false, keep_fnames: true },
 				mangle: { screw_ie8: false },
 				output: { screw_ie8: false, beautify: false }
+			});
+
+			return { raw, min: minified.code };
+		}
+	}
+
+	minifyDetect(source) {
+		const raw = `\n// ${this.name}\n${source}`;
+
+		if (this.config.build && this.config.build.minify === false) {
+			// skipping any validation or minification process since
+			// the raw source is supposed to be production ready.
+			// Add a line break in case the final line is a comment
+			return { raw: raw + '\n', min: source + '\n' };
+		}
+		else {
+			validateSource(source, `${this.name} from ${this.sourcePath}`);
+
+			const minified = uglify.minify(source, {
+				fromString: true,
+				compress: { screw_ie8: false, expression: true, keep_fnames: true },
+				mangle: { screw_ie8: false },
+				output: { screw_ie8: false, beautify: false, semicolons: false }
 			});
 
 			return { raw, min: minified.code };

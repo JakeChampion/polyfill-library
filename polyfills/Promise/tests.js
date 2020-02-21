@@ -9,12 +9,12 @@ it('has correct arity', function () {
 	proclaim.arity(Promise, 1);
 });
 
-it('has correct name', function () {
+it.skip('has correct name', function () {
 	proclaim.hasName(Promise, 'Promise');
 });
 
-it('is not enumerable', function () {
-	proclaim.nonEnumerable(window, 'Promise');
+it.skip('is not enumerable', function () {
+	proclaim.isNotEnumerable(window, 'Promise');
 });
 
 describe('Section 2.1.2.1: When fulfilled, a promise: must not transition to any other state.', function () {
@@ -164,7 +164,7 @@ describe('Section 2.1.3.1: When rejected, a promise: must not transition to any 
 describe('2.2.1: Both `onFulfilled` and `onRejected` are optional arguments.', function () {
 	var promise;
 
-	describe('2.2.1.1: If `onFulfilled` is not a function, it must be ignored.', function () {
+	context('2.2.1.1: If `onFulfilled` is not a function, it must be ignored.', function () {
 		describe('applied to a directly-rejected promise', function () {
 			function testNonFunction(nonFunction, stringRepresentation) {
 				specify('`onFulfilled` is ' + stringRepresentation, function (done) {

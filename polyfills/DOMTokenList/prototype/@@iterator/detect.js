@@ -1,7 +1,7 @@
-'Symbol' in this && 'iterator' in this.Symbol && (function(){
+'Symbol' in self && 'iterator' in self.Symbol && (function(){
     try {
         var div = document.createElement('div');
-        return div.classList && div.classList[Symbol.iterator];
+        return div.classList && div.classList[self.Symbol.iterator];
     } catch (err) {
         return false;
     }

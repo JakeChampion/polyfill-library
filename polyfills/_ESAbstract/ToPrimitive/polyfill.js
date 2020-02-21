@@ -16,7 +16,7 @@ function ToPrimitive(input /* [, PreferredType] */) { // eslint-disable-line no-
 			hint = 'number';
 		}
 		// d. Let exoticToPrim be ? GetMethod(input, @@toPrimitive).
-		var exoticToPrim = typeof this.Symbol === 'function' && typeof this.Symbol.toPrimitive === 'symbol' ? GetMethod(input, this.Symbol.toPrimitive) : undefined;
+		var exoticToPrim = typeof self.Symbol === 'function' && typeof self.Symbol.toPrimitive === 'symbol' ? GetMethod(input, self.Symbol.toPrimitive) : undefined;
 		// e. If exoticToPrim is not undefined, then
 		if (exoticToPrim !== undefined) {
 			// i. Let result be ? Call(exoticToPrim, input, « hint »).

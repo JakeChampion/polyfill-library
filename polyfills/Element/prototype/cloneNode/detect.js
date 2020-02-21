@@ -1,4 +1,4 @@
-'document' in this && "cloneNode" in document.documentElement && (function() {
+'document' in self && "cloneNode" in document.documentElement && (function() {
 	var div = document.createElement('div');
 	var test = document.createElement('input');
 	test.type = "radio";

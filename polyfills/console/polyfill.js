@@ -1,1 +1,1 @@
-this.console = this.console || {};
+self.console = self.console || {};

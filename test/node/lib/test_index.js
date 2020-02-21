@@ -84,30 +84,30 @@ describe("polyfillio", function () {
 		});
 
 		it("should return polyfills for unknown UA when unknown is set to `polyfill` and `uaString` param is not set", () => {
-				// ... even when `uaString` param is missing entirely
-				return polyfillio.getPolyfills({
-					features: {
-						'Math.sign': {}
-					},
-					unknown: 'polyfill',
-				}).then(result => assert.deepEqual(setsToArrays(result), {
-					'Math.sign': {
-						"flags": ["gated"]
-					},
-					"Object.defineProperty": {
-						"aliasOf": [
-							"Math.sign",
-							"_ESAbstract.CreateMethodProperty"
-						],
-						"flags": ["gated"]
-					},
-					"_ESAbstract.CreateMethodProperty": {
-						"aliasOf": [
-							"Math.sign"
-						],
-						"flags": ["gated"]
-					}
-				}));
+			// ... even when `uaString` param is missing entirely
+			return polyfillio.getPolyfills({
+				features: {
+					'Math.sign': {}
+				},
+				unknown: 'polyfill',
+			}).then(result => assert.deepEqual(setsToArrays(result), {
+				'Math.sign': {
+					"flags": ["gated"]
+				},
+				"Object.defineProperty": {
+					"aliasOf": [
+						"Math.sign",
+						"_ESAbstract.CreateMethodProperty"
+					],
+					"flags": ["gated"]
+				},
+				"_ESAbstract.CreateMethodProperty": {
+					"aliasOf": [
+						"Math.sign"
+					],
+					"flags": ["gated"]
+				}
+			}));
 		});
 
 		it("should understand the 'all' alias", () => {
@@ -121,34 +121,38 @@ describe("polyfillio", function () {
 			}).then(result => assert(Object.keys(result).length > 0));
 		});
 
-		it("should respect the excludes option", () => {
-			return Promise.all([
-				polyfillio.getPolyfills({
-					features: {
-						'fetch': {}
-					},
-					uaString: 'chrome/30'
-				}).then(result => assert.deepEqual(setsToArrays(result), {
-					fetch: {
-						flags: []
-					},
-					Promise: {
-						flags: [],
-						aliasOf: ['fetch']
-					}
-				})),
-				polyfillio.getPolyfills({
-					features: {
-						'fetch': {}
-					},
-					excludes: ["Promise", "non-existent-feature"],
-					uaString: 'chrome/30'
-				}).then(result => assert.deepEqual(setsToArrays(result), {
-					fetch: {
-						flags: []
-					}
-				}))
-			]);
+		it("should respect the excludes option", async () => {
+			const noExcludes = await polyfillio.getPolyfills({
+				features: {
+					"Math.fround": {}
+				},
+				uaString: "ie/9"
+			});
+			
+			assert.deepEqual(setsToArrays(noExcludes), {
+				"Math.fround": { flags: [] },
+				"_ESAbstract.CreateMethodProperty": {
+					flags: [],
+					aliasOf: ["Math.fround"]
+				},
+				_TypedArray: { flags: [], aliasOf: ["Math.fround"] }
+			});
+			
+			const excludes = await polyfillio.getPolyfills({
+				features: {
+					"Math.fround": {}
+				},
+				excludes: ["_TypedArray", "non-existent-feature"],
+				uaString: "ie/9"
+			});
+			
+			assert.deepEqual(setsToArrays(excludes), {
+				"Math.fround": { flags: [] },
+				"_ESAbstract.CreateMethodProperty": {
+					flags: [],
+					aliasOf: ["Math.fround"]
+				}
+			});
 		});
 	});
 
@@ -191,7 +195,7 @@ describe("polyfillio", function () {
 			s.on('end', () => {
 				const bundle = buf.join('');
 				assert.include(bundle, 'Polyfill service');
-				assert.include(bundle, "function(undefined)");
+				assert.include(bundle, "function(self, undefined)");
 				done();
 			});
 		});
