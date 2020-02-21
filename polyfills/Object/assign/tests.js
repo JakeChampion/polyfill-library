@@ -138,50 +138,6 @@ it('works as expected', function () {
     proclaim.strictEqual(Object.keys(Object.assign({}, O)).join(''), string);
 });
 
-ifSupportsDescriptors('works as expected', function () {
-	var foo, c, d, D, ref$, O;
-	foo = {
-		q: 1
-	};
-	foo = {
-		baz: 1
-	};
-	Object.assign(foo, Object.defineProperty({}, 'bar', {
-		get: function () {
-			return this.baz + 1;
-		}
-	}));
-	proclaim.ok(foo.bar === void 8, "assign don't copy descriptors");
-	if ('Symbol' in window) {
-		c = Symbol('c');
-		d = Symbol('d');
-		D = (ref$ = {
-			a: 'a'
-		}, ref$[c] = 'c', ref$);
-		Object.defineProperty(D, 'b', {
-			value: 'b'
-		});
-		Object.defineProperty(D, d, {
-			value: 'd'
-		});
-		O = Object.assign({}, D);
-		proclaim.strictEqual(O.a, 'a', 'a');
-		proclaim.strictEqual(O.b, void 8, 'b');
-		proclaim.strictEqual(O[c], 'c', 'c');
-		proclaim.strictEqual(O[d], void 8, 'd');
-	}
-	try {
-		proclaim.strictEqual(Function('return Object.assign({b: 1}, {get a(){delete this.b;},b: 2})')().b, 1);
-	} catch (e$) {
-		// empty
-	}
-	try {
-		proclaim.strictEqual(Function('return Object.assign({b: 1}, {get a(){Object.defineProperty(this, "b", {value:4,enumerable:false});},b: 2})')().b, 1);
-	} catch (e$) {
-		// empty
-	}
-});
-
 it('works with window.location', function() {
 	var target = Object.assign({}, window.location);
 	for (var prop in window.location) {
