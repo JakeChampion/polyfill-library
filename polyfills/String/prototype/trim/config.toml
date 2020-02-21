@@ -10,8 +10,7 @@ aliases = [
 ]
 dependencies = [
   "_ESAbstract.CreateMethodProperty",
-  "_ESAbstract.RequireObjectCoercible",
-  "_ESAbstract.ToString"
+  "_ESAbstract.TrimString"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-string.prototype.trim"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim"
