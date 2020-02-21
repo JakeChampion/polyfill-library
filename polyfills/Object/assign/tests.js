@@ -1,5 +1,5 @@
 /* eslint-env mocha, browser */
-/* global proclaim, Symbol */
+/* global proclaim */
 
 it('has the correct length', function() {
 	proclaim.deepEqual(Object.assign.length, 2);
@@ -76,20 +76,6 @@ it('converts primitives as the target into Objects', function() {
 	booleanObject.foo = 'bar';
 	proclaim.deepEqual(target, booleanObject);
 });
-
-var arePropertyDescriptorsSupported = function () {
-	var obj = {};
-	try {
-		Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
-        /* eslint-disable no-unused-vars, no-restricted-syntax */
-        for (var _ in obj) { return false; }
-        /* eslint-enable no-unused-vars, no-restricted-syntax */
-		return obj.x === obj;
-	} catch (e) { // this is IE 8.
-		return false;
-	}
-};
-var ifSupportsDescriptors = Object.defineProperty && arePropertyDescriptorsSupported() ? it : xit;
 
 it('works as expected', function () {
 	var foo, str, ref$, O, string, i$, x$, len$;
