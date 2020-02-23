@@ -20,7 +20,7 @@
 	var pIE = ObjectProto[PIE];
 	var toString = ObjectProto.toString;
 	var concat = Array.prototype.concat;
-	var cachedWindowNames = Object.getOwnPropertyNames ? Object.getOwnPropertyNames(window) : [];
+	var cachedWindowNames = Object.getOwnPropertyNames ? Object.getOwnPropertyNames(self) : [];
 	var nGOPN = Object[GOPN];
 	var gOPN = function getOwnPropertyNames (obj) {
 		if (toString.call(obj) === '[object Window]') {
