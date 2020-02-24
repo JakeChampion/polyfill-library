@@ -25,3 +25,4 @@ polyfills/String/prototype/normalize/polyfill.js
 polyfills/AbortController/polyfill.js
 polyfills/smoothscroll/polyfill.js
 local.log
+polyfills/document/currentScript/polyfill.js
