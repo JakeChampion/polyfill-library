@@ -24,4 +24,3 @@ polyfills/HTMLTemplateElement/polyfill.js
 polyfills/ResizeObserver/polyfill.js
 polyfills/AbortController/polyfill.js
 polyfills/smoothscroll/polyfill.js
-polyfills/document/currentScript/polyfill.js

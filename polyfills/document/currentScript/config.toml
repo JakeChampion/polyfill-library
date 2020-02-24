@@ -5,6 +5,3 @@ spec = "https://html.spec.whatwg.org/multipage/dom.html#dom-document-currentscri
 
 [browsers]
 ie = "*"
-
-[install]
-module = "current-script-polyfill"
