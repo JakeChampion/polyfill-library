@@ -91,7 +91,8 @@ locales.forEach(function (file) {
 
 var intlPolyfillDetect = "'Intl' in self && \n Intl.Collator && \n Intl.DateTimeFormat && \n Intl.NumberFormat && \n Intl.NumberFormat.supportedLocalesOf ";
 
-locales.forEach(function (locale) {
+locales.forEach(function (file) {
+	var locale = file.slice(0, file.indexOf('.'));
 	intlPolyfillDetect += "&& \n Intl.Collator.supportedLocalesOf('"+locale+"').length === 1 ";
 	intlPolyfillDetect += "&& \n Intl.DateTimeFormat.supportedLocalesOf('"+locale+"').length === 1 ";
 	intlPolyfillDetect += "&& \n Intl.NumberFormat.supportedLocalesOf('"+locale+"').length === 1 ";
