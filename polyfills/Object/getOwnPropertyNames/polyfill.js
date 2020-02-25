@@ -14,7 +14,7 @@
     function getOwnPropertyNames(O) {
       var object = ToObject(O);
 
-      if (toString(object) === "[object Window]") {
+      if (toString.call(object) === "[object Window]") {
         try {
           return nativeGetOwnPropertyNames(object);
         } catch (e) {
