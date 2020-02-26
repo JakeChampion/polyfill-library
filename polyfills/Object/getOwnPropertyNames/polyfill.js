@@ -1,8 +1,9 @@
 /* global CreateMethodProperty, ToObject */
 (function() {
   var toString = {}.toString;
-  var split = ''.split;
+  var split = "".split;
   var concat = [].concat;
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
   var nativeGetOwnPropertyNames = Object.getOwnPropertyNames || Object.keys;
   var cachedWindowNames =
     typeof self === "object" ? nativeGetOwnPropertyNames(self) : [];
@@ -22,12 +23,23 @@
           return concat.call([], cachedWindowNames);
         }
       }
+
       // Polyfill.io fallback for non-array-like strings which exist in some ES3 user-agents (IE 8)
       object =
         toString.call(object) == "[object String]"
           ? split.call(object, "")
           : Object(object);
-      return nativeGetOwnPropertyNames(object);
+
+      var result = nativeGetOwnPropertyNames(object);
+      var extraNonEnumerableKeys = ["length", "prototype"];
+      for (var i = 0; i < extraNonEnumerableKeys.length; i++) {
+        var key = extraNonEnumerableKeys[i];
+        if (hasOwnProperty.call(object, key) && !result.includes(key)) {
+          result.push(key);
+        }
+      }
+
+      return result;
     }
   );
 })();
