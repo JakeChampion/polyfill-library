@@ -1,36 +1,50 @@
-/* global CreateMethodProperty */
+/* global CreateMethodProperty, ToObject */
+(function() {
+  var toString = {}.toString;
+  var split = "".split;
+  var concat = [].concat;
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
+  var nativeGetOwnPropertyNames = Object.getOwnPropertyNames || Object.keys;
+  var cachedWindowNames =
+    typeof self === "object" ? nativeGetOwnPropertyNames(self) : [];
 
-(function(){
-	var toString = ({}).toString;
-	var split = ''.split;
+  // 19.1.2.10 Object.getOwnPropertyNames ( O )
+  CreateMethodProperty(
+    Object,
+    "getOwnPropertyNames",
+    function getOwnPropertyNames(O) {
+      var object = ToObject(O);
 
-	CreateMethodProperty(Object, 'getOwnPropertyNames', function getOwnPropertyNames(object) {
-		var buffer = [];
-		var key;
+      if (toString.call(object) === "[object Window]") {
+        try {
+          return nativeGetOwnPropertyNames(object);
+        } catch (e) {
+          // IE bug where layout engine calls userland Object.getOwnPropertyNames for cross-domain `window` objects
+          return concat.call([], cachedWindowNames);
+        }
+      }
 
-		// Non-enumerable properties cannot be discovered but can be checked for by name.
-		// Define those used internally by JS to allow an incomplete solution
-		var commonProps = ['length', "name", "arguments", "caller", "prototype", "observe", "unobserve"];
+      // Polyfill.io fallback for non-array-like strings which exist in some ES3 user-agents (IE 8)
+      object =
+        toString.call(object) == "[object String]"
+          ? split.call(object, "")
+          : Object(object);
 
-		if (typeof object === 'undefined' || object === null) {
-			throw new TypeError('Cannot convert undefined or null to object');
-		}
+      var result = nativeGetOwnPropertyNames(object);
+      var extraNonEnumerableKeys = ["length", "prototype"];
+      for (var i = 0; i < extraNonEnumerableKeys.length; i++) {
+        var key = extraNonEnumerableKeys[i];
+        if (hasOwnProperty.call(object, key) && !result.includes(key)) {
+          result.push(key);
+        }
+      }
 
-		// Polyfill.io fallback for non-array-like strings which exist in some ES3 user-agents (IE 8)
-		object = toString.call(object) == '[object String]' ? split.call(object, '') : Object(object);
+      if (result.includes("__proto__")) {
+        var index = result.indexOf("__proto__");
+        result.splice(index, 1);
+      }
 
-		// Enumerable properties only
-		for (key in object) {
-			if (key !== "__proto__" && Object.prototype.hasOwnProperty.call(object, key)) {
-				buffer.push(key);
-			}
-		}
-
-		// Check for and add the common non-enumerable properties
-		for (var i=0, s=commonProps.length; i<s; i++) {
-			if (commonProps[i] in object) buffer.push(commonProps[i]);
-		}
-
-		return buffer;
-	});
-}())
+      return result;
+    }
+  );
+})();
