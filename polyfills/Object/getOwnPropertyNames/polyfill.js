@@ -31,7 +31,7 @@
           : Object(object);
 
       var result = nativeGetOwnPropertyNames(object);
-      var extraNonEnumerableKeys = ["length", "prototype"];
+      var extraNonEnumerableKeys = ["length", "prototype", "__proto__"];
       for (var i = 0; i < extraNonEnumerableKeys.length; i++) {
         var key = extraNonEnumerableKeys[i];
         if (hasOwnProperty.call(object, key) && !result.includes(key)) {
