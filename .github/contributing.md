@@ -25,10 +25,10 @@ The name of your folder is based on the method structure, for example:
 
 This folder contains 4 files:
 
-- [config.toml](#config-toml)
-- [detect.js](#detect-js)
-- [polyfill.js](#polyfill-js)
-- [tests.js](#tests-js)
+- [config.toml](#configtoml)
+- [detect.js](#detectjs)
+- [polyfill.js](#polyfilljs)
+- [tests.js](#testsjs)
 
 ### config.toml
 
