@@ -61,31 +61,13 @@ function intlLocaleDetectFor(locale) {
 	return "'Intl' in self && " +
 			"Intl.Collator && " +
 			"Intl.Collator.supportedLocalesOf && " +
-			`(function() {
-				try {
-					return Intl.Collator.supportedLocalesOf("${locale}").length === 1;
-				} catch (e) {
-					return false;
-				}
-			})` + " && " +
+			'(function() { try { return Intl.Collator.supportedLocalesOf("'+locale+'").length === 1; } catch (e) { return false; }})' + " && " +
 			"Intl.DateTimeFormat && " +
 			"Intl.DateTimeFormat.supportedLocalesOf && " +
-			`(function() {
-				try {
-					return Intl.DateTimeFormat.supportedLocalesOf("${locale}").length === 1;
-				} catch (e) {
-					return false;
-				}
-			})` + " && " +
+			'(function() { try { return Intl.DateTimeFormat.supportedLocalesOf("'+locale+'").length === 1; } catch (e) { return false; } })' + " && " +
 			"Intl.NumberFormat && " +
 			"Intl.NumberFormat.supportedLocalesOf && " +
-			`(function() {
-				try {
-					return Intl.NumberFormat.supportedLocalesOf("${locale}").length === 1;
-				} catch (e) {
-					return false;
-				}
-			})`;
+			'(function() { try { return Intl.NumberFormat.supportedLocalesOf("'+locale+'").length === 1; } catch (e) { return false; } })';
 }
 
 console.log('Importing Intl.~locale.* polyfill from ' + LocalesPath);
@@ -114,15 +96,15 @@ locales.forEach(function (file) {
 	if (locale === "root") {
 		return;
 	}
-	intlPolyfillDetect += ` && (function() {
-		try {
-			return Intl.Collator.supportedLocalesOf('"+locale+"').length === 1 &&
-			Intl.DateTimeFormat.supportedLocalesOf('"+locale+"').length === 1 &&
-			Intl.NumberFormat.supportedLocalesOf('"+locale+"').length === 1;
-		} catch (e) {
-			return false;
-		}
-	})`;
+	intlPolyfillDetect += "&& (function() {" +
+							"try {" +
+								"return Intl.Collator.supportedLocalesOf('"+locale+"').length === 1 &&" +
+										"Intl.DateTimeFormat.supportedLocalesOf('"+locale+"').length === 1 && "+
+										"Intl.NumberFormat.supportedLocalesOf('"+locale+"').length === 1;" +
+							"} catch (e) {" +
+								"return false;" +
+							"}" +
+	"})";
 })
 
 var detectOutputPath = path.join(IntlPolyfillOutput, 'detect.js');
