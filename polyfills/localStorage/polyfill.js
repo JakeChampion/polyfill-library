@@ -1,4 +1,4 @@
-(function (global) {
+(function () {
 	function Storage() {}
 
 	Storage.prototype = {
@@ -69,12 +69,20 @@
 		element.save(userdata);
 	}
 
-	if (!global.localStorage) {
+	var localStorageExists = (function() {
+		try {
+			return !!self.localStorage;
+		} catch (e) {
+			return false;
+		}
+	})();
+	
+	if (!localStorageExists) {
 		var
 		// <Global>.localStorage
-		localStorage = global.localStorage = new Storage(),
+		localStorage = self.localStorage = new Storage(),
 		// set storage element
-		element = global.document.lastChild.lastChild.appendChild(global.document.createElement('x-local-storage')),
+		element = self.document.lastChild.lastChild.appendChild(self.document.createElement('x-local-storage')),
 		// set userdata key and prefix
 		userdata = 'userdata',
 		keys;
@@ -96,6 +104,8 @@
 			localStorage[key] = element.getAttribute(userdata + key);
 		});
 
-		global.attachEvent('onunload', updateKeys);
+		if (self.attachEvent) {
+			self.attachEvent('onunload', updateKeys);
+		}
 	}
-}(self));
+}());

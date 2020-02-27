@@ -1,4 +1,4 @@
-'localStorage' in self && (function() {
+(function() {
 	try {
 		// Needed for Safari private browsing.
 		self.localStorage.setItem('storage_test', 1);
@@ -7,4 +7,4 @@
 	} catch (e) {
 		return false;
 	}
-}).call(self)
+})()
