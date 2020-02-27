@@ -1,1 +1,1 @@
-'AudioContext' in self
+'AudioContext' in self || !('webkitAudioContext' in self)
