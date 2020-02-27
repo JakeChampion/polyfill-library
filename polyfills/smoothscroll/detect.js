@@ -2,4 +2,4 @@
 // "scrollBy" in Element.prototype &&
 // "scroll" in Element.prototype &&
 // "scrollTo" in Element.prototype
-true
+false
