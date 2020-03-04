@@ -16,8 +16,7 @@ async function main() {
   }
   const compat = await fs.readJSON(file);
   const changes = [];
-  for (let feature of Object.keys(compat)) {
-    feature = feature.split(" ")[0];
+  for (const feature of Object.keys(compat)) {
     const featureMetadata = await polyfillLibrary.describePolyfill(feature);
     if (!featureMetadata) {
       throw new Error(
