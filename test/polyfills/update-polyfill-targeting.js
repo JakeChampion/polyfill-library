@@ -18,11 +18,6 @@ async function main() {
   const changes = [];
   for (const feature of Object.keys(compat)) {
     const featureMetadata = await polyfillLibrary.describePolyfill(feature);
-    if (!featureMetadata) {
-      throw new Error(
-        `${feature} does not exists within the polyfill-library.`
-      );
-    }
 
     for (const browser of Object.keys(compat[feature])) {
       for (const [version, support] of Object.entries(
