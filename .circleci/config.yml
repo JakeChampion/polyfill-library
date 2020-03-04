@@ -119,6 +119,8 @@ jobs:
           for i in `git diff --name-only`; 
           do 
             git checkout master;
+            git config --global user.email "me@jakechampion.name"
+            git config --global user.name "Jake Champion"
             branch_name=`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`;
             git checkout -b $branch_name;
             git add $i;
