@@ -122,7 +122,7 @@ jobs:
             git checkout -b `echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`;
             git add $i;
             git commit -m "update targets for $i";
-            git push origin;
+            git push origin HEAD;
             hub pull-request --no-edit;
           done
 workflows:
