@@ -16,22 +16,24 @@ async function main() {
   }
   const compat = await fs.readJSON(file);
   const changes = [];
-  for (const feature of Object.keys(compat)) {
+  for (const [feature, featureResults] of Object.entries(compat)) {
     const featureMetadata = await polyfillLibrary.describePolyfill(feature);
 
-    for (const browser of Object.keys(compat[feature])) {
-      for (const [version, support] of Object.entries(
-        compat[feature][browser]
-      )) {
+    for (const [browser, results] of Object.entries(featureResults)) {
+      for (const [version, support] of Object.entries(results)) {
+        const browserIsServedPolyfill =
+          featureMetadata.browsers &&
+          featureMetadata.browsers[browser] &&
+          semver.satisfies(
+            semver.coerce(version),
+            featureMetadata.browsers[browser]
+          );
+
+        const browserIsNotServedPolyfill = !browserIsServedPolyfill;
+
         if (support === "native") {
-          if (
-            featureMetadata.browsers &&
-            featureMetadata.browsers[browser] &&
-            semver.satisfies(
-              semver.coerce(version),
-              featureMetadata.browsers[browser]
-            )
-          ) {
+          if (browserIsServedPolyfill) {
+            // Change the browser config for the polyfill to not include this version
             changes.push([
               feature + "|" + browser,
               JSON.stringify({ [browser]: `<${version}` })
@@ -39,14 +41,7 @@ async function main() {
           }
         }
         if (support === "polyfilled") {
-          if (
-            !featureMetadata.browsers ||
-            !featureMetadata.browsers[browser] ||
-            !semver.satisfies(
-              semver.coerce(version),
-              featureMetadata.browsers[browser]
-            )
-          ) {
+          if (browserIsNotServedPolyfill) {
             changes.push([
               feature + "|" + browser,
               JSON.stringify({
@@ -57,14 +52,7 @@ async function main() {
         }
 
         if (support === "missing") {
-          if (
-            !featureMetadata.browsers ||
-            !featureMetadata.browsers[browser] ||
-            !semver.satisfies(
-              semver.coerce(version),
-              featureMetadata.browsers[browser]
-            )
-          ) {
+          if (browserIsNotServedPolyfill) {
             changes.push([
               feature + "|" + browser,
               JSON.stringify({
