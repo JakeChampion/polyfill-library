@@ -119,10 +119,11 @@ jobs:
           for i in `git diff --name-only`; 
           do 
             git checkout master;
-            git checkout -b `echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`;
+            branch_name=`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`;
+            git checkout -b $branch_name;
             git add $i;
             git commit -m "update targets for $i";
-            git push origin HEAD;
+            git push origin $branch_name;
             hub pull-request --no-edit;
           done
 workflows:
