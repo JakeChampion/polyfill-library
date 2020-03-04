@@ -13,7 +13,7 @@ async function main() {
 		throw new Error("Compat results file does not exists, to create the file you need to run the command: `npm run generate-compat-data`.");
 	}
 	const compat = await fs.readJSON(file);
-	const questions = [];
+	const changes = [];
 	for (let feature of Object.keys(compat)) {
 		feature = feature.split(" ")[0];
 		const featureMetadata = await polyfillLibrary.describePolyfill(feature);
@@ -25,18 +25,18 @@ async function main() {
 			for (const [version, support] of Object.entries(compat[feature][browser])) {
 				if (support === "native") {
 					if (featureMetadata.browsers && featureMetadata.browsers[browser] && semver.satisfies(semver.coerce(version), featureMetadata.browsers[browser])) {
-						questions.push([feature + "|" + browser, JSON.stringify({ [browser]: `<${version}` })]);
+						changes.push([feature + "|" + browser, JSON.stringify({ [browser]: `<${version}` })]);
 					}
 				}
 				if (support === "polyfilled") {
 					if (!featureMetadata.browsers || !featureMetadata.browsers[browser] || !semver.satisfies(semver.coerce(version), featureMetadata.browsers[browser])) {
-						questions.push([feature + "|" + browser, JSON.stringify({ [browser]: `<${Number.parseFloat(version) + 1}` })]);
+						changes.push([feature + "|" + browser, JSON.stringify({ [browser]: `<${Number.parseFloat(version) + 1}` })]);
 					}
 				}
 
 				if (support === "missing") {
 					if (!featureMetadata.browsers || !featureMetadata.browsers[browser] || !semver.satisfies(semver.coerce(version), featureMetadata.browsers[browser])) {
-						questions.push([feature + "|" + browser,JSON.stringify({ [browser]: `<${Number.parseFloat(version) + 1}` })]);
+						changes.push([feature + "|" + browser,JSON.stringify({ [browser]: `<${Number.parseFloat(version) + 1}` })]);
 					}
 				}
 			}
@@ -50,9 +50,8 @@ async function main() {
 		config.browsers = Object.assign(config.browsers, JSON.parse(update));
         await fs.writeFile(configPath, TOML.stringify(config), 'utf-8');
 	}
-	if (questions.length > 0) {
-		const answers = questions;
-		for (const [featureWithBrowser, value] of answers) {
+	if (changes.length > 0) {
+		for (const [featureWithBrowser, value] of changes) {
 			const [feature] = featureWithBrowser.split("|");
 			if (typeof value === "object") {
 				for (const [featureWithBrowser2, value2] of Object.entries(value)) {
