@@ -10,7 +10,7 @@ async function main() {
 	const file = path.join(__dirname, "./compat.json");
 	// Ensure file exists before proceeding.
 	if (!fs.existsSync(file)) {
-		throw new Error("Compat results file does not exists, to create the file you need to run the command: `npm run generate-compat-data`.");
+		throw new Error("Compat results file does not exists, to create the file you need to run the command: `node ./test/polyfills/compat.js`.");
 	}
 	const compat = await fs.readJSON(file);
 	const changes = [];
