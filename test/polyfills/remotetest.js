@@ -210,7 +210,7 @@ const printProgress = (function() {
             .run()
             .then(job => {
               if (job.state === "complete") {
-                const [family, version] = job.name.split("/");
+                const [family, version] = normalizeUserAgent(job.useragent).split("/");
                 _.set(
                   testResults,
                   [family, version, job.mode],
