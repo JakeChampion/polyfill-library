@@ -1,6 +1,5 @@
 type Flag = 'gated' | 'always';
 
-
 // TODO: consider making the following types unions of string literals, e.g. 'es5' | 'es6' | 'es7' for PolyfillAlias
 
 /** A browser */
@@ -20,6 +19,7 @@ interface FeatureOptions {
   flags: Iterable<Flag>;
 }
 
+/** Outputs information from `getPolyfills`  */
 interface OutputFeatures extends FeatureOptions {
   flags: Set<Flag>;
   aliasOf: Set<Polyfill>;
