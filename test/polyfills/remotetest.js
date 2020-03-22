@@ -19,7 +19,7 @@ const path = require("path");
 const fs = require("fs-extra");
 const cli = require("cli-color");
 const _ = require("lodash");
-const normalizeUserAgent = require("../../lib/index").normalizeUserAgent;
+const normalizeUserAgent = require('../../lib').normalizeUserAgent;
 const TestJob = require("./test-job");
 const Tunnel = require("browserstack-local").Local;
 
@@ -55,7 +55,7 @@ const browsers = browserlist
 
 console.log({ browsers });
 
-const useragentToBrowserObj = browserWithVersion => {
+const useragentToBrowserObject = browserWithVersion => {
   const [browser, version] = browserWithVersion.split("/");
   for (const browserObject of browserstacklist) {
     if (browser === browserObject.os && version === browserObject.os_version) {
@@ -104,7 +104,7 @@ const tunnelId =
   "_" +
   new Date().toISOString();
 const jobs = browsers.map(browser => {
-  const capability = useragentToBrowserObj(browser);
+  const capability = useragentToBrowserObject(browser);
   return new TestJob(
     browser,
     url,
@@ -125,21 +125,21 @@ const printProgress = (function() {
     const out = ["-".repeat(80)];
     let readyCount = 0;
     jobs.forEach(job => {
-      let msg = "";
+      let message = "";
       switch (job.state) {
         case "complete": {
           if (job.results.failed) {
-            msg = cli.red(
+            message = cli.red(
               `✘ ${job.results.total} tests, ${job.results.failed} failures`
             );
           } else {
-            msg = cli.green(`✓ ${job.results.total} tests`);
+            message = cli.green(`✓ ${job.results.total} tests`);
           }
-          msg += `  ${job.duration} seconds to complete`;
+          message += `  ${job.duration} seconds to complete`;
           break;
         }
         case "error": {
-          msg = cli.red(`⚠️  ${job.results}`);
+          message = cli.red(`⚠️  ${job.results}`);
           break;
         }
         case "ready": {
@@ -147,35 +147,35 @@ const printProgress = (function() {
           break;
         }
         case "running": {
-          msg =
+          message =
             job.results.runnerCompletedCount + "/" + job.results.runnerCount;
           if (job.results.failed) {
-            msg += cli.red("  ✘ " + job.results.failed);
+            message += cli.red("  ✘ " + job.results.failed);
           }
           const timeWaiting = Math.floor(
             (Date.now() - job.lastUpdateTime) / 1000
           );
           if (timeWaiting > 5) {
-            msg += cli.yellow("  🕒  " + timeWaiting + "s");
+            message += cli.yellow("  🕒  " + timeWaiting + "s");
           }
           break;
         }
         default: {
-          msg = job.state;
+          message = job.state;
           const timeWaiting = Math.floor(
             (Date.now() - job.lastUpdateTime) / 1000
           );
           if (timeWaiting > 5) {
-            msg += cli.yellow("  🕒  " + timeWaiting + "s");
+            message += cli.yellow("  🕒  " + timeWaiting + "s");
           }
         }
       }
-      if (msg) {
+      if (message) {
         out.push(
           ` • Browser: ${job.name.padEnd(
             " ",
             20
-          )} Testing mode: ${job.mode.padEnd(" ", 8)} ${msg}`
+          )} Testing mode: ${job.mode.padEnd(" ", 8)} ${message}`
         );
       }
     });
@@ -200,7 +200,7 @@ const printProgress = (function() {
     });
     const cliFeedbackTimer = setInterval(() => printProgress(jobs), pollTick);
     // Run jobs within concurrency limits
-    await new Promise((resolve, _reject) => {
+    await new Promise((resolve) => {
       const results = [];
       let resolvedCount = 0;
       function pushJob() {
@@ -225,8 +225,8 @@ const printProgress = (function() {
               }
               return job;
             })
-            .catch(e => {
-              if (e.message.includes("There was an error. Please try again.")) {
+            .catch(error => {
+              if (error.message.includes("There was an error. Please try again.")) {
                 /* 
                   This is an exception that Browserstack is throwing when it 
                   fails to open a session using a real device. I think that
@@ -254,14 +254,16 @@ const printProgress = (function() {
                       }
                       return job;
                     })
-                    .catch(e => {
-                      console.log(e.stack || e);
+                    .catch(error => {
+                      console.log(error.stack || error);
                       process.exitCode = 1;
+                      // eslint-disable-next-line unicorn/no-process-exit
                       process.exit(1);
                     }));
               } else {
-                console.log(e.stack || e);
+                console.log(error.stack || error);
                 process.exitCode = 1;
+                // eslint-disable-next-line unicorn/no-process-exit
                 process.exit(1);
               }
             })
@@ -315,9 +317,10 @@ const printProgress = (function() {
       console.log("");
       throw new Error("Failures detected");
     }
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     process.exitCode = 1;
+    // eslint-disable-next-line unicorn/no-process-exit
     process.exit(1);
   }
 }());

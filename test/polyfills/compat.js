@@ -5,9 +5,9 @@ const path = require("path");
 const _ = require('lodash');
 
 const intersection = (a, b) =>
-  new Set(Array.from(b).filter(value => a.has(value)));
+  new Set([...b].filter(value => a.has(value)));
 const difference = (a, b) =>
-  new Set(Array.from(b).filter(value => !a.has(value)));
+  new Set([...b].filter(value => !a.has(value)));
 
 console.log("Reading test result data");
 const control = fs.readJSONSync(path.join(__dirname, "results-control.json"));
@@ -26,9 +26,9 @@ Object.keys(compat).forEach(browserName => {
       );
     }
 
-    const allTests = new Set(Array.from(testResults.control.testedSuites));
-    const failedNative = new Set(Array.from(testResults.control.failingSuites));
-    const failedPolyfilled = new Set(Array.from(testResults.all.failingSuites));
+    const allTests = new Set([...testResults.control.testedSuites]);
+    const failedNative = new Set([...testResults.control.failingSuites]);
+    const failedPolyfilled = new Set([...testResults.all.failingSuites]);
 
     const missing = intersection(failedNative, failedPolyfilled);
     const polyfilled = difference(failedPolyfilled, failedNative);

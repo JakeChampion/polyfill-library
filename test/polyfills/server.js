@@ -2,7 +2,7 @@
 
 require("hard-rejection/register");
 const semver = require("semver");
-const polyfillio = require("../../lib/index");
+const polyfillio = require('../../lib');
 const fs = require("fs");
 const promisify = require("util").promisify;
 const readFile = promisify(fs.readFile);
@@ -51,8 +51,8 @@ const cacheFor1Day = cache("1 day", () => true, {
   }
 });
 
-app.get(["/test"], createEndpoint(runnerTemplate, polyfillio));
-app.get(["/"], createEndpoint(directorTemplate, polyfillio));
+app.get(["/test"], createEndpoint(runnerTemplate));
+app.get(["/"], createEndpoint(directorTemplate));
 app.get("/mocha.js", cacheFor1Day,(request, response) => {
   response.sendFile(require.resolve("mocha/mocha.js"));
 });
@@ -82,7 +82,7 @@ app.get(
     if (includePolyfills === "yes") {
       const polyfillsWithTests = await testablePolyfills(isIE8);
       const features = polyfillsWithTests.map(polyfill => polyfill.feature);
-      const params = {
+      const parameters = {
         features: createPolyfillLibraryConfigFor(
           feature ? feature : features.join(","),
           always === "yes"
@@ -91,7 +91,7 @@ app.get(
         stream: false,
         uaString: always === "yes" ? "other/0.0.0" : request.get("user-agent")
       };
-      const bundle = await polyfillio.getPolyfillString(params);
+      const bundle = await polyfillio.getPolyfillString(parameters);
       response.send(bundle);
     } else {
       response.send("");
@@ -149,8 +149,8 @@ async function testablePolyfills(isIE8, ua) {
       }
     }
     if (config && config.isTestable && config.isPublic && config.hasTests) {
-      const baseDir = path.resolve(__dirname, "../../polyfills");
-      const testFile = path.join(baseDir, config.baseDir, "/tests.js");
+      const baseDirectory = path.resolve(__dirname, "../../polyfills");
+      const testFile = path.join(baseDirectory, config.baseDir, "/tests.js");
       const testSuite = `describe('${polyfill}', function() { 
         it('passes the feature detect', function() {
           proclaim.ok((function() {

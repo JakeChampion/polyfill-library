@@ -2,7 +2,7 @@
 'use strict';
 
 const assert = require('proclaim');
-const polyfillLibrary = require('../../');
+const polyfillLibrary = require('../..');
 
 describe("polyfill-library", function () {
     this.timeout(30000);

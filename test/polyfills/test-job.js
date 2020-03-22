@@ -94,7 +94,7 @@ module.exports = class TestJob {
         key: process.env.BROWSERSTACK_ACCESS_KEY,
         browserstackLocal: true
       });
-    } catch (e) {
+    } catch (error) {
       /* 
         This is an exception that Browserstack is throwing when it 
         fails to open a session using a real device. I think that
@@ -102,16 +102,16 @@ module.exports = class TestJob {
         We need to wait some time to try again because it depends on time.
         We will also try more for these exceptions.
        */
-      if (e.message.includes("There was an error. Please try again.") && this.runCount < 3) {
+      if (error.message.includes("There was an error. Please try again.") && this.runCount < 3) {
         this.runCount += 1;
         this.setState("waiting 30 seconds to retry");
         await wait(30 * 1000);
         this.setState(`retrying browser -- attempt ${this.runCount}`);
         return this.run();
       } else {
-        this.results = e;
+        this.results = error;
         this.setState("error");
-        throw e;
+        throw error;
       }
     }
 
@@ -132,12 +132,12 @@ module.exports = class TestJob {
       await this.setState("polling for results");
       await this.pollForResults();
       return this;
-    } catch (e) {
-      console.log({ e });
+    } catch (error) {
+      console.log({ error });
       await this.browser.closeWindow();
-      this.results = e;
+      this.results = error;
       this.setState("error");
-      throw e;
+      throw error;
     }
   }
 
@@ -155,7 +155,7 @@ module.exports = class TestJob {
       failingSuites: this.results.failingSuites
         ? Object.keys(this.results.failingSuites)
         : [],
-      testedSuites: Array.from(this.results.testedSuites)
+      testedSuites: [...this.results.testedSuites]
     };
   }
 };

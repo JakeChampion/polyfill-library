@@ -3,7 +3,7 @@
 
 const assert = require('proclaim');
 const sinon = require('sinon');
-const setsToArrays = require('../../utils/sets_to_arrays');
+const setsToArrays = require('../../utils/sets-to-arrays');
 
 describe('lib/aliases', () => {
 	let aliasResolver;

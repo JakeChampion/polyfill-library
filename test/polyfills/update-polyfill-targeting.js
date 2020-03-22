@@ -3,7 +3,7 @@
 const fs = require("fs-extra");
 const path = require("path");
 const semver = require("semver");
-const polyfillLibrary = require("../../lib/index");
+const polyfillLibrary = require('../../lib');
 const TOML = require("@iarna/toml");
 
 async function main() {
@@ -103,7 +103,7 @@ async function main() {
   }
 }
 
-main().catch(e => {
-  console.error(e);
+main().catch(error => {
+  console.error(error);
   process.exitCode = 1;
 });
