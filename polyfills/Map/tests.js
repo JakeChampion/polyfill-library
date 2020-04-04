@@ -478,6 +478,9 @@ describe('Map', function () {
 		o.set(frozenObject, 'frozen solid');
 		proclaim.ok(o.has(frozenObject));
 		proclaim.equal(o.get(frozenObject), 'frozen solid');
+
+		o.set("", "test value");
+		proclaim.equal(o.get(""), 'test value');
 	});
 
 	it("implements .delete()", function () {
