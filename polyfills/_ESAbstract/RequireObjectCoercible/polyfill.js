@@ -16,7 +16,7 @@
 */
 function RequireObjectCoercible(argument) { // eslint-disable-line no-unused-vars
 	if (argument === null || argument === undefined) {
-		throw TypeError(Object.prototype.toString.call(argument) + ' is not iterable (cannot read property Symbol(Symbol.iterator))');
+		throw TypeError(Object.prototype.toString.call(argument) + ' is not coercible to Object.');
 	}
   return argument;
 }
