@@ -97,7 +97,7 @@
 	 */
 	var setHashIndex = function(map, recordKey, recordIndex) {
 		var hashedKey = hashKey(recordKey);
-		if (!hashedKey) {
+		if (hashedKey === false) {
 			// If hashed key is false, the recordKey is an object which is not extensible.
 			// That indicates we cannot use the hash map for it, so this operation becomes no-op.
 			return false;
@@ -671,4 +671,4 @@
 		// More info on table 2: https://msdn.microsoft.com/en-us/library/dd229916(v=vs.85).aspx
 		global.Map = Map;
 	}
-}(this));
+}(self));

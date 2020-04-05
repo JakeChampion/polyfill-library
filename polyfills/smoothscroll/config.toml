@@ -9,7 +9,10 @@ aliases = [
   "window.scrollBy"
 ]
 dependencies = [
-  "requestAnimationFrame"
+  "requestAnimationFrame",
+  "Function.prototype.bind",
+  "getComputedStyle",
+  "Object.defineProperty"
 ]
 license = "MIT"
 spec = "https://drafts.csswg.org/cssom-view/#smooth-scrolling"
@@ -19,8 +22,8 @@ docs = "https://developer.mozilla.org/en/docs/Web/CSS/scroll-behavior"
 [browsers]
 edge = "* - 76"
 edge_mob = "*"
-ie = "*"
-ie_mob = "*"
+ie = "9 - *"
+ie_mob = "9 - *"
 firefox = "4 - 36"
 opera = "*"
 safari = "*"

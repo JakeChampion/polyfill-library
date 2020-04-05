@@ -1,4 +1,4 @@
-alias = [ ]
+aliases = [ ]
 dependencies = [
   "Object.defineProperty"
 ]

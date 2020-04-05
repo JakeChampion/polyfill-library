@@ -1,1 +1,1 @@
-'DocumentFragment' in this && 'prepend' in DocumentFragment.prototype
+'DocumentFragment' in self && 'prepend' in DocumentFragment.prototype

@@ -1,1 +1,1 @@
-'document' in this && 'hidden' in document && 'visibilityState' in document
+'document' in self && 'hidden' in document && 'visibilityState' in document

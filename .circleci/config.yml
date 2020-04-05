@@ -22,6 +22,7 @@ jobs:
       - checkout
       - run: npm ci
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - run: npm version --no-git-tag-version ${CIRCLE_TAG}
       - run: npm publish
   polyfill_tests_android:
     docker:
@@ -100,24 +101,45 @@ jobs:
           command: node ./test/polyfills/server.js
           background: true
       - run: node ./test/polyfills/remotetest.js targeted director browser=safari
-  # update_polyfill_targets:
-  #   docker:
-  #     - image: circleci/node:10
-  #   steps:
-  #     - checkout
-  #     - run: npm ci
-  #     - run:
-  #         name: Start test-server
-  #         command: node ./test/polyfills/server.js
-  #         background: true
-  #     - run: node ./test/polyfills/remotetest.js compat
-  #     - run: node ./test/polyfills/remotetest.js all
-  #     - run: node ./test/polyfills/compat.js
-  #     - run: node ./test/polyfills/update-polyfill-targeting.js
+  update_polyfill_targets:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: Start test-server
+          command: node ./test/polyfills/server.js
+          background: true
+      - run: node ./test/polyfills/remotetest.js control || true
+      - run: node ./test/polyfills/remotetest.js all || true
+      - run: node ./test/polyfills/compat.js
+      - run: node ./test/polyfills/update-polyfill-targeting.js
+      - run: >
+          curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+          for i in `git diff --name-only`; 
+          do 
+            git checkout master;
+            git config --global user.email "me@jakechampion.name"
+            git config --global user.name "Jake Champion"
+            branch_name=`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`;
+            git checkout -b $branch_name;
+            git add $i;
+            git commit -m "update targets for $i";
+            git push origin $branch_name;
+            bin/hub pull-request --no-edit;
+          done
 workflows:
-  # update_polyfill_targets:
-  #   jobs:
-  #     - update_polyfill_targets
+  update_polyfill_targets:
+    jobs:
+      - update_polyfill_targets
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
   test:
     jobs:
       - lint_js:

@@ -2,7 +2,7 @@
 
 require("hard-rejection/register");
 const semver = require("semver");
-const polyfillio = require("../../lib/index");
+const polyfillio = require('../../lib');
 const fs = require("fs");
 const promisify = require("util").promisify;
 const readFile = promisify(fs.readFile);
@@ -51,8 +51,8 @@ const cacheFor1Day = cache("1 day", () => true, {
   }
 });
 
-app.get(["/test"], createEndpoint(runnerTemplate, polyfillio));
-app.get(["/"], createEndpoint(directorTemplate, polyfillio));
+app.get(["/test"], createEndpoint(runnerTemplate));
+app.get(["/"], createEndpoint(directorTemplate));
 app.get("/mocha.js", cacheFor1Day,(request, response) => {
   response.sendFile(require.resolve("mocha/mocha.js"));
 });
@@ -82,7 +82,7 @@ app.get(
     if (includePolyfills === "yes") {
       const polyfillsWithTests = await testablePolyfills(isIE8);
       const features = polyfillsWithTests.map(polyfill => polyfill.feature);
-      const params = {
+      const parameters = {
         features: createPolyfillLibraryConfigFor(
           feature ? feature : features.join(","),
           always === "yes"
@@ -91,7 +91,7 @@ app.get(
         stream: false,
         uaString: always === "yes" ? "other/0.0.0" : request.get("user-agent")
       };
-      const bundle = await polyfillio.getPolyfillString(params);
+      const bundle = await polyfillio.getPolyfillString(parameters);
       response.send(bundle);
     } else {
       response.send("");
@@ -105,7 +105,8 @@ app.get(
   async (request, response) => {
     const ua = request.get("User-Agent");
     const isIE8 = polyfillio.normalizeUserAgent(ua) === "ie/8.0.0";
-    const feature = request.query.feature || "";
+    const feature = request.query.feature;
+    const requestedFeature = request.query.feature !== undefined;
 
     const headers = {
       "Content-Type": "text/javascript; charset=utf-8"
@@ -116,10 +117,9 @@ app.get(
     const polyfills = await testablePolyfills(isIE8);
 
     // Filter for querystring args
-    const features = feature
-      ? polyfills.filter(polyfill => feature.split(',').includes(polyfill.feature))
+    const features = requestedFeature
+      ? polyfills.filter(polyfill => feature && feature.split(',').includes(polyfill.feature))
       : polyfills;
-
     const testSuite = features.map(feature => feature.testSuite).join("\n");
 
     response.send(testSuite);
@@ -140,8 +140,6 @@ async function testablePolyfills(isIE8, ua) {
       }
       if (ua) {
         const [family, version] = ua.split('/');
-        console.log({family, version});
-        console.log(config.browsers[family], !semver.satisfies(version, config.browsers[family]));
         if (config.browsers[family] && !semver.satisfies(version, config.browsers[family])){
           continue;
         }
@@ -151,8 +149,8 @@ async function testablePolyfills(isIE8, ua) {
       }
     }
     if (config && config.isTestable && config.isPublic && config.hasTests) {
-      const baseDir = path.resolve(__dirname, "../../polyfills");
-      const testFile = path.join(baseDir, config.baseDir, "/tests.js");
+      const baseDirectory = path.resolve(__dirname, "../../polyfills");
+      const testFile = path.join(baseDirectory, config.baseDir, "/tests.js");
       const testSuite = `describe('${polyfill}', function() { 
         it('passes the feature detect', function() {
           proclaim.ok((function() {
@@ -210,73 +208,74 @@ function createEndpoint(template) {
     const features = feature
       ? polyfills.filter(polyfill => feature === polyfill.feature)
       : polyfills;
-      response.status(200);
+    response.status(200);
 
-      response.set({
-        "Content-Type": "text/html; charset=utf-8"
-      });
+    response.set({
+      "Content-Type": "text/html; charset=utf-8"
+    });
 
-      response.send(
-        template({
-          features: features,
-          includePolyfills: includePolyfills,
-          always: always,
-          afterTestSuite: `
-          // During the test run, surface the test results in Browserstacks' preferred format
-          function run() {
-            // Given a test, get the first level suite that it is contained within
-            // Not the top level, the first one down.
-            function getFirstLevelSuite(test) {
-              var parent = test;
-              while (parent && parent.parent && parent.parent.parent) {
-                parent = parent.parent;
-              }
-              return parent.title;
+    response.send(
+      template({
+        requestedFeature: !!feature,
+        features: features,
+        includePolyfills: includePolyfills,
+        always: always,
+        afterTestSuite: `
+        // During the test run, surface the test results in Browserstacks' preferred format
+        function run() {
+          // Given a test, get the first level suite that it is contained within
+          // Not the top level, the first one down.
+          function getFirstLevelSuite(test) {
+            var parent = test;
+            while (parent && parent.parent && parent.parent.parent) {
+              parent = parent.parent;
             }
-            var runner = mocha.run();
-            var results = {
-              state: 'complete',
-              passed: 0,
-              failed: 0,
-              total: 0,
-              duration: 0,
-              tests: [],
-              failingSuites: {},
-              testedSuites: [],
-              uaString: window.navigator.userAgent || 'unknown'
-            };
-            runner.on('pass', function(test) {
-              results.passed++;
-              results.total++;
-            });
-            runner.on('fail', function(test, err) {
-              // Get a set of all the suites with failing tests in them.
-              if (test.parent) {
-                results.failingSuites[getFirstLevelSuite(test)] = true;
-              }
-              results.failed++;
-              results.total++;
-              results.tests.push({
-                name: test.fullTitle(),
-                result: false,
-                message: err.message,
-                stack: err.stack,
-                failingSuite: getFirstLevelSuite(test)
-              });
-            });
-            runner.on('suite', function(suite) {
-              results.testedSuites.push(getFirstLevelSuite(suite));
-            });
-            runner.on('end', function() {
-              window.global_test_results = results;
-              if (parent && parent.receiveTestResults) {
-                var flist = ["${feature}"];
-                parent.receiveTestResults(flist, results);
-              }
-            });
+            return parent.title;
           }
-          run();`
-        })
-      );
+          var runner = mocha.run();
+          var results = {
+            state: 'complete',
+            passed: 0,
+            failed: 0,
+            total: 0,
+            duration: 0,
+            tests: [],
+            failingSuites: {},
+            testedSuites: [],
+            uaString: window.navigator.userAgent || 'unknown'
+          };
+          runner.on('pass', function(test) {
+            results.passed++;
+            results.total++;
+          });
+          runner.on('fail', function(test, err) {
+            // Get a set of all the suites with failing tests in them.
+            if (test.parent) {
+              results.failingSuites[getFirstLevelSuite(test)] = true;
+            }
+            results.failed++;
+            results.total++;
+            results.tests.push({
+              name: test.fullTitle(),
+              result: false,
+              message: err.message,
+              stack: err.stack,
+              failingSuite: getFirstLevelSuite(test)
+            });
+          });
+          runner.on('suite', function(suite) {
+            results.testedSuites.push(getFirstLevelSuite(suite));
+          });
+          runner.on('end', function() {
+            window.global_test_results = results;
+            if (parent && parent.receiveTestResults) {
+              var flist = ["${feature}"];
+              parent.receiveTestResults(flist, results);
+            }
+          });
+        }
+        run();`
+      })
+    );
   };
 }

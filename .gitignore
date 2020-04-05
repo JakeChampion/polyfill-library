@@ -4,6 +4,14 @@ polyfills/Intl/~locale/**/detect.js
 polyfills/Intl/~locale/**/tests.js
 polyfills/Intl/~locale/**/polyfill.js
 polyfills/Intl/~locale/**/config.toml
+polyfills/Intl/PluralRules/~locale/**/detect.js
+polyfills/Intl/PluralRules/~locale/**/tests.js
+polyfills/Intl/PluralRules/~locale/**/polyfill.js
+polyfills/Intl/PluralRules/~locale/**/config.toml
+polyfills/Intl/RelativeTimeFormat/~locale/**/detect.js
+polyfills/Intl/RelativeTimeFormat/~locale/**/tests.js
+polyfills/Intl/RelativeTimeFormat/~locale/**/polyfill.js
+polyfills/Intl/RelativeTimeFormat/~locale/**/config.toml
 polyfills/__dist/
 polyfills/~html5-elements/polyfill.js
 polyfills/AudioContext/polyfill.js
@@ -11,6 +19,8 @@ polyfills/EventSource/polyfill.js
 polyfills/HTMLPictureElement/polyfill.js
 polyfills/Intl/detect.js
 polyfills/Intl/polyfill.js
+polyfills/Intl/PluralRules/polyfill.js
+polyfills/Intl/RelativeTimeFormat/polyfill.js
 polyfills/JSON/polyfill.js
 polyfills/MutationObserver/polyfill.js
 polyfills/ResizeObserver/polyfill.js
@@ -25,3 +35,6 @@ polyfills/String/prototype/normalize/polyfill.js
 polyfills/AbortController/polyfill.js
 polyfills/smoothscroll/polyfill.js
 local.log
+test/polyfills/compat.json
+test/polyfills/results-all.json
+test/polyfills/results-control.json

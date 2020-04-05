@@ -1,5 +1,8 @@
 (function () {
 
+	if ('Element' in self && 'HTMLElement' in self) {
+		return;
+	}
 	// IE8
 	if (window.Element && !window.HTMLElement) {
 		window.HTMLElement = window.Element;

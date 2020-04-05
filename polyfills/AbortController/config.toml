@@ -10,9 +10,9 @@ dependencies = [
   "Symbol.toStringTag",
   "WeakMap"
 ]
-license = "Apache-2.0"
+license = "MIT"
 spec = "https://dom.spec.whatwg.org/#interface-abortcontroller"
-repo = "https://github.com/mo/abortcontroller-polyfill"
+repo = "https://github.com/mysticatea/abort-controller"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/AbortController"
 
 [browsers]
@@ -32,4 +32,3 @@ android = "<67"
 [install]
 module = "abort-controller"
 paths = [ "dist/abort-controller.umd.js" ]
-

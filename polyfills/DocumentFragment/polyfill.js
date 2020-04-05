@@ -1,1 +1,1 @@
-this.DocumentFragment = document.createDocumentFragment().constructor;
+self.DocumentFragment = document.createDocumentFragment().constructor;

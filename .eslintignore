@@ -13,6 +13,10 @@ polyfills/fetch/polyfill.js
 polyfills/HTMLPictureElement/polyfill.js
 polyfills/Intl/polyfill.js
 polyfills/Intl/~locale/**/polyfill.js
+polyfills/Intl/RelativeTimeFormat/~locale/**/polyfill.js
+polyfills/Intl/PluralRules/~locale/**/polyfill.js
+polyfills/Intl/PluralRules/polyfill.js
+polyfills/Intl/RelativeTimeFormat/polyfill.js
 polyfills/JSON/polyfill.js
 polyfills/MutationObserver/polyfill.js
 polyfills/String/prototype/normalize/polyfill.js

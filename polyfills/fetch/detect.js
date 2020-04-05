@@ -1,1 +1,1 @@
-'fetch' in this
+'fetch' in self

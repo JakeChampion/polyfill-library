@@ -1,57 +1,37 @@
-if ((typeof WorkerGlobalScope === "undefined") && (typeof importScripts !== "function")) {
-	(function () {
+// document.currentScript polyfill by Adam Miller -- modifed by Jake Champion
 
-		var
+// MIT license
 
-			// Check if the browser supports the `readyState` property on `script` elements.
-			// Guaranteed accurate in IE 6-10.
-			// Not correctly supported in any other browsers. =(
-			supportsScriptReadyState = 'readyState' in document.createElement('script'),
+(function(document){
+  var currentScript = "currentScript",
+      scripts = document.getElementsByTagName('script'); // Live NodeList collection
 
-			// Unfortunately necessary browser detection for Opera.
-			isOpera = this.opera && this.opera.toString() === '[object Opera]',
+  // If browser needs currentScript polyfill, add get currentScript() to the document object
+  if (!(currentScript in document)) {
+    Object.defineProperty(document, currentScript, {
+      get: function(){
 
-			// Has support for `Object.defineProperty`.
-			// Even IE8's incomplete implementation is sufficient here since it works on
-			// native DOM interfaces like `document`.
-			canDefineProp = typeof Object.defineProperty === 'function',
+        // IE 6-10 supports script readyState
+        // IE 10+ support stack trace
+        try { throw new Error(); }
+        catch (err) {
 
-			// Get the currently "executing" (i.e. EVALUATING) `script` DOM element per the
-			// spec requirements for `document.currentScript`.
-			_currentEvaluatingScript = function () {
-				var
+          // Find the second match for the "at" string to get file src url from stack.
+          // Specifically works with the format of stack traces in IE.
+          var i = 0;
+          var res = ((/.*at [^(]*\((.*):.+:.+\)$/ig).exec(err.stack) || [false])[1];
 
-					// Live NodeList collection
-					scripts = document.getElementsByTagName('script');
+          // For all scripts on the page, if src matches or if ready state is interactive, return the script tag
+          for(i = 0; i < scripts.length; i++){
+            if(scripts[i].src == res || scripts[i].readyState == "interactive"){
+              return scripts[i];
+            }
+          }
 
-				// Guaranteed accurate for IE 6-10 (but NOT IE11!).
-				for (var i = scripts.length; scripts[--i];) {
-					if (scripts[i].readyState === 'interactive') {
-						return scripts[i];
-					}
-				}
-
-				return null;
-			};
-
-
-		if (!supportsScriptReadyState) {
-			throw new Error('Cannot polyfill `document.currentScript` as your browser does not support the "readyState" DOM property of script elements. Please see https://github.com/Financial-Times/polyfill-service/issues/952 for more information.');
-		}
-		if (isOpera) {
-			throw new Error('Cannot polyfill `document.currentScript` as your Opera browser does not correctly support the "readyState" DOM property of script elements. Please see https://github.com/Financial-Times/polyfill-service/issues/952 for more information.');
-		}
-		if (!canDefineProp) {
-			throw new Error('Cannot polyfill `document.currentScript` as your browser does not support `Object.defineProperty`. Please see https://github.com/Financial-Times/polyfill-service/issues/952 for more information.');
-		}
-
-
-		Object.defineProperty(document, 'currentScript', {
-			get: function Document$currentScript() {
-				return _currentEvaluatingScript();
-			},
-			configurable: true
-		});
-
-	}());
-}
+          // If no match, return null
+          return null;
+        }
+      }
+    });
+  }
+})(document);

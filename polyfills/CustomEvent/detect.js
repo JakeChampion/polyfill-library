@@ -1,5 +1,5 @@
-'CustomEvent' in this &&
+'CustomEvent' in self &&
 
 // In Safari, typeof CustomEvent == 'object' but it otherwise works fine
-(typeof this.CustomEvent === 'function' ||
-(this.CustomEvent.toString().indexOf('CustomEventConstructor')>-1))
+(typeof self.CustomEvent === 'function' ||
+(self.CustomEvent.toString().indexOf('CustomEventConstructor')>-1))

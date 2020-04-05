@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const execa = require('execa');
 const globby = require('globby');
-const polyfillLibrary = require("../../lib/index.js");
+const polyfillLibrary = require('../../lib');
 const feature = process.argv.slice(2)[0];
 
 const featureToFolder = feature => feature.replace(/\./g, path.sep);
@@ -71,7 +71,7 @@ async function featureRequiresTesting(feature) {
     const testsForFeatureHaveNotChanged = !filesWhichChanged.includes(testsForFeature);
     const filesRequiredByFeatureWhichHaveChanged = intersection(filesRequiredByFeature, filesWhichChanged);
     const filesRequiredByFeatureHasNotChanged = filesRequiredByFeatureWhichHaveChanged.length === 0;
-    const libFolderHasNotChanged = !filesWhichChanged.some(file => file.startsWith('lib/'));
+    const libraryFolderHasNotChanged = !filesWhichChanged.some(file => file.startsWith('lib/'));
     const karmaPolyfillPluginHasNotChanged = !filesWhichChanged.includes('karma-polyfill-library-plugin.js');
     const packageJsonDependenciesFromMaster = JSON.parse(execa.commandSync('git show origin/master:package.json').stdout).dependencies;
     const packageJsonDependenciesFromHead = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')).dependencies;
@@ -88,7 +88,7 @@ async function featureRequiresTesting(feature) {
         console.log(`The files which changed were ${filesRequiredByFeatureWhichHaveChanged}`);
         return true;
     }
-    if (!libFolderHasNotChanged) {
+    if (!libraryFolderHasNotChanged) {
         console.log(`Running tests for ${feature} because one or more of the files of the core polyfill-library has changed.`);
         return true;
     }
@@ -129,12 +129,14 @@ async function featureRequiresTesting(feature) {
             await result;
         } else {
             console.log(`${feature} has not changed, no need to run the tests.`);
+            // eslint-disable-next-line unicorn/no-process-exit
             process.exit(0);
         }
-    } catch (err) {
+    } catch (error) {
         console.log(`Errors found testing ${feature}`);
-        console.error(err.stderr || err.stdout || err);
+        console.error(error.stderr || error.stdout || error);
         console.log(`Errors found testing ${feature}`);
+        // eslint-disable-next-line unicorn/no-process-exit
         process.exit(1);
     }
 }());

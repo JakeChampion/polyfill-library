@@ -1,1 +1,1 @@
-'document' in this && "closest" in document.documentElement
+'document' in self && "closest" in document.documentElement

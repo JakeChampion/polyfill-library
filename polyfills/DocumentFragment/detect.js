@@ -1,1 +1,1 @@
-'DocumentFragment' in this && this.DocumentFragment === document.createDocumentFragment().constructor
+'DocumentFragment' in self && self.DocumentFragment === document.createDocumentFragment().constructor

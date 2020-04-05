@@ -1,4 +1,4 @@
-alias = [ "HTMLCanvasElement.protoype.toBlob" ]
+aliases = [ "HTMLCanvasElement.protoype.toBlob" ]
 dependencies = [
   "_ESAbstract.CreateMethodProperty",
   "_TypedArray",

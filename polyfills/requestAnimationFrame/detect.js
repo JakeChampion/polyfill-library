@@ -1,1 +1,1 @@
-'requestAnimationFrame' in this
+'requestAnimationFrame' in self

@@ -57,8 +57,8 @@ function checkForCircularDependencies(polyfills) {
 
 		return Promise.resolve();
 	}
-	catch (err) {
-		return Promise.reject('\nThere is a circle in the dependency graph.\nCheck the `dependencies` property of polyfill config files that have recently changed, and ensure that they do not form a circle of references.' + err);
+	catch (error) {
+		return Promise.reject('\nThere is a circle in the dependency graph.\nCheck the `dependencies` property of polyfill config files that have recently changed, and ensure that they do not form a circle of references.' + error);
 	}
 }
 
@@ -76,7 +76,7 @@ function checkDependenciesExist(polyfills) {
 	return Promise.resolve();
 }
 
-function writeAliasFile(polyfills, dir) {
+function writeAliasFile(polyfills, directory) {
 	const aliases = {};
 
 	for (const polyfill of polyfills) {
@@ -85,7 +85,7 @@ function writeAliasFile(polyfills, dir) {
 		}
 	}
 
-	return writeFile(path.join(dir, 'aliases.json'), JSON.stringify(aliases));
+	return writeFile(path.join(directory, 'aliases.json'), JSON.stringify(aliases));
 }
 
 class Polyfill {
@@ -256,28 +256,28 @@ class Polyfill {
 	}
 
 	writeOutput(root) {
-		const dest = path.join(root, this.name);
+		const destination = path.join(root, this.name);
 		const files = [
 				['meta.json', JSON.stringify(this.config)],
 				['raw.js', this.sources.raw],
 				['min.js', this.sources.min]
 			];
 
-		return makeDirectory(dest)
+		return makeDirectory(destination)
 			.then(() => Promise.all(files
-				.map(([name, contents]) => [path.join(dest, name), contents])
+				.map(([name, contents]) => [path.join(destination, name), contents])
 				.map(([path, contents]) => writeFile(path, contents))));
 	}
 }
 
-const src = path.join(__dirname, '../../polyfills');
-const dest = path.join(src, '__dist');
+const source = path.join(__dirname, '../../polyfills');
+const destination = path.join(source, '__dist');
 
-console.log(`Writing compiled polyfill sources to ${dest}/...`);
+console.log(`Writing compiled polyfill sources to ${destination}/...`);
 
 Promise.resolve()
-	.then(() => Promise.all(flattenPolyfillDirectories(src)
-		.map(absolute => new Polyfill(absolute, path.relative(src, absolute)))
+	.then(() => Promise.all(flattenPolyfillDirectories(source)
+		.map(absolute => new Polyfill(absolute, path.relative(source, absolute)))
 		.filter(polyfill => polyfill.hasConfigFile)
 		.map(polyfill => polyfill.loadConfig()
 			.then(() => polyfill.checkLicense())
@@ -288,17 +288,18 @@ Promise.resolve()
 	))
 	.then(polyfills => checkForCircularDependencies(polyfills)
 		.then(() => checkDependenciesExist(polyfills))
-		.then(() => makeDirectory(dest))
+		.then(() => makeDirectory(destination))
 		.then(() => console.log('Waiting for files to be written to disk...'))
-		.then(() => writeAliasFile(polyfills, dest))
+		.then(() => writeAliasFile(polyfills, destination))
 		.then(() => Promise.all(
-			polyfills.map(polyfill => polyfill.writeOutput(dest))
+			polyfills.map(polyfill => polyfill.writeOutput(destination))
 		))
 	)
 	.then(() => console.log('Sources built successfully'))
-	.catch(e => {
-		console.log(e);
-		console.log(JSON.stringify(e));
+	.catch(error => {
+		console.log(error);
+		console.log(JSON.stringify(error));
+		// eslint-disable-next-line unicorn/no-process-exit
 		process.exit(1);
 	})
 ;

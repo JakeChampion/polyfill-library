@@ -5,7 +5,7 @@
 const assert = require('proclaim');
 const sinon = require('sinon');
 const mockery = require('mockery');
-const setsToArrays = require('../../utils/sets_to_arrays');
+const setsToArrays = require('../../utils/sets-to-arrays');
 
 describe("polyfillio", () => {
 	const packageMock = {};
@@ -61,43 +61,43 @@ describe("polyfillio", () => {
 
 	describe('exported property/properties', () => {
 		it('is an object', () => {
-			assert.isObject(require('../../../lib/index'));
+			assert.isObject(require('../../../lib'));
 		});
 		
 		it('describePolyfill is an exported function', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 			assert.isFunction(polyfillio.describePolyfill);
 		});
 		
 		it('listAllPolyfills is an exported function', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 			assert.isFunction(polyfillio.listAllPolyfills);
 		});
 		
 		it('listAliases is an exported function', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 			assert.isFunction(polyfillio.listAliases);
 		});
 		
 		it('getPolyfills is an exported function', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 			assert.isFunction(polyfillio.getPolyfills);
 		});
 		
 		it('getPolyfillString is an exported function', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 			assert.isFunction(polyfillio.getPolyfillString);
 		});
 		
 		it('normalizeUserAgent is an exported function', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 			assert.isFunction(polyfillio.normalizeUserAgent);
 		});
 	});
 
 	describe('.listAllPolyfills()', () => {
 		it('calls and returns sourceslib.listPolyfills() without passing argument', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 			sourceslib.listPolyfills.resolves('return value for sourceslib.listPolyfills');
 			return polyfillio.listAllPolyfills('test').then(result => {
 				assert.equal(result, 'return value for sourceslib.listPolyfills');
@@ -109,7 +109,7 @@ describe("polyfillio", () => {
 
 	describe('.describePolyfill()', () => {
 		it('calls and returns sourceslib.getPolyfillMeta() with passed argument', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 
 			sourceslib.getPolyfillMeta.resolves('return value for sourceslib.getPolyfillMeta');
 			return polyfillio.describePolyfill('test')
@@ -123,7 +123,7 @@ describe("polyfillio", () => {
 
 	describe('.normalizeUserAgent()', () => {
 		it('calls and returns UA.normalize() with passed argument and UA', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 			UA.normalize.returns('return value for UA.normalize');
 			assert.equal(polyfillio.normalizeUserAgent('test'), 'return value for UA.normalize');
 			assert.calledOnce(UA.normalize);
@@ -133,7 +133,7 @@ describe("polyfillio", () => {
 
 	describe('.getOptions(opts)', () => {
 		it('returns the default options if called without any arguments', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 			assert.deepStrictEqual(polyfillio.getOptions(), {
 				callback: false,
 				uaString: '',
@@ -146,7 +146,7 @@ describe("polyfillio", () => {
 		});
 
 		it('does not assign a default value if the property exists in the argument', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 			assert.deepStrictEqual(polyfillio.getOptions({}), {
 				callback: false,
 				uaString: '',
@@ -264,7 +264,7 @@ describe("polyfillio", () => {
 		});
 
 		it('converts feature flag Arrays into Sets', () => {
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 			assert.deepStrictEqual(polyfillio.getOptions({
 				features: {
 					'Array.from': {
@@ -291,7 +291,7 @@ describe("polyfillio", () => {
 
 		describe('when options.uaString is not set', () => {
 			it('calls UA with options.uAString set to an empty string', () => {
-				const polyfillio = require('../../../lib/index');
+				const polyfillio = require('../../../lib');
 				const options = {};
 				return polyfillio.getPolyfills(options).then(() => {
 					assert.calledWithExactly(UA, '');
@@ -301,7 +301,7 @@ describe("polyfillio", () => {
 
 		describe('when options.uaString is set', () => {
 			it('calls UA with options.uAString', () => {
-				const polyfillio = require('../../../lib/index');
+				const polyfillio = require('../../../lib');
 				const options = {
 					uaString: 'chrome/38'
 				};
@@ -317,7 +317,7 @@ describe("polyfillio", () => {
 				const resolveDependenciesStub = sinon.stub().returnsArg(0);
 				createAliasResolver.onCall(0).returns(resolveAliasesStub);
 				createAliasResolver.onCall(1).returns(resolveDependenciesStub);
-				const polyfillio = require('../../../lib/index');
+				const polyfillio = require('../../../lib');
 
 				const options = {
 					features: {
@@ -342,7 +342,7 @@ describe("polyfillio", () => {
 				const resolveDependenciesStub = sinon.stub().returnsArg(0);
 				createAliasResolver.onCall(0).returns(resolveAliasesStub);
 				createAliasResolver.onCall(1).returns(resolveDependenciesStub);
-				const polyfillio = require('../../../lib/index');
+				const polyfillio = require('../../../lib');
 
 				const options = {
 					features: {
@@ -373,7 +373,7 @@ describe("polyfillio", () => {
 				const resolveDependenciesStub = sinon.stub().returnsArg(0);
 				createAliasResolver.onCall(0).returns(resolveAliasesStub);
 				createAliasResolver.onCall(1).returns(resolveDependenciesStub);
-				const polyfillio = require('../../../lib/index');
+				const polyfillio = require('../../../lib');
 
 				const options = {
 					features: {
@@ -420,7 +420,7 @@ describe("polyfillio", () => {
 			UA.mockUAInstance.getFamily.returns('ie');
 			UA.mockUAInstance.satisfies.returns(false);
 
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 
 			const options = {
 				features: {
@@ -456,7 +456,7 @@ describe("polyfillio", () => {
 			UA.mockUAInstance.getFamily.returns('ie');
 			UA.mockUAInstance.satisfies.returns(false);
 
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 
 			const input = {
 				features: {
@@ -490,7 +490,7 @@ describe("polyfillio", () => {
 				"dependencies": ["setImmediate", "Array.isArray", "Event"]
 			});
 
-			const polyfillio = require('../../../lib/index');
+			const polyfillio = require('../../../lib');
 
 			const input = {
 				features: {
