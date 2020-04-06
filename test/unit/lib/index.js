@@ -367,6 +367,24 @@ describe("polyfillio", () => {
 					"ie": "*"
 				}
 			});
+			sourceslib.getPolyfillMeta.withArgs('setImmediate').resolves({
+				"dependencies": [],
+				"browsers": {
+					"ie": "*"
+				}
+			});
+			sourceslib.getPolyfillMeta.withArgs('Array.isArray').resolves({
+				"dependencies": [],
+				"browsers": {
+					"ie": "*"
+				}
+			});
+			sourceslib.getPolyfillMeta.withArgs('Event').resolves({
+				"dependencies": [],
+				"browsers": {
+					"ie": "*"
+				}
+			});
 
 			UA.mockUAInstance.getFamily.returns('ie');
 			UA.mockUAInstance.satisfies.returns(true);
