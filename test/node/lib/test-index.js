@@ -156,14 +156,6 @@ describe("polyfillio", function () {
 					flags: [], 
 					dependencyOf: ["Math.fround"],
 					aliasOf: []
-				},
-				"Object.defineProperty": {
-					"aliasOf": [],
-					"dependencyOf": [
-						"Math.fround",
-						"_ESAbstract.CreateMethodProperty"
-					],
-					"flags": []
 				}
 			});
 			
@@ -185,14 +177,6 @@ describe("polyfillio", function () {
 					flags: [],
 					dependencyOf: ["Math.fround"],
 					aliasOf: []
-				},
-				"Object.defineProperty": {
-					"aliasOf": [],
-					"dependencyOf": [
-						"Math.fround",
-						"_ESAbstract.CreateMethodProperty"
-					],
-					"flags": []
 				}
 			});
 		});
