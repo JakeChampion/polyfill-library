@@ -217,7 +217,7 @@ function createEndpoint(template) {
     response.send(
       template({
         requestedFeature: !!feature,
-        features: features,
+        features: features.map(f => f.feature).join(','),
         includePolyfills: includePolyfills,
         always: always,
         afterTestSuite: `

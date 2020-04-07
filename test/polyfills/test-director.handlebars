@@ -27,7 +27,7 @@
 			testedSuites: [],
 			uaString: 'unknown'
 		};
-		var queue = "{{#features}}{{{feature}}},{{/features}}".split(',').slice(0,-1);
+		var queue = "{{features}}".split(',').slice(0,-1);
 		var runnerCompletedCount = 0;
 		var runnerTotalCount = queue.length;
 		var windowQueryString = "?includePolyfills={{{includePolyfills}}}&always={{{always}}}";
