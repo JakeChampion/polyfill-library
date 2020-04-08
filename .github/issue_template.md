@@ -25,7 +25,6 @@ If it is a feature request:
 	- explain what prompted this request — e.g. is it something that you regularly make a workaround for?
 	- describe what the new feature would do and how it would be used
 	- explain what alternatives you have explored / considered
-	- where possible, attach designs for the style of the new feature
 -->
 
 <!--
