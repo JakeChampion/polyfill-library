@@ -64,7 +64,7 @@ const useragentToBrowserObject = browserWithVersion => {
         platformName: browserObject.os,
         platformVersion: browserObject.os_version,
         real_mobile: true,
-        'browserstack.appium_version': '1.9.1'
+        'browserstack.appium_version': '1.8.0'
       };
     } else if (
       browser === browserObject.browser &&
