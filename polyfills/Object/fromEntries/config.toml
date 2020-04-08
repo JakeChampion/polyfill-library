@@ -4,7 +4,8 @@ dependencies = [
   "_ESAbstract.RequireObjectCoercible",
   "_ESAbstract.ToPropertyKey",
   "_ESAbstract.CreateDataPropertyOrThrow",
-  "_ESAbstract.AddEntriesFromIterable"
+  "_ESAbstract.AddEntriesFromIterable",
+  "Array.prototype.@@iterator"
 ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries"
 spec = "https://tc39.github.io/ecma262/#sec-object.fromentries"

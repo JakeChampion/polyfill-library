@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 'use strict';
 const assert = require('proclaim');
-const setsToArrays = require('../../utils/sets_to_arrays');
+const setsToArrays = require('../../utils/sets-to-arrays');
 
-const polyfillio = require('../../../lib/index');
+const polyfillio = require('../../../lib');
 
 describe("polyfillio", function () {
 	this.timeout(30000);

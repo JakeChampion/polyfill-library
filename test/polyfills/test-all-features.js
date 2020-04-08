@@ -18,10 +18,11 @@ const globby = require('globby');
 			result.stderr.pipe(process.stderr);
 			await result;
 		}
-	} catch (err) {
+	} catch (error) {
 		console.log(`Errors found testing ${feature}`);
-		console.error(err.stderr || err.stdout);
+		console.error(error.stderr || error.stdout);
 		console.log(`Errors found testing ${feature}`);
+		// eslint-disable-next-line unicorn/no-process-exit
 		process.exit(1);
 	}
 }());

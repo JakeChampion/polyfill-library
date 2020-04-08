@@ -24,7 +24,7 @@ automateClient.getBrowsers(function(error, browsers) {
 	fs.writeFileSync(
 		path.join(__dirname, "browsers.toml"),
 		TOML.stringify({
-			browsers: Array.from(new Set(browsers.map(b => (b.browser_version ? `${b.browser}/${b.browser_version}` : `${b.os}/${b.os_version}`)))).sort()
+			browsers: [...new Set(browsers.map(b => (b.browser_version ? `${b.browser}/${b.browser_version}` : `${b.os}/${b.os_version}`)))].sort()
 		})
 	);
 });

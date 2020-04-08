@@ -1,4 +1,4 @@
-alias = [
+aliases = [
   "es2019"
 ]
 dependencies = [

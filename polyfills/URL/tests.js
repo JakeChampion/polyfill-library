@@ -275,6 +275,19 @@ it('URLSearchParams mutation', function () {
 	proclaim.equal(String(sp2), 'a=1&c=3');
 });
 
+it('URLSearchParams sort', function() {
+	var url = new URL("https://example.org/?q=🏳️‍🌈&key=e1f7bc78");
+	url.searchParams.sort();
+	proclaim.deepEqual(url.search, '?key=e1f7bc78&q=%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%F0%9F%8C%88');
+
+	var sp = new URLSearchParams();
+	sp.append('a', 3);
+	sp.append('b', 2);
+	sp.append('a', 1);
+	sp.sort();
+
+	proclaim.deepEqual(String(sp), 'a=3&a=1&b=2');
+});
 // The following fail in FF (tested in 38) against native impl
 // but FF38 passes the detect
 /*

@@ -61,7 +61,7 @@ function intlLocaleDetectFor(locale) {
 	return "'Intl' in this && " +
 			"Intl.PluralRules && " +
 			"Intl.PluralRules.supportedLocalesOf && " +
-			'(function() { try { return Intl.PluralRules.supportedLocalesOf("' + locale + '").length === 1; } catch (e) { return false; } })';
+			'(function() { try { return Intl.PluralRules.supportedLocalesOf("' + locale + '").length === 1; } catch (e) { return false; } }())';
 }
 
 console.log('Importing Intl.PluralRules~locale.* polyfill from ' + LocalesPath);

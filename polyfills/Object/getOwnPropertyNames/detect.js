@@ -5,4 +5,4 @@
     } catch (e) {
         return false;
     }
-})
+})()

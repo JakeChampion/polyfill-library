@@ -8,4 +8,4 @@ edge = "*"
 edge_mob = "*"
 ie = "*"
 firefox = "1 - 4"
-
+chrome = "<79"

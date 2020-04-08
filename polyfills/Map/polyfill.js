@@ -97,7 +97,7 @@
 	 */
 	var setHashIndex = function(map, recordKey, recordIndex) {
 		var hashedKey = hashKey(recordKey);
-		if (!hashedKey) {
+		if (hashedKey === false) {
 			// If hashed key is false, the recordKey is an object which is not extensible.
 			// That indicates we cannot use the hash map for it, so this operation becomes no-op.
 			return false;
