@@ -1,0 +1,35 @@
+name: Update polyfill targets
+on:
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Run tests without polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control || true
+    - name: Run tests with all polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js all || true
+    - name: Figure out which browsers require the polyfill and which do not
+      run: node ./test/polyfills/compat.js
+    - name: Update the browser targeting configuration for all polyfills
+      run: node ./test/polyfills/update-polyfill-targeting.js
+    - run: |
+          curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+          for i in `git diff --name-only`; 
+          do 
+            git checkout master;
+            git config --global user.email "action@github.com"
+            git config --global user.name "GitHub Action"
+            branch_name=`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`;
+            git checkout -b $branch_name;
+            git add $i;
+            git commit -m "update targets for $i";
+            git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${REPOSITORY}.git" $branch_name;
+            bin/hub pull-request --no-edit;
+          done

@@ -1,0 +1,101 @@
+name: Test Polyfills 
+on: [push]
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Test on android
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=android
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+  chrome:
+    runs-on: ubuntu-latest
+    needs: [android]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Test on chrome
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=chrome
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+  edge:
+    runs-on: ubuntu-latest
+    needs: [chrome]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Test on edge
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=edge
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+  firefox:
+    runs-on: ubuntu-latest
+    needs: [edge]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Test on firefox
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=firefox
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+  ie:
+    runs-on: ubuntu-latest
+    needs: [firefox]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Test on ie
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=ie
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+  ios:
+    runs-on: ubuntu-latest
+    needs: [ie]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Test on ios
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=ios
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+  safari:
+    runs-on: ubuntu-latest
+    needs: [ios]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Test on safari
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=safari
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    
