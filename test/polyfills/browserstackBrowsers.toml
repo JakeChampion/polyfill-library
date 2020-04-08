@@ -914,7 +914,13 @@ browser_version = "79.0"
 os = "Windows"
 os_version = "7"
 browser = "chrome"
-browser_version = "80.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "chrome"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -1364,13 +1370,31 @@ browser_version = "72.0"
 os = "Windows"
 os_version = "7"
 browser = "firefox"
-browser_version = "73.0 beta"
+browser_version = "73.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "firefox"
+browser_version = "74.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "firefox"
+browser_version = "75.0 beta"
 
 [[browsers]]
 os = "Windows"
 os_version = "7"
 browser = "edge"
-browser_version = "79.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "edge"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -1736,7 +1760,13 @@ browser_version = "79.0"
 os = "Windows"
 os_version = "8"
 browser = "chrome"
-browser_version = "80.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "chrome"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -2090,13 +2120,31 @@ browser_version = "72.0"
 os = "Windows"
 os_version = "8"
 browser = "firefox"
-browser_version = "73.0 beta"
+browser_version = "73.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "firefox"
+browser_version = "74.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "firefox"
+browser_version = "75.0 beta"
 
 [[browsers]]
 os = "Windows"
 os_version = "8"
 browser = "edge"
-browser_version = "79.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "edge"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -2462,7 +2510,13 @@ browser_version = "79.0"
 os = "Windows"
 os_version = "8.1"
 browser = "chrome"
-browser_version = "80.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "chrome"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -2816,13 +2870,31 @@ browser_version = "72.0"
 os = "Windows"
 os_version = "8.1"
 browser = "firefox"
-browser_version = "73.0 beta"
+browser_version = "73.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "firefox"
+browser_version = "74.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "firefox"
+browser_version = "75.0 beta"
 
 [[browsers]]
 os = "Windows"
 os_version = "8.1"
 browser = "edge"
-browser_version = "79.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "edge"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -3086,13 +3158,25 @@ browser_version = "79.0"
 os = "Windows"
 os_version = "10"
 browser = "chrome"
-browser_version = "80.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "chrome"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "Windows"
 os_version = "10"
 browser = "ie"
 browser_version = "11.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "edge"
+browser_version = "insider preview"
 
 [[browsers]]
 os = "Windows"
@@ -3122,13 +3206,13 @@ browser_version = "18.0"
 os = "Windows"
 os_version = "10"
 browser = "edge"
-browser_version = "insider preview"
+browser_version = "80.0"
 
 [[browsers]]
 os = "Windows"
 os_version = "10"
 browser = "edge"
-browser_version = "79.0 beta"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -3380,7 +3464,19 @@ browser_version = "72.0"
 os = "Windows"
 os_version = "10"
 browser = "firefox"
-browser_version = "73.0 beta"
+browser_version = "73.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "firefox"
+browser_version = "74.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "firefox"
+browser_version = "75.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -5540,7 +5636,19 @@ browser_version = "72.0"
 os = "OS X"
 os_version = "Mavericks"
 browser = "firefox"
-browser_version = "73.0 beta"
+browser_version = "73.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mavericks"
+browser = "firefox"
+browser_version = "74.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mavericks"
+browser = "firefox"
+browser_version = "75.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -5942,7 +6050,13 @@ browser_version = "79.0"
 os = "OS X"
 os_version = "Yosemite"
 browser = "chrome"
-browser_version = "80.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Yosemite"
+browser = "chrome"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -6374,7 +6488,19 @@ browser_version = "72.0"
 os = "OS X"
 os_version = "Yosemite"
 browser = "firefox"
-browser_version = "73.0 beta"
+browser_version = "73.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Yosemite"
+browser = "firefox"
+browser_version = "74.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Yosemite"
+browser = "firefox"
+browser_version = "75.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -6776,7 +6902,13 @@ browser_version = "79.0"
 os = "OS X"
 os_version = "El Capitan"
 browser = "chrome"
-browser_version = "80.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "El Capitan"
+browser = "chrome"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -7202,7 +7334,19 @@ browser_version = "72.0"
 os = "OS X"
 os_version = "El Capitan"
 browser = "firefox"
-browser_version = "73.0 beta"
+browser_version = "73.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "El Capitan"
+browser = "firefox"
+browser_version = "74.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "El Capitan"
+browser = "firefox"
+browser_version = "75.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -7532,13 +7676,25 @@ browser_version = "79.0"
 os = "OS X"
 os_version = "Sierra"
 browser = "chrome"
-browser_version = "80.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "chrome"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "OS X"
 os_version = "Sierra"
 browser = "edge"
-browser_version = "79.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "edge"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -7922,7 +8078,19 @@ browser_version = "72.0"
 os = "OS X"
 os_version = "Sierra"
 browser = "firefox"
-browser_version = "73.0 beta"
+browser_version = "73.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "firefox"
+browser_version = "74.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "firefox"
+browser_version = "75.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -8252,13 +8420,25 @@ browser_version = "79.0"
 os = "OS X"
 os_version = "High Sierra"
 browser = "chrome"
-browser_version = "80.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "chrome"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "OS X"
 os_version = "High Sierra"
 browser = "edge"
-browser_version = "79.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "edge"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -8642,7 +8822,19 @@ browser_version = "72.0"
 os = "OS X"
 os_version = "High Sierra"
 browser = "firefox"
-browser_version = "73.0 beta"
+browser_version = "73.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "firefox"
+browser_version = "74.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "firefox"
+browser_version = "75.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -8972,13 +9164,25 @@ browser_version = "79.0"
 os = "OS X"
 os_version = "Mojave"
 browser = "chrome"
-browser_version = "80.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "chrome"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "OS X"
 os_version = "Mojave"
 browser = "edge"
-browser_version = "79.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "edge"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -9362,7 +9566,19 @@ browser_version = "72.0"
 os = "OS X"
 os_version = "Mojave"
 browser = "firefox"
-browser_version = "73.0 beta"
+browser_version = "73.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "firefox"
+browser_version = "74.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "firefox"
+browser_version = "75.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -9614,13 +9830,25 @@ browser_version = "79.0"
 os = "OS X"
 os_version = "Catalina"
 browser = "chrome"
-browser_version = "80.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "chrome"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "OS X"
 os_version = "Catalina"
 browser = "edge"
-browser_version = "79.0 beta"
+browser_version = "80.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "edge"
+browser_version = "81.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -10004,7 +10232,19 @@ browser_version = "72.0"
 os = "OS X"
 os_version = "Catalina"
 browser = "firefox"
-browser_version = "73.0 beta"
+browser_version = "73.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "firefox"
+browser_version = "74.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "firefox"
+browser_version = "75.0 beta"
 
 [[browsers]]
 os = "ios"
@@ -10283,6 +10523,13 @@ real_mobile = true
 os = "android"
 os_version = "9.0"
 browser = "android"
+device = "Samsung Galaxy A10"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "9.0"
+browser = "android"
 device = "Google Pixel 3a XL"
 real_mobile = true
 
@@ -10318,6 +10565,13 @@ real_mobile = true
 os = "android"
 os_version = "9.0"
 browser = "android"
+device = "Motorola Moto G7 Play"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "9.0"
+browser = "android"
 device = "OnePlus 7"
 real_mobile = true
 
@@ -10332,6 +10586,27 @@ real_mobile = true
 os = "android"
 os_version = "9.0"
 browser = "android"
+device = "Xiaomi Redmi Note 8"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "9.0"
+browser = "android"
+device = "Xiaomi Redmi Note 7"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "9.0"
+browser = "android"
+device = "Samsung Galaxy Tab S6"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "9.0"
+browser = "android"
 device = "Samsung Galaxy Tab S5e"
 real_mobile = true
 
@@ -10340,6 +10615,13 @@ os = "android"
 os_version = "8.1"
 browser = "android"
 device = "Samsung Galaxy Note 9"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "8.1"
+browser = "android"
+device = "Samsung Galaxy J7 Prime"
 real_mobile = true
 
 [[browsers]]
@@ -10519,7 +10801,7 @@ real_mobile = true
 
 [[browsers]]
 os = "android"
-os_version = "5.1"
+os_version = "10.0"
 browser = "android"
-device = "Google Nexus 9"
+device = "OnePlus 7T"
 real_mobile = true
