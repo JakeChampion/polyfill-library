@@ -12,7 +12,10 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://registry.npmjs.org'
     - run: npm ci
-    - run: npm version --no-git-tag-version ${{ github.ref }}
-    - run: npm-publish
+    - name: Get the version
+      id: version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - run: npm version --no-git-tag-version ${{ steps.version.outputs.VERSION }}
+    - run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
