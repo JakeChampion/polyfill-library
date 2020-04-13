@@ -120,14 +120,6 @@ describe('lib/sources', () => {
 			const sources = require('../../../lib/sources');
 			return sources.getPolyfillMeta('Array.from').then(meta => assert.deepEqual(meta, metadata));
 		});
-
-		it('returns a promise which resolves with undefined for a feature if it does not exist', () => {
-			fs.readFile.yields(new Error);
-			const sources = require('../../../lib/sources');
-			return sources.getPolyfillMeta('Array.of').then(meta => {
-				assert.isUndefined(meta);
-			});
-		});
 	});
 
 	describe('sources.listPolyfills()', () => {

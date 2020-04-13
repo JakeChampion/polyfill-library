@@ -4,7 +4,7 @@ aliases = [
   "default-3.5",
   "default-3.6",
   "default",
-  "document"
+  "Document"
 ]
 spec = "http://dom.spec.whatwg.org/#interface-document"
 docs = "https://developer.mozilla.org/en/docs/Web/API/Document"

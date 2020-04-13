@@ -53,20 +53,21 @@ console.log('Updating third-party polyfills...');
 glob('polyfills/**/config.toml', globOptions)
     .then(files => {
         files
-			.map(src => {
+			.map(source => {
 				try {
-					return Object.assign({ src }, TOML.parse(fs.readFileSync(src, 'utf-8')));
-				} catch (e) {
-					throw new Error('Failed on ' + src + '. Error: ' + e);
+					return Object.assign({ src: source }, TOML.parse(fs.readFileSync(source, 'utf-8')));
+				} catch (error) {
+					throw new Error('Failed on ' + source + '. Error: ' + error);
 				}
 			})
             .filter(config => 'install' in config)
             .forEach(installPolyfill);
-        ;
+        
     })
     .then(() => console.log('Polyfills updated successfully'))
-    .catch(e => {
-        console.log(e);
+    .catch(error => {
+        console.log(error);
+        // eslint-disable-next-line unicorn/no-process-exit
         process.exit(1);
     })
 ;

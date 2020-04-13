@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 'use strict';
 const assert = require('proclaim');
-const setsToArrays = require('../../utils/sets_to_arrays');
+const setsToArrays = require('../../utils/sets-to-arrays');
 
-const polyfillio = require('../../../lib/index');
+const polyfillio = require('../../../lib');
 
 describe("polyfillio", function () {
 	this.timeout(30000);
@@ -28,20 +28,24 @@ describe("polyfillio", function () {
 				uaString: ''
 			}).then(result => assert.deepEqual(setsToArrays(result), {
 				'Math.sign': {
-					"flags": ["gated"]
+					"flags": ["gated"],
+					aliasOf: [],
+					dependencyOf: []
 				},
 				"Object.defineProperty": {
-					"aliasOf": [
+					"dependencyOf": [
 						"Math.sign",
 						"_ESAbstract.CreateMethodProperty"
 					],
-					"flags": ["gated"]
+					"flags": ["gated"],
+					aliasOf: []
 				},
 				"_ESAbstract.CreateMethodProperty": {
-					"aliasOf": [
+					"dependencyOf": [
 						"Math.sign"
 					],
-					"flags": ["gated"]
+					"flags": ["gated"],
+					aliasOf: []
 				}
 			}));
 		});
@@ -65,20 +69,24 @@ describe("polyfillio", function () {
 				uaString: ''
 			}).then(result => assert.deepEqual(setsToArrays(result), {
 				'Math.sign': {
-					"flags": ["gated"]
+					"flags": ["gated"],
+					aliasOf: [],
+					dependencyOf: []
 				},
 				"Object.defineProperty": {
-					"aliasOf": [
+					"dependencyOf": [
 						"Math.sign",
 						"_ESAbstract.CreateMethodProperty"
 					],
-					"flags": ["gated"]
+					"flags": ["gated"],
+					aliasOf: []
 				},
 				"_ESAbstract.CreateMethodProperty": {
-					"aliasOf": [
+					"dependencyOf": [
 						"Math.sign"
 					],
-					"flags": ["gated"]
+					"flags": ["gated"],
+					aliasOf: []
 				}
 			}));
 		});
@@ -92,20 +100,24 @@ describe("polyfillio", function () {
 				unknown: 'polyfill',
 			}).then(result => assert.deepEqual(setsToArrays(result), {
 				'Math.sign': {
-					"flags": ["gated"]
+					"flags": ["gated"],
+					"aliasOf": [],
+					"dependencyOf": []
 				},
 				"Object.defineProperty": {
-					"aliasOf": [
+					"dependencyOf": [
 						"Math.sign",
 						"_ESAbstract.CreateMethodProperty"
 					],
-					"flags": ["gated"]
+					"flags": ["gated"],
+					aliasOf: []
 				},
 				"_ESAbstract.CreateMethodProperty": {
-					"aliasOf": [
+					"dependencyOf": [
 						"Math.sign"
 					],
-					"flags": ["gated"]
+					"flags": ["gated"],
+					aliasOf: []
 				}
 			}));
 		});
@@ -130,12 +142,21 @@ describe("polyfillio", function () {
 			});
 			
 			assert.deepEqual(setsToArrays(noExcludes), {
-				"Math.fround": { flags: [] },
+				"Math.fround": { 
+					flags: [],
+					dependencyOf: [],
+					aliasOf: []
+				},
 				"_ESAbstract.CreateMethodProperty": {
 					flags: [],
-					aliasOf: ["Math.fround"]
+					dependencyOf: ["Math.fround"],
+					aliasOf: []
 				},
-				_TypedArray: { flags: [], aliasOf: ["Math.fround"] }
+				_TypedArray: {
+					flags: [], 
+					dependencyOf: ["Math.fround"],
+					aliasOf: []
+				}
 			});
 			
 			const excludes = await polyfillio.getPolyfills({
@@ -147,10 +168,15 @@ describe("polyfillio", function () {
 			});
 			
 			assert.deepEqual(setsToArrays(excludes), {
-				"Math.fround": { flags: [] },
+				"Math.fround": {
+					flags: [],
+					dependencyOf: [],
+					aliasOf: []
+				},
 				"_ESAbstract.CreateMethodProperty": {
 					flags: [],
-					aliasOf: ["Math.fround"]
+					dependencyOf: ["Math.fround"],
+					aliasOf: []
 				}
 			});
 		});
