@@ -6,7 +6,7 @@ notes = [
 ]
 
 [browsers]
-edge = "*"
+edge = "<17.17134.0"
 edge_mob = "*"
 ie = "*"
 firefox = "1 - 4"
