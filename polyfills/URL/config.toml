@@ -19,7 +19,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/URL"
 
 [browsers]
 chrome = "<51"
-firefox = "<44"
+firefox = "<54"
 edge = "<17"
 edge_mob = "<17"
 ie = "9 - *"
@@ -32,4 +32,3 @@ android = "*"
 samsung_mob = "<5"
 bb = "*"
 ios_saf = "<12"
-
