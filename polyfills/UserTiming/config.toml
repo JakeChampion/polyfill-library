@@ -15,7 +15,7 @@ ios_saf = "*"
 op_mob = "*"
 opera = "<=12"
 safari = "*"
+edge = "<18.17134"
 
 [install]
 module = "usertiming"
-
