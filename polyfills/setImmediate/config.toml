@@ -16,4 +16,4 @@ firefox_mob = "*"
 bb = "*"
 op_mini = "*"
 samsung_mob = "*"
-
+edge = "<16.15063"
