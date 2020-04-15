@@ -15,9 +15,8 @@ notes = [
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty"
 
 [browsers]
-firefox = "3.6"
+firefox = "<75"
 safari = "4 - 4.1"
 ios_saf = "4.3"
 firefox_mob = "3.6"
 ie = "6 - 8"
-
