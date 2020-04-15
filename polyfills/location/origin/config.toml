@@ -7,6 +7,5 @@ ie_mob = "10"
 firefox = "<=20"
 safari = "<=6"
 ios_saf = "<=6"
-chrome = "<=29"
+chrome = "<29.0.0"
 firefox_mob = "<=20"
-
