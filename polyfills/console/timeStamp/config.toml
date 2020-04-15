@@ -4,9 +4,8 @@ spec = "https://console.spec.whatwg.org"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Console/timeStamp"
 
 [browsers]
-edge = "<12"
+edge = "<16.15063"
 edge_mob = "<12"
 ie = "<11"
 firefox = "1 - 4"
 firefox_mob = "<10"
-
