@@ -11,7 +11,7 @@ notes = [
 android = "<63"
 ie = "9 - *"
 ie_mob = "9 - *"
-firefox = "<65"
+firefox = "<68"
 opera = "<50"
 chrome = "<71"
 safari = "*"
@@ -23,4 +23,3 @@ samsung_mob = "<6"
 module = "@formatjs/intl-relativetimeformat"
 paths = [ "dist/umd/polyfill-intl-relativetimeformat.js" ]
 postinstall = "update.task.js"
-
