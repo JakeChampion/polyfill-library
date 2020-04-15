@@ -23,4 +23,4 @@ op_mini = "5 - *"
 op_mob = "10 - 12.1"
 safari = "3.1 - 6"
 firefox_mob = "3.6"
-
+edge = "<18.17134"
