@@ -13,7 +13,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallb
 [browsers]
 android = "*"
 bb = "*"
-chrome = "<47"
+chrome = "<61"
 edge = "*"
 edge_mob = "*"
 firefox = "<55"
@@ -27,4 +27,3 @@ op_mob = "*"
 safari = "9 - *"
 firefox_mob = "<55"
 samsung_mob = "<5"
-
