@@ -14,7 +14,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimation
 [browsers]
 android = "*"
 bb = "7"
-chrome = "1 - 23"
+chrome = "<46"
 ie = "6 - 9"
 ios_saf = "3.2 - 6"
 firefox = "3.6 - 22"
@@ -23,4 +23,3 @@ op_mini = "5 - *"
 op_mob = "10 - 12.1"
 safari = "3.1 - 6"
 firefox_mob = "3.6"
-
