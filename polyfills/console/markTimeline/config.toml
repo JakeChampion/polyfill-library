@@ -9,5 +9,5 @@ notes = [
 edge = "<17.17134.0"
 edge_mob = "*"
 ie = "*"
-firefox = "1 - 4"
+firefox = "<75"
 chrome = "<68.0.0"
