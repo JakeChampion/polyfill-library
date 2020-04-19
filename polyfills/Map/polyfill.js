@@ -20,8 +20,8 @@
 	// Need an internal counter to assign unique IDs to a key map
 	var _uniqueHashId = 0;
 	// Create a unique key name for storing meta data on functions and objects to enable lookups in hash table
-	var _metaKey = Symbol('meta_' + (Math.random() * 100000000) + ''.replace('.', ''));
-		
+	var _metaKey = Symbol('meta_' + ((Math.random() * 100000000) + '').replace('.', ''));
+
 	/**
 	 * hashKey()
 	 * Function that given a key of `any` type, returns a string key value to enable hash map optimization for accessing Map data structure
@@ -29,7 +29,7 @@
 	 * @returns {string|false} - Returns a hashed string value or false if non extensible object key
 	 */
 	var hashKey = function(recordKey) {
-		// Check to see if we are dealing with object or function type.  
+		// Check to see if we are dealing with object or function type.
 		if (typeof recordKey === 'object' ? recordKey !== null : typeof recordKey === 'function') {
 			// Check to see if we are dealing with a non extensible object
 			if (!Object.isExtensible(recordKey)) {
@@ -55,7 +55,7 @@
 	/**
 	 * getRecordIndex()
 	 * Function that given a Map and a key of `any` type, returns an index number that coorelates with a record found in `this._keys[index]` and `this._values[index]`
-	 * @param {Map} map - Map structure 
+	 * @param {Map} map - Map structure
 	 * @param {string|number|function|object} recordKey - Record key to normalize to string accessor for hash map
 	 * @returns {number|false} - Returns either a index to access map._keys and map._values, or false if not found
 	 */
@@ -72,7 +72,7 @@
 	/**
 	 * getRecordIndexSlow()
 	 * Alternative (and slower) function to `getRecordIndex()`.  Necessary for looking up non-extensible object keys.
-	 * @param {Map} map - Map structure 
+	 * @param {Map} map - Map structure
 	 * @param {string|number|function|object} recordKey - Record key to normalize to string accessor for hash map
 	 * @returns {number|false} - Returns either a index to access map._keys and map._values, or false if not found
 	 */
@@ -86,13 +86,13 @@
 		}
 		return false;
 	};
-	
+
 	/**
 	 * setHashIndex()
 	 * Function that given a map, key of `any` type, and a value, creates a new entry in Map hash table
-	 * @param {Map} map 
+	 * @param {Map} map
 	 * @param {string|number|function|object} recordKey - Key to translate into normalized key for hash map
-	 * @param {number} recordIndex - record index 
+	 * @param {number} recordIndex - record index
 	 * @returns {bool} - indicates success of operation
 	 */
 	var setHashIndex = function(map, recordKey, recordIndex) {
@@ -294,10 +294,10 @@
 			// 6. Return false.
 
 			// Implement steps 4-6 with a more optimal algo
-	
+
 			// Steps 4-5: Access record
 			var recordIndex = getRecordIndex(M, key); // O(1) access to record index
-			
+
 			if (recordIndex !== false) {
 				// Get record's `key` (could be `any` type);
 				var recordKey = M._keys[recordIndex];
@@ -392,7 +392,7 @@
 					return M._values[recordIndex];
 				}
 			}
-			
+
 			return undefined;
 		});
 
@@ -452,7 +452,7 @@
 			// 8. Append p as the last element of entries.
 			// 9. Return M.
 
-			// Strictly following the above steps 4-9 will lead to an inefficient algorithm.  
+			// Strictly following the above steps 4-9 will lead to an inefficient algorithm.
 			// Step 8 also doesn't seem to be required if an entry already exists
 			var recordIndex = getRecordIndex(M, key); // O(1) access to record index
 			if (recordIndex !== false) {

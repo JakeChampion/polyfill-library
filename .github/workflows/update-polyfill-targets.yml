@@ -1,9 +1,10 @@
 name: Update polyfill targets
+# on: [push]
 on:
   schedule:
-    - cron: "0 1 * * *"
+    - cron: "0 6 1 1 *"
 jobs:
-  build:
+  android:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -11,28 +12,289 @@ jobs:
       with:
         node-version: 12.x
     - run: npm ci
-    - name: Run tests without polyfills
-      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control || true
+    - name: Run tests on android without polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=android || true
       env:
         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
         BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-    - name: Run tests with all polyfills
-      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js all || true
-    - name: Figure out which browsers require the polyfill and which do not
+    - name: Run tests on android all polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js all browser=android || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Figure out which versions require the polyfill and which versions do not
       run: node ./test/polyfills/compat.js
     - name: Update the browser targeting configuration for all polyfills
       run: node ./test/polyfills/update-polyfill-targeting.js
-    - run: |
+    - name: make pull-requests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
           curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
           for i in `git diff --name-only`; 
           do 
             git checkout master;
             git config --global user.email "action@github.com"
             git config --global user.name "GitHub Action"
-            branch_name=`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`;
+            branch_name="android--`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`";
             git checkout -b $branch_name;
             git add $i;
-            git commit -m "update targets for $i";
-            git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${REPOSITORY}.git" $branch_name;
-            bin/hub pull-request --no-edit;
+            git commit -m "update android targeting for $i";
+            git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" $branch_name -f;
+            if [[ -z $(hub pr list -h $branch_name) ]]; then
+              bin/hub pull-request --no-edit -p;
+            fi
+          done
+  chrome:
+    runs-on: ubuntu-latest
+    needs: [android]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Run tests on chrome without polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=chrome || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Run tests on chrome all polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js all browser=chrome || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Figure out which versions require the polyfill and which versions do not
+      run: node ./test/polyfills/compat.js
+    - name: Update the browser targeting configuration for all polyfills
+      run: node ./test/polyfills/update-polyfill-targeting.js
+    - name: make pull-requests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+          for i in `git diff --name-only`; 
+          do 
+            git checkout master;
+            git config --global user.email "action@github.com"
+            git config --global user.name "GitHub Action"
+            branch_name="chrome--`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`";
+            git checkout -b $branch_name;
+            git add $i;
+            git commit -m "update chrome targeting for $i";
+            git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" $branch_name -f;
+            if [[ -z $(hub pr list -h $branch_name) ]]; then
+              bin/hub pull-request --no-edit -p;
+            fi
+          done
+  edge:
+    runs-on: ubuntu-latest
+    needs: [chrome]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Run tests on edge without polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=edge || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Run tests on edge all polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js all browser=edge || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Figure out which versions require the polyfill and which versions do not
+      run: node ./test/polyfills/compat.js
+    - name: Update the browser targeting configuration for all polyfills
+      run: node ./test/polyfills/update-polyfill-targeting.js
+    - name: make pull-requests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+          for i in `git diff --name-only`; 
+          do 
+            git checkout master;
+            git config --global user.email "action@github.com"
+            git config --global user.name "GitHub Action"
+            branch_name="edge--`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`";
+            git checkout -b $branch_name;
+            git add $i;
+            git commit -m "update edge targeting for $i";
+            git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" $branch_name -f;
+            if [[ -z $(hub pr list -h $branch_name) ]]; then
+              bin/hub pull-request --no-edit -p;
+            fi
+          done
+  firefox:
+    runs-on: ubuntu-latest
+    needs: [edge]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Run tests on firefox without polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=firefox || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Run tests on firefox all polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js all browser=firefox || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Figure out which versions require the polyfill and which versions do not
+      run: node ./test/polyfills/compat.js
+    - name: Update the browser targeting configuration for all polyfills
+      run: node ./test/polyfills/update-polyfill-targeting.js
+    - name: make pull-requests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+          for i in `git diff --name-only`; 
+          do 
+            git checkout master;
+            git config --global user.email "action@github.com"
+            git config --global user.name "GitHub Action"
+            branch_name="firefox--`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`";
+            git checkout -b $branch_name;
+            git add $i;
+            git commit -m "update firefox targeting for $i";
+            git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" $branch_name -f;
+            if [[ -z $(hub pr list -h $branch_name) ]]; then
+              bin/hub pull-request --no-edit -p;
+            fi
+          done
+  ie:
+    runs-on: ubuntu-latest
+    needs: [firefox]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Run tests on ie without polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=ie || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Run tests on ie all polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js all browser=ie || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Figure out which versions require the polyfill and which versions do not
+      run: node ./test/polyfills/compat.js
+    - name: Update the browser targeting configuration for all polyfills
+      run: node ./test/polyfills/update-polyfill-targeting.js
+    - name: make pull-requests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+          for i in `git diff --name-only`; 
+          do 
+            git checkout master;
+            git config --global user.email "action@github.com"
+            git config --global user.name "GitHub Action"
+            branch_name="ie--`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`";
+            git checkout -b $branch_name;
+            git add $i;
+            git commit -m "update ie targeting for $i";
+            git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" $branch_name -f;
+            if [[ -z $(hub pr list -h $branch_name) ]]; then
+              bin/hub pull-request --no-edit -p;
+            fi
+          done
+  ios:
+    runs-on: ubuntu-latest
+    needs: [ie]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Run tests on ios without polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=ios || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Run tests on ios all polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js all browser=ios || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Figure out which versions require the polyfill and which versions do not
+      run: node ./test/polyfills/compat.js
+    - name: Update the browser targeting configuration for all polyfills
+      run: node ./test/polyfills/update-polyfill-targeting.js
+    - name: make pull-requests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+          for i in `git diff --name-only`; 
+          do 
+            git checkout master;
+            git config --global user.email "action@github.com"
+            git config --global user.name "GitHub Action"
+            branch_name="ios--`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`";
+            git checkout -b $branch_name;
+            git add $i;
+            git commit -m "update ios targeting for $i";
+            git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" $branch_name -f;
+            if [[ -z $(hub pr list -h $branch_name) ]]; then
+              bin/hub pull-request --no-edit -p;
+            fi
+          done
+  safari:
+    runs-on: ubuntu-latest
+    needs: [ios]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Run tests on safari without polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=safari || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - run: all ci
+    - name: Run tests all safari without polyfills
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=safari || true
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Figure out which versions require the polyfill and which versions do not
+      run: node ./test/polyfills/compat.js
+    - name: Update the browser targeting configuration for all polyfills
+      run: node ./test/polyfills/update-polyfill-targeting.js
+    - name: make pull-requests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+          for i in `git diff --name-only`; 
+          do 
+            git checkout master;
+            git config --global user.email "action@github.com"
+            git config --global user.name "GitHub Action"
+            branch_name="safari--`echo $i | sed 's/polyfills\///' | sed 's/\/config\.toml//'`";
+            git checkout -b $branch_name;
+            git add $i;
+            git commit -m "update safari targeting for $i";
+            git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" $branch_name -f;
+            if [[ -z $(hub pr list -h $branch_name) ]]; then
+              bin/hub pull-request --no-edit -p;
+            fi
           done
