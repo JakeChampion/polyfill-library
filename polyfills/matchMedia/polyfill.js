@@ -1,46 +1,43 @@
-(function (global) {
-	function evalQuery(query) {
-		/* jshint evil: true */
-		query = (query || 'true')
-			.replace(/^only\s+/, '')
-			.replace(/(device)-([\w.]+)/g, '$1.$2')
-			.replace(/([\w.]+)\s*:/g, 'media.$1 ===')
-			.replace(/min-([\w.]+)\s*===/g, '$1 >=')
-			.replace(/max-([\w.]+)\s*===/g, '$1 <=')
-			.replace(/all|screen/g, '1')
-			.replace(/print/g, '0')
-			.replace(/,/g, '||')
-			.replace(/\band\b/g, '&&')
-			.replace(/dpi/g, '')
-			.replace(/(\d+)(cm|em|in|dppx|mm|pc|pt|px|rem)/g, function ($0, $1, $2) {
-				return $1 * (
-					$2 === 'cm' ? 0.3937 * 96 : (
-						$2 === 'em' || $2 === 'rem' ? 16 : (
-							$2 === 'in' || $2 === 'dppx' ? 96 : (
-								$2 === 'mm' ? 0.3937 * 96 / 10 : (
-									$2 === 'pc' ? 12 * 96 / 72 : (
-										$2 === 'pt' ? 96 / 72 : 1
-									)
-								)
-							)
-						)
-					)
-				);
-			});
-		return new Function('media', 'try{ return !!(%s) }catch(e){ return false }'
-			.replace('%s', query)
-		)({
-			width: global.innerWidth,
-			height: global.innerHeight,
-			orientation: global.orientation || 'landscape',
-			device: {
-				width: global.screen.width,
-				height: global.screen.height,
-				orientation: global.screen.orientation || global.orientation || 'landscape'
-			}
-		});
-	}
+(function() {
+    "use strict";
 
+    // For browsers that support matchMedium api such as IE 9 and webkit
+    var styleMedia = (self.styleMedia || self.media);
+
+    // For those that don't support matchMedium
+    if (!styleMedia) {
+        var style       = document.createElement('style'),
+            script      = document.getElementsByTagName('script')[0],
+            info        = null;
+
+        style.type  = 'text/css';
+        style.id    = 'matchmediajs-test';
+
+        if (!script) {
+          document.head.appendChild(style);
+        } else {
+          script.parentNode.insertBefore(style, script);
+        }
+
+        // 'style.currentStyle' is used by IE <= 8 and 'self.getComputedStyle' for all other browsers
+        info = ('getComputedStyle' in self) && self.getComputedStyle(style, null) || style.currentStyle;
+
+        styleMedia = {
+            matchMedium: function(media) {
+                var text = '@media ' + media + '{ #matchmediajs-test { width: 1px; } }';
+
+                // 'style.styleSheet' is used by IE <= 8 and 'style.textContent' for all other browsers
+                if (style.styleSheet) {
+                    style.styleSheet.cssText = text;
+                } else {
+                    style.textContent = text;
+                }
+
+                // Test if media query is true or false
+                return info.width === '1px';
+            }
+        };
+	}
 	function MediaQueryList() {
 		this.matches = false;
 		this.media = 'invalid';
@@ -62,32 +59,29 @@
 		}
 	};
 
-	global.MediaQueryList = MediaQueryList;
+	self.MediaQueryList = MediaQueryList;
 
-	// <Global>.matchMedia
-	global.matchMedia = function matchMedia(query) {
-		var
-		list = new MediaQueryList();
+    self.matchMedia = function matchMedia(media) {
+		var list = new MediaQueryList();
 
 		if (0 === arguments.length) {
 			throw new TypeError('Not enough arguments to matchMedia');
 		}
 
-		list.media = String(query);
-		list.matches = evalQuery(list.media);
-		list.addListener.listeners = [];
+		list.media = String(media);
+		list.matches = styleMedia.matchMedium(media || 'all');
 
-		global.addEventListener('resize', function () {
-			var listeners = [].concat(list.addListener.listeners), matches = evalQuery(list.media);
+		self.addEventListener('resize', function () {
+			var listeners = [].concat(list.addListener.listeners), matches = styleMedia.matchMedium(media || 'all');
 
 			if (matches != list.matches) {
 				list.matches = matches;
 				for (var index = 0, length = listeners.length; index < length; ++index) {
-					listeners[index].call(global, list);
+					listeners[index].call(self, list);
 				}
 			}
 		});
 
-		return list;
-	};
-}(self));
+        return list;
+    };
+}());
