@@ -42,21 +42,22 @@
 	function MediaQueryList() {
 		this.matches = false;
 		this.media = 'invalid';
+		this.listeners = [];
 	}
 
 	MediaQueryList.prototype.addListener = function addListener(listener) {
-		var listenerIndex = this.addListener.listeners.indexOf(listener);
+		var listenerIndex = this.listeners.indexOf(listener);
 
 		if (listenerIndex === -1) {
-			this.addListener.listeners.push(listener);
+			this.listeners.push(listener);
 		}
 	};
 
 	MediaQueryList.prototype.removeListener = function removeListener(listener) {
-		var listenerIndex = this.addListener.listeners.indexOf(listener);
+		var listenerIndex = this.listeners.indexOf(listener);
 
 		if (listenerIndex >= 0) {
-			this.addListener.listeners.splice(listenerIndex, 1);
+			this.listeners.splice(listenerIndex, 1);
 		}
 	};
 
