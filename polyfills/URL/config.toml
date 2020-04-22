@@ -18,7 +18,7 @@ repo = "https://github.com/inexorabletash/polyfill"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/URL"
 
 [browsers]
-chrome = "<51"
+chrome = "<60"
 firefox = "<44"
 edge = "<18.17134"
 edge_mob = "<17"

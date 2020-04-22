@@ -20,6 +20,19 @@ describe("polyfillio", function () {
 			return polyfillio.getPolyfills(input).then(result => assert.deepEqual(setsToArrays(result), {}));
 		});
 
+		it("https://github.com/Financial-Times/polyfill-library/issues/125", () => {
+			// es6,es7&excludes=Array.prototype.values
+			const input = {
+				features: {
+					'es6': {},
+					'es7': {},
+				},
+				excludes: ['Array.prototype.values'],
+				uaString: 'chrome/61'
+			};
+			return polyfillio.getPolyfills(input).then(result => assert.deepEqual(setsToArrays(result), {}));
+		});
+
 		it("should return polyfills for unknown UA when unknown is not set", () => {
 			return polyfillio.getPolyfills({
 				features: {
