@@ -21,6 +21,6 @@ samsung_mob = "*"
 
 [install]
 module = "@formatjs/intl-pluralrules"
-paths = [ "dist/umd/polyfill-intl-pluralrules.js" ]
+paths = [ "dist/umd/polyfill.js" ]
 postinstall = "update.task.js"
 
