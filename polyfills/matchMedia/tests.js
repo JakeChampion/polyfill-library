@@ -31,3 +31,19 @@ it("should generate valid Javascript for dppx", function() {
 		window.matchMedia('(min-resolution: 2dppx)');
 	});
 });
+
+it('https://github.com/Financial-Times/polyfill-library/issues/43', function() {
+	proclaim.doesNotThrow(function() {
+		window.matchMedia('(min--moz-device-pixel-ratio: 2)');
+	});
+});
+
+it('https://github.com/Financial-Times/polyfill-library/issues/623', function() {
+	// addListener should not throw
+	proclaim.doesNotThrow(function() {
+		var mql = window.matchMedia('screen');
+		mql.addListener(function() {
+			// noop
+		});
+	});
+});
