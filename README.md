@@ -94,6 +94,8 @@ Development of polyfill-library happens on GitHub. Read below to learn how you c
 Read our [contributing guide][contributing-guide] to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes.
 
 ```
+# To test on BrowserStack you will need to have a BrowserStack account
+# We test pull-requests using BrowserStack
 npm run test-all-polyfills # Run the tests for all polyfills using BrowserStack
 npm run test-polyfills -- --features=Array.from # Run the tests for Array.from
 npm run test-polyfills -- --features=Array.from --browserstack # Run the tests for Array.from using BrowserStack
