@@ -1,13 +1,5 @@
 name: Test Polyfills 
-on:
-  push:
-    branches:
-      - '*'
-      - '*/*'
-      - '*/*/*'
-      - '*/*/*/*'
-      - '*--*/*'
-      - '!master'
+on: [pull_request]
 jobs:
   android:
     runs-on: ubuntu-latest
