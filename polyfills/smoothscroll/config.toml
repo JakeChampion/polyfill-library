@@ -16,7 +16,7 @@ dependencies = [
 ]
 license = "MIT"
 spec = "https://drafts.csswg.org/cssom-view/#smooth-scrolling"
-repo = "https://github.com/iamdustan/smoothscroll"
+repo = "https://github.com/magic-akari/seamless-scroll-polyfill"
 docs = "https://developer.mozilla.org/en/docs/Web/CSS/scroll-behavior"
 
 [browsers]
@@ -32,5 +32,5 @@ ios_saf = "*"
 android = "*"
 
 [install]
-module = "smoothscroll-polyfill"
+module = "seamless-scroll-polyfill"
 postinstall = "update.task.js"

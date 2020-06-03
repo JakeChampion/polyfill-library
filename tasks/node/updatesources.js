@@ -61,7 +61,7 @@ glob('polyfills/**/config.toml', globOptions)
 				}
 			})
             .filter(config => 'install' in config)
-            .forEach(installPolyfill);
+            .forEach(toml => installPolyfill(toml));
         
     })
     .then(() => console.log('Polyfills updated successfully'))

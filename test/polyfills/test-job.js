@@ -25,7 +25,7 @@ module.exports = class TestJob {
     this.name = name;
     this.mode = mode;
     this.url = url;
-    this.results = null;
+    this.results = undefined;
     this.lastUpdateTime = 0;
     this.duration = 0;
     // BrowserStack options https://www.browserstack.com/automate/capabilities

@@ -11,7 +11,10 @@
             get: function () {
                 supportsSmoothScroll = true;
                 return 'smooth';
-            }
+            },
+
+            // Ensure this property lasts through cloning / destructuring:
+            enumerable: true
         });
 
         document.body.scrollTo(scrollOptions);

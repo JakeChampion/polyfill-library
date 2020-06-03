@@ -48,12 +48,12 @@ Object.keys(compat).forEach(browserName => {
       };
     }
 
-    native.forEach(buildData("native"));
-    polyfilled.forEach(buildData("polyfilled"));
-    missing.forEach(buildData("missing"));
+    native.forEach(feature => buildData("native")(feature));
+    polyfilled.forEach(feature => buildData("polyfilled")(feature));
+    missing.forEach(feature => buildData("missing")(feature));
   });
 });
 
 const compatFile = path.join(__dirname, "compat.json");
-fs.writeFileSync(compatFile, JSON.stringify(builtCompatTable, null, 2));
+fs.writeFileSync(compatFile, JSON.stringify(builtCompatTable, undefined, 2));
 console.log("Updated compat.json");
