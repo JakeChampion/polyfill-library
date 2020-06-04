@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@financial-times/polyfill-useragent-normaliser": "^1.7.0",
-    "@formatjs/intl-displaynames": "^1.2.10",
+    "@formatjs/intl-displaynames": "^2.2.3",
     "@formatjs/intl-listformat": "^1.4.8",
     "@formatjs/intl-pluralrules": "^1.1.2",
     "@formatjs/intl-relativetimeformat": "^3.0.2",
