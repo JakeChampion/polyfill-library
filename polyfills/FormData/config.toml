@@ -1,0 +1,27 @@
+aliases = [ ]
+dependencies = [
+  "Blob",
+  "Object.defineProperties",
+  "Symbol.iterator",
+  "Symbol",
+  "XMLHttpRequest"
+]
+spec = "https://xhr.spec.whatwg.org/#interface-formdata"
+docs = "https://developer.mozilla.org/en-US/docs/Web/API/FormData"
+license = "MIT"
+repo = "https://github.com/jimmywarting/FormData"
+
+[browsers]
+firefox = "<44"
+chrome = "<50"
+edge = "<79"
+edge_mob = "*"
+safari = "*"
+opera = "<37"
+ie = "*"
+ie_mob = "*"
+android = "<50"
+
+[install]
+module = "formdata-polyfill"
+paths = [ "./formdata.min.js" ]

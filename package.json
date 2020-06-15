@@ -59,6 +59,7 @@
     "current-script-polyfill": "^1.0.0",
     "diff": "4.0.2",
     "event-source-polyfill": "^1.0.12",
+    "formdata-polyfill": "^3.0.19",
     "from2-string": "^1.1.0",
     "glob": "^7.1.1",
     "graceful-fs": "^4.1.10",
