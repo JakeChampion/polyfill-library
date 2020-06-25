@@ -1,0 +1,25 @@
+aliases = [
+  "default-3.3",
+  "default-3.4",
+  "default-3.5",
+  "default-3.6",
+  "default",
+]
+dependencies = [ "Blob", "URLSearchParams", "XMLHttpRequest" ]
+spec = "https://xhr.spec.whatwg.org/#interface-formdata"
+docs = "https://developer.mozilla.org/en-US/docs/Web/API/FormData"
+license = "MIT"
+repo = "https://github.com/jimmywarting/FormData"
+
+[browsers]
+android = "<=4.4"
+chrome = "<50"
+chrome_mob = "<50"
+ie_mob = "10 - *"
+edge = "<18"
+edge_mob = "*"
+firefox = "<45"
+firefox_mob = "<45"
+safari = "<12"
+ie = "<11"
+opera = "<15"
