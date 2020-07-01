@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 /* globals proclaim */
 
 describe('AbortSignal', function () {

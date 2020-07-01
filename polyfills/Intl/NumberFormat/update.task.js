@@ -55,8 +55,6 @@ configSource.dependencies.push('Intl.NumberFormat');
 // don't test every single locale - it will be too slow
 configSource.test = { ci: false };
 
-var configFileSource = TOML.stringify(configSource);
-
 function intlLocaleDetectFor(locale) {
 	return "'Intl' in self && Intl.NumberFormat && (function () {\n\t\ttry {\n\t\t  new Intl.NumberFormat('".concat(locale, "', {\n\t\t\tstyle: 'unit',\n\t\t\tunit: 'byte'\n\t\t  });\n\t\t} catch (e) {\n\t\t  return false;\n\t\t}\n\t\treturn true;\n\t  })() && Intl.NumberFormat.supportedLocalesOf('").concat(locale, "').length");
 }
@@ -79,7 +77,7 @@ locales.filter(function(locale) {
 	var configOutputPath = path.join(localeOutputPath, 'config.toml');
 	writeFileIfChanged(polyfillOutputPath, localePolyfillSource);
 	writeFileIfChanged(detectOutputPath, intlLocaleDetectFor(locale));
-	writeFileIfChanged(configOutputPath, configFileSource);
+	writeFileIfChanged(configOutputPath, TOML.stringify({...configSource, aliases: [...configSource.aliases, `Intl.~locale.${locale}`]}));
 });
 
 

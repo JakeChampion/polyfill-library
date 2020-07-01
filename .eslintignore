@@ -16,6 +16,8 @@ polyfills/Intl/~locale/**/polyfill.js
 polyfills/Intl/getCanonicalLocales/polyfill.js
 polyfills/Intl/DisplayNames/~locale/**/polyfill.js
 polyfills/Intl/DisplayNames/polyfill.js
+polyfills/Intl/DateTimeFormat/~locale/**/polyfill.js
+polyfills/Intl/DateTimeFormat/polyfill.js
 polyfills/Intl/ListFormat/~locale/**/polyfill.js
 polyfills/Intl/ListFormat/polyfill.js
 polyfills/Intl/NumberFormat/~locale/**/polyfill.js

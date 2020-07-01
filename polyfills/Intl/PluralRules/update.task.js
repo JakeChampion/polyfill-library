@@ -55,8 +55,6 @@ configSource.dependencies.push('Intl.PluralRules');
 // don't test every single locale - it will be too slow
 configSource.test = { ci: false };
 
-var configFileSource = TOML.stringify(configSource);
-
 function intlLocaleDetectFor(locale) {
 	return "'Intl' in this && " +
 			"Intl.PluralRules && " +
@@ -80,7 +78,7 @@ locales.forEach(function (file) {
 	var configOutputPath = path.join(localeOutputPath, 'config.toml');
 	writeFileIfChanged(polyfillOutputPath, localePolyfillSource);
 	writeFileIfChanged(detectOutputPath, intlLocaleDetectFor(locale));
-	writeFileIfChanged(configOutputPath, configFileSource);
+	writeFileIfChanged(configOutputPath, TOML.stringify({...configSource, aliases: [...configSource.aliases, `Intl.~locale.${locale}`]}));
 });
 
 

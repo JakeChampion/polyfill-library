@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 /* globals proclaim, Map, Symbol, Set */
 
 it('is a function', function () {

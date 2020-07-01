@@ -27,6 +27,11 @@ polyfills/Intl/DisplayNames/~locale/**/tests.js
 polyfills/Intl/DisplayNames/~locale/**/polyfill.js
 polyfills/Intl/DisplayNames/polyfill.js
 polyfills/Intl/DisplayNames/~locale/**/config.toml
+polyfills/Intl/DateTimeFormat/~locale/**/detect.js
+polyfills/Intl/DateTimeFormat/~locale/**/tests.js
+polyfills/Intl/DateTimeFormat/~locale/**/polyfill.js
+polyfills/Intl/DateTimeFormat/polyfill.js
+polyfills/Intl/DateTimeFormat/~locale/**/config.toml
 polyfills/__dist/
 polyfills/~html5-elements/polyfill.js
 polyfills/AudioContext/polyfill.js

@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+
 /* globals proclaim, Symbol */
 
 var supportsStrictModeTests = (function () {

@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+
 /* globals proclaim */
 
 proclaim.isGetter = function (obj, prop) {

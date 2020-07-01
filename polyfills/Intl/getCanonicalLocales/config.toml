@@ -1,3 +1,4 @@
+aliases = ["Intl"]
 dependencies = []
 license = "MIT"
 spec = "https://tc39.es/ecma402/#sec-intl.getcanonicallocales"
@@ -9,6 +10,7 @@ android = "*"
 ie = "9 - *"
 ie_mob = "9 - *"
 edge = "<16"
+edge_mob = "<16"
 firefox = "<48"
 opera = "*"
 chrome = "<54"

@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+
 /* globals proclaim, Symbol */
 
 it('is a function', function () {

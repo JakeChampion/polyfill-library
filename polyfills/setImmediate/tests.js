@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+
 /* globals proclaim, setImmediate, clearImmediate */
 
 describe('setImmediate', function () {

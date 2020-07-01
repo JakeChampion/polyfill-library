@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+
 /* globals proclaim, globalThis */
 
 describe("globalThis", function() {

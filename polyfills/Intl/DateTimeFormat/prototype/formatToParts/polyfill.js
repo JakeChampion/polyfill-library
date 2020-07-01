@@ -1,1 +1,0 @@
-Intl.DateTimeFormat = self.IntlPolyfill !== undefined ? self.IntlPolyfill.DateTimeFormat : Intl.DateTimeFormat;

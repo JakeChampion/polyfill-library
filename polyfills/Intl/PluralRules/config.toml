@@ -1,3 +1,4 @@
+aliases = ["Intl"]
 dependencies = ["Intl.getCanonicalLocales", "WeakMap"]
 license = "MIT"
 spec = "https://rawgit.com/caridy/intl-plural-rules-spec/master/index.html"
@@ -12,6 +13,7 @@ android = "<63"
 edge = "<18"
 ie = "9 - *"
 ie_mob = "9 - *"
+edge_mob = "<18"
 firefox = "<58"
 opera = "<50"
 chrome = "<63"
@@ -24,4 +26,3 @@ samsung_mob = "*"
 module = "@formatjs/intl-pluralrules"
 paths = [ "dist/umd/polyfill.js" ]
 postinstall = "update.task.js"
-

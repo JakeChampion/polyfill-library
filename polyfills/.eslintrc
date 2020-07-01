@@ -18,5 +18,25 @@
     "no-dupe-else-if": "error",
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
   },
+  "overrides": [
+    {
+      "files": ["update.task.js"],
+      "parserOptions": {
+        "ecmaVersion": 2018
+      },
+      "env": {
+        "es6": true,
+        "browser": false,
+        "node": true
+      }
+    },
+    {
+      "files": ["tests.js", "test/*"],
+      "env": {
+        "mocha": true,
+        "browser": true
+      }
+    }
+  ],
   "root": true
 }

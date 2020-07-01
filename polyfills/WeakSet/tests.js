@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+
 /* globals proclaim, WeakSet */
 
 it('is a function', function () {

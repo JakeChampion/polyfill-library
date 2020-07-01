@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 /* globals proclaim, Symbol */
 
 it('is an alias to Array.prototype.values', function () {

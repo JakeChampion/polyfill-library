@@ -1,3 +1,6 @@
+aliases = [
+  "Intl"
+]
 dependencies = [ "Intl.getCanonicalLocales", "Intl.PluralRules", "WeakMap", "Set" ]
 license = "MIT"
 spec = "https://tc39.es/proposal-intl-relative-time/#sec-intl-numberformat-constructor"
@@ -11,6 +14,8 @@ notes = [
 android = "*"
 ie = "9 - *"
 ie_mob = "9 - *"
+edge = "<77"
+edge_mob = "<77"
 firefox = "*"
 opera = "*"
 chrome = "<77"

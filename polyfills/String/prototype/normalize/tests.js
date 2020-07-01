@@ -1,5 +1,5 @@
 /* globals proclaim */
-/* eslint-env mocha */
+
 
 it('is a function', function () {
     proclaim.isFunction(String.prototype.normalize);
