@@ -1,10 +1,7 @@
 name: Add new issues and pull requests to Origami Project Board
 on: 
   issues:
-  push:
-    branches:
-      - '**'
-      - '!master'
+  pull_request:
 
 jobs:
   origami_project_board_job:
