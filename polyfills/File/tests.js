@@ -1,5 +1,5 @@
 /* eslint-env mocha, browser */
-/* global proclaim, Set, Symbol */
+/* global proclaim, File */
 
 it('is a function', function () {
 	proclaim.isFunction(File);
