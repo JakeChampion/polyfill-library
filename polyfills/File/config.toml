@@ -5,9 +5,10 @@ dependencies = [
   "Object.defineProperty",
   "Blob"
 ]
-notes = [
-  "https://w3c.github.io/FileAPI/#file-section"
-]
+license = "MIT"
+spec = "https://w3c.github.io/FileAPI/#file-section"
+docs = "https://developer.mozilla.org/en-US/docs/Web/API/File"
+notes = []
 
 [browsers]
 ie = "*"
