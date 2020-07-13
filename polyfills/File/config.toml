@@ -1,0 +1,25 @@
+aliases = []
+dependencies = [
+  "_ESAbstract.CreateMethodProperty",
+  "Object.create",
+  "Object.defineProperty",
+  "Blob"
+]
+notes = [
+  "https://w3c.github.io/FileAPI/#file-section"
+]
+
+[browsers]
+ie = "*"
+edge = "<79"
+safari = "<11"
+firefox = "<15"
+chrome = "<13"
+android = "<37"
+firefox_mob = "<*"
+ie_mob = "*"
+opera = "<16"
+op_mob = "*"
+op_mini = "*"
+ios_saf = "<12"
+
