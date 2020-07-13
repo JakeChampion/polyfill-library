@@ -5,8 +5,22 @@ on:
       - '**'
       - '!master'
 jobs:
+  ie:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Test on ie
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=ie
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
   android:
     runs-on: ubuntu-latest
+    needs: [ie]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -60,23 +74,9 @@ jobs:
       env:
         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
         BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-  ie:
-    runs-on: ubuntu-latest
-    needs: [firefox]
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    - run: npm ci
-    - name: Test on ie
-      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=ie
-      env:
-        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
   ios:
     runs-on: ubuntu-latest
-    needs: [ie]
+    needs: [firefox]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1

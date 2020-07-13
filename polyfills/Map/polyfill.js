@@ -92,7 +92,7 @@
 	 * Function that given a map, key of `any` type, and a value, creates a new entry in Map hash table
 	 * @param {Map} map
 	 * @param {string|number|function|object} recordKey - Key to translate into normalized key for hash map
-	 * @param {number} recordIndex - record index
+	 * @param {number|bool} recordIndex - new record index for the hashedKey or `false` to delete the record index for the hashedKey
 	 * @returns {bool} - indicates success of operation
 	 */
 	var setHashIndex = function(map, recordKey, recordIndex) {
