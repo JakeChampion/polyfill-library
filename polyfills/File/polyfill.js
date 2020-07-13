@@ -34,7 +34,7 @@
 
 	// File ()
 	// https://w3c.github.io/FileAPI/#file-section
-	var FilePolyfill = function FilePolyfill(fileBits, fileName, options) {
+	var FilePolyfill = function FilePolyfill(fileBits, fileName) {
 		// 1. If NewTarget is undefined, throw a TypeError exception.
 		if (!(this instanceof File)) {
 			throw new TypeError('Failed to construct \'File\': Please use the \'new\' operator, this DOM object constructor cannot be called as a function.');
@@ -52,6 +52,11 @@
 		// 4.1.2 https://w3c.github.io/FileAPI/#file-constructor
 		// Let n be a new string of the same size as the fileName argument to the constructor. Copy every character from fileName to n, replacing any "/" character (U+002F SOLIDUS) with a ":" (U+003A COLON).
 		var n = fileName.toString().replace(/\//g, ':');
+
+		var options;
+		if (2 < arguments.length) {
+			options = arguments[2];
+		}
 
 		var file;
 		if (_hasNativeFileWithWorkingConstructor) {
