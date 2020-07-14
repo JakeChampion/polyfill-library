@@ -54,7 +54,8 @@ describe('File', function() {
 		proclaim.equal(e.name, 'stringer');
 	});
 
-	// https://bugs.chromium.org/p/chromium/issues/detail?id=1105171
+	// Chromium issue : https://bugs.chromium.org/p/chromium/issues/detail?id=1105171
+	// Spec debate : https://github.com/w3c/FileAPI/issues/41
 	// it("implements .name escaping", function () {
 	// 	// 4.1.2 https://w3c.github.io/FileAPI/#file-constructor
 	// 	// Let n be a new string of the same size as the fileName argument to the constructor.

@@ -50,8 +50,12 @@
 		// Not our concern here.
 
 		// 4.1.2 https://w3c.github.io/FileAPI/#file-constructor
-		// Let n be a new string of the same size as the fileName argument to the constructor. Copy every character from fileName to n, replacing any "/" character (U+002F SOLIDUS) with a ":" (U+003A COLON).
-		var n = fileName.toString().replace(/\//g, ':');
+		// Let n be a new string of the same size as the fileName argument to the constructor.
+		// 
+		// Copy every character from fileName to n, replacing any "/" character (U+002F SOLIDUS) with a ":" (U+003A COLON).
+		// WARNING : This part of the spec is still debated and UA's implement inconsistently. https://github.com/w3c/FileAPI/issues/41
+		// When spec settles maybe add : .replace(/\//g, ':')
+		var n = fileName.toString();
 
 		var options;
 		if (2 < arguments.length) {
