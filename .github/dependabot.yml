@@ -1,11 +1,20 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: weekly
-  open-pull-requests-limit: 99
-  ignore:
-  - dependency-name: mocha
-    versions:
-    - ">= 0"
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "dependencies"
+    rebase-strategy: "disabled"
+    ignore:
+      - dependency-name: "mocha"
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "dependencies"
+    rebase-strategy: "disabled"
