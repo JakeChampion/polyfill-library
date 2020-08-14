@@ -23,6 +23,6 @@ samsung_mob = "*"
 
 [install]
 module = "@formatjs/intl-listformat"
-paths = [ "dist/umd/polyfill-intl-listformat.js" ]
+paths = [ "polyfill.js" ]
 postinstall = "update.task.js"
 
