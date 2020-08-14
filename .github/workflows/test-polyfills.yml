@@ -5,8 +5,18 @@ on:
       - '**'
       - '!master'
 jobs:
+  check-for-other-pull-requests-running-this-workflow:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Turnstyle
+      uses: softprops/turnstyle@v1
+      with:
+        same-branch-only: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ie:
     runs-on: ubuntu-latest
+    needs: [check-for-other-pull-requests-running-this-workflow]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2.1.1
