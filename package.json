@@ -64,7 +64,6 @@
     "glob": "^7.1.1",
     "graceful-fs": "^4.1.10",
     "html5shiv": "^3.7.3",
-    "intl": "^1.2.5",
     "js-polyfills": "^0.1.40",
     "json3": "^3.3.2",
     "merge2": "^1.0.3",
