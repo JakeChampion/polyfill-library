@@ -112,7 +112,7 @@
     "mocha": "^3.5.3",
     "mockery": "^2.1.0",
     "nyc": "^15.0.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.5",
     "proclaim": "^3.6.0",
     "sinon": "^9.0.0",
     "webdriverio": "^6.1.14",
