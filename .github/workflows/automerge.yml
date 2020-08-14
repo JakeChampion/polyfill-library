@@ -21,6 +21,14 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
+      - name: 'Wait for status checks'
+        id: waitforstatuschecks
+        uses: "WyriHaximus/github-action-wait-for-status@v2"
+        with:
+          ignoreActions: automerge
+          checkInterval: 13
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: automerge
         uses: "pascalgn/automerge-action@v0.9.0"
         env:
