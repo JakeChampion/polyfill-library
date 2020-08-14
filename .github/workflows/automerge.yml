@@ -1,6 +1,6 @@
 name: automerge
 on:
-  pull_request:
+  pull_request_target:
     types:
       - labeled
       - unlabeled
@@ -30,11 +30,11 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.ORIGAMI_GITHUB_TOKEN }}"
       - name: automerge
-        uses: "pascalgn/automerge-action@v0.9.0"
+        uses: "JakeChampion/automerge-action@patch-1"
         env:
           GITHUB_TOKEN: "${{ secrets.ORIGAMI_GITHUB_TOKEN }}"
           MERGE_LABELS: "dependencies"
           MERGE_METHOD: "rebase"
           MERGE_FORKS: "false"
-          UPDATE_LABELS: ""
+          UPDATE_LABELS: "dependencies"
           UPDATE_METHOD: "rebase"

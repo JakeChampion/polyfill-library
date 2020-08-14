@@ -1,13 +1,14 @@
 name: Test Polyfills 
 on:
-  push:
-    branches:
-      - '**'
-      - '!master'
+  pull_request_target:
 jobs:
   check-for-other-pull-requests-running-this-workflow:
     runs-on: ubuntu-latest
     steps:
+    - name: Cancel Previous Runs
+      uses: styfle/cancel-workflow-action@0.4.1
+      with:
+        access_token: ${{ github.token }}
     - name: Turnstyle
       uses: softprops/turnstyle@v1
       with:
