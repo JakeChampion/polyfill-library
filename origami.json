@@ -1,6 +1,6 @@
 {
 	"description": "Polyfill Library",
-	"origamiType": null,
+	"origamiType": "library",
 	"origamiVersion": 1,
 	"support": "https://github.com/Financial-Times/polyfill-library/issues",
 	"supportContact": {
