@@ -4,12 +4,9 @@ const fs = require('graceful-fs');
 const path = require('path');
 const {promisify} = require('util');
 const glob = promisify(require('glob'));
-const crypto = require('crypto');
 const TOML = require('@iarna/toml');
 const cwd = path.join(__dirname, '../../');
 const globOptions = { cwd: cwd };
-
-const md5 = contents => crypto.createHash('md5').update(contents).digest('hex');
 
 const loadSource = polyfillPaths => {
 	return polyfillPaths.map(p => fs.readFileSync(p)).join('');
@@ -27,9 +24,8 @@ const installPolyfill = config => {
 
 	const logPrefix = path.basename(polyfillOutputFolder) + ': ';
 	if (polyfillAlreadyExists) {
-		const currentPolyfillHash = md5(fs.readFileSync(polyfillOutputPath));
-		const newPolyfillHash = md5(newPolyfill);
-		if (newPolyfillHash === currentPolyfillHash) {
+		const currentPolyfill = fs.readFileSync(polyfillOutputPath, 'utf-8');
+		if (newPolyfill === currentPolyfill) {
 			console.log(logPrefix + 'No change');
             return;
 		} else {

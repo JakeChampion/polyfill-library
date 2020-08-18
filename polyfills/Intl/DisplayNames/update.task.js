@@ -58,17 +58,10 @@ configSource.test = { ci: false };
 var configFileSource = TOML.stringify(configSource);
 
 function intlLocaleDetectFor(locale) {
-	return `'Intl' in self &&
-Intl.DisplayNames &&
-Intl.DisplayNames.supportedLocalesOf &&
-Intl.DisplayNames.supportedLocalesOf('${locale}').length === 1 &&
-(function hasMissingICUBug() {
-	if (Intl.DisplayNames) {
-		const regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
-		return regionNames.of('CA') === 'CA';
-	}
-	return false;
-})()`;
+	return "'Intl' in self && " +
+			"Intl.DisplayNames && " +
+			"Intl.DisplayNames.supportedLocalesOf && " +
+			"Intl.DisplayNames.supportedLocalesOf('"+locale+"').length === 1";
 }
 
 console.log('Importing Intl.DisplayNames~locale.* polyfill from ' + LocalesPath);

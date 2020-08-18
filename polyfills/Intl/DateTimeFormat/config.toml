@@ -27,5 +27,5 @@ samsung_mob = "*"
 
 [install]
 module = "@formatjs/intl-datetimeformat"
-paths = [ "polyfill.js" ]
+paths = [ "dist/umd/polyfill.js" ]
 postinstall = "update.task.js"
