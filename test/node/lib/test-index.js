@@ -40,19 +40,19 @@ describe("polyfillio", function () {
 				},
 				"_ESAbstract.CreateMethodProperty": {
 					"aliasOf": [
-					  "es6"
+						"es6"
 					],
 					"dependencyOf": [
-					  "Array.prototype.sort"
+						"Array.prototype.sort"
 					],
 					"flags": [],
 				},
 				"_ESAbstract.IsCallable": {
 					"aliasOf": [
-					  "es6"
+						"es6"
 					],
 					"dependencyOf": [
-					  "Array.prototype.sort"
+						"Array.prototype.sort"
 					],
 					"flags": [],
 				}
