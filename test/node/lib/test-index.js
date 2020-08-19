@@ -35,26 +35,26 @@ describe("polyfillio", function () {
 					"aliasOf": [
 						"es6"
 					],
-				    "dependencyOf": [],
-				    "flags": [],
+					"dependencyOf": [],
+					"flags": [],
 				},
 				"_ESAbstract.CreateMethodProperty": {
-				    "aliasOf": [
-				      "es6"
-				    ],
-				    "dependencyOf": [
-				      "Array.prototype.sort"
-				    ],
-				    "flags": [],
+					"aliasOf": [
+					  "es6"
+					],
+					"dependencyOf": [
+					  "Array.prototype.sort"
+					],
+					"flags": [],
 				},
 				"_ESAbstract.IsCallable": {
-				    "aliasOf": [
-				      "es6"
-				    ],
-				    "dependencyOf": [
-				      "Array.prototype.sort"
-				    ],
-				    "flags": [],
+					"aliasOf": [
+					  "es6"
+					],
+					"dependencyOf": [
+					  "Array.prototype.sort"
+					],
+					"flags": [],
 				}
 			}));
 		});
