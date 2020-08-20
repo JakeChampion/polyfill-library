@@ -3,7 +3,7 @@
 const fs = require('graceful-fs');
 const path = require('path');
 const uglify = require('uglify-js');
-const mkdirp = require('mkdirp');
+const makeDirectory = require('mkdirp');
 const toposort = require('toposort');
 const {promisify} = require('util');
 const vm = require('vm');
@@ -13,7 +13,6 @@ const TOML = require('@iarna/toml');
 
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
-const makeDirectory = promisify(mkdirp);
 
 function validateSource(code, label) {
 	try {
