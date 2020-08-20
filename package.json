@@ -67,7 +67,7 @@
     "js-polyfills": "^0.1.40",
     "json3": "^3.3.2",
     "merge2": "^1.0.3",
-    "mkdirp": "^0.5.0",
+    "mkdirp": "^1.0.4",
     "mnemonist": "^0.38.0",
     "mutationobserver-shim": "^0.3.2",
     "picturefill": "^3.0.1",
