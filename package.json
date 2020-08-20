@@ -85,13 +85,13 @@
     "web-animations-js": "^2.2.5",
     "whatwg-fetch": "^3.0.0",
     "wicg-inert": "^3.0.0",
-    "yaku": "0.19.3"
+    "yaku": "1.0.1"
   },
   "devDependencies": {
     "@iarna/toml": "^2.2.3",
     "apicache": "^1.5.3",
     "array.prototype.flatmap": "^1.2.1",
-    "browserstack": "1.5.3",
+    "browserstack": "1.6.0",
     "browserstack-local": "^1.4.5",
     "cli-color": "^2.0.0",
     "dotenv": "^8.2.0",

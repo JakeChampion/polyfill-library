@@ -87,7 +87,7 @@ locales
       configOutputPath,
       TOML.stringify({
         ...configSource,
-        aliases: [`Intl.~locale.${locale}`]
+        aliases: [`Intl.~locale.${locale}`].concat(locale === 'en' ? ['Intl'] : [])
       })
     );
   });
