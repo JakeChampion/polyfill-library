@@ -70,7 +70,7 @@ locales.filter(function(locale) {
 	var configOutputPath = path.join(localeOutputPath, 'config.toml');
 	writeFileIfChanged(polyfillOutputPath, localePolyfillSource);
 	writeFileIfChanged(detectOutputPath, intlLocaleDetectFor(locale));
-	writeFileIfChanged(configOutputPath, TOML.stringify({...configSource, aliases: [`Intl.~locale.${locale}`]}));
+	writeFileIfChanged(configOutputPath, TOML.stringify({...configSource, aliases: [`Intl.~locale.${locale}`].concat(locale === 'en' ? ['Intl'] : [])}));
 });
 
 
