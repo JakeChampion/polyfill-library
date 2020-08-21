@@ -48,7 +48,7 @@
     "@formatjs/intl-datetimeformat": "^2.0.2",
     "@formatjs/intl-displaynames": "^3.0.2",
     "@formatjs/intl-getcanonicallocales": "^1.2.10",
-    "@formatjs/intl-listformat": "^3.0.2",
+    "@formatjs/intl-listformat": "^4.2.2",
     "@formatjs/intl-numberformat": "^5.0.2",
     "@formatjs/intl-pluralrules": "^3.0.2",
     "@formatjs/intl-relativetimeformat": "^6.0.2",
