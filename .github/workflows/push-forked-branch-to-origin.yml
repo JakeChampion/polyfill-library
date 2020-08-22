@@ -1,0 +1,16 @@
+name: Push forked branch to origin to run tests
+on: 
+   workflow_dispatch:
+    inputs:
+      number:
+        description: 'pull-request number'     
+        required: true
+jobs:
+  push-forked-branch-to-origin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+#     - run: gh pr checkout ${{ github.event.inputs.number }} && git push origin -f
+      - run: hub pr checkout ${{ github.event.inputs.number }} && git push origin HEAD:pr${{ github.event.inputs.number }} -f
+        env:
+          GITHUB_TOKEN: "${{ secrets.POLYFILL_GH_TOKEN }}"

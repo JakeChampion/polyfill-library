@@ -1,8 +1,12 @@
 name: Lint
 on:
-  pull_request_target:
+  push:
+    branches:
+      - '*'
+      - '**'
+      - '!master'
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
