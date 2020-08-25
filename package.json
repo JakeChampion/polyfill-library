@@ -46,7 +46,7 @@
   "dependencies": {
     "@financial-times/polyfill-useragent-normaliser": "^1.7.0",
     "@formatjs/intl-datetimeformat": "2.0.2",
-    "@formatjs/intl-displaynames": "3.0.2",
+    "@formatjs/intl-displaynames": "3.3.5",
     "@formatjs/intl-getcanonicallocales": "1.2.10",
     "@formatjs/intl-listformat": "3.0.2",
     "@formatjs/intl-numberformat": "5.0.2",
