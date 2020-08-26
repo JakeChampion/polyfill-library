@@ -49,7 +49,7 @@
     "@formatjs/intl-displaynames": "3.0.2",
     "@formatjs/intl-getcanonicallocales": "1.2.10",
     "@formatjs/intl-listformat": "3.0.2",
-    "@formatjs/intl-numberformat": "5.0.2",
+    "@formatjs/intl-numberformat": "5.5.5",
     "@formatjs/intl-pluralrules": "3.0.2",
     "@formatjs/intl-relativetimeformat": "6.0.2",
     "@juggle/resize-observer": "^3.2.0",
