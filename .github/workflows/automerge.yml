@@ -36,5 +36,3 @@ jobs:
           MERGE_LABELS: "dependencies"
           MERGE_METHOD: "rebase"
           MERGE_FORKS: "false"
-          UPDATE_LABELS: ""
-          UPDATE_METHOD: "rebase"
