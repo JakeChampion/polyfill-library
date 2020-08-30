@@ -62,7 +62,7 @@ describe('should throw an "InvalidCharacterError" DOMException', function () {
 });
 
 // If this’s token set does not contain token, then return false.
-it('should return false if token if this doesn\'t contain token', function() {
+it('should return false if this doesn\'t contain token', function() {
 	testReplace('a', 'A', 'b', 'a', false);
 	testReplace('a b', 'c', 'a', 'a b', false);
 	testReplace('a b c', 'd', 'e', 'a b c', false);
