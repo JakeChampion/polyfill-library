@@ -1,1 +1,1 @@
-self.DOMTokenList instanceof Function && self.DOMTokenList.prototype.replace instanceof Function
+(document.createElement('div').classList || {}).replace
