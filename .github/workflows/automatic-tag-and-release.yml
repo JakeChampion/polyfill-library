@@ -1,3 +1,4 @@
+name: Automatic tag and release
 on:
   pull_request_target:
     types: [closed] # Merged pull-requests count as closed pull-requests.
