@@ -1,7 +1,7 @@
 /* eslint-env mocha, browser */
 /* global proclaim */
 
-before(function() {
+before(function () {
   if (
     Intl.PluralRules &&
     typeof Intl.PluralRules.__addLocaleData === "function"
@@ -11,9 +11,9 @@ before(function() {
         en: {
           categories: {
             cardinal: ["one", "other"],
-            ordinal: ["one", "two", "few", "other"]
+            ordinal: ["one", "two", "few", "other"],
           },
-          fn: function(n, ord) {
+          fn: function (n, ord) {
             var s = String(n).split("."),
               v0 = !s[1],
               t0 = Number(s[0]) == n,
@@ -28,10 +28,10 @@ before(function() {
                 ? "few"
                 : "other";
             return n == 1 && v0 ? "one" : "other";
-          }
-        }
+          },
+        },
       },
-      availableLocales: ["en"]
+      availableLocales: ["en"],
     });
   }
 
@@ -41,2467 +41,2460 @@ before(function() {
   ) {
     Intl.NumberFormat.__addLocaleData({
       data: {
-        en: {
+        "en": {
           units: {
-            degree: {
-              displayName: "degrees",
-              "long": {
-                other: { symbol: ["degrees"], pattern: "{0} {1}" },
-                one: { symbol: ["degree"], pattern: "{0} {1}" }
+            simple: {
+              degree: {
+                long: { other: "{0} degrees", one: "{0} degree" },
+                short: { other: "{0} deg" },
+                narrow: { other: "{0}°" },
+                perUnit: {},
               },
-              "short": { other: { symbol: ["deg"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["°"], pattern: "{0}{1}" } }
+              hectare: {
+                long: { other: "{0} hectares", one: "{0} hectare" },
+                short: { other: "{0} ha" },
+                narrow: { other: "{0}ha" },
+                perUnit: {},
+              },
+              acre: {
+                long: { other: "{0} acres", one: "{0} acre" },
+                short: { other: "{0} ac" },
+                narrow: { other: "{0}ac" },
+                perUnit: {},
+              },
+              percent: {
+                long: { other: "{0} per cent" },
+                short: { other: "{0}%" },
+                narrow: { other: "{0}%" },
+                perUnit: {},
+              },
+              "liter-per-kilometer": {
+                long: {
+                  other: "{0} litres per kilometre",
+                  one: "{0} litre per kilometre",
+                },
+                short: { other: "{0} l/km" },
+                narrow: { other: "{0}l/km" },
+                perUnit: {},
+              },
+              "mile-per-gallon": {
+                long: {
+                  other: "{0} miles per US gallon",
+                  one: "{0} mile per US gallon",
+                },
+                short: { other: "{0} mpg US" },
+                narrow: { other: "{0}mpgUS" },
+                perUnit: {},
+              },
+              petabyte: {
+                long: { other: "{0} petabytes", one: "{0} petabyte" },
+                short: { other: "{0} PB" },
+                narrow: { other: "{0}PB" },
+                perUnit: {},
+              },
+              terabyte: {
+                long: { other: "{0} terabytes", one: "{0} terabyte" },
+                short: { other: "{0} TB" },
+                narrow: { other: "{0}TB" },
+                perUnit: {},
+              },
+              terabit: {
+                long: { other: "{0} terabits", one: "{0} terabit" },
+                short: { other: "{0} Tb" },
+                narrow: { other: "{0}Tb" },
+                perUnit: {},
+              },
+              gigabyte: {
+                long: { other: "{0} gigabytes", one: "{0} gigabyte" },
+                short: { other: "{0} GB" },
+                narrow: { other: "{0}GB" },
+                perUnit: {},
+              },
+              gigabit: {
+                long: { other: "{0} gigabits", one: "{0} gigabit" },
+                short: { other: "{0} Gb" },
+                narrow: { other: "{0}Gb" },
+                perUnit: {},
+              },
+              megabyte: {
+                long: { other: "{0} megabytes", one: "{0} megabyte" },
+                short: { other: "{0} MB" },
+                narrow: { other: "{0}MB" },
+                perUnit: {},
+              },
+              megabit: {
+                long: { other: "{0} megabits", one: "{0} megabit" },
+                short: { other: "{0} Mb" },
+                narrow: { other: "{0}Mb" },
+                perUnit: {},
+              },
+              kilobyte: {
+                long: { other: "{0} kilobytes", one: "{0} kilobyte" },
+                short: { other: "{0} kB" },
+                narrow: { other: "{0}kB" },
+                perUnit: {},
+              },
+              kilobit: {
+                long: { other: "{0} kilobits", one: "{0} kilobit" },
+                short: { other: "{0} kb" },
+                narrow: { other: "{0}kb" },
+                perUnit: {},
+              },
+              byte: {
+                long: { other: "{0} bytes", one: "{0} byte" },
+                short: { other: "{0} byte" },
+                narrow: { other: "{0}B" },
+                perUnit: {},
+              },
+              bit: {
+                long: { other: "{0} bits", one: "{0} bit" },
+                short: { other: "{0} bit" },
+                narrow: { other: "{0}bit" },
+                perUnit: {},
+              },
+              year: {
+                long: { other: "{0} years", one: "{0} year" },
+                short: { other: "{0} yrs", one: "{0} yr" },
+                narrow: { other: "{0}y" },
+                perUnit: {
+                  long: "{0} per year",
+                  short: "{0}/y",
+                  narrow: "{0}/y",
+                },
+              },
+              month: {
+                long: { other: "{0} months", one: "{0} month" },
+                short: { other: "{0} mths", one: "{0} mth" },
+                narrow: { other: "{0}m" },
+                perUnit: {
+                  long: "{0} per month",
+                  short: "{0}/m",
+                  narrow: "{0}/m",
+                },
+              },
+              week: {
+                long: { other: "{0} weeks", one: "{0} week" },
+                short: { other: "{0} wks", one: "{0} wk" },
+                narrow: { other: "{0}w" },
+                perUnit: {
+                  long: "{0} per week",
+                  short: "{0}/w",
+                  narrow: "{0}/w",
+                },
+              },
+              day: {
+                long: { other: "{0} days", one: "{0} day" },
+                short: { other: "{0} days", one: "{0} day" },
+                narrow: { other: "{0}d" },
+                perUnit: {
+                  long: "{0} per day",
+                  short: "{0}/d",
+                  narrow: "{0}/d",
+                },
+              },
+              hour: {
+                long: { other: "{0} hours", one: "{0} hour" },
+                short: { other: "{0} hrs", one: "{0} hr" },
+                narrow: { other: "{0}h" },
+                perUnit: {
+                  long: "{0} per hour",
+                  short: "{0}/h",
+                  narrow: "{0}/h",
+                },
+              },
+              minute: {
+                long: { other: "{0} minutes", one: "{0} minute" },
+                short: { other: "{0} mins", one: "{0} min" },
+                narrow: { other: "{0}m" },
+                perUnit: {
+                  long: "{0} per minute",
+                  short: "{0}/min",
+                  narrow: "{0}/min",
+                },
+              },
+              second: {
+                long: { other: "{0} seconds", one: "{0} second" },
+                short: { other: "{0} secs", one: "{0} sec" },
+                narrow: { other: "{0}s" },
+                perUnit: {
+                  long: "{0} per second",
+                  short: "{0}/s",
+                  narrow: "{0}/s",
+                },
+              },
+              millisecond: {
+                long: { other: "{0} milliseconds", one: "{0} millisecond" },
+                short: { other: "{0} ms" },
+                narrow: { other: "{0}ms" },
+                perUnit: {},
+              },
+              kilometer: {
+                long: { other: "{0} kilometres", one: "{0} kilometre" },
+                short: { other: "{0} km" },
+                narrow: { other: "{0}km" },
+                perUnit: {
+                  long: "{0} per kilometre",
+                  short: "{0}/km",
+                  narrow: "{0}/km",
+                },
+              },
+              meter: {
+                long: { other: "{0} metres", one: "{0} metre" },
+                short: { other: "{0} m" },
+                narrow: { other: "{0}m" },
+                perUnit: {
+                  long: "{0} per metre",
+                  short: "{0}/m",
+                  narrow: "{0}/m",
+                },
+              },
+              centimeter: {
+                long: { other: "{0} centimetres", one: "{0} centimetre" },
+                short: { other: "{0} cm" },
+                narrow: { other: "{0}cm" },
+                perUnit: {
+                  long: "{0} per centimetre",
+                  short: "{0}/cm",
+                  narrow: "{0}/cm",
+                },
+              },
+              millimeter: {
+                long: { other: "{0} millimetres", one: "{0} millimetre" },
+                short: { other: "{0} mm" },
+                narrow: { other: "{0}mm" },
+                perUnit: {},
+              },
+              mile: {
+                long: { other: "{0} miles", one: "{0} mile" },
+                short: { other: "{0} mi" },
+                narrow: { other: "{0}mi" },
+                perUnit: {},
+              },
+              yard: {
+                long: { other: "{0} yards", one: "{0} yard" },
+                short: { other: "{0} yd" },
+                narrow: { other: "{0}yd" },
+                perUnit: {},
+              },
+              foot: {
+                long: { other: "{0} feet", one: "{0} foot" },
+                short: { other: "{0} ft" },
+                narrow: { other: "{0}′" },
+                perUnit: {
+                  long: "{0} per foot",
+                  short: "{0}/ft",
+                  narrow: "{0}/ft",
+                },
+              },
+              inch: {
+                long: { other: "{0} inches", one: "{0} inch" },
+                short: { other: "{0} in" },
+                narrow: { other: "{0}″" },
+                perUnit: {
+                  long: "{0} per inch",
+                  short: "{0}/in",
+                  narrow: "{0}/in",
+                },
+              },
+              "mile-scandinavian": {
+                long: {
+                  other: "{0} miles-scandinavian",
+                  one: "{0} mile-scandinavian",
+                },
+                short: { other: "{0} smi" },
+                narrow: { other: "{0}smi" },
+                perUnit: {},
+              },
+              kilogram: {
+                long: { other: "{0} kilograms", one: "{0} kilogram" },
+                short: { other: "{0} kg" },
+                narrow: { other: "{0}kg" },
+                perUnit: {
+                  long: "{0} per kilogram",
+                  short: "{0}/kg",
+                  narrow: "{0}/kg",
+                },
+              },
+              gram: {
+                long: { other: "{0} grams", one: "{0} gram" },
+                short: { other: "{0} g" },
+                narrow: { other: "{0}g" },
+                perUnit: {
+                  long: "{0} per gram",
+                  short: "{0}/g",
+                  narrow: "{0}/g",
+                },
+              },
+              stone: {
+                long: { other: "{0} stone" },
+                short: { other: "{0} st" },
+                narrow: { other: "{0}st" },
+                perUnit: {},
+              },
+              pound: {
+                long: { other: "{0} pounds", one: "{0} pound" },
+                short: { other: "{0} lb" },
+                narrow: { other: "{0}lb" },
+                perUnit: {
+                  long: "{0} per pound",
+                  short: "{0}/lb",
+                  narrow: "{0}/lb",
+                },
+              },
+              ounce: {
+                long: { other: "{0} ounces", one: "{0} ounce" },
+                short: { other: "{0} oz" },
+                narrow: { other: "{0}oz" },
+                perUnit: {
+                  long: "{0} per ounce",
+                  short: "{0}/oz",
+                  narrow: "{0}/oz",
+                },
+              },
+              "kilometer-per-hour": {
+                long: {
+                  other: "{0} kilometres per hour",
+                  one: "{0} kilometre per hour",
+                },
+                short: { other: "{0} km/h" },
+                narrow: { other: "{0}km/h" },
+                perUnit: {},
+              },
+              "meter-per-second": {
+                long: {
+                  other: "{0} metres per second",
+                  one: "{0} metre per second",
+                },
+                short: { other: "{0} m/s" },
+                narrow: { other: "{0}m/s" },
+                perUnit: {},
+              },
+              "mile-per-hour": {
+                long: { other: "{0} miles per hour", one: "{0} mile per hour" },
+                short: { other: "{0} mph" },
+                narrow: { other: "{0}mph" },
+                perUnit: {},
+              },
+              celsius: {
+                long: {
+                  other: "{0} degrees Celsius",
+                  one: "{0} degree Celsius",
+                },
+                short: { other: "{0}°C" },
+                narrow: { other: "{0}°" },
+                perUnit: {},
+              },
+              fahrenheit: {
+                long: {
+                  other: "{0} degrees Fahrenheit",
+                  one: "{0} degree Fahrenheit",
+                },
+                short: { other: "{0}°F" },
+                narrow: { other: "{0}°F" },
+                perUnit: {},
+              },
+              liter: {
+                long: { other: "{0} litres", one: "{0} litre" },
+                short: { other: "{0} l" },
+                narrow: { other: "{0}l" },
+                perUnit: {
+                  long: "{0} per litre",
+                  short: "{0}/l",
+                  narrow: "{0}/l",
+                },
+              },
+              milliliter: {
+                long: { other: "{0} millilitres", one: "{0} millilitre" },
+                short: { other: "{0} ml" },
+                narrow: { other: "{0}ml" },
+                perUnit: {},
+              },
+              gallon: {
+                long: { other: "{0} US gallons", one: "{0} US gallon" },
+                short: { other: "{0} gal US" },
+                narrow: { other: "{0}galUS" },
+                perUnit: {
+                  long: "{0} per US gallon",
+                  short: "{0}/gal US",
+                  narrow: "{0}/galUS",
+                },
+              },
+              "fluid-ounce": {
+                long: {
+                  other: "{0} US fluid ounces",
+                  one: "{0} US fluid ounce",
+                },
+                short: { other: "{0} US fl oz" },
+                narrow: { other: "{0}fl oz" },
+                perUnit: {},
+              },
             },
-            acre: {
-              displayName: "acres",
-              "long": {
-                other: { symbol: ["acres"], pattern: "{0} {1}" },
-                one: { symbol: ["acre"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["ac"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["ac"], pattern: "{0}{1}" } }
+            compound: {
+              per: { long: "{0} per {1}", short: "{0}/{1}", narrow: "{0}/{1}" },
             },
-            hectare: {
-              displayName: "hectares",
-              "long": {
-                other: { symbol: ["hectares"], pattern: "{0} {1}" },
-                one: { symbol: ["hectare"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["ha"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["ha"], pattern: "{0}{1}" } }
-            },
-            percent: {
-              displayName: "percent",
-              "long": { other: { symbol: ["percent"], pattern: "{0} {1}" } },
-              "short": { other: { symbol: ["%"], pattern: "{0}{1}" } },
-              narrow: { other: { symbol: ["%"], pattern: "{0}{1}" } }
-            },
-            bit: {
-              displayName: "bits",
-              "long": {
-                other: { symbol: ["bits"], pattern: "{0} {1}" },
-                one: { symbol: ["bit"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["bit"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["bit"], pattern: "{0}{1}" } }
-            },
-            "byte": {
-              displayName: "bytes",
-              "long": {
-                other: { symbol: ["bytes"], pattern: "{0} {1}" },
-                one: { symbol: ["byte"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["byte"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["B"], pattern: "{0}{1}" } }
-            },
-            gigabit: {
-              displayName: "gigabits",
-              "long": {
-                other: { symbol: ["gigabits"], pattern: "{0} {1}" },
-                one: { symbol: ["gigabit"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["Gb"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["Gb"], pattern: "{0}{1}" } }
-            },
-            gigabyte: {
-              displayName: "gigabytes",
-              "long": {
-                other: { symbol: ["gigabytes"], pattern: "{0} {1}" },
-                one: { symbol: ["gigabyte"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["GB"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["GB"], pattern: "{0}{1}" } }
-            },
-            kilobit: {
-              displayName: "kilobits",
-              "long": {
-                other: { symbol: ["kilobits"], pattern: "{0} {1}" },
-                one: { symbol: ["kilobit"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["kb"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["kb"], pattern: "{0}{1}" } }
-            },
-            kilobyte: {
-              displayName: "kilobytes",
-              "long": {
-                other: { symbol: ["kilobytes"], pattern: "{0} {1}" },
-                one: { symbol: ["kilobyte"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["kB"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["kB"], pattern: "{0}{1}" } }
-            },
-            megabit: {
-              displayName: "megabits",
-              "long": {
-                other: { symbol: ["megabits"], pattern: "{0} {1}" },
-                one: { symbol: ["megabit"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["Mb"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["Mb"], pattern: "{0}{1}" } }
-            },
-            megabyte: {
-              displayName: "megabytes",
-              "long": {
-                other: { symbol: ["megabytes"], pattern: "{0} {1}" },
-                one: { symbol: ["megabyte"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["MB"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["MB"], pattern: "{0}{1}" } }
-            },
-            petabyte: {
-              displayName: "petabytes",
-              "long": {
-                other: { symbol: ["petabytes"], pattern: "{0} {1}" },
-                one: { symbol: ["petabyte"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["PB"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["PB"], pattern: "{0}{1}" } }
-            },
-            terabit: {
-              displayName: "terabits",
-              "long": {
-                other: { symbol: ["terabits"], pattern: "{0} {1}" },
-                one: { symbol: ["terabit"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["Tb"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["Tb"], pattern: "{0}{1}" } }
-            },
-            terabyte: {
-              displayName: "terabytes",
-              "long": {
-                other: { symbol: ["terabytes"], pattern: "{0} {1}" },
-                one: { symbol: ["terabyte"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["TB"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["TB"], pattern: "{0}{1}" } }
-            },
-            day: {
-              displayName: "days",
-              "long": {
-                other: { symbol: ["days"], pattern: "{0} {1}" },
-                one: { symbol: ["day"], pattern: "{0} {1}" }
-              },
-              "short": {
-                other: { symbol: ["days"], pattern: "{0} {1}" },
-                one: { symbol: ["day"], pattern: "{0} {1}" }
-              },
-              narrow: { other: { symbol: ["d"], pattern: "{0}{1}" } }
-            },
-            hour: {
-              displayName: "hours",
-              "long": {
-                other: { symbol: ["hours"], pattern: "{0} {1}" },
-                one: { symbol: ["hour"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["hr"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["h"], pattern: "{0}{1}" } }
-            },
-            millisecond: {
-              displayName: "milliseconds",
-              "long": {
-                other: { symbol: ["milliseconds"], pattern: "{0} {1}" },
-                one: { symbol: ["millisecond"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["ms"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["ms"], pattern: "{0}{1}" } }
-            },
-            minute: {
-              displayName: "minutes",
-              "long": {
-                other: { symbol: ["minutes"], pattern: "{0} {1}" },
-                one: { symbol: ["minute"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["min"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["m"], pattern: "{0}{1}" } }
-            },
-            month: {
-              displayName: "months",
-              "long": {
-                other: { symbol: ["months"], pattern: "{0} {1}" },
-                one: { symbol: ["month"], pattern: "{0} {1}" }
-              },
-              "short": {
-                other: { symbol: ["mths"], pattern: "{0} {1}" },
-                one: { symbol: ["mth"], pattern: "{0} {1}" }
-              },
-              narrow: { other: { symbol: ["m"], pattern: "{0}{1}" } }
-            },
-            second: {
-              displayName: "seconds",
-              "long": {
-                other: { symbol: ["seconds"], pattern: "{0} {1}" },
-                one: { symbol: ["second"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["sec"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["s"], pattern: "{0}{1}" } }
-            },
-            week: {
-              displayName: "weeks",
-              "long": {
-                other: { symbol: ["weeks"], pattern: "{0} {1}" },
-                one: { symbol: ["week"], pattern: "{0} {1}" }
-              },
-              "short": {
-                other: { symbol: ["wks"], pattern: "{0} {1}" },
-                one: { symbol: ["wk"], pattern: "{0} {1}" }
-              },
-              narrow: { other: { symbol: ["w"], pattern: "{0}{1}" } }
-            },
-            year: {
-              displayName: "years",
-              "long": {
-                other: { symbol: ["years"], pattern: "{0} {1}" },
-                one: { symbol: ["year"], pattern: "{0} {1}" }
-              },
-              "short": {
-                other: { symbol: ["yrs"], pattern: "{0} {1}" },
-                one: { symbol: ["yr"], pattern: "{0} {1}" }
-              },
-              narrow: { other: { symbol: ["y"], pattern: "{0}{1}" } }
-            },
-            centimeter: {
-              displayName: "centimeters",
-              "long": {
-                other: { symbol: ["centimeters"], pattern: "{0} {1}" },
-                one: { symbol: ["centimeter"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["cm"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["cm"], pattern: "{0}{1}" } }
-            },
-            foot: {
-              displayName: "feet",
-              "long": {
-                other: { symbol: ["feet"], pattern: "{0} {1}" },
-                one: { symbol: ["foot"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["ft"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["′"], pattern: "{0}{1}" } }
-            },
-            inch: {
-              displayName: "inches",
-              "long": {
-                other: { symbol: ["inches"], pattern: "{0} {1}" },
-                one: { symbol: ["inch"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["in"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["″"], pattern: "{0}{1}" } }
-            },
-            kilometer: {
-              displayName: "kilometers",
-              "long": {
-                other: { symbol: ["kilometers"], pattern: "{0} {1}" },
-                one: { symbol: ["kilometer"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["km"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["km"], pattern: "{0}{1}" } }
-            },
-            meter: {
-              displayName: "meters",
-              "long": {
-                other: { symbol: ["meters"], pattern: "{0} {1}" },
-                one: { symbol: ["meter"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["m"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["m"], pattern: "{0}{1}" } }
-            },
-            "mile-scandinavian": {
-              displayName: "mile-scandinavian",
-              "long": {
-                other: { symbol: ["miles-scandinavian"], pattern: "{0} {1}" },
-                one: { symbol: ["mile-scandinavian"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["smi"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["smi"], pattern: "{0}{1}" } }
-            },
-            mile: {
-              displayName: "miles",
-              "long": {
-                other: { symbol: ["miles"], pattern: "{0} {1}" },
-                one: { symbol: ["mile"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["mi"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["mi"], pattern: "{0}{1}" } }
-            },
-            millimeter: {
-              displayName: "millimeters",
-              "long": {
-                other: { symbol: ["millimeters"], pattern: "{0} {1}" },
-                one: { symbol: ["millimeter"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["mm"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["mm"], pattern: "{0}{1}" } }
-            },
-            yard: {
-              displayName: "yards",
-              "long": {
-                other: { symbol: ["yards"], pattern: "{0} {1}" },
-                one: { symbol: ["yard"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["yd"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["yd"], pattern: "{0}{1}" } }
-            },
-            gram: {
-              displayName: "grams",
-              "long": {
-                other: { symbol: ["grams"], pattern: "{0} {1}" },
-                one: { symbol: ["gram"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["g"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["g"], pattern: "{0}{1}" } }
-            },
-            kilogram: {
-              displayName: "kilograms",
-              "long": {
-                other: { symbol: ["kilograms"], pattern: "{0} {1}" },
-                one: { symbol: ["kilogram"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["kg"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["kg"], pattern: "{0}{1}" } }
-            },
-            ounce: {
-              displayName: "ounces",
-              "long": {
-                other: { symbol: ["ounces"], pattern: "{0} {1}" },
-                one: { symbol: ["ounce"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["oz"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["oz"], pattern: "{0}{1}" } }
-            },
-            pound: {
-              displayName: "pounds",
-              "long": {
-                other: { symbol: ["pounds"], pattern: "{0} {1}" },
-                one: { symbol: ["pound"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["lb"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["#"], pattern: "{0}{1}" } }
-            },
-            stone: {
-              displayName: "stones",
-              "long": {
-                other: { symbol: ["stones"], pattern: "{0} {1}" },
-                one: { symbol: ["stone"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["st"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["st"], pattern: "{0}{1}" } }
-            },
-            celsius: {
-              displayName: "degrees Celsius",
-              "long": {
-                other: { symbol: ["degrees Celsius"], pattern: "{0} {1}" },
-                one: { symbol: ["degree Celsius"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["°C"], pattern: "{0}{1}" } },
-              narrow: { other: { symbol: ["°C"], pattern: "{0}{1}" } }
-            },
-            fahrenheit: {
-              displayName: "degrees Fahrenheit",
-              "long": {
-                other: { symbol: ["degrees Fahrenheit"], pattern: "{0} {1}" },
-                one: { symbol: ["degree Fahrenheit"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["°F"], pattern: "{0}{1}" } },
-              narrow: { other: { symbol: ["°"], pattern: "{0}{1}" } }
-            },
-            "fluid-ounce": {
-              displayName: "fluid ounces",
-              "long": {
-                other: { symbol: ["fluid ounces"], pattern: "{0} {1}" },
-                one: { symbol: ["fluid ounce"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["fl oz"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["fl oz"], pattern: "{0}{1}" } }
-            },
-            gallon: {
-              displayName: "gallons",
-              "long": {
-                other: { symbol: ["gallons"], pattern: "{0} {1}" },
-                one: { symbol: ["gallon"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["gal"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["gal"], pattern: "{0}{1}" } }
-            },
-            liter: {
-              displayName: "liters",
-              "long": {
-                other: { symbol: ["liters"], pattern: "{0} {1}" },
-                one: { symbol: ["liter"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["L"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["L"], pattern: "{0}{1}" } }
-            },
-            milliliter: {
-              displayName: "milliliters",
-              "long": {
-                other: { symbol: ["milliliters"], pattern: "{0} {1}" },
-                one: { symbol: ["milliliter"], pattern: "{0} {1}" }
-              },
-              "short": { other: { symbol: ["mL"], pattern: "{0} {1}" } },
-              narrow: { other: { symbol: ["mL"], pattern: "{0}{1}" } }
-            }
           },
           currencies: {
             ADP: {
               displayName: {
                 other: "Andorran pesetas",
-                one: "Andorran peseta"
+                one: "Andorran peseta",
               },
               symbol: "ADP",
-              narrow: "ADP"
+              narrow: "ADP",
             },
             AED: {
               displayName: { other: "UAE dirhams", one: "UAE dirham" },
               symbol: "AED",
-              narrow: "AED"
+              narrow: "AED",
             },
             AFA: {
               displayName: {
                 other: "Afghan afghanis (1927–2002)",
-                one: "Afghan afghani (1927–2002)"
+                one: "Afghan afghani (1927–2002)",
               },
               symbol: "AFA",
-              narrow: "AFA"
+              narrow: "AFA",
             },
             AFN: {
               displayName: { other: "Afghan Afghanis", one: "Afghan Afghani" },
               symbol: "AFN",
-              narrow: "AFN"
+              narrow: "AFN",
             },
             ALK: {
               displayName: {
                 other: "Albanian lekë (1946–1965)",
-                one: "Albanian lek (1946–1965)"
+                one: "Albanian lek (1946–1965)",
               },
               symbol: "ALK",
-              narrow: "ALK"
+              narrow: "ALK",
             },
             ALL: {
               displayName: { other: "Albanian lekë", one: "Albanian lek" },
               symbol: "ALL",
-              narrow: "ALL"
+              narrow: "ALL",
             },
             AMD: {
               displayName: { other: "Armenian drams", one: "Armenian dram" },
               symbol: "AMD",
-              narrow: "AMD"
+              narrow: "AMD",
             },
             ANG: {
               displayName: {
                 other: "Netherlands Antillean guilders",
-                one: "Netherlands Antillean guilder"
+                one: "Netherlands Antillean guilder",
               },
               symbol: "ANG",
-              narrow: "ANG"
+              narrow: "ANG",
             },
             AOA: {
               displayName: { other: "Angolan kwanzas", one: "Angolan kwanza" },
               symbol: "AOA",
-              narrow: "Kz"
+              narrow: "Kz",
             },
             AOK: {
               displayName: {
                 other: "Angolan kwanzas (1977–1991)",
-                one: "Angolan kwanza (1977–1991)"
+                one: "Angolan kwanza (1977–1991)",
               },
               symbol: "AOK",
-              narrow: "AOK"
+              narrow: "AOK",
             },
             AON: {
               displayName: {
                 other: "Angolan new kwanzas (1990–2000)",
-                one: "Angolan new kwanza (1990–2000)"
+                one: "Angolan new kwanza (1990–2000)",
               },
               symbol: "AON",
-              narrow: "AON"
+              narrow: "AON",
             },
             AOR: {
               displayName: {
                 other: "Angolan readjusted kwanzas (1995–1999)",
-                one: "Angolan readjusted kwanza (1995–1999)"
+                one: "Angolan readjusted kwanza (1995–1999)",
               },
               symbol: "AOR",
-              narrow: "AOR"
+              narrow: "AOR",
             },
             ARA: {
               displayName: {
                 other: "Argentine australs",
-                one: "Argentine austral"
+                one: "Argentine austral",
               },
               symbol: "ARA",
-              narrow: "ARA"
+              narrow: "ARA",
             },
             ARL: {
               displayName: {
                 other: "Argentine pesos ley (1970–1983)",
-                one: "Argentine peso ley (1970–1983)"
+                one: "Argentine peso ley (1970–1983)",
               },
               symbol: "ARL",
-              narrow: "ARL"
+              narrow: "ARL",
             },
             ARM: {
               displayName: {
                 other: "Argentine pesos (1881–1970)",
-                one: "Argentine peso (1881–1970)"
+                one: "Argentine peso (1881–1970)",
               },
               symbol: "ARM",
-              narrow: "ARM"
+              narrow: "ARM",
             },
             ARP: {
               displayName: {
                 other: "Argentine pesos (1983–1985)",
-                one: "Argentine peso (1983–1985)"
+                one: "Argentine peso (1983–1985)",
               },
               symbol: "ARP",
-              narrow: "ARP"
+              narrow: "ARP",
             },
             ARS: {
               displayName: { other: "Argentine pesos", one: "Argentine peso" },
               symbol: "ARS",
-              narrow: "$"
+              narrow: "$",
             },
             ATS: {
               displayName: {
                 other: "Austrian schillings",
-                one: "Austrian schilling"
+                one: "Austrian schilling",
               },
               symbol: "ATS",
-              narrow: "ATS"
+              narrow: "ATS",
             },
             AUD: {
               displayName: {
                 other: "Australian dollars",
-                one: "Australian dollar"
+                one: "Australian dollar",
               },
               symbol: "A$",
-              narrow: "$"
+              narrow: "$",
             },
             AWG: {
               displayName: { other: "Aruban florin" },
               symbol: "AWG",
-              narrow: "AWG"
+              narrow: "AWG",
             },
             AZM: {
               displayName: {
                 other: "Azerbaijani manats (1993–2006)",
-                one: "Azerbaijani manat (1993–2006)"
+                one: "Azerbaijani manat (1993–2006)",
               },
               symbol: "AZM",
-              narrow: "AZM"
+              narrow: "AZM",
             },
             AZN: {
               displayName: {
                 other: "Azerbaijani manats",
-                one: "Azerbaijani manat"
+                one: "Azerbaijani manat",
               },
               symbol: "AZN",
-              narrow: "AZN"
+              narrow: "AZN",
             },
             BAD: {
               displayName: {
                 other: "Bosnia-Herzegovina dinars (1992–1994)",
-                one: "Bosnia-Herzegovina dinar (1992–1994)"
+                one: "Bosnia-Herzegovina dinar (1992–1994)",
               },
               symbol: "BAD",
-              narrow: "BAD"
+              narrow: "BAD",
             },
             BAM: {
               displayName: {
                 other: "Bosnia-Herzegovina convertible marks",
-                one: "Bosnia-Herzegovina convertible mark"
+                one: "Bosnia-Herzegovina convertible mark",
               },
               symbol: "BAM",
-              narrow: "KM"
+              narrow: "KM",
             },
             BAN: {
               displayName: {
                 other: "Bosnia-Herzegovina new dinars (1994–1997)",
-                one: "Bosnia-Herzegovina new dinar (1994–1997)"
+                one: "Bosnia-Herzegovina new dinar (1994–1997)",
               },
               symbol: "BAN",
-              narrow: "BAN"
+              narrow: "BAN",
             },
             BBD: {
               displayName: {
                 other: "Barbadian dollars",
-                one: "Barbadian dollar"
+                one: "Barbadian dollar",
               },
               symbol: "BBD",
-              narrow: "$"
+              narrow: "$",
             },
             BDT: {
               displayName: {
                 other: "Bangladeshi takas",
-                one: "Bangladeshi taka"
+                one: "Bangladeshi taka",
               },
               symbol: "BDT",
-              narrow: "৳"
+              narrow: "৳",
             },
             BEC: {
               displayName: {
                 other: "Belgian francs (convertible)",
-                one: "Belgian franc (convertible)"
+                one: "Belgian franc (convertible)",
               },
               symbol: "BEC",
-              narrow: "BEC"
+              narrow: "BEC",
             },
             BEF: {
               displayName: { other: "Belgian francs", one: "Belgian franc" },
               symbol: "BEF",
-              narrow: "BEF"
+              narrow: "BEF",
             },
             BEL: {
               displayName: {
                 other: "Belgian francs (financial)",
-                one: "Belgian franc (financial)"
+                one: "Belgian franc (financial)",
               },
               symbol: "BEL",
-              narrow: "BEL"
+              narrow: "BEL",
             },
             BGL: {
               displayName: {
                 other: "Bulgarian hard leva",
-                one: "Bulgarian hard lev"
+                one: "Bulgarian hard lev",
               },
               symbol: "BGL",
-              narrow: "BGL"
+              narrow: "BGL",
             },
             BGM: {
               displayName: {
                 other: "Bulgarian socialist leva",
-                one: "Bulgarian socialist lev"
+                one: "Bulgarian socialist lev",
               },
               symbol: "BGM",
-              narrow: "BGM"
+              narrow: "BGM",
             },
             BGN: {
               displayName: { other: "Bulgarian leva", one: "Bulgarian lev" },
               symbol: "BGN",
-              narrow: "BGN"
+              narrow: "BGN",
             },
             BGO: {
               displayName: {
                 other: "Bulgarian leva (1879–1952)",
-                one: "Bulgarian lev (1879–1952)"
+                one: "Bulgarian lev (1879–1952)",
               },
               symbol: "BGO",
-              narrow: "BGO"
+              narrow: "BGO",
             },
             BHD: {
               displayName: { other: "Bahraini dinars", one: "Bahraini dinar" },
               symbol: "BHD",
-              narrow: "BHD"
+              narrow: "BHD",
             },
             BIF: {
               displayName: {
                 other: "Burundian francs",
-                one: "Burundian franc"
+                one: "Burundian franc",
               },
               symbol: "BIF",
-              narrow: "BIF"
+              narrow: "BIF",
             },
             BMD: {
               displayName: {
                 other: "Bermudan dollars",
-                one: "Bermudan dollar"
+                one: "Bermudan dollar",
               },
               symbol: "BMD",
-              narrow: "$"
+              narrow: "$",
             },
             BND: {
               displayName: { other: "Brunei dollars", one: "Brunei dollar" },
               symbol: "BND",
-              narrow: "$"
+              narrow: "$",
             },
             BOB: {
               displayName: {
                 other: "Bolivian bolivianos",
-                one: "Bolivian boliviano"
+                one: "Bolivian boliviano",
               },
               symbol: "BOB",
-              narrow: "Bs"
+              narrow: "Bs",
             },
             BOL: {
               displayName: {
                 other: "Bolivian bolivianos (1863–1963)",
-                one: "Bolivian boliviano (1863–1963)"
+                one: "Bolivian boliviano (1863–1963)",
               },
               symbol: "BOL",
-              narrow: "BOL"
+              narrow: "BOL",
             },
             BOP: {
               displayName: { other: "Bolivian pesos", one: "Bolivian peso" },
               symbol: "BOP",
-              narrow: "BOP"
+              narrow: "BOP",
             },
             BOV: {
               displayName: { other: "Bolivian mvdols", one: "Bolivian mvdol" },
               symbol: "BOV",
-              narrow: "BOV"
+              narrow: "BOV",
             },
             BRB: {
               displayName: {
                 other: "Brazilian new cruzeiros (1967–1986)",
-                one: "Brazilian new cruzeiro (1967–1986)"
+                one: "Brazilian new cruzeiro (1967–1986)",
               },
               symbol: "BRB",
-              narrow: "BRB"
+              narrow: "BRB",
             },
             BRC: {
               displayName: {
                 other: "Brazilian cruzados (1986–1989)",
-                one: "Brazilian cruzado (1986–1989)"
+                one: "Brazilian cruzado (1986–1989)",
               },
               symbol: "BRC",
-              narrow: "BRC"
+              narrow: "BRC",
             },
             BRE: {
               displayName: {
                 other: "Brazilian cruzeiros (1990–1993)",
-                one: "Brazilian cruzeiro (1990–1993)"
+                one: "Brazilian cruzeiro (1990–1993)",
               },
               symbol: "BRE",
-              narrow: "BRE"
+              narrow: "BRE",
             },
             BRL: {
               displayName: { other: "Brazilian reals", one: "Brazilian real" },
               symbol: "R$",
-              narrow: "R$"
+              narrow: "R$",
             },
             BRN: {
               displayName: {
                 other: "Brazilian new cruzados (1989–1990)",
-                one: "Brazilian new cruzado (1989–1990)"
+                one: "Brazilian new cruzado (1989–1990)",
               },
               symbol: "BRN",
-              narrow: "BRN"
+              narrow: "BRN",
             },
             BRR: {
               displayName: {
                 other: "Brazilian cruzeiros (1993–1994)",
-                one: "Brazilian cruzeiro (1993–1994)"
+                one: "Brazilian cruzeiro (1993–1994)",
               },
               symbol: "BRR",
-              narrow: "BRR"
+              narrow: "BRR",
             },
             BRZ: {
               displayName: {
                 other: "Brazilian cruzeiros (1942–1967)",
-                one: "Brazilian cruzeiro (1942–1967)"
+                one: "Brazilian cruzeiro (1942–1967)",
               },
               symbol: "BRZ",
-              narrow: "BRZ"
+              narrow: "BRZ",
             },
             BSD: {
               displayName: {
                 other: "Bahamian dollars",
-                one: "Bahamian dollar"
+                one: "Bahamian dollar",
               },
               symbol: "BSD",
-              narrow: "$"
+              narrow: "$",
             },
             BTN: {
               displayName: {
                 other: "Bhutanese ngultrums",
-                one: "Bhutanese ngultrum"
+                one: "Bhutanese ngultrum",
               },
               symbol: "BTN",
-              narrow: "BTN"
+              narrow: "BTN",
             },
             BUK: {
               displayName: { other: "Burmese kyats", one: "Burmese kyat" },
               symbol: "BUK",
-              narrow: "BUK"
+              narrow: "BUK",
             },
             BWP: {
               displayName: { other: "Botswanan pulas", one: "Botswanan pula" },
               symbol: "BWP",
-              narrow: "P"
+              narrow: "P",
             },
             BYB: {
               displayName: {
-                other: "Belarusian rubles (1994–1999)",
-                one: "Belarusian ruble (1994–1999)"
+                other: "Belarusian new roubles (1994–1999)",
+                one: "Belarusian new rouble (1994–1999)",
               },
               symbol: "BYB",
-              narrow: "BYB"
+              narrow: "BYB",
             },
             BYN: {
               displayName: {
-                other: "Belarusian rubles",
-                one: "Belarusian ruble"
+                other: "Belarusian roubles",
+                one: "Belarusian rouble",
               },
               symbol: "BYN",
-              narrow: "р."
+              narrow: "р.",
             },
             BYR: {
               displayName: {
-                other: "Belarusian rubles (2000–2016)",
-                one: "Belarusian ruble (2000–2016)"
+                other: "Belarusian roubles (2000–2016)",
+                one: "Belarusian rouble (2000–2016)",
               },
               symbol: "BYR",
-              narrow: "BYR"
+              narrow: "BYR",
             },
             BZD: {
               displayName: { other: "Belize dollars", one: "Belize dollar" },
               symbol: "BZD",
-              narrow: "$"
+              narrow: "$",
             },
             CAD: {
               displayName: {
                 other: "Canadian dollars",
-                one: "Canadian dollar"
+                one: "Canadian dollar",
               },
               symbol: "CA$",
-              narrow: "$"
+              narrow: "$",
             },
             CDF: {
               displayName: {
                 other: "Congolese francs",
-                one: "Congolese franc"
+                one: "Congolese franc",
               },
               symbol: "CDF",
-              narrow: "CDF"
+              narrow: "CDF",
             },
             CHE: {
               displayName: { other: "WIR euros", one: "WIR euro" },
               symbol: "CHE",
-              narrow: "CHE"
+              narrow: "CHE",
             },
             CHF: {
               displayName: { other: "Swiss francs", one: "Swiss franc" },
               symbol: "CHF",
-              narrow: "CHF"
+              narrow: "CHF",
             },
             CHW: {
               displayName: { other: "WIR francs", one: "WIR franc" },
               symbol: "CHW",
-              narrow: "CHW"
+              narrow: "CHW",
             },
             CLE: {
               displayName: { other: "Chilean escudos", one: "Chilean escudo" },
               symbol: "CLE",
-              narrow: "CLE"
+              narrow: "CLE",
             },
             CLF: {
               displayName: {
                 other: "Chilean units of account (UF)",
-                one: "Chilean unit of account (UF)"
+                one: "Chilean unit of account (UF)",
               },
               symbol: "CLF",
-              narrow: "CLF"
+              narrow: "CLF",
             },
             CLP: {
               displayName: { other: "Chilean pesos", one: "Chilean peso" },
               symbol: "CLP",
-              narrow: "$"
+              narrow: "$",
             },
             CNH: {
               displayName: { other: "Chinese yuan (offshore)" },
               symbol: "CNH",
-              narrow: "CNH"
+              narrow: "CNH",
             },
             CNX: {
               displayName: {
                 other: "Chinese People’s Bank dollars",
-                one: "Chinese People’s Bank dollar"
+                one: "Chinese People’s Bank dollar",
               },
               symbol: "CNX",
-              narrow: "CNX"
+              narrow: "CNX",
             },
             CNY: {
               displayName: { other: "Chinese yuan" },
               symbol: "CN¥",
-              narrow: "¥"
+              narrow: "¥",
             },
             COP: {
               displayName: { other: "Colombian pesos", one: "Colombian peso" },
               symbol: "COP",
-              narrow: "$"
+              narrow: "$",
             },
             COU: {
               displayName: {
                 other: "Colombian real value units",
-                one: "Colombian real value unit"
+                one: "Colombian real value unit",
               },
               symbol: "COU",
-              narrow: "COU"
+              narrow: "COU",
             },
             CRC: {
               displayName: {
                 other: "Costa Rican colóns",
-                one: "Costa Rican colón"
+                one: "Costa Rican colón",
               },
               symbol: "CRC",
-              narrow: "₡"
+              narrow: "₡",
             },
             CSD: {
               displayName: {
                 other: "Serbian dinars (2002–2006)",
-                one: "Serbian dinar (2002–2006)"
+                one: "Serbian dinar (2002–2006)",
               },
               symbol: "CSD",
-              narrow: "CSD"
+              narrow: "CSD",
             },
             CSK: {
               displayName: {
                 other: "Czechoslovak hard korunas",
-                one: "Czechoslovak hard koruna"
+                one: "Czechoslovak hard koruna",
               },
               symbol: "CSK",
-              narrow: "CSK"
+              narrow: "CSK",
             },
             CUC: {
               displayName: {
                 other: "Cuban convertible pesos",
-                one: "Cuban convertible peso"
+                one: "Cuban convertible peso",
               },
               symbol: "CUC",
-              narrow: "$"
+              narrow: "$",
             },
             CUP: {
               displayName: { other: "Cuban pesos", one: "Cuban peso" },
               symbol: "CUP",
-              narrow: "$"
+              narrow: "$",
             },
             CVE: {
               displayName: {
                 other: "Cape Verdean escudos",
-                one: "Cape Verdean escudo"
+                one: "Cape Verdean escudo",
               },
               symbol: "CVE",
-              narrow: "CVE"
+              narrow: "CVE",
             },
             CYP: {
               displayName: { other: "Cypriot pounds", one: "Cypriot pound" },
               symbol: "CYP",
-              narrow: "CYP"
+              narrow: "CYP",
             },
             CZK: {
               displayName: { other: "Czech korunas", one: "Czech koruna" },
               symbol: "CZK",
-              narrow: "Kč"
+              narrow: "Kč",
             },
             DDM: {
               displayName: {
                 other: "East German marks",
-                one: "East German mark"
+                one: "East German mark",
               },
               symbol: "DDM",
-              narrow: "DDM"
+              narrow: "DDM",
             },
             DEM: {
               displayName: { other: "German marks", one: "German mark" },
               symbol: "DEM",
-              narrow: "DEM"
+              narrow: "DEM",
             },
             DJF: {
               displayName: {
                 other: "Djiboutian francs",
-                one: "Djiboutian franc"
+                one: "Djiboutian franc",
               },
               symbol: "DJF",
-              narrow: "DJF"
+              narrow: "DJF",
             },
             DKK: {
               displayName: { other: "Danish kroner", one: "Danish krone" },
               symbol: "DKK",
-              narrow: "kr"
+              narrow: "kr",
             },
             DOP: {
               displayName: { other: "Dominican pesos", one: "Dominican peso" },
               symbol: "DOP",
-              narrow: "$"
+              narrow: "$",
             },
             DZD: {
               displayName: { other: "Algerian dinars", one: "Algerian dinar" },
               symbol: "DZD",
-              narrow: "DZD"
+              narrow: "DZD",
             },
             ECS: {
               displayName: {
                 other: "Ecuadorian sucres",
-                one: "Ecuadorian sucre"
+                one: "Ecuadorian sucre",
               },
               symbol: "ECS",
-              narrow: "ECS"
+              narrow: "ECS",
             },
             ECV: {
               displayName: {
                 other: "Ecuadorian units of constant value",
-                one: "Ecuadorian unit of constant value"
+                one: "Ecuadorian unit of constant value",
               },
               symbol: "ECV",
-              narrow: "ECV"
+              narrow: "ECV",
             },
             EEK: {
               displayName: { other: "Estonian kroons", one: "Estonian kroon" },
               symbol: "EEK",
-              narrow: "EEK"
+              narrow: "EEK",
             },
             EGP: {
               displayName: { other: "Egyptian pounds", one: "Egyptian pound" },
               symbol: "EGP",
-              narrow: "E£"
+              narrow: "E£",
             },
             ERN: {
               displayName: { other: "Eritrean nakfas", one: "Eritrean nakfa" },
               symbol: "ERN",
-              narrow: "ERN"
+              narrow: "ERN",
             },
             ESA: {
               displayName: {
                 other: "Spanish pesetas (A account)",
-                one: "Spanish peseta (A account)"
+                one: "Spanish peseta (A account)",
               },
               symbol: "ESA",
-              narrow: "ESA"
+              narrow: "ESA",
             },
             ESB: {
               displayName: {
                 other: "Spanish pesetas (convertible account)",
-                one: "Spanish peseta (convertible account)"
+                one: "Spanish peseta (convertible account)",
               },
               symbol: "ESB",
-              narrow: "ESB"
+              narrow: "ESB",
             },
             ESP: {
               displayName: { other: "Spanish pesetas", one: "Spanish peseta" },
               symbol: "ESP",
-              narrow: "₧"
+              narrow: "₧",
             },
             ETB: {
               displayName: { other: "Ethiopian birrs", one: "Ethiopian birr" },
               symbol: "ETB",
-              narrow: "ETB"
+              narrow: "ETB",
             },
             EUR: {
               displayName: { other: "euros", one: "euro" },
               symbol: "€",
-              narrow: "€"
+              narrow: "€",
             },
             FIM: {
               displayName: { other: "Finnish markkas", one: "Finnish markka" },
               symbol: "FIM",
-              narrow: "FIM"
+              narrow: "FIM",
             },
             FJD: {
               displayName: { other: "Fijian dollars", one: "Fijian dollar" },
               symbol: "FJD",
-              narrow: "$"
+              narrow: "$",
             },
             FKP: {
               displayName: {
                 other: "Falkland Islands pounds",
-                one: "Falkland Islands pound"
+                one: "Falkland Islands pound",
               },
               symbol: "FKP",
-              narrow: "£"
+              narrow: "£",
             },
             FRF: {
               displayName: { other: "French francs", one: "French franc" },
               symbol: "FRF",
-              narrow: "FRF"
+              narrow: "FRF",
             },
             GBP: {
               displayName: { other: "British pounds", one: "British pound" },
               symbol: "£",
-              narrow: "£"
+              narrow: "£",
             },
             GEK: {
               displayName: {
                 other: "Georgian kupon larits",
-                one: "Georgian kupon larit"
+                one: "Georgian kupon larit",
               },
               symbol: "GEK",
-              narrow: "GEK"
+              narrow: "GEK",
             },
             GEL: {
               displayName: { other: "Georgian laris", one: "Georgian lari" },
               symbol: "GEL",
-              narrow: "₾"
+              narrow: "₾",
             },
             GHC: {
               displayName: {
                 other: "Ghanaian cedis (1979–2007)",
-                one: "Ghanaian cedi (1979–2007)"
+                one: "Ghanaian cedi (1979–2007)",
               },
               symbol: "GHC",
-              narrow: "GHC"
+              narrow: "GHC",
             },
             GHS: {
               displayName: { other: "Ghanaian cedis", one: "Ghanaian cedi" },
               symbol: "GHS",
-              narrow: "GHS"
+              narrow: "GHS",
             },
             GIP: {
               displayName: {
                 other: "Gibraltar pounds",
-                one: "Gibraltar pound"
+                one: "Gibraltar pound",
               },
               symbol: "GIP",
-              narrow: "£"
+              narrow: "£",
             },
             GMD: {
               displayName: { other: "Gambian dalasis", one: "Gambian dalasi" },
               symbol: "GMD",
-              narrow: "GMD"
+              narrow: "GMD",
             },
             GNF: {
               displayName: { other: "Guinean francs", one: "Guinean franc" },
               symbol: "GNF",
-              narrow: "FG"
+              narrow: "FG",
             },
             GNS: {
               displayName: { other: "Guinean sylis", one: "Guinean syli" },
               symbol: "GNS",
-              narrow: "GNS"
+              narrow: "GNS",
             },
             GQE: {
               displayName: { other: "Equatorial Guinean ekwele" },
               symbol: "GQE",
-              narrow: "GQE"
+              narrow: "GQE",
             },
             GRD: {
               displayName: { other: "Greek drachmas", one: "Greek drachma" },
               symbol: "GRD",
-              narrow: "GRD"
+              narrow: "GRD",
             },
             GTQ: {
               displayName: {
                 other: "Guatemalan quetzals",
-                one: "Guatemalan quetzal"
+                one: "Guatemalan quetzal",
               },
               symbol: "GTQ",
-              narrow: "Q"
+              narrow: "Q",
             },
             GWE: {
               displayName: {
                 other: "Portuguese Guinea escudos",
-                one: "Portuguese Guinea escudo"
+                one: "Portuguese Guinea escudo",
               },
               symbol: "GWE",
-              narrow: "GWE"
+              narrow: "GWE",
             },
             GWP: {
               displayName: {
                 other: "Guinea-Bissau pesos",
-                one: "Guinea-Bissau peso"
+                one: "Guinea-Bissau peso",
               },
               symbol: "GWP",
-              narrow: "GWP"
+              narrow: "GWP",
             },
             GYD: {
               displayName: {
                 other: "Guyanaese dollars",
-                one: "Guyanaese dollar"
+                one: "Guyanaese dollar",
               },
               symbol: "GYD",
-              narrow: "$"
+              narrow: "$",
             },
             HKD: {
               displayName: {
                 other: "Hong Kong dollars",
-                one: "Hong Kong dollar"
+                one: "Hong Kong dollar",
               },
               symbol: "HK$",
-              narrow: "$"
+              narrow: "$",
             },
             HNL: {
               displayName: {
                 other: "Honduran lempiras",
-                one: "Honduran lempira"
+                one: "Honduran lempira",
               },
               symbol: "HNL",
-              narrow: "L"
+              narrow: "L",
             },
             HRD: {
               displayName: { other: "Croatian dinars", one: "Croatian dinar" },
               symbol: "HRD",
-              narrow: "HRD"
+              narrow: "HRD",
             },
             HRK: {
               displayName: { other: "Croatian kunas", one: "Croatian kuna" },
               symbol: "HRK",
-              narrow: "kn"
+              narrow: "kn",
             },
             HTG: {
               displayName: { other: "Haitian gourdes", one: "Haitian gourde" },
               symbol: "HTG",
-              narrow: "HTG"
+              narrow: "HTG",
             },
             HUF: {
               displayName: {
                 other: "Hungarian forints",
-                one: "Hungarian forint"
+                one: "Hungarian forint",
               },
               symbol: "HUF",
-              narrow: "Ft"
+              narrow: "Ft",
             },
             IDR: {
               displayName: {
                 other: "Indonesian rupiahs",
-                one: "Indonesian rupiah"
+                one: "Indonesian rupiah",
               },
               symbol: "IDR",
-              narrow: "Rp"
+              narrow: "Rp",
             },
             IEP: {
               displayName: { other: "Irish pounds", one: "Irish pound" },
               symbol: "IEP",
-              narrow: "IEP"
+              narrow: "IEP",
             },
             ILP: {
               displayName: { other: "Israeli pounds", one: "Israeli pound" },
               symbol: "ILP",
-              narrow: "ILP"
+              narrow: "ILP",
             },
             ILR: {
               displayName: {
                 other: "Israeli shekels (1980–1985)",
-                one: "Israeli shekel (1980–1985)"
+                one: "Israeli shekel (1980–1985)",
               },
               symbol: "ILR",
-              narrow: "ILR"
+              narrow: "ILR",
             },
             ILS: {
               displayName: {
                 other: "Israeli new shekels",
-                one: "Israeli new shekel"
+                one: "Israeli new shekel",
               },
               symbol: "₪",
-              narrow: "₪"
+              narrow: "₪",
             },
             INR: {
               displayName: { other: "Indian rupees", one: "Indian rupee" },
               symbol: "₹",
-              narrow: "₹"
+              narrow: "₹",
             },
             IQD: {
               displayName: { other: "Iraqi dinars", one: "Iraqi dinar" },
               symbol: "IQD",
-              narrow: "IQD"
+              narrow: "IQD",
             },
             IRR: {
               displayName: { other: "Iranian rials", one: "Iranian rial" },
               symbol: "IRR",
-              narrow: "IRR"
+              narrow: "IRR",
             },
             ISJ: {
               displayName: {
                 other: "Icelandic krónur (1918–1981)",
-                one: "Icelandic króna (1918–1981)"
+                one: "Icelandic króna (1918–1981)",
               },
               symbol: "ISJ",
-              narrow: "ISJ"
+              narrow: "ISJ",
             },
             ISK: {
               displayName: {
                 other: "Icelandic krónur",
-                one: "Icelandic króna"
+                one: "Icelandic króna",
               },
               symbol: "ISK",
-              narrow: "kr"
+              narrow: "kr",
             },
             ITL: {
               displayName: { other: "Italian liras", one: "Italian lira" },
               symbol: "ITL",
-              narrow: "ITL"
+              narrow: "ITL",
             },
             JMD: {
               displayName: {
                 other: "Jamaican dollars",
-                one: "Jamaican dollar"
+                one: "Jamaican dollar",
               },
               symbol: "JMD",
-              narrow: "$"
+              narrow: "$",
             },
             JOD: {
               displayName: {
                 other: "Jordanian dinars",
-                one: "Jordanian dinar"
+                one: "Jordanian dinar",
               },
               symbol: "JOD",
-              narrow: "JOD"
+              narrow: "JOD",
             },
             JPY: {
               displayName: { other: "Japanese yen" },
-              symbol: "¥",
-              narrow: "¥"
+              symbol: "JP¥",
+              narrow: "¥",
             },
             KES: {
               displayName: {
                 other: "Kenyan shillings",
-                one: "Kenyan shilling"
+                one: "Kenyan shilling",
               },
               symbol: "KES",
-              narrow: "KES"
+              narrow: "KES",
             },
             KGS: {
               displayName: { other: "Kyrgystani soms", one: "Kyrgystani som" },
               symbol: "KGS",
-              narrow: "KGS"
+              narrow: "KGS",
             },
             KHR: {
               displayName: { other: "Cambodian riels", one: "Cambodian riel" },
               symbol: "KHR",
-              narrow: "៛"
+              narrow: "៛",
             },
             KMF: {
               displayName: { other: "Comorian francs", one: "Comorian franc" },
               symbol: "KMF",
-              narrow: "CF"
+              narrow: "CF",
             },
             KPW: {
               displayName: { other: "North Korean won" },
               symbol: "KPW",
-              narrow: "₩"
+              narrow: "₩",
             },
             KRH: {
               displayName: { other: "South Korean hwan (1953–1962)" },
               symbol: "KRH",
-              narrow: "KRH"
+              narrow: "KRH",
             },
             KRO: {
               displayName: { other: "South Korean won (1945–1953)" },
               symbol: "KRO",
-              narrow: "KRO"
+              narrow: "KRO",
             },
             KRW: {
               displayName: { other: "South Korean won" },
               symbol: "₩",
-              narrow: "₩"
+              narrow: "₩",
             },
             KWD: {
               displayName: { other: "Kuwaiti dinars", one: "Kuwaiti dinar" },
               symbol: "KWD",
-              narrow: "KWD"
+              narrow: "KWD",
             },
             KYD: {
               displayName: {
                 other: "Cayman Islands dollars",
-                one: "Cayman Islands dollar"
+                one: "Cayman Islands dollar",
               },
               symbol: "KYD",
-              narrow: "$"
+              narrow: "$",
             },
             KZT: {
               displayName: {
                 other: "Kazakhstani tenges",
-                one: "Kazakhstani tenge"
+                one: "Kazakhstani tenge",
               },
               symbol: "KZT",
-              narrow: "₸"
+              narrow: "₸",
             },
             LAK: {
               displayName: { other: "Laotian kips", one: "Laotian kip" },
               symbol: "LAK",
-              narrow: "₭"
+              narrow: "₭",
             },
             LBP: {
               displayName: { other: "Lebanese pounds", one: "Lebanese pound" },
               symbol: "LBP",
-              narrow: "L£"
+              narrow: "L£",
             },
             LKR: {
               displayName: {
                 other: "Sri Lankan rupees",
-                one: "Sri Lankan rupee"
+                one: "Sri Lankan rupee",
               },
               symbol: "LKR",
-              narrow: "Rs"
+              narrow: "Rs",
             },
             LRD: {
               displayName: {
                 other: "Liberian dollars",
-                one: "Liberian dollar"
+                one: "Liberian dollar",
               },
               symbol: "LRD",
-              narrow: "$"
+              narrow: "$",
             },
             LSL: {
               displayName: { other: "Lesotho lotis", one: "Lesotho loti" },
               symbol: "LSL",
-              narrow: "LSL"
+              narrow: "LSL",
             },
             LTL: {
               displayName: {
                 other: "Lithuanian litai",
-                one: "Lithuanian litas"
+                one: "Lithuanian litas",
               },
               symbol: "LTL",
-              narrow: "Lt"
+              narrow: "Lt",
             },
             LTT: {
               displayName: {
                 other: "Lithuanian talonases",
-                one: "Lithuanian talonas"
+                one: "Lithuanian talonas",
               },
               symbol: "LTT",
-              narrow: "LTT"
+              narrow: "LTT",
             },
             LUC: {
               displayName: {
                 other: "Luxembourgian convertible francs",
-                one: "Luxembourgian convertible franc"
+                one: "Luxembourgian convertible franc",
               },
               symbol: "LUC",
-              narrow: "LUC"
+              narrow: "LUC",
             },
             LUF: {
               displayName: {
                 other: "Luxembourgian francs",
-                one: "Luxembourgian franc"
+                one: "Luxembourgian franc",
               },
               symbol: "LUF",
-              narrow: "LUF"
+              narrow: "LUF",
             },
             LUL: {
               displayName: {
                 other: "Luxembourg financial francs",
-                one: "Luxembourg financial franc"
+                one: "Luxembourg financial franc",
               },
               symbol: "LUL",
-              narrow: "LUL"
+              narrow: "LUL",
             },
             LVL: {
               displayName: { other: "Latvian lati", one: "Latvian lats" },
               symbol: "LVL",
-              narrow: "Ls"
+              narrow: "Ls",
             },
             LVR: {
-              displayName: { other: "Latvian rubles", one: "Latvian ruble" },
+              displayName: { other: "Latvian roubles", one: "Latvian rouble" },
               symbol: "LVR",
-              narrow: "LVR"
+              narrow: "LVR",
             },
             LYD: {
               displayName: { other: "Libyan dinars", one: "Libyan dinar" },
               symbol: "LYD",
-              narrow: "LYD"
+              narrow: "LYD",
             },
             MAD: {
               displayName: {
                 other: "Moroccan dirhams",
-                one: "Moroccan dirham"
+                one: "Moroccan dirham",
               },
               symbol: "MAD",
-              narrow: "MAD"
+              narrow: "MAD",
             },
             MAF: {
               displayName: { other: "Moroccan francs", one: "Moroccan franc" },
               symbol: "MAF",
-              narrow: "MAF"
+              narrow: "MAF",
             },
             MCF: {
               displayName: {
                 other: "Monegasque francs",
-                one: "Monegasque franc"
+                one: "Monegasque franc",
               },
               symbol: "MCF",
-              narrow: "MCF"
+              narrow: "MCF",
             },
             MDC: {
               displayName: { other: "Moldovan cupon" },
               symbol: "MDC",
-              narrow: "MDC"
+              narrow: "MDC",
             },
             MDL: {
               displayName: { other: "Moldovan lei", one: "Moldovan leu" },
               symbol: "MDL",
-              narrow: "MDL"
+              narrow: "MDL",
             },
             MGA: {
               displayName: {
                 other: "Malagasy ariaries",
-                one: "Malagasy ariary"
+                one: "Malagasy ariary",
               },
               symbol: "MGA",
-              narrow: "Ar"
+              narrow: "Ar",
             },
             MGF: {
               displayName: { other: "Malagasy francs", one: "Malagasy franc" },
               symbol: "MGF",
-              narrow: "MGF"
+              narrow: "MGF",
             },
             MKD: {
               displayName: {
                 other: "Macedonian denari",
-                one: "Macedonian denar"
+                one: "Macedonian denar",
               },
               symbol: "MKD",
-              narrow: "MKD"
+              narrow: "MKD",
             },
             MKN: {
               displayName: {
                 other: "Macedonian denari (1992–1993)",
-                one: "Macedonian denar (1992–1993)"
+                one: "Macedonian denar (1992–1993)",
               },
               symbol: "MKN",
-              narrow: "MKN"
+              narrow: "MKN",
             },
             MLF: {
               displayName: { other: "Malian francs", one: "Malian franc" },
               symbol: "MLF",
-              narrow: "MLF"
+              narrow: "MLF",
             },
             MMK: {
               displayName: { other: "Myanmar kyats", one: "Myanmar kyat" },
               symbol: "MMK",
-              narrow: "K"
+              narrow: "K",
             },
             MNT: {
               displayName: {
                 other: "Mongolian tugriks",
-                one: "Mongolian tugrik"
+                one: "Mongolian tugrik",
               },
               symbol: "MNT",
-              narrow: "₮"
+              narrow: "₮",
             },
             MOP: {
               displayName: {
                 other: "Macanese patacas",
-                one: "Macanese pataca"
+                one: "Macanese pataca",
               },
               symbol: "MOP",
-              narrow: "MOP"
+              narrow: "MOP",
             },
             MRO: {
               displayName: {
                 other: "Mauritanian ouguiyas (1973–2017)",
-                one: "Mauritanian ouguiya (1973–2017)"
+                one: "Mauritanian ouguiya (1973–2017)",
               },
               symbol: "MRO",
-              narrow: "MRO"
+              narrow: "MRO",
             },
             MRU: {
               displayName: {
                 other: "Mauritanian ouguiyas",
-                one: "Mauritanian ouguiya"
+                one: "Mauritanian ouguiya",
               },
               symbol: "MRU",
-              narrow: "MRU"
+              narrow: "MRU",
             },
             MTL: {
               displayName: { other: "Maltese lira" },
               symbol: "MTL",
-              narrow: "MTL"
+              narrow: "MTL",
             },
             MTP: {
               displayName: { other: "Maltese pounds", one: "Maltese pound" },
               symbol: "MTP",
-              narrow: "MTP"
+              narrow: "MTP",
             },
             MUR: {
               displayName: {
                 other: "Mauritian rupees",
-                one: "Mauritian rupee"
+                one: "Mauritian rupee",
               },
               symbol: "MUR",
-              narrow: "Rs"
+              narrow: "Rs",
             },
             MVP: {
               displayName: {
                 other: "Maldivian rupees (1947–1981)",
-                one: "Maldivian rupee (1947–1981)"
+                one: "Maldivian rupee (1947–1981)",
               },
               symbol: "MVP",
-              narrow: "MVP"
+              narrow: "MVP",
             },
             MVR: {
               displayName: {
                 other: "Maldivian rufiyaas",
-                one: "Maldivian rufiyaa"
+                one: "Maldivian rufiyaa",
               },
               symbol: "MVR",
-              narrow: "MVR"
+              narrow: "MVR",
             },
             MWK: {
               displayName: {
                 other: "Malawian kwachas",
-                one: "Malawian kwacha"
+                one: "Malawian kwacha",
               },
               symbol: "MWK",
-              narrow: "MWK"
+              narrow: "MWK",
             },
             MXN: {
               displayName: { other: "Mexican pesos", one: "Mexican peso" },
               symbol: "MX$",
-              narrow: "$"
+              narrow: "$",
             },
             MXP: {
               displayName: {
                 other: "Mexican silver pesos (1861–1992)",
-                one: "Mexican silver peso (1861–1992)"
+                one: "Mexican silver peso (1861–1992)",
               },
               symbol: "MXP",
-              narrow: "MXP"
+              narrow: "MXP",
             },
             MXV: {
               displayName: {
                 other: "Mexican investment units",
-                one: "Mexican investment unit"
+                one: "Mexican investment unit",
               },
               symbol: "MXV",
-              narrow: "MXV"
+              narrow: "MXV",
             },
             MYR: {
               displayName: {
                 other: "Malaysian ringgits",
-                one: "Malaysian ringgit"
+                one: "Malaysian ringgit",
               },
               symbol: "MYR",
-              narrow: "RM"
+              narrow: "RM",
             },
             MZE: {
               displayName: {
                 other: "Mozambican escudos",
-                one: "Mozambican escudo"
+                one: "Mozambican escudo",
               },
               symbol: "MZE",
-              narrow: "MZE"
+              narrow: "MZE",
             },
             MZM: {
               displayName: {
                 other: "Mozambican meticals (1980–2006)",
-                one: "Mozambican metical (1980–2006)"
+                one: "Mozambican metical (1980–2006)",
               },
               symbol: "MZM",
-              narrow: "MZM"
+              narrow: "MZM",
             },
             MZN: {
               displayName: {
                 other: "Mozambican meticals",
-                one: "Mozambican metical"
+                one: "Mozambican metical",
               },
               symbol: "MZN",
-              narrow: "MZN"
+              narrow: "MZN",
             },
             NAD: {
               displayName: {
                 other: "Namibian dollars",
-                one: "Namibian dollar"
+                one: "Namibian dollar",
               },
               symbol: "NAD",
-              narrow: "$"
+              narrow: "$",
             },
             NGN: {
               displayName: { other: "Nigerian nairas", one: "Nigerian naira" },
               symbol: "NGN",
-              narrow: "₦"
+              narrow: "₦",
             },
             NIC: {
               displayName: {
                 other: "Nicaraguan córdobas (1988–1991)",
-                one: "Nicaraguan córdoba (1988–1991)"
+                one: "Nicaraguan córdoba (1988–1991)",
               },
               symbol: "NIC",
-              narrow: "NIC"
+              narrow: "NIC",
             },
             NIO: {
               displayName: {
                 other: "Nicaraguan córdobas",
-                one: "Nicaraguan córdoba"
+                one: "Nicaraguan córdoba",
               },
               symbol: "NIO",
-              narrow: "C$"
+              narrow: "C$",
             },
             NLG: {
               displayName: { other: "Dutch guilders", one: "Dutch guilder" },
               symbol: "NLG",
-              narrow: "NLG"
+              narrow: "NLG",
             },
             NOK: {
               displayName: {
                 other: "Norwegian kroner",
-                one: "Norwegian krone"
+                one: "Norwegian krone",
               },
               symbol: "NOK",
-              narrow: "kr"
+              narrow: "kr",
             },
             NPR: {
               displayName: { other: "Nepalese rupees", one: "Nepalese rupee" },
               symbol: "NPR",
-              narrow: "Rs"
+              narrow: "Rs",
             },
             NZD: {
               displayName: {
                 other: "New Zealand dollars",
-                one: "New Zealand dollar"
+                one: "New Zealand dollar",
               },
               symbol: "NZ$",
-              narrow: "$"
+              narrow: "$",
             },
             OMR: {
               displayName: { other: "Omani rials", one: "Omani rial" },
               symbol: "OMR",
-              narrow: "OMR"
+              narrow: "OMR",
             },
             PAB: {
               displayName: {
                 other: "Panamanian balboas",
-                one: "Panamanian balboa"
+                one: "Panamanian balboa",
               },
               symbol: "PAB",
-              narrow: "PAB"
+              narrow: "PAB",
             },
             PEI: {
               displayName: { other: "Peruvian intis", one: "Peruvian inti" },
               symbol: "PEI",
-              narrow: "PEI"
+              narrow: "PEI",
             },
             PEN: {
               displayName: { other: "Peruvian soles", one: "Peruvian sol" },
               symbol: "PEN",
-              narrow: "PEN"
+              narrow: "PEN",
             },
             PES: {
               displayName: {
                 other: "Peruvian soles (1863–1965)",
-                one: "Peruvian sol (1863–1965)"
+                one: "Peruvian sol (1863–1965)",
               },
               symbol: "PES",
-              narrow: "PES"
+              narrow: "PES",
             },
             PGK: {
               displayName: { other: "Papua New Guinean kina" },
               symbol: "PGK",
-              narrow: "PGK"
+              narrow: "PGK",
             },
             PHP: {
               displayName: {
                 other: "Philippine pisos",
-                one: "Philippine piso"
+                one: "Philippine piso",
               },
               symbol: "PHP",
-              narrow: "₱"
+              narrow: "₱",
             },
             PKR: {
               displayName: {
                 other: "Pakistani rupees",
-                one: "Pakistani rupee"
+                one: "Pakistani rupee",
               },
               symbol: "PKR",
-              narrow: "Rs"
+              narrow: "Rs",
             },
             PLN: {
               displayName: { other: "Polish zlotys", one: "Polish zloty" },
               symbol: "PLN",
-              narrow: "zł"
+              narrow: "zł",
             },
             PLZ: {
               displayName: {
                 other: "Polish zlotys (PLZ)",
-                one: "Polish zloty (PLZ)"
+                one: "Polish zloty (PLZ)",
               },
               symbol: "PLZ",
-              narrow: "PLZ"
+              narrow: "PLZ",
             },
             PTE: {
               displayName: {
                 other: "Portuguese escudos",
-                one: "Portuguese escudo"
+                one: "Portuguese escudo",
               },
               symbol: "PTE",
-              narrow: "PTE"
+              narrow: "PTE",
             },
             PYG: {
               displayName: {
                 other: "Paraguayan guaranis",
-                one: "Paraguayan guarani"
+                one: "Paraguayan guarani",
               },
               symbol: "PYG",
-              narrow: "₲"
+              narrow: "₲",
             },
             QAR: {
               displayName: { other: "Qatari rials", one: "Qatari rial" },
               symbol: "QAR",
-              narrow: "QAR"
+              narrow: "QAR",
             },
             RHD: {
               displayName: {
                 other: "Rhodesian dollars",
-                one: "Rhodesian dollar"
+                one: "Rhodesian dollar",
               },
               symbol: "RHD",
-              narrow: "RHD"
+              narrow: "RHD",
             },
             ROL: {
               displayName: {
                 other: "Romanian Lei (1952–2006)",
-                one: "Romanian leu (1952–2006)"
+                one: "Romanian leu (1952–2006)",
               },
               symbol: "ROL",
-              narrow: "ROL"
+              narrow: "ROL",
             },
             RON: {
               displayName: { other: "Romanian lei", one: "Romanian leu" },
               symbol: "RON",
-              narrow: "lei"
+              narrow: "lei",
             },
             RSD: {
               displayName: { other: "Serbian dinars", one: "Serbian dinar" },
               symbol: "RSD",
-              narrow: "RSD"
+              narrow: "RSD",
             },
             RUB: {
-              displayName: { other: "Russian rubles", one: "Russian ruble" },
+              displayName: { other: "Russian roubles", one: "Russian rouble" },
               symbol: "RUB",
-              narrow: "₽"
+              narrow: "₽",
             },
             RUR: {
               displayName: {
-                other: "Russian rubles (1991–1998)",
-                one: "Russian ruble (1991–1998)"
+                other: "Russian roubles (1991–1998)",
+                one: "Russian rouble (1991–1998)",
               },
               symbol: "RUR",
-              narrow: "р."
+              narrow: "р.",
             },
             RWF: {
               displayName: { other: "Rwandan francs", one: "Rwandan franc" },
               symbol: "RWF",
-              narrow: "RF"
+              narrow: "RF",
             },
             SAR: {
               displayName: { other: "Saudi riyals", one: "Saudi riyal" },
               symbol: "SAR",
-              narrow: "SAR"
+              narrow: "SAR",
             },
             SBD: {
               displayName: {
                 other: "Solomon Islands dollars",
-                one: "Solomon Islands dollar"
+                one: "Solomon Islands dollar",
               },
               symbol: "SBD",
-              narrow: "$"
+              narrow: "$",
             },
             SCR: {
               displayName: {
                 other: "Seychellois rupees",
-                one: "Seychellois rupee"
+                one: "Seychellois rupee",
               },
               symbol: "SCR",
-              narrow: "SCR"
+              narrow: "SCR",
             },
             SDD: {
               displayName: {
                 other: "Sudanese dinars (1992–2007)",
-                one: "Sudanese dinar (1992–2007)"
+                one: "Sudanese dinar (1992–2007)",
               },
               symbol: "SDD",
-              narrow: "SDD"
+              narrow: "SDD",
             },
             SDG: {
               displayName: { other: "Sudanese pounds", one: "Sudanese pound" },
               symbol: "SDG",
-              narrow: "SDG"
+              narrow: "SDG",
             },
             SDP: {
               displayName: {
                 other: "Sudanese pounds (1957–1998)",
-                one: "Sudanese pound (1957–1998)"
+                one: "Sudanese pound (1957–1998)",
               },
               symbol: "SDP",
-              narrow: "SDP"
+              narrow: "SDP",
             },
             SEK: {
               displayName: { other: "Swedish kronor", one: "Swedish krona" },
               symbol: "SEK",
-              narrow: "kr"
+              narrow: "kr",
             },
             SGD: {
               displayName: {
                 other: "Singapore dollars",
-                one: "Singapore dollar"
+                one: "Singapore dollar",
               },
               symbol: "SGD",
-              narrow: "$"
+              narrow: "$",
             },
             SHP: {
               displayName: {
-                other: "St. Helena pounds",
-                one: "St. Helena pound"
+                other: "St Helena pounds",
+                one: "St Helena pound",
               },
               symbol: "SHP",
-              narrow: "£"
+              narrow: "£",
             },
             SIT: {
               displayName: {
                 other: "Slovenian tolars",
-                one: "Slovenian tolar"
+                one: "Slovenian tolar",
               },
               symbol: "SIT",
-              narrow: "SIT"
+              narrow: "SIT",
             },
             SKK: {
               displayName: { other: "Slovak korunas", one: "Slovak koruna" },
               symbol: "SKK",
-              narrow: "SKK"
+              narrow: "SKK",
             },
             SLL: {
               displayName: {
                 other: "Sierra Leonean leones",
-                one: "Sierra Leonean leone"
+                one: "Sierra Leonean leone",
               },
               symbol: "SLL",
-              narrow: "SLL"
+              narrow: "SLL",
             },
             SOS: {
               displayName: {
                 other: "Somali shillings",
-                one: "Somali shilling"
+                one: "Somali shilling",
               },
               symbol: "SOS",
-              narrow: "SOS"
+              narrow: "SOS",
             },
             SRD: {
               displayName: {
                 other: "Surinamese dollars",
-                one: "Surinamese dollar"
+                one: "Surinamese dollar",
               },
               symbol: "SRD",
-              narrow: "$"
+              narrow: "$",
             },
             SRG: {
               displayName: {
                 other: "Surinamese guilders",
-                one: "Surinamese guilder"
+                one: "Surinamese guilder",
               },
               symbol: "SRG",
-              narrow: "SRG"
+              narrow: "SRG",
             },
             SSP: {
               displayName: {
                 other: "South Sudanese pounds",
-                one: "South Sudanese pound"
+                one: "South Sudanese pound",
               },
               symbol: "SSP",
-              narrow: "£"
+              narrow: "£",
             },
             STD: {
               displayName: {
                 other: "São Tomé & Príncipe dobras (1977–2017)",
-                one: "São Tomé & Príncipe dobra (1977–2017)"
+                one: "São Tomé & Príncipe dobra (1977–2017)",
               },
               symbol: "STD",
-              narrow: "STD"
+              narrow: "STD",
             },
             STN: {
               displayName: {
                 other: "São Tomé & Príncipe dobras",
-                one: "São Tomé & Príncipe dobra"
+                one: "São Tomé & Príncipe dobra",
               },
               symbol: "STN",
-              narrow: "Db"
+              narrow: "Db",
             },
             SUR: {
               displayName: { other: "Soviet roubles", one: "Soviet rouble" },
               symbol: "SUR",
-              narrow: "SUR"
+              narrow: "SUR",
             },
             SVC: {
               displayName: {
                 other: "Salvadoran colones",
-                one: "Salvadoran colón"
+                one: "Salvadoran colón",
               },
               symbol: "SVC",
-              narrow: "SVC"
+              narrow: "SVC",
             },
             SYP: {
               displayName: { other: "Syrian pounds", one: "Syrian pound" },
               symbol: "SYP",
-              narrow: "£"
+              narrow: "£",
             },
             SZL: {
               displayName: {
                 other: "Swazi emalangeni",
-                one: "Swazi lilangeni"
+                one: "Swazi lilangeni",
               },
               symbol: "SZL",
-              narrow: "SZL"
+              narrow: "SZL",
             },
             THB: {
               displayName: { other: "Thai baht" },
               symbol: "THB",
-              narrow: "฿"
+              narrow: "฿",
             },
             TJR: {
               displayName: {
-                other: "Tajikistani rubles",
-                one: "Tajikistani ruble"
+                other: "Tajikistani roubles",
+                one: "Tajikistani rouble",
               },
               symbol: "TJR",
-              narrow: "TJR"
+              narrow: "TJR",
             },
             TJS: {
               displayName: {
                 other: "Tajikistani somonis",
-                one: "Tajikistani somoni"
+                one: "Tajikistani somoni",
               },
               symbol: "TJS",
-              narrow: "TJS"
+              narrow: "TJS",
             },
             TMM: {
               displayName: { other: "Turkmenistani manat (1993–2009)" },
               symbol: "TMM",
-              narrow: "TMM"
+              narrow: "TMM",
             },
             TMT: {
               displayName: { other: "Turkmenistani manat" },
               symbol: "TMT",
-              narrow: "TMT"
+              narrow: "TMT",
             },
             TND: {
               displayName: { other: "Tunisian dinars", one: "Tunisian dinar" },
               symbol: "TND",
-              narrow: "TND"
+              narrow: "TND",
             },
             TOP: {
               displayName: { other: "Tongan paʻanga" },
               symbol: "TOP",
-              narrow: "T$"
+              narrow: "T$",
             },
             TPE: {
               displayName: {
                 other: "Timorese escudos",
-                one: "Timorese escudo"
+                one: "Timorese escudo",
               },
               symbol: "TPE",
-              narrow: "TPE"
+              narrow: "TPE",
             },
             TRL: {
               displayName: {
                 other: "Turkish Lira (1922–2005)",
-                one: "Turkish lira (1922–2005)"
+                one: "Turkish lira (1922–2005)",
               },
               symbol: "TRL",
-              narrow: "TRL"
+              narrow: "TRL",
             },
             TRY: {
               displayName: { other: "Turkish Lira", one: "Turkish lira" },
               symbol: "TRY",
-              narrow: "₺"
+              narrow: "₺",
             },
             TTD: {
               displayName: {
                 other: "Trinidad & Tobago dollars",
-                one: "Trinidad & Tobago dollar"
+                one: "Trinidad & Tobago dollar",
               },
               symbol: "TTD",
-              narrow: "$"
+              narrow: "$",
             },
             TWD: {
               displayName: {
                 other: "New Taiwan dollars",
-                one: "New Taiwan dollar"
+                one: "New Taiwan dollar",
               },
               symbol: "NT$",
-              narrow: "$"
+              narrow: "$",
             },
             TZS: {
               displayName: {
                 other: "Tanzanian shillings",
-                one: "Tanzanian shilling"
+                one: "Tanzanian shilling",
               },
               symbol: "TZS",
-              narrow: "TZS"
+              narrow: "TZS",
             },
             UAH: {
               displayName: {
                 other: "Ukrainian hryvnias",
-                one: "Ukrainian hryvnia"
+                one: "Ukrainian hryvnia",
               },
               symbol: "UAH",
-              narrow: "₴"
+              narrow: "₴",
             },
             UAK: {
               displayName: {
                 other: "Ukrainian karbovantsiv",
-                one: "Ukrainian karbovanets"
+                one: "Ukrainian karbovanets",
               },
               symbol: "UAK",
-              narrow: "UAK"
+              narrow: "UAK",
             },
             UGS: {
               displayName: {
                 other: "Ugandan shillings (1966–1987)",
-                one: "Ugandan shilling (1966–1987)"
+                one: "Ugandan shilling (1966–1987)",
               },
               symbol: "UGS",
-              narrow: "UGS"
+              narrow: "UGS",
             },
             UGX: {
               displayName: {
                 other: "Ugandan shillings",
-                one: "Ugandan shilling"
+                one: "Ugandan shilling",
               },
               symbol: "UGX",
-              narrow: "UGX"
+              narrow: "UGX",
             },
             USD: {
               displayName: { other: "US dollars", one: "US dollar" },
-              symbol: "$",
-              narrow: "$"
+              symbol: "US$",
+              narrow: "$",
             },
             USN: {
               displayName: {
                 other: "US dollars (next day)",
-                one: "US dollar (next day)"
+                one: "US dollar (next day)",
               },
               symbol: "USN",
-              narrow: "USN"
+              narrow: "USN",
             },
             USS: {
               displayName: {
                 other: "US dollars (same day)",
-                one: "US dollar (same day)"
+                one: "US dollar (same day)",
               },
               symbol: "USS",
-              narrow: "USS"
+              narrow: "USS",
             },
             UYI: {
               displayName: {
                 other: "Uruguayan pesos (indexed units)",
-                one: "Uruguayan peso (indexed units)"
+                one: "Uruguayan peso (indexed units)",
               },
               symbol: "UYI",
-              narrow: "UYI"
+              narrow: "UYI",
             },
             UYP: {
               displayName: {
                 other: "Uruguayan pesos (1975–1993)",
-                one: "Uruguayan peso (1975–1993)"
+                one: "Uruguayan peso (1975–1993)",
               },
               symbol: "UYP",
-              narrow: "UYP"
+              narrow: "UYP",
             },
             UYU: {
               displayName: { other: "Uruguayan pesos", one: "Uruguayan peso" },
               symbol: "UYU",
-              narrow: "$"
+              narrow: "$",
             },
             UYW: {
               displayName: {
                 other: "Uruguayan nominal wage index units",
-                one: "Uruguayan nominal wage index unit"
+                one: "Uruguayan nominal wage index unit",
               },
               symbol: "UYW",
-              narrow: "UYW"
+              narrow: "UYW",
             },
             UZS: {
               displayName: { other: "Uzbekistani som" },
               symbol: "UZS",
-              narrow: "UZS"
+              narrow: "UZS",
             },
             VEB: {
               displayName: {
                 other: "Venezuelan bolívars (1871–2008)",
-                one: "Venezuelan bolívar (1871–2008)"
+                one: "Venezuelan bolívar (1871–2008)",
               },
               symbol: "VEB",
-              narrow: "VEB"
+              narrow: "VEB",
             },
             VEF: {
               displayName: {
                 other: "Venezuelan bolívars (2008–2018)",
-                one: "Venezuelan bolívar (2008–2018)"
+                one: "Venezuelan bolívar (2008–2018)",
               },
               symbol: "VEF",
-              narrow: "Bs"
+              narrow: "Bs",
             },
             VES: {
               displayName: {
                 other: "Venezuelan bolívars",
-                one: "Venezuelan bolívar"
+                one: "Venezuelan bolívar",
               },
               symbol: "VES",
-              narrow: "VES"
+              narrow: "VES",
             },
             VND: {
               displayName: { other: "Vietnamese dong" },
               symbol: "₫",
-              narrow: "₫"
+              narrow: "₫",
             },
             VNN: {
               displayName: { other: "Vietnamese dong (1978–1985)" },
               symbol: "VNN",
-              narrow: "VNN"
+              narrow: "VNN",
             },
             VUV: {
               displayName: { other: "Vanuatu vatus", one: "Vanuatu vatu" },
               symbol: "VUV",
-              narrow: "VUV"
+              narrow: "VUV",
             },
             WST: {
               displayName: { other: "Samoan tala" },
               symbol: "WST",
-              narrow: "WST"
+              narrow: "WST",
             },
             XAF: {
               displayName: {
                 other: "Central African CFA francs",
-                one: "Central African CFA franc"
+                one: "Central African CFA franc",
               },
               symbol: "FCFA",
-              narrow: "FCFA"
+              narrow: "FCFA",
             },
             XAG: {
               displayName: {
                 other: "troy ounces of silver",
-                one: "troy ounce of silver"
+                one: "troy ounce of silver",
               },
               symbol: "XAG",
-              narrow: "XAG"
+              narrow: "XAG",
             },
             XAU: {
               displayName: {
                 other: "troy ounces of gold",
-                one: "troy ounce of gold"
+                one: "troy ounce of gold",
               },
               symbol: "XAU",
-              narrow: "XAU"
+              narrow: "XAU",
             },
             XBA: {
               displayName: {
                 other: "European composite units",
-                one: "European composite unit"
+                one: "European composite unit",
               },
               symbol: "XBA",
-              narrow: "XBA"
+              narrow: "XBA",
             },
             XBB: {
               displayName: {
                 other: "European monetary units",
-                one: "European monetary unit"
+                one: "European monetary unit",
               },
               symbol: "XBB",
-              narrow: "XBB"
+              narrow: "XBB",
             },
             XBC: {
               displayName: {
                 other: "European units of account (XBC)",
-                one: "European unit of account (XBC)"
+                one: "European unit of account (XBC)",
               },
               symbol: "XBC",
-              narrow: "XBC"
+              narrow: "XBC",
             },
             XBD: {
               displayName: {
                 other: "European units of account (XBD)",
-                one: "European unit of account (XBD)"
+                one: "European unit of account (XBD)",
               },
               symbol: "XBD",
-              narrow: "XBD"
+              narrow: "XBD",
             },
             XCD: {
               displayName: {
                 other: "East Caribbean dollars",
-                one: "East Caribbean dollar"
+                one: "East Caribbean dollar",
               },
               symbol: "EC$",
-              narrow: "$"
+              narrow: "$",
             },
             XDR: {
               displayName: { other: "special drawing rights" },
               symbol: "XDR",
-              narrow: "XDR"
+              narrow: "XDR",
             },
             XEU: {
               displayName: {
                 other: "European currency units",
-                one: "European currency unit"
+                one: "European currency unit",
               },
               symbol: "XEU",
-              narrow: "XEU"
+              narrow: "XEU",
             },
             XFO: {
               displayName: {
                 other: "French gold francs",
-                one: "French gold franc"
+                one: "French gold franc",
               },
               symbol: "XFO",
-              narrow: "XFO"
+              narrow: "XFO",
             },
             XFU: {
               displayName: {
                 other: "French UIC-francs",
-                one: "French UIC-franc"
+                one: "French UIC-franc",
               },
               symbol: "XFU",
-              narrow: "XFU"
+              narrow: "XFU",
             },
             XOF: {
               displayName: {
                 other: "West African CFA francs",
-                one: "West African CFA franc"
+                one: "West African CFA franc",
               },
               symbol: "CFA",
-              narrow: "CFA"
+              narrow: "CFA",
             },
             XPD: {
               displayName: {
                 other: "troy ounces of palladium",
-                one: "troy ounce of palladium"
+                one: "troy ounce of palladium",
               },
               symbol: "XPD",
-              narrow: "XPD"
+              narrow: "XPD",
             },
             XPF: {
               displayName: { other: "CFP francs", one: "CFP franc" },
               symbol: "CFPF",
-              narrow: "CFPF"
+              narrow: "CFPF",
             },
             XPT: {
               displayName: {
                 other: "troy ounces of platinum",
-                one: "troy ounce of platinum"
+                one: "troy ounce of platinum",
               },
               symbol: "XPT",
-              narrow: "XPT"
+              narrow: "XPT",
             },
             XRE: {
               displayName: {
                 other: "RINET Funds units",
-                one: "RINET Funds unit"
+                one: "RINET Funds unit",
               },
               symbol: "XRE",
-              narrow: "XRE"
+              narrow: "XRE",
             },
             XSU: {
               displayName: { other: "Sucres", one: "Sucre" },
               symbol: "XSU",
-              narrow: "XSU"
+              narrow: "XSU",
             },
             XTS: {
               displayName: {
                 other: "Testing Currency units",
-                one: "Testing Currency unit"
+                one: "Testing Currency unit",
               },
               symbol: "XTS",
-              narrow: "XTS"
+              narrow: "XTS",
             },
             XUA: {
               displayName: {
                 other: "ADB units of account",
-                one: "ADB unit of account"
+                one: "ADB unit of account",
               },
               symbol: "XUA",
-              narrow: "XUA"
+              narrow: "XUA",
             },
             XXX: {
               displayName: {
                 other: "(unknown currency)",
-                one: "(unknown unit of currency)"
+                one: "(unknown unit of currency)",
               },
               symbol: "¤",
-              narrow: "¤"
+              narrow: "¤",
             },
             YDD: {
               displayName: { other: "Yemeni dinars", one: "Yemeni dinar" },
               symbol: "YDD",
-              narrow: "YDD"
+              narrow: "YDD",
             },
             YER: {
               displayName: { other: "Yemeni rials", one: "Yemeni rial" },
               symbol: "YER",
-              narrow: "YER"
+              narrow: "YER",
             },
             YUD: {
               displayName: {
                 other: "Yugoslavian hard dinars (1966–1990)",
-                one: "Yugoslavian hard dinar (1966–1990)"
+                one: "Yugoslavian hard dinar (1966–1990)",
               },
               symbol: "YUD",
-              narrow: "YUD"
+              narrow: "YUD",
             },
             YUM: {
               displayName: {
                 other: "Yugoslavian new dinars (1994–2002)",
-                one: "Yugoslavian new dinar (1994–2002)"
+                one: "Yugoslavian new dinar (1994–2002)",
               },
               symbol: "YUM",
-              narrow: "YUM"
+              narrow: "YUM",
             },
             YUN: {
               displayName: {
                 other: "Yugoslavian convertible dinars (1990–1992)",
-                one: "Yugoslavian convertible dinar (1990–1992)"
+                one: "Yugoslavian convertible dinar (1990–1992)",
               },
               symbol: "YUN",
-              narrow: "YUN"
+              narrow: "YUN",
             },
             YUR: {
               displayName: {
                 other: "Yugoslavian reformed dinars (1992–1993)",
-                one: "Yugoslavian reformed dinar (1992–1993)"
+                one: "Yugoslavian reformed dinar (1992–1993)",
               },
               symbol: "YUR",
-              narrow: "YUR"
+              narrow: "YUR",
             },
             ZAL: {
               displayName: {
                 other: "South African rands (financial)",
-                one: "South African rand (financial)"
+                one: "South African rand (financial)",
               },
               symbol: "ZAL",
-              narrow: "ZAL"
+              narrow: "ZAL",
             },
             ZAR: {
               displayName: { other: "South African rand" },
               symbol: "ZAR",
-              narrow: "R"
+              narrow: "R",
             },
             ZMK: {
               displayName: {
                 other: "Zambian kwachas (1968–2012)",
-                one: "Zambian kwacha (1968–2012)"
+                one: "Zambian kwacha (1968–2012)",
               },
               symbol: "ZMK",
-              narrow: "ZMK"
+              narrow: "ZMK",
             },
             ZMW: {
               displayName: { other: "Zambian kwachas", one: "Zambian kwacha" },
               symbol: "ZMW",
-              narrow: "ZK"
+              narrow: "ZK",
             },
             ZRN: {
               displayName: {
                 other: "Zairean new zaires (1993–1998)",
-                one: "Zairean new zaire (1993–1998)"
+                one: "Zairean new zaire (1993–1998)",
               },
               symbol: "ZRN",
-              narrow: "ZRN"
+              narrow: "ZRN",
             },
             ZRZ: {
               displayName: {
                 other: "Zairean zaires (1971–1993)",
-                one: "Zairean zaire (1971–1993)"
+                one: "Zairean zaire (1971–1993)",
               },
               symbol: "ZRZ",
-              narrow: "ZRZ"
+              narrow: "ZRZ",
             },
             ZWD: {
               displayName: {
                 other: "Zimbabwean dollars (1980–2008)",
-                one: "Zimbabwean dollar (1980–2008)"
+                one: "Zimbabwean dollar (1980–2008)",
               },
               symbol: "ZWD",
-              narrow: "ZWD"
+              narrow: "ZWD",
             },
             ZWL: {
               displayName: {
                 other: "Zimbabwean dollars (2009)",
-                one: "Zimbabwean dollar (2009)"
+                one: "Zimbabwean dollar (2009)",
               },
               symbol: "ZWL",
-              narrow: "ZWL"
+              narrow: "ZWL",
             },
             ZWR: {
               displayName: {
                 other: "Zimbabwean dollars (2008)",
-                one: "Zimbabwean dollar (2008)"
+                one: "Zimbabwean dollar (2008)",
               },
               symbol: "ZWR",
-              narrow: "ZWR"
-            }
+              narrow: "ZWR",
+            },
           },
           numbers: {
             nu: ["latn"],
@@ -2518,169 +2511,73 @@ before(function() {
                 perMille: "‰",
                 infinity: "∞",
                 nan: "NaN",
-                timeSeparator: ":"
-              }
+                timeSeparator: ":",
+              },
             },
             percent: { latn: "#,##0%" },
             decimal: {
               latn: {
-                "long": {
-                  1000: { other: "0 thousand" },
-                  10000: { other: "00 thousand" },
-                  100000: { other: "000 thousand" },
-                  1000000: { other: "0 million" },
-                  10000000: { other: "00 million" },
-                  100000000: { other: "000 million" },
-                  1000000000: { other: "0 billion" },
-                  10000000000: { other: "00 billion" },
-                  100000000000: { other: "000 billion" },
-                  1000000000000: { other: "0 trillion" },
-                  10000000000000: { other: "00 trillion" },
-                  100000000000000: { other: "000 trillion" }
+                standard: "#,##0.###",
+                long: {
+                  "1000": { other: "0 thousand" },
+                  "10000": { other: "00 thousand" },
+                  "100000": { other: "000 thousand" },
+                  "1000000": { other: "0 million" },
+                  "10000000": { other: "00 million" },
+                  "100000000": { other: "000 million" },
+                  "1000000000": { other: "0 billion" },
+                  "10000000000": { other: "00 billion" },
+                  "100000000000": { other: "000 billion" },
+                  "1000000000000": { other: "0 trillion" },
+                  "10000000000000": { other: "00 trillion" },
+                  "100000000000000": { other: "000 trillion" },
                 },
-                "short": {
-                  1000: { other: "0K" },
-                  10000: { other: "00K" },
-                  100000: { other: "000K" },
-                  1000000: { other: "0M" },
-                  10000000: { other: "00M" },
-                  100000000: { other: "000M" },
-                  1000000000: { other: "0B" },
-                  10000000000: { other: "00B" },
-                  100000000000: { other: "000B" },
-                  1000000000000: { other: "0T" },
-                  10000000000000: { other: "00T" },
-                  100000000000000: { other: "000T" }
-                }
-              }
+                short: {
+                  "1000": { other: "0K" },
+                  "10000": { other: "00K" },
+                  "100000": { other: "000K" },
+                  "1000000": { other: "0M" },
+                  "10000000": { other: "00M" },
+                  "100000000": { other: "000M" },
+                  "1000000000": { other: "0B" },
+                  "10000000000": { other: "00B" },
+                  "100000000000": { other: "000B" },
+                  "1000000000000": { other: "0T" },
+                  "10000000000000": { other: "00T" },
+                  "100000000000000": { other: "000T" },
+                },
+              },
             },
             currency: {
               latn: {
                 currencySpacing: {
-                  beforeInsertBetween: " ",
-                  afterInsertBetween: " "
+                  beforeInsertBetween: " ",
+                  afterInsertBetween: " ",
                 },
                 standard: "¤#,##0.00",
                 accounting: "¤#,##0.00;(¤#,##0.00)",
                 unitPattern: "{0} {1}",
-                "short": {
-                  1000: { other: "¤0K" },
-                  10000: { other: "¤00K" },
-                  100000: { other: "¤000K" },
-                  1000000: { other: "¤0M" },
-                  10000000: { other: "¤00M" },
-                  100000000: { other: "¤000M" },
-                  1000000000: { other: "¤0B" },
-                  10000000000: { other: "¤00B" },
-                  100000000000: { other: "¤000B" },
-                  1000000000000: { other: "¤0T" },
-                  10000000000000: { other: "¤00T" },
-                  100000000000000: { other: "¤000T" }
-                }
-              }
-            }
+                short: {
+                  "1000": { other: "¤0K" },
+                  "10000": { other: "¤00K" },
+                  "100000": { other: "¤000K" },
+                  "1000000": { other: "¤0M" },
+                  "10000000": { other: "¤00M" },
+                  "100000000": { other: "¤000M" },
+                  "1000000000": { other: "¤0B" },
+                  "10000000000": { other: "¤00B" },
+                  "100000000000": { other: "¤000B" },
+                  "1000000000000": { other: "¤0T" },
+                  "10000000000000": { other: "¤00T" },
+                  "100000000000000": { other: "¤000T" },
+                },
+              },
+            },
           },
-          nu: ["latn"]
-        }
+          nu: ["latn"],
+        },
       },
       availableLocales: ["en"],
-      aliases: {},
-      parentLocales: {
-        "en-150": "en-001",
-        "en-AG": "en-001",
-        "en-AI": "en-001",
-        "en-AU": "en-001",
-        "en-BB": "en-001",
-        "en-BM": "en-001",
-        "en-BS": "en-001",
-        "en-BW": "en-001",
-        "en-BZ": "en-001",
-        "en-CA": "en-001",
-        "en-CC": "en-001",
-        "en-CK": "en-001",
-        "en-CM": "en-001",
-        "en-CX": "en-001",
-        "en-CY": "en-001",
-        "en-DG": "en-001",
-        "en-DM": "en-001",
-        "en-ER": "en-001",
-        "en-FJ": "en-001",
-        "en-FK": "en-001",
-        "en-FM": "en-001",
-        "en-GB": "en-001",
-        "en-GD": "en-001",
-        "en-GG": "en-001",
-        "en-GH": "en-001",
-        "en-GI": "en-001",
-        "en-GM": "en-001",
-        "en-GY": "en-001",
-        "en-HK": "en-001",
-        "en-IE": "en-001",
-        "en-IL": "en-001",
-        "en-IM": "en-001",
-        "en-IN": "en-001",
-        "en-IO": "en-001",
-        "en-JE": "en-001",
-        "en-JM": "en-001",
-        "en-KE": "en-001",
-        "en-KI": "en-001",
-        "en-KN": "en-001",
-        "en-KY": "en-001",
-        "en-LC": "en-001",
-        "en-LR": "en-001",
-        "en-LS": "en-001",
-        "en-MG": "en-001",
-        "en-MO": "en-001",
-        "en-MS": "en-001",
-        "en-MT": "en-001",
-        "en-MU": "en-001",
-        "en-MW": "en-001",
-        "en-MY": "en-001",
-        "en-NA": "en-001",
-        "en-NF": "en-001",
-        "en-NG": "en-001",
-        "en-NR": "en-001",
-        "en-NU": "en-001",
-        "en-NZ": "en-001",
-        "en-PG": "en-001",
-        "en-PH": "en-001",
-        "en-PK": "en-001",
-        "en-PN": "en-001",
-        "en-PW": "en-001",
-        "en-RW": "en-001",
-        "en-SB": "en-001",
-        "en-SC": "en-001",
-        "en-SD": "en-001",
-        "en-SG": "en-001",
-        "en-SH": "en-001",
-        "en-SL": "en-001",
-        "en-SS": "en-001",
-        "en-SX": "en-001",
-        "en-SZ": "en-001",
-        "en-TC": "en-001",
-        "en-TK": "en-001",
-        "en-TO": "en-001",
-        "en-TT": "en-001",
-        "en-TV": "en-001",
-        "en-TZ": "en-001",
-        "en-UG": "en-001",
-        "en-VC": "en-001",
-        "en-VG": "en-001",
-        "en-VU": "en-001",
-        "en-WS": "en-001",
-        "en-ZA": "en-001",
-        "en-ZM": "en-001",
-        "en-ZW": "en-001",
-        "en-AT": "en-150",
-        "en-BE": "en-150",
-        "en-CH": "en-150",
-        "en-DE": "en-150",
-        "en-DK": "en-150",
-        "en-FI": "en-150",
-        "en-NL": "en-150",
-        "en-SE": "en-150",
-        "en-SI": "en-150"
-      }
     });
   }
 
@@ -2690,26 +2587,26 @@ before(function() {
   ) {
     Intl.DateTimeFormat.__addLocaleData({
       data: {
-        en: {
-          am: "AM",
-          pm: "PM",
+        "en": {
+          am: "am",
+          pm: "pm",
           weekday: {
             narrow: ["S", "M", "T", "W", "T", "F", "S"],
-            "short": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-            "long": [
+            short: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+            long: [
               "Sunday",
               "Monday",
               "Tuesday",
               "Wednesday",
               "Thursday",
               "Friday",
-              "Saturday"
-            ]
+              "Saturday",
+            ],
           },
           era: {
             narrow: { BC: "B", AD: "A" },
-            "short": { BC: "BC", AD: "AD" },
-            "long": { BC: "Before Christ", AD: "Anno Domini" }
+            short: { BC: "BC", AD: "AD" },
+            long: { BC: "Before Christ", AD: "Anno Domini" },
           },
           month: {
             narrow: [
@@ -2724,9 +2621,9 @@ before(function() {
               "S",
               "O",
               "N",
-              "D"
+              "D",
             ],
-            "short": [
+            short: [
               "Jan",
               "Feb",
               "Mar",
@@ -2738,9 +2635,9 @@ before(function() {
               "Sep",
               "Oct",
               "Nov",
-              "Dec"
+              "Dec",
             ],
-            "long": [
+            long: [
               "January",
               "February",
               "March",
@@ -2752,1657 +2649,1560 @@ before(function() {
               "September",
               "October",
               "November",
-              "December"
-            ]
+              "December",
+            ],
           },
           timeZoneName: {
             "America/Rio_Branco": {
-              "long": ["Acre Standard Time", "Acre Summer Time"]
+              long: ["Acre Standard Time", "Acre Summer Time"],
             },
-            "Asia/Kabul": { "long": ["Afghanistan Time", "Afghanistan Time"] },
+            "Asia/Kabul": { long: ["Afghanistan Time", "Afghanistan Time"] },
             "Africa/Maputo": {
-              "long": ["Central Africa Time", "Central Africa Time"]
+              long: ["Central Africa Time", "Central Africa Time"],
             },
             "Africa/Bujumbura": {
-              "long": ["Central Africa Time", "Central Africa Time"]
+              long: ["Central Africa Time", "Central Africa Time"],
             },
             "Africa/Gaborone": {
-              "long": ["Central Africa Time", "Central Africa Time"]
+              long: ["Central Africa Time", "Central Africa Time"],
             },
             "Africa/Lubumbashi": {
-              "long": ["Central Africa Time", "Central Africa Time"]
+              long: ["Central Africa Time", "Central Africa Time"],
             },
             "Africa/Blantyre": {
-              "long": ["Central Africa Time", "Central Africa Time"]
+              long: ["Central Africa Time", "Central Africa Time"],
             },
             "Africa/Kigali": {
-              "long": ["Central Africa Time", "Central Africa Time"]
+              long: ["Central Africa Time", "Central Africa Time"],
             },
             "Africa/Lusaka": {
-              "long": ["Central Africa Time", "Central Africa Time"]
+              long: ["Central Africa Time", "Central Africa Time"],
             },
             "Africa/Harare": {
-              "long": ["Central Africa Time", "Central Africa Time"]
+              long: ["Central Africa Time", "Central Africa Time"],
             },
             "Africa/Nairobi": {
-              "long": ["East Africa Time", "East Africa Time"]
+              long: ["East Africa Time", "East Africa Time"],
             },
             "Africa/Djibouti": {
-              "long": ["East Africa Time", "East Africa Time"]
+              long: ["East Africa Time", "East Africa Time"],
             },
-            "Africa/Asmera": { "long": ["East Africa Time", "East Africa Time"] },
+            "Africa/Asmera": { long: ["East Africa Time", "East Africa Time"] },
             "Africa/Addis_Ababa": {
-              "long": ["East Africa Time", "East Africa Time"]
+              long: ["East Africa Time", "East Africa Time"],
             },
-            "Indian/Comoro": { "long": ["East Africa Time", "East Africa Time"] },
+            "Indian/Comoro": { long: ["East Africa Time", "East Africa Time"] },
             "Indian/Antananarivo": {
-              "long": ["East Africa Time", "East Africa Time"]
+              long: ["East Africa Time", "East Africa Time"],
             },
             "Africa/Mogadishu": {
-              "long": ["East Africa Time", "East Africa Time"]
+              long: ["East Africa Time", "East Africa Time"],
             },
             "Africa/Dar_es_Salaam": {
-              "long": ["East Africa Time", "East Africa Time"]
+              long: ["East Africa Time", "East Africa Time"],
             },
             "Africa/Kampala": {
-              "long": ["East Africa Time", "East Africa Time"]
+              long: ["East Africa Time", "East Africa Time"],
             },
             "Indian/Mayotte": {
-              "long": ["East Africa Time", "East Africa Time"]
+              long: ["East Africa Time", "East Africa Time"],
             },
             "Africa/Johannesburg": {
-              "long": ["South Africa Standard Time", "South Africa Standard Time"]
+              long: [
+                "South Africa Standard Time",
+                "South Africa Standard Time",
+              ],
             },
             "Africa/Maseru": {
-              "long": ["South Africa Standard Time", "South Africa Standard Time"]
+              long: [
+                "South Africa Standard Time",
+                "South Africa Standard Time",
+              ],
             },
             "Africa/Mbabane": {
-              "long": ["South Africa Standard Time", "South Africa Standard Time"]
+              long: [
+                "South Africa Standard Time",
+                "South Africa Standard Time",
+              ],
             },
             "Africa/Lagos": {
-              "long": ["West Africa Standard Time", "West Africa Summer Time"]
+              long: ["West Africa Standard Time", "West Africa Summer Time"],
             },
             "Africa/Luanda": {
-              "long": ["West Africa Standard Time", "West Africa Summer Time"]
+              long: ["West Africa Standard Time", "West Africa Summer Time"],
             },
             "Africa/Porto-Novo": {
-              "long": ["West Africa Standard Time", "West Africa Summer Time"]
+              long: ["West Africa Standard Time", "West Africa Summer Time"],
             },
             "Africa/Kinshasa": {
-              "long": ["West Africa Standard Time", "West Africa Summer Time"]
+              long: ["West Africa Standard Time", "West Africa Summer Time"],
             },
             "Africa/Bangui": {
-              "long": ["West Africa Standard Time", "West Africa Summer Time"]
+              long: ["West Africa Standard Time", "West Africa Summer Time"],
             },
             "Africa/Brazzaville": {
-              "long": ["West Africa Standard Time", "West Africa Summer Time"]
+              long: ["West Africa Standard Time", "West Africa Summer Time"],
             },
             "Africa/Douala": {
-              "long": ["West Africa Standard Time", "West Africa Summer Time"]
+              long: ["West Africa Standard Time", "West Africa Summer Time"],
             },
             "Africa/Libreville": {
-              "long": ["West Africa Standard Time", "West Africa Summer Time"]
+              long: ["West Africa Standard Time", "West Africa Summer Time"],
             },
             "Africa/Malabo": {
-              "long": ["West Africa Standard Time", "West Africa Summer Time"]
+              long: ["West Africa Standard Time", "West Africa Summer Time"],
             },
             "Africa/Niamey": {
-              "long": ["West Africa Standard Time", "West Africa Summer Time"]
+              long: ["West Africa Standard Time", "West Africa Summer Time"],
             },
             "Africa/Ndjamena": {
-              "long": ["West Africa Standard Time", "West Africa Summer Time"]
+              long: ["West Africa Standard Time", "West Africa Summer Time"],
             },
             "Asia/Aqtobe": {
-              "long": ["West Kazakhstan Time", "West Kazakhstan Time"]
+              long: ["West Kazakhstan Time", "West Kazakhstan Time"],
             },
             "America/Juneau": {
-              "long": ["Alaska Standard Time", "Alaska Daylight Time"],
-              "short": ["AKST", "AKDT"]
+              long: ["Alaska Standard Time", "Alaska Daylight Time"],
             },
             "Asia/Almaty": {
-              "long": ["East Kazakhstan Time", "East Kazakhstan Time"]
+              long: ["East Kazakhstan Time", "East Kazakhstan Time"],
             },
             "America/Manaus": {
-              "long": ["Amazon Standard Time", "Amazon Summer Time"]
+              long: ["Amazon Standard Time", "Amazon Summer Time"],
             },
             "America/Chicago": {
-              "long": ["Central Standard Time", "Central Daylight Time"],
-              "short": ["CST", "CDT"]
+              long: ["Central Standard Time", "Central Daylight Time"],
             },
             "America/Belize": {
-              "long": ["Central Standard Time", "Central Daylight Time"],
-              "short": ["CST", "CDT"]
+              long: ["Central Standard Time", "Central Daylight Time"],
             },
             "America/Winnipeg": {
-              "long": ["Central Standard Time", "Central Daylight Time"],
-              "short": ["CST", "CDT"]
+              long: ["Central Standard Time", "Central Daylight Time"],
             },
             "America/Costa_Rica": {
-              "long": ["Central Standard Time", "Central Daylight Time"],
-              "short": ["CST", "CDT"]
+              long: ["Central Standard Time", "Central Daylight Time"],
             },
             "America/Guatemala": {
-              "long": ["Central Standard Time", "Central Daylight Time"],
-              "short": ["CST", "CDT"]
+              long: ["Central Standard Time", "Central Daylight Time"],
             },
             "America/Tegucigalpa": {
-              "long": ["Central Standard Time", "Central Daylight Time"],
-              "short": ["CST", "CDT"]
+              long: ["Central Standard Time", "Central Daylight Time"],
             },
             "America/Mexico_City": {
-              "long": ["Central Standard Time", "Central Daylight Time"],
-              "short": ["CST", "CDT"]
+              long: ["Central Standard Time", "Central Daylight Time"],
             },
             "America/El_Salvador": {
-              "long": ["Central Standard Time", "Central Daylight Time"],
-              "short": ["CST", "CDT"]
+              long: ["Central Standard Time", "Central Daylight Time"],
             },
             "America/New_York": {
-              "long": ["Eastern Standard Time", "Eastern Daylight Time"],
-              "short": ["EST", "EDT"]
+              long: ["Eastern Standard Time", "Eastern Daylight Time"],
             },
             "America/Nassau": {
-              "long": ["Eastern Standard Time", "Eastern Daylight Time"],
-              "short": ["EST", "EDT"]
+              long: ["Eastern Standard Time", "Eastern Daylight Time"],
             },
             "America/Toronto": {
-              "long": ["Eastern Standard Time", "Eastern Daylight Time"],
-              "short": ["EST", "EDT"]
+              long: ["Eastern Standard Time", "Eastern Daylight Time"],
             },
             "America/Port-au-Prince": {
-              "long": ["Eastern Standard Time", "Eastern Daylight Time"],
-              "short": ["EST", "EDT"]
+              long: ["Eastern Standard Time", "Eastern Daylight Time"],
             },
             "America/Jamaica": {
-              "long": ["Eastern Standard Time", "Eastern Daylight Time"],
-              "short": ["EST", "EDT"]
+              long: ["Eastern Standard Time", "Eastern Daylight Time"],
             },
             "America/Cayman": {
-              "long": ["Eastern Standard Time", "Eastern Daylight Time"],
-              "short": ["EST", "EDT"]
+              long: ["Eastern Standard Time", "Eastern Daylight Time"],
             },
             "America/Panama": {
-              "long": ["Eastern Standard Time", "Eastern Daylight Time"],
-              "short": ["EST", "EDT"]
+              long: ["Eastern Standard Time", "Eastern Daylight Time"],
             },
             "America/Denver": {
-              "long": ["Mountain Standard Time", "Mountain Daylight Time"],
-              "short": ["MST", "MDT"]
+              long: ["Mountain Standard Time", "Mountain Daylight Time"],
             },
             "America/Edmonton": {
-              "long": ["Mountain Standard Time", "Mountain Daylight Time"],
-              "short": ["MST", "MDT"]
+              long: ["Mountain Standard Time", "Mountain Daylight Time"],
             },
             "America/Hermosillo": {
-              "long": ["Mountain Standard Time", "Mountain Daylight Time"],
-              "short": ["MST", "MDT"]
+              long: ["Mountain Standard Time", "Mountain Daylight Time"],
             },
             "America/Los_Angeles": {
-              "long": ["Pacific Standard Time", "Pacific Daylight Time"],
-              "short": ["PST", "PDT"]
+              long: ["Pacific Standard Time", "Pacific Daylight Time"],
             },
             "America/Vancouver": {
-              "long": ["Pacific Standard Time", "Pacific Daylight Time"],
-              "short": ["PST", "PDT"]
+              long: ["Pacific Standard Time", "Pacific Daylight Time"],
             },
             "America/Tijuana": {
-              "long": ["Pacific Standard Time", "Pacific Daylight Time"],
-              "short": ["PST", "PDT"]
+              long: ["Pacific Standard Time", "Pacific Daylight Time"],
             },
             "Asia/Anadyr": {
-              "long": ["Anadyr Standard Time", "Anadyr Summer Time"]
+              long: ["Anadyr Standard Time", "Anadyr Summer Time"],
             },
             "Pacific/Apia": {
-              "long": ["Apia Standard Time", "Apia Daylight Time"]
+              long: ["Apia Standard Time", "Apia Daylight Time"],
             },
             "Asia/Riyadh": {
-              "long": ["Arabian Standard Time", "Arabian Daylight Time"]
+              long: ["Arabian Standard Time", "Arabian Daylight Time"],
             },
             "Asia/Bahrain": {
-              "long": ["Arabian Standard Time", "Arabian Daylight Time"]
+              long: ["Arabian Standard Time", "Arabian Daylight Time"],
             },
             "Asia/Baghdad": {
-              "long": ["Arabian Standard Time", "Arabian Daylight Time"]
+              long: ["Arabian Standard Time", "Arabian Daylight Time"],
             },
             "Asia/Kuwait": {
-              "long": ["Arabian Standard Time", "Arabian Daylight Time"]
+              long: ["Arabian Standard Time", "Arabian Daylight Time"],
             },
             "Asia/Qatar": {
-              "long": ["Arabian Standard Time", "Arabian Daylight Time"]
+              long: ["Arabian Standard Time", "Arabian Daylight Time"],
             },
             "Asia/Aden": {
-              "long": ["Arabian Standard Time", "Arabian Daylight Time"]
+              long: ["Arabian Standard Time", "Arabian Daylight Time"],
             },
             "America/Buenos_Aires": {
-              "long": ["Argentina Standard Time", "Argentina Summer Time"]
+              long: ["Argentina Standard Time", "Argentina Summer Time"],
             },
             "America/Argentina/San_Luis": {
-              "long": [
+              long: [
                 "Western Argentina Standard Time",
-                "Western Argentina Summer Time"
-              ]
+                "Western Argentina Summer Time",
+              ],
             },
             "Asia/Ashgabat": {
-              "long": ["Turkmenistan Standard Time", "Turkmenistan Summer Time"]
+              long: ["Turkmenistan Standard Time", "Turkmenistan Summer Time"],
             },
             "America/Halifax": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Antigua": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Anguilla": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Aruba": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Barbados": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "Atlantic/Bermuda": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Kralendijk": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Curacao": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Dominica": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Grenada": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Thule": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Guadeloupe": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/St_Kitts": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/St_Lucia": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Marigot": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Martinique": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Montserrat": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Puerto_Rico": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Lower_Princes": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Port_of_Spain": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/St_Vincent": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/Tortola": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "America/St_Thomas": {
-              "long": ["Atlantic Standard Time", "Atlantic Daylight Time"],
-              "short": ["AST", "ADT"]
+              long: ["Atlantic Standard Time", "Atlantic Daylight Time"],
             },
             "Australia/Adelaide": {
-              "long": [
+              long: [
                 "Australian Central Standard Time",
-                "Australian Central Daylight Time"
-              ]
+                "Australian Central Daylight Time",
+              ],
             },
             "Australia/Eucla": {
-              "long": [
+              long: [
                 "Australian Central Western Standard Time",
-                "Australian Central Western Daylight Time"
-              ]
+                "Australian Central Western Daylight Time",
+              ],
             },
             "Australia/Sydney": {
-              "long": [
+              long: [
                 "Australian Eastern Standard Time",
-                "Australian Eastern Daylight Time"
-              ]
+                "Australian Eastern Daylight Time",
+              ],
             },
             "Australia/Perth": {
-              "long": [
+              long: [
                 "Australian Western Standard Time",
-                "Australian Western Daylight Time"
-              ]
+                "Australian Western Daylight Time",
+              ],
             },
             "Atlantic/Azores": {
-              "long": ["Azores Standard Time", "Azores Summer Time"]
+              long: ["Azores Standard Time", "Azores Summer Time"],
             },
-            "Asia/Thimphu": { "long": ["Bhutan Time", "Bhutan Time"] },
-            "America/La_Paz": { "long": ["Bolivia Time", "Bolivia Time"] },
-            "Asia/Kuching": { "long": ["Malaysia Time", "Malaysia Time"] },
+            "Asia/Thimphu": { long: ["Bhutan Time", "Bhutan Time"] },
+            "America/La_Paz": { long: ["Bolivia Time", "Bolivia Time"] },
+            "Asia/Kuching": { long: ["Malaysia Time", "Malaysia Time"] },
             "America/Sao_Paulo": {
-              "long": ["Brasilia Standard Time", "Brasilia Summer Time"]
+              long: ["Brasilia Standard Time", "Brasilia Summer Time"],
             },
             "Europe/London": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Asia/Brunei": {
-              "long": ["Brunei Darussalam Time", "Brunei Darussalam Time"]
+              long: ["Brunei Darussalam Time", "Brunei Darussalam Time"],
             },
             "Atlantic/Cape_Verde": {
-              "long": ["Cape Verde Standard Time", "Cape Verde Summer Time"]
+              long: ["Cape Verde Standard Time", "Cape Verde Summer Time"],
             },
-            "Antarctica/Casey": { "long": ["Casey Time", "Casey Time"] },
+            "Antarctica/Casey": { long: ["Casey Time", "Casey Time"] },
             "Pacific/Saipan": {
-              "long": ["North Mariana Islands Time", "North Mariana Islands Time"]
+              long: [
+                "North Mariana Islands Time",
+                "North Mariana Islands Time",
+              ],
             },
             "Pacific/Guam": {
-              "long": ["Guam Standard Time", "Guam Standard Time"]
+              long: ["Guam Standard Time", "Guam Standard Time"],
             },
             "Pacific/Chatham": {
-              "long": ["Chatham Standard Time", "Chatham Daylight Time"]
+              long: ["Chatham Standard Time", "Chatham Daylight Time"],
             },
             "America/Santiago": {
-              "long": ["Chile Standard Time", "Chile Summer Time"]
+              long: ["Chile Standard Time", "Chile Summer Time"],
             },
             "Asia/Shanghai": {
-              "long": ["China Standard Time", "China Daylight Time"]
+              long: ["China Standard Time", "China Daylight Time"],
             },
             "Asia/Choibalsan": {
-              "long": ["Choibalsan Standard Time", "Choibalsan Summer Time"]
+              long: ["Choibalsan Standard Time", "Choibalsan Summer Time"],
             },
             "Indian/Christmas": {
-              "long": ["Christmas Island Time", "Christmas Island Time"]
+              long: ["Christmas Island Time", "Christmas Island Time"],
             },
             "Indian/Cocos": {
-              "long": ["Cocos Islands Time", "Cocos Islands Time"]
+              long: ["Cocos Islands Time", "Cocos Islands Time"],
             },
             "America/Bogota": {
-              "long": ["Colombia Standard Time", "Colombia Summer Time"]
+              long: ["Colombia Standard Time", "Colombia Summer Time"],
             },
             "Pacific/Rarotonga": {
-              "long": [
+              long: [
                 "Cook Islands Standard Time",
-                "Cook Islands Half Summer Time"
-              ]
+                "Cook Islands Half Summer Time",
+              ],
             },
             "America/Havana": {
-              "long": ["Cuba Standard Time", "Cuba Daylight Time"]
+              long: ["Cuba Standard Time", "Cuba Daylight Time"],
             },
-            "Antarctica/Davis": { "long": ["Davis Time", "Davis Time"] },
+            "Antarctica/Davis": { long: ["Davis Time", "Davis Time"] },
             "Antarctica/DumontDUrville": {
-              "long": ["Dumont-d’Urville Time", "Dumont-d’Urville Time"]
+              long: ["Dumont-d’Urville Time", "Dumont-d’Urville Time"],
             },
-            "Asia/Dushanbe": { "long": ["Tajikistan Time", "Tajikistan Time"] },
-            "America/Paramaribo": { "long": ["Suriname Time", "Suriname Time"] },
-            "Asia/Dili": { "long": ["East Timor Time", "East Timor Time"] },
+            "Asia/Dushanbe": { long: ["Tajikistan Time", "Tajikistan Time"] },
+            "America/Paramaribo": { long: ["Suriname Time", "Suriname Time"] },
+            "Asia/Dili": { long: ["East Timor Time", "East Timor Time"] },
             "Pacific/Easter": {
-              "long": ["Easter Island Standard Time", "Easter Island Summer Time"]
+              long: [
+                "Easter Island Standard Time",
+                "Easter Island Summer Time",
+              ],
             },
-            "America/Guayaquil": { "long": ["Ecuador Time", "Ecuador Time"] },
+            "America/Guayaquil": { long: ["Ecuador Time", "Ecuador Time"] },
             "Europe/Paris": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Andorra": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Tirane": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Vienna": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Sarajevo": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Brussels": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Zurich": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Prague": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Berlin": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Copenhagen": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Madrid": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Gibraltar": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Zagreb": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Budapest": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Rome": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Vaduz": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Luxembourg": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Monaco": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Podgorica": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Skopje": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Malta": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Amsterdam": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Oslo": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Warsaw": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Belgrade": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Stockholm": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Ljubljana": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Bratislava": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/San_Marino": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Africa/Tunis": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Vatican": {
-              "long": [
+              long: [
                 "Central European Standard Time",
-                "Central European Summer Time"
-              ]
+                "Central European Summer Time",
+              ],
             },
             "Europe/Bucharest": {
-              "long": [
+              long: [
                 "Eastern European Standard Time",
-                "Eastern European Summer Time"
-              ]
+                "Eastern European Summer Time",
+              ],
             },
             "Europe/Mariehamn": {
-              "long": [
+              long: [
                 "Eastern European Standard Time",
-                "Eastern European Summer Time"
-              ]
+                "Eastern European Summer Time",
+              ],
             },
             "Europe/Sofia": {
-              "long": [
+              long: [
                 "Eastern European Standard Time",
-                "Eastern European Summer Time"
-              ]
+                "Eastern European Summer Time",
+              ],
             },
             "Asia/Nicosia": {
-              "long": [
+              long: [
                 "Eastern European Standard Time",
-                "Eastern European Summer Time"
-              ]
+                "Eastern European Summer Time",
+              ],
             },
             "Africa/Cairo": {
-              "long": [
+              long: [
                 "Eastern European Standard Time",
-                "Eastern European Summer Time"
-              ]
+                "Eastern European Summer Time",
+              ],
             },
             "Europe/Helsinki": {
-              "long": [
+              long: [
                 "Eastern European Standard Time",
-                "Eastern European Summer Time"
-              ]
+                "Eastern European Summer Time",
+              ],
             },
             "Europe/Athens": {
-              "long": [
+              long: [
                 "Eastern European Standard Time",
-                "Eastern European Summer Time"
-              ]
+                "Eastern European Summer Time",
+              ],
             },
             "Asia/Amman": {
-              "long": [
+              long: [
                 "Eastern European Standard Time",
-                "Eastern European Summer Time"
-              ]
+                "Eastern European Summer Time",
+              ],
             },
             "Asia/Beirut": {
-              "long": [
+              long: [
                 "Eastern European Standard Time",
-                "Eastern European Summer Time"
-              ]
+                "Eastern European Summer Time",
+              ],
             },
             "Asia/Damascus": {
-              "long": [
+              long: [
                 "Eastern European Standard Time",
-                "Eastern European Summer Time"
-              ]
+                "Eastern European Summer Time",
+              ],
             },
             "Europe/Minsk": {
-              "long": [
+              long: [
                 "Further-eastern European Time",
-                "Further-eastern European Time"
-              ]
+                "Further-eastern European Time",
+              ],
             },
             "Europe/Kaliningrad": {
-              "long": [
+              long: [
                 "Further-eastern European Time",
-                "Further-eastern European Time"
-              ]
+                "Further-eastern European Time",
+              ],
             },
             "Atlantic/Canary": {
-              "long": [
+              long: [
                 "Western European Standard Time",
-                "Western European Summer Time"
-              ]
+                "Western European Summer Time",
+              ],
             },
             "Atlantic/Faeroe": {
-              "long": [
+              long: [
                 "Western European Standard Time",
-                "Western European Summer Time"
-              ]
+                "Western European Summer Time",
+              ],
             },
             "Atlantic/Stanley": {
-              "long": [
+              long: [
                 "Falkland Islands Standard Time",
-                "Falkland Islands Summer Time"
-              ]
+                "Falkland Islands Summer Time",
+              ],
             },
             "Pacific/Fiji": {
-              "long": ["Fiji Standard Time", "Fiji Summer Time"]
+              long: ["Fiji Standard Time", "Fiji Summer Time"],
             },
             "America/Cayenne": {
-              "long": ["French Guiana Time", "French Guiana Time"]
+              long: ["French Guiana Time", "French Guiana Time"],
             },
             "Indian/Kerguelen": {
-              "long": [
+              long: [
                 "French Southern & Antarctic Time",
-                "French Southern & Antarctic Time"
-              ]
+                "French Southern & Antarctic Time",
+              ],
             },
-            "Asia/Bishkek": { "long": ["Kyrgyzstan Time", "Kyrgyzstan Time"] },
-            "Pacific/Galapagos": { "long": ["Galapagos Time", "Galapagos Time"] },
-            "Pacific/Gambier": { "long": ["Gambier Time", "Gambier Time"] },
+            "Asia/Bishkek": { long: ["Kyrgyzstan Time", "Kyrgyzstan Time"] },
+            "Pacific/Galapagos": { long: ["Galapagos Time", "Galapagos Time"] },
+            "Pacific/Gambier": { long: ["Gambier Time", "Gambier Time"] },
             "Pacific/Tarawa": {
-              "long": ["Gilbert Islands Time", "Gilbert Islands Time"]
+              long: ["Gilbert Islands Time", "Gilbert Islands Time"],
             },
             "Atlantic/Reykjavik": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Africa/Ouagadougou": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Africa/Abidjan": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Africa/Accra": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Africa/Banjul": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Africa/Conakry": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Africa/Bamako": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Africa/Nouakchott": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Atlantic/St_Helena": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Africa/Freetown": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Africa/Dakar": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "Africa/Lome": {
-              "long": ["Greenwich Mean Time", "Greenwich Mean Time"],
-              "short": ["GMT", "GMT"]
+              long: ["Greenwich Mean Time", "Greenwich Mean Time"],
+              short: ["GMT", "GMT"],
             },
             "America/Scoresbysund": {
-              "long": [
+              long: [
                 "East Greenland Standard Time",
-                "East Greenland Summer Time"
-              ]
+                "East Greenland Summer Time",
+              ],
             },
             "America/Godthab": {
-              "long": [
+              long: [
                 "West Greenland Standard Time",
-                "West Greenland Summer Time"
-              ]
+                "West Greenland Summer Time",
+              ],
             },
             "Asia/Dubai": {
-              "long": ["Gulf Standard Time", "Gulf Standard Time"]
+              long: ["Gulf Standard Time", "Gulf Standard Time"],
             },
             "Asia/Muscat": {
-              "long": ["Gulf Standard Time", "Gulf Standard Time"]
+              long: ["Gulf Standard Time", "Gulf Standard Time"],
             },
-            "America/Guyana": { "long": ["Guyana Time", "Guyana Time"] },
+            "America/Guyana": { long: ["Guyana Time", "Guyana Time"] },
             "Pacific/Honolulu": {
-              "long": [
+              long: [
                 "Hawaii-Aleutian Standard Time",
-                "Hawaii-Aleutian Daylight Time"
+                "Hawaii-Aleutian Daylight Time",
               ],
-              "short": ["HAST", "HADT"]
             },
             "Asia/Hong_Kong": {
-              "long": ["Hong Kong Standard Time", "Hong Kong Summer Time"]
+              long: ["Hong Kong Standard Time", "Hong Kong Summer Time"],
             },
-            "Asia/Hovd": { "long": ["Hovd Standard Time", "Hovd Summer Time"] },
+            "Asia/Hovd": { long: ["Hovd Standard Time", "Hovd Summer Time"] },
             "Asia/Calcutta": {
-              "long": ["India Standard Time", "India Standard Time"]
+              long: ["India Standard Time", "India Standard Time"],
             },
-            "Asia/Colombo": { "long": ["Lanka Time", "Lanka Time"] },
+            "Asia/Colombo": { long: ["Lanka Time", "Lanka Time"] },
             "Indian/Chagos": {
-              "long": ["Indian Ocean Time", "Indian Ocean Time"]
+              long: ["Indian Ocean Time", "Indian Ocean Time"],
             },
-            "Asia/Bangkok": { "long": ["Indochina Time", "Indochina Time"] },
-            "Asia/Phnom_Penh": { "long": ["Indochina Time", "Indochina Time"] },
-            "Asia/Vientiane": { "long": ["Indochina Time", "Indochina Time"] },
+            "Asia/Bangkok": { long: ["Indochina Time", "Indochina Time"] },
+            "Asia/Phnom_Penh": { long: ["Indochina Time", "Indochina Time"] },
+            "Asia/Vientiane": { long: ["Indochina Time", "Indochina Time"] },
             "Asia/Makassar": {
-              "long": ["Central Indonesia Time", "Central Indonesia Time"]
+              long: ["Central Indonesia Time", "Central Indonesia Time"],
             },
             "Asia/Jayapura": {
-              "long": ["Eastern Indonesia Time", "Eastern Indonesia Time"]
+              long: ["Eastern Indonesia Time", "Eastern Indonesia Time"],
             },
             "Asia/Jakarta": {
-              "long": ["Western Indonesia Time", "Western Indonesia Time"]
+              long: ["Western Indonesia Time", "Western Indonesia Time"],
             },
             "Asia/Tehran": {
-              "long": ["Iran Standard Time", "Iran Daylight Time"]
+              long: ["Iran Standard Time", "Iran Daylight Time"],
             },
             "Asia/Irkutsk": {
-              "long": ["Irkutsk Standard Time", "Irkutsk Summer Time"]
+              long: ["Irkutsk Standard Time", "Irkutsk Summer Time"],
             },
             "Asia/Jerusalem": {
-              "long": ["Israel Standard Time", "Israel Daylight Time"]
+              long: ["Israel Standard Time", "Israel Daylight Time"],
             },
             "Asia/Tokyo": {
-              "long": ["Japan Standard Time", "Japan Daylight Time"]
+              long: ["Japan Standard Time", "Japan Daylight Time"],
             },
             "Asia/Kamchatka": {
-              "long": [
+              long: [
                 "Petropavlovsk-Kamchatski Standard Time",
-                "Petropavlovsk-Kamchatski Summer Time"
-              ]
+                "Petropavlovsk-Kamchatski Summer Time",
+              ],
             },
             "Asia/Karachi": {
-              "long": ["Pakistan Standard Time", "Pakistan Summer Time"]
+              long: ["Pakistan Standard Time", "Pakistan Summer Time"],
             },
             "Asia/Qyzylorda": {
-              "long": ["Qyzylorda Standard Time", "Qyzylorda Summer Time"]
+              long: ["Qyzylorda Standard Time", "Qyzylorda Summer Time"],
             },
             "Asia/Seoul": {
-              "long": ["Korean Standard Time", "Korean Daylight Time"]
+              long: ["Korean Standard Time", "Korean Daylight Time"],
             },
-            "Pacific/Kosrae": { "long": ["Kosrae Time", "Kosrae Time"] },
+            "Pacific/Kosrae": { long: ["Kosrae Time", "Kosrae Time"] },
             "Asia/Krasnoyarsk": {
-              "long": ["Krasnoyarsk Standard Time", "Krasnoyarsk Summer Time"]
+              long: ["Krasnoyarsk Standard Time", "Krasnoyarsk Summer Time"],
             },
             "Europe/Samara": {
-              "long": ["Samara Standard Time", "Samara Summer Time"]
+              long: ["Samara Standard Time", "Samara Summer Time"],
             },
             "Pacific/Kiritimati": {
-              "long": ["Line Islands Time", "Line Islands Time"]
+              long: ["Line Islands Time", "Line Islands Time"],
             },
             "Australia/Lord_Howe": {
-              "long": ["Lord Howe Standard Time", "Lord Howe Daylight Time"]
+              long: ["Lord Howe Standard Time", "Lord Howe Daylight Time"],
             },
             "Asia/Macau": {
-              "long": ["Macao Standard Time", "Macao Summer Time"]
+              long: ["Macao Standard Time", "Macao Summer Time"],
             },
             "Antarctica/Macquarie": {
-              "long": ["Macquarie Island Time", "Macquarie Island Time"]
+              long: ["Macquarie Island Time", "Macquarie Island Time"],
             },
             "Asia/Magadan": {
-              "long": ["Magadan Standard Time", "Magadan Summer Time"]
+              long: ["Magadan Standard Time", "Magadan Summer Time"],
             },
-            "Indian/Maldives": { "long": ["Maldives Time", "Maldives Time"] },
-            "Pacific/Marquesas": { "long": ["Marquesas Time", "Marquesas Time"] },
+            "Indian/Maldives": { long: ["Maldives Time", "Maldives Time"] },
+            "Pacific/Marquesas": { long: ["Marquesas Time", "Marquesas Time"] },
             "Pacific/Majuro": {
-              "long": ["Marshall Islands Time", "Marshall Islands Time"]
+              long: ["Marshall Islands Time", "Marshall Islands Time"],
             },
             "Indian/Mauritius": {
-              "long": ["Mauritius Standard Time", "Mauritius Summer Time"]
+              long: ["Mauritius Standard Time", "Mauritius Summer Time"],
             },
-            "Antarctica/Mawson": { "long": ["Mawson Time", "Mawson Time"] },
+            "Antarctica/Mawson": { long: ["Mawson Time", "Mawson Time"] },
             "America/Santa_Isabel": {
-              "long": [
+              long: [
                 "Northwest Mexico Standard Time",
-                "Northwest Mexico Daylight Time"
-              ]
+                "Northwest Mexico Daylight Time",
+              ],
             },
             "America/Mazatlan": {
-              "long": [
+              long: [
                 "Mexican Pacific Standard Time",
-                "Mexican Pacific Daylight Time"
-              ]
+                "Mexican Pacific Daylight Time",
+              ],
             },
             "Asia/Ulaanbaatar": {
-              "long": ["Ulaanbaatar Standard Time", "Ulaanbaatar Summer Time"]
+              long: ["Ulaanbaatar Standard Time", "Ulaanbaatar Summer Time"],
             },
             "Europe/Moscow": {
-              "long": ["Moscow Standard Time", "Moscow Summer Time"]
+              long: ["Moscow Standard Time", "Moscow Summer Time"],
             },
-            "Asia/Rangoon": { "long": ["Myanmar Time", "Myanmar Time"] },
-            "Pacific/Nauru": { "long": ["Nauru Time", "Nauru Time"] },
-            "Asia/Katmandu": { "long": ["Nepal Time", "Nepal Time"] },
+            "Asia/Rangoon": { long: ["Myanmar Time", "Myanmar Time"] },
+            "Pacific/Nauru": { long: ["Nauru Time", "Nauru Time"] },
+            "Asia/Katmandu": { long: ["Nepal Time", "Nepal Time"] },
             "Pacific/Noumea": {
-              "long": ["New Caledonia Standard Time", "New Caledonia Summer Time"]
+              long: [
+                "New Caledonia Standard Time",
+                "New Caledonia Summer Time",
+              ],
             },
             "Pacific/Auckland": {
-              "long": ["New Zealand Standard Time", "New Zealand Daylight Time"]
+              long: ["New Zealand Standard Time", "New Zealand Daylight Time"],
             },
             "Antarctica/McMurdo": {
-              "long": ["New Zealand Standard Time", "New Zealand Daylight Time"]
+              long: ["New Zealand Standard Time", "New Zealand Daylight Time"],
             },
             "America/St_Johns": {
-              "long": ["Newfoundland Standard Time", "Newfoundland Daylight Time"]
+              long: [
+                "Newfoundland Standard Time",
+                "Newfoundland Daylight Time",
+              ],
             },
-            "Pacific/Niue": { "long": ["Niue Time", "Niue Time"] },
+            "Pacific/Niue": { long: ["Niue Time", "Niue Time"] },
             "Pacific/Norfolk": {
-              "long": ["Norfolk Island Time", "Norfolk Island Time"]
+              long: ["Norfolk Island Time", "Norfolk Island Time"],
             },
             "America/Noronha": {
-              "long": [
+              long: [
                 "Fernando de Noronha Standard Time",
-                "Fernando de Noronha Summer Time"
-              ]
+                "Fernando de Noronha Summer Time",
+              ],
             },
             "Asia/Novosibirsk": {
-              "long": ["Novosibirsk Standard Time", "Novosibirsk Summer Time"]
+              long: ["Novosibirsk Standard Time", "Novosibirsk Summer Time"],
             },
-            "Asia/Omsk": { "long": ["Omsk Standard Time", "Omsk Summer Time"] },
-            "Pacific/Palau": { "long": ["Palau Time", "Palau Time"] },
+            "Asia/Omsk": { long: ["Omsk Standard Time", "Omsk Summer Time"] },
+            "Pacific/Palau": { long: ["Palau Time", "Palau Time"] },
             "Pacific/Port_Moresby": {
-              "long": ["Papua New Guinea Time", "Papua New Guinea Time"]
+              long: ["Papua New Guinea Time", "Papua New Guinea Time"],
             },
             "America/Asuncion": {
-              "long": ["Paraguay Standard Time", "Paraguay Summer Time"]
+              long: ["Paraguay Standard Time", "Paraguay Summer Time"],
             },
             "America/Lima": {
-              "long": ["Peru Standard Time", "Peru Summer Time"]
+              long: ["Peru Standard Time", "Peru Summer Time"],
             },
             "Asia/Manila": {
-              "long": ["Philippine Standard Time", "Philippine Summer Time"]
+              long: ["Philippine Standard Time", "Philippine Summer Time"],
             },
             "Pacific/Enderbury": {
-              "long": ["Phoenix Islands Time", "Phoenix Islands Time"]
+              long: ["Phoenix Islands Time", "Phoenix Islands Time"],
             },
             "America/Miquelon": {
-              "long": [
-                "St. Pierre & Miquelon Standard Time",
-                "St. Pierre & Miquelon Daylight Time"
-              ]
+              long: [
+                "St Pierre & Miquelon Standard Time",
+                "St Pierre & Miquelon Daylight Time",
+              ],
             },
-            "Pacific/Pitcairn": { "long": ["Pitcairn Time", "Pitcairn Time"] },
-            "Pacific/Ponape": { "long": ["Ponape Time", "Ponape Time"] },
-            "Asia/Pyongyang": { "long": ["Pyongyang Time", "Pyongyang Time"] },
-            "Indian/Reunion": { "long": ["Réunion Time", "Réunion Time"] },
-            "Antarctica/Rothera": { "long": ["Rothera Time", "Rothera Time"] },
+            "Pacific/Pitcairn": { long: ["Pitcairn Time", "Pitcairn Time"] },
+            "Pacific/Ponape": { long: ["Ponape Time", "Ponape Time"] },
+            "Asia/Pyongyang": { long: ["Pyongyang Time", "Pyongyang Time"] },
+            "Indian/Reunion": { long: ["Réunion Time", "Réunion Time"] },
+            "Antarctica/Rothera": { long: ["Rothera Time", "Rothera Time"] },
             "Asia/Sakhalin": {
-              "long": ["Sakhalin Standard Time", "Sakhalin Summer Time"]
+              long: ["Sakhalin Standard Time", "Sakhalin Summer Time"],
             },
             "Pacific/Pago_Pago": {
-              "long": ["Samoa Standard Time", "Samoa Daylight Time"]
+              long: ["Samoa Standard Time", "Samoa Daylight Time"],
             },
-            "Indian/Mahe": { "long": ["Seychelles Time", "Seychelles Time"] },
+            "Indian/Mahe": { long: ["Seychelles Time", "Seychelles Time"] },
             "Asia/Singapore": {
-              "long": ["Singapore Standard Time", "Singapore Standard Time"]
+              long: ["Singapore Standard Time", "Singapore Standard Time"],
             },
             "Pacific/Guadalcanal": {
-              "long": ["Solomon Islands Time", "Solomon Islands Time"]
+              long: ["Solomon Islands Time", "Solomon Islands Time"],
             },
             "Atlantic/South_Georgia": {
-              "long": ["South Georgia Time", "South Georgia Time"]
+              long: ["South Georgia Time", "South Georgia Time"],
             },
             "Asia/Yekaterinburg": {
-              "long": ["Yekaterinburg Standard Time", "Yekaterinburg Summer Time"]
+              long: [
+                "Yekaterinburg Standard Time",
+                "Yekaterinburg Summer Time",
+              ],
             },
-            "Antarctica/Syowa": { "long": ["Syowa Time", "Syowa Time"] },
-            "Pacific/Tahiti": { "long": ["Tahiti Time", "Tahiti Time"] },
+            "Antarctica/Syowa": { long: ["Syowa Time", "Syowa Time"] },
+            "Pacific/Tahiti": { long: ["Tahiti Time", "Tahiti Time"] },
             "Asia/Taipei": {
-              "long": ["Taipei Standard Time", "Taipei Daylight Time"]
+              long: ["Taipei Standard Time", "Taipei Daylight Time"],
             },
             "Asia/Tashkent": {
-              "long": ["Uzbekistan Standard Time", "Uzbekistan Summer Time"]
+              long: ["Uzbekistan Standard Time", "Uzbekistan Summer Time"],
             },
-            "Pacific/Fakaofo": { "long": ["Tokelau Time", "Tokelau Time"] },
+            "Pacific/Fakaofo": { long: ["Tokelau Time", "Tokelau Time"] },
             "Pacific/Tongatapu": {
-              "long": ["Tonga Standard Time", "Tonga Summer Time"]
+              long: ["Tonga Standard Time", "Tonga Summer Time"],
             },
-            "Pacific/Truk": { "long": ["Chuuk Time", "Chuuk Time"] },
-            "Pacific/Funafuti": { "long": ["Tuvalu Time", "Tuvalu Time"] },
+            "Pacific/Truk": { long: ["Chuuk Time", "Chuuk Time"] },
+            "Pacific/Funafuti": { long: ["Tuvalu Time", "Tuvalu Time"] },
             "America/Montevideo": {
-              "long": ["Uruguay Standard Time", "Uruguay Summer Time"]
+              long: ["Uruguay Standard Time", "Uruguay Summer Time"],
             },
             "Pacific/Efate": {
-              "long": ["Vanuatu Standard Time", "Vanuatu Summer Time"]
+              long: ["Vanuatu Standard Time", "Vanuatu Summer Time"],
             },
-            "America/Caracas": { "long": ["Venezuela Time", "Venezuela Time"] },
+            "America/Caracas": { long: ["Venezuela Time", "Venezuela Time"] },
             "Asia/Vladivostok": {
-              "long": ["Vladivostok Standard Time", "Vladivostok Summer Time"]
+              long: ["Vladivostok Standard Time", "Vladivostok Summer Time"],
             },
             "Europe/Volgograd": {
-              "long": ["Volgograd Standard Time", "Volgograd Summer Time"]
+              long: ["Volgograd Standard Time", "Volgograd Summer Time"],
             },
-            "Antarctica/Vostok": { "long": ["Vostok Time", "Vostok Time"] },
-            "Pacific/Wake": { "long": ["Wake Island Time", "Wake Island Time"] },
+            "Antarctica/Vostok": { long: ["Vostok Time", "Vostok Time"] },
+            "Pacific/Wake": { long: ["Wake Island Time", "Wake Island Time"] },
             "Pacific/Wallis": {
-              "long": ["Wallis & Futuna Time", "Wallis & Futuna Time"]
+              long: ["Wallis & Futuna Time", "Wallis & Futuna Time"],
             },
             "Asia/Yakutsk": {
-              "long": ["Yakutsk Standard Time", "Yakutsk Summer Time"]
+              long: ["Yakutsk Standard Time", "Yakutsk Summer Time"],
             },
             UTC: {
-              "long": [
+              long: [
                 "Coordinated Universal Time",
-                "Coordinated Universal Time"
+                "Coordinated Universal Time",
               ],
-              "short": ["UTC", "UTC"]
-            }
+              short: ["UTC", "UTC"],
+            },
           },
           gmtFormat: "GMT{0}",
           hourFormat: "+HH:mm;-HH:mm",
+          dateFormat: {
+            full: "EEEE, d MMMM y",
+            long: "d MMMM y",
+            medium: "d MMM y",
+            short: "dd/MM/y",
+          },
+          timeFormat: {
+            full: "h:mm:ss a zzzz",
+            long: "h:mm:ss a z",
+            medium: "h:mm:ss a",
+            short: "h:mm a",
+          },
+          dateTimeFormat: {
+            full: "{1} 'at' {0}",
+            long: "{1} 'at' {0}",
+            medium: "{1}, {0}",
+            short: "{1}, {0}",
+          },
           formats: {
-            gregory: [
-              "h B",
-              "h:mm B",
-              "h:mm:ss B",
-              "d",
-              "ccc",
-              "E h:mm B",
-              "E h:mm:ss B",
-              "d E",
-              "E h:mm a",
-              "E HH:mm",
-              "E h:mm:ss a",
-              "E HH:mm:ss",
-              "y G",
-              "MMM y G",
-              "MMM d, y G",
-              "E, MMM d, y G",
-              "h a",
-              "HH",
-              "h:mm a",
-              "HH:mm",
-              "h:mm:ss a",
-              "HH:mm:ss",
-              "h:mm:ss a v",
-              "HH:mm:ss v",
-              "h:mm a v",
-              "HH:mm v",
-              "L",
-              "M/d",
-              "E, M/d",
-              "LLL",
-              "MMM d",
-              "E, MMM d",
-              "MMMM d",
-              "'week' W 'of' MMMM",
-              "'week' W 'of' MMMM",
-              "mm:ss",
-              "y",
-              "M/y",
-              "M/d/y",
-              "E, M/d/y",
-              "MMM y",
-              "MMM d, y",
-              "E, MMM d, y",
-              "MMMM y",
-              "QQQ y",
-              "QQQQ y",
-              "'week' w 'of' Y",
-              "'week' w 'of' Y",
-              "EEEE, MMMM d, y",
-              "MMMM d, y",
-              "MMM d, y",
-              "M/d/yy",
-              "h:mm:ss a zzzz",
-              "h:mm:ss a z",
-              "h:mm:ss a",
-              "h:mm a",
-              "EEEE, MMMM d, y 'at' h:mm:ss a zzzz",
-              "MMMM d, y 'at' h:mm:ss a zzzz",
-              "MMM d, y, h:mm:ss a zzzz",
-              "M/d/yy, h:mm:ss a zzzz",
-              "d, h:mm:ss a zzzz",
-              "ccc, h:mm:ss a zzzz",
-              "d E, h:mm:ss a zzzz",
-              "y G, h:mm:ss a zzzz",
-              "MMM y G, h:mm:ss a zzzz",
-              "MMM d, y G, h:mm:ss a zzzz",
-              "E, MMM d, y G, h:mm:ss a zzzz",
-              "L, h:mm:ss a zzzz",
-              "M/d, h:mm:ss a zzzz",
-              "E, M/d, h:mm:ss a zzzz",
-              "LLL, h:mm:ss a zzzz",
-              "MMM d, h:mm:ss a zzzz",
-              "E, MMM d, h:mm:ss a zzzz",
-              "MMMM d 'at' h:mm:ss a zzzz",
-              "'week' W 'of' MMMM 'at' h:mm:ss a zzzz",
-              "'week' W 'of' MMMM 'at' h:mm:ss a zzzz",
-              "y, h:mm:ss a zzzz",
-              "M/y, h:mm:ss a zzzz",
-              "M/d/y, h:mm:ss a zzzz",
-              "E, M/d/y, h:mm:ss a zzzz",
-              "MMM y, h:mm:ss a zzzz",
-              "MMM d, y, h:mm:ss a zzzz",
-              "E, MMM d, y, h:mm:ss a zzzz",
-              "MMMM y 'at' h:mm:ss a zzzz",
-              "QQQ y, h:mm:ss a zzzz",
-              "QQQQ y, h:mm:ss a zzzz",
-              "'week' w 'of' Y, h:mm:ss a zzzz",
-              "'week' w 'of' Y, h:mm:ss a zzzz",
-              "EEEE, MMMM d, y 'at' h:mm:ss a z",
-              "MMMM d, y 'at' h:mm:ss a z",
-              "MMM d, y, h:mm:ss a z",
-              "M/d/yy, h:mm:ss a z",
-              "d, h:mm:ss a z",
-              "ccc, h:mm:ss a z",
-              "d E, h:mm:ss a z",
-              "y G, h:mm:ss a z",
-              "MMM y G, h:mm:ss a z",
-              "MMM d, y G, h:mm:ss a z",
-              "E, MMM d, y G, h:mm:ss a z",
-              "L, h:mm:ss a z",
-              "M/d, h:mm:ss a z",
-              "E, M/d, h:mm:ss a z",
-              "LLL, h:mm:ss a z",
-              "MMM d, h:mm:ss a z",
-              "E, MMM d, h:mm:ss a z",
-              "MMMM d 'at' h:mm:ss a z",
-              "'week' W 'of' MMMM 'at' h:mm:ss a z",
-              "'week' W 'of' MMMM 'at' h:mm:ss a z",
-              "y, h:mm:ss a z",
-              "M/y, h:mm:ss a z",
-              "M/d/y, h:mm:ss a z",
-              "E, M/d/y, h:mm:ss a z",
-              "MMM y, h:mm:ss a z",
-              "MMM d, y, h:mm:ss a z",
-              "E, MMM d, y, h:mm:ss a z",
-              "MMMM y 'at' h:mm:ss a z",
-              "QQQ y, h:mm:ss a z",
-              "QQQQ y, h:mm:ss a z",
-              "'week' w 'of' Y, h:mm:ss a z",
-              "'week' w 'of' Y, h:mm:ss a z",
-              "EEEE, MMMM d, y 'at' h:mm:ss a",
-              "MMMM d, y 'at' h:mm:ss a",
-              "MMM d, y, h:mm:ss a",
-              "M/d/yy, h:mm:ss a",
-              "d, h:mm:ss a",
-              "ccc, h:mm:ss a",
-              "d E, h:mm:ss a",
-              "y G, h:mm:ss a",
-              "MMM y G, h:mm:ss a",
-              "MMM d, y G, h:mm:ss a",
-              "E, MMM d, y G, h:mm:ss a",
-              "L, h:mm:ss a",
-              "M/d, h:mm:ss a",
-              "E, M/d, h:mm:ss a",
-              "LLL, h:mm:ss a",
-              "MMM d, h:mm:ss a",
-              "E, MMM d, h:mm:ss a",
-              "MMMM d 'at' h:mm:ss a",
-              "'week' W 'of' MMMM 'at' h:mm:ss a",
-              "'week' W 'of' MMMM 'at' h:mm:ss a",
-              "y, h:mm:ss a",
-              "M/y, h:mm:ss a",
-              "M/d/y, h:mm:ss a",
-              "E, M/d/y, h:mm:ss a",
-              "MMM y, h:mm:ss a",
-              "MMM d, y, h:mm:ss a",
-              "E, MMM d, y, h:mm:ss a",
-              "MMMM y 'at' h:mm:ss a",
-              "QQQ y, h:mm:ss a",
-              "QQQQ y, h:mm:ss a",
-              "'week' w 'of' Y, h:mm:ss a",
-              "'week' w 'of' Y, h:mm:ss a",
-              "EEEE, MMMM d, y 'at' h:mm a",
-              "MMMM d, y 'at' h:mm a",
-              "MMM d, y, h:mm a",
-              "M/d/yy, h:mm a",
-              "d, h:mm a",
-              "ccc, h:mm a",
-              "d E, h:mm a",
-              "y G, h:mm a",
-              "MMM y G, h:mm a",
-              "MMM d, y G, h:mm a",
-              "E, MMM d, y G, h:mm a",
-              "L, h:mm a",
-              "M/d, h:mm a",
-              "E, M/d, h:mm a",
-              "LLL, h:mm a",
-              "MMM d, h:mm a",
-              "E, MMM d, h:mm a",
-              "MMMM d 'at' h:mm a",
-              "'week' W 'of' MMMM 'at' h:mm a",
-              "'week' W 'of' MMMM 'at' h:mm a",
-              "y, h:mm a",
-              "M/y, h:mm a",
-              "M/d/y, h:mm a",
-              "E, M/d/y, h:mm a",
-              "MMM y, h:mm a",
-              "MMM d, y, h:mm a",
-              "E, MMM d, y, h:mm a",
-              "MMMM y 'at' h:mm a",
-              "QQQ y, h:mm a",
-              "QQQQ y, h:mm a",
-              "'week' w 'of' Y, h:mm a",
-              "'week' w 'of' Y, h:mm a",
-              "EEEE, MMMM d, y 'at' h B",
-              "MMMM d, y 'at' h B",
-              "MMM d, y, h B",
-              "M/d/yy, h B",
-              "d, h B",
-              "ccc, h B",
-              "d E, h B",
-              "y G, h B",
-              "MMM y G, h B",
-              "MMM d, y G, h B",
-              "E, MMM d, y G, h B",
-              "L, h B",
-              "M/d, h B",
-              "E, M/d, h B",
-              "LLL, h B",
-              "MMM d, h B",
-              "E, MMM d, h B",
-              "MMMM d 'at' h B",
-              "'week' W 'of' MMMM 'at' h B",
-              "'week' W 'of' MMMM 'at' h B",
-              "y, h B",
-              "M/y, h B",
-              "M/d/y, h B",
-              "E, M/d/y, h B",
-              "MMM y, h B",
-              "MMM d, y, h B",
-              "E, MMM d, y, h B",
-              "MMMM y 'at' h B",
-              "QQQ y, h B",
-              "QQQQ y, h B",
-              "'week' w 'of' Y, h B",
-              "'week' w 'of' Y, h B",
-              "EEEE, MMMM d, y 'at' h:mm B",
-              "MMMM d, y 'at' h:mm B",
-              "MMM d, y, h:mm B",
-              "M/d/yy, h:mm B",
-              "d, h:mm B",
-              "ccc, h:mm B",
-              "d E, h:mm B",
-              "y G, h:mm B",
-              "MMM y G, h:mm B",
-              "MMM d, y G, h:mm B",
-              "E, MMM d, y G, h:mm B",
-              "L, h:mm B",
-              "M/d, h:mm B",
-              "E, M/d, h:mm B",
-              "LLL, h:mm B",
-              "MMM d, h:mm B",
-              "E, MMM d, h:mm B",
-              "MMMM d 'at' h:mm B",
-              "'week' W 'of' MMMM 'at' h:mm B",
-              "'week' W 'of' MMMM 'at' h:mm B",
-              "y, h:mm B",
-              "M/y, h:mm B",
-              "M/d/y, h:mm B",
-              "E, M/d/y, h:mm B",
-              "MMM y, h:mm B",
-              "MMM d, y, h:mm B",
-              "E, MMM d, y, h:mm B",
-              "MMMM y 'at' h:mm B",
-              "QQQ y, h:mm B",
-              "QQQQ y, h:mm B",
-              "'week' w 'of' Y, h:mm B",
-              "'week' w 'of' Y, h:mm B",
-              "EEEE, MMMM d, y 'at' h:mm:ss B",
-              "MMMM d, y 'at' h:mm:ss B",
-              "MMM d, y, h:mm:ss B",
-              "M/d/yy, h:mm:ss B",
-              "d, h:mm:ss B",
-              "ccc, h:mm:ss B",
-              "d E, h:mm:ss B",
-              "y G, h:mm:ss B",
-              "MMM y G, h:mm:ss B",
-              "MMM d, y G, h:mm:ss B",
-              "E, MMM d, y G, h:mm:ss B",
-              "L, h:mm:ss B",
-              "M/d, h:mm:ss B",
-              "E, M/d, h:mm:ss B",
-              "LLL, h:mm:ss B",
-              "MMM d, h:mm:ss B",
-              "E, MMM d, h:mm:ss B",
-              "MMMM d 'at' h:mm:ss B",
-              "'week' W 'of' MMMM 'at' h:mm:ss B",
-              "'week' W 'of' MMMM 'at' h:mm:ss B",
-              "y, h:mm:ss B",
-              "M/y, h:mm:ss B",
-              "M/d/y, h:mm:ss B",
-              "E, M/d/y, h:mm:ss B",
-              "MMM y, h:mm:ss B",
-              "MMM d, y, h:mm:ss B",
-              "E, MMM d, y, h:mm:ss B",
-              "MMMM y 'at' h:mm:ss B",
-              "QQQ y, h:mm:ss B",
-              "QQQQ y, h:mm:ss B",
-              "'week' w 'of' Y, h:mm:ss B",
-              "'week' w 'of' Y, h:mm:ss B",
-              "EEEE, MMMM d, y 'at' h a",
-              "MMMM d, y 'at' h a",
-              "MMM d, y, h a",
-              "M/d/yy, h a",
-              "d, h a",
-              "ccc, h a",
-              "d E, h a",
-              "y G, h a",
-              "MMM y G, h a",
-              "MMM d, y G, h a",
-              "E, MMM d, y G, h a",
-              "L, h a",
-              "M/d, h a",
-              "E, M/d, h a",
-              "LLL, h a",
-              "MMM d, h a",
-              "E, MMM d, h a",
-              "MMMM d 'at' h a",
-              "'week' W 'of' MMMM 'at' h a",
-              "'week' W 'of' MMMM 'at' h a",
-              "y, h a",
-              "M/y, h a",
-              "M/d/y, h a",
-              "E, M/d/y, h a",
-              "MMM y, h a",
-              "MMM d, y, h a",
-              "E, MMM d, y, h a",
-              "MMMM y 'at' h a",
-              "QQQ y, h a",
-              "QQQQ y, h a",
-              "'week' w 'of' Y, h a",
-              "'week' w 'of' Y, h a",
-              "EEEE, MMMM d, y 'at' HH",
-              "MMMM d, y 'at' HH",
-              "MMM d, y, HH",
-              "M/d/yy, HH",
-              "d, HH",
-              "ccc, HH",
-              "d E, HH",
-              "y G, HH",
-              "MMM y G, HH",
-              "MMM d, y G, HH",
-              "E, MMM d, y G, HH",
-              "L, HH",
-              "M/d, HH",
-              "E, M/d, HH",
-              "LLL, HH",
-              "MMM d, HH",
-              "E, MMM d, HH",
-              "MMMM d 'at' HH",
-              "'week' W 'of' MMMM 'at' HH",
-              "'week' W 'of' MMMM 'at' HH",
-              "y, HH",
-              "M/y, HH",
-              "M/d/y, HH",
-              "E, M/d/y, HH",
-              "MMM y, HH",
-              "MMM d, y, HH",
-              "E, MMM d, y, HH",
-              "MMMM y 'at' HH",
-              "QQQ y, HH",
-              "QQQQ y, HH",
-              "'week' w 'of' Y, HH",
-              "'week' w 'of' Y, HH",
-              "EEEE, MMMM d, y 'at' h:mm a",
-              "MMMM d, y 'at' h:mm a",
-              "MMM d, y, h:mm a",
-              "M/d/yy, h:mm a",
-              "d, h:mm a",
-              "ccc, h:mm a",
-              "d E, h:mm a",
-              "y G, h:mm a",
-              "MMM y G, h:mm a",
-              "MMM d, y G, h:mm a",
-              "E, MMM d, y G, h:mm a",
-              "L, h:mm a",
-              "M/d, h:mm a",
-              "E, M/d, h:mm a",
-              "LLL, h:mm a",
-              "MMM d, h:mm a",
-              "E, MMM d, h:mm a",
-              "MMMM d 'at' h:mm a",
-              "'week' W 'of' MMMM 'at' h:mm a",
-              "'week' W 'of' MMMM 'at' h:mm a",
-              "y, h:mm a",
-              "M/y, h:mm a",
-              "M/d/y, h:mm a",
-              "E, M/d/y, h:mm a",
-              "MMM y, h:mm a",
-              "MMM d, y, h:mm a",
-              "E, MMM d, y, h:mm a",
-              "MMMM y 'at' h:mm a",
-              "QQQ y, h:mm a",
-              "QQQQ y, h:mm a",
-              "'week' w 'of' Y, h:mm a",
-              "'week' w 'of' Y, h:mm a",
-              "EEEE, MMMM d, y 'at' HH:mm",
-              "MMMM d, y 'at' HH:mm",
-              "MMM d, y, HH:mm",
-              "M/d/yy, HH:mm",
-              "d, HH:mm",
-              "ccc, HH:mm",
-              "d E, HH:mm",
-              "y G, HH:mm",
-              "MMM y G, HH:mm",
-              "MMM d, y G, HH:mm",
-              "E, MMM d, y G, HH:mm",
-              "L, HH:mm",
-              "M/d, HH:mm",
-              "E, M/d, HH:mm",
-              "LLL, HH:mm",
-              "MMM d, HH:mm",
-              "E, MMM d, HH:mm",
-              "MMMM d 'at' HH:mm",
-              "'week' W 'of' MMMM 'at' HH:mm",
-              "'week' W 'of' MMMM 'at' HH:mm",
-              "y, HH:mm",
-              "M/y, HH:mm",
-              "M/d/y, HH:mm",
-              "E, M/d/y, HH:mm",
-              "MMM y, HH:mm",
-              "MMM d, y, HH:mm",
-              "E, MMM d, y, HH:mm",
-              "MMMM y 'at' HH:mm",
-              "QQQ y, HH:mm",
-              "QQQQ y, HH:mm",
-              "'week' w 'of' Y, HH:mm",
-              "'week' w 'of' Y, HH:mm",
-              "EEEE, MMMM d, y 'at' h:mm:ss a",
-              "MMMM d, y 'at' h:mm:ss a",
-              "MMM d, y, h:mm:ss a",
-              "M/d/yy, h:mm:ss a",
-              "d, h:mm:ss a",
-              "ccc, h:mm:ss a",
-              "d E, h:mm:ss a",
-              "y G, h:mm:ss a",
-              "MMM y G, h:mm:ss a",
-              "MMM d, y G, h:mm:ss a",
-              "E, MMM d, y G, h:mm:ss a",
-              "L, h:mm:ss a",
-              "M/d, h:mm:ss a",
-              "E, M/d, h:mm:ss a",
-              "LLL, h:mm:ss a",
-              "MMM d, h:mm:ss a",
-              "E, MMM d, h:mm:ss a",
-              "MMMM d 'at' h:mm:ss a",
-              "'week' W 'of' MMMM 'at' h:mm:ss a",
-              "'week' W 'of' MMMM 'at' h:mm:ss a",
-              "y, h:mm:ss a",
-              "M/y, h:mm:ss a",
-              "M/d/y, h:mm:ss a",
-              "E, M/d/y, h:mm:ss a",
-              "MMM y, h:mm:ss a",
-              "MMM d, y, h:mm:ss a",
-              "E, MMM d, y, h:mm:ss a",
-              "MMMM y 'at' h:mm:ss a",
-              "QQQ y, h:mm:ss a",
-              "QQQQ y, h:mm:ss a",
-              "'week' w 'of' Y, h:mm:ss a",
-              "'week' w 'of' Y, h:mm:ss a",
-              "EEEE, MMMM d, y 'at' HH:mm:ss",
-              "MMMM d, y 'at' HH:mm:ss",
-              "MMM d, y, HH:mm:ss",
-              "M/d/yy, HH:mm:ss",
-              "d, HH:mm:ss",
-              "ccc, HH:mm:ss",
-              "d E, HH:mm:ss",
-              "y G, HH:mm:ss",
-              "MMM y G, HH:mm:ss",
-              "MMM d, y G, HH:mm:ss",
-              "E, MMM d, y G, HH:mm:ss",
-              "L, HH:mm:ss",
-              "M/d, HH:mm:ss",
-              "E, M/d, HH:mm:ss",
-              "LLL, HH:mm:ss",
-              "MMM d, HH:mm:ss",
-              "E, MMM d, HH:mm:ss",
-              "MMMM d 'at' HH:mm:ss",
-              "'week' W 'of' MMMM 'at' HH:mm:ss",
-              "'week' W 'of' MMMM 'at' HH:mm:ss",
-              "y, HH:mm:ss",
-              "M/y, HH:mm:ss",
-              "M/d/y, HH:mm:ss",
-              "E, M/d/y, HH:mm:ss",
-              "MMM y, HH:mm:ss",
-              "MMM d, y, HH:mm:ss",
-              "E, MMM d, y, HH:mm:ss",
-              "MMMM y 'at' HH:mm:ss",
-              "QQQ y, HH:mm:ss",
-              "QQQQ y, HH:mm:ss",
-              "'week' w 'of' Y, HH:mm:ss",
-              "'week' w 'of' Y, HH:mm:ss",
-              "EEEE, MMMM d, y 'at' h:mm:ss a v",
-              "MMMM d, y 'at' h:mm:ss a v",
-              "MMM d, y, h:mm:ss a v",
-              "M/d/yy, h:mm:ss a v",
-              "d, h:mm:ss a v",
-              "ccc, h:mm:ss a v",
-              "d E, h:mm:ss a v",
-              "y G, h:mm:ss a v",
-              "MMM y G, h:mm:ss a v",
-              "MMM d, y G, h:mm:ss a v",
-              "E, MMM d, y G, h:mm:ss a v",
-              "L, h:mm:ss a v",
-              "M/d, h:mm:ss a v",
-              "E, M/d, h:mm:ss a v",
-              "LLL, h:mm:ss a v",
-              "MMM d, h:mm:ss a v",
-              "E, MMM d, h:mm:ss a v",
-              "MMMM d 'at' h:mm:ss a v",
-              "'week' W 'of' MMMM 'at' h:mm:ss a v",
-              "'week' W 'of' MMMM 'at' h:mm:ss a v",
-              "y, h:mm:ss a v",
-              "M/y, h:mm:ss a v",
-              "M/d/y, h:mm:ss a v",
-              "E, M/d/y, h:mm:ss a v",
-              "MMM y, h:mm:ss a v",
-              "MMM d, y, h:mm:ss a v",
-              "E, MMM d, y, h:mm:ss a v",
-              "MMMM y 'at' h:mm:ss a v",
-              "QQQ y, h:mm:ss a v",
-              "QQQQ y, h:mm:ss a v",
-              "'week' w 'of' Y, h:mm:ss a v",
-              "'week' w 'of' Y, h:mm:ss a v",
-              "EEEE, MMMM d, y 'at' HH:mm:ss v",
-              "MMMM d, y 'at' HH:mm:ss v",
-              "MMM d, y, HH:mm:ss v",
-              "M/d/yy, HH:mm:ss v",
-              "d, HH:mm:ss v",
-              "ccc, HH:mm:ss v",
-              "d E, HH:mm:ss v",
-              "y G, HH:mm:ss v",
-              "MMM y G, HH:mm:ss v",
-              "MMM d, y G, HH:mm:ss v",
-              "E, MMM d, y G, HH:mm:ss v",
-              "L, HH:mm:ss v",
-              "M/d, HH:mm:ss v",
-              "E, M/d, HH:mm:ss v",
-              "LLL, HH:mm:ss v",
-              "MMM d, HH:mm:ss v",
-              "E, MMM d, HH:mm:ss v",
-              "MMMM d 'at' HH:mm:ss v",
-              "'week' W 'of' MMMM 'at' HH:mm:ss v",
-              "'week' W 'of' MMMM 'at' HH:mm:ss v",
-              "y, HH:mm:ss v",
-              "M/y, HH:mm:ss v",
-              "M/d/y, HH:mm:ss v",
-              "E, M/d/y, HH:mm:ss v",
-              "MMM y, HH:mm:ss v",
-              "MMM d, y, HH:mm:ss v",
-              "E, MMM d, y, HH:mm:ss v",
-              "MMMM y 'at' HH:mm:ss v",
-              "QQQ y, HH:mm:ss v",
-              "QQQQ y, HH:mm:ss v",
-              "'week' w 'of' Y, HH:mm:ss v",
-              "'week' w 'of' Y, HH:mm:ss v",
-              "EEEE, MMMM d, y 'at' h:mm a v",
-              "MMMM d, y 'at' h:mm a v",
-              "MMM d, y, h:mm a v",
-              "M/d/yy, h:mm a v",
-              "d, h:mm a v",
-              "ccc, h:mm a v",
-              "d E, h:mm a v",
-              "y G, h:mm a v",
-              "MMM y G, h:mm a v",
-              "MMM d, y G, h:mm a v",
-              "E, MMM d, y G, h:mm a v",
-              "L, h:mm a v",
-              "M/d, h:mm a v",
-              "E, M/d, h:mm a v",
-              "LLL, h:mm a v",
-              "MMM d, h:mm a v",
-              "E, MMM d, h:mm a v",
-              "MMMM d 'at' h:mm a v",
-              "'week' W 'of' MMMM 'at' h:mm a v",
-              "'week' W 'of' MMMM 'at' h:mm a v",
-              "y, h:mm a v",
-              "M/y, h:mm a v",
-              "M/d/y, h:mm a v",
-              "E, M/d/y, h:mm a v",
-              "MMM y, h:mm a v",
-              "MMM d, y, h:mm a v",
-              "E, MMM d, y, h:mm a v",
-              "MMMM y 'at' h:mm a v",
-              "QQQ y, h:mm a v",
-              "QQQQ y, h:mm a v",
-              "'week' w 'of' Y, h:mm a v",
-              "'week' w 'of' Y, h:mm a v",
-              "EEEE, MMMM d, y 'at' HH:mm v",
-              "MMMM d, y 'at' HH:mm v",
-              "MMM d, y, HH:mm v",
-              "M/d/yy, HH:mm v",
-              "d, HH:mm v",
-              "ccc, HH:mm v",
-              "d E, HH:mm v",
-              "y G, HH:mm v",
-              "MMM y G, HH:mm v",
-              "MMM d, y G, HH:mm v",
-              "E, MMM d, y G, HH:mm v",
-              "L, HH:mm v",
-              "M/d, HH:mm v",
-              "E, M/d, HH:mm v",
-              "LLL, HH:mm v",
-              "MMM d, HH:mm v",
-              "E, MMM d, HH:mm v",
-              "MMMM d 'at' HH:mm v",
-              "'week' W 'of' MMMM 'at' HH:mm v",
-              "'week' W 'of' MMMM 'at' HH:mm v",
-              "y, HH:mm v",
-              "M/y, HH:mm v",
-              "M/d/y, HH:mm v",
-              "E, M/d/y, HH:mm v",
-              "MMM y, HH:mm v",
-              "MMM d, y, HH:mm v",
-              "E, MMM d, y, HH:mm v",
-              "MMMM y 'at' HH:mm v",
-              "QQQ y, HH:mm v",
-              "QQQQ y, HH:mm v",
-              "'week' w 'of' Y, HH:mm v",
-              "'week' w 'of' Y, HH:mm v",
-              "EEEE, MMMM d, y 'at' mm:ss",
-              "MMMM d, y 'at' mm:ss",
-              "MMM d, y, mm:ss",
-              "M/d/yy, mm:ss",
-              "d, mm:ss",
-              "ccc, mm:ss",
-              "d E, mm:ss",
-              "y G, mm:ss",
-              "MMM y G, mm:ss",
-              "MMM d, y G, mm:ss",
-              "E, MMM d, y G, mm:ss",
-              "L, mm:ss",
-              "M/d, mm:ss",
-              "E, M/d, mm:ss",
-              "LLL, mm:ss",
-              "MMM d, mm:ss",
-              "E, MMM d, mm:ss",
-              "MMMM d 'at' mm:ss",
-              "'week' W 'of' MMMM 'at' mm:ss",
-              "'week' W 'of' MMMM 'at' mm:ss",
-              "y, mm:ss",
-              "M/y, mm:ss",
-              "M/d/y, mm:ss",
-              "E, M/d/y, mm:ss",
-              "MMM y, mm:ss",
-              "MMM d, y, mm:ss",
-              "E, MMM d, y, mm:ss",
-              "MMMM y 'at' mm:ss",
-              "QQQ y, mm:ss",
-              "QQQQ y, mm:ss",
-              "'week' w 'of' Y, mm:ss",
-              "'week' w 'of' Y, mm:ss"
-            ]
+            gregory: {
+              Bh: "h B",
+              Bhm: "h:mm B",
+              Bhms: "h:mm:ss B",
+              d: "d",
+              E: "ccc",
+              EBhm: "E, h:mm B",
+              EBhms: "E, h:mm:ss B",
+              Ed: "E d",
+              Ehm: "E h:mm a",
+              EHm: "E HH:mm",
+              Ehms: "E h:mm:ss a",
+              EHms: "E HH:mm:ss",
+              Gy: "y G",
+              GyMMM: "MMM y G",
+              GyMMMd: "d MMM y G",
+              GyMMMEd: "E, d MMM y G",
+              h: "h a",
+              H: "HH",
+              hm: "h:mm a",
+              Hm: "HH:mm",
+              hms: "h:mm:ss a",
+              Hms: "HH:mm:ss",
+              hmsv: "h:mm:ss a v",
+              Hmsv: "HH:mm:ss v",
+              hmv: "h:mm a v",
+              Hmv: "HH:mm v",
+              M: "L",
+              Md: "dd/MM",
+              MEd: "E, dd/MM",
+              MMdd: "dd/MM",
+              MMM: "LLL",
+              MMMd: "d MMM",
+              MMMEd: "E, d MMM",
+              MMMMd: "d MMMM",
+              ms: "mm:ss",
+              y: "y",
+              yM: "MM/y",
+              yMd: "dd/MM/y",
+              yMEd: "E, dd/MM/y",
+              yMMM: "MMM y",
+              yMMMd: "d MMM y",
+              yMMMEd: "E, d MMM y",
+              yMMMM: "MMMM y",
+              "EEEE, d MMMM y": "EEEE, d MMMM y",
+              "d MMMM y": "d MMMM y",
+              "d MMM y": "d MMM y",
+              "dd/MM/y": "dd/MM/y",
+              "h:mm:ss a zzzz": "h:mm:ss a zzzz",
+              "h:mm:ss a z": "h:mm:ss a z",
+              "h:mm:ss a": "h:mm:ss a",
+              "h:mm a": "h:mm a",
+              "EEEE, d MMMM y 'at' h:mm:ss a zzzz":
+                "EEEE, d MMMM y 'at' h:mm:ss a zzzz",
+              "d MMMM y 'at' h:mm:ss a zzzz": "d MMMM y 'at' h:mm:ss a zzzz",
+              "d MMM y, h:mm:ss a zzzz": "d MMM y, h:mm:ss a zzzz",
+              "dd/MM/y, h:mm:ss a zzzz": "dd/MM/y, h:mm:ss a zzzz",
+              "d, h:mm:ss a zzzz": "d, h:mm:ss a zzzz",
+              "E, h:mm:ss a zzzz": "ccc, h:mm:ss a zzzz",
+              "Ed, h:mm:ss a zzzz": "E d, h:mm:ss a zzzz",
+              "Gy, h:mm:ss a zzzz": "y G, h:mm:ss a zzzz",
+              "GyMMM, h:mm:ss a zzzz": "MMM y G, h:mm:ss a zzzz",
+              "GyMMMd, h:mm:ss a zzzz": "d MMM y G, h:mm:ss a zzzz",
+              "GyMMMEd, h:mm:ss a zzzz": "E, d MMM y G, h:mm:ss a zzzz",
+              "M, h:mm:ss a zzzz": "L, h:mm:ss a zzzz",
+              "Md, h:mm:ss a zzzz": "dd/MM, h:mm:ss a zzzz",
+              "MEd, h:mm:ss a zzzz": "E, dd/MM, h:mm:ss a zzzz",
+              "MMdd, h:mm:ss a zzzz": "dd/MM, h:mm:ss a zzzz",
+              "MMM, h:mm:ss a zzzz": "LLL, h:mm:ss a zzzz",
+              "MMMd, h:mm:ss a zzzz": "d MMM, h:mm:ss a zzzz",
+              "MMMEd, h:mm:ss a zzzz": "E, d MMM, h:mm:ss a zzzz",
+              "MMMMd 'at' h:mm:ss a zzzz": "d MMMM 'at' h:mm:ss a zzzz",
+              "y, h:mm:ss a zzzz": "y, h:mm:ss a zzzz",
+              "yM, h:mm:ss a zzzz": "MM/y, h:mm:ss a zzzz",
+              "yMd, h:mm:ss a zzzz": "dd/MM/y, h:mm:ss a zzzz",
+              "yMEd, h:mm:ss a zzzz": "E, dd/MM/y, h:mm:ss a zzzz",
+              "yMMM, h:mm:ss a zzzz": "MMM y, h:mm:ss a zzzz",
+              "yMMMd, h:mm:ss a zzzz": "d MMM y, h:mm:ss a zzzz",
+              "yMMMEd, h:mm:ss a zzzz": "E, d MMM y, h:mm:ss a zzzz",
+              "yMMMM 'at' h:mm:ss a zzzz": "MMMM y 'at' h:mm:ss a zzzz",
+              "EEEE, d MMMM y 'at' h:mm:ss a z":
+                "EEEE, d MMMM y 'at' h:mm:ss a z",
+              "d MMMM y 'at' h:mm:ss a z": "d MMMM y 'at' h:mm:ss a z",
+              "d MMM y, h:mm:ss a z": "d MMM y, h:mm:ss a z",
+              "dd/MM/y, h:mm:ss a z": "dd/MM/y, h:mm:ss a z",
+              "d, h:mm:ss a z": "d, h:mm:ss a z",
+              "E, h:mm:ss a z": "ccc, h:mm:ss a z",
+              "Ed, h:mm:ss a z": "E d, h:mm:ss a z",
+              "Gy, h:mm:ss a z": "y G, h:mm:ss a z",
+              "GyMMM, h:mm:ss a z": "MMM y G, h:mm:ss a z",
+              "GyMMMd, h:mm:ss a z": "d MMM y G, h:mm:ss a z",
+              "GyMMMEd, h:mm:ss a z": "E, d MMM y G, h:mm:ss a z",
+              "M, h:mm:ss a z": "L, h:mm:ss a z",
+              "Md, h:mm:ss a z": "dd/MM, h:mm:ss a z",
+              "MEd, h:mm:ss a z": "E, dd/MM, h:mm:ss a z",
+              "MMdd, h:mm:ss a z": "dd/MM, h:mm:ss a z",
+              "MMM, h:mm:ss a z": "LLL, h:mm:ss a z",
+              "MMMd, h:mm:ss a z": "d MMM, h:mm:ss a z",
+              "MMMEd, h:mm:ss a z": "E, d MMM, h:mm:ss a z",
+              "MMMMd 'at' h:mm:ss a z": "d MMMM 'at' h:mm:ss a z",
+              "y, h:mm:ss a z": "y, h:mm:ss a z",
+              "yM, h:mm:ss a z": "MM/y, h:mm:ss a z",
+              "yMd, h:mm:ss a z": "dd/MM/y, h:mm:ss a z",
+              "yMEd, h:mm:ss a z": "E, dd/MM/y, h:mm:ss a z",
+              "yMMM, h:mm:ss a z": "MMM y, h:mm:ss a z",
+              "yMMMd, h:mm:ss a z": "d MMM y, h:mm:ss a z",
+              "yMMMEd, h:mm:ss a z": "E, d MMM y, h:mm:ss a z",
+              "yMMMM 'at' h:mm:ss a z": "MMMM y 'at' h:mm:ss a z",
+              "EEEE, d MMMM y 'at' h:mm:ss a": "EEEE, d MMMM y 'at' h:mm:ss a",
+              "d MMMM y 'at' h:mm:ss a": "d MMMM y 'at' h:mm:ss a",
+              "d MMM y, h:mm:ss a": "d MMM y, h:mm:ss a",
+              "dd/MM/y, h:mm:ss a": "dd/MM/y, h:mm:ss a",
+              "d, h:mm:ss a": "d, h:mm:ss a",
+              "E, h:mm:ss a": "ccc, h:mm:ss a",
+              "Ed, h:mm:ss a": "E d, h:mm:ss a",
+              "Gy, h:mm:ss a": "y G, h:mm:ss a",
+              "GyMMM, h:mm:ss a": "MMM y G, h:mm:ss a",
+              "GyMMMd, h:mm:ss a": "d MMM y G, h:mm:ss a",
+              "GyMMMEd, h:mm:ss a": "E, d MMM y G, h:mm:ss a",
+              "M, h:mm:ss a": "L, h:mm:ss a",
+              "Md, h:mm:ss a": "dd/MM, h:mm:ss a",
+              "MEd, h:mm:ss a": "E, dd/MM, h:mm:ss a",
+              "MMdd, h:mm:ss a": "dd/MM, h:mm:ss a",
+              "MMM, h:mm:ss a": "LLL, h:mm:ss a",
+              "MMMd, h:mm:ss a": "d MMM, h:mm:ss a",
+              "MMMEd, h:mm:ss a": "E, d MMM, h:mm:ss a",
+              "MMMMd 'at' h:mm:ss a": "d MMMM 'at' h:mm:ss a",
+              "y, h:mm:ss a": "y, h:mm:ss a",
+              "yM, h:mm:ss a": "MM/y, h:mm:ss a",
+              "yMd, h:mm:ss a": "dd/MM/y, h:mm:ss a",
+              "yMEd, h:mm:ss a": "E, dd/MM/y, h:mm:ss a",
+              "yMMM, h:mm:ss a": "MMM y, h:mm:ss a",
+              "yMMMd, h:mm:ss a": "d MMM y, h:mm:ss a",
+              "yMMMEd, h:mm:ss a": "E, d MMM y, h:mm:ss a",
+              "yMMMM 'at' h:mm:ss a": "MMMM y 'at' h:mm:ss a",
+              "EEEE, d MMMM y 'at' h:mm a": "EEEE, d MMMM y 'at' h:mm a",
+              "d MMMM y 'at' h:mm a": "d MMMM y 'at' h:mm a",
+              "d MMM y, h:mm a": "d MMM y, h:mm a",
+              "dd/MM/y, h:mm a": "dd/MM/y, h:mm a",
+              "d, h:mm a": "d, h:mm a",
+              "E, h:mm a": "ccc, h:mm a",
+              "Ed, h:mm a": "E d, h:mm a",
+              "Gy, h:mm a": "y G, h:mm a",
+              "GyMMM, h:mm a": "MMM y G, h:mm a",
+              "GyMMMd, h:mm a": "d MMM y G, h:mm a",
+              "GyMMMEd, h:mm a": "E, d MMM y G, h:mm a",
+              "M, h:mm a": "L, h:mm a",
+              "Md, h:mm a": "dd/MM, h:mm a",
+              "MEd, h:mm a": "E, dd/MM, h:mm a",
+              "MMdd, h:mm a": "dd/MM, h:mm a",
+              "MMM, h:mm a": "LLL, h:mm a",
+              "MMMd, h:mm a": "d MMM, h:mm a",
+              "MMMEd, h:mm a": "E, d MMM, h:mm a",
+              "MMMMd 'at' h:mm a": "d MMMM 'at' h:mm a",
+              "y, h:mm a": "y, h:mm a",
+              "yM, h:mm a": "MM/y, h:mm a",
+              "yMd, h:mm a": "dd/MM/y, h:mm a",
+              "yMEd, h:mm a": "E, dd/MM/y, h:mm a",
+              "yMMM, h:mm a": "MMM y, h:mm a",
+              "yMMMd, h:mm a": "d MMM y, h:mm a",
+              "yMMMEd, h:mm a": "E, d MMM y, h:mm a",
+              "yMMMM 'at' h:mm a": "MMMM y 'at' h:mm a",
+              "EEEE, d MMMM y 'at' Bh": "EEEE, d MMMM y 'at' h B",
+              "d MMMM y 'at' Bh": "d MMMM y 'at' h B",
+              "d MMM y, Bh": "d MMM y, h B",
+              "dd/MM/y, Bh": "dd/MM/y, h B",
+              "d, Bh": "d, h B",
+              "E, Bh": "ccc, h B",
+              "Ed, Bh": "E d, h B",
+              "Gy, Bh": "y G, h B",
+              "GyMMM, Bh": "MMM y G, h B",
+              "GyMMMd, Bh": "d MMM y G, h B",
+              "GyMMMEd, Bh": "E, d MMM y G, h B",
+              "M, Bh": "L, h B",
+              "Md, Bh": "dd/MM, h B",
+              "MEd, Bh": "E, dd/MM, h B",
+              "MMdd, Bh": "dd/MM, h B",
+              "MMM, Bh": "LLL, h B",
+              "MMMd, Bh": "d MMM, h B",
+              "MMMEd, Bh": "E, d MMM, h B",
+              "MMMMd 'at' Bh": "d MMMM 'at' h B",
+              "y, Bh": "y, h B",
+              "yM, Bh": "MM/y, h B",
+              "yMd, Bh": "dd/MM/y, h B",
+              "yMEd, Bh": "E, dd/MM/y, h B",
+              "yMMM, Bh": "MMM y, h B",
+              "yMMMd, Bh": "d MMM y, h B",
+              "yMMMEd, Bh": "E, d MMM y, h B",
+              "yMMMM 'at' Bh": "MMMM y 'at' h B",
+              "EEEE, d MMMM y 'at' Bhm": "EEEE, d MMMM y 'at' h:mm B",
+              "d MMMM y 'at' Bhm": "d MMMM y 'at' h:mm B",
+              "d MMM y, Bhm": "d MMM y, h:mm B",
+              "dd/MM/y, Bhm": "dd/MM/y, h:mm B",
+              "d, Bhm": "d, h:mm B",
+              "E, Bhm": "ccc, h:mm B",
+              "Ed, Bhm": "E d, h:mm B",
+              "Gy, Bhm": "y G, h:mm B",
+              "GyMMM, Bhm": "MMM y G, h:mm B",
+              "GyMMMd, Bhm": "d MMM y G, h:mm B",
+              "GyMMMEd, Bhm": "E, d MMM y G, h:mm B",
+              "M, Bhm": "L, h:mm B",
+              "Md, Bhm": "dd/MM, h:mm B",
+              "MEd, Bhm": "E, dd/MM, h:mm B",
+              "MMdd, Bhm": "dd/MM, h:mm B",
+              "MMM, Bhm": "LLL, h:mm B",
+              "MMMd, Bhm": "d MMM, h:mm B",
+              "MMMEd, Bhm": "E, d MMM, h:mm B",
+              "MMMMd 'at' Bhm": "d MMMM 'at' h:mm B",
+              "y, Bhm": "y, h:mm B",
+              "yM, Bhm": "MM/y, h:mm B",
+              "yMd, Bhm": "dd/MM/y, h:mm B",
+              "yMEd, Bhm": "E, dd/MM/y, h:mm B",
+              "yMMM, Bhm": "MMM y, h:mm B",
+              "yMMMd, Bhm": "d MMM y, h:mm B",
+              "yMMMEd, Bhm": "E, d MMM y, h:mm B",
+              "yMMMM 'at' Bhm": "MMMM y 'at' h:mm B",
+              "EEEE, d MMMM y 'at' Bhms": "EEEE, d MMMM y 'at' h:mm:ss B",
+              "d MMMM y 'at' Bhms": "d MMMM y 'at' h:mm:ss B",
+              "d MMM y, Bhms": "d MMM y, h:mm:ss B",
+              "dd/MM/y, Bhms": "dd/MM/y, h:mm:ss B",
+              "d, Bhms": "d, h:mm:ss B",
+              "E, Bhms": "ccc, h:mm:ss B",
+              "Ed, Bhms": "E d, h:mm:ss B",
+              "Gy, Bhms": "y G, h:mm:ss B",
+              "GyMMM, Bhms": "MMM y G, h:mm:ss B",
+              "GyMMMd, Bhms": "d MMM y G, h:mm:ss B",
+              "GyMMMEd, Bhms": "E, d MMM y G, h:mm:ss B",
+              "M, Bhms": "L, h:mm:ss B",
+              "Md, Bhms": "dd/MM, h:mm:ss B",
+              "MEd, Bhms": "E, dd/MM, h:mm:ss B",
+              "MMdd, Bhms": "dd/MM, h:mm:ss B",
+              "MMM, Bhms": "LLL, h:mm:ss B",
+              "MMMd, Bhms": "d MMM, h:mm:ss B",
+              "MMMEd, Bhms": "E, d MMM, h:mm:ss B",
+              "MMMMd 'at' Bhms": "d MMMM 'at' h:mm:ss B",
+              "y, Bhms": "y, h:mm:ss B",
+              "yM, Bhms": "MM/y, h:mm:ss B",
+              "yMd, Bhms": "dd/MM/y, h:mm:ss B",
+              "yMEd, Bhms": "E, dd/MM/y, h:mm:ss B",
+              "yMMM, Bhms": "MMM y, h:mm:ss B",
+              "yMMMd, Bhms": "d MMM y, h:mm:ss B",
+              "yMMMEd, Bhms": "E, d MMM y, h:mm:ss B",
+              "yMMMM 'at' Bhms": "MMMM y 'at' h:mm:ss B",
+              "EEEE, d MMMM y 'at' h": "EEEE, d MMMM y 'at' h a",
+              "d MMMM y 'at' h": "d MMMM y 'at' h a",
+              "d MMM y, h": "d MMM y, h a",
+              "dd/MM/y, h": "dd/MM/y, h a",
+              "d, h": "d, h a",
+              "E, h": "ccc, h a",
+              "Ed, h": "E d, h a",
+              "Gy, h": "y G, h a",
+              "GyMMM, h": "MMM y G, h a",
+              "GyMMMd, h": "d MMM y G, h a",
+              "GyMMMEd, h": "E, d MMM y G, h a",
+              "M, h": "L, h a",
+              "Md, h": "dd/MM, h a",
+              "MEd, h": "E, dd/MM, h a",
+              "MMdd, h": "dd/MM, h a",
+              "MMM, h": "LLL, h a",
+              "MMMd, h": "d MMM, h a",
+              "MMMEd, h": "E, d MMM, h a",
+              "MMMMd 'at' h": "d MMMM 'at' h a",
+              "y, h": "y, h a",
+              "yM, h": "MM/y, h a",
+              "yMd, h": "dd/MM/y, h a",
+              "yMEd, h": "E, dd/MM/y, h a",
+              "yMMM, h": "MMM y, h a",
+              "yMMMd, h": "d MMM y, h a",
+              "yMMMEd, h": "E, d MMM y, h a",
+              "yMMMM 'at' h": "MMMM y 'at' h a",
+              "EEEE, d MMMM y 'at' H": "EEEE, d MMMM y 'at' HH",
+              "d MMMM y 'at' H": "d MMMM y 'at' HH",
+              "d MMM y, H": "d MMM y, HH",
+              "dd/MM/y, H": "dd/MM/y, HH",
+              "d, H": "d, HH",
+              "E, H": "ccc, HH",
+              "Ed, H": "E d, HH",
+              "Gy, H": "y G, HH",
+              "GyMMM, H": "MMM y G, HH",
+              "GyMMMd, H": "d MMM y G, HH",
+              "GyMMMEd, H": "E, d MMM y G, HH",
+              "M, H": "L, HH",
+              "Md, H": "dd/MM, HH",
+              "MEd, H": "E, dd/MM, HH",
+              "MMdd, H": "dd/MM, HH",
+              "MMM, H": "LLL, HH",
+              "MMMd, H": "d MMM, HH",
+              "MMMEd, H": "E, d MMM, HH",
+              "MMMMd 'at' H": "d MMMM 'at' HH",
+              "y, H": "y, HH",
+              "yM, H": "MM/y, HH",
+              "yMd, H": "dd/MM/y, HH",
+              "yMEd, H": "E, dd/MM/y, HH",
+              "yMMM, H": "MMM y, HH",
+              "yMMMd, H": "d MMM y, HH",
+              "yMMMEd, H": "E, d MMM y, HH",
+              "yMMMM 'at' H": "MMMM y 'at' HH",
+              "EEEE, d MMMM y 'at' hm": "EEEE, d MMMM y 'at' h:mm a",
+              "d MMMM y 'at' hm": "d MMMM y 'at' h:mm a",
+              "d MMM y, hm": "d MMM y, h:mm a",
+              "dd/MM/y, hm": "dd/MM/y, h:mm a",
+              "d, hm": "d, h:mm a",
+              "E, hm": "ccc, h:mm a",
+              "Ed, hm": "E d, h:mm a",
+              "Gy, hm": "y G, h:mm a",
+              "GyMMM, hm": "MMM y G, h:mm a",
+              "GyMMMd, hm": "d MMM y G, h:mm a",
+              "GyMMMEd, hm": "E, d MMM y G, h:mm a",
+              "M, hm": "L, h:mm a",
+              "Md, hm": "dd/MM, h:mm a",
+              "MEd, hm": "E, dd/MM, h:mm a",
+              "MMdd, hm": "dd/MM, h:mm a",
+              "MMM, hm": "LLL, h:mm a",
+              "MMMd, hm": "d MMM, h:mm a",
+              "MMMEd, hm": "E, d MMM, h:mm a",
+              "MMMMd 'at' hm": "d MMMM 'at' h:mm a",
+              "y, hm": "y, h:mm a",
+              "yM, hm": "MM/y, h:mm a",
+              "yMd, hm": "dd/MM/y, h:mm a",
+              "yMEd, hm": "E, dd/MM/y, h:mm a",
+              "yMMM, hm": "MMM y, h:mm a",
+              "yMMMd, hm": "d MMM y, h:mm a",
+              "yMMMEd, hm": "E, d MMM y, h:mm a",
+              "yMMMM 'at' hm": "MMMM y 'at' h:mm a",
+              "EEEE, d MMMM y 'at' Hm": "EEEE, d MMMM y 'at' HH:mm",
+              "d MMMM y 'at' Hm": "d MMMM y 'at' HH:mm",
+              "d MMM y, Hm": "d MMM y, HH:mm",
+              "dd/MM/y, Hm": "dd/MM/y, HH:mm",
+              "d, Hm": "d, HH:mm",
+              "E, Hm": "ccc, HH:mm",
+              "Ed, Hm": "E d, HH:mm",
+              "Gy, Hm": "y G, HH:mm",
+              "GyMMM, Hm": "MMM y G, HH:mm",
+              "GyMMMd, Hm": "d MMM y G, HH:mm",
+              "GyMMMEd, Hm": "E, d MMM y G, HH:mm",
+              "M, Hm": "L, HH:mm",
+              "Md, Hm": "dd/MM, HH:mm",
+              "MEd, Hm": "E, dd/MM, HH:mm",
+              "MMdd, Hm": "dd/MM, HH:mm",
+              "MMM, Hm": "LLL, HH:mm",
+              "MMMd, Hm": "d MMM, HH:mm",
+              "MMMEd, Hm": "E, d MMM, HH:mm",
+              "MMMMd 'at' Hm": "d MMMM 'at' HH:mm",
+              "y, Hm": "y, HH:mm",
+              "yM, Hm": "MM/y, HH:mm",
+              "yMd, Hm": "dd/MM/y, HH:mm",
+              "yMEd, Hm": "E, dd/MM/y, HH:mm",
+              "yMMM, Hm": "MMM y, HH:mm",
+              "yMMMd, Hm": "d MMM y, HH:mm",
+              "yMMMEd, Hm": "E, d MMM y, HH:mm",
+              "yMMMM 'at' Hm": "MMMM y 'at' HH:mm",
+              "EEEE, d MMMM y 'at' hms": "EEEE, d MMMM y 'at' h:mm:ss a",
+              "d MMMM y 'at' hms": "d MMMM y 'at' h:mm:ss a",
+              "d MMM y, hms": "d MMM y, h:mm:ss a",
+              "dd/MM/y, hms": "dd/MM/y, h:mm:ss a",
+              "d, hms": "d, h:mm:ss a",
+              "E, hms": "ccc, h:mm:ss a",
+              "Ed, hms": "E d, h:mm:ss a",
+              "Gy, hms": "y G, h:mm:ss a",
+              "GyMMM, hms": "MMM y G, h:mm:ss a",
+              "GyMMMd, hms": "d MMM y G, h:mm:ss a",
+              "GyMMMEd, hms": "E, d MMM y G, h:mm:ss a",
+              "M, hms": "L, h:mm:ss a",
+              "Md, hms": "dd/MM, h:mm:ss a",
+              "MEd, hms": "E, dd/MM, h:mm:ss a",
+              "MMdd, hms": "dd/MM, h:mm:ss a",
+              "MMM, hms": "LLL, h:mm:ss a",
+              "MMMd, hms": "d MMM, h:mm:ss a",
+              "MMMEd, hms": "E, d MMM, h:mm:ss a",
+              "MMMMd 'at' hms": "d MMMM 'at' h:mm:ss a",
+              "y, hms": "y, h:mm:ss a",
+              "yM, hms": "MM/y, h:mm:ss a",
+              "yMd, hms": "dd/MM/y, h:mm:ss a",
+              "yMEd, hms": "E, dd/MM/y, h:mm:ss a",
+              "yMMM, hms": "MMM y, h:mm:ss a",
+              "yMMMd, hms": "d MMM y, h:mm:ss a",
+              "yMMMEd, hms": "E, d MMM y, h:mm:ss a",
+              "yMMMM 'at' hms": "MMMM y 'at' h:mm:ss a",
+              "EEEE, d MMMM y 'at' Hms": "EEEE, d MMMM y 'at' HH:mm:ss",
+              "d MMMM y 'at' Hms": "d MMMM y 'at' HH:mm:ss",
+              "d MMM y, Hms": "d MMM y, HH:mm:ss",
+              "dd/MM/y, Hms": "dd/MM/y, HH:mm:ss",
+              "d, Hms": "d, HH:mm:ss",
+              "E, Hms": "ccc, HH:mm:ss",
+              "Ed, Hms": "E d, HH:mm:ss",
+              "Gy, Hms": "y G, HH:mm:ss",
+              "GyMMM, Hms": "MMM y G, HH:mm:ss",
+              "GyMMMd, Hms": "d MMM y G, HH:mm:ss",
+              "GyMMMEd, Hms": "E, d MMM y G, HH:mm:ss",
+              "M, Hms": "L, HH:mm:ss",
+              "Md, Hms": "dd/MM, HH:mm:ss",
+              "MEd, Hms": "E, dd/MM, HH:mm:ss",
+              "MMdd, Hms": "dd/MM, HH:mm:ss",
+              "MMM, Hms": "LLL, HH:mm:ss",
+              "MMMd, Hms": "d MMM, HH:mm:ss",
+              "MMMEd, Hms": "E, d MMM, HH:mm:ss",
+              "MMMMd 'at' Hms": "d MMMM 'at' HH:mm:ss",
+              "y, Hms": "y, HH:mm:ss",
+              "yM, Hms": "MM/y, HH:mm:ss",
+              "yMd, Hms": "dd/MM/y, HH:mm:ss",
+              "yMEd, Hms": "E, dd/MM/y, HH:mm:ss",
+              "yMMM, Hms": "MMM y, HH:mm:ss",
+              "yMMMd, Hms": "d MMM y, HH:mm:ss",
+              "yMMMEd, Hms": "E, d MMM y, HH:mm:ss",
+              "yMMMM 'at' Hms": "MMMM y 'at' HH:mm:ss",
+              "EEEE, d MMMM y 'at' hmsv": "EEEE, d MMMM y 'at' h:mm:ss a v",
+              "d MMMM y 'at' hmsv": "d MMMM y 'at' h:mm:ss a v",
+              "d MMM y, hmsv": "d MMM y, h:mm:ss a v",
+              "dd/MM/y, hmsv": "dd/MM/y, h:mm:ss a v",
+              "d, hmsv": "d, h:mm:ss a v",
+              "E, hmsv": "ccc, h:mm:ss a v",
+              "Ed, hmsv": "E d, h:mm:ss a v",
+              "Gy, hmsv": "y G, h:mm:ss a v",
+              "GyMMM, hmsv": "MMM y G, h:mm:ss a v",
+              "GyMMMd, hmsv": "d MMM y G, h:mm:ss a v",
+              "GyMMMEd, hmsv": "E, d MMM y G, h:mm:ss a v",
+              "M, hmsv": "L, h:mm:ss a v",
+              "Md, hmsv": "dd/MM, h:mm:ss a v",
+              "MEd, hmsv": "E, dd/MM, h:mm:ss a v",
+              "MMdd, hmsv": "dd/MM, h:mm:ss a v",
+              "MMM, hmsv": "LLL, h:mm:ss a v",
+              "MMMd, hmsv": "d MMM, h:mm:ss a v",
+              "MMMEd, hmsv": "E, d MMM, h:mm:ss a v",
+              "MMMMd 'at' hmsv": "d MMMM 'at' h:mm:ss a v",
+              "y, hmsv": "y, h:mm:ss a v",
+              "yM, hmsv": "MM/y, h:mm:ss a v",
+              "yMd, hmsv": "dd/MM/y, h:mm:ss a v",
+              "yMEd, hmsv": "E, dd/MM/y, h:mm:ss a v",
+              "yMMM, hmsv": "MMM y, h:mm:ss a v",
+              "yMMMd, hmsv": "d MMM y, h:mm:ss a v",
+              "yMMMEd, hmsv": "E, d MMM y, h:mm:ss a v",
+              "yMMMM 'at' hmsv": "MMMM y 'at' h:mm:ss a v",
+              "EEEE, d MMMM y 'at' Hmsv": "EEEE, d MMMM y 'at' HH:mm:ss v",
+              "d MMMM y 'at' Hmsv": "d MMMM y 'at' HH:mm:ss v",
+              "d MMM y, Hmsv": "d MMM y, HH:mm:ss v",
+              "dd/MM/y, Hmsv": "dd/MM/y, HH:mm:ss v",
+              "d, Hmsv": "d, HH:mm:ss v",
+              "E, Hmsv": "ccc, HH:mm:ss v",
+              "Ed, Hmsv": "E d, HH:mm:ss v",
+              "Gy, Hmsv": "y G, HH:mm:ss v",
+              "GyMMM, Hmsv": "MMM y G, HH:mm:ss v",
+              "GyMMMd, Hmsv": "d MMM y G, HH:mm:ss v",
+              "GyMMMEd, Hmsv": "E, d MMM y G, HH:mm:ss v",
+              "M, Hmsv": "L, HH:mm:ss v",
+              "Md, Hmsv": "dd/MM, HH:mm:ss v",
+              "MEd, Hmsv": "E, dd/MM, HH:mm:ss v",
+              "MMdd, Hmsv": "dd/MM, HH:mm:ss v",
+              "MMM, Hmsv": "LLL, HH:mm:ss v",
+              "MMMd, Hmsv": "d MMM, HH:mm:ss v",
+              "MMMEd, Hmsv": "E, d MMM, HH:mm:ss v",
+              "MMMMd 'at' Hmsv": "d MMMM 'at' HH:mm:ss v",
+              "y, Hmsv": "y, HH:mm:ss v",
+              "yM, Hmsv": "MM/y, HH:mm:ss v",
+              "yMd, Hmsv": "dd/MM/y, HH:mm:ss v",
+              "yMEd, Hmsv": "E, dd/MM/y, HH:mm:ss v",
+              "yMMM, Hmsv": "MMM y, HH:mm:ss v",
+              "yMMMd, Hmsv": "d MMM y, HH:mm:ss v",
+              "yMMMEd, Hmsv": "E, d MMM y, HH:mm:ss v",
+              "yMMMM 'at' Hmsv": "MMMM y 'at' HH:mm:ss v",
+              "EEEE, d MMMM y 'at' hmv": "EEEE, d MMMM y 'at' h:mm a v",
+              "d MMMM y 'at' hmv": "d MMMM y 'at' h:mm a v",
+              "d MMM y, hmv": "d MMM y, h:mm a v",
+              "dd/MM/y, hmv": "dd/MM/y, h:mm a v",
+              "d, hmv": "d, h:mm a v",
+              "E, hmv": "ccc, h:mm a v",
+              "Ed, hmv": "E d, h:mm a v",
+              "Gy, hmv": "y G, h:mm a v",
+              "GyMMM, hmv": "MMM y G, h:mm a v",
+              "GyMMMd, hmv": "d MMM y G, h:mm a v",
+              "GyMMMEd, hmv": "E, d MMM y G, h:mm a v",
+              "M, hmv": "L, h:mm a v",
+              "Md, hmv": "dd/MM, h:mm a v",
+              "MEd, hmv": "E, dd/MM, h:mm a v",
+              "MMdd, hmv": "dd/MM, h:mm a v",
+              "MMM, hmv": "LLL, h:mm a v",
+              "MMMd, hmv": "d MMM, h:mm a v",
+              "MMMEd, hmv": "E, d MMM, h:mm a v",
+              "MMMMd 'at' hmv": "d MMMM 'at' h:mm a v",
+              "y, hmv": "y, h:mm a v",
+              "yM, hmv": "MM/y, h:mm a v",
+              "yMd, hmv": "dd/MM/y, h:mm a v",
+              "yMEd, hmv": "E, dd/MM/y, h:mm a v",
+              "yMMM, hmv": "MMM y, h:mm a v",
+              "yMMMd, hmv": "d MMM y, h:mm a v",
+              "yMMMEd, hmv": "E, d MMM y, h:mm a v",
+              "yMMMM 'at' hmv": "MMMM y 'at' h:mm a v",
+              "EEEE, d MMMM y 'at' Hmv": "EEEE, d MMMM y 'at' HH:mm v",
+              "d MMMM y 'at' Hmv": "d MMMM y 'at' HH:mm v",
+              "d MMM y, Hmv": "d MMM y, HH:mm v",
+              "dd/MM/y, Hmv": "dd/MM/y, HH:mm v",
+              "d, Hmv": "d, HH:mm v",
+              "E, Hmv": "ccc, HH:mm v",
+              "Ed, Hmv": "E d, HH:mm v",
+              "Gy, Hmv": "y G, HH:mm v",
+              "GyMMM, Hmv": "MMM y G, HH:mm v",
+              "GyMMMd, Hmv": "d MMM y G, HH:mm v",
+              "GyMMMEd, Hmv": "E, d MMM y G, HH:mm v",
+              "M, Hmv": "L, HH:mm v",
+              "Md, Hmv": "dd/MM, HH:mm v",
+              "MEd, Hmv": "E, dd/MM, HH:mm v",
+              "MMdd, Hmv": "dd/MM, HH:mm v",
+              "MMM, Hmv": "LLL, HH:mm v",
+              "MMMd, Hmv": "d MMM, HH:mm v",
+              "MMMEd, Hmv": "E, d MMM, HH:mm v",
+              "MMMMd 'at' Hmv": "d MMMM 'at' HH:mm v",
+              "y, Hmv": "y, HH:mm v",
+              "yM, Hmv": "MM/y, HH:mm v",
+              "yMd, Hmv": "dd/MM/y, HH:mm v",
+              "yMEd, Hmv": "E, dd/MM/y, HH:mm v",
+              "yMMM, Hmv": "MMM y, HH:mm v",
+              "yMMMd, Hmv": "d MMM y, HH:mm v",
+              "yMMMEd, Hmv": "E, d MMM y, HH:mm v",
+              "yMMMM 'at' Hmv": "MMMM y 'at' HH:mm v",
+              "EEEE, d MMMM y 'at' ms": "EEEE, d MMMM y 'at' mm:ss",
+              "d MMMM y 'at' ms": "d MMMM y 'at' mm:ss",
+              "d MMM y, ms": "d MMM y, mm:ss",
+              "dd/MM/y, ms": "dd/MM/y, mm:ss",
+              "d, ms": "d, mm:ss",
+              "E, ms": "ccc, mm:ss",
+              "Ed, ms": "E d, mm:ss",
+              "Gy, ms": "y G, mm:ss",
+              "GyMMM, ms": "MMM y G, mm:ss",
+              "GyMMMd, ms": "d MMM y G, mm:ss",
+              "GyMMMEd, ms": "E, d MMM y G, mm:ss",
+              "M, ms": "L, mm:ss",
+              "Md, ms": "dd/MM, mm:ss",
+              "MEd, ms": "E, dd/MM, mm:ss",
+              "MMdd, ms": "dd/MM, mm:ss",
+              "MMM, ms": "LLL, mm:ss",
+              "MMMd, ms": "d MMM, mm:ss",
+              "MMMEd, ms": "E, d MMM, mm:ss",
+              "MMMMd 'at' ms": "d MMMM 'at' mm:ss",
+              "y, ms": "y, mm:ss",
+              "yM, ms": "MM/y, mm:ss",
+              "yMd, ms": "dd/MM/y, mm:ss",
+              "yMEd, ms": "E, dd/MM/y, mm:ss",
+              "yMMM, ms": "MMM y, mm:ss",
+              "yMMMd, ms": "d MMM y, mm:ss",
+              "yMMMEd, ms": "E, d MMM y, mm:ss",
+              "yMMMM 'at' ms": "MMMM y 'at' mm:ss",
+            },
           },
           hourCycle: "h12",
           nu: ["latn"],
           ca: ["gregory"],
-          hc: ["h12", "", "h23", ""]
-        }
+          hc: ["h12", "", "h23", ""],
+        },
       },
-      availableLocales: ["en"]
+      availableLocales: ["en"],
     });
   }
 });
 
-it("formatToParts should work", function() {
+it("formatToParts should work", function () {
   var parts = new Intl.DateTimeFormat("en", {
     weekday: "long",
     era: "long",
@@ -4412,12 +4212,12 @@ it("formatToParts should work", function() {
     hour: "numeric",
     minute: "numeric",
     second: "numeric",
-    hour12: true
+    hour12: true,
   }).formatToParts(0);
   proclaim.equal(parts.length, 17);
 });
 
-it("should fix dayperiod bug in chrome", function() {
+it("should fix dayperiod bug in chrome", function () {
   var parts = new Intl.DateTimeFormat("en", {
     weekday: "long",
     era: "long",
@@ -4427,7 +4227,7 @@ it("should fix dayperiod bug in chrome", function() {
     hour: "numeric",
     minute: "numeric",
     second: "numeric",
-    hour12: true
+    hour12: true,
   }).formatToParts(0);
   var dayPeriod, dayperiod;
   for (var i = 0; i < parts.length; i++) {
