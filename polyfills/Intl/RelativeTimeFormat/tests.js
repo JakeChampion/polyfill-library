@@ -2859,9 +2859,9 @@ describe("Intl.RelativeTimeFormat", function () {
     proclaim.equal(
       new Intl.RelativeTimeFormat("en", { style: "narrow" }).format(
         3,
-        "quarter"
+        "month"
       ),
-      "in 3 qtr"
+      "in 3 mo."
     );
     proclaim.equal(
       new Intl.RelativeTimeFormat("en", { style: "narrow" }).format(-1, "day"),
