@@ -2856,12 +2856,12 @@ describe("Intl.RelativeTimeFormat", function () {
     }
   });
   it("format should work for style narrow", function () {
-    proclaim.equal(
+    proclaim.match(
       new Intl.RelativeTimeFormat("en", { style: "narrow" }).format(
         3,
         "month"
       ),
-      "in 3 mo."
+      /in 3 mo\.?/
     );
     proclaim.equal(
       new Intl.RelativeTimeFormat("en", { style: "narrow" }).format(-1, "day"),
