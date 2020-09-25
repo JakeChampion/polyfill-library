@@ -25,7 +25,7 @@
   "scripts": {
     "lint": "eslint polyfills lib tasks test",
     "clean": "rimraf ./polyfills/__dist",
-    "build": "npm run clean && node tasks/node/updatesources && node tasks/node/buildsources",
+    "build": "npm run clean && node tasks/updatesources && node tasks/buildsources",
     "fmt": "eslint . --fix",
     "test-library": "npm run build && npm run test-node && npm run test-node-unit && npm run test-end-to-end",
     "test-polyfills": "karma start",
@@ -37,7 +37,8 @@
     "test-coverage": "nyc report --reporter=lcov",
     "test": "npm run build && npm run test-node && npm run test-node-unit && npm run test-polyfills",
     "prepublishOnly": "mv polyfills/__dist __dist && rimraf polyfills && mkdir polyfills && mv __dist polyfills/__dist",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "create-new-polyfill": "node ./tasks/create-new-polyfill.js"
   },
   "license": "MIT",
   "engines": {

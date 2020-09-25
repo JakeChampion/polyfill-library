@@ -269,7 +269,7 @@ class Polyfill {
 	}
 }
 
-const source = path.join(__dirname, '../../polyfills');
+const source = path.join(__dirname, '../polyfills');
 const destination = path.join(source, '__dist');
 
 console.log(`Writing compiled polyfill sources to ${destination}/...`);

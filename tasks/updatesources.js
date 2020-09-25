@@ -5,7 +5,7 @@ const path = require('path');
 const {promisify} = require('util');
 const glob = promisify(require('glob'));
 const TOML = require('@iarna/toml');
-const cwd = path.join(__dirname, '../../');
+const cwd = path.join(__dirname, '../');
 const globOptions = { cwd: cwd };
 
 const loadSource = polyfillPaths => {
@@ -58,7 +58,7 @@ glob('polyfills/**/config.toml', globOptions)
 			})
             .filter(config => 'install' in config)
             .forEach(toml => installPolyfill(toml));
-        
+
     })
     .then(() => console.log('Polyfills updated successfully'))
     .catch(error => {
