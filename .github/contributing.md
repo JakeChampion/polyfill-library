@@ -13,6 +13,8 @@ patches and features.
 
 ## Adding a new polyfill
 
+To generate the correct folder structure and files you can run `npm run create-new-polyfill <feature>`, where `<feature>` is the name of the feature. E.G. To create a new polyfill for `Element.prototype.nextElementSibling` it would be `npm run create-new-polyfill Element.prototype.nextElementSibling`.
+
 This documentation will use the [`Element.prototype.nextElementSibling` polyfill as an example](https://github.com/Financial-Times/polyfill-library/tree/master/polyfills/Element/prototype/nextElementSibling).
 
 If you run into any issues please ask us a question, we are happy to help.

@@ -26,7 +26,7 @@ jobs:
     needs: [check-for-other-pull-requests-running-this-workflow]
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.1
+    - uses: actions/setup-node@v2.1.2
       with:
         node-version: 12.x
     - run: npm ci
@@ -40,7 +40,7 @@ jobs:
     needs: [ie]
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.1
+    - uses: actions/setup-node@v2.1.2
       with:
         node-version: 12.x
     - run: npm ci
@@ -54,7 +54,7 @@ jobs:
     needs: [android]
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.1
+    - uses: actions/setup-node@v2.1.2
       with:
         node-version: 12.x
     - run: npm ci
@@ -68,7 +68,7 @@ jobs:
     needs: [chrome]
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.1
+    - uses: actions/setup-node@v2.1.2
       with:
         node-version: 12.x
     - run: npm ci
@@ -82,7 +82,7 @@ jobs:
     needs: [edge]
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.1
+    - uses: actions/setup-node@v2.1.2
       with:
         node-version: 12.x
     - run: npm ci
@@ -96,7 +96,7 @@ jobs:
     needs: [firefox]
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.1
+    - uses: actions/setup-node@v2.1.2
       with:
         node-version: 12.x
     - run: npm ci
@@ -110,7 +110,7 @@ jobs:
     needs: [ios]
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.1
+    - uses: actions/setup-node@v2.1.2
       with:
         node-version: 12.x
     - run: npm ci

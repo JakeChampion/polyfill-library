@@ -128,7 +128,12 @@ app.get(
 
 app.listen(port, () => console.log(`Test server listening on port ${port}!`));
 
+const testablePolyfillsCache = {};
 async function testablePolyfills(isIE8, ua) {
+  if (testablePolyfillsCache[`isIE8:${isIE8};ua:${ua}`]) {
+    return testablePolyfillsCache[`isIE8:${isIE8};ua:${ua}`];
+  }
+
   const polyfills = await polyfillio.listAllPolyfills();
   const polyfilldata = [];
 
@@ -171,6 +176,7 @@ async function testablePolyfills(isIE8, ua) {
     return a.feature > b.feature ? -1 : 1;
   });
 
+  testablePolyfillsCache[`isIE8:${isIE8};ua:${ua}`] = polyfilldata;
   return polyfilldata;
 }
 
