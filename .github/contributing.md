@@ -134,6 +134,27 @@ You should refer to the feature's specification to see how the feature should wo
 
 If there are [web platform tests, you should use them to help you](https://www.w3.org/2001/tag/doc/polyfills/#pass-web-platform-tests-if-they-exist).
 
+### Local development
+
+Setup you local environment :
+
+`$ npm install`
+
+Start the watcher :
+
+`$ npm run watch`
+
+After a file change you will see :
+
+```
+...
+Building : <Your Polyfill>
+Waiting for files to be written to disk...
+Built : <Your Polyfill> in 3s
+Visit : http://bs-local.com:9876/test?includePolyfills=yes&always=no&feature=<Your Polyfill>
+Test server listening on port 9876!
+```
+
 ## Submitting a Pull Request
 
 Good pull requests, such as patches, improvements, and new features, are a fantastic help. They should remain focused in scope and avoid containing unrelated commits.
