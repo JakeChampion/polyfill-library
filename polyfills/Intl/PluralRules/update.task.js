@@ -49,7 +49,7 @@ configSource.dependencies.push('Intl.PluralRules');
 configSource.test = { ci: false };
 
 function intlLocaleDetectFor(locale) {
-	return "'Intl' in this && " +
+	return "'Intl' in self && " +
 			"Intl.PluralRules && " +
 			"Intl.PluralRules.supportedLocalesOf && " +
 			'(function() { try { return Intl.PluralRules.supportedLocalesOf("' + locale + '").length === 1; } catch (e) { return false; } }())';
