@@ -12,6 +12,7 @@ jobs:
       with:
         node-version: 12.x
     - run: npm ci
+    - run: npm run build
     - name: Run tests on android without polyfills
       run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=android || true
       env:
@@ -54,6 +55,7 @@ jobs:
       with:
         node-version: 12.x
     - run: npm ci
+    - run: npm run build
     - name: Run tests on chrome without polyfills
       run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=chrome || true
       env:
@@ -96,6 +98,7 @@ jobs:
       with:
         node-version: 12.x
     - run: npm ci
+    - run: npm run build
     - name: Run tests on edge without polyfills
       run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=edge || true
       env:
@@ -138,6 +141,7 @@ jobs:
       with:
         node-version: 12.x
     - run: npm ci
+    - run: npm run build
     - name: Run tests on firefox without polyfills
       run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=firefox || true
       env:
@@ -180,6 +184,7 @@ jobs:
       with:
         node-version: 12.x
     - run: npm ci
+    - run: npm run build
     - name: Run tests on ie without polyfills
       run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=ie || true
       env:
@@ -222,6 +227,7 @@ jobs:
       with:
         node-version: 12.x
     - run: npm ci
+    - run: npm run build
     - name: Run tests on ios without polyfills
       run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=ios || true
       env:
@@ -264,6 +270,7 @@ jobs:
       with:
         node-version: 12.x
     - run: npm ci
+    - run: npm run build
     - name: Run tests on safari without polyfills
       run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js control browser=safari || true
       env:
