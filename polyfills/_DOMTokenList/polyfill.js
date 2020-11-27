@@ -183,6 +183,8 @@ var _DOMTokenList = (function() { // eslint-disable-line no-unused-vars
 			return true;
 		};
 
+		that.forEach = Array.prototype.forEach;
+
 		return that;
 	};
 

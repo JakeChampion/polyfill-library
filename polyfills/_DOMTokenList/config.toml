@@ -1,4 +1,4 @@
-dependencies = [ "Object.defineProperty" ]
+dependencies = [ "Object.defineProperty", "Array.prototype.forEach" ]
 license = "ISC"
 repo = "https://github.com/Alhadis/DOMTokenList"
 
