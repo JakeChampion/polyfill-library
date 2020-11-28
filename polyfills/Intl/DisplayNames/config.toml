@@ -39,4 +39,7 @@ samsung_mob = "*"
 module = "@formatjs/intl-displaynames"
 paths = [ "polyfill.umd.js" ]
 postinstall = "update.task.js"
-
+clean = [
+  "~locale",
+  "polyfill.js",
+]

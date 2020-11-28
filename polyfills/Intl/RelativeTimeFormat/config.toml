@@ -42,3 +42,7 @@ samsung_mob = "<6"
 module = "@formatjs/intl-relativetimeformat"
 paths = ["polyfill.umd.js"]
 postinstall = "update.task.js"
+clean = [
+  "~locale",
+  "polyfill.js",
+]
