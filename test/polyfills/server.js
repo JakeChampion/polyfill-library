@@ -170,7 +170,7 @@ async function testablePolyfills(isIE8, ua) {
       const testSuite = `describe('${polyfill}', function() { 
         it('passes the feature detect', function() {
           proclaim.ok((function() {
-            return (${config.detectSource});
+            return (${config.detectSource || 'false'});
           }).call(window));
         });
 
