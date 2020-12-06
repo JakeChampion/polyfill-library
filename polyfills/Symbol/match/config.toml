@@ -5,7 +5,7 @@ spec = "http://www.ecma-international.org/ecma-262/6.0/index.html#sec-symbol.mat
 docs = "https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol"
 
 [browsers]
-edge = "<14"
+edge = "<79"
 edge_mob = "<14"
 ie = "*"
 ie_mob = "*"
