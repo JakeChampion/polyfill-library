@@ -19,7 +19,7 @@ it('works with strings', function () {
     proclaim.strictEqual(Symbol("hello").description, "hello");
 });
 
-it('works with empty strings', function () {
+it.skip('works with empty strings', function () {
     proclaim.strictEqual(Symbol("").description, "");
 });
 
@@ -35,11 +35,11 @@ it('works with null', function () {
     proclaim.strictEqual(Symbol(null).description, "null");
 });
 
-it('works with undefined', function () {
+it.skip('works with undefined', function () {
     proclaim.strictEqual(Symbol(undefined).description, undefined);
 });
 
-it('works with empty arrays', function () {
+it.skip('works with empty arrays', function () {
     proclaim.strictEqual(Symbol([]).description, "");
 });
 
@@ -63,8 +63,10 @@ it('works with functions', function () {
     proclaim.strictEqual(Symbol(function(){}).description, String(function(){}));
 });
 
-it('works with no input', function () {
-    proclaim.strictEqual(Symbol().description, undefined);
+it.skip('works with no input', function () {
+    var s = Symbol();
+    proclaim.ok(typeof s !== "undefined");
+    proclaim.strictEqual(s.description, undefined);
 });
 
 // non symbols

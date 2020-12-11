@@ -14,7 +14,8 @@ dependencies = [
   "Object.getOwnPropertyNames",
   "Object.getOwnPropertyDescriptor",
   "Object.freeze",
-  "Object.keys"
+  "Object.keys",
+  "_ESAbstract.Type"
 ]
 license = "MIT"
 spec = "http://www.ecma-international.org/ecma-262/6.0/index.html#sec-symbol-objects"

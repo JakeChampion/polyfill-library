@@ -1,8 +1,27 @@
 // A modification of https://github.com/WebReflection/get-own-property-symbols
 // (C) Andrea Giammarchi - MIT Licensed
 
-(function (Object, GOPS, global) {
+/* global Type */
+(function (Object,  GOPS, global) {
 	'use strict'; //so that ({}).toString.call(null) returns the correct [object Null] rather than [object Window]
+
+	var supportsGetters = (function () {
+		// supports getters
+		try {
+			var a = {};
+			Object.defineProperty(a, "t", {
+				configurable: true,
+				enumerable: false,
+				get: function () {
+					return true;
+				},
+				set: undefined
+			});
+			return !!a.t;
+		} catch (e) {
+			return false;
+		}
+	}());
 
 	var	setDescriptor;
 	var id = 0;
@@ -10,6 +29,7 @@
 	var prefix = '__\x01symbol:';
 	var prefixLength = prefix.length;
 	var internalSymbol = '__\x01symbol@@' + random;
+	var emptySymbolLookup = {};
 	var DP = 'defineProperty';
 	var DPies = 'defineProperties';
 	var GOPN = 'getOwnPropertyNames';
@@ -120,15 +140,57 @@
 		}
 		return freeze(source[uid]);
 	};
+
+	var symbolDescription = function (s) {
+		var sym = thisSymbolValue(s);
+
+		// 3. Return sym.[[Description]].
+		if (supportsInferredNames) {
+			var name = getInferredName(sym);
+			if (name !== "") {
+				return name.slice(1, -1); // name.slice('['.length, -']'.length);
+			}
+		}
+
+		if (emptySymbolLookup[sym] !== undefined) {
+			return emptySymbolLookup[sym];
+		}
+
+		var string = sym.toString();
+		var randomStartIndex = string.lastIndexOf("0.");
+		string = string.slice(10, randomStartIndex);
+		
+		if (string === "") {
+			return undefined;
+		}
+		return string;
+	};
+
 	var Symbol = function Symbol() {
 		var description = arguments[0];
 		if (this instanceof Symbol) {
 			throw new TypeError('Symbol is not a constructor');
 		}
-		return setAndGetSymbol(
-			prefix.concat(description || '', random, ++id)
-		);
-		};
+
+		var uid = prefix.concat(description || '', random, ++id);
+
+		if (description !== undefined && (description === null || isNaN(description) || String(description) === "")) {
+			emptySymbolLookup[uid] = String(description);
+		}
+
+		var that = setAndGetSymbol(uid);
+
+		if (!supportsGetters) {
+			Object.defineProperty(that, "description", {
+				configurable: true,
+				enumerable: false,
+				value: symbolDescription(that)
+			});
+		}
+
+		return that;
+	};
+
 	var source = objectCreate(null);
 	var sourceConstructor = {value: Symbol};
 	var sourceMap = function (uid) {
@@ -258,4 +320,59 @@
 		}
 	};
 
-}(Object, 'getOwnPropertySymbols', this));
+	// The abstract operation thisSymbolValue(value) performs the following steps:
+	function thisSymbolValue(value) {
+		// 1. If Type(value) is Symbol, return value.
+		if (Type(value) === "symbol") {
+			return value;
+		}
+		// 2. If Type(value) is Object and value has a [[SymbolData]] internal slot, then
+		// a. Let s be value.[[SymbolData]].
+		// b. Assert: Type(s) is Symbol.
+		// c. Return s.
+		// 3. Throw a TypeError exception.
+		throw TypeError(value + " is not a symbol");
+	}
+
+	// Symbol.prototype.description
+	if (function () {
+		// supports getters
+		try {
+			var a = {};
+			Object.defineProperty(a, "t", {
+				configurable: true,
+				enumerable: false,
+				get: function() {
+					return true;
+				},
+				set: undefined
+			});
+			return !!a.t;
+		} catch (e) {
+			return false;
+		}
+	}()) {
+		var getInferredName;
+		try {
+			// eslint-disable-next-line no-new-func
+			getInferredName = Function("s", "var v = s.valueOf(); return { [v]() {} }[v].name;");
+			// eslint-disable-next-line no-empty
+		} catch (e) { }
+
+		var inferred = function () { };
+		var supportsInferredNames = getInferredName && inferred.name === "inferred" ? getInferredName : null;
+		
+
+		// 19.4.3.2 get Symbol.prototype.description
+		Object.defineProperty(global.Symbol.prototype, "description", {
+			configurable: true,
+			enumerable: false,
+			get: function () {
+				// 1. Let s be the this value.
+				var s = this;
+				return symbolDescription(s);
+			}
+		});
+	}
+
+}(Object, 'getOwnPropertySymbols', self));
