@@ -5,7 +5,7 @@ polyfills/__dist/**
 # We do not ignore the config.json, detect.js or tests.js
 # because we do control their implementation.
 
-polyfills/_TypedArray/polyfill.js
+polyfills/ArrayBuffer/polyfill.js
 polyfills/atob/polyfill.js
 polyfills/AudioContext/polyfill.js
 polyfills/EventSource/polyfill.js

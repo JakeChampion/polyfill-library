@@ -179,9 +179,9 @@ describe("polyfillio", function () {
 				},
 				uaString: "ie/9"
 			});
-			
+
 			assert.deepEqual(setsToArrays(noExcludes), {
-				"Math.fround": { 
+				"Math.fround": {
 					flags: [],
 					dependencyOf: [],
 					aliasOf: []
@@ -191,21 +191,21 @@ describe("polyfillio", function () {
 					dependencyOf: ["Math.fround"],
 					aliasOf: []
 				},
-				_TypedArray: {
-					flags: [], 
+				ArrayBuffer: {
+					flags: [],
 					dependencyOf: ["Math.fround"],
 					aliasOf: []
 				}
 			});
-			
+
 			const excludes = await polyfillio.getPolyfills({
 				features: {
 					"Math.fround": {}
 				},
-				excludes: ["_TypedArray", "non-existent-feature"],
+				excludes: ["ArrayBuffer", "non-existent-feature"],
 				uaString: "ie/9"
 			});
-			
+
 			assert.deepEqual(setsToArrays(excludes), {
 				"Math.fround": {
 					flags: [],
