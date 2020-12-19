@@ -104,6 +104,27 @@ describe('Basic functionality', function () {
 				proclaim.equal(object[property], value);
 			});
 		}
+		
+		it('allows an explicitly undefined getter', function () {
+			var object = {};
+			Object.defineProperty(object, property, {
+				configurable: true,
+				enumerable: true,
+				get: undefined
+			});
+			proclaim.equal(object[property], undefined);
+		});
+		
+		it('allows an explicitly undefined setter', function () {
+			var object = {};
+			Object.defineProperty(object, property, {
+				configurable: true,
+				enumerable: true,
+				set: undefined
+			});
+			object[property] = 1;
+			proclaim.equal(object[property], undefined);
+		});
 	}
 
 	if ('create' in Object) {
