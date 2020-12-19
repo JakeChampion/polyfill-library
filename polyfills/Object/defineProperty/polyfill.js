@@ -27,7 +27,7 @@
 
 		// handle descriptor.get
 		if (getterType) {
-			if (getterType !== 'function') {
+			if (getterType !== 'function' && getterType !== undefined) {
 				throw new TypeError('Getter must be a function');
 			}
 			if (!supportsAccessors) {
@@ -43,7 +43,7 @@
 
 		// handle descriptor.set
 		if (setterType) {
-			if (setterType !== 'function') {
+			if (setterType !== 'function' && setterType !== undefined) {
 				throw new TypeError('Setter must be a function');
 			}
 			if (!supportsAccessors) {
