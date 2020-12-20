@@ -46,7 +46,7 @@
 
 		// handle descriptor.set
 		if (setterType) {
-			if (setterType !== undefined) {
+			if (setterType === undefined) {
 				return object;
 			}
 			if (setterType !== 'function') {
