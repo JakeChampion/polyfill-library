@@ -10,7 +10,7 @@ polyfills/MutationObserver/polyfill.js
 polyfills/ResizeObserver/polyfill.js
 polyfills/UserTiming/polyfill.js
 polyfills/WebAnimations/polyfill.js
-polyfills/_TypedArray/polyfill.js
+polyfills/ArrayBuffer/polyfill.js
 polyfills/atob/polyfill.js
 polyfills/fetch/polyfill.js
 polyfills/HTMLTemplateElement/polyfill.js

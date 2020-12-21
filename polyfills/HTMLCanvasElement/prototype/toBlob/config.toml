@@ -2,7 +2,7 @@
 aliases = [ "HTMLCanvasElement.protoype.toBlob" ]
 dependencies = [
   "_ESAbstract.CreateMethodProperty",
-  "_TypedArray",
+  "ArrayBuffer",
   "atob",
   "Blob"
 ]
@@ -18,4 +18,3 @@ safari = "<11"
 ie = ">=10"
 opera = "<37"
 ios_saf = "<11"
-

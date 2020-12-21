@@ -8,8 +8,7 @@ aliases = [
   "Uint32Array",
   "Float32Array",
   "Float64Array",
-  "DataView",
-  "ArrayBuffer"
+  "DataView"
 ]
 license = "MIT"
 repo = "https://github.com/inexorabletash/polyfill"
@@ -36,4 +35,3 @@ samsung_mob = "*"
 [install]
 module = "js-polyfills"
 paths = [ "typedarray.js" ]
-

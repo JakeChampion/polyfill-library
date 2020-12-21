@@ -21,172 +21,48 @@ jobs:
         same-branch-only: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  ie:
+  test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     needs: [check-for-other-pull-requests-running-this-workflow]
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        browser: [ie, android, chrome, edge, firefox, ios, safari]
+
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2.1.4
       with:
         node-version: 12.x
+
     - name: env
       run: echo "commit-sha=$(echo ${GITHUB_SHA})" >> $GITHUB_ENV
+
     - run: npm ci
+
     - name: cache __dist
       id: cache-dist
       uses: actions/cache@v2
       with:
         path: polyfills/__dist
         key: cache--dist--${{ env.commit-sha }}
+  
     - run: npm run build
       if: steps.cache-dist.outputs.cache-hit != 'true'
-    - name: Test on ie
-      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=ie
-      env:
-        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-  android:
-    runs-on: ubuntu-latest
-    needs: [ie]
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.4
-      with:
-        node-version: 12.x
-    - name: env
-      run: echo "commit-sha=$(echo ${GITHUB_SHA})" >> $GITHUB_ENV
-    - run: npm ci
-    - name: cache __dist
-      id: cache-dist
+
+    - run : echo "${{ matrix.browser }}" > $GITHUB_WORKSPACE/witness-${{ matrix.browser }}
+    - name: record ${{ matrix.browser }} witness
+      id: witness
       uses: actions/cache@v2
       with:
-        path: polyfills/__dist
-        key: cache--dist--${{ env.commit-sha }}
-    - run: npm run build
-      if: steps.cache-dist.outputs.cache-hit != 'true'
-    - name: Test on android
-      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=android
+        path: $GITHUB_WORKSPACE/witness-${{ matrix.browser }}
+        key: witness--${{ matrix.browser }}--${{ env.commit-sha }}
+
+    - name: Test ${{ matrix.browser }}
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=${{ matrix.browser }}
+      if: steps.witness.outputs.cache-hit != 'true'
       env:
         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
         BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-  chrome:
-    runs-on: ubuntu-latest
-    needs: [android]
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.4
-      with:
-        node-version: 12.x
-    - name: env
-      run: echo "commit-sha=$(echo ${GITHUB_SHA})" >> $GITHUB_ENV
-    - run: npm ci
-    - name: cache __dist
-      id: cache-dist
-      uses: actions/cache@v2
-      with:
-        path: polyfills/__dist
-        key: cache--dist--${{ env.commit-sha }}
-    - run: npm run build
-      if: steps.cache-dist.outputs.cache-hit != 'true'
-    - name: Test on chrome
-      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=chrome
-      env:
-        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-  edge:
-    runs-on: ubuntu-latest
-    needs: [chrome]
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.4
-      with:
-        node-version: 12.x
-    - name: env
-      run: echo "commit-sha=$(echo ${GITHUB_SHA})" >> $GITHUB_ENV
-    - run: npm ci
-    - name: cache __dist
-      id: cache-dist
-      uses: actions/cache@v2
-      with:
-        path: polyfills/__dist
-        key: cache--dist--${{ env.commit-sha }}
-    - run: npm run build
-      if: steps.cache-dist.outputs.cache-hit != 'true'
-    - name: Test on edge
-      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=edge
-      env:
-        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-  firefox:
-    runs-on: ubuntu-latest
-    needs: [edge]
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.4
-      with:
-        node-version: 12.x
-    - name: env
-      run: echo "commit-sha=$(echo ${GITHUB_SHA})" >> $GITHUB_ENV
-    - run: npm ci
-    - name: cache __dist
-      id: cache-dist
-      uses: actions/cache@v2
-      with:
-        path: polyfills/__dist
-        key: cache--dist--${{ env.commit-sha }}
-    - run: npm run build
-      if: steps.cache-dist.outputs.cache-hit != 'true'
-    - name: Test on firefox
-      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=firefox
-      env:
-        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-  ios:
-    runs-on: ubuntu-latest
-    needs: [firefox]
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.4
-      with:
-        node-version: 12.x
-    - name: env
-      run: echo "commit-sha=$(echo ${GITHUB_SHA})" >> $GITHUB_ENV
-    - run: npm ci
-    - name: cache __dist
-      id: cache-dist
-      uses: actions/cache@v2
-      with:
-        path: polyfills/__dist
-        key: cache--dist--${{ env.commit-sha }}
-    - run: npm run build
-      if: steps.cache-dist.outputs.cache-hit != 'true'
-    - name: Test on ios
-      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=ios
-      env:
-        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-  safari:
-    runs-on: ubuntu-latest
-    needs: [ios]
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.4
-      with:
-        node-version: 12.x
-    - name: env
-      run: echo "commit-sha=$(echo ${GITHUB_SHA})" >> $GITHUB_ENV
-    - run: npm ci
-    - name: cache __dist
-      id: cache-dist
-      uses: actions/cache@v2
-      with:
-        path: polyfills/__dist
-        key: cache--dist--${{ env.commit-sha }}
-    - run: npm run build
-      if: steps.cache-dist.outputs.cache-hit != 'true'
-    - name: Test on safari
-      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js targeted director browser=safari
-      env:
-        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-    

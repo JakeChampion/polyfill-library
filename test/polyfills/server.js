@@ -30,9 +30,12 @@ function createPolyfillLibraryConfigFor(features, always) {
   }, {});
 }
 
+const compression = require('compression');
 const express = require("express");
 
 const app = express();
+app.use(compression());
+
 const port = 9876;
 const apicache = require('apicache');
 const cache = apicache.middleware;
