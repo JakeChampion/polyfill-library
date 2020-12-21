@@ -31,35 +31,29 @@ async function main() {
 
         const browserIsNotServedPolyfill = !browserIsServedPolyfill;
 
-        if (support === "native") {
-          if (browserIsServedPolyfill) {
-            // Change the browser config for the polyfill to not include this version
-            changes.push([
-              feature + "|" + browser,
-              JSON.stringify({ [browser]: `<${version}` })
-            ]);
-          }
+        if (support === "native" && browserIsServedPolyfill) {
+          // Change the browser config for the polyfill to not include this version
+          changes.push([
+            feature + "|" + browser,
+            JSON.stringify({ [browser]: `<${version}` })
+          ]);
         }
-        if (support === "polyfilled") {
-          if (browserIsNotServedPolyfill) {
-            changes.push([
-              feature + "|" + browser,
-              JSON.stringify({
-                [browser]: `<${Number.parseFloat(version) + 1}`
-              })
-            ]);
-          }
+        if (support === "polyfilled" && browserIsNotServedPolyfill) {
+          changes.push([
+            feature + "|" + browser,
+            JSON.stringify({
+              [browser]: `<${Number.parseFloat(version) + 1}`
+            })
+          ]);
         }
 
-        if (support === "missing") {
-          if (browserIsNotServedPolyfill) {
-            changes.push([
-              feature + "|" + browser,
-              JSON.stringify({
-                [browser]: `<${Number.parseFloat(version) + 1}`
-              })
-            ]);
-          }
+        if (support === "missing" && browserIsNotServedPolyfill) {
+          changes.push([
+            feature + "|" + browser,
+            JSON.stringify({
+              [browser]: `<${Number.parseFloat(version) + 1}`
+            })
+          ]);
         }
       }
     }
