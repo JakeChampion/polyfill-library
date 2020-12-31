@@ -324,10 +324,14 @@ const printProgress = (function() {
     await closeTunnel();
     console.log("Tunnel closed");
 
-    const totalFailureCount = jobs.reduce( // eslint-disable-line unicorn/no-reduce
-      (out, job) => out + (job.state === "complete" ? job.results.failed : 1),
-      0
-    );
+    const totalFailureCount = 0;
+    for (const job of jobs) {
+      if (job.state === "complete") {
+        out += job.results.failed;
+      } else {
+        out += 1;
+      }
+    }
     if (totalFailureCount) {
       console.log(cli.bold.white("\nFailures:"));
       jobs.forEach(job => {
