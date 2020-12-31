@@ -324,7 +324,7 @@ const printProgress = (function() {
     await closeTunnel();
     console.log("Tunnel closed");
 
-    const totalFailureCount = 0;
+    let totalFailureCount = 0;
     for (const job of jobs) {
       if (job.state === "complete") {
         totalFailureCount += job.results.failed;
