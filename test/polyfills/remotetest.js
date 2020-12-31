@@ -327,9 +327,9 @@ const printProgress = (function() {
     const totalFailureCount = 0;
     for (const job of jobs) {
       if (job.state === "complete") {
-        out += job.results.failed;
+        totalFailureCount += job.results.failed;
       } else {
-        out += 1;
+        totalFailureCount += 1;
       }
     }
     if (totalFailureCount) {
