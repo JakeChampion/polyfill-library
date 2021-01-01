@@ -10,7 +10,7 @@ dependencies = [
 ]
 
 [browsers]
-chrome = "<64"
+chrome = "<81"
 edge = "<79"
 edge_mob = "*"
 firefox = "<69"
