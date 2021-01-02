@@ -1,4 +1,4 @@
-dependencies = [ 
+dependencies = [
   "Array.isArray",
   "Array.prototype.filter",
   "Array.prototype.indexOf",
@@ -11,9 +11,8 @@ dependencies = [
   "Object.create",
   "Object.defineProperty",
   "Object.keys",
-  "WeakMap",
+  "WeakMap"
 ]
-
 license = "MIT"
 spec = "https://tc39.es/proposal-intl-displaynames/#sec-intl-displaynames"
 repo = "https://github.com/formatjs/formatjs/tree/master/packages/intl-displaynames/polyfill.js"
@@ -30,7 +29,7 @@ edge = "<81"
 edge_mob = "<81"
 firefox = "*"
 opera = "*"
-chrome = "<72"
+chrome = "<81"
 safari = "*"
 ios_saf = "*"
 firefox_mob = "*"
@@ -40,7 +39,4 @@ samsung_mob = "*"
 module = "@formatjs/intl-displaynames"
 paths = [ "polyfill.umd.js" ]
 postinstall = "update.task.js"
-clean = [
-  "~locale",
-  "polyfill.js",
-]
+clean = [ "~locale", "polyfill.js" ]
