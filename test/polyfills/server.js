@@ -21,13 +21,13 @@ const runnerTemplate = handlebars.compile(
 );
 
 function createPolyfillLibraryConfigFor(features, always) {
-  return features.split(",").reduce((config, feature) => { // eslint-disable-line unicorn/no-reduce
-    return Object.assign(config, {
-      [feature]: {
-        flags: new Set(always ? ["always", "gated"] : [])
-      }
-    });
-  }, {});
+  const config = {};
+  const flags = new Set(always ? ["always", "gated"] : []);
+  for (const feature of features.split(",")) {
+    config[feature] = { flags };
+  }
+  
+  return config;
 }
 
 const compression = require('compression');
