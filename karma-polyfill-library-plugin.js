@@ -3,7 +3,7 @@
 const path = require('path');
 
 const createPattern = function (path) {
-  return {pattern: path, included: true, served: true, watched: false};
+	return {pattern: path, included: true, served: true, watched: false};
 };
 
 const fileForMiddlewareToOverride = '/lib/index.js';
@@ -17,23 +17,23 @@ function isAPolyfillRequest(request) {
 }
 
 function initPolyfillLibraryMiddleware(config) {
-    return async function polyfillBundleMiddleWare(request, response, next) {
+	return async function polyfillBundleMiddleWare(request, response, next) {
 		if (!isAPolyfillRequest(request)) {
 			next();
 		} else {
-            await respondWithPolyfillBundle(config, request, response);
+			await respondWithPolyfillBundle(config, request, response);
 		}
 	};
 }
 
 function createPolyfillLibraryConfigFor(features) {
-	return features.split(',').reduce((config, feature) => {
-		return Object.assign(config, {
-			[feature]: {
-				flags: new Set()
-			}
-		});
-	}, {});
+	const config = {};
+	for (const feature of features.split(',')) {
+		config[feature] = {
+			flags: new Set()
+		}
+	}
+	return config;
 }
 
 async function respondWithPolyfillBundle(config, request, response) {

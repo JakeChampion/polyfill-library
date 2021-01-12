@@ -45,10 +45,10 @@ function getBrowsersFor(feature) {
 		}
 	}
 
-	const browsersWeSupportInBrowserStack = browsersWeSupportForThisFeature.map((element) => useragentToBrowserObject(element)).reduce(function (accumulator, current) {
-		accumulator[current.name] = current;
-		return accumulator;
-	}, {});
+	const browsersWeSupportInBrowserStack = {};
+	for (const browser of browsersWeSupportForThisFeature.map((element) => useragentToBrowserObject(element))) {
+		browsersWeSupportInBrowserStack[browser.name] = browser;
+	}
 
 	return browsersWeSupportInBrowserStack;
 }
