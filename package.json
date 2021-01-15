@@ -111,7 +111,7 @@
     "globby": "^11.0.0",
     "handlebars": "^4.7.2",
     "hard-rejection": "^2.1.0",
-    "karma": "^5.1.1",
+    "karma": "^6.0.0",
     "karma-browserstack-launcher": "^1.4.0",
     "karma-mocha": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
