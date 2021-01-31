@@ -1,3 +1,10 @@
+aliases = [
+  "Animation",
+  "AnimationTimeline",
+  "Element.prototype.animate",
+  "KeyframeEffect",
+  "document.timeline"
+]
 dependencies = [ ]
 license = "Apache-2.0"
 spec = "https://w3c.github.io/web-animations/"
