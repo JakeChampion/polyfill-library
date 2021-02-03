@@ -11,7 +11,7 @@ const rimraf = require('rimraf');
 
 console.log('Cleaning polyfills...');
 glob('polyfills/**/config.toml', globOptions).then((files) => {
-	files.map((source) => {
+	for (const config of files.map((source) => {
 		try {
 			return Object.assign({ src: source }, TOML.parse(fs.readFileSync(source, 'utf-8')));
 		} catch (error) {
@@ -20,17 +20,16 @@ glob('polyfills/**/config.toml', globOptions).then((files) => {
 	})
 	.filter((config) => {
 		return 'install' in config;
-	})
-	.forEach((config) => {
+	})) {
 		if (config.install.clean && config.install.clean.length > 0) {
 			const polyfillOutputFolder = path.dirname(config.src);
 
-			config.install.clean.forEach((toClean) => {
+			for (const toClean of config.install.clean) {
 				console.log(' * Removing ' + path.join(path.dirname(config.src), toClean));
 				rimraf.sync(path.resolve(polyfillOutputFolder, toClean));
-			});
+			}
 		}
-	});
+	}
 }).then(() => {
 	console.log('Polyfills cleaned successfully');
 }).catch((error) => {

@@ -34,9 +34,7 @@ function flattenPolyfillDirectories(directory) {
 	for (const item of fs.readdirSync(directory)) {
 		const joined = path.join(directory, item);
 		if (fs.lstatSync(joined).isDirectory() && item.indexOf('__') !== 0) {
-			results = results
-				.concat(flattenPolyfillDirectories(joined))
-				.concat(joined);
+			results = [...results, ...flattenPolyfillDirectories(joined), ...joined];
 		}
 	}
 	return results;
@@ -80,7 +78,7 @@ function writeAliasFile(polyfills, directory) {
 
 	for (const polyfill of polyfills) {
 		for (const alias of polyfill.aliases) {
-			aliases[alias] = (aliases[alias] || []).concat(polyfill.name);
+			aliases[alias] = [...(aliases[alias] || []), ...polyfill.name];
 		}
 	}
 
@@ -96,7 +94,7 @@ class Polyfill {
 	}
 
 	get aliases() {
-		return ['all'].concat(this.config.aliases || []);
+		return ['all', ...(this.config.aliases || [])];
 	}
 
 	get dependencies() {
@@ -140,7 +138,7 @@ class Polyfill {
 					const supportedBrowsers = Object.keys(UA.getBaselines()).sort((a, b) => a.localeCompare(b));
 					if (!supportedBrowsers.every(browser => this.config.browsers[browser] === "*")){
 						const browserSupport = {};
-						supportedBrowsers.forEach(browser => browserSupport[browser] = "*");
+						for (const browser of supportedBrowsers)  browserSupport[browser] = "*";
 						throw new Error("Internal polyfill called " + this.name + " is not targeting all supported browsers correctly. It should be: \n" + TOML.stringify(browserSupport));
 					}
 				}

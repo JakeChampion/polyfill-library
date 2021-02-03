@@ -94,7 +94,7 @@ async function main() {
     // eslint-disable-next-line unicorn/no-process-exit
     process.exit(0);
   }
-  
+
   console.log({ browsers });
 
   const useragentToBrowserObject = browserWithVersion => {
@@ -144,7 +144,7 @@ async function main() {
     // - the keys of "modified.affectedPolyfills" are the names of the polyfills in the subset
     feature = `&feature=${Object.keys(modified.affectedPolyfills).join(',')}`;
   }
-  
+
   const includePolyfills = "includePolyfills=" + (mode !== "control" ? "yes" : "no");
   // https://www.browserstack.com/question/759
   const url = `http://bs-local.com:9876/${director ? '' : 'test'}?${includePolyfills}&${always}${feature}`;
@@ -187,7 +187,7 @@ async function main() {
     }
 
     // Polyfill combinations run tests with all polyfills for a browser included.
-    // These tests guard against issues where polyfill A breaks polyfill B 
+    // These tests guard against issues where polyfill A breaks polyfill B
     // even though there is no depedency relation between A and B.
     // These tests are slow and only run on demand
     return configs.flatMap((config) => {
@@ -206,7 +206,7 @@ async function main() {
 
   let jobs = [];
 
-  jobConfigs.forEach(jobConfig => {
+  for (const jobConfig of jobConfigs) {
     jobs.push(new TestJob(
       jobConfig.browser,
       url,
@@ -218,7 +218,7 @@ async function main() {
       jobConfig.polyfillCombinations,
       jobConfig.shard
     ));
-  });
+  }
 
   const tunnel = new Tunnel();
 
@@ -229,7 +229,7 @@ async function main() {
     return jobs => {
       const out = ["-".repeat(80)];
       let readyCount = 0;
-      jobs.forEach(job => {
+      for (const job of jobs) {
         let message = "";
         switch (job.state) {
           case "complete": {
@@ -283,7 +283,7 @@ async function main() {
             )} Test config: ${job.configForLog} ${message}`
           );
         }
-      });
+      }
       if (readyCount) {
         out.push(" + " + readyCount + " job(s) queued");
       }
@@ -332,8 +332,8 @@ async function main() {
               })
               .catch(error => {
                 if (error.message.includes("There was an error. Please try again.")) {
-                  /* 
-                    This is an exception that Browserstack is throwing when it 
+                  /*
+                    This is an exception that Browserstack is throwing when it
                     fails to open a session using a real device. I think that
                     there aren't real devices available.
                     We need to wait some time to try again because it depends on time.
@@ -399,9 +399,9 @@ async function main() {
       }
       if (totalFailureCount) {
         console.log(cli.bold.white("\nFailures:"));
-        jobs.forEach(job => {
+        for (const job of jobs) {
           if (job.results && job.results.tests) {
-            job.results.tests.forEach(test => {
+            for (const test of job.results.tests) {
               console.log(" - " + job.name + ":");
               console.log("    -> " + test.name);
               console.log(
@@ -411,7 +411,7 @@ async function main() {
                 test.failingSuite
               );
               console.log("       " + test.message);
-            });
+            }
           } else if (job.state !== "complete") {
             console.log(
               " • " +
@@ -422,7 +422,7 @@ async function main() {
               cli.red(job.results || "No results")
             );
           }
-        });
+        }
         console.log("");
         throw new Error("Failures detected");
       }

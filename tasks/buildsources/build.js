@@ -15,7 +15,7 @@ const writeAliasFile = require('./write-alias-file');
 
 /**
  * Build all or a single polyfill.
- * 
+ *
  * @param {string|undefined} feature An optional feature to build. When omitted all polyfills will be build.
  * @returns {Promise<void>} When done.
  */
@@ -71,7 +71,7 @@ module.exports = function build(feature) {
 			}
 
 			return Promise.all(queues).then((resolvedQueues) => {
-				return [].concat(...resolvedQueues);
+				return [...resolvedQueues];
 			});
 		})
 		.then(async (polyfills) => {

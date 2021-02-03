@@ -7,8 +7,8 @@
 module.exports = function setsToArrays(object) {
 	if (typeof object !== 'object') return object;
 	if (object.constructor === Set) return [...object].sort();
-	Object.keys(object).forEach(k => {
+	for (const k of Object.keys(object)) {
 		object[k] = setsToArrays(object[k]);
-	});
+	}
 	return object;
 };
