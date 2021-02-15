@@ -43,7 +43,7 @@ jobs:
 
       - name: cache __dist
         id: cache-dist
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: polyfills/__dist
           key: cache--dist--${{ env.commit-sha }}
@@ -55,7 +55,7 @@ jobs:
           }}
       - name: record ${{ matrix.browser }} witness
         id: witness
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: $GITHUB_WORKSPACE/witness-${{ matrix.browser }}
           key: witness--${{ matrix.browser }}--${{ env.commit-sha }}
