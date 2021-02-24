@@ -78,7 +78,11 @@ function writeAliasFile(polyfills, directory) {
 
 	for (const polyfill of polyfills) {
 		for (const alias of polyfill.aliases) {
-			aliases[alias] = [...(aliases[alias] || []), ...polyfill.name];
+			if (aliases[alias]) {
+				aliases[alias] = [...aliases[alias], polyfill.name];
+			} else {
+				aliases[alias] = [polyfill.name];
+			}
 		}
 	}
 
