@@ -34,7 +34,7 @@ function flattenPolyfillDirectories(directory) {
 	for (const item of fs.readdirSync(directory)) {
 		const joined = path.join(directory, item);
 		if (fs.lstatSync(joined).isDirectory() && item.indexOf('__') !== 0) {
-			results = [...results, ...flattenPolyfillDirectories(joined), ...joined];
+			results = [...results, ...flattenPolyfillDirectories(joined), joined];
 		}
 	}
 	return results;
