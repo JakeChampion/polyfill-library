@@ -71,7 +71,7 @@ module.exports = function build(feature) {
 			}
 
 			return Promise.all(queues).then((resolvedQueues) => {
-				return [...resolvedQueues];
+				return resolvedQueues.flat();
 			});
 		})
 		.then(async (polyfills) => {
