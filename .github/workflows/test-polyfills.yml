@@ -38,7 +38,7 @@ jobs:
       - run: git remote add upstream https://github.com/Financial-Times/polyfill-library.git
       - run: git fetch upstream master
 
-      - uses: actions/setup-node@v2.1.4
+      - uses: actions/setup-node@v2.1.5
         with:
           node-version: 12.x
 
