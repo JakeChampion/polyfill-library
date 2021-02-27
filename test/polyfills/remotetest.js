@@ -164,7 +164,7 @@ async function main() {
 
     if (
       (browser === 'ie/8.0' || browser === 'ie/9.0') &&
-      !modified.testEverything // no need to shard tests if only a subset is tested
+      modified.testEverything // no need to shard tests if only a subset is tested
     ) {
       configs = [
         {
