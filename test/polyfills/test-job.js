@@ -172,6 +172,6 @@ module.exports = class TestJob {
   }
 
   get configForLog() {
-    return `${this.mode.padEnd(" ", 8)} / ${(this.polyfillCombinations ? 'combined' : '        ')} / ${(this.shard ? 'shard ' + this.shard + '  ' : 'shard n/a')}`;
+    return `${this.mode.padEnd(" ", 8)} / ${(this.polyfillCombinations ? 'combined' : '        ')}${(this.shard ? ' / shard ' + this.shard + '  ' : '')}`;
   }
 };

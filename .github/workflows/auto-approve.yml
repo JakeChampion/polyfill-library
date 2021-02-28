@@ -12,6 +12,11 @@ jobs:
       if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
       with:
         github-token: "${{ secrets.ORIGAMI_FOX_ACCESS_TOKEN }}"
+    - name: Checkout
+      uses: actions/checkout@master
+      if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+      with:
+        fetch-depth: 1
     - id: enable-automerge
       name: Enable Github Automerge
       if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'

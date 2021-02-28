@@ -1,10 +1,8 @@
 name: Test Polyfills
 on:
-  push:
-    branches:
-      - '*'
-      - '**'
-      - '!master'
+  schedule:
+    - cron: '0 23 * * 0' # TODO : set convenient weekly retest time
+  workflow_dispatch:
 
 jobs:
   check-for-other-pull-requests-running-this-workflow:
@@ -33,10 +31,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - run: git remote add upstream https://github.com/Financial-Times/polyfill-library.git
-      - run: git fetch upstream master
 
       - uses: actions/setup-node@v2.1.5
         with:
@@ -63,11 +59,11 @@ jobs:
         uses: actions/cache@v2.1.4
         with:
           path: $GITHUB_WORKSPACE/witness-${{ matrix.browser }}
-          key: witness--${{ matrix.browser }}--${{ env.commit-sha }}
+          key: witness--weekly-tests--${{ matrix.browser }}--${{ env.commit-sha }}
 
       - name: Test ${{ matrix.browser }}
         run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js
-          test-modified-only targeted director browser=${{ matrix.browser }}
+          test-polyfill-combinations targeted director browser=${{ matrix.browser }}
         if: steps.witness.outputs.cache-hit != 'true'
         timeout-minutes: 30
         env:

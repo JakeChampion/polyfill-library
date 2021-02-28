@@ -210,7 +210,7 @@ function createEndpoint(template) {
   return async (request, response) => {
     const ua = request.get("User-Agent");
     const isIE8 = polyfillio.normalizeUserAgent(ua) === "ie/8.0.0";
-    const feature = request.query.feature || "";
+    const featuresArgument = (request.query.feature || "").split(',').filter((feature) => !!feature);
     const includePolyfills = request.query.includePolyfills || "no";
     const polyfillCombinations = request.query.polyfillCombinations || "no";
     const shard = request.query.shard || false;
@@ -239,8 +239,10 @@ function createEndpoint(template) {
     }
 
     // Filter for querystring args
-    let features = feature
-      ? polyfills.filter(polyfill => feature === polyfill.feature)
+    let features = (featuresArgument.length > 0)
+      ? polyfills.filter(polyfill => {
+        return featuresArgument.includes(polyfill.feature);
+      })
       : polyfills;
     response.status(200);
 
@@ -254,7 +256,7 @@ function createEndpoint(template) {
 
     response.send(
       template({
-        requestedFeature: !!feature,
+        requestedFeature: features.length > 0,
         features: features.map(f => f.feature).join(','),
         includePolyfills: includePolyfills,
         polyfillCombinations: polyfillCombinations,
@@ -308,7 +310,7 @@ function createEndpoint(template) {
           runner.on('end', function() {
             window.global_test_results = results;
             if (parent && parent.receiveTestResults) {
-              var flist = ["${feature}"];
+              var flist = ${JSON.stringify(features.map(f => f.feature))};
               parent.receiveTestResults(flist, results);
             }
           });
