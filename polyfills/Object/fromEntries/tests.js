@@ -82,6 +82,14 @@ it('works with expected input', function () {
     });
 });
 
+it('GitHub issue 1017', function() {
+    var arrayTest = [['foo', 'bar'], ['baz', 42]];
+
+    var objectTest = Object.fromEntries(arrayTest);
+    
+    proclaim.deepStrictEqual(objectTest, { foo: "bar", baz: 42 });
+});
+
 if('Symbol' in self && 'iterator' in self.Symbol && !!Array.prototype[Symbol.iterator]) {
     it('works with Symbols', function () {
         var key = Symbol();
