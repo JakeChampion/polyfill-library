@@ -145,16 +145,16 @@ module.exports = async function (config) {
 		config.set(Object.assign(config,{
 			// if true, Karma captures browsers, runs the tests and exits
 			singleRun: true,
-			plugins: config.plugins.concat([
+			plugins: [...config.plugins, 
 				'karma-browserstack-launcher'
-			]),
+			],
 			browserStack: {
 				startTunnel: true,
 				name: feature,
 				project: 'polyfill-library',
 				retryLimit: 10
 			},
-			reporters: config.reporters.concat(['summary-optional-console', 'BrowserStack']),
+			reporters: [...config.reporters, 'summary-optional-console', 'BrowserStack'],
 			summaryOptionalConsoleReporter: {
 				// 'failed', 'skipped' or 'all'
 				show: 'failed',

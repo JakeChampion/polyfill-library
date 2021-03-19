@@ -38,9 +38,9 @@ module.exports = class Polyfill {
 
 	/**
 	 * Construct a Polyfill from JSON data.
-	 * 
+	 *
 	 * @param {any} data JSON data representing a Polyfill.
-	 * 
+	 *
 	 * @returns {Polyfill|undefined} A Polyfill or undefined when data is invalid.
 	 */
 	static fromJSON(data) {
@@ -63,16 +63,16 @@ module.exports = class Polyfill {
 
 	/**
 	 *  Aliases for the Polyfill.
-	 * 
+	 *
 	 * @type {Array<string>}
 	 */
 	get aliases() {
-		return ['all'].concat(this.config.aliases || []);
+		return ['all', ...(this.config.aliases || [])];
 	}
 
 	/**
 	 * Depedencies for the Polyfill.
-	 * 
+	 *
 	 * @type {Array<string>}
 	 */
 	get dependencies() {
@@ -81,7 +81,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * Path to "config.toml".
-	 * 
+	 *
 	 * @type {string}
 	 */
 	get configPath() {
@@ -90,7 +90,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * Path to "detect.js".
-	 * 
+	 *
 	 * @type {string}
 	 */
 	get detectPath() {
@@ -99,7 +99,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * Path to "polyfill.js".
-	 * 
+	 *
 	 * @type {string}
 	 */
 	get sourcePath() {
@@ -108,7 +108,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * Path to "tests.js".
-	 * 
+	 *
 	 * @type {string}
 	 */
 	get testsPath() {
@@ -117,7 +117,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * True when a "config.toml" file exists.
-	 * 
+	 *
 	 * @type {boolean}
 	 */
 	get hasConfigFile() {
@@ -134,7 +134,7 @@ module.exports = class Polyfill {
 	/**
 	 * Load config for Polyfill.
 	 * Call this before doing any work with the Polyfill.
-	 * 
+	 *
 	 * @throws When the Polyfill has missing or invalid config.
 	 */
 	loadConfig() {
@@ -154,7 +154,7 @@ module.exports = class Polyfill {
 					const supportedBrowsers = Object.keys(UA.getBaselines()).sort((a, b) => a.localeCompare(b));
 					if (!supportedBrowsers.every(browser => this.config.browsers[browser] === "*")) {
 						const browserSupport = {};
-						supportedBrowsers.forEach(browser => browserSupport[browser] = "*");
+						for (const browser of supportedBrowsers)  browserSupport[browser] = "*";
 						throw new Error("Internal polyfill called " + this.name + " is not targeting all supported browsers correctly. It should be: \n" + TOML.stringify(browserSupport));
 					}
 				}
@@ -174,7 +174,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * Check if the Polyfill has a License that allows it to be part of polyfill-library.
-	 * 
+	 *
 	 * @throws When the License isn't ok.
 	 */
 	checkLicense() {
@@ -195,7 +195,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * Load "detect.js" if it exists and validate.
-	 * 
+	 *
 	 * @throws When "detect.js" exists but isn't valid.
 	 */
 	loadDetect() {
@@ -208,7 +208,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * Load "polyfill.js", minify, validate and remove source maps.
-	 * 
+	 *
 	 * @throws When "polyfill.js" doesn't exists or isn't valid.
 	 * @returns {Promise<void>} When done.
 	 */
@@ -236,7 +236,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * Minify "polyfill.js" and validate.
-	 * 
+	 *
 	 * @param {string} source Code found in "polyfill.js".
 	 * @throws When "polyfill.js" is invalid.
 	 * @returns {{raw: string, min: string}}
@@ -279,7 +279,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * Minify "detect.js" and validate.
-	 * 
+	 *
 	 * @param {string} source Code found in "detect.js".
 	 * @throws When "detect.js" is invalid.
 	 * @returns {{raw: string, min: string}}
@@ -324,7 +324,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * Remove source maps from source code.
-	 * 
+	 *
 	 * @param {{raw: string, min: string}} source JS source code.
 	 * @returns {{raw: string, min: string}} Cleaned source code.
 	 */
@@ -339,7 +339,7 @@ module.exports = class Polyfill {
 
 	/**
 	 * Write processed files to the output directory.
-	 * 
+	 *
 	 * @param {string} root The output directory.
 	 * @returns {Promise<void>} When done.
 	 */

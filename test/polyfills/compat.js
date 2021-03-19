@@ -16,9 +16,23 @@ const all = fs.readJSONSync(path.join(__dirname, "results-all.json"));
 const compat = _.merge({}, control, all);
 const builtCompatTable = {};
 
-Object.keys(compat).forEach(browserName => {
+function buildData(support, browserName, version) {
+  return function(feature) {
+    if (!builtCompatTable[feature]) {
+      builtCompatTable[feature] = {};
+    }
+
+    if (!builtCompatTable[feature][browserName]) {
+      builtCompatTable[feature][browserName] = {};
+    }
+
+    builtCompatTable[feature][browserName][version] = support;
+  };
+}
+
+for (const browserName of Object.keys(compat)) {
   const versions = compat[browserName];
-  Object.keys(versions).forEach(version => {
+  for (const version of Object.keys(versions)) {
     const testResults = versions[version];
     if (!testResults.all || !testResults.control) {
       throw new Error(
@@ -34,25 +48,11 @@ Object.keys(compat).forEach(browserName => {
     const polyfilled = difference(failedPolyfilled, failedNative);
     const native = difference(failedNative, allTests);
 
-    function buildData(support) {
-      return function(feature) {
-        if (!builtCompatTable[feature]) {
-          builtCompatTable[feature] = {};
-        }
-
-        if (!builtCompatTable[feature][browserName]) {
-          builtCompatTable[feature][browserName] = {};
-        }
-
-        builtCompatTable[feature][browserName][version] = support;
-      };
-    }
-
-    native.forEach(feature => buildData("native")(feature));
-    polyfilled.forEach(feature => buildData("polyfilled")(feature));
-    missing.forEach(feature => buildData("missing")(feature));
-  });
-});
+    for (const feature of native)  buildData("native", browserName, version)(feature);
+    for (const feature of polyfilled)  buildData("polyfilled", browserName, version)(feature);
+    for (const feature of missing)  buildData("missing", browserName, version)(feature);
+  }
+}
 
 const compatFile = path.join(__dirname, "compat.json");
 fs.writeFileSync(compatFile, JSON.stringify(builtCompatTable, undefined, 2));

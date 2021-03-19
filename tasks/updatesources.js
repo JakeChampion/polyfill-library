@@ -48,7 +48,7 @@ const installPolyfill = config => {
 console.log('Updating third-party polyfills...');
 glob('polyfills/**/config.toml', globOptions)
     .then(files => {
-        files
+        for (const toml of files
 			.map(source => {
 				try {
 					return Object.assign({ src: source }, TOML.parse(fs.readFileSync(source, 'utf-8')));
@@ -56,8 +56,7 @@ glob('polyfills/**/config.toml', globOptions)
 					throw new Error('Failed on ' + source + '. Error: ' + error);
 				}
 			})
-            .filter(config => 'install' in config)
-            .forEach(toml => installPolyfill(toml));
+            .filter(config => 'install' in config))  installPolyfill(toml);
 
     })
     .then(() => console.log('Polyfills updated successfully'))

@@ -16,10 +16,10 @@ let servers = [];
 
 // Kill all servers when exiting.
 process.on('exit', function () {
-	servers.forEach((serverProc) => {
+	for (const serverProc of servers) {
 		serverProc.stdin.pause();
 		serverProc.kill();
-	});
+	}
 });
 
 
@@ -80,10 +80,10 @@ async function processFeatureAndStartServer(feature) {
 				console.log(`Built : everything in ${Math.round(timeDiff)}s`);
 			}
 
-			servers.forEach((serverProc) => {
+			for (const serverProc of servers) {
 				serverProc.stdin.pause();
 				serverProc.kill();
-			});
+			}
 
 			servers = [];
 
