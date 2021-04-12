@@ -22,7 +22,7 @@ dependencies = [
 license = "MIT"
 spec = "https://tc39.es/proposal-intl-relative-time/#sec-intl-numberformat-constructor"
 repo = "https://github.com/formatjs/formatjs/tree/master/packages/intl-numberformat/polyfill.js"
-docs = "https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat"
+docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat"
 notes = [
   "Locales must be specified separately by prefixing the locale name with `Intl.NumberFormat.~locale`, eg `Intl.NumberFormat.~locale.en-GB`."
 ]
