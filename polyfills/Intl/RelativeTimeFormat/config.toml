@@ -17,7 +17,7 @@ dependencies = [
   "Object.setPrototypeOf",
   "WeakMap",
 ]
-docs = "https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RelativeTimeFormat"
+docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RelativeTimeFormat"
 license = "MIT"
 notes = [
   "Locales must be specified separately by prefixing the locale name with `Intl.RelativeTimeFormat.~locale`, eg `Intl.RelativeTimeFormat.~locale.en-GB`.",
