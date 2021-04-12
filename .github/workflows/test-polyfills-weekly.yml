@@ -10,7 +10,7 @@ jobs:
     if: ${{ github.pull_request.head.repo.fork == false}}
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@3d86a7cc43670094ac248017207be0295edbc31d # pin@0.8.0
+        uses: styfle/cancel-workflow-action@89f242ee29e10c53a841bfe71cc0ce7b2f065abc # pin@0.8.0
         with:
           access_token: ${{ github.token }}
       - name: Turnstyle
