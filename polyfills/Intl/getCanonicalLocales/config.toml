@@ -8,7 +8,7 @@ dependencies = [
   "Object.defineProperty",
   "Object.keys"
 ]
-docs = "https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/getCanonicalLocales"
+docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/getCanonicalLocales"
 license = "MIT"
 repo = "https://github.com/formatjs/formatjs/tree/master/packages/intl-getcanonicallocales/"
 spec = "https://tc39.es/ecma402/#sec-intl.getcanonicallocales"
