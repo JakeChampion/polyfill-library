@@ -4178,3 +4178,12 @@ it("should fix dayperiod bug in chrome", function () {
   proclaim.ok(dayPeriod);
   proclaim.notOk(dayperiod);
 });
+
+it("should have timezone name", function () {
+  var timeZoneObject = Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    timeZoneName: 'long'
+  }).formatToParts(0)
+    .find(function(object) { return object.type === 'timeZoneName';});
+  proclaim.equal(timeZoneObject.value, 'Eastern Standard Time');
+});
