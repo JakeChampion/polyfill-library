@@ -1,6 +1,7 @@
 
 'use strict';
 const assert = require('proclaim');
+const appVersion = require("../../../package.json").version;
 const setsToArrays = require('../../utils/sets-to-arrays');
 
 const polyfillio = require('../../../lib');
@@ -241,6 +242,35 @@ describe("polyfillio", function () {
 				})
 			]).then(results => {
 				assert.notEqual(setsToArrays(results[0]), setsToArrays(results[1]));
+			});
+		});
+
+		it('should render the version string for a production bundle', () => {
+			const NODE_ENV = process.env.NODE_ENV;
+
+			process.env.NODE_ENV = "production";
+
+			return Promise.all([
+				polyfillio.getPolyfillString({
+					features: {
+						default: {}
+					},
+					uaString: 'chrome/30',
+					minify: false
+				}, polyfillio.getPolyfillString({
+					features: {
+						default: {}
+					},
+					uaString: 'chrome/30',
+					minify: true
+				}))
+			]).then(results => {
+				assert.include(results[0].slice(0, 500), 'Polyfill service ' + appVersion);
+				assert.include(results[1].slice(0, 500), 'Polyfill service ' + appVersion);
+
+				process.env.NODE_ENV = NODE_ENV;
+			}).catch(() => {
+				process.env.NODE_ENV = NODE_ENV;
 			});
 		});
 
