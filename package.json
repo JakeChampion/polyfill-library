@@ -101,7 +101,7 @@
     "browserstack-local": "^1.4.5",
     "cli-color": "^2.0.0",
     "compression": "^1.7.4",
-    "dotenv": "^8.2.0",
+    "dotenv": "^9.0.0",
     "eslint": "^7.0.0",
     "eslint-plugin-uncalled-iife": "^1.0.0",
     "eslint-plugin-unicorn": "^27.0.0",
