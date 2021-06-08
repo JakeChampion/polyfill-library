@@ -13,7 +13,7 @@ CreateMethodProperty(String.prototype, 'replaceAll', function replaceAll(searchV
 		if (isRegExp) {
 			// 2.b.i. Let flags be ? Get(searchValue, "flags").
 			var flags = Get(searchValue, "flags");
-			
+
 			// IE8 doesn't have RegExp.prototype.flags support, it does have RegExp.prototype.global
 			// 2.b.iii. If ? ToString(flags) does not contain "g", throw a TypeError exception.
 			if (!('flags' in RegExp.prototype) && searchValue.global !== true) {

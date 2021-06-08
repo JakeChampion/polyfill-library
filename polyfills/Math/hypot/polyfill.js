@@ -32,5 +32,5 @@ CreateMethodProperty(Math, 'hypot', function hypot(value1, value2) { // eslint-d
 		}
 	}
 
-  return max * Math.sqrt(y);
+	return max * Math.sqrt(y);
 });

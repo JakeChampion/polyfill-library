@@ -1,7 +1,7 @@
 aliases = [
-  "caniuse:geolocation",
-  "modernizr:geolocation",
-  "Navigator.prototype.geolocation"
+	"caniuse:geolocation",
+	"modernizr:geolocation",
+	"Navigator.prototype.geolocation"
 ]
 dependencies = [ "document.head" ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/geolocation"
@@ -11,4 +11,3 @@ spec = "http://www.w3.org/TR/geolocation-API/#navi-geo"
 ie = "<9"
 opera = "15"
 safari = "4"
-

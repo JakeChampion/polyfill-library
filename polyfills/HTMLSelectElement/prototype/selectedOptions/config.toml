@@ -3,13 +3,13 @@ aliases = []
 
 #### Dependencies
 dependencies = [
-  "Object.defineProperty",
-  "document.querySelector"
+	"Object.defineProperty",
+	"document.querySelector"
 ]
 
 notes = [
-  "Polyfill requires Object getters so fails in IE < 8",
-  "Polyfill does not return a live HTMLCollection, only a static NodeList that has the same methods as an HTMLCollection",
+	"Polyfill requires Object getters so fails in IE < 8",
+	"Polyfill does not return a live HTMLCollection, only a static NodeList that has the same methods as an HTMLCollection",
 ]
 
 #### Specification Link

@@ -481,7 +481,7 @@ describe('Map', function () {
 
 		o.set("", "test value");
 		proclaim.equal(o.get(""), 'test value');
-		
+
 		if (Object.create && Object.setPrototypeOf) {
 			function BaseClass() { // eslint-disable-line no-inner-declarations
 				// Empty class
@@ -489,7 +489,7 @@ describe('Map', function () {
 			function SubClass() { // eslint-disable-line no-inner-declarations
 				// Empty class
 			}
-			
+
 			SubClass.prototype = Object.create(BaseClass.prototype);
 			SubClass.prototype.constructor = SubClass;
 			Object.setPrototypeOf(SubClass, BaseClass);

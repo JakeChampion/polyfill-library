@@ -70,4 +70,3 @@ it('works as expected', function () {
 		}, TypeError);
 	}
 });
-

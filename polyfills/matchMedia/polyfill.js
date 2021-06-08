@@ -1,43 +1,43 @@
 (function() {
-    "use strict";
+	"use strict";
 
-    // For browsers that support matchMedium api such as IE 9 and webkit
-    var styleMedia = (self.styleMedia || self.media);
+	// For browsers that support matchMedium api such as IE 9 and webkit
+	var styleMedia = (self.styleMedia || self.media);
 
-    // For those that don't support matchMedium
-    if (!styleMedia) {
-        var style       = document.createElement('style'),
-            script      = document.getElementsByTagName('script')[0],
-            info        = null;
+	// For those that don't support matchMedium
+	if (!styleMedia) {
+		var style       = document.createElement('style'),
+			script      = document.getElementsByTagName('script')[0],
+			info        = null;
 
-        style.type  = 'text/css';
-        style.id    = 'matchmediajs-test';
+		style.type  = 'text/css';
+		style.id    = 'matchmediajs-test';
 
-        if (!script) {
-          document.head.appendChild(style);
-        } else {
-          script.parentNode.insertBefore(style, script);
-        }
+		if (!script) {
+		document.head.appendChild(style);
+		} else {
+		script.parentNode.insertBefore(style, script);
+		}
 
-        // 'style.currentStyle' is used by IE <= 8 and 'self.getComputedStyle' for all other browsers
-        info = ('getComputedStyle' in self) && self.getComputedStyle(style, null) || style.currentStyle;
+		// 'style.currentStyle' is used by IE <= 8 and 'self.getComputedStyle' for all other browsers
+		info = ('getComputedStyle' in self) && self.getComputedStyle(style, null) || style.currentStyle;
 
-        styleMedia = {
-            matchMedium: function(media) {
-                media = media.replace(/^only\s+/, '');
-                var text = '@media ' + media + '{ #matchmediajs-test { width: 1px; } }';
+		styleMedia = {
+			matchMedium: function(media) {
+				media = media.replace(/^only\s+/, '');
+				var text = '@media ' + media + '{ #matchmediajs-test { width: 1px; } }';
 
-                // 'style.styleSheet' is used by IE <= 8 and 'style.textContent' for all other browsers
-                if (style.styleSheet) {
-                    style.styleSheet.cssText = text;
-                } else {
-                    style.textContent = text;
-                }
+				// 'style.styleSheet' is used by IE <= 8 and 'style.textContent' for all other browsers
+				if (style.styleSheet) {
+					style.styleSheet.cssText = text;
+				} else {
+					style.textContent = text;
+				}
 
-                // Test if media query is true or false
-                return info.width === '1px';
-            }
-        };
+				// Test if media query is true or false
+				return info.width === '1px';
+			}
+		};
 	}
 	function MediaQueryList() {
 		this.matches = false;
@@ -63,7 +63,7 @@
 
 	self.MediaQueryList = MediaQueryList;
 
-    self.matchMedia = function matchMedia(media) {
+	self.matchMedia = function matchMedia(media) {
 		var list = new MediaQueryList();
 
 		if (0 === arguments.length) {
@@ -84,6 +84,6 @@
 			}
 		});
 
-        return list;
-    };
+		return list;
+	};
 }());

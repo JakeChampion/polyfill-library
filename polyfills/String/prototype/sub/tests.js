@@ -24,15 +24,15 @@ it('is not enumerable', function () {
 });
 
 ifHasStrictModeIt('should throw a TypeError when called with undefined context', function () {
-    proclaim["throws"](function () {
-        String.prototype.sub.call(undefined);
-    }, TypeError);
+	proclaim["throws"](function () {
+		String.prototype.sub.call(undefined);
+	}, TypeError);
 });
 
 ifHasStrictModeIt('should throw a TypeError when called with null context', function () {
-    proclaim["throws"](function () {
-        String.prototype.sub.call(null);
-    }, TypeError);
+	proclaim["throws"](function () {
+		String.prototype.sub.call(null);
+	}, TypeError);
 });
 
 it('works on strings correctly', function() {

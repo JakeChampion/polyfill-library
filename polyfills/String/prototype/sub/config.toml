@@ -1,6 +1,6 @@
 dependencies = [
-  "_ESAbstract.CreateHTML",
-  "_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.CreateHTML",
+	"_ESAbstract.CreateMethodProperty",
 ]
 spec = "https://www.ecma-international.org/ecma-262/6.0/#sec-string.prototype.sub"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/sub"

@@ -1,11 +1,11 @@
 aliases = [
-  "default-3.3",
-  "default-3.4",
-  "default-3.5",
-  "default-3.6",
-  "default",
-  "modernizr:classlist",
-  "blissfuljs"
+	"default-3.3",
+	"default-3.4",
+	"default-3.5",
+	"default-3.6",
+	"default",
+	"modernizr:classlist",
+	"blissfuljs"
 ]
 dependencies = [ "DOMTokenList", "Element", "Object.defineProperty" ]
 spec = "https://html.spec.whatwg.org/multipage/dom.html#dom-classlist"
@@ -16,4 +16,3 @@ repo = "https://github.com/Alhadis/DOMTokenList"
 [browsers]
 ie = "8 - 11"
 safari = "4 - 4.1"
-

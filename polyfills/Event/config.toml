@@ -1,21 +1,21 @@
 aliases = [
-  "default-3.3",
-  "default-3.4",
-  "default-3.5",
-  "default-3.6",
-  "default"
+	"default-3.3",
+	"default-3.4",
+	"default-3.5",
+	"default-3.6",
+	"default"
 ]
 dependencies = [
-  "Window",
-  "document",
-  "Element",
-  "Object.defineProperty",
-  "Array.prototype.indexOf",
-  "Array.prototype.includes"
+	"Window",
+	"document",
+	"Element",
+	"Object.defineProperty",
+	"Array.prototype.indexOf",
+	"Array.prototype.includes"
 ]
 docs = "https://developer.mozilla.org/en/docs/Web/API/Event"
 notes = [
-  "Where necessary, also adds the [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) methods `addEventListener`, `removeEventListener` and `dispatchEvent`."
+	"Where necessary, also adds the [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) methods `addEventListener`, `removeEventListener` and `dispatchEvent`."
 ]
 
 [browsers]

@@ -1,9 +1,9 @@
 aliases = [
-  "dom4",
-  "default-3.4",
-  "default-3.5",
-  "default-3.6",
-  "default"
+	"dom4",
+	"default-3.4",
+	"default-3.5",
+	"default-3.6",
+	"default"
 ]
 dependencies = [ "Element" ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Node/contains"
@@ -16,4 +16,3 @@ edge_mob = "<14"
 ie = "*"
 ie_mob = "10 - *"
 firefox_mob = "* - 8"
-

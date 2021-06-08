@@ -1,8 +1,8 @@
 aliases = [ "es6", "es2015" ]
 dependencies = [
-  "_ESAbstract.CreateMethodProperty",
-  "_ESAbstract.HasProperty",
-  "_ESAbstract.ToInteger"
+	"_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.HasProperty",
+	"_ESAbstract.ToInteger"
 ]
 license = "MIT"
 spec = "https://tc39.github.io/ecma262/#sec-array.prototype.copywithin"
@@ -16,4 +16,3 @@ firefox = "<32"
 ie = "*"
 safari = "<9"
 opera = "<32"
-

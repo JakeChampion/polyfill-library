@@ -1,13 +1,13 @@
 aliases = [ "es6", "es2015", "modernizr:es6array" ]
 dependencies = [
-  "_ESAbstract.CreateMethodProperty",
-  "_ESAbstract.ToObject",
-  "_ESAbstract.ToLength",
-  "_ESAbstract.Get",
-  "_ESAbstract.IsCallable",
-  "_ESAbstract.ToBoolean",
-  "_ESAbstract.Call",
-  "_ESAbstract.ToString"
+	"_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.ToObject",
+	"_ESAbstract.ToLength",
+	"_ESAbstract.Get",
+	"_ESAbstract.IsCallable",
+	"_ESAbstract.ToBoolean",
+	"_ESAbstract.Call",
+	"_ESAbstract.ToString"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-array.prototype.findIndex"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex"
@@ -27,4 +27,3 @@ ios_chr = "* - 8.0"
 android = "<5"
 firefox_mob = "3.6 - 24"
 samsung_mob = "<5"
-

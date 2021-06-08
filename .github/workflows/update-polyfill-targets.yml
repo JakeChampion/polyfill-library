@@ -34,8 +34,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
-          for i in `git diff --name-only`; 
-          do 
+          for i in `git diff --name-only`;
+          do
             git checkout master;
             git config --global user.email "action@github.com"
             git config --global user.name "GitHub Action"
@@ -79,8 +79,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
-          for i in `git diff --name-only`; 
-          do 
+          for i in `git diff --name-only`;
+          do
             git checkout master;
             git config --global user.email "action@github.com"
             git config --global user.name "GitHub Action"
@@ -124,8 +124,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
-          for i in `git diff --name-only`; 
-          do 
+          for i in `git diff --name-only`;
+          do
             git checkout master;
             git config --global user.email "action@github.com"
             git config --global user.name "GitHub Action"
@@ -169,8 +169,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
-          for i in `git diff --name-only`; 
-          do 
+          for i in `git diff --name-only`;
+          do
             git checkout master;
             git config --global user.email "action@github.com"
             git config --global user.name "GitHub Action"
@@ -214,8 +214,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
-          for i in `git diff --name-only`; 
-          do 
+          for i in `git diff --name-only`;
+          do
             git checkout master;
             git config --global user.email "action@github.com"
             git config --global user.name "GitHub Action"
@@ -259,8 +259,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
-          for i in `git diff --name-only`; 
-          do 
+          for i in `git diff --name-only`;
+          do
             git checkout master;
             git config --global user.email "action@github.com"
             git config --global user.name "GitHub Action"
@@ -305,8 +305,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
-          for i in `git diff --name-only`; 
-          do 
+          for i in `git diff --name-only`;
+          do
             git checkout master;
             git config --global user.email "action@github.com"
             git config --global user.name "GitHub Action"

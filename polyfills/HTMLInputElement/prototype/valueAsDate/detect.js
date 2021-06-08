@@ -22,7 +22,7 @@
 				return false;
 			}
 		}
-		
+
 	} catch (err) {
 		return false;
 	}

@@ -1,9 +1,9 @@
 dependencies = [
-  "Reflect",
-  "_ESAbstract.CreateMethodProperty",
-  "_ESAbstract.IsConstructor",
-  "_ESAbstract.CreateListFromArrayLike",
-  "_ESAbstract.Construct"
+	"Reflect",
+	"_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.IsConstructor",
+	"_ESAbstract.CreateListFromArrayLike",
+	"_ESAbstract.Construct"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-reflect.construct"
 
@@ -24,4 +24,3 @@ op_mob = "<36"
 opera = "*"
 safari = "<10"
 samsung_mob = "<5"
-

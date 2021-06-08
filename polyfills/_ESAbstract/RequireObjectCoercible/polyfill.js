@@ -18,5 +18,5 @@ function RequireObjectCoercible(argument) { // eslint-disable-line no-unused-var
 	if (argument === null || argument === undefined) {
 		throw TypeError(Object.prototype.toString.call(argument) + ' is not coercible to Object.');
 	}
-  return argument;
+	return argument;
 }

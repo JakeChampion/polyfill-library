@@ -1,7 +1,7 @@
 dependencies = [
-  "DOMTokenList",
-  "Array.prototype.forEach",
-  "Element.prototype.classList"
+	"DOMTokenList",
+	"Array.prototype.forEach",
+	"Element.prototype.classList"
 ]
 spec = "https://dom.spec.whatwg.org/#interface-domtokenlist"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/forEach"
@@ -21,4 +21,3 @@ android = "<45"
 firefox_mob = "<50"
 ios_saf = "<10.3"
 samsung_mob = "<5"
-

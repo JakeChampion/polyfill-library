@@ -240,7 +240,7 @@
 
 	// 23.3.3.6 WeakMap.prototype [ @@toStringTag ]
 	// The initial value of the @@toStringTag property is the String value "WeakMap".
-	// This property has the attributes { [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]: true }.	
+	// This property has the attributes { [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]: true }.
 	Object.defineProperty(WeakMap.prototype, Symbol.toStringTag, {
 		configurable: true,
 		enumerable: false,

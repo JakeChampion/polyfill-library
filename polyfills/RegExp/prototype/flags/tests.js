@@ -34,9 +34,9 @@ var supportsDescriptors = Object.defineProperty && arePropertyDescriptorsSupport
 var callAllowsPrimitives = (function () { return this === 3; }.call(3));
 var ifCallAllowsPrimitivesIt = callAllowsPrimitives ? it : it.skip;
 var getRegexLiteral = function (stringRegex) {
-  try {
-    return Function('return ' + stringRegex + ';')();
-  } catch (e) { /**/ }
+	try {
+		return Function('return ' + stringRegex + ';')();
+	} catch (e) { /**/ }
 };
 
 it('exists', function () {

@@ -28,5 +28,5 @@ console.log(`Created a new polyfill template at ${polyfillFolderPath}. Woohoo!`)
  * @returns {string} The newly converted string
  */
 function dotToSlash(string) {
-    return string.replace(/\./g, '/');
+	return string.replace(/\./g, '/');
 }

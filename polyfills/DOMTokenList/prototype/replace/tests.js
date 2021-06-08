@@ -5,8 +5,8 @@ var div = document.createElement('div');
 var tokenList = div.classList;
 
 function testReplace(before, token, newToken, after, expectedResult, expectedExceptionName) {
-    div.className = '' + before;
-    try {
+	div.className = '' + before;
+	try {
 		var result = tokenList.replace(token, newToken);
 	} catch (e) {
 		proclaim.strictEqual(div.className, '' + before);

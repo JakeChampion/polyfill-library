@@ -1,9 +1,9 @@
 dependencies = [
-  "Reflect",
-  "Symbol",
-  "Object.getOwnPropertyNames",
-  "_ESAbstract.Type",
-  "_ESAbstract.CreateMethodProperty"
+	"Reflect",
+	"Symbol",
+	"Object.getOwnPropertyNames",
+	"_ESAbstract.Type",
+	"_ESAbstract.CreateMethodProperty"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-reflect.ownkeys"
 
@@ -24,4 +24,3 @@ op_mob = "<36"
 opera = "*"
 safari = "<10"
 samsung_mob = "<5"
-

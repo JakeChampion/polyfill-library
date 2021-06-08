@@ -25,7 +25,7 @@ describe('queueMicrotask', function() {
 	it('throws type error if an argument is of a String type', function() {
 		proclaim["throws"](function() { queueMicrotask('test') }, TypeError);
 	});
-	
+
 	it('rethrows exceptions from the microtask callback', function(done) {
 		var mochaError = self.onerror;
 		self.onerror = Function.prototype;
@@ -56,7 +56,7 @@ describe('queueMicrotask', function() {
 			}
 		})
 	});
-	
+
 	it('runs all queued microtasks even if previous ones threw errors',  function(done) {
 		var mochaError = self.onerror;
 		self.onerror = Function.prototype;

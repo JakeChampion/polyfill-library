@@ -1,10 +1,10 @@
 dependencies = [
-  "_ESAbstract.IsArray",
-  "_ESAbstract.ArrayCreate",
-  "_ESAbstract.Get",
-  "_ESAbstract.Type",
-  "_ESAbstract.IsConstructor",
-  "_ESAbstract.Construct"
+	"_ESAbstract.IsArray",
+	"_ESAbstract.ArrayCreate",
+	"_ESAbstract.Get",
+	"_ESAbstract.Type",
+	"_ESAbstract.IsConstructor",
+	"_ESAbstract.Construct"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-arrayspeciescreate"
 
@@ -25,4 +25,3 @@ op_mob = "*"
 opera = "*"
 safari = "*"
 samsung_mob = "*"
-

@@ -97,8 +97,8 @@ if ('freeze' in Object) {
 		proclaim.isTrue(map.has(f));
 		proclaim.strictEqual(map.get(f), 42);
 		map['delete'](f);
-    proclaim.isFalse(map.has(f));
-    proclaim.isUndefined(map.get(f));
+	proclaim.isFalse(map.has(f));
+	proclaim.isUndefined(map.get(f));
 	});
 }
 

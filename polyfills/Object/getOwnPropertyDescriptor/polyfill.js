@@ -28,7 +28,7 @@
 		var key = ToPropertyKey(P);
 
 		// 3. Let desc be ? obj.[[GetOwnProperty]](key).
-		// 4. Return FromPropertyDescriptor(desc). 
+		// 4. Return FromPropertyDescriptor(desc).
 		// Polyfill.io Internet Explorer 8 natively supports property descriptors only on DOM objects.
 		// We will fallback to the polyfill implementation if the native implementation throws an error.
 		if (supportsDOMDescriptors) {

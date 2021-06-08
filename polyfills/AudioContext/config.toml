@@ -5,4 +5,3 @@ repo = "https://github.com/JakeChampion/AudioContext"
 [install]
 module = "audio-context-polyfill"
 paths = [ "AudioContext.js" ]
-

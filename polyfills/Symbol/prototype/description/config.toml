@@ -1,9 +1,9 @@
 aliases = [ ]
 dependencies = [
-    "Symbol",
-    "Object.defineProperty",
-    "String.prototype.trim",
-    "_ESAbstract.Type"
+	"Symbol",
+	"Object.defineProperty",
+	"String.prototype.trim",
+	"_ESAbstract.Type"
 ]
 license = "MIT"
 spec = "https://tc39.github.io/proposal-Symbol-description/"

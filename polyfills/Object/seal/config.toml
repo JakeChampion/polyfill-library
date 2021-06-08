@@ -15,4 +15,3 @@ op_mini = "*"
 op_mob = "*"
 safari = "< 5.1"
 firefox_mob = "< 4"
-

@@ -1,11 +1,11 @@
 aliases = [
-  "default-3.3",
-  "default-3.4",
-  "default-3.5",
-  "default-3.6",
-  "default",
-  "caniuse:matchesselector",
-  "blissfuljs"
+	"default-3.3",
+	"default-3.4",
+	"default-3.5",
+	"default-3.6",
+	"default",
+	"caniuse:matchesselector",
+	"blissfuljs"
 ]
 dependencies = [ "Element", "document.querySelector" ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Element/matches"
@@ -26,4 +26,3 @@ android = "* - 4.4.4"
 bb = "*"
 ios_chr = "*"
 ios_saf = "* - 7"
-

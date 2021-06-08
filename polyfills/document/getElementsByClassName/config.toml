@@ -4,4 +4,3 @@ docs = "https://developer.mozilla.org/en/docs/Web/API/Document/getElementsByClas
 
 [browsers]
 ie = "<9"
-

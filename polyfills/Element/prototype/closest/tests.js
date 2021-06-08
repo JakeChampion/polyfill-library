@@ -81,4 +81,3 @@ it.skip("should throw an error if the selector syntax is incorrect", function() 
 
 	document.body.removeChild(el);
 });
-

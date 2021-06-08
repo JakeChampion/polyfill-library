@@ -8,4 +8,3 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 ie = "*"
 firefox = "<25"
 safari = "<9"
-

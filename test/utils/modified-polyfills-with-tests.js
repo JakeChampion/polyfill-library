@@ -56,7 +56,7 @@ async function polyfillsWithTestsFrom(modifiedFiles, allPolyfills, polyfillMetas
 		hasOtherChanges: false,
 		hasManyPolyfillChanges: false
 	};
-	
+
 	// 1. Check the modified files for changes in polyfills.
 	for (const modifiedFilePath of modifiedFiles) {
 		// 1.a. Check if the changed file is for a polyfill or not. If not everything must be tested.
@@ -121,7 +121,7 @@ async function polyfillsWithTestsFrom(modifiedFiles, allPolyfills, polyfillMetas
 
 	// 6. Check all polyfills for dependants and add these to the record set.
 	// NOTE : There is probably a smarter more efficient algorithm to do this.
-	// This basically brute forces the toposorted depedency list 
+	// This basically brute forces the toposorted depedency list
 	// until no more polyfills are found that depend on changed polyfills.
 	let foundMore = true;
 	while (foundMore) {
@@ -194,7 +194,7 @@ function getModifiedFiles() {
 				resolve([]);
 				return;
 			}
-			
+
 			if (stderr) {
 				console.warn(`error while getting modified files : ${stderr}`);
 				resolve([]);

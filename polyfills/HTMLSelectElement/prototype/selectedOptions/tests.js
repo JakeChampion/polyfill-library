@@ -49,9 +49,9 @@ describe('HTMLSelectElement.prototype.selectedOptions', function () {
 		proclaim.equal(select.selectedOptions.length, 0);
 	});
 
-	// Tests from WPT : 
+	// Tests from WPT :
 	// https://github.com/web-platform-tests/wpt/blob/master/html/semantics/forms/the-select-element/select-selectedOptions.html
-	
+
 	it('returns first option in single select without explicit selected', function () {
 		var select = createHTML({
 			options: [

@@ -24,11 +24,11 @@ it('returns NaN with NaN values', function () {
 
 it('returns 15 for valid numbers and non-number data types', function () {
 	proclaim.equal(Number.parseFloat(15.45), 15.45);
-  proclaim.equal(Number.parseFloat("15"), 15);
-  proclaim.equal(Number.parseFloat("150e-1"), 15);
-  proclaim.equal(Number.parseFloat("0.150e+2"), 15);
-  proclaim.equal(Number.parseFloat("15.1px"), 15.1);
-  proclaim.equal(Number.parseFloat("15.2"), 15.2);
+	proclaim.equal(Number.parseFloat("15"), 15);
+	proclaim.equal(Number.parseFloat("150e-1"), 15);
+	proclaim.equal(Number.parseFloat("0.150e+2"), 15);
+	proclaim.equal(Number.parseFloat("15.1px"), 15.1);
+	proclaim.equal(Number.parseFloat("15.2"), 15.2);
 });
 
 it('works as expected', function () {

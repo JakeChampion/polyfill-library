@@ -159,7 +159,7 @@
 		var string = sym.toString();
 		var randomStartIndex = string.lastIndexOf("0.");
 		string = string.slice(10, randomStartIndex);
-		
+
 		if (string === "") {
 			return undefined;
 		}
@@ -361,7 +361,7 @@
 
 		var inferred = function () { };
 		var supportsInferredNames = getInferredName && inferred.name === "inferred" ? getInferredName : null;
-		
+
 
 		// 19.4.3.2 get Symbol.prototype.description
 		Object.defineProperty(global.Symbol.prototype, "description", {

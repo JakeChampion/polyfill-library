@@ -1,9 +1,9 @@
 aliases = [ "default-3.4", "default-3.5", "default-3.6", "default" ]
 dependencies = [
-  "document",
-  "Element",
-  "Array.prototype.indexOf",
-  "_mutation"
+	"document",
+	"Element",
+	"Array.prototype.indexOf",
+	"_mutation"
 ]
 spec = "http://dom.spec.whatwg.org/#dom-childnode-after"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/after"
@@ -24,4 +24,3 @@ op_mini = "*"
 safari = "<10"
 firefox_mob = "<49"
 samsung_mob = "<6"
-

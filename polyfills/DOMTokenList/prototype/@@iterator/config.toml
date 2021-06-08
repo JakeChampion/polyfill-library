@@ -14,4 +14,3 @@ ios_saf = "*"
 opera = "<50"
 samsung_mob = "<5"
 bb = "10 - *"
-

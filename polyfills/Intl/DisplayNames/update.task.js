@@ -30,7 +30,7 @@ function writeFileIfChanged (filePath, newFile) {
 		if (newFile !== currentFile) {
 			fs.writeFileSync(filePath, newFile);
 		}
-  } else {
+	} else {
 		fs.writeFileSync(filePath, newFile);
 	}
 }

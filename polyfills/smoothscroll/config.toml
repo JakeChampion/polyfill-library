@@ -1,18 +1,18 @@
 aliases = [
-  "scroll",
-  "scrollBy",
-  "scrollIntoView",
-  "Element.prototype.scroll",
-  "Element.prototype.scrollBy",
-  "Element.prototype.scrollIntoView",
-  "window.scroll",
-  "window.scrollBy"
+	"scroll",
+	"scrollBy",
+	"scrollIntoView",
+	"Element.prototype.scroll",
+	"Element.prototype.scrollBy",
+	"Element.prototype.scrollIntoView",
+	"window.scroll",
+	"window.scrollBy"
 ]
 dependencies = [
-  "requestAnimationFrame",
-  "Function.prototype.bind",
-  "getComputedStyle",
-  "Object.defineProperty"
+	"requestAnimationFrame",
+	"Function.prototype.bind",
+	"getComputedStyle",
+	"Object.defineProperty"
 ]
 license = "MIT"
 spec = "https://drafts.csswg.org/cssom-view/#smooth-scrolling"

@@ -104,7 +104,7 @@ describe('Basic functionality', function () {
 				proclaim.equal(object[property], value);
 			});
 		}
-		
+
 		it('allows an explicitly undefined getter', function () {
 			var object = {};
 			Object.defineProperty(object, property, {
@@ -114,7 +114,7 @@ describe('Basic functionality', function () {
 			});
 			proclaim.equal(object[property], undefined);
 		});
-		
+
 		it('allows an explicitly undefined setter', function () {
 			var object = {};
 			Object.defineProperty(object, property, {

@@ -1,6 +1,6 @@
 aliases = [ ]
 dependencies = [
-  "Object.defineProperty"
+	"Object.defineProperty"
 ]
 spec = "https://tc39.es/ecma262/#sec-globalthis"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis"
@@ -23,4 +23,3 @@ op_mob = "*"
 opera = "*"
 safari = "<12.1"
 samsung_mob = "<10"
-

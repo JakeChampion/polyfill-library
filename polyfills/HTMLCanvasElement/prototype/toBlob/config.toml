@@ -1,10 +1,10 @@
 # add an alias for the original polyfill name which had a typo to maintain backwards compatibility
 aliases = [ "HTMLCanvasElement.protoype.toBlob" ]
 dependencies = [
-  "_ESAbstract.CreateMethodProperty",
-  "ArrayBuffer",
-  "atob",
-  "Blob"
+	"_ESAbstract.CreateMethodProperty",
+	"ArrayBuffer",
+	"atob",
+	"Blob"
 ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob"
 license = "MIT"

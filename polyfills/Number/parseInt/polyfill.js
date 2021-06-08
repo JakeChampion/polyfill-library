@@ -1,12 +1,12 @@
 /* global CreateMethodProperty */
 (function (nativeParseInt, global) {
-    // Polyfill.io - IE 8's parseInt is incorrect
-    var parseInt = function parseInt(str, radix) {
-        var string = String(str).trim();
-        return nativeParseInt(string, (radix >>> 0) || (/^[-+]?0[xX]/.test(string) ? 16 : 10));
-    }
-    try {
-        CreateMethodProperty(global, 'parseInt', parseInt);
+	// Polyfill.io - IE 8's parseInt is incorrect
+	var parseInt = function parseInt(str, radix) {
+		var string = String(str).trim();
+		return nativeParseInt(string, (radix >>> 0) || (/^[-+]?0[xX]/.test(string) ? 16 : 10));
+	}
+	try {
+		CreateMethodProperty(global, 'parseInt', parseInt);
 	} catch (e) {
 		// IE8 throws an error here if we set enumerable to false.
 		// More info on table 2: https://msdn.microsoft.com/en-us/library/dd229916(v=vs.85).aspx

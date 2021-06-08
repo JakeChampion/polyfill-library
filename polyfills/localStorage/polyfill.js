@@ -76,7 +76,7 @@
 			return false;
 		}
 	})();
-	
+
 	if (!localStorageExists) {
 		var
 		// <Global>.localStorage

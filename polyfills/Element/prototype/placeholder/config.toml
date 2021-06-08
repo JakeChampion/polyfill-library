@@ -3,4 +3,3 @@ dependencies = [ "Object.defineProperty", "document.querySelector", "Element" ]
 
 [browsers]
 ie = "8 - 9"
-

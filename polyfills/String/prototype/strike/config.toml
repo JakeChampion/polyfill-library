@@ -1,6 +1,6 @@
 dependencies = [
-  "_ESAbstract.CreateHTML",
-  "_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.CreateHTML",
+	"_ESAbstract.CreateMethodProperty",
 ]
 spec = "https://www.ecma-international.org/ecma-262/6.0/#sec-string.prototype.strike"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/strike"
@@ -22,4 +22,3 @@ op_mob = "<1"
 safari = "<1"
 firefox_mob = "<4"
 samsung_mob = "<1"
-

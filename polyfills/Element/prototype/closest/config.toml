@@ -1,10 +1,10 @@
 aliases = [
-  "default-3.3",
-  "default-3.4",
-  "default-3.5",
-  "default-3.6",
-  "default",
-  "blissfuljs"
+	"default-3.3",
+	"default-3.4",
+	"default-3.5",
+	"default-3.6",
+	"default",
+	"blissfuljs"
 ]
 dependencies = [ "Element.prototype.matches" ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Element/closest"
@@ -25,4 +25,3 @@ op_mini = "*"
 op_mob = "<33"
 safari = "<9"
 firefox_mob = "<35"
-

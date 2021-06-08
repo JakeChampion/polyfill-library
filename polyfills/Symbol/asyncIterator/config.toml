@@ -17,4 +17,3 @@ opera = "< 50"
 samsung_mob = "*"
 android = "< 63"
 bb = "*"
-

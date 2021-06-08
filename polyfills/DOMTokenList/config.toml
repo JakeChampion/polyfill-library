@@ -1,9 +1,9 @@
 aliases = [
-  "default-3.3",
-  "default-3.4",
-  "default-3.5",
-  "default-3.6",
-  "default"
+	"default-3.3",
+	"default-3.4",
+	"default-3.5",
+	"default-3.6",
+	"default"
 ]
 dependencies = [ "_DOMTokenList" ]
 spec = "http://www.whatwg.org/specs/web-apps/current-work/#domtokenlist"
@@ -15,4 +15,3 @@ edge_mob = "<14"
 ie = "*"
 safari = "4 - 6.0"
 ie_mob = "10 - *"
-

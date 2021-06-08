@@ -1,9 +1,9 @@
 dependencies = [
-  "_Iterator",
-  "Object.create",
-  "Object.defineProperty",
-  "Object.setPrototypeOf",
-  "String.prototype.includes"
+	"_Iterator",
+	"Object.create",
+	"Object.defineProperty",
+	"Object.setPrototypeOf",
+	"String.prototype.includes"
 ]
 license = "MIT"
 repo = "https://github.com/medikoo/es6-iterator"
@@ -25,4 +25,3 @@ op_mob = "*"
 safari = "*"
 firefox_mob = "*"
 samsung_mob = "*"
-

@@ -1,19 +1,19 @@
 aliases = [
-  "es6",
-  "es2015",
-  "modernizr:es6object",
-  "default-3.3",
-  "default-3.4",
-  "default-3.5",
-  "default-3.6",
-  "default"
+	"es6",
+	"es2015",
+	"modernizr:es6object",
+	"default-3.3",
+	"default-3.4",
+	"default-3.5",
+	"default-3.6",
+	"default"
 ]
 dependencies = [
-  "_ESAbstract.CreateMethodProperty",
-  "_ESAbstract.Get",
-  "_ESAbstract.ToObject",
-  "Object.getOwnPropertyDescriptor",
-  "Object.keys"
+	"_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.Get",
+	"_ESAbstract.ToObject",
+	"Object.getOwnPropertyDescriptor",
+	"Object.keys"
 ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign"
 

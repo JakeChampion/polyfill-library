@@ -1,15 +1,15 @@
 dependencies = [
-  "Array.prototype.forEach",
-  "Object.getOwnPropertyNames",
-  "Promise",
-  "XMLHttpRequest",
-  "Symbol.iterator"
+	"Array.prototype.forEach",
+	"Object.getOwnPropertyNames",
+	"Promise",
+	"XMLHttpRequest",
+	"Symbol.iterator"
 ]
 license = "MIT"
 spec = "https://fetch.spec.whatwg.org/"
 repo = "https://github.com/github/fetch"
 notes = [
-  "Makes use of FormData, FileReader and Blob if they exist. Readable streams not supported. CORS (Cross Origin Resource Sharing) requests do not work in IE 9 or lower."
+	"Makes use of FormData, FileReader and Blob if they exist. Readable streams not supported. CORS (Cross Origin Resource Sharing) requests do not work in IE 9 or lower."
 ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/GlobalFetch/fetch"
 

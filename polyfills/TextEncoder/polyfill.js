@@ -57,9 +57,9 @@ var ENCODEINTO_BUILD = false;
 				);
 			} else i = 0; // to fill it in with INVALIDs
 		}
-		
+
 		for (; i < stringLen; i=i+1|0) result += "\ufffd"; // fill rest with replacement character
-		
+
 		return result;
 	}*/
 	function TextDecoder(){};
@@ -71,7 +71,7 @@ var ENCODEINTO_BUILD = false;
 				throw TypeError("Failed to execute 'decode' on 'TextDecoder': The provided value is not of type '(ArrayBuffer or ArrayBufferView)'");
 			inputAs8 = NativeUint8Array ? new patchedU8Array(inputAs8) : inputAs8 || [];
 		}
-		
+
 		var resultingString="", tmpStr="", index=0, len=inputAs8.length|0, lenMinus32=len-32|0, nextEnd=0, nextStop=0, cp0=0, codePoint=0, minBits=0, cp1=0, pos=0, tmp=-1;
 		// Note that tmp represents the 2nd half of a surrogate pair incase a surrogate gets divided between blocks
 		for (; index < len; ) {
@@ -100,17 +100,17 @@ var ENCODEINTO_BUILD = false;
 						codePoint <<= 6;
 						codePoint |= ((cp0 & 31) << 6) | cp1 & 63;
 						minBits = minBits + 7|0;
-						
+
 						// Now, process the code point
 						if (index < len && (cp1 >> 6) === 2 && (codePoint >> minBits) && codePoint < 0x110000) {
 							cp0 = codePoint;
 							codePoint = codePoint - 0x10000|0;
 							if (0 <= codePoint/*0xffff < codePoint*/) { // BMP code point
 								//nextEnd = nextEnd - 1|0;
-								
+
 								tmp = (codePoint >> 10) + 0xD800|0;   // highSurrogate
 								cp0 = (codePoint & 0x3ff) + 0xDC00|0; // lowSurrogate (will be inserted later in the switch-statement)
-								
+
 								if (pos < 31) { // notice 31 instead of 32
 									tmpBufferU16[pos] = tmp;
 									pos = pos + 1|0;
@@ -128,8 +128,8 @@ var ENCODEINTO_BUILD = false;
 							index = index - cp0 - 1|0; // reset index  back to what it was before
 							cp0 = 0xfffd;
 						}
-						
-						
+
+
 						// Finally, reset the variables for the next go-around
 						minBits = 0;
 						codePoint = 0;
@@ -171,7 +171,7 @@ var ENCODEINTO_BUILD = false;
 				tmpBufferU16[0] = tmp;
 				pos = (~tmp) >>> 31;//tmp !== -1 ? 1 : 0;
 				tmp = -1;
-				
+
 				if (tmpStr.length < resultingString.length) continue;
 			} else if (tmp !== -1) {
 				tmpStr += fromCharCode(tmp);
@@ -324,7 +324,7 @@ var ENCODEINTO_BUILD = false;
 			// Skip the normal checks because we can almost certainly fit the string inside the existing buffer
 			while (1) {		// make the UTF string into a binary UTF-8 encoded string
 				point = encodedString.charCodeAt(read = read + 1|0)|0;
-				
+
 				if (point <= 0x007f) {
 					if (point === 0 && encodedLen <= read) {
 						read = read - 1|0;
@@ -337,7 +337,7 @@ var ENCODEINTO_BUILD = false;
 				} else {
 					if (0xD800 <= point && point <= 0xDBFF) {
 						nextcode = encodedString.charCodeAt(read)|0; // defaults to 0 when NaN, causing null replacement character
-						
+
 						if (0xDC00 <= nextcode && nextcode <= 0xDFFF) {
 							read = read + 1|0;
 							//point = ((point - 0xD800)<<10) + nextcode - 0xDC00 + 0x10000|0;
@@ -365,13 +365,13 @@ var ENCODEINTO_BUILD = false;
 					}
 				}
 			}
-			u8LenLeft = 0; // skip the next for-loop 
+			u8LenLeft = 0; // skip the next for-loop
 		}
-		
-		
+
+
 		for (; 0 < u8LenLeft; ) {		// make the UTF string into a binary UTF-8 encoded string
 			point = encodedString.charCodeAt(read = read + 1|0)|0;
-			
+
 			if (point <= 0x007f) {
 				if (point === 0 && encodedLen <= read) {
 					read = read - 1|0;
@@ -388,7 +388,7 @@ var ENCODEINTO_BUILD = false;
 			} else {
 				if (0xD800 <= point && point <= 0xDBFF) {
 					nextcode = encodedString.charCodeAt(read = read + 1|0)|0; // defaults to 0 when NaN, causing null replacement character
-					
+
 					if (0xDC00 <= nextcode) {
 						if (nextcode <= 0xDFFF) {
 							read = read + 1|0;
@@ -420,7 +420,7 @@ var ENCODEINTO_BUILD = false;
 					u8Arr[i=i+1|0] = (0x2<<6) | (point&0x3f);
 				}
 			}
-		} 
+		}
 		return {"read": read < 0 ? 0 : u8LenLeft < 0 ? read : read+1|0, "written": i < 0 ? 0 : i+1|0};*/
 	};
 	if (ENCODEINTO_BUILD) {

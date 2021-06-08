@@ -7,8 +7,8 @@ var _mutation = (function () { // eslint-disable-line no-unused-vars
 		}
 		// Older browsers, check if it looks like a Node instance)
 		return object &&
-			typeof object === "object" && 
-			object.nodeName && 
+			typeof object === "object" &&
+			object.nodeName &&
 			object.nodeType >= 1 &&
 			object.nodeType <= 12;
 	}

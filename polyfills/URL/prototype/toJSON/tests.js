@@ -15,7 +15,7 @@ describe('URL.prototype.toJSON', function () {
 	it('has correct name', function () {
 		proclaim.hasName(URL.prototype.toJSON, 'toJSON');
 	});
-		
+
 	it('gives the same value as "href"', function () {
 		var url = new URL("http://example.com");
 		proclaim.equal(url.toJSON(), url.href);

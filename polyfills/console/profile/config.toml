@@ -9,4 +9,3 @@ firefox = "1 - 4"
 
 [test]
 ci = false
-

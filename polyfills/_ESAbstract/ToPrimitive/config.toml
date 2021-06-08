@@ -1,8 +1,8 @@
 dependencies = [
-  "_ESAbstract.Call",
-  "_ESAbstract.GetMethod",
-  "_ESAbstract.OrdinaryToPrimitive",
-  "_ESAbstract.Type"
+	"_ESAbstract.Call",
+	"_ESAbstract.GetMethod",
+	"_ESAbstract.OrdinaryToPrimitive",
+	"_ESAbstract.Type"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-toprimitive"
 
@@ -23,4 +23,3 @@ op_mob = "*"
 opera = "*"
 safari = "*"
 samsung_mob = "*"
-

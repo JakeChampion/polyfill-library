@@ -25,4 +25,3 @@ samsung_mob = "<2"
 module = "unorm"
 paths = [ "lib/unorm.js" ]
 postinstall = "update.task.js"
-

@@ -581,7 +581,7 @@ describe('WPT tests', function () {
 		params = new URLSearchParams([['a', 'b'], ['c', 'd']]);
 		proclaim.equal(params.get("a"), "b");
 		proclaim.equal(params.get("c"), "d");
-		
+
 		proclaim["throws"](function() { new URLSearchParams([[1]]); });
 		proclaim["throws"](function() { new URLSearchParams([[1,2,3]]); });
 	});

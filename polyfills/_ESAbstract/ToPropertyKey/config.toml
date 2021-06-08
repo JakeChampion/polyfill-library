@@ -1,7 +1,7 @@
 dependencies = [
-  "_ESAbstract.ToPrimitive",
-  "_ESAbstract.ToString",
-  "_ESAbstract.Type"
+	"_ESAbstract.ToPrimitive",
+	"_ESAbstract.ToString",
+	"_ESAbstract.Type"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-topropertykey"
 
@@ -22,4 +22,3 @@ op_mob = "*"
 opera = "*"
 safari = "*"
 samsung_mob = "*"
-

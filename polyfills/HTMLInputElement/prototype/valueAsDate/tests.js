@@ -7,7 +7,7 @@ function testValueAsDateGetter(element, cases) {
 		var testCase = cases[i];
 		var actualValue = testCase[0];
 		var expectedValueAsDate = testCase[1];
-		
+
 		element.value = actualValue;
 
 		var	actualValueAsDateA = element.valueAsDate;
@@ -56,7 +56,7 @@ var unsupportedTypes = [
 	"email",
 	// "file", /* value can't be set on file type inputs. */
 	"hidden",
-	"image",	
+	"image",
 	"number",
 	"password",
 	"radio",
@@ -294,4 +294,3 @@ describe("HTMLInputElement.prototype.valueAsDate", function () {
 		]);
 	});
 });
-

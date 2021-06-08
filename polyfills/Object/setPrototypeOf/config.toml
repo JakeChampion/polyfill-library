@@ -1,12 +1,12 @@
 aliases = [ "es6", "es2015" ]
 dependencies = [
-  "_ESAbstract.CreateMethodProperty",
-  "Array.prototype.forEach",
-  "Object.create",
-  "Object.defineProperty",
-  "Object.getPrototypeOf",
-  "Object.getOwnPropertyNames",
-  "Object.getOwnPropertyDescriptor"
+	"_ESAbstract.CreateMethodProperty",
+	"Array.prototype.forEach",
+	"Object.create",
+	"Object.defineProperty",
+	"Object.getPrototypeOf",
+	"Object.getOwnPropertyNames",
+	"Object.getOwnPropertyDescriptor"
 ]
 license = "MIT"
 docs = "https://tc39.github.io/ecma262/#sec-object.setprototypeof"
@@ -25,4 +25,3 @@ opera = "< 34"
 op_mini = "*"
 safari = "< 9"
 firefox_mob = "< 31"
-

@@ -1,14 +1,13 @@
 dependencies = [ "Object.defineProperties" ]
 aliases = [
-  "viewport",
-  "innerHeight",
-  "innerWidth",
-  "pageXOffset",
-  "pageYOffset",
-  "scrollX",
-  "scrollY"
+	"viewport",
+	"innerHeight",
+	"innerWidth",
+	"pageXOffset",
+	"pageYOffset",
+	"scrollX",
+	"scrollY"
 ]
 
 [browsers]
 ie = "6 - 8"
-

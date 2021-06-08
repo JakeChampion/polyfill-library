@@ -1,19 +1,19 @@
 aliases = [
-  "es6",
-  "es2015",
-  "modernizr:es6array",
-  "default-3.4",
-  "default-3.5",
-  "default-3.6",
-  "default"
+	"es6",
+	"es2015",
+	"modernizr:es6array",
+	"default-3.4",
+	"default-3.5",
+	"default-3.6",
+	"default"
 ]
 dependencies = [
-  "_ESAbstract.CreateMethodProperty",
-  "_ESAbstract.IsConstructor",
-  "_ESAbstract.Construct",
-  "_ESAbstract.ArrayCreate",
-  "_ESAbstract.ToString",
-  "_ESAbstract.CreateDataPropertyOrThrow"
+	"_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.IsConstructor",
+	"_ESAbstract.Construct",
+	"_ESAbstract.ArrayCreate",
+	"_ESAbstract.ToString",
+	"_ESAbstract.CreateDataPropertyOrThrow"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-array.of"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of"
@@ -31,4 +31,3 @@ firefox_mob = "<25"
 android = "*"
 ios_saf = "<9"
 samsung_mob = "<5"
-

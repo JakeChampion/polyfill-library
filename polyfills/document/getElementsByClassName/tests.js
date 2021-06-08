@@ -23,4 +23,3 @@ it('supports multiple space-separated classes', function () {
 	proclaim.equal(document.getElementsByClassName('one two').length, 2);
 	document.body.removeChild(div);
 });
-

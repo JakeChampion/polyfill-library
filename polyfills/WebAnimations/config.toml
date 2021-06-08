@@ -1,5 +1,5 @@
 aliases = [
-  "Element.prototype.animate"
+	"Element.prototype.animate"
 ]
 dependencies = [ ]
 license = "Apache-2.0"
@@ -23,4 +23,3 @@ android = "<53"
 [install]
 module = "web-animations-js"
 paths = [ "web-animations.min.js" ]
-

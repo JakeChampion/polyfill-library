@@ -1,12 +1,12 @@
 dependencies = [
-  "_ESAbstract.IsCallable",
-  "_ESAbstract.GetIterator",
-  "_ESAbstract.IteratorStep",
-  "_ESAbstract.IteratorValue",
-  "_ESAbstract.IteratorClose",
-  "_ESAbstract.Get",
-  "_ESAbstract.Call",
-  "_ESAbstract.Type"
+	"_ESAbstract.IsCallable",
+	"_ESAbstract.GetIterator",
+	"_ESAbstract.IteratorStep",
+	"_ESAbstract.IteratorValue",
+	"_ESAbstract.IteratorClose",
+	"_ESAbstract.Get",
+	"_ESAbstract.Call",
+	"_ESAbstract.Type"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-add-entries-from-iterable"
 
@@ -27,4 +27,3 @@ op_mob = "*"
 opera = "*"
 safari = "*"
 samsung_mob = "*"
-

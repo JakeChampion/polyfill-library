@@ -1,11 +1,11 @@
 dependencies = [
-  "Reflect",
-  "_ESAbstract.Call",
-  "_ESAbstract.CreateMethodProperty",
-  "_ESAbstract.Type",
-  "_ESAbstract.ToPropertyKey",
-  "Object.getOwnPropertyDescriptor",
-  "Object.getPrototypeOf"
+	"Reflect",
+	"_ESAbstract.Call",
+	"_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.Type",
+	"_ESAbstract.ToPropertyKey",
+	"Object.getOwnPropertyDescriptor",
+	"Object.getPrototypeOf"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-reflect.get"
 
@@ -26,4 +26,3 @@ op_mob = "<36"
 opera = "*"
 safari = "<10"
 samsung_mob = "<5"
-

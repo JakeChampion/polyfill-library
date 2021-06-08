@@ -5,4 +5,3 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/Document/head"
 [browsers]
 ie = "6 - 8"
 safari = "4"
-

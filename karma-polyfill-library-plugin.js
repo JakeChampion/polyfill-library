@@ -9,7 +9,7 @@ const createPattern = function (path) {
 const fileForMiddlewareToOverride = '/lib/index.js';
 
 const initPolyfillLibraryFile = function (files) {
-    files.unshift(createPattern(path.join(__dirname, fileForMiddlewareToOverride)));
+		files.unshift(createPattern(path.join(__dirname, fileForMiddlewareToOverride)));
 };
 
 function isAPolyfillRequest(request) {
@@ -57,6 +57,6 @@ initPolyfillLibraryFile.$inject = ['config.files'];
 initPolyfillLibraryMiddleware.$inject = ['config'];
 
 module.exports = {
-  'framework:polyfill-library': ['factory', initPolyfillLibraryFile],
-  'middleware:polyfill-library': ['factory', initPolyfillLibraryMiddleware]
+	'framework:polyfill-library': ['factory', initPolyfillLibraryFile],
+	'middleware:polyfill-library': ['factory', initPolyfillLibraryMiddleware]
 };

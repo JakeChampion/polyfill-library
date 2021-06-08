@@ -7,7 +7,7 @@
  * Because of the size it is better to not run these always.
  * Still keeping them here in case date/time issues arise.
  * Currently only has a set of dates for type="week", but more sets can be created.
- * 
+ *
  * To run change the filename to `tests.js`.
  */
 
@@ -16,7 +16,7 @@ function testValueAsDateGetter(element, cases) {
 		var testCase = cases[i];
 		var actualValue = testCase[0];
 		var expectedValueAsDate = testCase[1];
-		
+
 		element.value = actualValue;
 
 		var	actualValueAsDateA = element.valueAsDate;
@@ -65,7 +65,7 @@ var unsupportedTypes = [
 	"email",
 	// "file", /* value can't be set on file type inputs. */
 	"hidden",
-	"image",	
+	"image",
 	"number",
 	"password",
 	"radio",
@@ -1046,7 +1046,7 @@ describe("HTMLInputElement.prototype.valueAsDate", function () {
 			[new Date("1899-12-30T12:00:00.000Z"), "1899-W52"],
 			[new Date("1899-12-31T00:00:00.000Z"), "1899-W52"],
 			[new Date("1899-12-31T12:00:00.000Z"), "1899-W52"],
-			
+
 			[new Date("1900-01-01T00:00:00.000Z"), "1900-W01"],
 			[new Date("1900-01-01T12:00:00.000Z"), "1900-W01"],
 			[new Date("1900-01-02T00:00:00.000Z"), "1900-W01"],
@@ -3516,4 +3516,3 @@ describe("HTMLInputElement.prototype.valueAsDate", function () {
 		]
 	}
 });
-

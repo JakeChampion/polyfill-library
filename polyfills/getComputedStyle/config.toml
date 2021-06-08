@@ -4,4 +4,3 @@ spec = "http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSview-getComputedS
 
 [browsers]
 ie = "6 - 8"
-

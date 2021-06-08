@@ -1,21 +1,21 @@
 aliases = [
-  "es6",
-  "es2015",
-  "Object.getOwnPropertySymbols",
-  "Symbol.for",
-  "Symbol.keyFor"
+	"es6",
+	"es2015",
+	"Object.getOwnPropertySymbols",
+	"Symbol.for",
+	"Symbol.keyFor"
 ]
 dependencies = [
-  "Array.prototype.forEach",
-  "Array.prototype.filter",
-  "Array.prototype.map",
-  "Object.create",
-  "Object.defineProperty",
-  "Object.getOwnPropertyNames",
-  "Object.getOwnPropertyDescriptor",
-  "Object.freeze",
-  "Object.keys",
-  "_ESAbstract.Type"
+	"Array.prototype.forEach",
+	"Array.prototype.filter",
+	"Array.prototype.map",
+	"Object.create",
+	"Object.defineProperty",
+	"Object.getOwnPropertyNames",
+	"Object.getOwnPropertyDescriptor",
+	"Object.freeze",
+	"Object.keys",
+	"_ESAbstract.Type"
 ]
 license = "MIT"
 spec = "http://www.ecma-international.org/ecma-262/6.0/index.html#sec-symbol-objects"
@@ -35,4 +35,3 @@ op_mini = "*"
 samsung_mob = "<5"
 android = "<5.1"
 bb = "10 - *"
-

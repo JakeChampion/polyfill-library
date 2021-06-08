@@ -1,12 +1,12 @@
 /* global CreateMethodProperty */
 (function (nativeparseFloat, global) {
-    var parseFloat = function parseFloat(str) {
-        var string = String(str).trim();
-        var result = nativeparseFloat(string);
-        return result === 0 && string.charAt(0) == '-' ? -0 : result;
-    }
+	var parseFloat = function parseFloat(str) {
+		var string = String(str).trim();
+		var result = nativeparseFloat(string);
+		return result === 0 && string.charAt(0) == '-' ? -0 : result;
+	}
 	try {
-        CreateMethodProperty(global, 'parseFloat', parseFloat);
+		CreateMethodProperty(global, 'parseFloat', parseFloat);
 	} catch (e) {
 		// IE8 throws an error here if we set enumerable to false.
 		// More info on table 2: https://msdn.microsoft.com/en-us/library/dd229916(v=vs.85).aspx

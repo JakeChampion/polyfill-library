@@ -1,10 +1,10 @@
 dependencies = [
-  "DocumentFragment",
-  "document.querySelector",
-  "Object.defineProperties",
-  "Object.getOwnPropertyDescriptor",
-  "Object.defineProperty",
-  "Event"
+	"DocumentFragment",
+	"document.querySelector",
+	"Object.defineProperties",
+	"Object.getOwnPropertyDescriptor",
+	"Object.defineProperty",
+	"Event"
 ]
 license = "BSD-3-Clause"
 spec = "https://html.spec.whatwg.org/multipage/scripting.html#the-template-element"
@@ -28,4 +28,3 @@ android = "<67"
 [install]
 module = "@webcomponents/template"
 paths = [ "template.js" ]
-

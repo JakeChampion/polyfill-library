@@ -1,11 +1,11 @@
 dependencies = [
-  "Function.prototype.bind",
-  "Object.assign",
-  "Object.defineProperties",
-  "Object.defineProperty",
-  "Symbol",
-  "Symbol.iterator",
-  "Symbol.toStringTag"
+	"Function.prototype.bind",
+	"Object.assign",
+	"Object.defineProperties",
+	"Object.defineProperty",
+	"Symbol",
+	"Symbol.iterator",
+	"Symbol.toStringTag"
 ]
 license = "MIT"
 repo = "https://github.com/medikoo/es6-iterator"
@@ -27,4 +27,3 @@ op_mob = "*"
 opera = "*"
 safari = "*"
 samsung_mob = "*"
-

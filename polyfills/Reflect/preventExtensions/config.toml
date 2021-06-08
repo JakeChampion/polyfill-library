@@ -1,8 +1,8 @@
 dependencies = [
-  "Reflect",
-  "Object.preventExtensions",
-  "_ESAbstract.CreateMethodProperty",
-  "_ESAbstract.Type"
+	"Reflect",
+	"Object.preventExtensions",
+	"_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.Type"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-reflect.preventextensions"
 
@@ -23,4 +23,3 @@ op_mob = "<36"
 opera = "*"
 safari = "<10"
 samsung_mob = "<5"
-

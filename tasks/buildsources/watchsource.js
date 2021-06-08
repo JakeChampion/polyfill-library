@@ -59,10 +59,10 @@ processFeatureAndStartServer().then(() => {
 		process.exit(1);
 	}
 });
-	
+
 /**
  * Build all or a single polyfill and (re)start the test server.
- * 
+ *
  * @param {string|undefined} feature An optional feature to build. When omitted all polyfills will be build.
  * @returns {Promise<void>} When done.
  */

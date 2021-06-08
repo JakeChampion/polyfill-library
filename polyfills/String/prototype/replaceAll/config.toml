@@ -10,18 +10,18 @@ aliases = ['es2021']
 #    "Object.defineProperty"
 # ]
 dependencies = [
-    "_ESAbstract.Call",
-    "_ESAbstract.CreateMethodProperty",
-    "_ESAbstract.Get",
-    "_ESAbstract.GetMethod",
-    "_ESAbstract.GetSubstitution",
-    "_ESAbstract.IsCallable",
-    "_ESAbstract.IsRegExp",
-    "_ESAbstract.RequireObjectCoercible",
-    "_ESAbstract.StringIndexOf",
-    "_ESAbstract.ToString",
-    "RegExp.prototype.flags",
-    "Symbol.replace"
+	"_ESAbstract.Call",
+	"_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.Get",
+	"_ESAbstract.GetMethod",
+	"_ESAbstract.GetSubstitution",
+	"_ESAbstract.IsCallable",
+	"_ESAbstract.IsRegExp",
+	"_ESAbstract.RequireObjectCoercible",
+	"_ESAbstract.StringIndexOf",
+	"_ESAbstract.ToString",
+	"RegExp.prototype.flags",
+	"Symbol.replace"
 ]
 
 #### Specification Link
@@ -80,5 +80,5 @@ firefox_mob = "<79"
 samsung_mob = "*"
 
 notes = [
-  "Polyfill for RegExp.prototype[@@replace] is missing. This polyfill won't work fully as expected untill that polyfill has been implemented."
+	"Polyfill for RegExp.prototype[@@replace] is missing. This polyfill won't work fully as expected untill that polyfill has been implemented."
 ]

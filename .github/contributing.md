@@ -42,7 +42,7 @@ For example, the alias `es5` is used to replicate an ECMAScript 5 environment.
 
 ```toml
 aliases = [
-    'es5'
+	'es5'
 ]
 ```
 
@@ -54,8 +54,8 @@ For example:
 
 ```toml
 dependencies = [
-    "Element",
-    "Object.defineProperty"
+	"Element",
+	"Object.defineProperty"
 ]
 ```
 

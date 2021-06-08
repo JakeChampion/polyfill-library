@@ -39,5 +39,3 @@ it('finally returns a done object', function () {
 		done: true
 	});
 });
-
-

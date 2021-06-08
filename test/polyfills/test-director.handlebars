@@ -51,13 +51,13 @@
 				receiveTestResults([feature]);
 			}, timeout);
 		}
-        function postResult(featureName, result) {
-            if (window.top !== this && parent && 'receiveTestResult' in parent) {
-                parent.receiveTestResult(featureName, result, '{{{mode}}}');
-            } else if (window.top !== this && parent && 'postMessage' in parent && 'JSON' in window) {
-                parent.postMessage(JSON.stringify({featureName:featureName, result:result, mode:'{{{mode}}}'}), '*');
-            }
-        }
+		function postResult(featureName, result) {
+			if (window.top !== this && parent && 'receiveTestResult' in parent) {
+				parent.receiveTestResult(featureName, result, '{{{mode}}}');
+			} else if (window.top !== this && parent && 'postMessage' in parent && 'JSON' in window) {
+				parent.postMessage(JSON.stringify({featureName:featureName, result:result, mode:'{{{mode}}}'}), '*');
+			}
+		}
 		function receiveTestResults(featureList, results) {
 			var resultsummary = [], featureName;
 			clearTimeout(timer);
@@ -72,7 +72,7 @@
 					globalresults.total++;
 					for (var i=0,s=featureList.length; i<s; i++) {
 						globalresults.failingSuites[featureList[i]+' (timeout after '+timeout+'ms, '+timeoutMaxRetries+' retries)'] = true;
-                        postResult(featureList[i], 'timeout');
+						postResult(featureList[i], 'timeout');
 					}
 					resultsummary.push('No more retries left');
 				}
@@ -92,11 +92,11 @@
 					}
 				}
 				if (results.testedSuites) {
-                    for (var t in results.testedSuites) {
-                    	featureName = results.testedSuites[t];
+					for (var t in results.testedSuites) {
+						featureName = results.testedSuites[t];
 						postResult(featureName, (results.failingSuites && featureName in results.failingSuites) ? 'fail' : 'pass');
 					}
-                }
+				}
 				timeoutRetryCount = 0;
 				if (results.passed) resultsummary.push('<span class="pass">'+results.passed+' pass</span>');
 				if (results.failed) resultsummary.push('<span class="fail">'+results.failed+' fail</span>');

@@ -3,10 +3,10 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver"
 spec = "https://drafts.csswg.org/resize-observer-1"
 license = "Apache-2.0"
 dependencies = [
-  "WeakMap",
-  "MutationObserver",
-  "requestAnimationFrame",
-  "devicePixelRatio"
+	"WeakMap",
+	"MutationObserver",
+	"requestAnimationFrame",
+	"devicePixelRatio"
 ]
 
 [browsers]

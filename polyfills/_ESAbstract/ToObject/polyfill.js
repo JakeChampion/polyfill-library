@@ -18,5 +18,5 @@ function ToObject(argument) { // eslint-disable-line no-unused-vars
 	if (argument === null || argument === undefined) {
 		throw TypeError();
 	}
-  return Object(argument);
+	return Object(argument);
 }

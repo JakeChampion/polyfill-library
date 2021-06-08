@@ -8,4 +8,3 @@ repo = "https://github.com/w3c/IntersectionObserver"
 [browsers]
 edge = "15"
 edge_mob = "15"
-

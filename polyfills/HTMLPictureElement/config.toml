@@ -21,7 +21,6 @@ android = "<52"
 [install]
 module = "picturefill"
 paths = [
-  "dist/picturefill.min.js",
-  "dist/plugins/mutation/pf.mutation.min.js"
+	"dist/picturefill.min.js",
+	"dist/plugins/mutation/pf.mutation.min.js"
 ]
-

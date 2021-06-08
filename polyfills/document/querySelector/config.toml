@@ -1,10 +1,10 @@
 aliases = [
-  "default-3.3",
-  "default-3.4",
-  "default-3.5",
-  "default-3.6",
-  "default",
-  "blissfuljs"
+	"default-3.3",
+	"default-3.4",
+	"default-3.5",
+	"default-3.6",
+	"default",
+	"blissfuljs"
 ]
 dependencies = [ "Element", "document" ]
 spec = "http://www.w3.org/TR/selectors-api/"
@@ -12,4 +12,3 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector"
 
 [browsers]
 ie = "6 - 8"
-

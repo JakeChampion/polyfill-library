@@ -1,9 +1,9 @@
 dependencies = [
-  "Reflect",
-  "_ESAbstract.CreateMethodProperty",
-  "_ESAbstract.Type",
-  "_ESAbstract.ToPropertyKey",
-  "_ESAbstract.HasProperty"
+	"Reflect",
+	"_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.Type",
+	"_ESAbstract.ToPropertyKey",
+	"_ESAbstract.HasProperty"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-reflect.has"
 
@@ -24,4 +24,3 @@ op_mob = "<36"
 opera = "*"
 safari = "<10"
 samsung_mob = "<5"
-

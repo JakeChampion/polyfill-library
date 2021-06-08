@@ -2,7 +2,7 @@
 
 /**
  * Validate the depedency graph for a list of polyfills.
- * 
+ *
  * @param {Array<Polyfill>} polyfills The list of polyfills.
  * @throws When a dependency is missing.
  */

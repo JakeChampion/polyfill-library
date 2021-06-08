@@ -1,6 +1,6 @@
 dependencies = [
-    "_ESAbstract.CreateMethodProperty",
-    "_ESAbstract.Type"
+	"_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.Type"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-object.preventextensions"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions"
@@ -22,4 +22,3 @@ op_mob = "*"
 opera = "<31"
 safari = "<9"
 samsung_mob = "<5"
-

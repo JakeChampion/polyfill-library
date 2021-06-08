@@ -50,7 +50,7 @@ process.on('message', function (message) {
 
 /**
  * Handle a list of Polyfills.
- * 
+ *
  * @param {{source: string, destination: string, list: Array<string>, onlyBuildFeature: string}} options
  * @returns {Promise<Array<Polyfill>>} The list of processed Polyfills.
  * @throws When a Polyfills fails to be build.
@@ -95,7 +95,7 @@ async function handleList(options) {
 					}
 				};
 			}
-			
+
 			throw {
 				name: "Build error",
 				message: `Error while building: ${path.relative(source, absolute)}`,

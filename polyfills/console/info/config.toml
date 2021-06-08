@@ -7,4 +7,3 @@ docs = "https://developer.mozilla.org/en/docs/Web/API/console"
 ie = "*"
 ie_mob = "<10"
 firefox = "1 - 4"
-

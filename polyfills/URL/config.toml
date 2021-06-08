@@ -1,18 +1,18 @@
 aliases = [
-  "modernizr:urlparser",
-  "blissfuljs",
-  "default-3.4",
-  "default-3.5",
-  "default-3.6",
-  "default",
-  "URLSearchParams"
+	"modernizr:urlparser",
+	"blissfuljs",
+	"default-3.4",
+	"default-3.5",
+	"default-3.6",
+	"default",
+	"URLSearchParams"
 ]
 dependencies = [
-  "Object.defineProperties",
-  "Array.prototype.forEach",
-  "Array.isArray",
-  "Array.from",
-  "Symbol.iterator"
+	"Object.defineProperties",
+	"Array.prototype.forEach",
+	"Array.isArray",
+	"Array.from",
+	"Symbol.iterator"
 ]
 notes = [ "Polyfill requires Object getters so fails in IE <= 8" ]
 license = "CC0-1.0"

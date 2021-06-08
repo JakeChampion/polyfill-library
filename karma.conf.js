@@ -145,7 +145,7 @@ module.exports = async function (config) {
 		config.set(Object.assign(config,{
 			// if true, Karma captures browsers, runs the tests and exits
 			singleRun: true,
-			plugins: [...config.plugins, 
+			plugins: [...config.plugins,
 				'karma-browserstack-launcher'
 			],
 			browserStack: {

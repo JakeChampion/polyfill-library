@@ -6,4 +6,3 @@ spec = "http://dev.w3.org/html5/webstorage/#dom-localstorage"
 [browsers]
 ie = "6 - 7"
 op_mini = "*"
-

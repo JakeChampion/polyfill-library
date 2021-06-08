@@ -1,14 +1,14 @@
 dependencies = [
-  "Array.prototype.forEach",
-  "Element",
-  "Element.prototype.matches",
-  "Function.prototype.bind",
-  "Map",
-  "MutationObserver",
-  "Node.prototype.contains",
-  "Object.defineProperty",
-  "Set",
-  "WeakMap"
+	"Array.prototype.forEach",
+	"Element",
+	"Element.prototype.matches",
+	"Function.prototype.bind",
+	"Map",
+	"MutationObserver",
+	"Node.prototype.contains",
+	"Object.defineProperty",
+	"Set",
+	"WeakMap"
 ]
 license = "W3C"
 spec = "https://html.spec.whatwg.org/multipage/interaction.html#inert"
@@ -27,5 +27,4 @@ chrome = "*"
 ios_saf = "*"
 firefox_mob = "*"
 android = "*"
-op_mob = "*" 
-
+op_mob = "*"

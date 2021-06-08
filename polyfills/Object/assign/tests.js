@@ -116,12 +116,12 @@ it('works as expected', function () {
 	proclaim.strictEqual(String(str), 'qwe');
 	proclaim.strictEqual(str.q, 1);
 	string = 'abcdefghijklmnopqrst';
-    O = {};
-    for (i$ = 0, len$ = (ref$ = string.split('')).length; i$ < len$; ++i$) {
-      x$ = ref$[i$];
-      O[x$] = x$;
-    }
-    proclaim.strictEqual(Object.keys(Object.assign({}, O)).join(''), string);
+		O = {};
+		for (i$ = 0, len$ = (ref$ = string.split('')).length; i$ < len$; ++i$) {
+			x$ = ref$[i$];
+			O[x$] = x$;
+		}
+		proclaim.strictEqual(Object.keys(Object.assign({}, O)).join(''), string);
 });
 
 it('works with window.location', function() {

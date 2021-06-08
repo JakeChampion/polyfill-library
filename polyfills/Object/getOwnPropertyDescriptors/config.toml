@@ -1,13 +1,13 @@
 aliases = [
-    "es2017"
+	"es2017"
 ]
 dependencies = [
-    "Object.getOwnPropertyDescriptor",
-    "Object.defineProperty",
-    "Reflect.ownKeys",
-    "_ESAbstract.ToObject",
-    "_ESAbstract.CreateMethodProperty",
-    "_ESAbstract.CreateDataProperty",
+	"Object.getOwnPropertyDescriptor",
+	"Object.defineProperty",
+	"Reflect.ownKeys",
+	"_ESAbstract.ToObject",
+	"_ESAbstract.CreateMethodProperty",
+	"_ESAbstract.CreateDataProperty",
 ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors"
 

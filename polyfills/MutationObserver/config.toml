@@ -20,4 +20,3 @@ ios_saf = "<7"
 [install]
 module = "mutationobserver-shim"
 paths = [ "MutationObserver.js" ]
-

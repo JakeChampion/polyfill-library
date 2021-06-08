@@ -1,7 +1,7 @@
 aliases = [ ]
 dependencies = [
-  "Element",
-  "Object.defineProperty"
+	"Element",
+	"Object.defineProperty"
 ]
 license = "MIT"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/NonDocumentTypeChildNode/nextElementSibling"

@@ -17,4 +17,3 @@ op_mini = "*"
 op_mob = "< 32"
 safari = "< 9"
 ios_saf = "< 9"
-

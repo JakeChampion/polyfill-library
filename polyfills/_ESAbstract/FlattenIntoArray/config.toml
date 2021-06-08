@@ -1,11 +1,11 @@
 dependencies = [
-  "_ESAbstract.ToString",
-  "_ESAbstract.HasProperty",
-  "_ESAbstract.Get",
-  "_ESAbstract.Call",
-  "_ESAbstract.IsArray",
-  "_ESAbstract.ToLength",
-  "_ESAbstract.CreateDataPropertyOrThrow"
+	"_ESAbstract.ToString",
+	"_ESAbstract.HasProperty",
+	"_ESAbstract.Get",
+	"_ESAbstract.Call",
+	"_ESAbstract.IsArray",
+	"_ESAbstract.ToLength",
+	"_ESAbstract.CreateDataPropertyOrThrow"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-flattenintoarray"
 
@@ -26,4 +26,3 @@ op_mob = "*"
 opera = "*"
 safari = "*"
 samsung_mob = "*"
-

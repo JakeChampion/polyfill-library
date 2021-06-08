@@ -1,15 +1,15 @@
 aliases = [ ]
 dependencies = [
-  "getComputedStyle",
-  "Array.isArray",
-  "Array.prototype.filter",
-  "Array.prototype.forEach",
-  "Array.prototype.indexOf",
-  "Array.prototype.map",
-  "Array.prototype.some",
-  "Event",
-  "Function.prototype.bind",
-  "performance.now"
+	"getComputedStyle",
+	"Array.isArray",
+	"Array.prototype.filter",
+	"Array.prototype.forEach",
+	"Array.prototype.indexOf",
+	"Array.prototype.map",
+	"Array.prototype.some",
+	"Event",
+	"Function.prototype.bind",
+	"performance.now"
 ]
 docs = "https://github.com/w3c/IntersectionObserver/blob/master/explainer.md"
 spec = "http://rawgit.com/w3c/IntersectionObserver/master/index.html"
@@ -32,4 +32,3 @@ op_mob = "< 46"
 opera = "< 45"
 safari = "< 12.2"
 samsung_mob = "< 7"
-

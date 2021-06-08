@@ -1,15 +1,15 @@
 aliases = ["Intl"]
 dependencies = [
-  "Array.prototype.filter",
-  "Array.prototype.indexOf",
-  "Array.prototype.reduce",
-  "Array.prototype.sort",
-  "Intl.getCanonicalLocales",
-  "Object.assign",
-  "Object.defineProperty",
-  "Object.keys",
-  "Set",
-  "WeakMap"
+	"Array.prototype.filter",
+	"Array.prototype.indexOf",
+	"Array.prototype.reduce",
+	"Array.prototype.sort",
+	"Intl.getCanonicalLocales",
+	"Object.assign",
+	"Object.defineProperty",
+	"Object.keys",
+	"Set",
+	"WeakMap"
 ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale"
 license = "MIT"

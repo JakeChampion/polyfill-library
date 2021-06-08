@@ -34,37 +34,37 @@
 				}
 
 				return 28;
-			
+
 			case 3	: /* March	31 */
 				return 31;
-			
+
 			case 4	: /* April	30 */
 				return 30;
-			
+
 			case 5	: /* May	31 */
 				return 31;
-			
+
 			case 6	: /* June	30 */
 				return 30;
-			
+
 			case 7	: /* July	31 */
 				return 31;
-			
+
 			case 8	: /* August	31 */
 				return 31;
-			
+
 			case 9	: /* September	30 */
 				return 30;
-			
+
 			case 10	: /* October	31 */
 				return 31;
-			
+
 			case 11	: /* November	30 */
 				return 30;
-			
+
 			case 12	: /* December	31 */
 				return 31;
-			
+
 			default:
 				return -1;
 		}
@@ -75,7 +75,7 @@
 			if (isLeapYear(year)) {
 				monthLength[2]++;
 			}
-			
+
 			return monthLength[month] + day;
 		}
 
@@ -132,14 +132,14 @@
 						var dOut = new Date(Date.UTC(dYear, dMonth - 1, dDay));
 						dOut.setUTCFullYear(dYear);
 						return dOut;
-					
+
 					case "month":
 						if (!monthRegExp.test(this.value)) {
 							return null;
 						}
 
 						var month = this.value.split("-");
-						
+
 						var mYear = Number(month[0]);
 						var mMonth = Number(month[1]);
 						if (mYear === 0 || mMonth === 0) {
@@ -153,14 +153,14 @@
 						var mOut = new Date(Date.UTC(mYear, mMonth - 1));
 						mOut.setUTCFullYear(mYear);
 						return mOut;
-					
+
 					case "week":
 						if (!weekRegExp.test(this.value)) {
 							return null;
 						}
 
 						var week = this.value.split("-");
-						
+
 						var wYear = Number(week[0]);
 						var wWeek = Number(week[1].slice(1));
 						if (wYear === 0 || wWeek === 0) {
@@ -170,7 +170,7 @@
 						if (wWeek > 53) {
 							return null;
 						}
-						
+
 						var yearHas53Weeks = false;
 						var firstDayOfYear = new Date(Date.UTC(wYear, 0, 1, 0));
 						firstDayOfYear.setUTCFullYear(wYear);
@@ -199,7 +199,7 @@
 						}
 
 						return weekStart;
-				
+
 					case "time":
 						if (!timeRegExp.test(this.value)) {
 							return null;
@@ -218,7 +218,7 @@
 						}
 
 						return new Date(Date.UTC(1970, 0, 1, tHour, tMinute));
-			
+
 					default:
 						return null;
 				}
@@ -248,14 +248,14 @@
 						if (dYear < 1000) {
 							dYear = ("0000" + dYear).slice(-4)
 						}
-						
+
 						this.value = dYear + "-" + dMonth + "-" + dDay;
 						return;
 					} catch(_) {
 						this.value = "";
 						return;
 					}
-				
+
 				case "month":
 					if (d === null) {
 						this.value = "";
@@ -269,14 +269,14 @@
 						if (mYear < 1000) {
 							mYear = ("0000" + mYear).slice(-4)
 						}
-						
+
 						this.value = mYear + "-" + mMonth;
 						return;
 					} catch(_) {
 						this.value = "";
 						return;
 					}
-				
+
 				case "week":
 					if (d === null) {
 						this.value = "";
@@ -292,15 +292,15 @@
 						if (wYear < 1000) {
 							wYear = ("0000" + wYear).slice(-4)
 						}
-						
+
 						this.value = wYear + "-W" + ("0" + weekNo).slice(-2);
 						return;
 					} catch(_) {
 						this.value = "";
 						return;
 					}
-					
-				
+
+
 				case "time":
 					if (d === null) {
 						this.value = "";
@@ -317,7 +317,7 @@
 						this.value = "";
 						return;
 					}
-		
+
 				default:
 					// Do not break on future additions.
 					if (valueAsDateDescriptor && valueAsDateDescriptor.set) {

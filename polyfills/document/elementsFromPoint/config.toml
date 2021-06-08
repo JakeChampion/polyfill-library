@@ -10,7 +10,7 @@ aliases = []
 #    "Object.defineProperty"
 # ]
 dependencies = [
-    "Array.prototype.map"
+	"Array.prototype.map"
 ]
 
 #### Specification Link

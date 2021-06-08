@@ -1,11 +1,11 @@
 aliases = [ ]
 dependencies = [
-  "Object.defineProperty",
-  "Array.prototype.filter",
-  "Array.prototype.includes",
-  "requestAnimationFrame",
-  "performance.now",
-  "Event"
+	"Object.defineProperty",
+	"Array.prototype.filter",
+	"Array.prototype.includes",
+	"requestAnimationFrame",
+	"performance.now",
+	"Event"
 ]
 license = "MIT"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback"
