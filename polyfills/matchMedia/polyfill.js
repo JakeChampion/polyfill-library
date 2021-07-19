@@ -53,12 +53,34 @@
 		}
 	};
 
+	MediaQueryList.prototype.addEventListener = function addEventListener(type, listener) {
+		if (type === 'change') {
+			this.addListener(listener);
+		}
+	};
+
 	MediaQueryList.prototype.removeListener = function removeListener(listener) {
 		var listenerIndex = this.listeners.indexOf(listener);
 
 		if (listenerIndex >= 0) {
 			this.listeners.splice(listenerIndex, 1);
 		}
+	};
+
+	MediaQueryList.prototype.removeEventListener = function removeEventListener(type, listener) {
+		if (type === 'change') {
+			this.removeListener(listener);
+		}
+	};
+
+	MediaQueryList.prototype.dispatchEvent = function dispatchEvent(event) {
+		if (event.type === 'change') {
+			var listeners = this.listeners.slice();
+			for (var i = 0; i < listeners.length(); i++) {
+				listeners[i].call(this, event);
+			}
+		}
+		return true;
 	};
 
 	self.MediaQueryList = MediaQueryList;
