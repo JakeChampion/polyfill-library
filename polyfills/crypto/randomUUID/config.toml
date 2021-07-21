@@ -1,0 +1,35 @@
+#### Aliases
+aliases = []
+
+#### Dependencies
+dependencies = []
+
+#### Specification Link
+# TODO update spec link when it settles
+spec = "https://wicg.github.io/uuid/"
+
+#### Documentation Link
+# TODO update docs link when it settles
+docs = ""
+
+notes = [
+	"Uses progressively better ways to generate UUID's based on browser capabilities"
+]
+
+#### License
+license = "MIT"
+
+#### Browser compatibility
+[browsers]
+android = "<92"
+bb = "*"
+chrome = "<92"
+edge = "<92"
+firefox = "*"
+ios_saf = "*"
+ie = "*"
+ie_mob = "*"
+opera = "*"
+safari = "*"
+firefox_mob = "*"
+samsung_mob = "*"
