@@ -10,6 +10,13 @@
 (function(window, document) {
 'use strict';
 
+var supportedNatively = 'IntersectionObserver' in window &&
+'IntersectionObserverEntry' in window &&
+'intersectionRatio' in window.IntersectionObserverEntry.prototype;
+	
+if (supportedNatively) {
+	return;
+}
 /**
  * An IntersectionObserver registry. This registry exists to hold a strong
  * reference to IntersectionObserver instances currently observing a target
