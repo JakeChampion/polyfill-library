@@ -21,7 +21,7 @@ spec = "https://rawgit.com/caridy/intl-plural-rules-spec/master/index.html"
 repo = "https://github.com/formatjs/formatjs/blob/master/packages/intl-pluralrules/polyfill.js"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/PluralRules"
 notes = [
-	"Locales must be specified separately by prefixing the locale name with `Intl.PluralRules.~locale`, eg `Intl.PluralRules.~locale.en-GB`."
+	"Locales must be specified separately by prefixing the locale name with `Intl.PluralRules.~locale`, eg `Intl.PluralRules.~locale.en`. Intl.PluralRules has no subtag locales, eg `Intl.PluralRules.~locale.en-gb` does not exist."
 ]
 
 [browsers]
