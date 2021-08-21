@@ -20,18 +20,18 @@ notes = [
 #### Browser compatibility
 # Browser compatibility list sourced from Intl.DateTimeFormat.
 [browsers]
-android = "*"
+android = "<76"
 ie = "9 - *"
 ie_mob = "9 - *"
 edge = "<79"
 edge_mob = "<79"
-firefox = "*"
-opera = "*"
+firefox = "<91"
+opera = "<63"
 chrome = "<76"
-safari = "*"
-ios_saf = "*"
-firefox_mob = "*"
-samsung_mob = "*"
+safari = "<14.1"
+ios_saf = "<14.1"
+firefox_mob = "<91"
+samsung_mob = "<12"
 
 [install]
 module = "@formatjs/intl-datetimeformat"
