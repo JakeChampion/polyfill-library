@@ -17,7 +17,11 @@
 	var _url = global.URL || global.webkitURL;
 	if (typeof _url !== 'undefined' && ('createObjectURL' in _url) && ('Blob' in global) && (function () {
 		try {
-			_url.createObjectURL(new global.Blob('', { type: 'text/plain' }));
+			var _objectURL = _url.createObjectURL(new global.Blob('', { type: 'text/plain' }));
+			if (_objectURL.indexOf('blob:') === -1) {
+				// Blob polyfill doesn't produce UUID's.
+				return false
+			}
 			return true;
 		} catch (_) {
 			return false;
@@ -42,10 +46,15 @@
 		return
 	}
 
-	// Math.random produces poor UUID's but is only needed for IE 8,9 and some other very old browsers.
+	// Math.random produces lower quality UUID's but is needed for IE 8,9 and some other very old browsers.
 	global.crypto.randomUUID = function randomUUID() {
 		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-			var r = Math.random() * 16 | 0;
+			var r = 0;
+			while (r === 0) {
+				r = Math.random() * 17 | 0
+			}
+
+			r = r - 1;
 			var v = c == 'x' ? r : (r & 0x3 | 0x8);
 			return v.toString(16);
 		});
