@@ -1,6 +1,6 @@
 (function (global) {
+	// getRandomValues is fast and produces good UUID's
 	if ('crypto' in global && 'getRandomValues' in global.crypto && 'Uint8Array' in global) {
-		// getRandomValues is fast and produces good UUID's
 		global.crypto.randomUUID = function randomUUID() {
 			return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, function (c) {
 				return (c ^ global.crypto.getRandomValues(new global.Uint8Array(1))[0] & 15 >> c / 4).toString(16);
@@ -10,6 +10,7 @@
 		return;
 	}
 
+	// createObjectURL is slower but produces good UUID's (mainly IE 10 as it doesn't require the Blob polyfill but lacks crypto)
 	if (!('crypto' in global)) {
 		global.crypto = {};
 	}
@@ -17,7 +18,7 @@
 	var _url = global.URL || global.webkitURL;
 	if (typeof _url !== 'undefined' && ('createObjectURL' in _url) && ('Blob' in global) && (function () {
 		try {
-			var _objectURL = _url.createObjectURL(new global.Blob('', { type: 'text/plain' }));
+			var _objectURL = _url.createObjectURL(new global.Blob([''], { type: 'text/plain' }));
 			if (_objectURL.indexOf('blob:') === -1) {
 				// Blob polyfill doesn't produce UUID's.
 				return false
@@ -27,9 +28,8 @@
 			return false;
 		}
 	}())) {
-		// createObjectURL is slower but produces good UUID's (mainly IE 10)
 		global.crypto.randomUUID = function randomUUID() {
-			var objURL = _url.createObjectURL(new global.Blob('', { type: 'text/plain' }));
+			var objURL = _url.createObjectURL(new global.Blob([''], { type: 'text/plain' }));
 			if ('revokeObjectURL' in _url) {
 				_url.revokeObjectURL(objURL);
 			}
@@ -42,21 +42,6 @@
 
 			return uuid.toLowerCase();
 		};
-
-		return
 	}
 
-	// Math.random produces lower quality UUID's but is needed for IE 8,9 and some other very old browsers.
-	global.crypto.randomUUID = function randomUUID() {
-		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-			var r = 0;
-			while (r === 0) {
-				r = Math.random() * 17 | 0
-			}
-
-			r = r - 1;
-			var v = c == 'x' ? r : (r & 0x3 | 0x8);
-			return v.toString(16);
-		});
-	};
 }(self));
