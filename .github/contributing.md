@@ -155,6 +155,20 @@ Visit : http://bs-local.com:9876/test?includePolyfills=yes&always=no&feature=<Yo
 Test server listening on port 9876!
 ```
 
+## Updating the list of browsers used during testing on BrowserStack
+
+The files `test/polyfills/browsers.toml` and `test/polyfills/browserstackBrowsers.toml` are used to map the browser names used in polyfill configuration files to their corresponding record on BrowserStack.
+
+To update those files with the latest set of browsers that BrowserStack support, you should run:
+
+`$ npm run update-browserstack-list`
+
+If the command is successful then your terminal will respond:
+
+```
+Updated the browser list for automated testing via BrowserStack.
+```
+
 ## Submitting a Pull Request
 
 Good pull requests, such as patches, improvements, and new features, are a fantastic help. They should remain focused in scope and avoid containing unrelated commits.

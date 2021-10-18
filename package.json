@@ -40,6 +40,7 @@
     "test": "npm run build && npm run test-node && npm run test-node-unit && npm run test-polyfills",
     "prepublishOnly": "npm run build && mv polyfills/__dist __dist && rimraf polyfills && mkdir polyfills && mv __dist polyfills/__dist",
     "create-new-polyfill": "node ./tasks/create-new-polyfill.js",
+    "update-browserstack-list": "node ./tasks/updatebrowserstacklist.js",
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "license": "MIT",
