@@ -962,7 +962,43 @@ browser_version = "88.0"
 os = "Windows"
 os_version = "7"
 browser = "chrome"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "chrome"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "chrome"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "chrome"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "chrome"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "chrome"
+browser_version = "94.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "chrome"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -1490,7 +1526,55 @@ browser_version = "85.0"
 os = "Windows"
 os_version = "7"
 browser = "firefox"
-browser_version = "86.0 beta"
+browser_version = "86.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "firefox"
+browser_version = "87.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "firefox"
+browser_version = "88.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "firefox"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "firefox"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "firefox"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "firefox"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "firefox"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "firefox"
+browser_version = "94.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -1544,7 +1628,43 @@ browser_version = "88.0"
 os = "Windows"
 os_version = "7"
 browser = "edge"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "edge"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "edge"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "edge"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "edge"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "edge"
+browser_version = "94.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "7"
+browser = "edge"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -1958,7 +2078,43 @@ browser_version = "88.0"
 os = "Windows"
 os_version = "8"
 browser = "chrome"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "chrome"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "chrome"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "chrome"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "chrome"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "chrome"
+browser_version = "94.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "chrome"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -2390,7 +2546,55 @@ browser_version = "85.0"
 os = "Windows"
 os_version = "8"
 browser = "firefox"
-browser_version = "86.0 beta"
+browser_version = "86.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "firefox"
+browser_version = "87.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "firefox"
+browser_version = "88.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "firefox"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "firefox"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "firefox"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "firefox"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "firefox"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "firefox"
+browser_version = "94.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -2444,7 +2648,43 @@ browser_version = "88.0"
 os = "Windows"
 os_version = "8"
 browser = "edge"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "edge"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "edge"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "edge"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "edge"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "edge"
+browser_version = "94.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8"
+browser = "edge"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -2858,7 +3098,43 @@ browser_version = "88.0"
 os = "Windows"
 os_version = "8.1"
 browser = "chrome"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "chrome"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "chrome"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "chrome"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "chrome"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "chrome"
+browser_version = "94.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "chrome"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -3290,7 +3566,55 @@ browser_version = "85.0"
 os = "Windows"
 os_version = "8.1"
 browser = "firefox"
-browser_version = "86.0 beta"
+browser_version = "86.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "firefox"
+browser_version = "87.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "firefox"
+browser_version = "88.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "firefox"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "firefox"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "firefox"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "firefox"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "firefox"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "firefox"
+browser_version = "94.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -3344,7 +3668,43 @@ browser_version = "88.0"
 os = "Windows"
 os_version = "8.1"
 browser = "edge"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "edge"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "edge"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "edge"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "edge"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "edge"
+browser_version = "94.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "8.1"
+browser = "edge"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -3656,7 +4016,43 @@ browser_version = "88.0"
 os = "Windows"
 os_version = "10"
 browser = "chrome"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "chrome"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "chrome"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "chrome"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "chrome"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "chrome"
+browser_version = "94.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "chrome"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -3746,7 +4142,43 @@ browser_version = "88.0"
 os = "Windows"
 os_version = "10"
 browser = "edge"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "edge"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "edge"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "edge"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "edge"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "edge"
+browser_version = "94.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "edge"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "Windows"
@@ -4076,7 +4508,55 @@ browser_version = "85.0"
 os = "Windows"
 os_version = "10"
 browser = "firefox"
-browser_version = "86.0 beta"
+browser_version = "86.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "firefox"
+browser_version = "87.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "firefox"
+browser_version = "88.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "firefox"
+browser_version = "89.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "firefox"
+browser_version = "90.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "firefox"
+browser_version = "91.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "firefox"
+browser_version = "92.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "firefox"
+browser_version = "93.0"
+
+[[browsers]]
+os = "Windows"
+os_version = "10"
+browser = "firefox"
+browser_version = "94.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -7616,7 +8096,43 @@ browser_version = "88.0"
 os = "OS X"
 os_version = "El Capitan"
 browser = "chrome"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "El Capitan"
+browser = "chrome"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "El Capitan"
+browser = "chrome"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "El Capitan"
+browser = "chrome"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "El Capitan"
+browser = "chrome"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "El Capitan"
+browser = "chrome"
+browser_version = "94.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "El Capitan"
+browser = "chrome"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -8450,7 +8966,43 @@ browser_version = "88.0"
 os = "OS X"
 os_version = "Sierra"
 browser = "chrome"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "chrome"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "chrome"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "chrome"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "chrome"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "chrome"
+browser_version = "94.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "chrome"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -8504,7 +9056,43 @@ browser_version = "88.0"
 os = "OS X"
 os_version = "Sierra"
 browser = "edge"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "edge"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "edge"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "edge"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "edge"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "edge"
+browser_version = "94.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "edge"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -8966,7 +9554,55 @@ browser_version = "85.0"
 os = "OS X"
 os_version = "Sierra"
 browser = "firefox"
-browser_version = "86.0 beta"
+browser_version = "86.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "firefox"
+browser_version = "87.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "firefox"
+browser_version = "88.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "firefox"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "firefox"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "firefox"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "firefox"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "firefox"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Sierra"
+browser = "firefox"
+browser_version = "94.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -9344,7 +9980,43 @@ browser_version = "88.0"
 os = "OS X"
 os_version = "High Sierra"
 browser = "chrome"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "chrome"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "chrome"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "chrome"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "chrome"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "chrome"
+browser_version = "94.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "chrome"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -9398,7 +10070,43 @@ browser_version = "88.0"
 os = "OS X"
 os_version = "High Sierra"
 browser = "edge"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "edge"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "edge"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "edge"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "edge"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "edge"
+browser_version = "94.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "edge"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -9860,7 +10568,55 @@ browser_version = "85.0"
 os = "OS X"
 os_version = "High Sierra"
 browser = "firefox"
-browser_version = "86.0 beta"
+browser_version = "86.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "firefox"
+browser_version = "87.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "firefox"
+browser_version = "88.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "firefox"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "firefox"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "firefox"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "firefox"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "firefox"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "High Sierra"
+browser = "firefox"
+browser_version = "94.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -10238,7 +10994,43 @@ browser_version = "88.0"
 os = "OS X"
 os_version = "Mojave"
 browser = "chrome"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "chrome"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "chrome"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "chrome"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "chrome"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "chrome"
+browser_version = "94.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "chrome"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -10292,7 +11084,43 @@ browser_version = "88.0"
 os = "OS X"
 os_version = "Mojave"
 browser = "edge"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "edge"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "edge"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "edge"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "edge"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "edge"
+browser_version = "94.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "edge"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -10754,7 +11582,55 @@ browser_version = "85.0"
 os = "OS X"
 os_version = "Mojave"
 browser = "firefox"
-browser_version = "86.0 beta"
+browser_version = "86.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "firefox"
+browser_version = "87.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "firefox"
+browser_version = "88.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "firefox"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "firefox"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "firefox"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "firefox"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "firefox"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Mojave"
+browser = "firefox"
+browser_version = "94.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -11054,7 +11930,43 @@ browser_version = "88.0"
 os = "OS X"
 os_version = "Catalina"
 browser = "chrome"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "chrome"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "chrome"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "chrome"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "chrome"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "chrome"
+browser_version = "94.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "chrome"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -11108,7 +12020,43 @@ browser_version = "88.0"
 os = "OS X"
 os_version = "Catalina"
 browser = "edge"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "edge"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "edge"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "edge"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "edge"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "edge"
+browser_version = "94.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "edge"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -11570,7 +12518,55 @@ browser_version = "85.0"
 os = "OS X"
 os_version = "Catalina"
 browser = "firefox"
-browser_version = "86.0 beta"
+browser_version = "86.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "firefox"
+browser_version = "87.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "firefox"
+browser_version = "88.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "firefox"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "firefox"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "firefox"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "firefox"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "firefox"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Catalina"
+browser = "firefox"
+browser_version = "94.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -11870,7 +12866,43 @@ browser_version = "88.0"
 os = "OS X"
 os_version = "Big Sur"
 browser = "chrome"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "chrome"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "chrome"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "chrome"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "chrome"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "chrome"
+browser_version = "94.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "chrome"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "OS X"
@@ -11924,13 +12956,49 @@ browser_version = "88.0"
 os = "OS X"
 os_version = "Big Sur"
 browser = "edge"
-browser_version = "89.0 beta"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "edge"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "edge"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "edge"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "edge"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "edge"
+browser_version = "94.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "edge"
+browser_version = "95.0 beta"
 
 [[browsers]]
 os = "OS X"
 os_version = "Big Sur"
 browser = "safari"
-browser_version = "14.0"
+browser_version = "14.1"
 
 [[browsers]]
 os = "OS X"
@@ -12386,7 +13454,76 @@ browser_version = "85.0"
 os = "OS X"
 os_version = "Big Sur"
 browser = "firefox"
-browser_version = "86.0 beta"
+browser_version = "86.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "firefox"
+browser_version = "87.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "firefox"
+browser_version = "88.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "firefox"
+browser_version = "89.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "firefox"
+browser_version = "90.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "firefox"
+browser_version = "91.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "firefox"
+browser_version = "92.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "firefox"
+browser_version = "93.0"
+
+[[browsers]]
+os = "OS X"
+os_version = "Big Sur"
+browser = "firefox"
+browser_version = "94.0 beta"
+
+[[browsers]]
+os = "ios"
+os_version = "15"
+browser = "iphone"
+device = "iPhone XS"
+real_mobile = true
+
+[[browsers]]
+os = "ios"
+os_version = "15"
+browser = "iphone"
+device = "iPhone 11 Pro"
+real_mobile = true
+
+[[browsers]]
+os = "ios"
+os_version = "15"
+browser = "ipad"
+device = "iPad Pro 12.9 2018"
+real_mobile = true
 
 [[browsers]]
 os = "ios"
@@ -12448,7 +13585,21 @@ real_mobile = true
 os = "ios"
 os_version = "14"
 browser = "ipad"
+device = "iPad Pro 12.9 2021"
+real_mobile = true
+
+[[browsers]]
+os = "ios"
+os_version = "14"
+browser = "ipad"
 device = "iPad Pro 12.9 2020"
+real_mobile = true
+
+[[browsers]]
+os = "ios"
+os_version = "14"
+browser = "ipad"
+device = "iPad Pro 11 2021"
 real_mobile = true
 
 [[browsers]]
@@ -12719,6 +13870,48 @@ real_mobile = true
 
 [[browsers]]
 os = "android"
+os_version = "11.0"
+browser = "android"
+device = "Samsung Galaxy S21 Ultra"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "11.0"
+browser = "android"
+device = "Samsung Galaxy S21"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "11.0"
+browser = "android"
+device = "Samsung Galaxy S21 Plus"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "11.0"
+browser = "android"
+device = "Google Pixel 5"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "11.0"
+browser = "android"
+device = "Google Pixel 4"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "11.0"
+browser = "android"
+device = "OnePlus 9"
+real_mobile = true
+
+[[browsers]]
+os = "android"
 os_version = "10.0"
 browser = "android"
 device = "Samsung Galaxy S20"
@@ -12791,6 +13984,13 @@ real_mobile = true
 os = "android"
 os_version = "10.0"
 browser = "android"
+device = "Motorola Moto G9 Play"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "10.0"
+browser = "android"
 device = "OnePlus 8"
 real_mobile = true
 
@@ -12799,6 +13999,13 @@ os = "android"
 os_version = "10.0"
 browser = "android"
 device = "OnePlus 7T"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "10.0"
+browser = "android"
+device = "Xiaomi Redmi Note 9"
 real_mobile = true
 
 [[browsers]]
@@ -12952,6 +14159,13 @@ real_mobile = true
 os = "android"
 os_version = "9.0"
 browser = "android"
+device = "Huawei P30"
+real_mobile = true
+
+[[browsers]]
+os = "android"
+os_version = "9.0"
+browser = "android"
 device = "Samsung Galaxy Tab S6"
 real_mobile = true
 
@@ -13013,6 +14227,13 @@ real_mobile = true
 
 [[browsers]]
 os = "android"
+os_version = "8.0"
+browser = "android"
+device = "Samsung Galaxy Tab S3"
+real_mobile = true
+
+[[browsers]]
+os = "android"
 os_version = "7.1"
 browser = "android"
 device = "Samsung Galaxy Note 8"
@@ -13044,13 +14265,6 @@ os = "android"
 os_version = "7.0"
 browser = "android"
 device = "Samsung Galaxy S8"
-real_mobile = true
-
-[[browsers]]
-os = "android"
-os_version = "7.0"
-browser = "android"
-device = "Samsung Galaxy Tab S3"
 real_mobile = true
 
 [[browsers]]
@@ -13097,9 +14311,9 @@ real_mobile = true
 
 [[browsers]]
 os = "android"
-os_version = "4.4"
+os_version = "12 Beta"
 browser = "android"
-device = "Samsung Galaxy Note 4"
+device = "Google Pixel 5"
 real_mobile = true
 
 [[browsers]]
@@ -13118,14 +14332,7 @@ real_mobile = true
 
 [[browsers]]
 os = "android"
-os_version = "11.0"
+os_version = "5.1"
 browser = "android"
-device = "Google Pixel 5"
-real_mobile = true
-
-[[browsers]]
-os = "android"
-os_version = "11.0"
-browser = "android"
-device = "Google Pixel 4"
+device = "Google Nexus 9"
 real_mobile = true
