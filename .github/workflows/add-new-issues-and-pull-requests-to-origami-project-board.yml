@@ -1,7 +1,7 @@
 name: Add new issues and pull requests to Origami Project Board
 on:
   - issues
-  - pull_request
+  - pull_request_target
 
 jobs:
   origami_project_board_job:
