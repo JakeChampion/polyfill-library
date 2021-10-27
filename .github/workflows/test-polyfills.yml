@@ -1,38 +1,86 @@
 name: Test Polyfills
-on: [pull_request]
+on:
+  pull_request:
+  repository_dispatch:
+    types: [ok-to-test-command]
+
+concurrency:
+  group: Test Polyfills
+  cancel-in-progress: true
 
 jobs:
-  check-for-other-pull-requests-running-this-workflow:
+  # Branch-based pull request
+  integration-trusted:
     runs-on: ubuntu-latest
-    if: ${{ github.pull_request.head.repo.fork == false}}
-    steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@89f242ee29e10c53a841bfe71cc0ce7b2f065abc # pin@0.8.0
-        with:
-          access_token: ${{ github.token }}
-      - name: Turnstyle
-        uses: softprops/turnstyle@a714535c65d622af7010e609960ccf0ea5001e3f # pin@v1
-        with:
-          same-branch-only: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  test:
-    runs-on: ubuntu-latest
-    needs: [ check-for-other-pull-requests-running-this-workflow ]
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
     strategy:
       max-parallel: 1
       fail-fast: false
       matrix:
         browser: [ ie, android, chrome, edge, firefox, ios, safari ]
-
     steps:
-      - uses: actions/checkout@v2
+
+    - name: Branch based PR checkout
+      uses: actions/checkout@v2
+
+    # <insert integration tests needing secrets>
+    - uses: actions/setup-node@v2.2.0
+      with:
+        node-version: 12.x
+        cache: 'npm'
+
+    - name: env
+      run: echo "commit-sha=$(echo ${GITHUB_SHA})" >> $GITHUB_ENV
+
+    - run: npm ci
+
+    - name: cache __dist
+      id: cache-dist
+      uses: actions/cache@v2.1.5
+      with:
+        path: polyfills/__dist
+        key: cache--dist--${{ env.commit-sha }}
+
+    - run: npm run build
+      if: steps.cache-dist.outputs.cache-hit != 'true'
+
+    - run: echo "${{ matrix.browser }}" > $GITHUB_WORKSPACE/witness-${{ matrix.browser }}
+    - name: record ${{ matrix.browser }} witness
+      id: witness
+      uses: actions/cache@v2.1.5
+      with:
+        path: $GITHUB_WORKSPACE/witness-${{ matrix.browser }}
+        key: witness--${{ matrix.browser }}--${{ env.commit-sha }}
+
+    - name: Test ${{ matrix.browser }}
+      run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js
+        test-modified-only targeted director browser=${{ matrix.browser }}
+      if: steps.witness.outputs.cache-hit != 'true'
+      timeout-minutes: 30
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+
+  # Repo owner has commented /ok-to-test on a (fork-based) pull request
+  integration-fork:
+    runs-on: ubuntu-latest
+    if: 
+      github.event_name == 'repository_dispatch' &&
+      github.event.client_payload.slash_command.sha != '' &&
+      contains(github.event.client_payload.pull_request.head.sha, github.event.client_payload.slash_command.sha)
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        browser: [ ie, android, chrome, edge, firefox, ios, safari ]
+    steps:
+      # Check out merge commit
+      - name: Fork based /ok-to-test checkout
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          ref: 'refs/pull/${{ github.event.client_payload.pull_request.number }}/merge'
 
-      - run: git remote add upstream https://github.com/Financial-Times/polyfill-library.git
-      - run: git fetch upstream master
-
+      # <insert integration tests needing secrets>
       - uses: actions/setup-node@v2.2.0
         with:
           node-version: 12.x
@@ -69,3 +117,41 @@ jobs:
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+
+  update-check:
+    needs: [integration-fork]
+    runs-on: ubuntu-latest
+    steps:
+    # Update check run called "integration-fork"
+    - uses: actions/github-script@v1
+      id: update-check-run
+      if: ${{ always() }}
+      env:
+        number: ${{ github.event.client_payload.pull_request.number }}
+        job: ${{ github.job }}
+        # Conveniently, job.status maps to https://developer.github.com/v3/checks/runs/#update-a-check-run
+        conclusion: ${{ needs.integration-fork.result }}
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const { data: pull } = await github.pulls.get({
+            ...context.repo,
+            pull_number: process.env.number
+          });
+          const ref = pull.head.sha;
+
+          const { data: checks } = await github.checks.listForRef({
+            ...context.repo,
+            ref
+          });
+
+          const check = checks.check_runs.filter(c => c.name === process.env.job);
+
+          const { data: result } = await github.checks.update({
+            ...context.repo,
+            check_run_id: check[0].id,
+            status: 'completed',
+            conclusion: process.env.conclusion
+          });
+
+          return result;
