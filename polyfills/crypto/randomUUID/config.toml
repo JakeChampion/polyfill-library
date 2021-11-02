@@ -9,7 +9,7 @@ dependencies = []
 spec = "https://wicg.github.io/uuid/"
 
 #### Documentation Link
-docs = "https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues"
+docs = "https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID"
 
 notes = [
 	"Uses progressively better ways to generate UUID's based on browser capabilities"
@@ -24,11 +24,11 @@ android = "18 - 91"
 bb = "*"
 chrome = "11 - 91"
 edge = "12 - 91"
-firefox = "26 - *"
+firefox = "26 - 94"
 ios_saf = "6.1 - *"
 ie = "10 - *"
 ie_mob = "10 - *"
 opera = "15 - *"
 safari = "6.1 - *"
-firefox_mob = "26 - *"
+firefox_mob = "26 - 94"
 samsung_mob = "*"
