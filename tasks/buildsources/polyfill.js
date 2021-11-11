@@ -15,6 +15,7 @@ const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
 
 const validateSource = require('./validate-source');
+const semver = require('semver');
 
 /**
  * Polyfill represents a single polyfill directory.
@@ -156,6 +157,18 @@ module.exports = class Polyfill {
 						const browserSupport = {};
 						for (const browser of supportedBrowsers)  browserSupport[browser] = "*";
 						throw new Error("Internal polyfill called " + this.name + " is not targeting all supported browsers correctly. It should be: \n" + TOML.stringify(browserSupport));
+					}
+				}
+
+				if (this.config.browsers) {
+					for (const browser of Object.keys(this.config.browsers)) {
+						// Must parse as a semver range.
+						// This throws on invalid ranges, which in turn fails the build, acting as a smell.
+						try {
+							new semver.Range(this.config.browsers[browser])
+						} catch (_) {
+							throw new Error("Polyfill " + this.name + " has an incorrect version range for " + browser + ": " + this.config.browsers[browser]);
+						}
 					}
 				}
 
