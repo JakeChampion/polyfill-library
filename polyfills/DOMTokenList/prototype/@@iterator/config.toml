@@ -1,4 +1,10 @@
-dependencies = [ "_ArrayIterator", "Symbol.iterator", "DOMTokenList" ]
+dependencies = [
+	"_ArrayIterator",
+	"Symbol.iterator",
+	"DOMTokenList",
+	"Element.prototype.classList"
+]
+
 license = "MIT"
 spec = "https://dom.spec.whatwg.org/#domtokenlist"
 
