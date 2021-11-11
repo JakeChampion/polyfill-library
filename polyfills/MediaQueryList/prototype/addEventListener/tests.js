@@ -11,6 +11,10 @@ it("should define the EventTarget methods on the MediaQueryList prototype", func
 // We can only test these behaviors with native `matchMedia` as iframes don't trigger resize events.
 if (typeof (self.matchMedia('(min-width: 1px)').listeners) === 'undefined') {
 	describe('WPT (with native matchMedia)', function () {
+		// Uses network calls in iframes, this can fail.
+		// Adding retries reduces test flakiness.
+		this.retries(2);
+
 		var IFRAME_DEFAULT_SIZE = "200";
 		var iframes = {};
 

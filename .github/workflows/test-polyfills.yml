@@ -125,7 +125,7 @@ jobs:
           cache: 'npm'
 
       - name: env
-        run: echo "commit-sha=$(echo ${GITHUB_SHA})" >> $GITHUB_ENV
+        run: echo "commit-sha=${{github.event.client_payload.slash_command.sha}}" >> $GITHUB_ENV
 
       - run: npm ci
 
