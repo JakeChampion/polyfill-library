@@ -3,6 +3,7 @@ on:
   pull_request:
   repository_dispatch:
     types: [ok-to-test-command]
+  workflow_dispatch:
 
 jobs:
   # Branch-based pull request
@@ -60,14 +61,14 @@ jobs:
   update-check-trusted:
     needs: [integration-trusted]
     runs-on: ubuntu-latest
-    if: ${{ always() }}
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && ${{ always() }}
     steps:
       # Update check run called "test-polyfills"
       - uses: actions/github-script@v1
         id: update-check-run
         env:
           number: ${{ github.event.client_payload.pull_request.number }}
-          job: "test-polyfills"
+          job: ${{ github.job }}
           # Conveniently, job.status maps to https://developer.github.com/v3/checks/runs/#update-a-check-run
           conclusion: ${{ needs.integration-trusted.result }}
         with:
@@ -155,14 +156,17 @@ jobs:
   update-check-fork:
     needs: [integration-fork]
     runs-on: ubuntu-latest
-    if: ${{ always() }}
+    if: ${{ always() }} &&
+      github.event_name == 'repository_dispatch' &&
+      github.event.client_payload.slash_command.sha != '' &&
+      contains(github.event.client_payload.pull_request.head.sha, github.event.client_payload.slash_command.sha)
     steps:
       # Update check run called "test-polyfills"
       - uses: actions/github-script@v1
         id: update-check-run
         env:
           number: ${{ github.event.client_payload.pull_request.number }}
-          job: "test-polyfills"
+          job: ${{ github.job }}
           # Conveniently, job.status maps to https://developer.github.com/v3/checks/runs/#update-a-check-run
           conclusion: ${{ needs.integration-fork.result }}
         with:
