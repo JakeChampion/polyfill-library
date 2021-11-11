@@ -39,6 +39,10 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 # Third-party code can use any license which is listed on https://opensource.org/licenses
 license = "MIT"
 
+notes = [
+	"Polyfill for RegExp.prototype[@@replace] is missing. This polyfill won't work fully as expected untill that polyfill has been implemented."
+]
+
 #### Browser compatibility
 # List what browsers require the polyfill.
 # You can check the related Mozilla Developer Network (MDN) page for the compatibility, they also have their browser compatibility data on GitHub.
@@ -78,7 +82,3 @@ op_mini = "*"
 safari = "<13.1"
 firefox_mob = "<79"
 samsung_mob = "*"
-
-notes = [
-	"Polyfill for RegExp.prototype[@@replace] is missing. This polyfill won't work fully as expected untill that polyfill has been implemented."
-]
