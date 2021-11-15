@@ -155,6 +155,28 @@ Visit : http://bs-local.com:9876/test?includePolyfills=yes&always=no&feature=<Yo
 Test server listening on port 9876!
 ```
 
+### Running Tests in Github Actions on your fork.
+
+If you have appropriate credentials for Browserstack you can configure your fork to run tests.
+Only you will have access to these credentials.
+
+**Although fully testing your changes before opening a pull request can speed up review it not a requirement.**
+
+1. visit `Settings` > `Actions` on github and make sure actions are allowed to run.
+2. visit `Settings` > `Secrets` on github and add credentials for Browserstack.
+3. visit `Actions` on github and disable all workflows except `Test From Fork`.
+
+These credentials are required :
+- `BROWSERSTACK_ACCESS_KEY`
+- `BROWSERSTACK_USERNAME`
+
+When you want to verify your changes just push to your fork and visit `Actions`.
+Select `Test From Fork` and click `Run workflow` selecting the branch where you pushed your changes.
+
+Notes :
+- tests can take a long time to run (>1h for a full run)
+- multiple concurrent test runs will probably use too many Browserstack runners causing errors.
+
 ## Updating the list of browsers used during testing on BrowserStack
 
 The files `test/polyfills/browsers.toml` and `test/polyfills/browserstackBrowsers.toml` are used to map the browser names used in polyfill configuration files to their corresponding record on BrowserStack.

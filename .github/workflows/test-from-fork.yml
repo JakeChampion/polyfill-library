@@ -1,0 +1,51 @@
+name: Test From Fork
+on:
+  workflow_dispatch:
+
+# Simplified workflow of ./test-polyfills.yml
+# Intended to be used by contributors on their forks.
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        browser: [ ie, android, chrome, edge, firefox, ios, safari ]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v2.2.0
+        with:
+          node-version: 12.x
+          cache: 'npm'
+
+      - name: env
+        run: echo "commit-sha=$(echo ${GITHUB_SHA})" >> $GITHUB_ENV
+
+      - run: npm ci
+
+      - name: cache __dist
+        id: cache-dist
+        uses: actions/cache@v2.1.5
+        with:
+          path: polyfills/__dist
+          key: cache--dist--${{ env.commit-sha }}
+
+      - run: |
+          npm run build
+          npm run lint
+          npm run test-library
+        if: steps.cache-dist.outputs.cache-hit != 'true'
+
+      - name: Test ${{ matrix.browser }}
+        run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js
+          test-modified-only targeted director browser=${{ matrix.browser }}
+        timeout-minutes: 30
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
