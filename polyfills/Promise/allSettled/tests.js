@@ -1,6 +1,22 @@
 
 /* globals proclaim, Promise */
 
+function makeArrayIterator (array) {
+	var i = 0;
+	var iterator = {};
+	// polyfill for `Symbol.iterator` has been provided as part of `IterableToList`
+	iterator[self.Symbol.iterator] = function () {
+		return {
+			next: function() {
+				return i >= array.length
+					? { done: true }
+					: { value: array[i++] };
+			}
+		};
+	};
+	return iterator;
+}
+
 it('is a function', function () {
 	proclaim.isFunction(Promise.allSettled);
 });
@@ -34,27 +50,26 @@ describe('allSettled', function () {
 		});
 	});
 
-	if ('Symbol' in self && 'iterator' in self.Symbol && !!Array.prototype[self.Symbol.iterator]) {
-		it("resolves to an array of results when passed an iterator", function () {
-			var promises = [1, Promise.resolve(2), Promise.reject(3)];
-			return Promise.allSettled(promises[self.Symbol.iterator]()).then(function (results) {
-				proclaim.deepStrictEqual(results, [
-					{
-						status: 'fulfilled',
-						value: 1
-					},
-					{
-						status: 'fulfilled',
-						value: 2
-					},
-					{
-						status: 'rejected',
-						reason: 3
-					}
-				]);
-			});
+	it("resolves to an array of results when passed an iterator", function () {
+		var promises = [1, Promise.resolve(2), Promise.reject(3)];
+		var iterator = makeArrayIterator(promises);
+		return Promise.allSettled(iterator).then(function (results) {
+			proclaim.deepStrictEqual(results, [
+				{
+					status: 'fulfilled',
+					value: 1
+				},
+				{
+					status: 'fulfilled',
+					value: 2
+				},
+				{
+					status: 'rejected',
+					reason: 3
+				}
+			]);
 		});
-	}
+	});
 
 	it("rejects with a TypeError for input that is not iterable", function () {
 		return Promise.allSettled(0)['catch'](function (err) {
