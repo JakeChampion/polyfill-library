@@ -60,7 +60,7 @@
     "from2-string": "^1.1.0",
     "graceful-fs": "^4.1.10",
     "merge2": "^1.0.3",
-    "mnemonist": "^0.38.0",
+    "mnemonist": "^0.38.5",
     "stream-from-promise": "^1.0.0",
     "stream-to-string": "^1.1.0",
     "toposort": "^2.0.2"
