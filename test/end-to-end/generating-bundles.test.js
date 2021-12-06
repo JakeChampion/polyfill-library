@@ -26,4 +26,25 @@ describe("polyfill-library", function () {
 
 		assert.deepStrictEqual(bundle1, bundle2);
 	});
+
+	it('should not error - issue 1137', async () => {
+		await polyfillLibrary.getPolyfillString({
+			features: {
+				'constructor': {},
+				'__defineGetter__': {},
+				'__defineSetter__': {},
+				'hasOwnProperty': {},
+				'__lookupGetter__': {},
+				'__lookupSetter__': {},
+				'isPrototypeOf': {},
+				'propertyIsEnumerable': {},
+				'toString': {},
+				'valueOf': {},
+				'__proto__': {},
+				'toLocaleString': {},
+			},
+			uaString: 'other/0.0.0',
+			unknown: 'polyfill'
+		});
+	});
 });

@@ -2,7 +2,7 @@
 
 "use strict";
 
-const assert = require('proclaim');
+const {assert} = require('chai');
 const mockery = require('mockery');
 const setsToArrays = require('../../utils/sets-to-arrays');
 
@@ -283,6 +283,32 @@ describe("polyfillio", () => {
 	});
 
 	describe('.getPolyfills()', () => {
+
+		it('issue 1137 - does not error for properties which exist directly on Object.prototype', async () => {
+			const polyfillio = require('../../../lib');
+			const options = {
+				features: {
+					'constructor': {},
+					'__defineGetter__': {},
+					'__defineSetter__': {},
+					'hasOwnProperty': {},
+					'__lookupGetter__': {},
+					'__lookupSetter__': {},
+					'isPrototypeOf': {},
+					'propertyIsEnumerable': {},
+					'toString': {},
+					'valueOf': {},
+					'__proto__': {},
+					'toLocaleString': {},
+				},
+				uaString: 'ie/9'
+			};
+			try {
+				await polyfillio.getPolyfills(options);
+			} catch (error) {
+				assert.fail(error, undefined, `Expected 'await polyfillio.getPolyfills(options)' to not throw an error but it threw "${error.message}"  -- ${error.stack}`)
+			}
+		});
 
 		describe('when options.uaString is not set', () => {
 			it('calls UA with options.uAString set to an empty string', () => {

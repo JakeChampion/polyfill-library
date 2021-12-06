@@ -78,15 +78,16 @@
     "@iarna/toml": "^2.2.3",
     "@juggle/resize-observer": "^3.3.1",
     "@webcomponents/template": "^1.4.0",
-    "Base64": "^1.0.0",
     "abort-controller": "^3.0.0",
     "apicache": "^1.5.3",
     "array.prototype.flatmap": "^1.2.1",
     "audio-context-polyfill": "^1.0.0",
     "auto-changelog": "^2.2.1",
+    "Base64": "^1.0.0",
     "bluebird": "^3.7.2",
     "browserstack": "1.6.1",
     "browserstack-local": "^1.4.5",
+    "chai": "^4.3.4",
     "cli-color": "^2.0.0",
     "compression": "^1.7.4",
     "current-script-polyfill": "^1.0.0",
@@ -137,6 +138,7 @@
     "yaml": "^1.1.0"
   },
   "volta": {
-    "node": "12.22.3"
+    "node": "8.17.0",
+    "npm": "6.13.4"
   }
 }
