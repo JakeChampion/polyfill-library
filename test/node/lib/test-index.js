@@ -1,6 +1,6 @@
-
 'use strict';
-const assert = require('proclaim');
+
+const {assert} = require('chai');
 const appVersion = require("../../../package.json").version;
 const setsToArrays = require('../../utils/sets-to-arrays');
 
@@ -309,8 +309,8 @@ describe("polyfillio", function () {
 			});
 
 			const buf_a = [];
-			
-			
+
+
 			s_a.on('data', chunk => buf_a.push(chunk));
 			s_a.on('end', () => {
 				bundle_a = buf_a.join('');
@@ -325,7 +325,7 @@ describe("polyfillio", function () {
 				});
 
 				const buf_b = [];
-			
+
 				s_b.on('data', chunk => buf_b.push(chunk));
 				s_b.on('end', () => {
 					bundle_b = buf_b.join('');

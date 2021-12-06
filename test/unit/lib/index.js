@@ -1,6 +1,4 @@
-
-
-"use strict";
+'use strict';
 
 const {assert} = require('chai');
 const mockery = require('mockery');

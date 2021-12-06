@@ -1,6 +1,6 @@
-
 'use strict';
-const assert = require('proclaim');
+
+const {assert} = require('chai');
 const { polyfillsWithTestsFrom } = require('../../utils/modified-polyfills-with-tests');
 
 

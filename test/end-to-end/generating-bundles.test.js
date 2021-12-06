@@ -1,7 +1,6 @@
-
 'use strict';
 
-const assert = require('proclaim');
+const {assert} = require('chai');
 const polyfillLibrary = require('../..');
 
 describe("polyfill-library", function () {

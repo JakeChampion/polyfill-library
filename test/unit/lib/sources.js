@@ -1,7 +1,6 @@
+'use strict';
 
-"use strict";
-
-const assert = require('proclaim');
+const {assert} = require('chai');
 const mockery = require('mockery');
 const sinon = require('sinon');
 
