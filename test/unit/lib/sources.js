@@ -1,7 +1,6 @@
+'use strict';
 
-"use strict";
-
-const assert = require('proclaim');
+const {assert} = require('chai');
 const mockery = require('mockery');
 const sinon = require('sinon');
 
@@ -97,6 +96,15 @@ describe('lib/sources', () => {
 			}));
 			const sources = require('../../../lib/sources');
 			return sources.getConfigAliases('es7').then(config => assert.isUndefined(config));
+		});
+
+		it('issue 1137 - returns `undefined` for properties which exist directly on Object.prototype', async () => {
+			fs.readFile.yields(undefined, JSON.stringify({}));
+			const sources = require('../../../lib/sources');
+			for (const aliasName of ['constructor','__defineGetter__','__defineSetter__','hasOwnProperty','__lookupGetter__','__lookupSetter__','isPrototypeOf','propertyIsEnumerable','toString','valueOf','__proto__','toLocaleString',]) {
+				const config = await sources.getConfigAliases(aliasName);
+				assert.isUndefined(config);
+			}
 		});
 	});
 
