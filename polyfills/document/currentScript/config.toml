@@ -1,3 +1,6 @@
+dependencies = [
+    "Object.defineProperty"
+]
 repo = "https://github.com/amiller-gh/currentScript-polyfill"
 license = "MIT"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Document/currentScript"
