@@ -28,7 +28,7 @@ var ENCODEINTO_BUILD = false;
 	// In Internet Explorer 8 there is no support for square-bracket notation
 	// in the TypedArrays polyfill instead so we need to use the private `_getter` and `_setter` methods.
 	var typedArraysSupportIndexLookup = (function() {
-		var arr = new Uint8Array([42,43]);
+		var arr = new NativeUint8Array([42,43]);
 		return arr[0] === 42
 	})();
 

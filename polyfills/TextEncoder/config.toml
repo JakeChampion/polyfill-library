@@ -2,7 +2,7 @@ aliases = [
 	"TextDecoder"
 ]
 
-dependencies = []
+dependencies = ["ArrayBuffer"]
 
 license = "CC0-1.0"
 spec = "https://encoding.spec.whatwg.org/#interface-textencoder"
