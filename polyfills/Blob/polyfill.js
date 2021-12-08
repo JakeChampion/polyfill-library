@@ -26,6 +26,29 @@
 	};
 	var FakeBlob;
 
+	// In Internet Explorer 8 there is no support for square-bracket notation
+	// in the TypedArrays polyfill instead so we need to use the private `_getter` and `_setter` methods.
+	var typedArraysSupportIndexLookup = (function() {
+		var arr = new Uint8Array([42,43]);
+		return arr[0] === 42
+	})();
+
+	function getTypedArrayIndex(array, index) {
+		if (typedArraysSupportIndexLookup) {
+			return array[index];
+		} else {
+			return array._getter(index);
+		}
+	}
+
+	function setTypedArrayIndex(array, index, value) {
+		if (typedArraysSupportIndexLookup) {
+			array[index] = value;
+		} else {
+			array._setter(index, value);
+		}
+	}
+
 	// Internally we use a BlobBuilder implementation to base Blob off of
 	// in order to support older browsers that only have BlobBuilder
 	var BlobBuilder = view.BlobBuilder || view.WebKitBlobBuilder || view.MozBlobBuilder || (function (view) {
@@ -117,7 +140,7 @@
 					i = 0,
 					buf_len = buf.length;
 				for (; i < buf_len; i++) {
-					str += String.fromCharCode(buf[i]);
+					str += String.fromCharCode(getTypedArrayIndex(buf, i));
 				}
 				bb.push(str);
 			} else if (get_class(data) === "Blob" || get_class(data) === "File") {
@@ -226,9 +249,9 @@
 		if (blobParts) {
 			for (var i = 0, len = blobParts.length; i < len; i++) {
 				if (typeof Uint8Array !== 'undefined' && blobParts[i] instanceof Uint8Array) {
-					builder.append(blobParts[i].buffer);
+					builder.append(getTypedArrayIndex(blobParts, i).buffer);
 				} else {
-					builder.append(blobParts[i]);
+					builder.append(getTypedArrayIndex(blobParts, i));
 				}
 			}
 		}
