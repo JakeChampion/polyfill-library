@@ -1,5 +1,10 @@
 aliases = [ "caniuse:namevalue-storage", "modernizr:localstorage" ]
-dependencies = [ "Array.prototype.forEach", "Window" ]
+dependencies = [
+  "Array.prototype.forEach",
+  "Array.prototype.map",
+  "atob",
+  "Window",
+]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
 spec = "http://dev.w3.org/html5/webstorage/#dom-localstorage"
 

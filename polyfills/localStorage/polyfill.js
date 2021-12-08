@@ -55,18 +55,38 @@
 		var unloadkeys = [];
 
 		var keys = getKeys(localStorage);
+		var encodedKeys = keys.map(encodeKey);
 
-		unloadkeys.concat(keys).forEach(function (key) {
+		unloadkeys.concat(keys).forEach(function (key, i) {
 			if (key in localStorage) {
-				element.setAttribute(userdata + key, localStorage[key]);
+				element.setAttribute(makeAttributeName(encodedKeys[i]), localStorage[key]);
 			} else {
-				element.removeAttribute(userdata + key);
+				element.removeAttribute(makeAttributeName(encodedKeys[i]));
 			}
 		});
 
-		element.setAttribute(userdata, keys.join(','));
+		element.setAttribute(userdata, encodedKeys.join(','));
 
 		element.save(userdata);
+	}
+
+	function encodeKey (key) {
+		return btoa(String(key))
+			.replace(/\+/g, '_')
+			.replace(/\//g, '-')
+			.replace(/=/g, '');
+	}
+
+	function decodeKey (encodedKey) {
+		return atob(
+			String(encodedKey)
+				.replace(/_/g, '+')
+				.replace(/-/g, '/')
+		);
+	}
+
+	function makeAttributeName (encodedKey) {
+		return userdata + '_' + encodedKey;
 	}
 
 	var localStorageExists = (function() {
@@ -84,24 +104,26 @@
 		// set storage element
 		element = self.document.lastChild.lastChild.appendChild(self.document.createElement('x-local-storage')),
 		// set userdata key and prefix
-		userdata = 'userdata',
+		userdata = 'base64_userdata',
 		keys;
 
 		// proprietary ie local storage
 		try {
-			element.addBehavior('#default#' + userdata);
+			element.addBehavior('#default#userdata');
 			element.load(userdata);
 		// eslint-disable-next-line no-empty
 		} catch (error) {}
 
 		// get keys
-		keys = element.getAttribute(userdata) ? element.getAttribute(userdata).split(',') : [];
+		keys = element.getAttribute(userdata)
+			? element.getAttribute(userdata).split(',').map(decodeKey)
+			: [];
 
 		localStorage.length = keys.length;
 
 		// assign keys to localStorage
 		keys.forEach(function (key) {
-			localStorage[key] = element.getAttribute(userdata + key);
+			localStorage[key] = element.getAttribute(makeAttributeName(encodeKey(key)));
 		});
 
 		if (self.attachEvent) {
