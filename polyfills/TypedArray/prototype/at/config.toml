@@ -1,7 +1,6 @@
 aliases = [ "es2022" ]
 dependencies = [
 	"_ESAbstract.CreateMethodProperty",
-	"_ESAbstract.Get",
 	"_ESAbstract.ToIntegerOrInfinity",
 	"_ESAbstract.ToString",
 	"ArrayBuffer",
