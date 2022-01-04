@@ -1,5 +1,5 @@
 aliases = [ "caniuse:console-basic" ]
-dependencies = [ "Window", "console", "console.log" ]
+dependencies = [ "console", "console.log" ]
 spec = "https://console.spec.whatwg.org"
 docs = "https://developer.mozilla.org/en/docs/Web/API/console"
 
