@@ -44,7 +44,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=8"
+    "node": ">=12"
   },
   "files": [
     "/CHANGELOG.md",
@@ -71,7 +71,7 @@
     "@formatjs/intl-getcanonicallocales": "1.6.0",
     "@formatjs/intl-listformat": "6.1.0",
     "@formatjs/intl-locale": "2.4.26",
-    "@formatjs/intl-localematcher": "^0.2.13",
+    "@formatjs/intl-localematcher": "^0.2.21",
     "@formatjs/intl-numberformat": "7.1.0",
     "@formatjs/intl-pluralrules": "4.0.20",
     "@formatjs/intl-relativetimeformat": "9.1.0",
@@ -79,7 +79,7 @@
     "@juggle/resize-observer": "^3.3.1",
     "@webcomponents/template": "^1.4.0",
     "abort-controller": "^3.0.0",
-    "apicache": "^1.5.3",
+    "apicache": "^1.6.3",
     "array.prototype.flatmap": "^1.2.1",
     "audio-context-polyfill": "^1.0.0",
     "auto-changelog": "^2.2.1",
