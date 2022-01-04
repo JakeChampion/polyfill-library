@@ -6,7 +6,6 @@ aliases = [
 	"default"
 ]
 dependencies = [
-	"Window",
 	"document",
 	"Element",
 	"Object.defineProperty",
