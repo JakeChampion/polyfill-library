@@ -235,7 +235,7 @@ describe('Map', function () {
 		});
 
 		it('throws error if called without NewTarget set. I.E. Called as a normal function and not a constructor', function () {
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				Map(); // eslint-disable-line new-cap
 			});
 		});
@@ -321,31 +321,31 @@ describe('Map', function () {
 		});
 
 		it('throws a TypeError if `this` is not an Object', function () {
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				Map.prototype.clear.call('');
 			}, TypeError);
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				Map.prototype.clear.call(1);
 			}, TypeError);
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				Map.prototype.clear.call(true);
 			}, TypeError);
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				Map.prototype.clear.call(/ /);
 			}, TypeError);
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				Map.prototype.clear.call(null);
 			}, TypeError);
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				Map.prototype.clear.call(undefined);
 			}, TypeError);
 		});
 
 		it('throws a TypeError if `this` is not an a Map Object', function () {
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				Map.prototype.clear.call([]);
 			}, TypeError);
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				Map.prototype.clear.call({});
 			}, TypeError);
 		});
@@ -357,48 +357,48 @@ describe('Map', function () {
 
 	describe('Map.prototype.delete', function () {
 		it('has 1 length', function () {
-			proclaim.equal(Map.prototype['delete'].length, 1);
+			proclaim.equal(Map.prototype.delete.length, 1);
 		});
 
 		it('throws a TypeError if `this` is not an Object', function () {
-			proclaim["throws"](function () {
-				Map.prototype['delete'].call('');
+			proclaim.throws(function () {
+				Map.prototype.delete.call('');
 			}, TypeError);
-			proclaim["throws"](function () {
-				Map.prototype['delete'].call(1);
+			proclaim.throws(function () {
+				Map.prototype.delete.call(1);
 			}, TypeError);
-			proclaim["throws"](function () {
-				Map.prototype['delete'].call(true);
+			proclaim.throws(function () {
+				Map.prototype.delete.call(true);
 			}, TypeError);
-			proclaim["throws"](function () {
-				Map.prototype['delete'].call(/ /);
+			proclaim.throws(function () {
+				Map.prototype.delete.call(/ /);
 			}, TypeError);
-			proclaim["throws"](function () {
-				Map.prototype['delete'].call(null);
+			proclaim.throws(function () {
+				Map.prototype.delete.call(null);
 			}, TypeError);
-			proclaim["throws"](function () {
-				Map.prototype['delete'].call(undefined);
+			proclaim.throws(function () {
+				Map.prototype.delete.call(undefined);
 			}, TypeError);
 		});
 
 		it('throws a TypeError if `this` is not an a Map Object', function () {
-			proclaim["throws"](function () {
-				Map.prototype['delete'].call([]);
+			proclaim.throws(function () {
+				Map.prototype.delete.call([]);
 			}, TypeError);
-			proclaim["throws"](function () {
-				Map.prototype['delete'].call({});
+			proclaim.throws(function () {
+				Map.prototype.delete.call({});
 			}, TypeError);
 		});
 
 		it('returns false if key was not in map', function () {
 			var map = new Map();
-			proclaim.isFalse(map['delete']('k'));
+			proclaim.isFalse(map.delete('k'));
 		});
 
 		it('returns true if key was in map', function () {
 			var map = new Map();
 			map.set('k', 1);
-			proclaim.isTrue(map['delete']('k'));
+			proclaim.isTrue(map.delete('k'));
 		});
 	});
 
@@ -407,7 +407,7 @@ describe('Map', function () {
 		proclaim.equal(o.size, 0);
 		o.set("a", "a");
 		proclaim.equal(o.size, 1);
-		o["delete"]("a"); // Use square-bracket syntax to avoid a reserved word in old browsers
+		o.delete("a");
 		proclaim.equal(o.size, 0);
 	});
 
@@ -505,13 +505,13 @@ describe('Map', function () {
 		o.set(generic, callback);
 		o.set(o, callback);
 		proclaim.equal(o.has(callback) && o.has(generic) && o.has(o), true);
-		o["delete"](callback);
-		o["delete"](generic);
-		o["delete"](o);
+		o.delete(callback);
+		o.delete(generic);
+		o.delete(o);
 		proclaim.equal(!o.has(callback) && !o.has(generic) && !o.has(o), true);
-		proclaim.ok(o["delete"](o) === false);
+		proclaim.ok(o.delete(o) === false);
 		o.set(o, callback);
-		proclaim.ok(o["delete"](o));
+		proclaim.ok(o.delete(o));
 	});
 
 	it("does not throw an error when a non-object key is used", function () {
@@ -531,7 +531,7 @@ describe('Map', function () {
 		var v = values.next();
 		proclaim.equal(k.value, "1");
 		proclaim.equal(v.value, 1);
-		o['delete']("2");
+		o.delete("2");
 		k = keys.next();
 		v = values.next();
 		proclaim.equal(k.value, "3");
@@ -622,7 +622,7 @@ describe('Map', function () {
 			proclaim.equal(key, "key " + value);
 			proclaim.equal(obj, o);
 			// even if dropped, keeps looping
-			o["delete"](key);
+			o.delete(key);
 		});
 		proclaim.equal(o.size, 0);
 	});
@@ -635,8 +635,8 @@ describe('Map', function () {
 			proclaim.equal(""+value, key);
 			// mutations work as expected
 			if (value === 1) {
-				o['delete']("0"); // remove from before current index
-				o['delete']("2"); // remove from after current index
+				o.delete("0"); // remove from before current index
+				o.delete("2"); // remove from after current index
 				o.set("3", 3); // insertion
 			} else if (value === 3) {
 				o.set("0", 0); // insertion at the end
@@ -668,7 +668,7 @@ describe('Map', function () {
 	it("does not call callback if all items are deleted", function () {
 		var x = new Map();
 		x.set(42, 'hi');
-		x["delete"](42);
+		x.delete(42);
 		var executed = false;
 		x.forEach(function () {
 			executed = true;
@@ -682,7 +682,7 @@ describe('Map', function () {
 		var x = new Map();
 		x.set(42, 'hi');
 		x.set(43, 'bye');
-		x["delete"](43);
+		x.delete(43);
 		var callCount = 0;
 		x.forEach(function () {
 			callCount = callCount + 1;
@@ -697,11 +697,11 @@ describe('Map', function () {
 		z.set(45, 'bye');
 		z.set(46, 'bye');
 		z.set(47, 'bye');
-		z["delete"](43);
-		z["delete"](44);
-		z["delete"](45);
-		z["delete"](46);
-		z["delete"](47);
+		z.delete(43);
+		z.delete(44);
+		z.delete(45);
+		z.delete(46);
+		z.delete(47);
 		callCount = 0;
 		z.forEach(function () {
 			callCount = callCount + 1;
@@ -740,7 +740,7 @@ describe('Map', function () {
 			if (i <= 0) {
 				// Remove all entries
 				map.forEach(function(val, key) {
-					map["delete"](key);
+					map.delete(key);
 				});
 			}
 			// release this frame in case timeout has occurred

@@ -75,7 +75,7 @@ if (!!document.createElementNS && !!document.createElementNS('http://www.w3.org/
 it.skip("should throw an error if the selector syntax is incorrect", function() {
 	var el = document.body.appendChild(document.createElement("a"));
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		el.closest("p<incorrectselector:><");
 	});
 

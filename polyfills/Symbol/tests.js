@@ -32,7 +32,7 @@ it('should throw if being used via `new`', function() {
 		// eslint-disable-next-line no-new-symbol
 		return new Symbol();
 	};
-	proclaim["throws"](test);
+	proclaim.throws(test);
 });
 
 it('should have Symbol as the constructor property', function() {
@@ -83,7 +83,7 @@ it('should create unique symbols', function() {
 });
 
 it('has for, and keyFor static methods', function() {
-	proclaim.isInstanceOf(Symbol["for"], Function);
+	proclaim.isInstanceOf(Symbol.for, Function);
 	proclaim.isInstanceOf(Symbol.keyFor, Function);
 });
 
@@ -110,12 +110,12 @@ it('Symbol.keyFor should throw if not given a symbol', function() {
 		return Symbol.keyFor(Symbol("4"));
 	};
 
-	proclaim["throws"](stringKeyFor);
-	proclaim["throws"](numberKeyFor);
-	proclaim["throws"](arrayKeyFor);
-	proclaim["throws"](objectKeyFor);
-	proclaim["throws"](boolKeyFor);
-	proclaim["throws"](undefinedKeyFor);
+	proclaim.throws(stringKeyFor);
+	proclaim.throws(numberKeyFor);
+	proclaim.throws(arrayKeyFor);
+	proclaim.throws(objectKeyFor);
+	proclaim.throws(boolKeyFor);
+	proclaim.throws(undefinedKeyFor);
 	proclaim.doesNotThrow(symbolKeyFor);
 });
 
@@ -130,18 +130,18 @@ xit('Symbol() should not add the symbol to the global registry', function() {
 
 it('Symbol["for"] should create new symbol if can not find symbol in global registry', function() {
 	var sym1 = Symbol("7");
-	var sym2 = Symbol["for"]("7");
+	var sym2 = Symbol.for("7");
 	proclaim.notEqual(sym1, sym2);
 });
 
 it('Symbol["for"] should return symbol if can find symbol in global registry', function() {
-	var sym = Symbol["for"]("8");
-	proclaim.equal(sym, Symbol["for"]("8"));
+	var sym = Symbol.for("8");
+	proclaim.equal(sym, Symbol.for("8"));
 });
 
 it('Symbol.keyFor should return key of symbol if can find symbol in global registry', function() {
 	var key = "9";
-	var sym = Symbol["for"](key);
+	var sym = Symbol.for(key);
 	proclaim.equal(Symbol.keyFor(sym), key);
 });
 
@@ -208,7 +208,7 @@ xit('should not allow implicit string coercion', function() {
 	var implicitStringCoercion = function() {
 		return Symbol('10') + '';
 	};
-	proclaim["throws"](implicitStringCoercion);
+	proclaim.throws(implicitStringCoercion);
 });
 
 it('should create Object without symbols', function () {
@@ -314,55 +314,55 @@ describe('Polyfill.prototype.description', function () {
 		});
 
 		it('throws an error if context is a number', function () {
-			proclaim["throws"](function() {
+			proclaim.throws(function() {
 				getter.call(1);
 			}, TypeError);
 		});
 
 		it('throws an error if context is null', function () {
-			proclaim["throws"](function() {
+			proclaim.throws(function() {
 				getter.call(null);
 			}, TypeError);
 		});
 
 		it('throws an error if context is undefined', function () {
-			proclaim["throws"](function() {
+			proclaim.throws(function() {
 				getter.call(undefined);
 			}, TypeError);
 		});
 
 		it('throws an error if context is an array', function () {
-			proclaim["throws"](function() {
+			proclaim.throws(function() {
 				getter.call([]);
 			}, TypeError);
 		});
 
 		it('throws an error if context is an object', function () {
-			proclaim["throws"](function() {
+			proclaim.throws(function() {
 				getter.call({});
 			}, TypeError);
 		});
 
 		it('throws an error if context is a regex', function () {
-			proclaim["throws"](function() {
+			proclaim.throws(function() {
 				getter.call(/./);
 			}, TypeError);
 		});
 
 		it('throws an error if context is NaN', function () {
-			proclaim["throws"](function() {
+			proclaim.throws(function() {
 				getter.call(NaN);
 			}, TypeError);
 		});
 
 		it('throws an error if context is a function', function () {
-			proclaim["throws"](function() {
+			proclaim.throws(function() {
 				getter.call(function(){});
 			}, TypeError);
 		});
 
 		it('throws an error if context is a string', function () {
-			proclaim["throws"](function() {
+			proclaim.throws(function() {
 				getter.call('kate');
 			}, TypeError);
 		});

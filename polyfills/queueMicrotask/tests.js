@@ -7,23 +7,23 @@ describe('queueMicrotask', function() {
 	});
 
 	it('throws type error if an argument is 0', function() {
-		proclaim["throws"](function() { queueMicrotask(0) }, TypeError);
+		proclaim.throws(function() { queueMicrotask(0) }, TypeError);
 	});
 
 	it('throws type error if no argument is supplied', function() {
-		proclaim["throws"](function() { queueMicrotask() }, TypeError);
+		proclaim.throws(function() { queueMicrotask() }, TypeError);
 	});
 
 	it('throws type error if an argument is undefined', function() {
-		proclaim["throws"](function() { queueMicrotask(undefined) }, TypeError);
+		proclaim.throws(function() { queueMicrotask(undefined) }, TypeError);
 	});
 
 	it('throws type error if an argument is null', function() {
-		proclaim["throws"](function() { queueMicrotask(null) }, TypeError);
+		proclaim.throws(function() { queueMicrotask(null) }, TypeError);
 	});
 
 	it('throws type error if an argument is of a String type', function() {
-		proclaim["throws"](function() { queueMicrotask('test') }, TypeError);
+		proclaim.throws(function() { queueMicrotask('test') }, TypeError);
 	});
 
 	it('rethrows exceptions from the microtask callback', function(done) {

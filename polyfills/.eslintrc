@@ -12,7 +12,7 @@
 	"rules": {
 		"comma-dangle": ["error", "never"],
 		"quote-props": ["error", "as-needed", { "keywords": true }],
-		"dot-notation": ["error", { "allowKeywords": false }],
+		"dot-notation": ["error"],
 		"radix": "error",
 		"no-catch-shadow": "error",
 		"no-dupe-else-if": "error",

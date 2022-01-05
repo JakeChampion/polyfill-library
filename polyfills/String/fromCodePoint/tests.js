@@ -30,43 +30,43 @@ it('works as expected', function () {
 	proclaim.strictEqual(String.fromCodePoint(0x61, 0x62, 0x1D307), 'ab\uD834\uDF07');
 	proclaim.strictEqual(String.fromCodePoint(false), '\0');
 	proclaim.strictEqual(String.fromCodePoint(null), '\0');
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint('_');
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint('+Infinity');
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint('-Infinity');
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint(-1);
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint(0x10FFFF + 1);
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint(3.14);
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint(3e-2);
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint(-Infinity);
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint(Infinity);
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint(NaN);
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint(undefined);
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint({});
 	}, RangeError);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		String.fromCodePoint(/./);
 	}, RangeError);
 	var tmp = 0x60;

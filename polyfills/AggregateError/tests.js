@@ -55,7 +55,7 @@ describe('AggregateError', function () {
 	});
 
 	it("throws an error for input that is not iterable", function () {
-		proclaim['throws'](function () {
+		proclaim.throws(function () {
 			new AggregateError(0)
 		}, /is not iterable/);
 	});

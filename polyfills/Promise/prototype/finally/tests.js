@@ -2,11 +2,11 @@
 /* globals proclaim, Promise */
 
 it('is a function', function () {
-	proclaim.isFunction(Promise.prototype['finally']);
+	proclaim.isFunction(Promise.prototype.finally);
 });
 
 it('has correct arity', function () {
-	proclaim.arity(Promise.prototype['finally'], 1);
+	proclaim.arity(Promise.prototype.finally, 1);
 });
 
 it('is not enumerable', function () {
@@ -15,36 +15,36 @@ it('is not enumerable', function () {
 
 describe('finally', function () {
 	it("does not take any arguments", function () {
-		return Promise.resolve("ok")['finally'](function (val) {
+		return Promise.resolve("ok").finally(function (val) {
 			proclaim.equal(val, undefined);
 		});
 	});
 
 	it("can throw errors and be caught", function () {
-		return Promise.resolve("ok")['finally'](function () {
+		return Promise.resolve("ok").finally(function () {
 			throw "error";
-		})['catch'](function (e) {
+		}).catch(function (e) {
 			proclaim.equal(e, 'error');
 		});
 	});
 
 	it("resolves with resolution value if finally method doesn't throw", function () {
-		return Promise.resolve("ok")['finally'](function () {
+		return Promise.resolve("ok").finally(function () {
 		}).then(function (val) {
 			proclaim.equal(val, 'ok');
 		});
 	});
 
 	it("rejects with rejection value if finally method doesn't throw", function () {
-		return Promise.reject("error")['finally'](function () {
-		})['catch'](function (val) {
+		return Promise.reject("error").finally(function () {
+		}).catch(function (val) {
 			proclaim.equal(val, 'error');
 		});
 	});
 
 	it('when resolved, only calls finally once', function () {
 		var called = 0;
-		return Promise.resolve(42)['finally'](function () {
+		return Promise.resolve(42).finally(function () {
 			called++;
 		}).then(function () {
 			proclaim.strictEqual(called, 1);
@@ -53,9 +53,9 @@ describe('finally', function () {
 
 	it('when rejected, only calls finally once', function () {
 		var called = 0;
-		return Promise.reject(42)['finally'](function () {
+		return Promise.reject(42).finally(function () {
 			called++;
-		})['catch'](function () {
+		}).catch(function () {
 			proclaim.strictEqual(called, 1);
 		});
 	});
@@ -74,7 +74,7 @@ describe('onFinally', function() {
 				.then(function(x) {
 					proclaim.strictEqual(x, 3);
 					return x;
-				})['finally']()
+				}).finally()
 				.then(function onFulfilled(x) {
 					proclaim.strictEqual(x, 3);
 				}, function onRejected() {
@@ -83,10 +83,10 @@ describe('onFinally', function() {
 		});
 
 		specify('from rejected', function() {
-			return Promise.reject(someRejectionReason)['catch'](function(e) {
+			return Promise.reject(someRejectionReason).catch(function(e) {
 					proclaim.strictEqual(e, someRejectionReason);
 					throw e;
-				})['finally']()
+				}).finally()
 				.then(function onFulfilled() {
 					throw new Error('should not be called');
 				}, function onRejected(reason) {
@@ -101,7 +101,7 @@ describe('onFinally', function() {
 				.then(function(x) {
 					proclaim.strictEqual(x, 3);
 					return x;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					throw someRejectionReason;
 				}).then(function onFulfilled() {
@@ -112,7 +112,7 @@ describe('onFinally', function() {
 		});
 
 		specify('from rejected', function() {
-			return Promise.reject(anotherReason)['finally'](function onFinally() {
+			return Promise.reject(anotherReason).finally(function onFinally() {
 				proclaim.ok(arguments.length === 0);
 				throw someRejectionReason;
 			}).then(function onFulfilled() {
@@ -129,7 +129,7 @@ describe('onFinally', function() {
 				.then(function(x) {
 					proclaim.strictEqual(x, 3);
 					return x;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					return 4;
 				}).then(function onFulfilled(x) {
@@ -140,10 +140,10 @@ describe('onFinally', function() {
 		});
 
 		specify('from rejected', function() {
-			return Promise.reject(anotherReason)['catch'](function(e) {
+			return Promise.reject(anotherReason).catch(function(e) {
 					proclaim.strictEqual(e, anotherReason);
 					throw e;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					throw someRejectionReason;
 				}).then(function onFulfilled() {
@@ -160,7 +160,7 @@ describe('onFinally', function() {
 				.then(function(x) {
 					proclaim.strictEqual(x, 3);
 					return x;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					setTimeout(done, 0.1e3);
 					return new Promise(function() {}); // forever pending
@@ -172,10 +172,10 @@ describe('onFinally', function() {
 		});
 
 		specify('from rejected', function(done) {
-			Promise.reject(someRejectionReason)['catch'](function(e) {
+			Promise.reject(someRejectionReason).catch(function(e) {
 					proclaim.strictEqual(e, someRejectionReason);
 					throw e;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					setTimeout(done, 0.1e3);
 					return new Promise(function() {}); // forever pending
@@ -193,7 +193,7 @@ describe('onFinally', function() {
 				.then(function(x) {
 					proclaim.strictEqual(x, 3);
 					return x;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					return Promise.resolve(4);
 				}).then(function onFulfilled(x) {
@@ -204,10 +204,10 @@ describe('onFinally', function() {
 		});
 
 		specify('from rejected', function() {
-			return Promise.reject(someRejectionReason)['catch'](function(e) {
+			return Promise.reject(someRejectionReason).catch(function(e) {
 					proclaim.strictEqual(e, someRejectionReason);
 					throw e;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					return Promise.resolve(4);
 				}).then(function onFulfilled() {
@@ -224,7 +224,7 @@ describe('onFinally', function() {
 				.then(function(x) {
 					proclaim.strictEqual(x, 3);
 					return x;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					return Promise.reject(4);
 				}).then(function onFulfilled() {
@@ -236,10 +236,10 @@ describe('onFinally', function() {
 
 		specify('from rejected', function() {
 			var newReason = {};
-			return Promise.reject(someRejectionReason)['catch'](function(e) {
+			return Promise.reject(someRejectionReason).catch(function(e) {
 					proclaim.strictEqual(e, someRejectionReason);
 					throw e;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					return Promise.reject(newReason);
 				}).then(function onFulfilled() {
@@ -256,7 +256,7 @@ describe('onFinally', function() {
 				.then(function(x) {
 					proclaim.strictEqual(x, 3);
 					return x;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					setTimeout(done, 1.5e3);
 					return new Promise(function(resolve) {
@@ -270,10 +270,10 @@ describe('onFinally', function() {
 		});
 
 		specify('from rejected', function(done) {
-			Promise.reject(3)['catch'](function(e) {
+			Promise.reject(3).catch(function(e) {
 					proclaim.strictEqual(e, 3);
 					throw e;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					setTimeout(done, 1.5e3);
 					return new Promise(function(resolve) {
@@ -293,7 +293,7 @@ describe('onFinally', function() {
 				.then(function(x) {
 					proclaim.strictEqual(x, 3);
 					return x;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					setTimeout(done, 1.5e3);
 					return new Promise(function(resolve, reject) {
@@ -307,10 +307,10 @@ describe('onFinally', function() {
 		});
 
 		specify('from rejected', function(done) {
-			Promise.reject(someRejectionReason)['catch'](function(e) {
+			Promise.reject(someRejectionReason).catch(function(e) {
 					proclaim.strictEqual(e, someRejectionReason);
 					throw e;
-				})['finally'](function onFinally() {
+				}).finally(function onFinally() {
 					proclaim.ok(arguments.length === 0);
 					setTimeout(done, 1.5e3);
 					return new Promise(function(resolve, reject) {

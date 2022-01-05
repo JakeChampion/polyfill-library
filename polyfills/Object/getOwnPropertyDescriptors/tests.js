@@ -18,11 +18,11 @@ it('is not enumerable', function () {
 });
 
 it('throws on invalid object', function() {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Object.getOwnPropertyDescriptors(null);
 	}, TypeError, 'null is not an object');
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Object.getOwnPropertyDescriptors(undefined);
 	}, TypeError, 'undefined is not an object');
 });

@@ -39,24 +39,24 @@ if ('freeze' in Object && (function () {
 }
 
 it('throws a TypeError if target is not an Object.', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.defineProperty(1, 'a', {});
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.defineProperty(null, 'a', {});
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.defineProperty(undefined, 'a', {});
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.defineProperty('', 'a', {});
 	}, TypeError);
 
 	if ('Symbol' in self) {
-		proclaim["throws"](function() {
+		proclaim.throws(function() {
 			Reflect.defineProperty(Symbol(), 'a', {});
 		}, TypeError);
 	}

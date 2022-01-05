@@ -18,27 +18,27 @@ it('is not enumerable', function () {
 });
 
 it('throws TypeError if `newTarget` is not a constuctor', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct(function () {}, [], 1);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct(function () {}, [], null);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct(function () {}, [], {});
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct(function () {}, [], Math.sin);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct(function () {}, [], 'a');
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct(function () {}, [], /./);
 	}, TypeError);
 });
@@ -55,27 +55,27 @@ it('if `newTarget` is absent, let `newTarget` be `target`', function () {
 });
 
 it('throws TypeError is `target` is not a constructor', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct(1, []);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct(null, []);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct({}, []);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct(Math.sin, []);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct('a', []);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct(/./, []);
 	}, TypeError);
 });
@@ -87,7 +87,7 @@ it('spreads `argumentsList` as the arguments for the `target` constructor', func
 });
 
 it('throws TypeError is `argumentsList` is not ArrayLike', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.construct(function () {}, 9);
 	}, TypeError);
 });

@@ -11,7 +11,7 @@ self.queueMicrotask = function queueMicrotask(microtask) {
 	}
 
 	Promise.resolve()
-		.then(microtask)["catch"](function(e) {
+		.then(microtask).catch(function(e) {
 
 			// TODO: implement a ErrorEvent polyfill and use that instead
 			// new ErrorEvent("error", {

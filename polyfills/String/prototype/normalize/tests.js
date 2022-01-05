@@ -18,15 +18,15 @@ it('is not enumerable', function () {
 });
 
 it('throws a RangeError if ToString(form) value is not a valid form name', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		'a'.normalize('b');
 	}, RangeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		'a'.normalize('NFC1');
 	}, RangeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		'a'.normalize(null);
 	}, RangeError);
 });
@@ -82,13 +82,13 @@ var supportsStrictModeTests = (function () {
 
 if (supportsStrictModeTests) {
 	it('throws TypeError if `this` is null', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			String.prototype.normalize.call(null);
 		}, TypeError);
 	});
 
 	it('throws TypeError if `this` is undefined', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			String.prototype.normalize.call(undefined);
 		}, TypeError);
 	});

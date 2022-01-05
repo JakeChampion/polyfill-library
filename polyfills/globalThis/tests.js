@@ -28,13 +28,13 @@ describe("globalThis", function() {
 	});
 
 	it("is not possible to invoke the global object as a function", function() {
-		proclaim["throws"](function() {
+		proclaim.throws(function() {
 			globalThis();
 		}, TypeError);
 	});
 
 	it("is not possible to use the global object as a constructor  with the new operator", function() {
-		proclaim["throws"](function() {
+		proclaim.throws(function() {
 			new globalThis();
 		}, TypeError);
 	});

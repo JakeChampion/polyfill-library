@@ -25,68 +25,68 @@ var supportsStrictModeTests = (function () {
 
 if (supportsStrictModeTests) {
 	it('throws TypeError if thisArg is null', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			[].flatMap.call(null, function () {});
 		}, TypeError);
 	});
 
 	it('throws TypeError if thisArg is undefined', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			[].flatMap.call(undefined, function () {});
 		}, TypeError);
 	});
 }
 
 it('throws TypeError if argument is not callable', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		[].flatMap({});
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		[].flatMap(0);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		[].flatMap();
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		[].flatMap(undefined);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		[].flatMap(null);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		[].flatMap(false);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		[].flatMap('');
 	}, TypeError);
 });
 
 it('throws a TypeError if constructor property is neither undefined nor an Object', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		var a = [];
 		a.constructor = null;
 		a.flatMap(function () {});
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		var a = [];
 		a.constructor = 1;
 		a.flatMap(function () {});
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		var a = [];
 		a.constructor = 'string';
 		a.flatMap(function () {});
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		var a = [];
 		a.constructor = true;
 		a.flatMap(function () {});

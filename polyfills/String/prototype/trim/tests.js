@@ -35,12 +35,12 @@ var supportsStrictModeTests = (function () {
 
 if (supportsStrictModeTests) {
 	it('should throw TypeError if called with a null context', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			String.prototype.trim.call(null, 0);
 		}, TypeError);
 	});
 	it('should throw TypeError if called with an undefined context', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			String.prototype.trim.call(undefined, 0);
 		}, TypeError);
 	});

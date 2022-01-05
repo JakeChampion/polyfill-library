@@ -18,19 +18,19 @@ it('is not enumerable', function () {
 });
 
 it('throws a TypeError if proto is not Object or proto is not null', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.setPrototypeOf({}, undefined);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.setPrototypeOf({}, 1);
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.setPrototypeOf({}, 'string');
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.setPrototypeOf({}, true);
 	}, TypeError);
 });
@@ -54,24 +54,24 @@ if ('__proto__' in Object.prototype) {
 	});
 }
 it('throws a TypeError if target is not an Object', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.setPrototypeOf(1, {});
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.setPrototypeOf(null, {});
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.setPrototypeOf(undefined, {});
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.setPrototypeOf('', {});
 	}, TypeError);
 
 	if ('Symbol' in self) {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			Reflect.setPrototypeOf(Symbol(), {});
 		}, TypeError);
 	}

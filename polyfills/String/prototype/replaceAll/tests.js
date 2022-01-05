@@ -26,11 +26,11 @@ describe('String.prototype.replaceAll', function () {
 
 	if (supportsStrictModeTests) {
 		it('throws incoercible objects', function () {
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				String.prototype.replaceAll.call(undefined);
 			}, TypeError);
 
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				String.prototype.replaceAll.call(null);
 			}, TypeError);
 		});
@@ -55,7 +55,7 @@ describe('String.prototype.replaceAll', function () {
 	});
 
 	it("throws a TypeError if searchValue is a regex without a global flag", function() {
-		proclaim["throws"](function() {
+		proclaim.throws(function() {
 			'origami.origami.origami'.replaceAll(/\./, 'fox');
 		}, TypeError);
 	});

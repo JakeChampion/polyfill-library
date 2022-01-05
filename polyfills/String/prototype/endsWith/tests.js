@@ -46,15 +46,15 @@ it('works as expected', function () {
 	}).call(undefined);
 
 	if (supportsStrictModeTests) {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			String.prototype.endsWith.call(null, '.');
 		}, TypeError);
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			String.prototype.endsWith.call(undefined, '.');
 		}, TypeError);
 	}
 	re = /./;
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		'/./'.endsWith(re);
 	}, TypeError);
 	if ('Symbol' in window && 'match' in Symbol) {
@@ -65,7 +65,7 @@ it('works as expected', function () {
 	proclaim.isTrue('[object Object]'.endsWith(O));
 	if ('Symbol' in window && 'match' in Symbol) {
 		O[typeof Symbol != 'undefined' && Symbol !== null ? Symbol.match : undefined] = true;
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			'[object Object]'.endsWith(O);
 		}, TypeError);
 	}

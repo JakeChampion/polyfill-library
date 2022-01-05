@@ -16,11 +16,11 @@ if ('getPrototypeOf' in Object) {
 }
 
 it('cannot be called or constructed', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		// eslint-disable-next-line no-obj-calls
 		Reflect();
 	});
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		// eslint-disable-next-line no-obj-calls
 		new Reflect;
 	});

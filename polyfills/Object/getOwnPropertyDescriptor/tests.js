@@ -40,13 +40,13 @@ it('does not throw an error for booleans', function() {
 });
 
 it('throws a TypeError for null', function() {
-	proclaim["throws"](function() {
+	proclaim.throws(function() {
 		Object.getOwnPropertyDescriptor(null);
 	});
 });
 
 it('throws a TypeError for undefined', function() {
-	proclaim["throws"](function() {
+	proclaim.throws(function() {
 		Object.getOwnPropertyDescriptor(undefined);
 	});
 });

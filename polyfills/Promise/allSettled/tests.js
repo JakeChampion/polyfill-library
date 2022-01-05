@@ -72,7 +72,7 @@ describe('allSettled', function () {
 	});
 
 	it("rejects with a TypeError for input that is not iterable", function () {
-		return Promise.allSettled(0)['catch'](function (err) {
+		return Promise.allSettled(0).catch(function (err) {
 			return err;
 		}).then(function (err) {
 			proclaim.ok(err instanceof TypeError);

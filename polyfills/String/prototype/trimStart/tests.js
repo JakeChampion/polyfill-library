@@ -28,11 +28,11 @@ it('works as expected', function () {
 	}).call(undefined);
 
 	if (supportsStrictModeTests) {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 	"use strict";
 			String.prototype.trimStart.call(null, 0);
 		}, TypeError);
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 	"use strict";
 			String.prototype.trimStart.call(void 0, 0);
 		}, TypeError);

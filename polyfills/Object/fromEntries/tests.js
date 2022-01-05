@@ -18,23 +18,23 @@ it('is not enumerable', function () {
 });
 
 it('throws when an entry object is a primitive string', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Object.fromEntries(['ab']);
 	}, TypeError);
 });
 
 it('throws when an entry object is a undefined', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Object.fromEntries(undefined);
 	}, TypeError);
 });
 it('throws when an entry object is null', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Object.fromEntries(null);
 	}, TypeError);
 });
 it('throws when an entry object is absent', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Object.fromEntries();
 	}, TypeError);
 });

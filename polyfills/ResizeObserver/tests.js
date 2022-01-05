@@ -45,7 +45,7 @@ describe("ResizeObserver", function () {
 		var fn = function() {
 			new ResizeObserver()
 		}
-		proclaim["throws"](
+		proclaim.throws(
 			fn,
 			"Failed to construct 'ResizeObserver': 1 argument required, but only 0 present."
 		)
@@ -55,7 +55,7 @@ describe("ResizeObserver", function () {
 		var fn = function() {
 			new ResizeObserver(1)
 		}
-		proclaim["throws"](
+		proclaim.throws(
 			fn,
 			"Failed to construct 'ResizeObserver': The callback provided as parameter 1 is not a function."
 		)
@@ -66,7 +66,7 @@ describe("ResizeObserver", function () {
 			ro = new ResizeObserver(function() {})
 			ro.observe()
 		}
-		proclaim["throws"](
+		proclaim.throws(
 			fn,
 			"Failed to execute 'observe' on 'ResizeObserver': 1 argument required, but only 0 present."
 		)
@@ -77,7 +77,7 @@ describe("ResizeObserver", function () {
 			ro = new ResizeObserver(function() {})
 			ro.observe(1)
 		}
-		proclaim["throws"](
+		proclaim.throws(
 			fn,
 			"Failed to execute 'observe' on 'ResizeObserver': parameter 1 is not of type 'Element"
 		)
@@ -88,7 +88,7 @@ describe("ResizeObserver", function () {
 			ro = new ResizeObserver(function() {})
 			ro.observe(null)
 		}
-		proclaim["throws"](
+		proclaim.throws(
 			fn,
 			"Failed to execute 'observe' on 'ResizeObserver': parameter 1 is not of type 'Element"
 		)
@@ -99,7 +99,7 @@ describe("ResizeObserver", function () {
 			ro = new ResizeObserver(function() {})
 			ro.unobserve()
 		}
-		proclaim["throws"](
+		proclaim.throws(
 			fn,
 			"Failed to execute 'unobserve' on 'ResizeObserver': 1 argument required, but only 0 present."
 		)
@@ -110,7 +110,7 @@ describe("ResizeObserver", function () {
 			ro = new ResizeObserver(function() {})
 			ro.unobserve(1)
 		}
-		proclaim["throws"](
+		proclaim.throws(
 			fn,
 			"Failed to execute 'unobserve' on 'ResizeObserver': parameter 1 is not of type 'Element"
 		)

@@ -27,7 +27,7 @@ it("has valid constructor", function () {
 		proclaim.equal((new WeakMap).__proto__ === WeakMap.prototype, true);
 	}
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		WeakMap();
 	}, TypeError);
 });
@@ -35,7 +35,7 @@ it("has valid constructor", function () {
 it('has get, set, delete, and has functions', function() {
 	proclaim.isFunction(WeakMap.prototype.get);
 	proclaim.isFunction(WeakMap.prototype.set);
-	proclaim.isFunction(WeakMap.prototype['delete']);
+	proclaim.isFunction(WeakMap.prototype.delete);
 	proclaim.isFunction(WeakMap.prototype.has);
 });
 it('should perform as expected', function() {
@@ -60,8 +60,8 @@ it('should perform as expected', function() {
 	proclaim.equal(wm.has({}), false);
 
 	// Ensure that delete returns true/false indicating if the value was removed
-	proclaim.equal(wm['delete'](o1), true);
-	proclaim.equal(wm['delete']({}), false);
+	proclaim.equal(wm.delete(o1), true);
+	proclaim.equal(wm.delete({}), false);
 
 	proclaim.equal(wm.get(o1), undefined);
 	proclaim.equal(wm.has(o1), false);
@@ -96,7 +96,7 @@ if ('freeze' in Object) {
 		map.set(f, 42);
 		proclaim.isTrue(map.has(f));
 		proclaim.strictEqual(map.get(f), 42);
-		map['delete'](f);
+		map.delete(f);
 	proclaim.isFalse(map.has(f));
 	proclaim.isUndefined(map.get(f));
 	});
@@ -116,8 +116,8 @@ if ('Symbol' in window && 'iterator' in Symbol && typeof [][Symbol.iterator] ===
 }
 
 it('WeakMap.prototype.delete', function () {
-	proclaim.isFunction(WeakMap.prototype['delete']);
-	proclaim.arity(WeakMap.prototype['delete'], 1);
+	proclaim.isFunction(WeakMap.prototype.delete);
+	proclaim.arity(WeakMap.prototype.delete, 1);
 	proclaim.isNotEnumerable(WeakMap.prototype, 'delete');
 	var a = {};
 	var b = {};
@@ -126,10 +126,10 @@ it('WeakMap.prototype.delete', function () {
 	M.set(b, 21);
 	proclaim.isTrue(M.has(a));
 	proclaim.isTrue(M.has(b));
-	M['delete'](a);
+	M.delete(a);
 	proclaim.isFalse(M.has(a));
 	proclaim.isTrue(M.has(b));
-	proclaim.isFalse(M['delete'](1));
+	proclaim.isFalse(M.delete(1));
 });
 
 it('WeakMap.prototype.get', function () {
@@ -142,7 +142,7 @@ it('WeakMap.prototype.get', function () {
 	proclaim.isUndefined(M.get({}));
 	M.set(a, 42);
 	proclaim.strictEqual(M.get(a), 42);
-	M['delete'](a);
+	M.delete(a);
 	proclaim.isUndefined(M.get(a));
 	proclaim.isUndefined(M.get(1));
 });
@@ -157,7 +157,7 @@ it('WeakMap.prototype.has', function () {
 	proclaim.isFalse(M.has({}));
 	M.set(a, 42);
 	proclaim.isTrue(M.has(a));
-	M['delete'](a);
+	M.delete(a);
 	proclaim.isFalse(M.has(a));
 	proclaim.isFalse(M.has(1));
 });
@@ -171,7 +171,7 @@ it('WeakMap.prototype.set', function () {
 	proclaim.isNotEnumerable(WeakMap.prototype, 'set');
 	wmap.set(a, 42);
 	proclaim.strictEqual(wmap.get(a), 42);
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		new WeakMap().set(42, 42);
 	}, TypeError);
 	proclaim.deepEqual(wmap.set({}, 1), wmap);

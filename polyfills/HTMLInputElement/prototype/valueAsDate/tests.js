@@ -132,25 +132,25 @@ describe("HTMLInputElement.prototype.valueAsDate", function () {
 			var inputA = unsupportedInputsViaAttribute[type];
 			var inputB = unsupportedInputsViaProperty[type];
 
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				testValueAsDateSetter(inputA, [
 					[null, ""]
 				]);
 			});
 
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				testValueAsDateSetter(inputA, [
 					[new Date("2019-12-10T00:00:00.000Z"), ""]
 				]);
 			});
 
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				testValueAsDateSetter(inputB, [
 					[null, ""]
 				]);
 			});
 
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				testValueAsDateSetter(inputB, [
 					[new Date("2019-12-10T00:00:00.000Z"), ""]
 				]);

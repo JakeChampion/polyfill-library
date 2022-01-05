@@ -335,7 +335,7 @@
 
 					keys.sort();
 					for (var i = 0; i < keys.length; i++) {
-						this["delete"](keys[i]);
+						this.delete(keys[i]);
 					}
 					for (var j = 0; j < keys.length; j++) {
 						key = keys[j];

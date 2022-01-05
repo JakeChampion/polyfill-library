@@ -15,84 +15,84 @@ describe('Blob', function () {
 	});
 
 	it('throws an error if called without `new` operator', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			Blob();
 		}, TypeError);
 	});
 
 	it('throws an error if called with null', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob(null);
 		}, TypeError);
 	});
 
 	it('throws an error if called with true', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob(true);
 		}, TypeError);
 	});
 
 	it('throws an error if called with false', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob(false);
 		}, TypeError);
 	});
 
 	it('throws an error if called with 0', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob(0);
 		}, TypeError);
 	});
 
 	it('throws an error if called with 1', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob(1);
 		}, TypeError);
 	});
 
 	it('throws an error if called with decimal number', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob(1.5);
 		}, TypeError);
 	});
 
 	it('throws an error if called with a string', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob('fail');
 		}, TypeError);
 	});
 
 	it('throws an error if called with a date', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob(new Date());
 		}, TypeError);
 	});
 
 	it('throws an error if called with a RegExp', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob(new RegExp());
 		}, TypeError);
 	});
 
 	// This requires rewriting the polyfill to take into account iterable objects defined via Symbol.iterator instead of being based on blobParts.length property
 	it.skip('throws an error if called with an object', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob({});
 		}, TypeError);
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob({ 0: 'fail', length: 1 });
 		}, TypeError);
 	});
 
 	it('throws an error if called with a div', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob(document.createElement('div'));
 		}, TypeError);
 	});
 
 	// This requires rewriting the polyfill to take into account iterable objects defined via Symbol.iterator instead of being based on blobParts.length property
 	it.skip('throws an error if called with window', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob(window);
 		}, TypeError);
 	});
@@ -122,25 +122,25 @@ describe('Blob', function () {
 	});
 
 	it('should throw if second argument is an integer', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob([], 12345);
 		}, TypeError);
 	});
 
 	it('should throw if second argument is an decimal number', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob([], 1.2);
 		}, TypeError);
 	});
 
 	it('should throw if second argument is an boolean', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob([], true);
 		}, TypeError);
 	});
 
 	it('should throw if second argument is an string', function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			new Blob([], '12345');
 		}, TypeError);
 	});
@@ -225,7 +225,7 @@ describe('Blob', function () {
 				}).then(function (text) {
 					proclaim.equal(text, 'test');
 					done();
-				})["catch"](function (err1) {
+				}).catch(function (err1) {
 					done(err1);
 				});
 			} catch (err2) {

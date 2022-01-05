@@ -13,7 +13,7 @@ describe('Element.prototype.toggleAttribute', function() {
 	});
 
 	it("should throw an error if the attribute name is not valid", function () {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			el.toggleAttribute('$');
 		});
 	});

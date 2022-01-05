@@ -18,24 +18,24 @@ it('is not enumerable', function () {
 });
 
 it('throws a TypeError if target is not an Object', function () {
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.get(1, 'a');
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.get(null, 'a');
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.get(undefined, 'a');
 	}, TypeError);
 
-	proclaim["throws"](function () {
+	proclaim.throws(function () {
 		Reflect.get('', 'a');
 	}, TypeError);
 
 	if ('Symbol' in self) {
-		proclaim["throws"](function () {
+		proclaim.throws(function () {
 			Reflect.get(Symbol(), 'a');
 		}, TypeError);
 	}

@@ -35,11 +35,11 @@ describe('String.prototype.matchAll', function () {
 
 	if (supportsStrictModeTests) {
 		it('throws incoercible objects', function () {
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				String.prototype.matchAll.call(undefined);
 			}, TypeError);
 
-			proclaim["throws"](function () {
+			proclaim.throws(function () {
 				String.prototype.matchAll.call(null);
 			}, TypeError);
 		});
@@ -81,7 +81,7 @@ describe('String.prototype.matchAll', function () {
 	});
 
 	it("throws for a non-global regex", function () {
-		proclaim["throws"](function() {
+		proclaim.throws(function() {
 			'a'.matchAll(/a/)
 		}, TypeError);
 	});

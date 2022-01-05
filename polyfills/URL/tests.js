@@ -126,12 +126,12 @@ it('Parameter Mutation', function () {
 	proclaim.equal(url.search, '?a=1&b=2&a=3');
 	proclaim.equal(url.href, 'http://example.com/?a=1&b=2&a=3');
 
-	url.searchParams['delete']('a');
+	url.searchParams.delete('a');
 	proclaim.equal(url.search, '?b=2');
 	proclaim.deepEqual(url.searchParams.getAll('a'), []);
 	proclaim.equal(url.href, 'http://example.com/?b=2');
 
-	url.searchParams['delete']('b');
+	url.searchParams.delete('b');
 	proclaim.deepEqual(url.searchParams.getAll('b'), []);
 	proclaim.equal(url.href, 'http://example.com/');
 
@@ -239,11 +239,11 @@ it('URLSearchParams mutation', function () {
 	proclaim.deepEqual(p.getAll('a'), ['1', '3']);
 	proclaim.equal(String(p), 'a=1&b=2&a=3');
 
-	p['delete']('a');
+	p.delete('a');
 	proclaim.equal(String(p), 'b=2');
 	proclaim.deepEqual(p.getAll('a'), []);
 
-	p['delete']('b');
+	p.delete('b');
 	proclaim.deepEqual(p.getAll('b'), []);
 
 	p = new URLSearchParams('m=9&n=3');
@@ -414,7 +414,7 @@ describe('WPT tests', function () {
 	it.skip('throws with DOMException as argument', function() {
 		var params = new URLSearchParams(DOMException);
 		proclaim.equal(params.toString(), "INDEX_SIZE_ERR=1&DOMSTRING_SIZE_ERR=2&HIERARCHY_REQUEST_ERR=3&WRONG_DOCUMENT_ERR=4&INVALID_CHARACTER_ERR=5&NO_DATA_ALLOWED_ERR=6&NO_MODIFICATION_ALLOWED_ERR=7&NOT_FOUND_ERR=8&NOT_SUPPORTED_ERR=9&INUSE_ATTRIBUTE_ERR=10&INVALID_STATE_ERR=11&SYNTAX_ERR=12&INVALID_MODIFICATION_ERR=13&NAMESPACE_ERR=14&INVALID_ACCESS_ERR=15&VALIDATION_ERR=16&TYPE_MISMATCH_ERR=17&SECURITY_ERR=18&NETWORK_ERR=19&ABORT_ERR=20&URL_MISMATCH_ERR=21&QUOTA_EXCEEDED_ERR=22&TIMEOUT_ERR=23&INVALID_NODE_TYPE_ERR=24&DATA_CLONE_ERR=25")
-		proclaim["throws"](function() { new URLSearchParams(DOMException.prototype) },
+		proclaim.throws(function() { new URLSearchParams(DOMException.prototype) },
 			"Constructing a URLSearchParams from DOMException.prototype should throw due to branding checks"
 		);
 	})
@@ -590,8 +590,8 @@ describe('WPT tests', function () {
 		proclaim.equal(params.get("a"), "b");
 		proclaim.equal(params.get("c"), "d");
 
-		proclaim["throws"](function() { new URLSearchParams([[1]]); });
-		proclaim["throws"](function() { new URLSearchParams([[1,2,3]]); });
+		proclaim.throws(function() { new URLSearchParams([[1]]); });
+		proclaim.throws(function() { new URLSearchParams([[1,2,3]]); });
 	});
 
 	/* eslint-disable quote-props */

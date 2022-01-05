@@ -20,7 +20,7 @@ describe("mark()", function() {
 	});
 
 	it("should throw an exception when a null argument is given", function() {
-		proclaim["throws"](perf.mark);
+		proclaim.throws(perf.mark);
 	});
 
 	it("should throw an exception when passing in a NavigationTiming mark", function() {
@@ -29,7 +29,7 @@ describe("mark()", function() {
 			typeof window.performance !== "undefined" &&
 			typeof window.performance.timing !== "undefined" &&
 			window.performance.timing.navigationStart) {
-			proclaim["throws"](function() {
+			proclaim.throws(function() {
 				perf.mark("navigationStart");
 			});
 		}
@@ -287,22 +287,22 @@ describe("measure()", function() {
 	});
 
 	it("should throw an error if not given a name", function() {
-		proclaim["throws"](perf.measure);
+		proclaim.throws(perf.measure);
 	});
 
 	it("should throw an error if not given a name", function() {
-		proclaim["throws"](perf.measure);
+		proclaim.throws(perf.measure);
 	});
 
 	it("should throw an exception if the start mark name is not found", function() {
-		proclaim["throws"](function() {
+		proclaim.throws(function() {
 			perf.measure("foo", "BAD_MARK!");
 		});
 	});
 
 	it("should throw an exception if the end mark name is not found", function() {
 		perf.mark("1");
-		proclaim["throws"](function() {
+		proclaim.throws(function() {
 			perf.measure("foo", "1", "BAD_MARK!");
 		});
 	});

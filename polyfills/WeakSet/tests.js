@@ -38,7 +38,7 @@ it('should be instantiable', function(){
 
 it('has add, delete and has methods', function(){
 	proclaim.notEqual(WeakSet.prototype.add, undefined);
-	proclaim.notEqual(WeakSet.prototype['delete'], undefined);
+	proclaim.notEqual(WeakSet.prototype.delete, undefined);
 	proclaim.notEqual(WeakSet.prototype.has, undefined);
 });
 
@@ -57,10 +57,10 @@ it('should perform as expected', function() {
 	proclaim.equal(set.has(d), true);
 	proclaim.equal(set.has(e), false);
 
-	proclaim.equal(set['delete'](b), true);
-	proclaim.equal(set['delete'](c), true);
-	proclaim.equal(set['delete'](d), true);
-	proclaim.equal(set['delete'](e), false);
+	proclaim.equal(set.delete(b), true);
+	proclaim.equal(set.delete(c), true);
+	proclaim.equal(set.delete(d), true);
+	proclaim.equal(set.delete(e), false);
 
 	proclaim.equal(set.has(a), true);
 	proclaim.equal(set.has(b), false);

@@ -227,7 +227,7 @@ it('should resolve Promise.all when all promises resolve', function(done) {
 	]).then(function(results) {
 		proclaim.deepEqual(results, [3,5]);
 		done();
-	})['catch'](function(e) {
+	}).catch(function(e) {
 		done(e);
 	});
 });

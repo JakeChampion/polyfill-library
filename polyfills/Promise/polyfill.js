@@ -87,7 +87,7 @@
 	}
 	};
 
-	Yaku['default'] = Yaku;
+	Yaku.default = Yaku;
 
 	extend(Yaku.prototype, {
 	/**

@@ -39,7 +39,7 @@ describe('any', function () {
 
 	it("rejects with an AggregateError when passed an array of rejected promises", function () {
 		var promises = [Promise.reject(1)];
-		return Promise.any(promises)['catch'](function (err) {
+		return Promise.any(promises).catch(function (err) {
 			return err;
 		}).then(function (err) {
 			proclaim.equal(err.name, 'AggregateError');
@@ -48,7 +48,7 @@ describe('any', function () {
 	});
 
 	it("rejects with an AggregateError when passed an empty array", function () {
-		return Promise.any([])['catch'](function (err) {
+		return Promise.any([]).catch(function (err) {
 			return err;
 		}).then(function (err) {
 			proclaim.equal(err.name, 'AggregateError');
@@ -67,7 +67,7 @@ describe('any', function () {
 	it("rejects with an AggregateError when passed an iterator containing rejected promises", function () {
 		var promises = [Promise.reject(1)];
 		var iterator = makeArrayIterator(promises);
-		return Promise.any(iterator)['catch'](function (err) {
+		return Promise.any(iterator).catch(function (err) {
 			return err;
 		}).then(function (err) {
 			proclaim.equal(err.name, 'AggregateError');
@@ -78,7 +78,7 @@ describe('any', function () {
 	it("rejects with an AggregateError when passed an empty iterable", function () {
 		var promises = [];
 		var iterator = makeArrayIterator(promises);
-		return Promise.any(iterator)['catch'](function (err) {
+		return Promise.any(iterator).catch(function (err) {
 			return err;
 		}).then(function (err) {
 			proclaim.equal(err.name, 'AggregateError');
@@ -87,7 +87,7 @@ describe('any', function () {
 	});
 
 	it("rejects with a TypeError for input that is not iterable", function () {
-		return Promise.any(0)['catch'](function (err) {
+		return Promise.any(0).catch(function (err) {
 			return err;
 		}).then(function (err) {
 			proclaim.ok(err instanceof TypeError);

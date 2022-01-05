@@ -213,7 +213,7 @@
 			value: function _unmanageNode(node) {
 				var inertNode = this._inertManager.deregister(node, this);
 				if (inertNode) {
-					this._managedNodes['delete'](inertNode);
+					this._managedNodes.delete(inertNode);
 				}
 			}
 
@@ -474,7 +474,7 @@
 			key: 'removeInertRoot',
 			value: function removeInertRoot(inertRoot) {
 				this._throwIfDestroyed();
-				this._inertRoots['delete'](inertRoot);
+				this._inertRoots.delete(inertRoot);
 				if (this._inertRoots.size === 0) {
 					this.destructor();
 				}
@@ -612,7 +612,7 @@
 
 					var _inertRoot = this._inertRoots.get(root);
 					_inertRoot.destructor();
-					this._inertRoots['delete'](root);
+					this._inertRoots.delete(root);
 					root.removeAttribute('inert');
 				}
 			}
@@ -674,7 +674,7 @@
 
 				inertNode.removeInertRoot(inertRoot);
 				if (inertNode.destroyed) {
-					this._managedNodes['delete'](node);
+					this._managedNodes.delete(node);
 				}
 
 				return inertNode;
