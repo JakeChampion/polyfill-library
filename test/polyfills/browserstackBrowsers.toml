@@ -230,18 +230,6 @@ browser_version = "49.0"
 [[browsers]]
 os = "Windows"
 os_version = "XP"
-browser = "ie"
-browser_version = "6.0"
-
-[[browsers]]
-os = "Windows"
-os_version = "XP"
-browser = "ie"
-browser_version = "7.0"
-
-[[browsers]]
-os = "Windows"
-os_version = "XP"
 browser = "firefox"
 browser_version = "3.6"
 
@@ -1000,12 +988,6 @@ os = "Windows"
 os_version = "7"
 browser = "chrome"
 browser_version = "95.0 beta"
-
-[[browsers]]
-os = "Windows"
-os_version = "7"
-browser = "ie"
-browser_version = "8.0"
 
 [[browsers]]
 os = "Windows"
