@@ -4,21 +4,16 @@
 describe("globalThis", function() {
 	var arePropertyDescriptorsSupported = function() {
 		var obj = {};
-		try {
-			Object.defineProperty(obj, "x", {
-				enumerable: false,
-				value: obj
-			});
-			/* eslint-disable no-unused-vars, no-restricted-syntax */
-			for (var _ in obj) {
-				return false;
-			}
-			/* eslint-enable no-unused-vars, no-restricted-syntax */
-			return obj.x === obj;
-		} catch (e) {
-			// this is IE 8.
+		Object.defineProperty(obj, "x", {
+			enumerable: false,
+			value: obj
+		});
+		/* eslint-disable no-unused-vars, no-restricted-syntax */
+		for (var _ in obj) {
 			return false;
 		}
+		/* eslint-enable no-unused-vars, no-restricted-syntax */
+		return obj.x === obj;
 	};
 
 	var supportsDescriptors =

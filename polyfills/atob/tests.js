@@ -1,14 +1,14 @@
 /* eslint-env mocha, browser */
 /* global proclaim */
 
-// Doesn't throw in IE6, otherwise works fine, so tolerate this
+// Doesn't throw in IE9, otherwise works fine, so tolerate this
 it.skip("should throw exception for invalid characters in code", function () {
 	proclaim["throws"](function() {
 		atob("YW55IGNhcm5hbCBwbGVhc3$VyZ");
 	});
 });
 
-// Doesn't throw in IE6, otherwise works fine, so tolerate this
+// Doesn't throw in IE9, otherwise works fine, so tolerate this
 it.skip("should throw exception for too much padding", function () {
 	proclaim["throws"](function() {
 		atob("YW55IGNhcm5hbCBwbGVhc3VyZ===");

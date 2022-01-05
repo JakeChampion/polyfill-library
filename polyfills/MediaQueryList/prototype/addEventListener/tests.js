@@ -271,100 +271,78 @@ if (typeof (self.matchMedia('(min-width: 1px)').listeners) === 'undefined') {
 			}, done);
 		});
 
-		if ((function () {
-			// supports setters (not IE8)
-			try {
-				var a = {};
-				Object.defineProperty(a, 't', {
-					configurable: true,
-					enumerable: false,
-					get: function () {
-						return this._v;
-					},
-					set: function (v) {
-						this._v = v + v;
+		it("adds a listener through onchange", function (done) {
+			createMQL(function (mql) {
+				var _event;
+				mql.onchange = function (event) {
+					_event = event;
+				};
+
+				triggerMQLEvent(mql);
+				waitForChangesReported(function () {
+					try {
+						proclaim.ok(_event);
+						proclaim.equal(_event.media, mql.media);
+						proclaim.equal(_event.matches, mql.matches);
+						done();
+					} catch (err) {
+						done(err);
 					}
 				});
+			}, done);
+		});
 
-				a.t = 1;
-				return (a.t === 2);
-			} catch (e) {
-				return false;
-			}
-		}())) {
-			it("adds a listener through onchange", function (done) {
-				createMQL(function (mql) {
-					var _event;
-					mql.onchange = function (event) {
-						_event = event;
-					};
+		it("removes a listener through onchange", function (done) {
+			createMQL(function (mql) {
+				var calls = 0;
+				mql.onchange = function () {
+					calls++;
+				};
 
-					triggerMQLEvent(mql);
-					waitForChangesReported(function () {
-						try {
-							proclaim.ok(_event);
-							proclaim.equal(_event.media, mql.media);
-							proclaim.equal(_event.matches, mql.matches);
-							done();
-						} catch (err) {
-							done(err);
-						}
-					});
-				}, done);
-			});
+				triggerMQLEvent(mql);
+				waitForChangesReported(function () {
+					try {
+						proclaim.equal(calls, 1);
 
-			it("removes a listener through onchange", function (done) {
-				createMQL(function (mql) {
-					var calls = 0;
-					mql.onchange = function () {
-						calls++;
-					};
+						mql.onchange = null;
 
-					triggerMQLEvent(mql);
-					waitForChangesReported(function () {
-						try {
-							proclaim.equal(calls, 1);
+						triggerMQLEvent(mql);
+						waitForChangesReported(function () {
+							try {
+								proclaim.equal(calls, 1);
+								done();
+							} catch (err) {
+								done(err);
+							}
+						});
 
-							mql.onchange = null;
+					} catch (err) {
+						done(err);
+					}
+				});
+			}, done);
+		});
 
-							triggerMQLEvent(mql);
-							waitForChangesReported(function () {
-								try {
-									proclaim.equal(calls, 1);
-									done();
-								} catch (err) {
-									done(err);
-								}
-							});
+		it("does not remove an onchange listener through removeEventListener", function (done) {
+			createMQL(function (mql) {
+				var calls = 0;
+				mql.onchange = function () {
+					calls++;
+				};
 
-						} catch (err) {
-							done(err);
-						}
-					});
-				}, done);
-			});
+				mql.removeEventListener('change', mql.onchange);
 
-			it("does not remove an onchange listener through removeEventListener", function (done) {
-				createMQL(function (mql) {
-					var calls = 0;
-					mql.onchange = function () {
-						calls++;
-					};
-
-					mql.removeEventListener('change', mql.onchange);
-
-					triggerMQLEvent(mql);
-					waitForChangesReported(function () {
-						try {
-							proclaim.equal(calls, 1);
-							done();
-						} catch (err) {
-							done(err);
-						}
-					});
-				}, done);
-			});
-		}
+				triggerMQLEvent(mql);
+				waitForChangesReported(function () {
+					try {
+						proclaim.equal(calls, 1);
+						done();
+					} catch (err) {
+						done(err);
+					}
+				});
+			}, done);
+		});
 	});
 } else {
 	describe('WPT (with polyfilled matchMedia)', function () {
@@ -439,49 +417,27 @@ if (typeof (self.matchMedia('(min-width: 1px)').listeners) === 'undefined') {
 			proclaim.equal(mql.listeners.length, 0);
 		});
 
-		if ((function () {
-			// supports setters (not IE8)
-			try {
-				var a = {};
-				Object.defineProperty(a, 't', {
-					configurable: true,
-					enumerable: false,
-					get: function () {
-						return this._v;
-					},
-					set: function (v) {
-						this._v = v + v;
-					}
-				});
+		it("adds a listener through onchange", function () {
+			var mql = window.matchMedia('(min-width: 1px)');
+			var listener = function () {
+					/* noop */
+				};
 
-				a.t = 1;
-				return (a.t === 2);
-			} catch (e) {
-				return false;
-			}
-		}())) {
-			it("adds a listener through onchange", function () {
-				var mql = window.matchMedia('(min-width: 1px)');
-				var listener = function () {
-						/* noop */
-					};
+			mql.onchange = listener;
 
-				mql.onchange = listener;
+			proclaim.equal(mql.listeners.length, 1);
+		});
 
-				proclaim.equal(mql.listeners.length, 1);
-			});
+		it("does not remove an onchange listener through removeEventListener", function () {
+			var mql = window.matchMedia('(min-width: 1px)');
+			var listener = function () {
+					/* noop */
+				};
 
-			it("does not remove an onchange listener through removeEventListener", function () {
-				var mql = window.matchMedia('(min-width: 1px)');
-				var listener = function () {
-						/* noop */
-					};
+			mql.onchange = listener;
+			mql.removeEventListener('change', listener);
 
-				mql.onchange = listener;
-				mql.removeEventListener('change', listener);
-
-				proclaim.equal(mql.listeners.length, 1);
-			});
-		}
+			proclaim.equal(mql.listeners.length, 1);
+		});
 	});
 }

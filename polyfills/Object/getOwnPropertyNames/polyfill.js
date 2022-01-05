@@ -24,7 +24,7 @@
 				}
 			}
 
-			// Polyfill.io fallback for non-array-like strings which exist in some ES3 user-agents (IE 8)
+			// Polyfill.io fallback for non-array-like strings which exist in some ES3 user-agents
 			object =
 				toString.call(object) == "[object String]"
 					? split.call(object, "")

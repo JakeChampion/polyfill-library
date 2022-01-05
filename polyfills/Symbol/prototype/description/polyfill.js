@@ -1,27 +1,6 @@
 /* global Symbol, Type, Proxy */
 
 (function (global) {
-	var supportsGetters = (function() {
-		try {
-			var a = {};
-			Object.defineProperty(a, "t", {
-				configurable: true,
-				enumerable: false,
-				get: function() {
-					return true;
-				},
-				set: undefined
-			});
-			return !!a.t;
-		} catch (e) {
-			return false;
-		}
-	})();
-
-	if (!supportsGetters) {
-		return;
-	}
-
 	function isSymbolPolyfilled(symbol) {
 		return symbol.toString().indexOf("__\x01symbol:") === 0;
 	}

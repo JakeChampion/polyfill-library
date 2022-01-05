@@ -1,22 +1,5 @@
 /* global CreateIterResultObject, CreateMethodProperty, GetIterator, IsCallable, IteratorClose, IteratorStep, IteratorValue, OrdinaryCreateFromConstructor, SameValueZero, Type, Symbol */
 (function (global) {
-	var supportsGetters = (function () {
-		try {
-			var a = {};
-			Object.defineProperty(a, 't', {
-				configurable: true,
-				enumerable: false,
-				get: function () {
-					return true;
-				},
-				set: undefined
-			});
-			return !!a.t;
-		} catch (e) {
-			return false;
-		}
-	}());
-
 	// Need an internal counter to assign unique IDs to a key map
 	var _uniqueHashId = 0;
 	// Create a unique key name for storing meta data on functions and objects to enable lookups in hash table
@@ -130,16 +113,6 @@
 		// 3. Set map.[[MapData]] to a new empty List.
 		// Polyfill.io - This step was done as part of step two.
 
-		// Some old engines do not support ES5 getters/setters.  Since Map only requires these for the size property, we can fall back to setting the size property statically each time the size of the map changes.
-		if (!supportsGetters) {
-			Object.defineProperty(map, 'size', {
-				configurable: true,
-				enumerable: false,
-				writable: true,
-				value: 0
-			});
-		}
-
 		// 4. If iterable is not present, let iterable be undefined.
 		var iterable = arguments.length > 0 ? arguments[0] : undefined;
 
@@ -199,9 +172,7 @@
 		} catch (e) {
 			// Polyfill.io - For user agents which do not have iteration methods on argument objects or arrays, we can special case those.
 			if (Array.isArray(iterable) ||
-				Object.prototype.toString.call(iterable) === '[object Arguments]' ||
-				// IE 7 & IE 8 return '[object Object]' for the arguments object, we can detect by checking for the existence of the callee property
-				(!!iterable.callee)) {
+				Object.prototype.toString.call(iterable) === '[object Arguments]') {
 				var index;
 				var length = iterable.length;
 				for (index = 0; index < length; index++) {
@@ -223,19 +194,15 @@
 	});
 
 	// 23.1.2.2 get Map [ @@species ]
-	if (supportsGetters) {
-		Object.defineProperty(Map, Symbol.species, {
-			configurable: true,
-			enumerable: false,
-			get: function () {
-				// 1. Return the this value.
-				return this;
-			},
-			set: undefined
-		});
-	} else {
-		CreateMethodProperty(Map, Symbol.species, Map);
-	}
+	Object.defineProperty(Map, Symbol.species, {
+		configurable: true,
+		enumerable: false,
+		get: function () {
+			// 1. Return the this value.
+			return this;
+		},
+		set: undefined
+	});
 
 	// 23.1.3.1 Map.prototype.clear ( )
 	CreateMethodProperty(Map.prototype, 'clear', function clear() {
@@ -259,9 +226,6 @@
 				M._values[i] = undefMarker;
 			}
 			this._size = 0;
-			if (!supportsGetters) {
-				this.size = this._size;
-			}
 			// 5a. Clear lookup table
 			this._table = {};
 			// 6. Return undefined.
@@ -308,9 +272,6 @@
 					// ii. Set p.[[Value]] to empty.
 					this._values[recordIndex] = undefMarker;
 					this._size = --this._size;
-					if (!supportsGetters) {
-						this.size = this._size;
-					}
 					// iia. Remove key from lookup table
 					setHashIndex(this, key, false);
 					// iii. Return true.
@@ -471,41 +432,36 @@
 				M._values.push(p['[[Value]]']);
 				setHashIndex(M, key, M._keys.length - 1); // update lookup table
 				++M._size;
-				if (!supportsGetters) {
-					M.size = M._size;
-				}
 			}
 			return M;
 		});
 
 	// 23.1.3.10. get Map.prototype.size
-	if (supportsGetters) {
-		Object.defineProperty(Map.prototype, 'size', {
-			configurable: true,
-			enumerable: false,
-			get: function () {
-				// 1. Let M be the this value.
-				var M = this;
-				// 2. If Type(M) is not Object, throw a TypeError exception.
-				if (Type(M) !== 'object') {
-					throw new TypeError('Method Map.prototype.size called on incompatible receiver ' + Object.prototype.toString.call(M));
-				}
-				// 3. If M does not have a [[MapData]] internal slot, throw a TypeError exception.
-				if (M._es6Map !== true) {
-					throw new TypeError('Method Map.prototype.size called on incompatible receiver ' + Object.prototype.toString.call(M));
-				}
-				// 4. Let entries be the List that is M.[[MapData]].
-				// 5. Let count be 0.
-				// 6. For each Record {[[Key]], [[Value]]} p that is an element of entries, do
-					// 6a. If p.[[Key]] is not empty, set count to count+1.
-				// 7. Return count.
+	Object.defineProperty(Map.prototype, 'size', {
+		configurable: true,
+		enumerable: false,
+		get: function () {
+			// 1. Let M be the this value.
+			var M = this;
+			// 2. If Type(M) is not Object, throw a TypeError exception.
+			if (Type(M) !== 'object') {
+				throw new TypeError('Method Map.prototype.size called on incompatible receiver ' + Object.prototype.toString.call(M));
+			}
+			// 3. If M does not have a [[MapData]] internal slot, throw a TypeError exception.
+			if (M._es6Map !== true) {
+				throw new TypeError('Method Map.prototype.size called on incompatible receiver ' + Object.prototype.toString.call(M));
+			}
+			// 4. Let entries be the List that is M.[[MapData]].
+			// 5. Let count be 0.
+			// 6. For each Record {[[Key]], [[Value]]} p that is an element of entries, do
+				// 6a. If p.[[Key]] is not empty, set count to count+1.
+			// 7. Return count.
 
-				// Implement 4-7 more efficently by returning pre-computed property
-				return this._size;
-			},
-			set: undefined
-		});
-	}
+			// Implement 4-7 more efficently by returning pre-computed property
+			return this._size;
+		},
+		set: undefined
+	});
 
 	// 23.1.3.11. Map.prototype.values ( )
 	CreateMethodProperty(Map.prototype, 'values', function values () {
@@ -664,11 +620,5 @@
 	);
 
 	// Export the object
-	try {
-		CreateMethodProperty(global, 'Map', Map);
-	} catch (e) {
-		// IE8 throws an error here if we set enumerable to false.
-		// More info on table 2: https://msdn.microsoft.com/en-us/library/dd229916(v=vs.85).aspx
-		global.Map = Map;
-	}
+	CreateMethodProperty(global, 'Map', Map);
 }(self));

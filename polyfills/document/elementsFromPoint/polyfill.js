@@ -6,7 +6,7 @@ document.elementsFromPoint = function elementsFromPoint(x, y) {
 	var stack = [];
 	var element = document.elementFromPoint(x, y);
 
-	// IE8 and IE9 don't have support for pointer-events for html elements
+	// IE9 doesn't have support for pointer-events for html elements
 	var isIE =  (/msie|trident/i).test(navigator && navigator.userAgent);
 	// CSS property used to exclude the element from hit testing
 	var propertyName = isIE
@@ -23,8 +23,6 @@ document.elementsFromPoint = function elementsFromPoint(x, y) {
 			element.style.setProperty(name, value, priority);
 		} else {
 			element.style[name] = value;
-			// need to force a reflow on IE8 in some cases
-			element.getClientRects();
 		}
 	}
 

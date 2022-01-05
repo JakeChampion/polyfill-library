@@ -19,13 +19,9 @@ it('is not enumerable', function () {
 
 var arePropertyDescriptorsSupported = function () {
 	var obj = {};
-	try {
-		Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
+	Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
 	for (var _ in obj) { return false; }
-		return obj.x === obj;
-	} catch (e) { // this is IE 8.
-		return false;
-	}
+	return obj.x === obj;
 };
 var supportsDescriptors = Object.defineProperty && arePropertyDescriptorsSupported();
 var strictModeSupported = (function(){ return this; }).call(null) === null;
@@ -240,44 +236,19 @@ it('does not break when an iframe is added', function () {
 // Match tests for "Polyfill.prototype.description"
 // The polyfill for this feature is done separately for modern browsers, but also here in the Symbol polyfill.
 describe('Polyfill.prototype.description', function () {
-	var supportsGetters = (function () {
-		// supports getters
-		try {
-			var a = {};
-			Object.defineProperty(a, "t", {
-				configurable: true,
-				enumerable: false,
-				get: function () {
-					return true;
-				},
-				set: undefined
-			});
-			return !!a.t;
-		} catch (e) {
-			return false;
+	it('is defined', function () {
+		proclaim.include(Symbol.prototype, 'description');
+	});
+
+	it('is not enumerable', function () {
+		proclaim.isNotEnumerable(Symbol.prototype, 'description');
+	});
+
+	it('is configurable', function () {
+		if (Object.getOwnPropertyDescriptor) {
+			proclaim.isTrue(Object.getOwnPropertyDescriptor(Symbol.prototype, 'description').configurable);
 		}
-	}());
-
-	if (supportsGetters) {
-		it('is defined', function () {
-			proclaim.include(Symbol.prototype, 'description');
-		});
-
-		it('is not enumerable', function () {
-			proclaim.isNotEnumerable(Symbol.prototype, 'description');
-		});
-
-		it('is configurable', function () {
-			if (Object.getOwnPropertyDescriptor) {
-				proclaim.isTrue(Object.getOwnPropertyDescriptor(Symbol.prototype, 'description').configurable);
-			}
-		});
-	} else {
-		it('is defined', function () {
-			var s = Symbol('foo');
-			proclaim.ok('description' in s);
-		});
-	}
+	});
 
 	it('works with strings', function () {
 		proclaim.strictEqual(Symbol("hello").description, "hello");

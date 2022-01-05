@@ -189,23 +189,7 @@ describe('Object.create', function () {
 		proclaim.ok(Object.create(new fn) instanceof fn);
 	});
 
-	if ('getPrototypeOf' in Object && (function () {
-		// supports getters (not IE8)
-		try {
-			var a = {};
-			Object.defineProperty(a, 't', {
-				configurable: true,
-				enumerable: false,
-				get: function () {
-					return true;
-				},
-				set: undefined
-			});
-			return !!a.t;
-		} catch (e) {
-			return false;
-		}
-	}())) {
+	if ('getPrototypeOf' in Object) {
 		it('can get the prototype of', function () {
 			function fn() {
 				return this.a = 1;

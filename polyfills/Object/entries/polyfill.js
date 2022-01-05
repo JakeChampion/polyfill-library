@@ -8,7 +8,7 @@
 	CreateMethodProperty(Object, 'entries', function entries(O) {
 		// 1. Let obj be ? ToObject(O).
 		var obj = ToObject(O);
-		// Polyfill.io fallback for non-array-like strings which exist in some ES3 user-agents (IE 8)
+		// Polyfill.io fallback for non-array-like strings which exist in some ES3 user-agents
 		obj = (Type(obj) === 'string' || obj instanceof String) && toString.call(O) == '[object String]' ? split.call(O, '') : Object(O);
 		// 2. Let nameList be ? EnumerableOwnProperties(obj, "key+value").
 		var nameList = EnumerableOwnProperties(obj, "key+value");

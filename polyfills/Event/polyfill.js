@@ -1,22 +1,4 @@
 (function () {
-	var unlistenableWindowEvents = {
-		click: 1,
-		dblclick: 1,
-		keyup: 1,
-		keypress: 1,
-		keydown: 1,
-		mousedown: 1,
-		mouseup: 1,
-		mousemove: 1,
-		mouseover: 1,
-		mouseenter: 1,
-		mouseleave: 1,
-		mouseout: 1,
-		storage: 1,
-		storagecommit: 1,
-		textinput: 1
-	};
-
 	// This polyfill depends on availability of `document` so will not run in a worker
 	// However, we asssume there are no browsers with worker support that lack proper
 	// support for `Event` within the worker
@@ -68,10 +50,6 @@
 			element = this,
 			type = arguments[0],
 			listener = arguments[1];
-
-			if (element === window && type in unlistenableWindowEvents) {
-				throw new Error('In IE8 the event: ' + type + ' is not available on the window object. Please see https://github.com/Financial-Times/polyfill-service/issues/317 for more information.');
-			}
 
 			if (!element._events) {
 				element._events = {};

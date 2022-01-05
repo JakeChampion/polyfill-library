@@ -49,8 +49,7 @@ it('should retain checked state of checkbox elements', function() {
 	proclaim.equal(clone.checked, true);
 });
 
-/* TEST SKIPPED: this doesn't work in IE < 9, which results in <:nav></:nav>.  Support for this could probably be added to the polyfill */
-it.skip('can clone HTML5 elements', function() {
+it('can clone HTML5 elements', function() {
 	var clone = document.createElement('nav').cloneNode();
 	proclaim.equal(htmlify(clone), '<nav></nav>');
 });
