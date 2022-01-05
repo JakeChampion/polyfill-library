@@ -1,11 +1,7 @@
 aliases = ["Intl"]
 dependencies = [
-	"Array.prototype.filter",
-	"Array.prototype.indexOf",
-	"Array.prototype.reduce",
 	"Array.prototype.sort",
 	"Object.assign",
-	"Object.defineProperty",
 	"Object.keys"
 ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/getCanonicalLocales"

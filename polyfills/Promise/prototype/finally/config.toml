@@ -4,7 +4,6 @@ dependencies = [
 	"_ESAbstract.IsCallable",
 	"_ESAbstract.SpeciesConstructor",
 	"Promise",
-	"Function.prototype.bind"
 ]
 notes = [
 	"The Promise polyfill includes `Promise.prototype.finally`, to avoid needlessly serving this polyfill to those browsers, we have configured the browser targets for this polyfill to not include those configured in the Promise polyfill."

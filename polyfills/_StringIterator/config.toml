@@ -1,7 +1,5 @@
 dependencies = [
 	"_Iterator",
-	"Object.create",
-	"Object.defineProperty",
 	"Object.setPrototypeOf"
 ]
 license = "MIT"

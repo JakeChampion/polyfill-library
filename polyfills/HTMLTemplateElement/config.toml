@@ -1,9 +1,6 @@
 dependencies = [
 	"DocumentFragment",
-	"document.querySelector",
-	"Object.defineProperties",
 	"Object.getOwnPropertyDescriptor",
-	"Object.defineProperty",
 	"Event"
 ]
 license = "BSD-3-Clause"

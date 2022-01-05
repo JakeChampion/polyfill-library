@@ -8,7 +8,7 @@ aliases = [
 ]
 license = "MIT"
 repo = "https://github.com/aFarkas/html5shiv"
-dependencies = [ "document" ]
+dependencies = [ ]
 
 [browsers]
 ie = "6 - 9"

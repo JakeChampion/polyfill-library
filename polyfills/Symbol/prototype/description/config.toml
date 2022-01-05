@@ -1,7 +1,6 @@
 aliases = [ ]
 dependencies = [
 	"Symbol",
-	"Object.defineProperty",
 	"String.prototype.trim",
 	"_ESAbstract.Type"
 ]

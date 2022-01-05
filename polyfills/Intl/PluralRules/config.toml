@@ -1,17 +1,8 @@
 aliases = ["Intl"]
 dependencies = [
-	"Array.isArray",
-	"Array.prototype.filter",
-	"Array.prototype.forEach",
-	"Array.prototype.indexOf",
-	"Array.prototype.lastIndexOf",
-	"Array.prototype.map",
-	"Array.prototype.reduce",
 	"Intl.getCanonicalLocales",
 	"Intl.Locale",
 	"Object.assign",
-	"Object.create",
-	"Object.defineProperty",
 	"Object.keys",
 	"Object.setPrototypeOf",
 	"WeakMap",

@@ -8,7 +8,6 @@ dependencies = [
 	"_ESAbstract.ToLength",
 	"_ESAbstract.ToString",
 	"_ESAbstract.Type",
-	"Object.defineProperty",
 	"RegExp.prototype.flags",
 	"Symbol.matchAll",
 ]

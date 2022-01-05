@@ -13,12 +13,9 @@ dependencies = [
 	"_ESAbstract.OrdinaryCreateFromConstructor",
 	"_ESAbstract.SameValueZero",
 	"_ESAbstract.Type",
-	"Array.isArray",
 	"Symbol",
 	"Symbol.iterator",
 	"Symbol.species",
-	"Object.create",
-	"Object.defineProperty",
 	"Object.isExtensible"
 ]
 notes = [

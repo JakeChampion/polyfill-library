@@ -1,7 +1,5 @@
 aliases = []
-dependencies = [
-	"Object.defineProperties"
-]
+dependencies = [ ]
 spec = "https://www.w3.org/TR/geometry-1/#DOMRect"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/DOMRect"
 

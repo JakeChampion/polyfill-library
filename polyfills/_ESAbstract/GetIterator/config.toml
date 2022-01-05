@@ -3,7 +3,6 @@ dependencies = [
 	"_ESAbstract.GetMethod",
 	"_ESAbstract.GetV",
 	"_ESAbstract.Type",
-	"Object.create",
 	"Symbol.iterator"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-getiterator"

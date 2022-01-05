@@ -9,9 +9,7 @@ aliases = []
 # dependencies = [
 #    "Object.defineProperty"
 # ]
-dependencies = [
-	"Array.prototype.map"
-]
+dependencies = [ ]
 
 #### Specification Link
 # The url which is where the specification for the feature exists.

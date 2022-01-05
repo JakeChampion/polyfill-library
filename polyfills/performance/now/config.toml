@@ -1,4 +1,4 @@
-dependencies = [ "Date.now" ]
+dependencies = [ ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Performance/now"
 
 [browsers]

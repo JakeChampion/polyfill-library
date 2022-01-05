@@ -4,7 +4,6 @@ aliases = [
 
 dependencies = [
 	"matchMedia",
-	"Object.defineProperty"
 ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList"
 spec = "http://dev.w3.org/csswg/cssom-view/#the-mediaquerylist-interface"

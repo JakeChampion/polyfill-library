@@ -7,7 +7,7 @@ aliases = [
 	"caniuse:matchesselector",
 	"blissfuljs"
 ]
-dependencies = [ "Element", "document.querySelector" ]
+dependencies = [ ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Element/matches"
 spec = "http://dom.spec.whatwg.org/#dom-element-matches"
 

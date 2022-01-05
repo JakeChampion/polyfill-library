@@ -3,7 +3,6 @@ aliases = [
 ]
 dependencies = [
 	"Object.getOwnPropertyDescriptor",
-	"Object.defineProperty",
 	"Reflect.ownKeys",
 	"_ESAbstract.ToObject",
 	"_ESAbstract.CreateMethodProperty",

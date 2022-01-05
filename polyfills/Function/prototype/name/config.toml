@@ -1,5 +1,5 @@
 aliases = [ "es6", "es2015", "Function.name" ]
-dependencies = [ "Object.defineProperty" ]
+dependencies = [ ]
 repo = "https://github.com/JamesMGreene/Function.name"
 license = "MIT"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name"

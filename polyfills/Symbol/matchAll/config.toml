@@ -1,6 +1,5 @@
 aliases = [ "es2020" ]
 dependencies = [
-  "Object.defineProperty",
   "Symbol",
 ]
 license = "MIT"

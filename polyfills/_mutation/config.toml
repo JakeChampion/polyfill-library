@@ -1,4 +1,4 @@
-dependencies = [ "document", "Element" ]
+dependencies = [ ]
 
 [browsers]
 android = "*"

@@ -12,12 +12,9 @@ dependencies = [
 	"_ESAbstract.IteratorValue",
 	"_ESAbstract.OrdinaryCreateFromConstructor",
 	"_ESAbstract.SameValueZero",
-	"Array.isArray",
 	"Symbol",
 	"Symbol.iterator",
 	"Symbol.species",
-	"Object.create",
-	"Object.defineProperty"
 ]
 notes = [
 	"For compatibility with very old engines, `Set.prototype.delete` must be accessed using square bracket notation because 'delete' is a reserved word. `mySet.delete()` is an error in IE8. Use `mySet['delete']()` instead.",

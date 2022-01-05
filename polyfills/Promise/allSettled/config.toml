@@ -3,8 +3,6 @@ dependencies = [
 	"_ESAbstract.CreateMethodProperty",
 	"_ESAbstract.IterableToList",
 	"_ESAbstract.Type",
-	"Array.isArray",
-	"Array.prototype.map",
 	"Promise",
 ]
 license = "MIT"

@@ -1,6 +1,5 @@
 dependencies = [
 	"DOMTokenList",
-	"Array.prototype.forEach",
 	"Element.prototype.classList"
 ]
 spec = "https://dom.spec.whatwg.org/#interface-domtokenlist"

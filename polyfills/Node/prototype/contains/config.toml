@@ -5,7 +5,7 @@ aliases = [
 	"default-3.6",
 	"default"
 ]
-dependencies = [ "Element" ]
+dependencies = [ ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Node/contains"
 
 [browsers]

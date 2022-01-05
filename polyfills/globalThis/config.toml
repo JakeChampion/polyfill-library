@@ -1,7 +1,5 @@
 aliases = [ ]
-dependencies = [
-	"Object.defineProperty"
-]
+dependencies = [ ]
 spec = "https://tc39.es/ecma262/#sec-globalthis"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis"
 license = "MIT"

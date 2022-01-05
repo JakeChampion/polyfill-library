@@ -1,8 +1,5 @@
 dependencies = [
-	"Function.prototype.bind",
 	"Object.assign",
-	"Object.defineProperties",
-	"Object.defineProperty",
 	"Symbol",
 	"Symbol.iterator",
 	"Symbol.toStringTag"

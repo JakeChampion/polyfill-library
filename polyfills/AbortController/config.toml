@@ -1,8 +1,6 @@
 dependencies = [
 	"fetch",
-	"Object.defineProperty",
 	"Object.getOwnPropertyDescriptor",
-	"Object.getPrototypeOf",
 	"Object.setPrototypeOf",
 	"Event",
 	"Map",

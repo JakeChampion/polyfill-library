@@ -386,7 +386,7 @@ describe("polyfillio", () => {
 
 		it("should include dependencies", () => {
 			sourceslib.getPolyfillMeta.withArgs('Element.prototype.placeholder').resolves({
-				"dependencies": ["setImmediate", "Array.isArray", "Event"],
+				"dependencies": ["setImmediate", "Event"],
 				"browsers": {
 					"ie": "*"
 				}
@@ -429,7 +429,6 @@ describe("polyfillio", () => {
 				assert.deepEqual(polyfillNames, [
 					"Element.prototype.placeholder",
 					"setImmediate",
-					"Array.isArray",
 					"Event"
 				]);
 			});
