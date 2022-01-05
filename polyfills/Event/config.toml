@@ -6,10 +6,6 @@ aliases = [
 	"default"
 ]
 dependencies = [
-	"document",
-	"Element",
-	"Object.defineProperty",
-	"Array.prototype.indexOf",
 	"Array.prototype.includes"
 ]
 docs = "https://developer.mozilla.org/en/docs/Web/API/Event"

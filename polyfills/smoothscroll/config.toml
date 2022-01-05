@@ -10,9 +10,6 @@ aliases = [
 ]
 dependencies = [
 	"requestAnimationFrame",
-	"Function.prototype.bind",
-	"getComputedStyle",
-	"Object.defineProperty"
 ]
 license = "MIT"
 spec = "https://drafts.csswg.org/cssom-view/#smooth-scrolling"

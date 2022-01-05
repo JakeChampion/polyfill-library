@@ -2,10 +2,7 @@
 aliases = []
 
 #### Dependencies
-dependencies = [
-	"Object.defineProperty",
-	"document.querySelector"
-]
+dependencies = [ ]
 
 notes = [
 	"Polyfill does not return a live HTMLCollection, only a static NodeList that has the same methods as an HTMLCollection",

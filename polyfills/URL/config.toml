@@ -8,9 +8,6 @@ aliases = [
 	"URLSearchParams"
 ]
 dependencies = [
-	"Object.defineProperties",
-	"Array.prototype.forEach",
-	"Array.isArray",
 	"Array.from",
 	"Symbol.iterator"
 ]

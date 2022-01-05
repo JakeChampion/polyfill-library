@@ -6,11 +6,6 @@ aliases = [
 	"Symbol.keyFor"
 ]
 dependencies = [
-	"Array.prototype.forEach",
-	"Array.prototype.filter",
-	"Array.prototype.map",
-	"Object.create",
-	"Object.defineProperty",
 	"Object.getOwnPropertyNames",
 	"Object.getOwnPropertyDescriptor",
 	"Object.freeze",

@@ -1,9 +1,6 @@
 dependencies = [
-	"Array.prototype.forEach",
-	"Array.isArray",
 	"Object.getOwnPropertyNames",
 	"Promise",
-	"XMLHttpRequest",
 	"Symbol.iterator",
 	"URL"
 ]

@@ -1,4 +1,4 @@
-dependencies = [ "Object.defineProperty" ]
+dependencies = [ ]
 spec = "https://tc39.github.io/ecma262/#sec-createmethodproperty"
 
 [browsers]

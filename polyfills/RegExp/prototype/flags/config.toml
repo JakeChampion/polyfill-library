@@ -3,7 +3,6 @@ dependencies = [
 	"_ESAbstract.Get",
 	"_ESAbstract.ToBoolean",
 	"_ESAbstract.Type",
-	"Object.defineProperty"
 ]
 license = "MIT"
 spec = "https://tc39.github.io/ecma262/#sec-get-regexp.prototype.flags"

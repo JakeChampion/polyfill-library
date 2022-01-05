@@ -7,7 +7,7 @@ aliases = [
 	"modernizr:classlist",
 	"blissfuljs"
 ]
-dependencies = [ "DOMTokenList", "Element", "Object.defineProperty" ]
+dependencies = [ "DOMTokenList" ]
 spec = "https://html.spec.whatwg.org/multipage/dom.html#dom-classlist"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Element/classList"
 license = "ISC"

@@ -10,7 +10,6 @@ dependencies = [
 	"_ESAbstract.Call",
 	"_ESAbstract.IteratorClose",
 	"_ESAbstract.IsArray",
-	"Object.defineProperty",
 	"_ESAbstract.Type",
 	"_ESAbstract.SameValueZero",
 	"Symbol"

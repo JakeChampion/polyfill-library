@@ -1,5 +1,5 @@
 aliases = [ ]
-dependencies = [ "Element" ]
+dependencies = [ ]
 spec = "https://dom.spec.whatwg.org/#dom-element-toggleattribute"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Element/toggleAttribute"
 

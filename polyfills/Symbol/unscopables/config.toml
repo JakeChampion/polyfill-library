@@ -1,5 +1,5 @@
 aliases = [ "es6", "es2015" ]
-dependencies = [ "Object.defineProperty", "Symbol" ]
+dependencies = [ "Symbol" ]
 license = "MIT"
 spec = "http://www.ecma-international.org/ecma-262/6.0/index.html#sec-symbol.unscopables"
 docs = "https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol"

@@ -72,14 +72,6 @@ describe("polyfillio", function () {
 					aliasOf: [],
 					dependencyOf: []
 				},
-				"Object.defineProperty": {
-					"dependencyOf": [
-						"Math.sign",
-						"_ESAbstract.CreateMethodProperty"
-					],
-					"flags": ["gated"],
-					aliasOf: []
-				},
 				"_ESAbstract.CreateMethodProperty": {
 					"dependencyOf": [
 						"Math.sign"
@@ -113,14 +105,6 @@ describe("polyfillio", function () {
 					aliasOf: [],
 					dependencyOf: []
 				},
-				"Object.defineProperty": {
-					"dependencyOf": [
-						"Math.sign",
-						"_ESAbstract.CreateMethodProperty"
-					],
-					"flags": ["gated"],
-					aliasOf: []
-				},
 				"_ESAbstract.CreateMethodProperty": {
 					"dependencyOf": [
 						"Math.sign"
@@ -143,14 +127,6 @@ describe("polyfillio", function () {
 					"flags": ["gated"],
 					"aliasOf": [],
 					"dependencyOf": []
-				},
-				"Object.defineProperty": {
-					"dependencyOf": [
-						"Math.sign",
-						"_ESAbstract.CreateMethodProperty"
-					],
-					"flags": ["gated"],
-					aliasOf: []
 				},
 				"_ESAbstract.CreateMethodProperty": {
 					"dependencyOf": [

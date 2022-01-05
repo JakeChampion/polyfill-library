@@ -6,7 +6,6 @@ dependencies = [
 	"_ESAbstract.RegExpExec",
 	"_ESAbstract.ToLength",
 	"_ESAbstract.ToString",
-	"Object.defineProperty",
 	"Symbol.iterator",
 	"Symbol.toStringTag",
 ]

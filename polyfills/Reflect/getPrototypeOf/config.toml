@@ -2,7 +2,6 @@ dependencies = [
 	"Reflect",
 	"_ESAbstract.CreateMethodProperty",
 	"_ESAbstract.Type",
-	"Object.getPrototypeOf"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-reflect.getprototypeof"
 

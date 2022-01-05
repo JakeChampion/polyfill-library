@@ -1,4 +1,4 @@
-dependencies = [ "Object.defineProperty" ]
+dependencies = [ ]
 notes = [ ]
 spec = "http://www.w3.org/TR/screen-orientation/"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Screen/orientation"

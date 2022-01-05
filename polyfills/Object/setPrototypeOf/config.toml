@@ -1,10 +1,6 @@
 aliases = [ "es6", "es2015" ]
 dependencies = [
 	"_ESAbstract.CreateMethodProperty",
-	"Array.prototype.forEach",
-	"Object.create",
-	"Object.defineProperty",
-	"Object.getPrototypeOf",
 	"Object.getOwnPropertyNames",
 	"Object.getOwnPropertyDescriptor"
 ]

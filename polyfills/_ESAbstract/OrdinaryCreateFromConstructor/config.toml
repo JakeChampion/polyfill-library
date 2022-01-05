@@ -1,8 +1,5 @@
 dependencies = [
 	"_ESAbstract.GetPrototypeFromConstructor",
-	"Object.create",
-	"Object.defineProperty",
-	"Object.getPrototypeOf"
 ]
 spec = "https://tc39.github.io/ecma262/#sec-ordinarycreatefromconstructor"
 

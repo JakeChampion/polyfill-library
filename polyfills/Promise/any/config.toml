@@ -4,8 +4,6 @@ dependencies = [
 	"_ESAbstract.IterableToList",
 	"_ESAbstract.Type",
 	"AggregateError",
-	"Array.isArray",
-	"Array.prototype.map",
 	"Promise",
 ]
 license = "MIT"

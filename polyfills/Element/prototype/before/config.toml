@@ -1,8 +1,5 @@
 aliases = [ "default-3.4", "default-3.5", "default-3.6", "default" ]
 dependencies = [
-	"document",
-	"Element",
-	"Array.prototype.indexOf",
 	"_mutation"
 ]
 spec = "http://dom.spec.whatwg.org/#dom-childnode-before"

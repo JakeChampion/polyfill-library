@@ -1,12 +1,8 @@
 dependencies = [
-	"Array.prototype.forEach",
-	"Element",
 	"Element.prototype.matches",
-	"Function.prototype.bind",
 	"Map",
 	"MutationObserver",
 	"Node.prototype.contains",
-	"Object.defineProperty",
 	"Set",
 	"WeakMap"
 ]

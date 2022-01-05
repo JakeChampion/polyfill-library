@@ -3,18 +3,10 @@ aliases = [
 	"Intl.DateTimeFormat.prototype.formatToParts"
 ]
 dependencies = [
-	"Array.isArray",
-	"Array.prototype.filter",
-	"Array.prototype.indexOf",
-	"Array.prototype.lastIndexOf",
-	"Array.prototype.map",
-	"Array.prototype.reduce",
-	"Date.now",
 	"Intl.getCanonicalLocales",
 	"Intl.Locale",
 	"Intl.NumberFormat",
 	"Object.assign",
-	"Object.create",
 	"Object.keys",
 	"Object.setPrototypeOf",
 	"Set",

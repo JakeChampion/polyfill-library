@@ -1,14 +1,6 @@
 aliases = [ ]
 dependencies = [
-	"getComputedStyle",
-	"Array.isArray",
-	"Array.prototype.filter",
-	"Array.prototype.forEach",
-	"Array.prototype.indexOf",
-	"Array.prototype.map",
-	"Array.prototype.some",
 	"Event",
-	"Function.prototype.bind",
 	"performance.now"
 ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver"
