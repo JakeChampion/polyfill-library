@@ -12,8 +12,7 @@ describe('Element.prototype.toggleAttribute', function() {
 		document.body.removeChild(el);
 	});
 
-	// TODO: IE8 does not throw any error. Should throw INVALID_CHARACTER_ERR. Should we support this?
-	it.skip("should throw an error if the attribute name is not valid", function () {
+	it("should throw an error if the attribute name is not valid", function () {
 		proclaim["throws"](function () {
 			el.toggleAttribute('$');
 		});

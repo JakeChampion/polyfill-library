@@ -5,24 +5,6 @@
 (function (Object,  GOPS, global) {
 	'use strict'; //so that ({}).toString.call(null) returns the correct [object Null] rather than [object Window]
 
-	var supportsGetters = (function () {
-		// supports getters
-		try {
-			var a = {};
-			Object.defineProperty(a, "t", {
-				configurable: true,
-				enumerable: false,
-				get: function () {
-					return true;
-				},
-				set: undefined
-			});
-			return !!a.t;
-		} catch (e) {
-			return false;
-		}
-	}());
-
 	var	setDescriptor;
 	var id = 0;
 	var random = '' + Math.random();
@@ -179,15 +161,6 @@
 		}
 
 		var that = setAndGetSymbol(uid);
-
-		if (!supportsGetters) {
-			Object.defineProperty(that, "description", {
-				configurable: true,
-				enumerable: false,
-				value: symbolDescription(that)
-			});
-		}
-
 		return that;
 	};
 

@@ -1,22 +1,5 @@
 /* global CreateIterResultObject, CreateMethodProperty, GetIterator, IsCallable, IteratorClose, IteratorStep, IteratorValue, OrdinaryCreateFromConstructor, SameValueZero, Symbol */
 (function (global) {
-	var supportsGetters = (function () {
-		try {
-			var a = {};
-			Object.defineProperty(a, 't', {
-				configurable: true,
-				enumerable: false,
-				get: function () {
-					return true;
-				},
-				set: undefined
-			});
-			return !!a.t;
-		} catch (e) {
-			return false;
-		}
-	}());
-
 	// Deleted set items mess with iterator pointers, so rather than removing them mark them as deleted. Can't use undefined or null since those both valid keys so use a private symbol.
 	var undefMarker = Symbol('undef');
 	// 23.2.1.1. Set ( [ iterable ] )
@@ -34,16 +17,6 @@
 
 		// 3. Set set.[[SetData]] to a new empty List.
 		// Polyfill.io - This step was done as part of step two.
-
-		// Some old engines do not support ES5 getters/setters.  Since Set only requires these for the size property, we can fall back to setting the size property statically each time the size of the set changes.
-		if (!supportsGetters) {
-			Object.defineProperty(set, 'size', {
-				configurable: true,
-				enumerable: false,
-				writable: true,
-				value: 0
-			});
-		}
 
 		// 4. If iterable is not present, let iterable be undefined.
 		var iterable = arguments.length > 0 ? arguments[0] : undefined;
@@ -85,9 +58,7 @@
 		} catch (e) {
 			// Polyfill.io - For user agents which do not have iteration methods on argument objects or arrays, we can special case those.
 			if (Array.isArray(iterable) ||
-				Object.prototype.toString.call(iterable) === '[object Arguments]' ||
-				// IE 7 & IE 8 return '[object Object]' for the arguments object, we can detect by checking for the existence of the callee property
-				(!!iterable.callee)) {
+				Object.prototype.toString.call(iterable) === '[object Arguments]') {
 				var index;
 				var length = iterable.length;
 				for (index = 0; index < length; index++) {
@@ -111,19 +82,15 @@
 	});
 
 	// 23.2.2.2 get Set [ @@species ]
-	if (supportsGetters) {
-		Object.defineProperty(Set, Symbol.species, {
-			configurable: true,
-			enumerable: false,
-			get: function () {
-				// 1. Return the this value.
-				return this;
-			},
-			set: undefined
-		});
-	} else {
-		CreateMethodProperty(Set, Symbol.species, Set);
-	}
+	Object.defineProperty(Set, Symbol.species, {
+		configurable: true,
+		enumerable: false,
+		get: function () {
+			// 1. Return the this value.
+			return this;
+		},
+		set: undefined
+	});
 
 	// 23.2.3.1. Set.prototype.add ( value )
 	CreateMethodProperty(Set.prototype, 'add', function add(value) {
@@ -156,9 +123,6 @@
 			S._values.push(value);
 
 			this._size = ++this._size;
-			if (!supportsGetters) {
-				this.size = this._size;
-			}
 			// 8. Return S.
 			return S;
 		});
@@ -183,9 +147,6 @@
 				entries[i] = undefMarker;
 			}
 			this._size = 0;
-			if (!supportsGetters) {
-				this.size = this._size;
-			}
 			// 6. Return undefined.
 			return undefined;
 		});
@@ -216,9 +177,6 @@
 					entries[i] = undefMarker;
 
 					this._size = --this._size;
-					if (!supportsGetters) {
-						this.size = this._size;
-					}
 					// ii. Return true.
 					return true;
 				}
@@ -315,39 +273,37 @@
 	CreateMethodProperty(Set.prototype, 'keys', values);
 
 	// 23.2.3.9. get Set.prototype.size
-	if (supportsGetters) {
-		Object.defineProperty(Set.prototype, 'size', {
-			configurable: true,
-			enumerable: false,
-			get: function () {
-				// 1. Let S be the this value.
-				var S = this;
-				// 2. If Type(S) is not Object, throw a TypeError exception.
-				if (typeof S !== 'object') {
-					throw new TypeError('Method Set.prototype.size called on incompatible receiver ' + Object.prototype.toString.call(S));
+	Object.defineProperty(Set.prototype, 'size', {
+		configurable: true,
+		enumerable: false,
+		get: function () {
+			// 1. Let S be the this value.
+			var S = this;
+			// 2. If Type(S) is not Object, throw a TypeError exception.
+			if (typeof S !== 'object') {
+				throw new TypeError('Method Set.prototype.size called on incompatible receiver ' + Object.prototype.toString.call(S));
+			}
+			// 3. If S does not have a [[SetData]] internal slot, throw a TypeError exception.
+			if (S._es6Set !== true) {
+				throw new TypeError('Method Set.prototype.size called on incompatible receiver ' + Object.prototype.toString.call(S));
+			}
+			// 4. Let entries be the List that is S.[[SetData]].
+			var entries = S._values;
+			// 5. Let count be 0.
+			var count = 0;
+			// 6. For each e that is an element of entries, do
+			for (var i = 0; i < entries.length; i++) {
+				var e = entries[i];
+				// a. If e is not empty, set count to count+1.
+				if (e !== undefMarker) {
+					count = count + 1;
 				}
-				// 3. If S does not have a [[SetData]] internal slot, throw a TypeError exception.
-				if (S._es6Set !== true) {
-					throw new TypeError('Method Set.prototype.size called on incompatible receiver ' + Object.prototype.toString.call(S));
-				}
-				// 4. Let entries be the List that is S.[[SetData]].
-				var entries = S._values;
-				// 5. Let count be 0.
-				var count = 0;
-				// 6. For each e that is an element of entries, do
-				for (var i = 0; i < entries.length; i++) {
-					var e = entries[i];
-					// a. If e is not empty, set count to count+1.
-					if (e !== undefMarker) {
-						count = count + 1;
-					}
-				}
-				// 7. Return count.
-				return count;
-			},
-			set: undefined
-		});
-	}
+			}
+			// 7. Return count.
+			return count;
+		},
+		set: undefined
+	});
 
 	// 23.2.3.11. Set.prototype [ @@iterator ] ( )
 	// The initial value of the @@iterator property is the same function object as the initial value of the values property.
@@ -481,12 +437,5 @@
 	);
 
 	// Export the object
-	try {
-		CreateMethodProperty(global, 'Set', Set);
-	} catch (e) {
-		// IE8 throws an error here if we set enumerable to false.
-		// More info on table 2: https://msdn.microsoft.com/en-us/library/dd229916(v=vs.85).aspx
-		global.Set = Set;
-	}
-
+	CreateMethodProperty(global, 'Set', Set);
 }(self));

@@ -9,9 +9,7 @@ aliases = [
 	"blissfuljs"
 ]
 dependencies = [ ]
-notes = [
-	"In browsers that have no hooks to define getter functions (notably IE <= 8), attempting to defineProperty with a getter or setter function will fail.  Since failing silently would likely break your application, we throw an exception.  In IE8, this can be hard to diagnose because the console will just say 'Exception thrown and not caught'"
-]
+notes = [ ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty"
 
 [browsers]

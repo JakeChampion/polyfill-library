@@ -201,11 +201,7 @@
 		var blobParts = arguments[0];
 		var options = arguments[1];
 
-		try {
-			var isInstanceOfBlob = this instanceof Blob;
-		} catch (e) {
-			// Polyfill.io - IE 8 throws an error when using instanceof
-		}
+		var isInstanceOfBlob = this instanceof Blob;
 		if (isInstanceOfBlob === false) {
 			throw new TypeError("Failed to construct 'Blob': Please use the 'new' operator, this DOM object constructor cannot be called as a function.");
 		}

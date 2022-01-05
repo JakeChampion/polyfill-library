@@ -55,7 +55,7 @@ For example:
 ```toml
 dependencies = [
 	"Element",
-	"Object.defineProperty"
+	"Object.defineProperties"
 ]
 ```
 
@@ -92,11 +92,11 @@ If all versions of a browser require the polyfill you can use the wildcard aster
 android = "*"
 ```
 
-For specific versions you can specify a number, for example if a polyfill is required in Internet Explorer 8 and below you can use "`<9`":
+For specific versions you can specify a number, for example if a polyfill is required in Internet Explorer 10 and below you can use "<11":
 
 ```toml
 [browsers]
-ie = "<9"
+ie = "<11"
 ```
 
 #### Additional information

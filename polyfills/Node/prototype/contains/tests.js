@@ -10,9 +10,7 @@ describe('on an element', function () {
 	detached = document.createElement('div');
 
 	it('is a function', function () {
-
-		// Asserting using to.be.a('function') in this case causes a hard browser crash in IE6
-		proclaim.isInstanceOf(documentElement.contains, Function);
+		proclaim.isFunction(documentElement.contains);
 	});
 
 	it('functions correctly', function () {

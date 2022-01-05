@@ -1,20 +1,8 @@
-/* global CreateMethodProperty, Uint8Array, ToIntegerOrInfinity, ToString */
+/* global CreateMethodProperty, ToIntegerOrInfinity, ToString */
 // 23.2.3.1. %TypedArray%.prototype.at ( index )
 (function () {
-	// In Internet Explorer 8 there is no support for square-bracket notation
-	// in the TypedArrays polyfill instead so we need to use the private `_getter` method
-	var typedArraysSupportIndexLookup = (function() {
-		var uint8 = new Uint8Array(2);
-		uint8[0] = 42;
-		return uint8[0] === 42
-	})
-
 	function getTypedArrayIndex(array, index) {
-		if (typedArraysSupportIndexLookup) {
-			return array[index];
-		} else {
-			return array._getter(index);
-		}
+		return array[index];
 	}
 
 	function at(index) {

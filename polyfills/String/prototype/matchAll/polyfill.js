@@ -14,7 +14,7 @@ CreateMethodProperty(String.prototype, 'matchAll', function matchAll(regexp) {
 			// 2.b.i. Let flags be ? Get(regexp, "flags").
 			var flags = Get(regexp, "flags");
 
-			// IE8 doesn't have RegExp.prototype.flags support, it does have RegExp.prototype.global
+			// IE doesn't have RegExp.prototype.flags support, it does have RegExp.prototype.global
 			// 2.b.iii. If ? ToString(flags) does not contain "g", throw a TypeError exception.
 			if (!('flags' in RegExp.prototype) && regexp.global !== true) {
 				throw TypeError('');

@@ -19,7 +19,6 @@ license = "MIT"
 #### Notes
 notes = [
 	"Safari older than 10.1 does not allow re-defining 'HTMLInputElement.prototype.valueAsDate'.",
-	"IE8 doesn't have 'setter' support, so we can't serve this polyfill",
 	"Browsers that do not support date|month|week|time also won't have type property support. This implies we have to look at the attribute of the element. Setting the property without updating the attribute will have unexpected behaviour."
 ]
 

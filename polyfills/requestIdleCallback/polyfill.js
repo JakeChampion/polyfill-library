@@ -71,7 +71,7 @@
 		messageKey = 'polyfillIdleCallback' + Math.random().toString(36).slice(2);
 		port = window;
 		window.addEventListener('message', function (event) {
-			// IE8 returns true when a strict comparison with `window` is made.
+			// some engines return true when a strict comparison with `window` is made.
 			if (event.source != window || event.data !== messageKey) {
 				return;
 			}

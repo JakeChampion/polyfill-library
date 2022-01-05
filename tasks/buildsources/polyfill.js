@@ -271,14 +271,10 @@ module.exports = class Polyfill {
 			const minified = uglify.minify(source, {
 				fromString: true,
 				compress: {
-					screw_ie8: false,
 					keep_fnames: true
 				},
-				mangle: {
-					screw_ie8: false
-				},
+				mangle: {},
 				output: {
-					screw_ie8: false,
 					beautify: false
 				}
 			});
@@ -314,15 +310,11 @@ module.exports = class Polyfill {
 			const minified = uglify.minify(source, {
 				fromString: true,
 				compress: {
-					screw_ie8: false,
 					expression: true,
 					keep_fnames: true
 				},
-				mangle: {
-					screw_ie8: false
-				},
+				mangle: {},
 				output: {
-					screw_ie8: false,
 					beautify: false,
 					semicolons: false
 				}

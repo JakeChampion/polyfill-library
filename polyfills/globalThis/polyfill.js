@@ -45,16 +45,10 @@
 		Function("return this")();
 
 	// Export the object
-	try {
-		Object.defineProperty(globalThis, "globalThis", {
-			configurable: true,
-			enumerable: false,
-			writable: true,
-			value: globalThis
-		});
-	} catch (e) {
-		// IE8 throws an error here if we set enumerable to false.
-		// More info on table 2: https://msdn.microsoft.com/en-us/library/dd229916(v=vs.85).aspx
-		globalThis.globalThis = globalThis;
-	}
+	Object.defineProperty(globalThis, "globalThis", {
+		configurable: true,
+		enumerable: false,
+		writable: true,
+		value: globalThis
+	});
 })();

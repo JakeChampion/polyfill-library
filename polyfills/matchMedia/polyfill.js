@@ -19,20 +19,14 @@
 		script.parentNode.insertBefore(style, script);
 		}
 
-		// 'style.currentStyle' is used by IE <= 8 and 'self.getComputedStyle' for all other browsers
-		info = ('getComputedStyle' in self) && self.getComputedStyle(style, null) || style.currentStyle;
+		info = ('getComputedStyle' in self) && self.getComputedStyle(style, null);
 
 		styleMedia = {
 			matchMedium: function(media) {
 				media = media.replace(/^only\s+/, '');
 				var text = '@media ' + media + '{ #matchmediajs-test { width: 1px; } }';
 
-				// 'style.styleSheet' is used by IE <= 8 and 'style.textContent' for all other browsers
-				if (style.styleSheet) {
-					style.styleSheet.cssText = text;
-				} else {
-					style.textContent = text;
-				}
+				style.textContent = text;
 
 				// Test if media query is true or false
 				return info.width === '1px';

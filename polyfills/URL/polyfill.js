@@ -4,7 +4,7 @@
 
 // Notes:
 // - Primarily useful for parsing URLs and modifying query parameters
-// - Should work in IE8+ and everything more modern, with es5.js polyfills
+// - Should work in IE9+ and everything more modern, with es5.js polyfills
 
 (function (global) {
 	'use strict';
@@ -412,27 +412,11 @@
 
 			// An inner object implementing URLUtils (either a native URL
 			// object or an HTMLAnchorElement instance) is used to perform the
-			// URL algorithms. With full ES5 getter/setter support, return a
-			// regular object For IE8's limited getter/setter support, a
-			// different HTMLAnchorElement is returned with properties
-			// overridden
+			// URL algorithms.
 
 			var instance = URLUtils(url || '');
 
-			// Detect for ES5 getter/setter support
-			// (an Object.defineProperties polyfill that doesn't support getters/setters may throw)
-			var ES5_GET_SET = (function() {
-				if (!('defineProperties' in Object)) return false;
-				try {
-					var obj = {};
-					Object.defineProperties(obj, { prop: { get: function () { return true; } } });
-					return obj.prop;
-				} catch (_) {
-					return false;
-				}
-			}());
-
-			var self = ES5_GET_SET ? this : document.createElement('a');
+			var self = this;
 
 
 

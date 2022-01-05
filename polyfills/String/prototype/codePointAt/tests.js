@@ -19,13 +19,9 @@ it('is not enumerable', function () {
 
 var arePropertyDescriptorsSupported = function () {
 	var obj = {};
-	try {
-		Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
+	Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
 	for (var _ in obj) { return false; }
-		return obj.x === obj;
-	} catch (e) { // this is IE 8.
-		return false;
-	}
+	return obj.x === obj;
 };
 var ifSupportsDescriptors = Object.defineProperty && arePropertyDescriptorsSupported() ? it : xit;
 

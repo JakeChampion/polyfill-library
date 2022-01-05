@@ -24,7 +24,7 @@ CreateMethodProperty(RegExp.prototype, Symbol.matchAll, function (string) {
 	var C = SpeciesConstructor(R, RegExp);
 	// 5. Let flags be ? ToString(? Get(R, "flags")).
 	var flags = ToString(Get(R, 'flags'));
-	// IE8 doesn't have RegExp.prototype.flags support
+	// IE doesn't have RegExp.prototype.flags support
 	if (!('flags' in RegExp.prototype)) {
 		flags = '';
 		if (R.global === true) {
