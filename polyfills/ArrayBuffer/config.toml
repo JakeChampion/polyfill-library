@@ -38,4 +38,3 @@ samsung_mob = "<2"
 [install]
 module = "js-polyfills"
 paths = [ "typedarray.js" ]
-postinstall = "update.task.js"
