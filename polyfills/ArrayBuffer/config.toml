@@ -13,9 +13,6 @@ aliases = [
 license = "MIT"
 repo = "https://github.com/inexorabletash/polyfill"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"
-notes = [
-	"In Internet Explorer 8 there is no support for square-bracket notation, instead you will need to use the methods _getter and _setter."
-]
 
 [browsers]
 android = "<37"

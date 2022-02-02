@@ -1,10 +1,6 @@
-/* global CreateMethodProperty, ToIntegerOrInfinity, ToString */
+/* global CreateMethodProperty, Get, ToIntegerOrInfinity, ToString */
 // 23.2.3.1. %TypedArray%.prototype.at ( index )
 (function () {
-	function getTypedArrayIndex(array, index) {
-		return array[index];
-	}
-
 	function at(index) {
 		// 1. Let O be the this value.
 		var O = this;
@@ -22,8 +18,7 @@
 		// 7. If k < 0 or k ≥ len, return undefined.
 		if (k < 0 || k >= len) return undefined;
 		// 8. Return ! Get(O, ! ToString(𝔽(k))).
-		// return Get(O, ToString(k));
-		return getTypedArrayIndex(O, ToString(k));
+		return Get(O, ToString(k));
 	}
 
 	if ('__proto__' in self.Int8Array.prototype) {

@@ -25,29 +25,6 @@ var ENCODEINTO_BUILD = false;
 	var globalTextEncoderPrototype;
 	var globalTextEncoderInstance;
 
-	// In Internet Explorer 8 there is no support for square-bracket notation
-	// in the TypedArrays polyfill instead so we need to use the private `_getter` and `_setter` methods.
-	var typedArraysSupportIndexLookup = (function() {
-		var arr = new NativeUint8Array([42,43]);
-		return arr[0] === 42
-	})();
-
-	function getTypedArrayIndex(array, index) {
-		if (typedArraysSupportIndexLookup) {
-			return array[index];
-		} else {
-			return array._getter(index);
-		}
-	}
-
-	function setTypedArrayIndex(array, index, value) {
-		if (typedArraysSupportIndexLookup) {
-			array[index] = value;
-		} else {
-			array._setter(index, value);
-		}
-	}
-
 	/*function decoderReplacer(encoded) {
 		var cp0 = encoded.charCodeAt(0), codePoint=0x110000, i=0, stringLen=encoded.length|0, result="";
 		switch(cp0 >> 4) {
@@ -100,10 +77,10 @@ var ENCODEINTO_BUILD = false;
 		for (; index < len; ) {
 			nextEnd = index <= lenMinus32 ? 32 : len - index|0;
 			for (; pos < nextEnd; index=index+1|0, pos=pos+1|0) {
-				cp0 = getTypedArrayIndex(inputAs8, index) & 0xff;
+				cp0 = inputAs8[index] & 0xff;
 				switch(cp0 >> 4) {
 					case 15:
-						cp1 = getTypedArrayIndex(inputAs8, index=index+1|0) & 0xff;
+						cp1 = inputAs8[index=index+1|0] & 0xff;
 						if ((cp1 >> 6) !== 2 || 247 < cp0) {
 							index = index - 1|0;
 							break;
@@ -112,14 +89,14 @@ var ENCODEINTO_BUILD = false;
 						minBits = 5; // 20 ensures it never passes -> all invalid replacements
 						cp0 = 0x100; //  keep track of th bit size
 					case 14:
-						cp1 = getTypedArrayIndex(inputAs8, index=index+1|0) & 0xff;
+						cp1 = inputAs8[index=index+1|0] & 0xff;
 						codePoint <<= 6;
 						codePoint |= ((cp0 & 15) << 6) | (cp1 & 63);
 						minBits = (cp1 >> 6) === 2 ? minBits + 4|0 : 24; // 24 ensures it never passes -> all invalid replacements
 						cp0 = (cp0 + 0x100) & 0x300; // keep track of th bit size
 					case 13:
 					case 12:
-						cp1 = getTypedArrayIndex(inputAs8, index=index+1|0) & 0xff;
+						cp1 = inputAs8[index=index+1|0] & 0xff;
 						codePoint <<= 6;
 						codePoint |= ((cp0 & 31) << 6) | cp1 & 63;
 						minBits = minBits + 7|0;
@@ -135,7 +112,7 @@ var ENCODEINTO_BUILD = false;
 								cp0 = (codePoint & 0x3ff) + 0xDC00|0; // lowSurrogate (will be inserted later in the switch-statement)
 
 								if (pos < 31) { // notice 31 instead of 32
-									setTypedArrayIndex(tmpBufferU16, pos, tmp);
+									tmpBufferU16[pos] = tmp;
 									pos = pos + 1|0;
 									tmp = -1;
 								}  else {// else, we are at the end of the inputAs8 and let tmp0 be filled in later on
@@ -170,28 +147,28 @@ var ENCODEINTO_BUILD = false;
 					case 2:
 					case 1:
 					case 0:
-						setTypedArrayIndex(tmpBufferU16, pos, cp0);
+						tmpBufferU16[pos] = cp0;
 						continue;*/
 					default:
-						setTypedArrayIndex(tmpBufferU16, pos, cp0); // fill with invalid replacement character
+						tmpBufferU16[pos] = cp0; // fill with invalid replacement character
 						continue;
 					case 11:
 					case 10:
 					case 9:
 					case 8:
 				}
-				setTypedArrayIndex(tmpBufferU16, pos, 0xfffd); // fill with invalid replacement character
+				tmpBufferU16[pos] = 0xfffd; // fill with invalid replacement character
 			}
 			tmpStr += fromCharCode(
-				getTypedArrayIndex(tmpBufferU16, 0), getTypedArrayIndex(tmpBufferU16, 1), getTypedArrayIndex(tmpBufferU16, 2), getTypedArrayIndex(tmpBufferU16, 3), getTypedArrayIndex(tmpBufferU16, 4), getTypedArrayIndex(tmpBufferU16, 5), getTypedArrayIndex(tmpBufferU16, 6), getTypedArrayIndex(tmpBufferU16, 7),
-				getTypedArrayIndex(tmpBufferU16, 8), getTypedArrayIndex(tmpBufferU16, 9), getTypedArrayIndex(tmpBufferU16,10), getTypedArrayIndex(tmpBufferU16,11), getTypedArrayIndex(tmpBufferU16,12), getTypedArrayIndex(tmpBufferU16,13), getTypedArrayIndex(tmpBufferU16,14), getTypedArrayIndex(tmpBufferU16,15),
-				getTypedArrayIndex(tmpBufferU16,16), getTypedArrayIndex(tmpBufferU16,17), getTypedArrayIndex(tmpBufferU16,18), getTypedArrayIndex(tmpBufferU16,19), getTypedArrayIndex(tmpBufferU16,20), getTypedArrayIndex(tmpBufferU16,21), getTypedArrayIndex(tmpBufferU16,22), getTypedArrayIndex(tmpBufferU16,23),
-				getTypedArrayIndex(tmpBufferU16,24), getTypedArrayIndex(tmpBufferU16,25), getTypedArrayIndex(tmpBufferU16,26), getTypedArrayIndex(tmpBufferU16,27), getTypedArrayIndex(tmpBufferU16,28), getTypedArrayIndex(tmpBufferU16,29), getTypedArrayIndex(tmpBufferU16,30), getTypedArrayIndex(tmpBufferU16,31)
+				tmpBufferU16[ 0], tmpBufferU16[ 1], tmpBufferU16[ 2], tmpBufferU16[ 3], tmpBufferU16[ 4], tmpBufferU16[ 5], tmpBufferU16[ 6], tmpBufferU16[ 7],
+				tmpBufferU16[ 8], tmpBufferU16[ 9], tmpBufferU16[10], tmpBufferU16[11], tmpBufferU16[12], tmpBufferU16[13], tmpBufferU16[14], tmpBufferU16[15],
+				tmpBufferU16[16], tmpBufferU16[17], tmpBufferU16[18], tmpBufferU16[19], tmpBufferU16[20], tmpBufferU16[21], tmpBufferU16[22], tmpBufferU16[23],
+				tmpBufferU16[24], tmpBufferU16[25], tmpBufferU16[26], tmpBufferU16[27], tmpBufferU16[28], tmpBufferU16[29], tmpBufferU16[30], tmpBufferU16[31]
 			);
 			if (pos < 32) tmpStr = tmpStr.slice(0, pos-32|0);//-(32-pos));
 			if (index < len) {
 				//fromCharCode.apply(0, tmpBufferU16 : NativeUint8Array ?  tmpBufferU16.subarray(0,pos) : tmpBufferU16.slice(0,pos));
-				setTypedArrayIndex(tmpBufferU16, 0, tmp);
+				tmpBufferU16[0] = tmp;
 				pos = (~tmp) >>> 31;//tmp !== -1 ? 1 : 0;
 				tmp = -1;
 
@@ -249,10 +226,10 @@ var ENCODEINTO_BUILD = false;
 		for (i=0; i<len; i=i+1|0, pos=pos+1|0) {
 			point = encodedString.charCodeAt(i)|0;
 			if (point <= 0x007f) {
-				setTypedArrayIndex(result, pos, point);
+				result[pos] = point;
 			} else if (point <= 0x07ff) {
-				setTypedArrayIndex(result, pos, (0x6<<5)|(point>>6));
-				setTypedArrayIndex(result, pos=pos+1|0, (0x2<<6)|(point&0x3f));
+				result[pos] = (0x6<<5)|(point>>6);
+				result[pos=pos+1|0] = (0x2<<6)|(point&0x3f);
 			} else {
 				widenCheck: {
 					if (0xD800 <= point) {
@@ -263,10 +240,10 @@ var ENCODEINTO_BUILD = false;
 								//point = ((point - 0xD800)<<10) + nextcode - 0xDC00 + 0x10000|0;
 								point = (point<<10) + nextcode - 0x35fdc00|0;
 								if (point > 0xffff) {
-									setTypedArrayIndex(result, pos, (0x1e/*0b11110*/<<3) | (point>>18));
-									setTypedArrayIndex(result, pos=pos+1|0, (0x2/*0b10*/<<6) | ((point>>12)&0x3f/*0b00111111*/));
-									setTypedArrayIndex(result, pos=pos+1|0, (0x2/*0b10*/<<6) | ((point>>6)&0x3f/*0b00111111*/));
-									setTypedArrayIndex(result, pos=pos+1|0, (0x2/*0b10*/<<6) | (point&0x3f/*0b00111111*/));
+									result[pos] = (0x1e/*0b11110*/<<3) | (point>>18);
+									result[pos=pos+1|0] = (0x2/*0b10*/<<6) | ((point>>12)&0x3f/*0b00111111*/);
+									result[pos=pos+1|0] = (0x2/*0b10*/<<6) | ((point>>6)&0x3f/*0b00111111*/);
+									result[pos=pos+1|0] = (0x2/*0b10*/<<6) | (point&0x3f/*0b00111111*/);
 									continue;
 								}
 								break widenCheck;
@@ -283,9 +260,9 @@ var ENCODEINTO_BUILD = false;
 						result = tmpResult;
 					}
 				}
-				setTypedArrayIndex(result, pos, (0xe/*0b1110*/<<4) | (point>>12));
-				setTypedArrayIndex(result, pos=pos+1|0,(0x2/*0b10*/<<6) | ((point>>6)&0x3f/*0b00111111*/));
-				setTypedArrayIndex(result, pos=pos+1|0,(0x2/*0b10*/<<6) | (point&0x3f/*0b00111111*/));
+				result[pos] = (0xe/*0b1110*/<<4) | (point>>12);
+				result[pos=pos+1|0] =(0x2/*0b10*/<<6) | ((point>>6)&0x3f/*0b00111111*/);
+				result[pos=pos+1|0] =(0x2/*0b10*/<<6) | (point&0x3f/*0b00111111*/);
 			}
 		}
 		return NativeUint8Array ? result.subarray(0, pos) : result.slice(0, pos);
@@ -334,7 +311,7 @@ var ENCODEINTO_BUILD = false;
 						break putChars;
 				}
 				//read = read + ((char >> 6) !== 2) |0;
-				setTypedArrayIndex(u8Arr, i, char);
+				u8Arr[i] = char;
 			}
 		}
 		return {"written": i, "read": inputLength < read ? inputLength : read};
@@ -353,10 +330,10 @@ var ENCODEINTO_BUILD = false;
 						read = read - 1|0;
 						break; // we have reached the end of the string
 					}
-					setTypedArrayIndex(u8Arr, i=i+1|0, point);
+					u8Arr[i=i+1|0] = point;
 				} else if (point <= 0x07ff) {
-					setTypedArrayIndex(u8Arr, i=i+1|0, (0x6<<5)|(point>>6));
-					setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6)|(point&0x3f));
+					u8Arr[i=i+1|0] = (0x6<<5)|(point>>6);
+					u8Arr[i=i+1|0] = (0x2<<6)|(point&0x3f);
 				} else {
 					if (0xD800 <= point && point <= 0xDBFF) {
 						nextcode = encodedString.charCodeAt(read)|0; // defaults to 0 when NaN, causing null replacement character
@@ -366,10 +343,10 @@ var ENCODEINTO_BUILD = false;
 							//point = ((point - 0xD800)<<10) + nextcode - 0xDC00 + 0x10000|0;
 							point = (point<<10) + nextcode - 0x35fdc00|0;
 							if (point > 0xffff) {
-								setTypedArrayIndex(u8Arr, i=i+1|0, (0x1e<<3) | (point>>18));
-								setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6) | ((point>>12)&0x3f));
-								setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6) | ((point>>6)&0x3f));
-								setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6) | (point&0x3f));
+								u8Arr[i=i+1|0] = (0x1e<<3) | (point>>18);
+								u8Arr[i=i+1|0] = (0x2<<6) | ((point>>12)&0x3f);
+								u8Arr[i=i+1|0] = (0x2<<6) | ((point>>6)&0x3f);
+								u8Arr[i=i+1|0] = (0x2<<6) | (point&0x3f);
 								continue;
 							}
 						} else if (nextcode === 0 && encodedLen <= read) {
@@ -378,9 +355,9 @@ var ENCODEINTO_BUILD = false;
 							point = 65533;//0b1111111111111101; // invalid replacement character
 						}
 					}
-					setTypedArrayIndex(u8Arr, i=i+1|0, (0xe<<4) | (point>>12));
-					setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6) | ((point>>6)&0x3f));
-					setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6) | (point&0x3f));
+					u8Arr[i=i+1|0] = (0xe<<4) | (point>>12);
+					u8Arr[i=i+1|0] = (0x2<<6) | ((point>>6)&0x3f);
+					u8Arr[i=i+1|0] = (0x2<<6) | (point&0x3f);
 					if (u8LenLeft < (i + ((encodedLen - read) << 1)|0)) {
 						// These 3x chars are the only way to inflate the size to 3x
 						u8LenLeft = u8LenLeft - i|0;
@@ -401,12 +378,12 @@ var ENCODEINTO_BUILD = false;
 					break; // we have reached the end of the string
 				}
 				u8LenLeft = u8LenLeft - 1|0;
-				setTypedArrayIndex(u8Arr, i=i+1|0, point);
+				u8Arr[i=i+1|0] = point;
 			} else if (point <= 0x07ff) {
 				u8LenLeft = u8LenLeft - 2|0;
 				if (0 <= u8LenLeft) {
-					setTypedArrayIndex(u8Arr, i=i+1|0, (0x6<<5)|(point>>6));
-					setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6)|(point&0x3f));
+					u8Arr[i=i+1|0] = (0x6<<5)|(point>>6);
+					u8Arr[i=i+1|0] = (0x2<<6)|(point&0x3f);
 				}
 			} else {
 				if (0xD800 <= point && point <= 0xDBFF) {
@@ -420,10 +397,10 @@ var ENCODEINTO_BUILD = false;
 							if (point > 0xffff) {
 								u8LenLeft = u8LenLeft - 4|0;
 								if (0 <= u8LenLeft) {
-									setTypedArrayIndex(u8Arr, i=i+1|0, (0x1e<<3) | (point>>18));
-									setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6) | ((point>>12)&0x3f));
-									setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6) | ((point>>6)&0x3f));
-									setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6) | (point&0x3f));
+									u8Arr[i=i+1|0] = (0x1e<<3) | (point>>18);
+									u8Arr[i=i+1|0] = (0x2<<6) | ((point>>12)&0x3f);
+									u8Arr[i=i+1|0] = (0x2<<6) | ((point>>6)&0x3f);
+									u8Arr[i=i+1|0] = (0x2<<6) | (point&0x3f);
 								}
 								continue;
 							}
@@ -438,9 +415,9 @@ var ENCODEINTO_BUILD = false;
 				}
 				u8LenLeft = u8LenLeft - 3|0;
 				if (0 <= u8LenLeft) {
-					setTypedArrayIndex(u8Arr, i=i+1|0, (0xe<<<4) | (point>>12));
-					setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6) | ((point>>6)&0x3f));
-					setTypedArrayIndex(u8Arr, i=i+1|0, (0x2<<6) | (point&0x3f));
+					u8Arr[i=i+1|0] = (0xe<<<4) | (point>>12);
+					u8Arr[i=i+1|0] = (0x2<<6) | ((point>>6)&0x3f);
+					u8Arr[i=i+1|0] = (0x2<<6) | (point&0x3f);
 				}
 			}
 		}
