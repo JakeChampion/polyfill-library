@@ -22,20 +22,6 @@ it('is not enumerable', function () {
 // Copyright (C) 2015 Jordan Harband. All rights reserved.
 // This code is governed by the BSD license.
 
-var arePropertyDescriptorsSupported = function() {
-	var obj = {};
-	Object.defineProperty(obj, 'x', {
-		enumerable: false,
-		value: obj
-	});
-	for (var _ in obj) {
-		return false;
-	}
-	return obj.x === obj;
-};
-
-var supportsDescriptors = Object.defineProperty && arePropertyDescriptorsSupported();
-
 var hasSymbols = typeof Symbol === 'function' && typeof Symbol() === 'symbol';
 
 var objectKeysWorksWithPrimitives = (function() {
@@ -46,26 +32,24 @@ var objectKeysWorksWithPrimitives = (function() {
 	}
 }());
 
-if (supportsDescriptors) {
-	it('should terminate if getting a value throws an exception', function () {
-		proclaim.throws(function () {
-			var obj = {};
-			Object.defineProperty(obj, 'a', {
-				enumerable: true,
-				get: function () {
-					throw new Error('This is the thrown error');
-				}
-			});
-			Object.defineProperty(obj, 'b', {
-				enumerable: true,
-				get: function () {
-					throw new Error();
-				}
-			});
-			Object.entries(obj);
-		}, Error, 'This is the thrown error');
-	});
-}
+it('should terminate if getting a value throws an exception', function () {
+	proclaim.throws(function () {
+		var obj = {};
+		Object.defineProperty(obj, 'a', {
+			enumerable: true,
+			get: function () {
+				throw new Error('This is the thrown error');
+			}
+		});
+		Object.defineProperty(obj, 'b', {
+			enumerable: true,
+			get: function () {
+				throw new Error();
+			}
+		});
+		Object.entries(obj);
+	}, Error, 'This is the thrown error');
+});
 
 it('should throw TypeError when called with `null`', function() {
 	proclaim.throws(function() {
@@ -79,89 +63,87 @@ it('should throw TypeError when called with `undefined`', function() {
 	}, TypeError);
 });
 
-if (supportsDescriptors) {
-	it('does not see a new element added by a getter that is hit during iteration', function () {
-		var bAddsC = {
-			a: 'A'
-		};
-		Object.defineProperty(bAddsC, 'b', {
-			enumerable: true,
-			get: function () {
-				this.c = 'C';
-				return 'B';
-			}
-		});
-
-		var result = Object.entries(bAddsC);
-
-		proclaim.isArray(result, 'result is an array');
-		proclaim.equal(result.length, 2);
-
-		proclaim.isArray(result[0], 'first entry is an array');
-		proclaim.isArray(result[1], 'second entry is an array');
-
-		proclaim.deepEqual(result, [
-			['a', 'A'],
-			['b', 'B']
-		]);
+it('does not see a new element added by a getter that is hit during iteration', function () {
+	var bAddsC = {
+		a: 'A'
+	};
+	Object.defineProperty(bAddsC, 'b', {
+		enumerable: true,
+		get: function () {
+			this.c = 'C';
+			return 'B';
+		}
 	});
 
-	it('does not see an element made non-enumerable by a getter that is hit during iteration', function () {
-		var bHidesC = {
-			a: 'A'
-		};
-		Object.defineProperty(bHidesC, 'b', {
-			enumerable: true,
-			get: function () {
-				Object.defineProperty(this, 'c', {
-					enumerable: false
-				});
-				return 'B';
-			}
-		});
-		bHidesC.c = 'C';
+	var result = Object.entries(bAddsC);
 
-		var result = Object.entries(bHidesC);
+	proclaim.isArray(result, 'result is an array');
+	proclaim.equal(result.length, 2);
 
-		proclaim.isArray(result, 'result is an array');
-		proclaim.equal(result.length, 2, 'result has 2 items');
+	proclaim.isArray(result[0], 'first entry is an array');
+	proclaim.isArray(result[1], 'second entry is an array');
 
-		proclaim.isArray(result[0], 'first entry is an array');
-		proclaim.isArray(result[1], 'second entry is an array');
+	proclaim.deepEqual(result, [
+		['a', 'A'],
+		['b', 'B']
+	]);
+});
 
-		proclaim.deepEqual(result, [
-			['a', 'A'],
-			['b', 'B']
-		]);
+it('does not see an element made non-enumerable by a getter that is hit during iteration', function () {
+	var bHidesC = {
+		a: 'A'
+	};
+	Object.defineProperty(bHidesC, 'b', {
+		enumerable: true,
+		get: function () {
+			Object.defineProperty(this, 'c', {
+				enumerable: false
+			});
+			return 'B';
+		}
 	});
+	bHidesC.c = 'C';
 
-	it('does not see an element removed by a getter that is hit during iteration', function () {
-		var bDeletesC = {
-			a: 'A'
-		};
-		Object.defineProperty(bDeletesC, 'b', {
-			enumerable: true,
-			get: function () {
-				delete this.c;
-				return 'B';
-			}
-		});
-		bDeletesC.c = 'C';
+	var result = Object.entries(bHidesC);
 
-		var result = Object.entries(bDeletesC);
+	proclaim.isArray(result, 'result is an array');
+	proclaim.equal(result.length, 2, 'result has 2 items');
 
-		proclaim.isArray(result, 'result is an array');
-		proclaim.equal(result.length, 2, 'result has 2 items');
+	proclaim.isArray(result[0], 'first entry is an array');
+	proclaim.isArray(result[1], 'second entry is an array');
 
-		proclaim.isArray(result[0], 'first entry is an array');
-		proclaim.isArray(result[1], 'second entry is an array');
+	proclaim.deepEqual(result, [
+		['a', 'A'],
+		['b', 'B']
+	]);
+});
 
-		proclaim.deepEqual(result, [
-			['a', 'A'],
-			['b', 'B']
-		]);
+it('does not see an element removed by a getter that is hit during iteration', function () {
+	var bDeletesC = {
+		a: 'A'
+	};
+	Object.defineProperty(bDeletesC, 'b', {
+		enumerable: true,
+		get: function () {
+			delete this.c;
+			return 'B';
+		}
 	});
-}
+	bDeletesC.c = 'C';
+
+	var result = Object.entries(bDeletesC);
+
+	proclaim.isArray(result, 'result is an array');
+	proclaim.equal(result.length, 2, 'result has 2 items');
+
+	proclaim.isArray(result[0], 'first entry is an array');
+	proclaim.isArray(result[1], 'second entry is an array');
+
+	proclaim.deepEqual(result, [
+		['a', 'A'],
+		['b', 'B']
+	]);
+});
 
 it('does not see inherited properties', function() {
 	var F = function G() {};

@@ -17,14 +17,6 @@ it('is not enumerable', function () {
 	proclaim.isNotEnumerable(String.prototype, 'codePointAt');
 });
 
-var arePropertyDescriptorsSupported = function () {
-	var obj = {};
-	Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
-	for (var _ in obj) { return false; }
-	return obj.x === obj;
-};
-var ifSupportsDescriptors = Object.defineProperty && arePropertyDescriptorsSupported() ? it : xit;
-
 // Tests ported from https://github.com/es-shims/es6-shim/blob/master/test/string.js#L496-L541
 
 var hasStrictMode = (function () {
@@ -39,8 +31,7 @@ describe('#codePointAt()', function () {
 		proclaim.isFunction(String.prototype.codePointAt);
 	});
 
-
-	ifSupportsDescriptors('is not enumerable', function () {
+	it('is not enumerable', function () {
 		proclaim.isFalse(Object.prototype.propertyIsEnumerable.call(String.prototype.codePointAt));
 	});
 

@@ -17,13 +17,6 @@ it('is not enumerable', function () {
 	proclaim.isNotEnumerable(window, 'Symbol');
 });
 
-var arePropertyDescriptorsSupported = function () {
-	var obj = {};
-	Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
-	for (var _ in obj) { return false; }
-	return obj.x === obj;
-};
-var supportsDescriptors = Object.defineProperty && arePropertyDescriptorsSupported();
 var strictModeSupported = (function(){ return this; }).call(null) === null;
 
 // https://tc39.github.io/ecma262/#sec-symbol-constructor
@@ -68,15 +61,13 @@ it('Object.prototype.toString.call(null) should be [object Null]', function() {
 	proclaim.equal(Object.prototype.toString.call(null), '[object Null]');
 });
 
-if (supportsDescriptors) {
-	it('should silently fail when overwriting properties', function() {
-		var sym = Symbol("2");
-		sym.toString = 0;
-		proclaim.isInstanceOf(sym.toString, Function);
-		sym.valueOf = 0;
-		proclaim.isInstanceOf(sym.valueOf, Function);
-	});
-}
+it('should silently fail when overwriting properties', function() {
+	var sym = Symbol("2");
+	sym.toString = 0;
+	proclaim.isInstanceOf(sym.toString, Function);
+	sym.valueOf = 0;
+	proclaim.isInstanceOf(sym.valueOf, Function);
+});
 
 it('should create unique symbols', function() {
 	proclaim.notEqual(Symbol("3"), Symbol("3"));
@@ -150,50 +141,48 @@ it('has toString and valueOf instance methods', function() {
 	proclaim.isInstanceOf(Symbol.prototype.valueOf, Function);
 });
 
-if (supportsDescriptors) {
-	// https://kangax.github.io/compat-table/es6/#Symbol_symbol_keys_are_hidden_to_pre-ES6_code
-	it('should make symbols non-enumerable', function() {
-		var object = {};
-		var symbol = Symbol();
-		object[symbol] = 1;
+// https://kangax.github.io/compat-table/es6/#Symbol_symbol_keys_are_hidden_to_pre-ES6_code
+it('should make symbols non-enumerable', function() {
+	var object = {};
+	var symbol = Symbol();
+	object[symbol] = 1;
 
-		// eslint-disable-next-line no-empty
-		for (var x in object){}
-		var passed = !x;
+	// eslint-disable-next-line no-empty
+	for (var x in object){}
+	var passed = !x;
 
-		proclaim.equal(passed, true);
-		proclaim.equal(Object.keys(object).length, 0);
-		proclaim.equal(Object.getOwnPropertyNames(object).length, 0);
-		proclaim.equal(Object.prototype.propertyIsEnumerable.call(object, symbol), true);
-	});
+	proclaim.equal(passed, true);
+	proclaim.equal(Object.keys(object).length, 0);
+	proclaim.equal(Object.getOwnPropertyNames(object).length, 0);
+	proclaim.equal(Object.prototype.propertyIsEnumerable.call(object, symbol), true);
+});
 
-	it('should return false from propertyIsEnumerable for symbols defined non-enumerable', function() {
-		var object = {};
-		var symbol = Symbol();
-		Object.defineProperty(object, symbol, { enumerable: false });
+it('should return false from propertyIsEnumerable for symbols defined non-enumerable', function() {
+	var object = {};
+	var symbol = Symbol();
+	Object.defineProperty(object, symbol, { enumerable: false });
 
-		// eslint-disable-next-line no-empty
-		for (var x in object){}
-		var passed = !x;
+	// eslint-disable-next-line no-empty
+	for (var x in object){}
+	var passed = !x;
 
-		proclaim.equal(passed, true);
-		proclaim.equal(Object.keys(object).length, 0);
-		proclaim.equal(Object.getOwnPropertyNames(object).length, 0);
-		proclaim.equal(Object.prototype.propertyIsEnumerable.call(object, symbol), false);
-	});
+	proclaim.equal(passed, true);
+	proclaim.equal(Object.keys(object).length, 0);
+	proclaim.equal(Object.getOwnPropertyNames(object).length, 0);
+	proclaim.equal(Object.prototype.propertyIsEnumerable.call(object, symbol), false);
+});
 
-	it('should not fail on propertyIsEnumerable for deep clones', function() {
-		// See: https://github.com/Financial-Times/polyfill-service/issues/1058
-		var symbol0 = Symbol();
-		var symbol1 = Symbol();
+it('should not fail on propertyIsEnumerable for deep clones', function() {
+	// See: https://github.com/Financial-Times/polyfill-service/issues/1058
+	var symbol0 = Symbol();
+	var symbol1 = Symbol();
 
-		proclaim.equal(Object.getOwnPropertySymbols(Object.prototype).length, 0);
-		Object.prototype[symbol0] = 'Symbol(0)';
-		proclaim.equal(Object.getOwnPropertySymbols(Object.prototype).length, 1);
-		Object.defineProperty(Object.prototype, symbol1, { value: 'Symbol(1)'});
-		proclaim.equal(Object.getOwnPropertySymbols(Object.prototype).length, 2);
-	});
-}
+	proclaim.equal(Object.getOwnPropertySymbols(Object.prototype).length, 0);
+	Object.prototype[symbol0] = 'Symbol(0)';
+	proclaim.equal(Object.getOwnPropertySymbols(Object.prototype).length, 1);
+	Object.defineProperty(Object.prototype, symbol1, { value: 'Symbol(1)'});
+	proclaim.equal(Object.getOwnPropertySymbols(Object.prototype).length, 2);
+});
 
 // Not really possible on a polyfill
 xit('should perform correctly with toString operations', function() {
