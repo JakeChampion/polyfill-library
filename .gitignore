@@ -3,7 +3,7 @@ node_modules
 polyfills/__dist/
 polyfills/~html5-elements/polyfill.js
 polyfills/AudioContext/polyfill.js
-polyfills/EventSource/polyfill.js
+# polyfills/EventSource/polyfill.js
 polyfills/HTMLPictureElement/polyfill.js
 polyfills/JSON/polyfill.js
 polyfills/MutationObserver/polyfill.js
