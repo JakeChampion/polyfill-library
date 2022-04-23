@@ -40,18 +40,9 @@ jobs:
     - run: npm run build
       if: steps.cache-dist.outputs.cache-hit != 'true'
 
-    - run: echo "${{ matrix.browser }}" > $GITHUB_WORKSPACE/witness-${{ matrix.browser }}
-    - name: record ${{ matrix.browser }} witness
-      id: witness
-      uses: actions/cache@v2.1.5
-      with:
-        path: $GITHUB_WORKSPACE/witness-${{ matrix.browser }}
-        key: witness--${{ matrix.browser }}--${{ env.commit-sha }}
-
     - name: Test ${{ matrix.browser }}
       run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js
         test-modified-only targeted director browser=${{ matrix.browser }}
-      if: steps.witness.outputs.cache-hit != 'true'
       timeout-minutes: 30
       env:
         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
@@ -60,7 +51,7 @@ jobs:
   # Repo owner has commented /ok-to-test on a (fork-based) pull request
   integration-fork:
     runs-on: ubuntu-latest
-    if: 
+    if:
       github.event_name == 'repository_dispatch' &&
       github.event.client_payload.slash_command.sha != '' &&
       contains(github.event.client_payload.pull_request.head.sha, github.event.client_payload.slash_command.sha)
@@ -97,18 +88,9 @@ jobs:
       - run: npm run build
         if: steps.cache-dist.outputs.cache-hit != 'true'
 
-      - run: echo "${{ matrix.browser }}" > $GITHUB_WORKSPACE/witness-${{ matrix.browser }}
-      - name: record ${{ matrix.browser }} witness
-        id: witness
-        uses: actions/cache@v2.1.5
-        with:
-          path: $GITHUB_WORKSPACE/witness-${{ matrix.browser }}
-          key: witness--${{ matrix.browser }}--${{ env.commit-sha }}
-
       - name: Test ${{ matrix.browser }}
         run: node ./test/polyfills/server.js & node ./test/polyfills/remotetest.js
           test-modified-only targeted director browser=${{ matrix.browser }}
-        if: steps.witness.outputs.cache-hit != 'true'
         timeout-minutes: 30
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
