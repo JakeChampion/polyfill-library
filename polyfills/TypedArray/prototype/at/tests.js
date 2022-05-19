@@ -16,7 +16,7 @@ it('has correct name', function () {
 });
 
 it('is not enumerable', function () {
-	if ('__proto__' in Int8Array.prototype) {
+	if ('__proto__' in Int8Array.prototype && self.Int8Array.prototype.__proto__ !== Object.prototype) {
 		proclaim.isNotEnumerable(Int8Array.prototype.__proto__, 'at');
 	} else {
 		proclaim.isNotEnumerable(Int8Array.prototype, 'at');
