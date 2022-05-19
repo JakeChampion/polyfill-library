@@ -873,5 +873,15 @@
 	}
 	}
 
+	// 27.2.5.5 Promise.prototype [ @@toStringTag ]
+	// The initial value of the @@toStringTag property is the String value "Promise".
+	// This property has the attributes { [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]: true }.
+	Object.defineProperty(Yaku.prototype, Yaku.Symbol.toStringTag, {
+		value: 'Promise',
+		writable: false,
+		enumerable: false,
+		configurable: true
+	});
+
 	root.Promise = Yaku;
 })();

@@ -177,8 +177,6 @@ it('WeakMap.prototype.set', function () {
 	proclaim.deepEqual(wmap.set({}, 1), wmap);
 });
 
-if (typeof Symbol != 'undefined' && 'toStringTag' in Symbol) {
-	it('WeakMap.prototype[Symbol.toStringTag]', function () {
-		proclaim.strictEqual(WeakMap.prototype[Symbol.toStringTag], 'WeakMap');
-	});
-}
+it('WeakMap.prototype[Symbol.toStringTag]', function () {
+	proclaim.strictEqual(WeakMap.prototype[Symbol.toStringTag], 'WeakMap');
+});

@@ -30,6 +30,24 @@ describe('Set', function() {
 			}
 		});
 
+		it('has correct descriptors defined for Set.prototype[Symbol.toStringTag]', function () {
+			var descriptor = Object.getOwnPropertyDescriptor(Set.prototype, Symbol.toStringTag);
+
+			proclaim.isTrue(descriptor.configurable);
+			proclaim.isFalse(descriptor.enumerable);
+			proclaim.isFalse(descriptor.writable);
+			proclaim.equal(descriptor.value, 'Set');
+		});
+
+		it('has correct descriptors defined for Set[Symbol.iterator][Symbol.toStringTag]', function () {
+			var descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(new Set()[Symbol.iterator]()), Symbol.toStringTag);
+
+			proclaim.isTrue(descriptor.configurable);
+			proclaim.isFalse(descriptor.enumerable);
+			proclaim.isFalse(descriptor.writable);
+			proclaim.equal(descriptor.value, 'Set Iterator');
+		});
+
 		it ("can be pre-populated", function() {
 			var s = new Set([1,2]);
 			proclaim.equal(s.has(1), true);

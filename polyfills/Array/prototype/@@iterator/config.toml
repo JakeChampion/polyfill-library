@@ -2,7 +2,8 @@ aliases = [ "es6", "es2015", "modernizr:es6array" ]
 dependencies = [
 	"_ESAbstract.CreateMethodProperty",
 	"Array.prototype.values",
-	"Symbol.iterator"
+	"Symbol.iterator",
+	"Symbol.toStringTag",
 ]
 spec = "https://tc39.github.io/ecma262/#sec-array.prototype-@@iterator"
 docs = "https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/@@iterator"

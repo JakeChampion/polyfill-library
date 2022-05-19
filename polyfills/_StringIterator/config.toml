@@ -1,6 +1,7 @@
 dependencies = [
 	"_Iterator",
-	"Object.setPrototypeOf"
+	"Object.setPrototypeOf",
+	"Symbol.toStringTag",
 ]
 license = "MIT"
 repo = "https://github.com/medikoo/es6-iterator"

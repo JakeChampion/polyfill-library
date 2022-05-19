@@ -4,7 +4,8 @@ dependencies = [
 	"_ESAbstract.RequireObjectCoercible",
 	"_ESAbstract.ToString",
 	"_StringIterator",
-	"Symbol.iterator"
+	"Symbol.iterator",
+	"Symbol.toStringTag",
 ]
 spec = "https://tc39.github.io/ecma262/#sec-string.prototype-@@iterator"
 docs = "https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/@@iterator"

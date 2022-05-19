@@ -16,6 +16,7 @@ dependencies = [
 	"Symbol",
 	"Symbol.iterator",
 	"Symbol.species",
+	"Symbol.toStringTag",
 	"Object.isExtensible"
 ]
 notes = [
@@ -28,14 +29,14 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 android = "<5.1"
 bb = "10 - *"
 chrome = "<49"
-edge = "<13"
-firefox = "<36"
-firefox_mob = "<29"
+edge = "<15"
+firefox = "<51"
+firefox_mob = "<51"
 ie = "*"
 ie_mob = "*"
-opera = "<25"
-op_mob = "*"
+opera = "<36"
+op_mob = "<36"
 op_mini = "*"
-safari = "<9.0"
-ios_saf = "<9.0"
+safari = "<10.0"
+ios_saf = "<10.0"
 samsung_mob = "<5"

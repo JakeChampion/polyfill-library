@@ -178,6 +178,12 @@
 	// 23.4.3.5. WeakSet.prototype [ @@toStringTag ]
 	// The initial value of the @@toStringTag property is the String value "WeakSet".
 	// This property has the attributes { [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]: true }.
+	Object.defineProperty(WeakSet.prototype, Symbol.toStringTag, {
+		configurable: true,
+		enumerable: false,
+		writable: false,
+		value: 'WeakSet'
+	});
 
 	// Polyfill.io - Safari 8 implements Set.name but as a non-configurable property, which means it would throw an error if we try and configure it here.
 	if (!('name' in WeakSet)) {

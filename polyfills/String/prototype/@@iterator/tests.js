@@ -39,3 +39,7 @@ it('finally returns a done object', function () {
 		done: true
 	});
 });
+
+it('StringIteratorPrototype[Symbol.toStringTag]', function () {
+	proclaim.strictEqual(Object.getPrototypeOf(''[Symbol.iterator]())[Symbol.toStringTag], 'String Iterator');
+});
