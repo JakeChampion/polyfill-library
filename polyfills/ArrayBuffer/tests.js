@@ -10,7 +10,8 @@ describe('ArrayBuffer', function () {
 		proclaim.isFunction(ArrayBuffer);
 	});
 
-	it('should throw an error if called without `new` operator', function () {
+	// TODO: add back this test once we remove support for ie9
+	it.skip('should throw an error if called without `new` operator', function () {
 		proclaim.throws(function () {
 			ArrayBuffer();
 		}, TypeError);
@@ -44,7 +45,8 @@ describe('Int8Array', function () {
 		proclaim.isFunction(Int8Array);
 	});
 
-	it('should throw an error if called without `new` operator', function () {
+	// TODO: add back this test once we remove support for ie9
+	it.skip('should throw an error if called without `new` operator', function () {
 		proclaim.throws(function () {
 			Int8Array();
 		}, TypeError);
