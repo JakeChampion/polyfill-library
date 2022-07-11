@@ -21,10 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          fetch-depth: 50
 
       # Fetch master branch to determine which polyfills have changed and need testing.
-      - run: |
+      - name: Fetch upstream to determine diff
+        run: |
           git remote add upstream https://github.com/Financial-Times/polyfill-library.git
           git fetch --depth=50 upstream master
 

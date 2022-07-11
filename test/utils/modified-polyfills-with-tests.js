@@ -185,10 +185,9 @@ function toposortPolyfills(polyfillMetas) {
 
 function getModifiedFiles() {
 	return new Promise((resolve) => {
-		const currentBranch = process.env.GITHUB_REF || 'HEAD'
 		const baseBranch = process.env.GITHUB_ACTIONS ? 'upstream/master' : 'master';
 
-		exec(`git --no-pager diff --name-only ${currentBranch} $(git merge-base ${currentBranch} ${baseBranch})`, (error, stdout, stderr) => {
+		exec(`git --no-pager diff --name-only HEAD $(git merge-base --fork-point ${baseBranch})`, (error, stdout, stderr) => {
 			if (error) {
 				console.warn(`error while getting modified files : ${error.message}`);
 				resolve([]);
