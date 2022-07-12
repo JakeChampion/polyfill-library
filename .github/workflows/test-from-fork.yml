@@ -5,6 +5,10 @@ on:
 # Simplified workflow of ./test-polyfills.yml
 # Intended to be used by contributors on their forks.
 
+concurrency:
+  group: browserstack
+  cancel-in-progress: false
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -17,7 +21,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          fetch-depth: 50
+
+      # Fetch master branch to determine which polyfills have changed and need testing.
+      - name: Fetch upstream to determine diff
+        run: |
+          git remote add upstream https://github.com/Financial-Times/polyfill-library.git
+          git fetch --depth=50 upstream master
 
       - uses: actions/setup-node@v2.2.0
         with:

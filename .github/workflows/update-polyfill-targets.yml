@@ -3,6 +3,11 @@ name: Update polyfill targets
 on:
   schedule:
     - cron: "0 6 1 1 *"
+
+concurrency:
+  group: browserstack
+  cancel-in-progress: false
+
 jobs:
   android:
     runs-on: ubuntu-latest
