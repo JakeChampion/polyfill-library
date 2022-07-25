@@ -1,7 +1,4 @@
-// $ node tasks/browsersconfig/mcd.js
-
 const https = require('https');
-const fs = require('graceful-fs');
 const semver = require('semver');
 
 const browsersFiles = [
@@ -87,40 +84,43 @@ function mapEngines(browsersData) {
 	return browsersData;
 }
 
+function fetchMCD() {
+	return Promise.all(browsersFiles.map(browser => getBrowserData(browser))).then((allData) => {
+		let out = {
+			browsers: {}
+		};
 
-Promise.all(browsersFiles.map(browser => getBrowserData(browser))).then((allData) => {
-	let out = {
-		browsers: {}
-	};
+		for (const [index, data] of allData.entries()) {
+			if (!data.browsers) {
+				console.log('Error: no browsers in', index);
+				continue;
+			}
 
-	for (const [index, data] of allData.entries()) {
-		if (!data.browsers) {
-			console.log('Error: no browsers in', index);
-			continue;
-		}
-
-		for (const browser of Object.keys(data.browsers)) {
-			if (browser === 'webview_android') {
-				for (const releaseVersion in data.browsers[browser].releases) {
-					if (semver.coerce(releaseVersion).major >= 37) {
-						delete data.browsers[browser].releases[releaseVersion];
+			for (const browser of Object.keys(data.browsers)) {
+				if (browser === 'webview_android') {
+					for (const releaseVersion in data.browsers[browser].releases) {
+						if (semver.coerce(releaseVersion).major >= 37) {
+							delete data.browsers[browser].releases[releaseVersion];
+						}
 					}
 				}
+
+				if (out.browsers[browser]) {
+					throw new Error('Unexpected duplicate browsers key ' + browser);
+				}
+				out.browsers[browser] = data.browsers[browser];
+
+				const releaseVersions = Object.keys(data.browsers[browser].releases).map((x) => semver.coerce(x));
+				releaseVersions.sort((a, b) => semver.compare(a, b));
+
+				out.browsers[browser].release_versions = releaseVersions.map((x) => x.toString());
 			}
-
-			if (out.browsers[browser]) {
-				throw new Error('Unexpected duplicate browsers key ' + browser);
-			}
-			out.browsers[browser] = data.browsers[browser];
-
-			const releaseVersions = Object.keys(data.browsers[browser].releases).map((x) => semver.coerce(x));
-			releaseVersions.sort((a, b) => semver.compare(a, b));
-
-			out.browsers[browser].release_versions = releaseVersions.map((x) => x.toString());
 		}
-	}
 
-	out = mapEngines(out);
+		return mapEngines(out);
+	});
+}
 
-	fs.writeFileSync('tasks/browserslist/mcd.json', JSON.stringify(out, undefined, '\t'));
-});
+module.exports = {
+	fetchMCD: fetchMCD
+}
