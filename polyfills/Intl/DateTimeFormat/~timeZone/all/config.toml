@@ -20,9 +20,9 @@ notes = [
 #### Browser compatibility
 # Browser compatibility list sourced from Intl.DateTimeFormat.
 [browsers]
-android = "<76"
-ie = "9 - *"
-ie_mob = "9 - *"
+android = "*"
+ie = ">=9"
+ie_mob = ">=9"
 edge = "<79"
 edge_mob = "<79"
 firefox = "<91"

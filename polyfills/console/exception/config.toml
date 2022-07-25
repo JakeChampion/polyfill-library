@@ -5,6 +5,6 @@ docs = "https://developer.mozilla.org/en/docs/Web/API/console"
 
 [browsers]
 ie = "*"
-firefox = "1 - 4"
+firefox = "<5"
 samsung_mob = "*"
 chrome = "*"

@@ -15,13 +15,12 @@ license = "MIT"
 
 #### Browser compatibility
 [browsers]
-android = "<61"
+android = "*"
 bb = "*"
 chrome = "<61"
 edge = "<18"
 edge_mob = "<18"
 firefox = "<45"
-ios_chr = "<10.3"
 ios_saf = "<10.3"
 ie = "*"
 ie_mob = "*"

@@ -54,7 +54,6 @@ notes = [
 # - edge
 # - edge_mob
 # - firefox
-# - ios_chr
 # - ios_saf
 # - ie
 # - ie_mob
@@ -73,7 +72,6 @@ chrome = "<85"
 edge = "<85"
 edge_mob = "<85"
 firefox = "<77"
-ios_chr = "<13.4"
 ios_saf = "<13.4"
 ie = "*"
 ie_mob = "*"

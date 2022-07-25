@@ -14,9 +14,9 @@ notes = [
 ]
 
 [browsers]
-android = "<81"
-ie = "9 - *"
-ie_mob = "9 - *"
+android = "*"
+ie = ">=9"
+ie_mob = ">=9"
 edge = "<81"
 edge_mob = "<81"
 firefox = "<86"

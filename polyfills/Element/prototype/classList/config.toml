@@ -14,5 +14,5 @@ license = "ISC"
 repo = "https://github.com/Alhadis/DOMTokenList"
 
 [browsers]
-ie = "8 - 11"
+ie = ">=8"
 safari = "4 - 4.1"

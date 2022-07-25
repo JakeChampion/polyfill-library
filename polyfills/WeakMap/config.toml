@@ -21,7 +21,7 @@ spec = "https://tc39.github.io/ecma262/#sec-weakmap-objects"
 
 [browsers]
 ie = "*"
-ie_mob = "10 - 11"
+ie_mob = ">=10"
 safari = "<9"
 chrome = "<44"
 firefox = "<40"

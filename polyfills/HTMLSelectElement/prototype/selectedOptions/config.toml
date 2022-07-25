@@ -19,14 +19,13 @@ license = "MIT"
 
 #### Browser compatibility
 [browsers]
-android = "<38"
+android = "*"
 bb = "*"
 chrome = "<19"
 firefox = "<26"
-ios_chr = "<6"
 ios_saf = "<6"
-ie = "9 - *"
-ie_mob = "9 - *"
+ie = ">=9"
+ie_mob = ">=9"
 opera = "<9"
 op_mini = "<10.1"
 safari = "<6"

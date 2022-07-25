@@ -1,0 +1,3 @@
+- infer data based on browser to engine mappings
+- binary search for first browser with support based on polyfill tests
+- track open ended and `*` browser configs (for non-dead browsers)

@@ -13,7 +13,7 @@ notes = [
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/GlobalFetch/fetch"
 
 [browsers]
-android = "<67"
+android = "*"
 bb = "10 - *"
 edge = "<16"
 edge_mob = "<16"

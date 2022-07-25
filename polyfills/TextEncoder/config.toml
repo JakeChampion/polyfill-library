@@ -20,8 +20,8 @@ ie_mob = "*"
 safari = "<10.1"
 ios_saf = "<10.3"
 opera = "<25"
-android = "38"
-samsung_mob = "<3.0"
+android = "*"
+samsung_mob = "<3"
 
 # [install]
 # module = "fastestsmallesttextencoderdecoder"

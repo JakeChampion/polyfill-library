@@ -12,7 +12,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/Events/hashchange"
 
 [browsers]
 ie = "6 - 7"
-safari = "4"
+safari = "<5"
 chrome = "<55"
 firefox = "<51"
 ios_saf = "<10"

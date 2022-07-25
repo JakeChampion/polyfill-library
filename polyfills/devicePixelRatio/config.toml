@@ -8,5 +8,5 @@ notes = [
 [browsers]
 safari = "4 - 9.1"
 ie = "6 - 10"
-firefox = "<=17"
+firefox = "<18"
 ios_saf = "<9.3"

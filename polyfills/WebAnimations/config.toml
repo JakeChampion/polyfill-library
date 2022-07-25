@@ -12,15 +12,15 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API"
 [browsers]
 edge = "<79"
 edge_mob = "*"
-ie = "10 - *"
-ie_mob = "10 - *"
+ie = ">=10"
+ie_mob = ">=10"
 firefox = "27 - 50"
 opera = "11.6 - 42"
 safari = "<13.1"
 chrome = "<47"
 ios_saf = "<13.4"
 firefox_mob = "27 - 50"
-android = "<53"
+android = "*"
 
 [install]
 module = "web-animations-js"

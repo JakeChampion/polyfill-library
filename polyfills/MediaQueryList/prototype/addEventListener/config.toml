@@ -15,7 +15,7 @@ notes = [
 ]
 
 [browsers]
-android = "2.1 - 4.4.4"
+android = ">=2.1"
 chrome = "<37"
 edge = "<16"
 firefox = "<55"

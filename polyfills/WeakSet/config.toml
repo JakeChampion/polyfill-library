@@ -18,8 +18,8 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 license = "MIT"
 
 [browsers]
-ie = "7 - 11"
-ie_mob = "10 - 11"
+ie = ">=7"
+ie_mob = ">=10"
 safari = "<9"
 chrome = "<44"
 firefox = "<40"

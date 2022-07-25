@@ -5,7 +5,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 license = "MIT"
 
 [browsers]
-android = "<71"
+android = "*"
 bb = "*"
 chrome = "<71"
 edge = "<79"
@@ -14,7 +14,6 @@ firefox = "<65"
 firefox_mob = "<65"
 ie = "*"
 ie_mob = "*"
-ios_chr = "*"
 ios_saf = "<12.1"
 op_mini = "*"
 op_mob = "*"

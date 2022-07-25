@@ -19,14 +19,14 @@ docs = "https://developer.mozilla.org/en/docs/Web/CSS/scroll-behavior"
 [browsers]
 edge = "<79"
 edge_mob = "*"
-ie = "9 - *"
-ie_mob = "9 - *"
+ie = ">=9"
+ie_mob = ">=9"
 firefox = "4 - 36"
 opera = "*"
 safari = "*"
-chrome = "* - 60"
+chrome = "<61"
 ios_saf = "*"
-android = "<61"
+android = "*"
 
 [install]
 module = "seamless-scroll-polyfill"

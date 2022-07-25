@@ -2,7 +2,7 @@ dependencies = [ ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Performance/now"
 
 [browsers]
-android = "<=4.3"
+android = "<4.4"
 bb = "<10"
 chrome = "<24"
 ie = "<10"

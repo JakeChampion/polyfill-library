@@ -6,7 +6,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/Screen/orientation"
 [browsers]
 edge = "<79"
 edge_mob = "*"
-ie = "9 - *"
+ie = ">=9"
 ie_mob = "*"
 firefox = "<30"
 chrome = "<49"

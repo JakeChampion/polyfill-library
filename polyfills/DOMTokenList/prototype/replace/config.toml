@@ -3,7 +3,7 @@ license = "MIT"
 spec = "https://dom.spec.whatwg.org/#domtokenlist"
 
 [browsers]
-android = "<67"
+android = "*"
 bb = "*"
 chrome = "<67"
 edge = "<18"

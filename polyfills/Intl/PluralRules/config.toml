@@ -16,10 +16,10 @@ notes = [
 ]
 
 [browsers]
-android = "<63"
+android = "*"
 edge = "<18"
-ie = "9 - *"
-ie_mob = "9 - *"
+ie = ">=9"
+ie_mob = ">=9"
 edge_mob = "<18"
 firefox = "<58"
 opera = "<50"

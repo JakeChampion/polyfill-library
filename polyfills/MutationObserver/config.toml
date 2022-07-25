@@ -5,8 +5,6 @@ license = "WTFPL"
 
 [browsers]
 chrome = "<26"
-edge = "<12"
-edge_mob = "<12"
 firefox = "<14"
 ie = "<11"
 opera = "<15"

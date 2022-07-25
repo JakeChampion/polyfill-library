@@ -16,9 +16,9 @@ notes = [
 ]
 
 [browsers]
-android = "<72"
-ie = "9 - *"
-ie_mob = "9 - *"
+android = "*"
+ie = ">=9"
+ie_mob = ">=9"
 edge = "<79"
 edge_mob = "<79"
 firefox = "<78"
@@ -33,3 +33,4 @@ samsung_mob = "<11"
 module = "@formatjs/intl-listformat"
 paths = [ "polyfill.iife.js" ]
 postinstall = "update.task.js"
+clean = [ "~locale", "polyfill.js" ]

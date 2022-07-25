@@ -8,7 +8,7 @@ dependencies = [
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart"
 
 [browsers]
-android = "<57"
+android = "*"
 bb = "*"
 chrome = "<57"
 firefox = "<48"

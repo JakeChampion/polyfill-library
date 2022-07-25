@@ -37,11 +37,11 @@ license = ""
 # - edge
 # - edge_mob
 # - firefox
-# - ios_chr
 # - ios_saf
 # - ie
 # - ie_mob
 # - opera
+# - op_mob
 # - op_mini
 # - safari
 # - firefox_mob
@@ -56,11 +56,11 @@ chrome = "*"
 edge = "*"
 edge_mob = "*"
 firefox = "*"
-ios_chr = "*"
 ios_saf = "*"
 ie = "*"
 ie_mob = "*"
 opera = "*"
+op_mob = "*"
 op_mini = "*"
 safari = "*"
 firefox_mob = "*"

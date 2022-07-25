@@ -10,7 +10,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 
 [browsers]
 edge = "13 - 18"
-edge_mob = ">= 13"
+edge_mob = "13 - 18"
 safari = "9 - 12.1"
 chrome = "49 - 69"
 firefox = "36 - 62"
