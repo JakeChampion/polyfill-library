@@ -19,8 +19,8 @@ firefox_mob = "<67"
 ie = ">=11"
 ie_mob = ">=11"
 opera = "10 - 22"
-safari = "<9"
-ios_saf = "<9"
+safari = "<9.0"
+ios_saf = "<9.0"
 
 [install]
 module = "@webcomponents/template"

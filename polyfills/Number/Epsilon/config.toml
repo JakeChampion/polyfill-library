@@ -7,4 +7,4 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 [browsers]
 firefox = "<25"
 ie = "*"
-safari = "<9"
+safari = "<9.0"

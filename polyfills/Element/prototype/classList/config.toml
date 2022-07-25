@@ -15,4 +15,4 @@ repo = "https://github.com/Alhadis/DOMTokenList"
 
 [browsers]
 ie = ">=8"
-safari = "4 - 4.1"
+safari = "4.0 - 4.1"

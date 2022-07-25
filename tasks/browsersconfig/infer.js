@@ -155,7 +155,8 @@ forEachPolyfillConfigPath((configPath) => {
 			// - deconstruct the range into a list of versions.
 			const versionsSatisfiedByConfig = versions.filter((x) => semver.satisfies(semver.coerce(x), config.browsers[browser]));
 			// - reconstruct a simplified range from the list of versions.
-			config.browsers[browser] = simplifyRange(semver.sort(versions), versionsSatisfiedByConfig.join(' || ')).toString();
+			const isSafari = ['safari', 'ios_saf'].includes(browser);
+			config.browsers[browser] = simplifyRange(semver.sort(versions), versionsSatisfiedByConfig.join(' || '), isSafari).toString();
 
 			if (!config.browsers[browser]) {
 				logBuffer.push([`Error: browser "${browser}: ${originalBrowsers[browser]}" did not match any real browser versions`, 'error']);
@@ -182,6 +183,17 @@ forEachPolyfillConfigPath((configPath) => {
 		stats.missing++;
 	}
 
+	const sortedConfig = {};
+	for (const browser of configTemplateBrowserNames) {
+		if (!config.browsers[browser]) {
+			continue;
+		}
+
+		sortedConfig[browser] = config.browsers[browser];
+	}
+
+	config.browsers = sortedConfig;
+
 	// TODO :
 	// check missing browsers stats
 	// determine possible engines which might have those stats and are mappable
@@ -189,6 +201,7 @@ forEachPolyfillConfigPath((configPath) => {
 
 	try {
 		assert.deepStrictEqual(config.browsers, originalBrowsers);
+		assert.deepStrictEqual(Object.keys(config.browsers), Object.keys(originalBrowsers));
 	} catch (_) {
 		logBuffer.push(['Updated browser config', 'error']);
 		logBuffer.push([TOML.stringify({ browsers: config.browsers }), 'error']);

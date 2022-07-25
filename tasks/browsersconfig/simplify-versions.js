@@ -1,7 +1,7 @@
 const semver = require('semver');
 
-function simplifyVersion(version) {
-	if (version.minor === 0 && version.patch === 0 && version.prerelease.length === 0 && version.build.length === 0) {
+function simplifyVersion(version, isSafari = false) {
+	if (!isSafari && version.minor === 0 && version.patch === 0 && version.prerelease.length === 0 && version.build.length === 0) {
 		return version.major.toString()
 	} else if (version.patch === 0 && version.prerelease.length === 0 && version.build.length === 0) {
 		return `${version.major}.${version.minor}`
@@ -10,15 +10,15 @@ function simplifyVersion(version) {
 	}
 }
 
-function simplifyRange(versions, range, options) {
+function simplifyRange(versions, range, isSafari = false) {
 	const set = []
 	let min
 	let minPlusOne
 	let previous
-	const v = versions.sort((a, b) => semver.compare(a, b, options))
+	const v = versions.sort((a, b) => semver.compare(a, b))
 	for (let index = 0; index < v.length; index++) {
 		const version = v[index];
-		const included = semver.satisfies(version, range, options)
+		const included = semver.satisfies(version, range)
 		if (included) {
 			previous = version
 			if (!min) {
@@ -42,22 +42,22 @@ function simplifyRange(versions, range, options) {
 	for (const [min, max, next] of set) {
 		if (min === max)
 			if (min === v[0] && next) {
-				ranges.push(`<${simplifyVersion(next)}`)
+				ranges.push(`<${simplifyVersion(next, isSafari)}`)
 			} else {
-				ranges.push(simplifyVersion(min))
+				ranges.push(simplifyVersion(min, isSafari))
 			}
 		else if (!max && min === v[0])
 			ranges.push('*')
 		else if (!max)
-			ranges.push(`>=${simplifyVersion(min)}`)
+			ranges.push(`>=${simplifyVersion(min, isSafari)}`)
 		else if (min === v[0])
 			if (next) {
-				ranges.push(`<${simplifyVersion(next)}`)
+				ranges.push(`<${simplifyVersion(next, isSafari)}`)
 			} else {
 				ranges.push(`<=${simplifyVersion(max)}`)
 			}
 		else
-			ranges.push(`${simplifyVersion(min)} - ${simplifyVersion(max)}`)
+			ranges.push(`${simplifyVersion(min, isSafari)} - ${simplifyVersion(max, isSafari)}`)
 	}
 	const simplified = ranges.join(' || ')
 	const original = typeof range.raw === 'string' ? range.raw : String(range)

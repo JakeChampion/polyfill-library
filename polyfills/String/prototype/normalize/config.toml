@@ -14,8 +14,8 @@ ie_mob = "*"
 opera = "*"
 op_mob = "*"
 op_mini = "*"
-safari = "<10"
-ios_saf = "<10"
+safari = "<10.0"
+ios_saf = "<10.0"
 samsung_mob = "<2"
 
 [install]

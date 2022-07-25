@@ -25,8 +25,8 @@ firefox_mob = "<58"
 ie = ">=9"
 ie_mob = ">=9"
 opera = "<50"
-safari = "<13"
-ios_saf = "<13"
+safari = "<13.0"
+ios_saf = "<13.0"
 samsung_mob = "<8"
 
 [install]
