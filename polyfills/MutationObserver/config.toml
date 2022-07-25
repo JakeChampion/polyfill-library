@@ -4,15 +4,15 @@ spec = "https://dom.spec.whatwg.org/#mutationobserver"
 license = "WTFPL"
 
 [browsers]
+android = "<4.4"
 chrome = "<26"
 firefox = "<14"
-ie = "<11"
-opera = "<15"
-safari = "<6"
-android = "<4.4"
 firefox_mob = "<14"
+ie = "<11"
 ie_mob = "<11"
+opera = "<15"
 op_mob = "<15"
+safari = "<6"
 ios_saf = "<7"
 
 [install]

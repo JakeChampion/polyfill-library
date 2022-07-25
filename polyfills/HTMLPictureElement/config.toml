@@ -5,18 +5,18 @@ repo = "https://github.com/scottjehl/picturefill"
 docs = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture"
 
 [browsers]
+android = "*"
+bb = "7 - 10"
+chrome = "<38"
 edge = "<13"
 edge_mob = "<13"
+firefox = "<38"
+firefox_mob = "<38"
 ie = "*"
 ie_mob = ">=10"
-firefox = "<38"
 opera = "11.6 - 29"
 safari = "<9.1"
-chrome = "<38"
 ios_saf = "<9.3"
-firefox_mob = "<38"
-bb = "7 - 10"
-android = "*"
 
 [install]
 module = "picturefill"

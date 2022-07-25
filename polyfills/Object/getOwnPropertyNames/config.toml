@@ -16,9 +16,9 @@ dependencies = [
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames"
 
 [browsers]
-ie = "*"
 chrome = "<40"
 edge = "<13"
 firefox = "<34"
 firefox_mob = "<34"
+ie = "*"
 safari = "<9"

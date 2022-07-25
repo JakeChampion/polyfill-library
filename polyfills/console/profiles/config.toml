@@ -6,8 +6,8 @@ notes = [
 ]
 
 [browsers]
-ie = "*"
 firefox = "<5"
+ie = "*"
 
 [test]
 ci = false

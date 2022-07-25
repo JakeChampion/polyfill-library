@@ -17,16 +17,16 @@ repo = "https://github.com/magic-akari/seamless-scroll-polyfill"
 docs = "https://developer.mozilla.org/en/docs/Web/CSS/scroll-behavior"
 
 [browsers]
+android = "*"
+chrome = "<61"
 edge = "<79"
 edge_mob = "*"
+firefox = "4 - 36"
 ie = ">=9"
 ie_mob = ">=9"
-firefox = "4 - 36"
 opera = "*"
 safari = "*"
-chrome = "<61"
 ios_saf = "*"
-android = "*"
 
 [install]
 module = "seamless-scroll-polyfill"

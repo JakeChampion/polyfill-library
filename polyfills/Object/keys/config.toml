@@ -15,9 +15,9 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 spec = "https://tc39.github.io/ecma262/#sec-object.keys"
 
 [browsers]
-ie = "*"
-safari = "<9"
 chrome = "<47"
-opera = "<34"
 firefox = "<38"
+ie = "*"
+opera = "<34"
+safari = "<9"
 ios_saf = "<9"

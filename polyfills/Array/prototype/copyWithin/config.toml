@@ -12,5 +12,5 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 chrome = "<45"
 firefox = "<32"
 ie = "*"
-safari = "<9"
 opera = "<32"
+safari = "<9"

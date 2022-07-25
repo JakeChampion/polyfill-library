@@ -10,17 +10,17 @@ repo = "https://github.com/web-animations/web-animations-js"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API"
 
 [browsers]
+android = "*"
+chrome = "<47"
 edge = "<79"
 edge_mob = "*"
+firefox = "27 - 50"
+firefox_mob = "27 - 50"
 ie = ">=10"
 ie_mob = ">=10"
-firefox = "27 - 50"
 opera = "11.6 - 42"
 safari = "<13.1"
-chrome = "<47"
 ios_saf = "<13.4"
-firefox_mob = "27 - 50"
-android = "*"
 
 [install]
 module = "web-animations-js"

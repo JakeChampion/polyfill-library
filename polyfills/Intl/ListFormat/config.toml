@@ -17,16 +17,16 @@ notes = [
 
 [browsers]
 android = "*"
-ie = ">=9"
-ie_mob = ">=9"
+chrome = "<72"
 edge = "<79"
 edge_mob = "<79"
 firefox = "<78"
+firefox_mob = "<79"
+ie = ">=9"
+ie_mob = ">=9"
 opera = "<60"
-chrome = "<72"
 safari = "*"
 ios_saf = "<14.5"
-firefox_mob = "<79"
 samsung_mob = "<11"
 
 [install]

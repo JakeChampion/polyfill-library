@@ -5,6 +5,6 @@ spec = "https://tc39.github.io/ecma262/#sec-number.epsilon"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/EPSILON"
 
 [browsers]
-ie = "*"
 firefox = "<25"
+ie = "*"
 safari = "<9"

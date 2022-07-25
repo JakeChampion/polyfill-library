@@ -6,15 +6,15 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API"
 [browsers]
 android = "*"
 chrome = "<25"
+edge = "<18.17134"
 firefox = "<38"
 firefox_mob = "*"
 ie = "<10"
 ie_mob = "<10"
-ios_saf = "*"
-op_mob = "*"
 opera = "<15"
+op_mob = "*"
 safari = "*"
-edge = "<18.17134"
+ios_saf = "*"
 
 [install]
 module = "usertiming"

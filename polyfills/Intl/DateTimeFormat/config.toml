@@ -23,16 +23,16 @@ notes = [
 # Browser compatibility list for Int.DateTimeFormat.~timeZone.all and Int.DateTimeFormat.~timeZone.golden must match this one, update both if a change is needed here.
 [browsers]
 android = "*"
-ie = ">=9"
-ie_mob = ">=9"
+chrome = "<76"
 edge = "<79"
 edge_mob = "<79"
 firefox = "<91"
+firefox_mob = "<91"
+ie = ">=9"
+ie_mob = ">=9"
 opera = "<63"
-chrome = "<76"
 safari = "<14.1"
 ios_saf = "<14.5"
-firefox_mob = "<91"
 samsung_mob = "<12"
 
 [install]
