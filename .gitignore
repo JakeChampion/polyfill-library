@@ -20,6 +20,5 @@ polyfills/AbortController/polyfill.js
 polyfills/smoothscroll/polyfill.js
 local.log
 test/polyfills/compat.json
-test/polyfills/results-all.json
-test/polyfills/results-control.json
+test/polyfills/results-*.json
 # polyfills/TextEncoder/polyfill.js

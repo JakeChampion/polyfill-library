@@ -252,7 +252,7 @@ function createEndpoint(template) {
 			: polyfills;
 
 		// Make sure we always test something.
-		// This catches edge cases were a run is requested for a polyfill that isn't requested for the current UA.
+		// This catches edge cases were a run is requested for a polyfill that isn't required for the current UA.
 		if (features.length === 0) {
 			features = polyfills;
 		}
