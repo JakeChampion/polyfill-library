@@ -11,7 +11,7 @@ license = "MIT"
 
 [browsers]
 chrome = "<50"
-edge = "<79"
+edge = "*"
 edge_mob = "*"
 firefox = "<19"
 ie = ">=10"

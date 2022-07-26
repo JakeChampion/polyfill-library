@@ -16,7 +16,7 @@ license = "MIT"
 [browsers]
 android = "*"
 chrome = "<61"
-edge = "<79"
+edge = "*"
 firefox = "<69"
 firefox_mob = "<79"
 ie = ">=9"

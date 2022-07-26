@@ -5,7 +5,7 @@ repo = "https://github.com/eligrey/Blob.js/blob"
 
 [browsers]
 chrome = "<20"
-edge = "<79"
+edge = "*"
 edge_mob = "*"
 firefox = "<13"
 firefox_mob = "<14"

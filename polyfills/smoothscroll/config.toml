@@ -19,7 +19,7 @@ docs = "https://developer.mozilla.org/en/docs/Web/CSS/scroll-behavior"
 [browsers]
 android = "*"
 chrome = "<61"
-edge = "<79"
+edge = "*"
 edge_mob = "*"
 firefox = "4 - 36"
 ie = ">=9"

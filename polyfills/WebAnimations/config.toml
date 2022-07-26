@@ -12,7 +12,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API"
 [browsers]
 android = "*"
 chrome = "<47"
-edge = "<79"
+edge = "*"
 edge_mob = "*"
 firefox = "27 - 50"
 firefox_mob = "27 - 50"

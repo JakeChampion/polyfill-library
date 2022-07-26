@@ -19,8 +19,8 @@ spec = "https://tc39.es/proposal-intl-relative-time/#sec-intl-relativetimeformat
 [browsers]
 android = "*"
 chrome = "<71"
-edge = "<79"
-edge_mob = "<79"
+edge = "*"
+edge_mob = "*"
 firefox = "<65"
 firefox_mob = "<65"
 ie = ">=9"

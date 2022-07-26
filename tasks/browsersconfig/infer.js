@@ -13,7 +13,7 @@ const { forEachPolyfillConfigPath } = require('./for-each-polyfill-config');
 const assert = require('assert');
 const { fetchMCD } = require('./mcd');
 
-const deadBrowsers = new Set(['ie', 'ie_mob', 'android', 'bb', 'op_mini']);
+const deadBrowsers = new Set(['ie', 'ie_mob', 'android', 'bb', 'op_mini', 'edge']);
 
 const stats = {
 	unbounded: 0,
@@ -105,10 +105,16 @@ fetchMCD().then((browserData) => {
 				logBuffer.push([`Error: browser "${browser}: ${config.browsers[browser]}" is not a range`, 'error']);
 			}
 
-			if (browser === 'android' && parsedRange.versions.findIndex((x) => semver.coerce(x).major > 6) > -1) {
+			if (browser === 'android' && parsedRange.versions.findIndex((x) => semver.coerce(x).major > 10) > -1) {
 				logBuffer.push([`Error: android config should not include later chromium versions, "${browser}: ${config.browsers[browser]}`, 'error']);
 
 				config.browsers['android'] = '*';
+			}
+
+			if ((browser === 'edge' || browser === 'edge_mob') && parsedRange.versions.findIndex((x) => semver.coerce(x).major > 18) > -1) {
+				logBuffer.push([`Error: edge config should not include chromium versions, "${browser}: ${config.browsers[browser]}`, 'error']);
+
+				config.browsers[browser] = '*';
 			}
 
 			// Browser configs must be valid ranges for `semver`.
@@ -192,11 +198,6 @@ fetchMCD().then((browserData) => {
 		}
 
 		config.browsers = sortedConfig;
-
-		// TODO :
-		// check missing browsers stats
-		// determine possible engines which might have those stats and are mappable
-		// do the mapping
 
 		try {
 			assert.deepStrictEqual(config.browsers, originalBrowsers);

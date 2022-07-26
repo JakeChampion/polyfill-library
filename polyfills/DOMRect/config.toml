@@ -6,7 +6,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/DOMRect"
 [browsers]
 android = "*"
 chrome = "<61"
-edge = "<79"
+edge = "*"
 firefox = "<31"
 firefox_mob = "<31"
 ie = ">=9"

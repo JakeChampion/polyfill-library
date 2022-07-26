@@ -13,7 +13,7 @@ repo = "https://github.com/Yaffle/EventSource"
 [browsers]
 android = "<4.4"
 chrome = "<26"
-edge = "<79"
+edge = "*"
 edge_mob = "*"
 firefox = "<36"
 ie = "*"

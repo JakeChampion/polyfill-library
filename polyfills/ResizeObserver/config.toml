@@ -12,7 +12,7 @@ dependencies = [
 [browsers]
 android = "<5"
 chrome = "<64"
-edge = "<79"
+edge = "*"
 edge_mob = "*"
 firefox = "<69"
 firefox_mob = "*"
