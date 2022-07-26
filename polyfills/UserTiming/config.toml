@@ -15,6 +15,7 @@ opera = "<15"
 op_mob = "*"
 safari = "<14.1"
 ios_saf = "<14.0"
+samsung_mob = "<1.5"
 
 [install]
 module = "usertiming"

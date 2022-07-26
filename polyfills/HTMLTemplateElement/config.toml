@@ -21,6 +21,7 @@ ie_mob = ">=11"
 opera = "10 - 22"
 safari = "<9.0"
 ios_saf = "<9.0"
+samsung_mob = "<1.5"
 
 [install]
 module = "@webcomponents/template"

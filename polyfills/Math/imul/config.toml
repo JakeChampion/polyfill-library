@@ -4,7 +4,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 spec = "https://tc39.github.io/ecma262/#sec-math.imul"
 
 [browsers]
-android = "<5"
+android = "<4.4"
 bb = "*"
 chrome = "<28"
 firefox = "<20"
@@ -12,7 +12,8 @@ firefox_mob = "<20"
 ie = "*"
 ie_mob = "*"
 opera = "<16"
-op_mob = "*"
+op_mob = "<15"
 op_mini = "*"
 safari = "<7.0"
 ios_saf = "<7.0"
+samsung_mob = "<1.5"

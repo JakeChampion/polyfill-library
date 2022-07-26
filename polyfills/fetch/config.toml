@@ -23,8 +23,10 @@ firefox_mob = "<64"
 ie = "*"
 ie_mob = "*"
 opera = "<53"
+op_mob = "<47"
 safari = "<12.0"
 ios_saf = "<12.0"
+samsung_mob = "<9"
 
 [install]
 module = "whatwg-fetch"

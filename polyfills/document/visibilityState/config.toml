@@ -18,7 +18,10 @@ notes = [
 
 [browsers]
 android = "<4.4.3"
-chrome = "14 - 32"
-firefox = "10 - 17"
-opera = "15 - 19"
-safari = "<5.0"
+chrome = "<33"
+firefox = "<18"
+opera = "<20"
+op_mob = "<20"
+safari = "<7.0"
+ios_saf = "<7.0"
+samsung_mob = "<2"

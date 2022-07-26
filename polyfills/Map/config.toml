@@ -22,6 +22,8 @@ notes = [
 	"The test suite for this polyfill is derived from work of Andrea Giammarchi which is [published under an MIT licence](https://github.com/WebReflection/es6-collections)"
 ]
 
+docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"
+
 [browsers]
 android = "<5.1"
 bb = "10 - *"
@@ -36,3 +38,4 @@ op_mob = "*"
 op_mini = "*"
 safari = "<9.0"
 ios_saf = "<9.0"
+samsung_mob = "<5"

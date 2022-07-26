@@ -8,36 +8,54 @@ const TOML = require('@iarna/toml');
 const semver = require('semver');
 const { simplifyRange } = require('./simplify-versions');
 const { mdnBrowserKey } = require('./mdn-browser-key');
-const { parseRange } = require('./parse-range');
+const { parseRange, replaceInRange } = require('./parse-range');
 const { forEachPolyfillConfigPath } = require('./for-each-polyfill-config');
 const assert = require('assert');
 const { fetchMCD } = require('./mcd');
+const { ChromeToOpera, ChromeToOperaMobile, SafariToIOS, ChromeToSamsung } = require('./static-mapping');
 
 const deadBrowsers = new Set(['ie', 'ie_mob', 'android', 'bb', 'op_mini', 'edge']);
 
 const stats = {
+	// browser config
 	unbounded: 0,
 	missing: 0,
-	withWarnings: 0,
 	unknownVersions: 0,
+	// meta config
+	withoutDocumentation: 0,
+	// debug counters
+	withWarnings: 0,
+	withInfoMessages: 0,
 }
 
 function processLog(logs) {
+	if (logs.findIndex((x) => x[1] === 'info') > -1) {
+		stats.withInfoMessages++;
+	}
+
 	if (logs.findIndex((x) => x[1] === 'error') > -1) {
 		stats.withWarnings++;
-		console.warn(logs.map((x) => x[0]).join('\n'));
+		console.warn('\n' + logs.map((x) => x[0]).join('\n') + '\n');
+		console.log('----------------------------------------');
 	}
 }
 
 fetchMCD().then((browserData) => {
 	return forEachPolyfillConfigPath((configPath) => {
 		if (configPath.includes('~locale')) {
+			// These are dynamically generated configs.
+			return;
+		}
+
+		if (configPath.includes('polyfills/console/')) {
+			// Console API is a bit special.
+			// Skipping this for now.
 			return;
 		}
 
 		const logBuffer = [];
 
-		logBuffer.push(['Infering browsers list for "' + configPath + '"...', 'info']);
+		logBuffer.push([`Linting "${configPath}"...`, 'info']);
 
 		let config = {};
 
@@ -49,9 +67,13 @@ fetchMCD().then((browserData) => {
 		}
 
 		if (!config.browsers) {
-			logBuffer.push(['Error: no browser in', configPath, 'error']);
+			logBuffer.push(['- error: no browsers config', 'error']);
 			processLog(logBuffer);
 			return;
+		}
+
+		if (!config.docs) {
+			stats.withoutDocumentation++;
 		}
 
 		const originalBrowsers = JSON.parse(JSON.stringify(config.browsers));
@@ -67,7 +89,7 @@ fetchMCD().then((browserData) => {
 		try {
 			configTemplate = TOML.parse(fs.readFileSync(`tasks/polyfill-templates/config.toml`, 'utf-8'));
 		} catch (error) {
-			console.error('Error: ' + error);
+			console.error(error);
 			process.exit(1);
 		}
 
@@ -82,14 +104,13 @@ fetchMCD().then((browserData) => {
 			}
 		}
 
-		const configBrowserNames = Object.keys(config.browsers || {});
 		const configTemplateBrowserNames = Object.keys(configTemplate.browsers || {});
 
-		for (const browser of configBrowserNames) {
+		for (const browser of Object.keys(config.browsers || {})) {
 			// We want uniform configs with a known set of browsers.
 			// The template for new polyfills is a good baseline.
 			if (!configTemplateBrowserNames.includes(browser)) {
-				logBuffer.push([`Error: browser "${browser}" is not defined in the template for new polyfills`, 'error']);
+				logBuffer.push([`- error: browser "${browser}" is not defined in the template for new polyfills`, 'error']);
 			}
 
 			// Browser configs must be ranges.
@@ -102,28 +123,90 @@ fetchMCD().then((browserData) => {
 					browserData.browsers[mdnBrowserKey(browser)].release_versions[0] === semver.coerce(parsedRange.versions[0]).toString()
 				)
 			) {
-				logBuffer.push([`Error: browser "${browser}: ${config.browsers[browser]}" is not a range`, 'error']);
+				logBuffer.push([`- error: browser "${browser}: ${config.browsers[browser]}" is not a range`, 'error']);
 			}
 
 			if (browser === 'android' && parsedRange.versions.findIndex((x) => semver.coerce(x).major > 10) > -1) {
-				logBuffer.push([`Error: android config should not include later chromium versions, "${browser}: ${config.browsers[browser]}`, 'error']);
+				logBuffer.push([`- error: android config should not include later chromium versions, "${browser}: ${config.browsers[browser]}`, 'error']);
 
 				config.browsers['android'] = '*';
 			}
 
 			if ((browser === 'edge' || browser === 'edge_mob') && parsedRange.versions.findIndex((x) => semver.coerce(x).major > 18) > -1) {
-				logBuffer.push([`Error: edge config should not include chromium versions, "${browser}: ${config.browsers[browser]}`, 'error']);
+				logBuffer.push([`- error: edge config should not include chromium versions, "${browser}: ${config.browsers[browser]}`, 'error']);
 
 				config.browsers[browser] = '*';
 			}
 
 			// Browser configs must be valid ranges for `semver`.
 			if (!semver.validRange(config.browsers[browser])) {
-				logBuffer.push([`Error: browser "${browser}: ${config.browsers[browser]}" is not a valid range`, 'error']);
+				logBuffer.push([`- error: browser "${browser}: ${config.browsers[browser]}" is not a valid range`, 'error']);
 			}
 		}
 
-		for (const browser of configBrowserNames) {
+		for (const browser of configTemplateBrowserNames) {
+			if (config.browsers[browser] && config.browsers[browser] !== '*') {
+				continue;
+			}
+
+			switch (browser) {
+				case 'opera':
+					if (config.browsers['chrome'] && config.browsers['chrome'] !== '*') {
+						const replaced = replaceInRange(config.browsers['chrome'], (version) => {
+							return ChromeToOpera(Number.parseInt(version, 10));
+						});
+
+						if (replaced) {
+							config.browsers[browser] = replaced;
+						}
+					}
+					break;
+				case 'op_mob':
+					if (config.browsers['chrome'] && config.browsers['chrome'] !== '*') {
+						const mapped = ChromeToOperaMobile.map((pair) => {
+							if (semver.satisfies(semver.coerce(pair[0]), config.browsers['chrome'])) {
+								return pair[1];
+							}
+						}).filter((x) => !!x);
+
+						if (mapped && mapped.length > 0) {
+							config.browsers[browser] = mapped.join(' || ');
+						}
+					}
+					break;
+				case 'ios_saf':
+					if (config.browsers['safari'] && config.browsers['safari'] !== '*') {
+						const mapped = SafariToIOS.map((pair) => {
+							if (semver.satisfies(semver.coerce(pair[0]), config.browsers['safari'])) {
+								return pair[1];
+							}
+						}).filter((x) => !!x);
+
+						if (mapped && mapped.length > 0) {
+							config.browsers[browser] = mapped.join(' || ');
+						}
+					}
+					break;
+				case 'samsung_mob':
+					if (config.browsers['chrome'] && config.browsers['chrome'] !== '*') {
+						const mapped = ChromeToSamsung.map((pair) => {
+							if (semver.satisfies(semver.coerce(pair[0]), config.browsers['chrome'])) {
+								return pair[1];
+							}
+						}).filter((x) => !!x);
+
+						if (mapped && mapped.length > 0) {
+							config.browsers[browser] = mapped.join(' || ');
+						}
+					}
+					break;
+
+				default:
+					break;
+			}
+		}
+
+		for (const browser of Object.keys(config.browsers || {})) {
 			if (
 				config.browsers[browser] !== '*' &&
 				browserData.browsers[mdnBrowserKey(browser)]
@@ -136,7 +219,7 @@ fetchMCD().then((browserData) => {
 					browserData.browsers[mdnBrowserKey(browser)] &&
 					!browserData.browsers[mdnBrowserKey(browser)].release_versions.includes(semver.coerce(parsedRange.versions[0]).toString())
 				) {
-					logBuffer.push([`Unknown single version "${browser}: ${config.browsers[browser]}"`, 'info']);
+					logBuffer.push([`- info : unknown version for "${browser}" - "${config.browsers[browser]}"`, 'info']);
 					continue;
 				}
 
@@ -150,7 +233,7 @@ fetchMCD().then((browserData) => {
 
 				if (unknownVersions.length > 0) {
 					// Warn when a version is not found in MDN data.
-					logBuffer.push([`${browser}: unknown versions - ${JSON.stringify(unknownVersions)} `, 'info']);
+					logBuffer.push([`- info : unknown versions for "${browser}" - ${JSON.stringify(unknownVersions)} `, 'info']);
 					stats.unknownVersions++;
 					// But add it to the list anyway.
 					versions.push(...(unknownVersions.map((x) => semver.coerce(x))));
@@ -164,12 +247,12 @@ fetchMCD().then((browserData) => {
 				config.browsers[browser] = simplifyRange(semver.sort(versions), versionsSatisfiedByConfig.join(' || '), isSafari).toString();
 
 				if (!config.browsers[browser]) {
-					logBuffer.push([`Error: browser "${browser}: ${originalBrowsers[browser]}" did not match any real browser versions`, 'error']);
+					logBuffer.push([`- error: browser "${browser}: ${originalBrowsers[browser]}" did not match any real browser versions`, 'error']);
 				}
 			}
 		}
 
-		for (const browser of configBrowserNames) {
+		for (const browser of Object.keys(config.browsers || {})) {
 			if (deadBrowsers.has(browser) || !browserData.browsers[mdnBrowserKey(browser)]) {
 				continue;
 			}
@@ -203,7 +286,7 @@ fetchMCD().then((browserData) => {
 			assert.deepStrictEqual(config.browsers, originalBrowsers);
 			assert.deepStrictEqual(Object.keys(config.browsers), Object.keys(originalBrowsers));
 		} catch (_) {
-			logBuffer.push(['Updated browser config', 'error']);
+			logBuffer.push(['\n\nupdated browser config:\n', 'error']);
 			logBuffer.push([TOML.stringify({ browsers: config.browsers }), 'error']);
 		}
 
@@ -212,8 +295,22 @@ fetchMCD().then((browserData) => {
 	});
 }).then(() => {
 	if (process.env.GITHUB_STEP_SUMMARY) {
-		fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Config stats\n\n- ${stats.missing} missing\n- ${stats.unknownVersions} unknown versions\n- ${stats.unbounded} unbounded\n- ${stats.withWarnings} warnings\n\n`);
+		fs.appendFileSync(
+			process.env.GITHUB_STEP_SUMMARY,
+			`## Config stats\n\n` +
+			`_The goal is never to reduce all these stats to zero._\n` +
+			`_Over time we do want to make sure these do not escalate._\n\n` +
+			`### Browsers\n`+
+			`- ${stats.missing} missing\n` +
+			`- ${stats.unknownVersions} unknown\n` +
+			`- ${stats.unbounded} unbounded ('*' or '>5')\n\n` +
+			`### Meta\n` +
+			`- ${stats.withoutDocumentation} missing docs link\n\n` +
+			`### Log\n` +
+			`- ${stats.withWarnings} warnings\n` +
+			`- ${stats.withInfoMessages} info messages\n\n`
+		);
 	} else {
-		console.log(stats);
+		console.log(`\n${JSON.stringify(stats, undefined, 2)}`);
 	}
 });

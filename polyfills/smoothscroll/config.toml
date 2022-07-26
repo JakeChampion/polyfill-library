@@ -24,9 +24,11 @@ edge_mob = "*"
 firefox = "4 - 36"
 ie = ">=9"
 ie_mob = ">=9"
-opera = "*"
+opera = "<48"
+op_mob = "<45"
 safari = "*"
 ios_saf = "*"
+samsung_mob = "<8"
 
 [install]
 module = "seamless-scroll-polyfill"

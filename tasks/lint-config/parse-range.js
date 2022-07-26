@@ -70,6 +70,58 @@ function parseRange(range) {
 	};
 }
 
+function replaceInRange(range, replacer) {
+	if (range === '*') {
+		return range;
+	}
+
+	let buffer = '';
+
+	for (let index = 0; index < range.length; index++) {
+		const char = range[index];
+
+		switch (char) {
+			case ' ':
+			case '|':
+			case '<':
+			case '>':
+			case '=':
+			case '-':
+				buffer += char;
+				break;
+
+			case '1':
+			case '2':
+			case '3':
+			case '4':
+			case '5':
+			case '6':
+			case '7':
+			case '8':
+			case '9':
+			case '0':
+			case '*':
+				{
+					const version = consumeVersionToken(range.slice(index));
+					index += version.length - 1;
+
+					const modifiedVersion = replacer(version);
+					if (!modifiedVersion) {
+						return;
+					}
+
+					buffer += modifiedVersion;
+					break;
+				}
+
+			default:
+				throw new Error('Invalid range: ' + range);
+		}
+	}
+
+	return buffer;
+}
+
 function consumeVersionToken(x) {
 	let buffer = '';
 
@@ -95,4 +147,5 @@ function consumeVersionToken(x) {
 
 module.exports = {
 	parseRange: parseRange,
+	replaceInRange: replaceInRange,
 }
