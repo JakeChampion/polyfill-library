@@ -9,18 +9,19 @@ repo = "https://github.com/webcomponents/polyfills/tree/master/packages/template
 docs = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template"
 
 [browsers]
+android = "*"
+bb = "7 - 10"
+chrome = "<27"
 edge = "<13"
 edge_mob = "<13"
-ie = "11"
-ie_mob = "11"
 firefox = "4 - 22"
-opera = "10 - 22"
-safari = "6 - 8"
-chrome = "* - 26"
-ios_saf = "* - 8"
 firefox_mob = "<67"
-bb = "7 - 10"
-android = "<67"
+ie = ">=11"
+ie_mob = ">=11"
+opera = "10 - 22"
+safari = "<9.0"
+ios_saf = "<9.0"
+samsung_mob = "<1.5"
 
 [install]
 module = "@webcomponents/template"

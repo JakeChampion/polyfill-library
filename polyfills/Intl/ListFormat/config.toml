@@ -16,20 +16,22 @@ notes = [
 ]
 
 [browsers]
-android = "<72"
-ie = "9 - *"
-ie_mob = "9 - *"
-edge = "<79"
-edge_mob = "<79"
-firefox = "<78"
-opera = "<60"
+android = "*"
 chrome = "<72"
+edge = "*"
+edge_mob = "*"
+firefox = "<78"
+firefox_mob = "<79"
+ie = ">=9"
+ie_mob = ">=9"
+opera = "<60"
+op_mob = "<51"
 safari = "*"
 ios_saf = "<14.5"
-firefox_mob = "<79"
 samsung_mob = "<11"
 
 [install]
 module = "@formatjs/intl-listformat"
 paths = [ "polyfill.iife.js" ]
 postinstall = "update.task.js"
+clean = [ "~locale", "polyfill.js" ]

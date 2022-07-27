@@ -63,7 +63,7 @@ async function main() {
 		const configPath = path.join(
 			__dirname,
 			"../../polyfills",
-			feature.join("/").replace(".", "/"),
+			feature.join("/").replace(/\./g, "/"),
 			"config.toml"
 		);
 		const config = TOML.parse(await fs.readFile(configPath, "utf-8"));

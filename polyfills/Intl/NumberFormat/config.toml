@@ -19,17 +19,18 @@ notes = [
 ]
 
 [browsers]
-android = "<77"
-ie = "9 - *"
-ie_mob = "9 - *"
-edge = "<77"
-edge_mob = "<77"
-firefox = "<78"
-opera = "<64"
+android = "*"
 chrome = "<77"
+edge = "*"
+edge_mob = "*"
+firefox = "<78"
+firefox_mob = "<79"
+ie = ">=9"
+ie_mob = ">=9"
+opera = "<64"
+op_mob = "<55"
 safari = "<14.1"
 ios_saf = "<14.5"
-firefox_mob = "<79"
 samsung_mob = "<12"
 
 [install]

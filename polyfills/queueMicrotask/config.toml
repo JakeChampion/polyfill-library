@@ -4,14 +4,14 @@ dependencies = [
 ]
 
 [browsers]
+android = "*"
 chrome = "<71"
-edge = "<79"
+edge = "*"
 firefox = "<69"
+firefox_mob = "*"
 ie = "*"
 opera = "<58"
-safari = "<12.1"
-android = "<71"
-firefox_mob = "*"
 op_mob = "<50"
+safari = "<12.1"
 ios_saf = "<12.2"
-samsung_mob = "<10.0"
+samsung_mob = "<10"

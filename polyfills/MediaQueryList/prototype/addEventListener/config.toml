@@ -15,13 +15,14 @@ notes = [
 ]
 
 [browsers]
-android = "2.1 - 4.4.4"
-chrome = "<37"
+android = "*"
+chrome = "<39"
 edge = "<16"
 firefox = "<55"
 ie = "*"
-opera = "<77"
+opera = "<26"
+op_mob = "<26"
 op_mini = "*"
-op_mob = "<62"
-safari = "<14"
-ios_saf = "<14"
+safari = "<14.0"
+ios_saf = "<14.0"
+samsung_mob = "<4"

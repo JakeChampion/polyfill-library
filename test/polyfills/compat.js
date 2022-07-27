@@ -9,9 +9,15 @@ const intersection = (a, b) =>
 const difference = (a, b) =>
 	new Set([...b].filter(value => !a.has(value)));
 
+const browser = (process.argv
+	.find(a => {
+		return a.startsWith("browser=");
+	}) || "")
+	.replace("browser=", "");
+
 console.log("Reading test result data");
-const control = fs.readJSONSync(path.join(__dirname, "results-control.json"));
-const all = fs.readJSONSync(path.join(__dirname, "results-all.json"));
+const control = fs.readJSONSync(path.join(__dirname, browser ? `results-control-${browser}.json` : "results-control.json"));
+const all = fs.readJSONSync(path.join(__dirname, browser ? `results-all-${browser}.json` : "results-all.json"));
 
 const compat = _.merge({}, control, all);
 const builtCompatTable = {};
@@ -30,6 +36,12 @@ function buildData(support, browserName, version) {
 	};
 }
 
+function trimFeatureName(name) {
+	// When a test times out the feature name will be incorrect :
+	// "ResizeObserver (timeout after 30000ms, 2 retries)",
+	return name.split(' (timeout ')[0];
+}
+
 for (const browserName of Object.keys(compat)) {
 	const versions = compat[browserName];
 	for (const version of Object.keys(versions)) {
@@ -40,12 +52,18 @@ for (const browserName of Object.keys(compat)) {
 			);
 		}
 
-		const allTests = new Set([...testResults.control.testedSuites]);
-		const failedNative = new Set([...testResults.control.failingSuites]);
-		const failedPolyfilled = new Set([...testResults.all.failingSuites]);
+		const allTests = new Set([...testResults.control.testedSuites.map(x => trimFeatureName(x))]);
+		const failedNative = new Set([...testResults.control.failingSuites.map(x => trimFeatureName(x))]);
+		const failedPolyfilled = new Set([...testResults.all.failingSuites.map(x => trimFeatureName(x))]);
 
+		// test suite fails without and with requesting the polyfill.
+		// -> this should indicate that the polyfill was not served to the browser.
 		const missing = intersection(failedNative, failedPolyfilled);
+
+		// test suite fails natively but passed when the polyfill was requested.
 		const polyfilled = difference(failedPolyfilled, failedNative);
+
+		// all tests suites that passed without the polyfill.
 		const native = difference(failedNative, allTests);
 
 		for (const feature of native)  buildData("native", browserName, version)(feature);

@@ -13,19 +13,21 @@ repo = "https://github.com/formatjs/formatjs/tree/master/packages/intl-locale/"
 spec = "https://tc39.es/ecma402/#sec-intl.locale"
 
 [browsers]
-android = "<74"
+android = "*"
 chrome = "<74"
-edge = "<79"
-edge_mob = "<79"
+edge = "*"
+edge_mob = "*"
 firefox = "<75"
 firefox_mob = "<79"
-ie = "9 - *"
-ie_mob = "9 - *"
-ios_saf = "<14"
+ie = ">=9"
+ie_mob = ">=9"
 opera = "<62"
-safari = "<14"
+op_mob = "<53"
+safari = "<14.0"
+ios_saf = "<14.0"
 samsung_mob = "<11"
 
 [install]
 module = "@formatjs/intl-locale"
 paths = ["polyfill.iife.js"]
+clean = [ "polyfill.js" ]

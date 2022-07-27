@@ -10,19 +10,19 @@ dependencies = [
 ]
 
 [browsers]
+android = "<5"
 chrome = "<64"
-edge = "<79"
+edge = "*"
 edge_mob = "*"
 firefox = "<69"
-ie = "9 - *"
-opera = "<51"
-safari = "<13.1"
-android = "<5"
 firefox_mob = "*"
-samsung_mob = "<9"
+ie = ">=9"
 ie_mob = "*"
+opera = "<51"
 op_mob = "<47"
+safari = "<13.1"
 ios_saf = "<13.4"
+samsung_mob = "<9"
 
 [install]
 module = "@juggle/resize-observer"

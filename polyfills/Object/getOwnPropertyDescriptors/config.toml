@@ -11,8 +11,12 @@ dependencies = [
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors"
 
 [browsers]
-ie = "9 - *"
-edge = "<15"
 chrome = "<54"
+edge = "<15"
 firefox = "<50"
-safari = "<10"
+ie = ">=9"
+opera = "<41"
+op_mob = "<41"
+safari = "<10.0"
+ios_saf = "<10.0"
+samsung_mob = "<6"

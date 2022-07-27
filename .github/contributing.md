@@ -73,7 +73,6 @@ Browsers that can be listed:
 - edge
 - edge_mob
 - firefox
-- ios_chr
 - ios_saf
 - ie
 - ie_mob

@@ -24,6 +24,7 @@
   },
   "scripts": {
     "lint": "eslint polyfills lib tasks test",
+    "lint-config": "node tasks/lint-config/index.js",
     "clean": "rimraf ./polyfills/__dist && node tasks/clean",
     "build": "npm run clean && node tasks/updatesources && node tasks/buildsources/buildsources",
     "watch": "npm run clean && node tasks/updatesources && node tasks/buildsources/watchsource",

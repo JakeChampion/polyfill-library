@@ -23,16 +23,15 @@ notes = [
 
 #### Browser compatibility
 [browsers]
-android = "<43"
+android = "*"
 bb = "*"
 chrome = "<43"
 firefox = "*"
-ios_chr = "<4"
-ios_saf = "<4"
-ie = "9 - *"
-ie_mob = "9 - *"
+firefox_mob = "*"
+ie = ">=9"
+ie_mob = ">=9"
 opera = "<12.1"
 op_mini = "<12.1"
 safari = ">=10.1"
-firefox_mob = "*"
+ios_saf = "<4.0"
 samsung_mob = "<4"

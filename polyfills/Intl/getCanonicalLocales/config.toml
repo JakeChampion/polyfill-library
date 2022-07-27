@@ -10,18 +10,18 @@ repo = "https://github.com/formatjs/formatjs/tree/master/packages/intl-getcanoni
 spec = "https://tc39.es/ecma402/#sec-intl.getcanonicallocales"
 
 [browsers]
-android = "<54"
+android = "*"
 chrome = "<54"
 edge = "<16"
 edge_mob = "<16"
 firefox = "<48"
 firefox_mob = "<56"
-ie = "9 - *"
-ie_mob = "9 - *"
-ios_saf = "<11"
+ie = ">=9"
+ie_mob = ">=9"
 opera = "<41"
-safari = "<11"
-samsung_mob = "<6.0"
+safari = "<11.0"
+ios_saf = "<11.0"
+samsung_mob = "<6"
 
 [install]
 module = "@formatjs/intl-getcanonicallocales"

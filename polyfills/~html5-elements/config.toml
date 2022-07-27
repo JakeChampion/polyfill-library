@@ -12,7 +12,7 @@ dependencies = [ ]
 
 [browsers]
 ie = "6 - 9"
-safari = "4"
+safari = "<5.0"
 
 [install]
 module = "html5shiv"

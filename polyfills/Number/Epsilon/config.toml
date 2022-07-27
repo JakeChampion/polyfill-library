@@ -5,6 +5,11 @@ spec = "https://tc39.github.io/ecma262/#sec-number.epsilon"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/EPSILON"
 
 [browsers]
-ie = "*"
+chrome = "<34"
 firefox = "<25"
-safari = "<9"
+ie = "*"
+opera = "<21"
+op_mob = "<21"
+safari = "<9.0"
+ios_saf = "<9.0"
+samsung_mob = "<2"
