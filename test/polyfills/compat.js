@@ -37,7 +37,7 @@ function buildData(support, browserName, version) {
 }
 
 function trimFeatureName(name) {
-	// When a test times the feature name will be incorrect :
+	// When a test times out the feature name will be incorrect :
 	// "ResizeObserver (timeout after 30000ms, 2 retries)",
 	return name.split(' (timeout ')[0];
 }
