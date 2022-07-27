@@ -143,7 +143,7 @@ if (typeof (self.matchMedia('(min-width: 1px)').listeners) === 'undefined') {
 			}, done);
 		});
 
-		it("calls listeners once that are added with addListener and addEventListener", function (done) {
+		it("calls listeners once that are added with addListener", function (done) {
 			createMQL(function (mql) {
 				var calls = 0;
 				var listener = {
@@ -153,8 +153,33 @@ if (typeof (self.matchMedia('(min-width: 1px)').listeners) === 'undefined') {
 				};
 
 				mql.addListener(listener);
+
+				triggerMQLEvent(mql);
+				triggerMQLEvent(mql);
+
+				waitForChangesReported(function () {
+					try {
+						proclaim.equal(calls, 1);
+						done();
+					} catch (err) {
+						done(err);
+					}
+				});
+			}, done);
+		});
+
+		it("calls listeners once that are added with addEventListener", function (done) {
+			createMQL(function (mql) {
+				var calls = 0;
+				var listener = {
+					handleEvent: function handleEvent() {
+						calls++;
+					}
+				};
+
 				mql.addEventListener('change', listener);
 
+				triggerMQLEvent(mql);
 				triggerMQLEvent(mql);
 
 				waitForChangesReported(function () {
