@@ -106,7 +106,7 @@ browsers = [
   "edge/16.0",
   "edge/17.0",
   "edge/18.0",
-  # "edge/80.0",
+  "edge/80.0", # oldest chromium edge version we can test
   # "edge/81.0",
   # "edge/83.0",
   # "edge/84.0",
@@ -128,7 +128,7 @@ browsers = [
   # "edge/100.0",
   # "edge/101.0",
   # "edge/102.0",
-  # "edge/103.0",
+  "edge/103.0", # most recent edge at the time of writing
   "firefox/10.0",
   "firefox/11.0",
   "firefox/12.0",
