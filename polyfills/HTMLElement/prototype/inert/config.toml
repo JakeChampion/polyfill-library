@@ -9,6 +9,7 @@ dependencies = [
 aliases = [
 	# Polyfill was first created as "Element.prototype.inert" but the actual feature only exists on "HTMLElement"
 	# https://github.com/WICG/inert/issues/181
+	# TODO: [next major] remove this alias
 	"Element.prototype.inert"
 ]
 license = "W3C"
