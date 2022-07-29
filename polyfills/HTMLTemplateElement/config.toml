@@ -25,4 +25,4 @@ samsung_mob = "<1.5"
 
 [install]
 module = "@webcomponents/template"
-paths = [ "template.js" ]
+paths = [ "template.min.js" ]
