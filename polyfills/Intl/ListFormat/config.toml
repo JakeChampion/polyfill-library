@@ -26,7 +26,7 @@ ie = ">=9"
 ie_mob = ">=9"
 opera = "<60"
 op_mob = "<51"
-safari = "*"
+safari = "<14.1"
 ios_saf = "<14.5"
 samsung_mob = "<11"
 
