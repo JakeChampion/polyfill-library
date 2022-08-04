@@ -23,4 +23,4 @@ op_mob = "<46"
 op_mini = "*"
 safari = "<16.0" # https://github.com/Financial-Times/polyfill-library/issues/1192#issuecomment-1180186718
 ios_saf = "<16.0" # https://github.com/Financial-Times/polyfill-library/issues/1192#issuecomment-1180186718
-samsung_mob = "<7"
+samsung_mob = "<7.0"

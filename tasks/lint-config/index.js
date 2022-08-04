@@ -14,7 +14,7 @@ const assert = require('assert');
 const { fetchMCD } = require('./mcd');
 const { ChromeToOpera, ChromeToOperaMobile, SafariToIOS, ChromeToSamsung } = require('./static-mapping');
 
-const deadBrowsers = new Set(['ie', 'ie_mob', 'android', 'bb', 'op_mini', 'edge']);
+const deadBrowsers = new Set(['ie', 'ie_mob', 'android', 'bb', 'op_mini', 'edge', 'edge_mob']);
 
 const stats = {
 	// browser config
@@ -72,7 +72,21 @@ fetchMCD().then((browserData) => {
 			return;
 		}
 
-		if (!config.docs) {
+		let isHelper = false;
+		if (configPath.includes('polyfills/_')) {
+			// Helper packages should have a `_` prefix.
+			isHelper = true;
+
+			for (const browser of Object.keys(config.browsers || {})) {
+				if (config.browsers[browser] !== '*') {
+					// Helper packages are always served to all versions of all browsers.
+					isHelper = false;
+					break;
+				}
+			}
+		}
+
+		if (!config.docs && !isHelper) {
 			stats.withoutDocumentation++;
 		}
 
@@ -116,7 +130,7 @@ fetchMCD().then((browserData) => {
 			// Browser configs must be ranges.
 			const parsedRange = parseRange(config.browsers[browser]);
 			if (
-				!parsedRange.isRanged && mdnBrowserKey(browser) !== 'ie' && !(
+				!parsedRange.isRanged && mdnBrowserKey(browser) !== 'ie' && browser !== 'bb' && !(
 					// If the range is a single version and the first release it will be optimized as just this version.
 					browserData.browsers[mdnBrowserKey(browser)] &&
 					parsedRange.versions.length === 1 &&
@@ -160,6 +174,11 @@ fetchMCD().then((browserData) => {
 							config.browsers[browser] = replaced;
 						}
 					}
+
+					if (config.browsers['chrome'] && config.browsers['chrome'] === '*') {
+						config.browsers[browser] = '*';
+					}
+
 					break;
 				case 'op_mob':
 					if (config.browsers['chrome'] && config.browsers['chrome'] !== '*') {
@@ -173,19 +192,11 @@ fetchMCD().then((browserData) => {
 							config.browsers[browser] = mapped.join(' || ');
 						}
 					}
-					break;
-				case 'ios_saf':
-					if (config.browsers['safari'] && config.browsers['safari'] !== '*') {
-						const mapped = SafariToIOS.map((pair) => {
-							if (semver.satisfies(semver.coerce(pair[0]), config.browsers['safari'])) {
-								return pair[1];
-							}
-						}).filter((x) => !!x);
 
-						if (mapped && mapped.length > 0) {
-							config.browsers[browser] = mapped.join(' || ');
-						}
+					if (config.browsers['chrome'] && config.browsers['chrome'] === '*') {
+						config.browsers[browser] = '*';
 					}
+
 					break;
 				case 'samsung_mob':
 					if (config.browsers['chrome'] && config.browsers['chrome'] !== '*') {
@@ -199,6 +210,35 @@ fetchMCD().then((browserData) => {
 							config.browsers[browser] = mapped.join(' || ');
 						}
 					}
+
+					if (config.browsers['chrome'] && config.browsers['chrome'] === '*') {
+						config.browsers[browser] = '*';
+					}
+
+					break;
+				case 'ios_saf':
+					if (config.browsers['safari'] && config.browsers['safari'] !== '*') {
+						const mapped = SafariToIOS.map((pair) => {
+							if (semver.satisfies(semver.coerce(pair[0]), config.browsers['safari'])) {
+								return pair[1];
+							}
+						}).filter((x) => !!x);
+
+						if (mapped && mapped.length > 0) {
+							config.browsers[browser] = mapped.join(' || ');
+						}
+					}
+
+					if (config.browsers['safari'] && config.browsers['safari'] === '*') {
+						config.browsers[browser] = '*';
+					}
+
+					break;
+				case 'firefox_mob':
+					if (config.browsers['firefox'] && config.browsers['firefox'] !== '<4' && config.browsers['firefox'] !== '<3') {
+						config.browsers[browser] = config.browsers['firefox'];
+					}
+
 					break;
 
 				default:
@@ -214,12 +254,15 @@ fetchMCD().then((browserData) => {
 				const parsedRange = parseRange(config.browsers[browser]);
 
 				if (
-					!parsedRange.isRanged &&
 					parsedRange.versions.length === 1 &&
 					browserData.browsers[mdnBrowserKey(browser)] &&
 					!browserData.browsers[mdnBrowserKey(browser)].release_versions.includes(semver.coerce(parsedRange.versions[0]).toString())
 				) {
-					logBuffer.push([`- info : unknown version for "${browser}" - "${config.browsers[browser]}"`, 'info']);
+					if (browser === 'ios_saf' || browser === 'firefox_mob') {
+						logBuffer.push([`- error : unknown version for "${browser}" - "${config.browsers[browser]}"`, 'error']);
+					} else {
+						logBuffer.push([`- info : unknown version for "${browser}" - "${config.browsers[browser]}"`, 'info']);
+					}
 					continue;
 				}
 
@@ -243,8 +286,8 @@ fetchMCD().then((browserData) => {
 				// - deconstruct the range into a list of versions.
 				const versionsSatisfiedByConfig = versions.filter((x) => semver.satisfies(semver.coerce(x), config.browsers[browser]));
 				// - reconstruct a simplified range from the list of versions.
-				const isSafari = ['safari', 'ios_saf'].includes(browser);
-				config.browsers[browser] = simplifyRange(semver.sort(versions), versionsSatisfiedByConfig.join(' || '), isSafari).toString();
+				const alwaysIncludeMinor = ['safari', 'ios_saf', 'samsung_mob'].includes(browser);
+				config.browsers[browser] = simplifyRange(semver.sort(versions), versionsSatisfiedByConfig.join(' || '), alwaysIncludeMinor).toString();
 
 				if (!config.browsers[browser]) {
 					logBuffer.push([`- error: browser "${browser}: ${originalBrowsers[browser]}" did not match any real browser versions`, 'error']);
@@ -253,7 +296,7 @@ fetchMCD().then((browserData) => {
 		}
 
 		for (const browser of Object.keys(config.browsers || {})) {
-			if (deadBrowsers.has(browser) || !browserData.browsers[mdnBrowserKey(browser)]) {
+			if (deadBrowsers.has(browser) || isHelper || !browserData.browsers[mdnBrowserKey(browser)]) {
 				continue;
 			}
 

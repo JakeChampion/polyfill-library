@@ -29,7 +29,7 @@ opera = "<58"
 op_mob = "<50"
 safari = "<14.0"
 ios_saf = "<14.0"
-samsung_mob = "<10"
+samsung_mob = "<10.0"
 
 [install]
 module = "@formatjs/intl-relativetimeformat"

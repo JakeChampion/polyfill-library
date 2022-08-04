@@ -21,6 +21,7 @@ firefox_mob = "<25"
 ie = "*"
 ie_mob = ">=10"
 opera = "<32"
+op_mob = "<31"
 safari = "<8.0"
 ios_saf = "<9.0" # TODO : maybe "<8.0", run the test suite in a real browser to verify
-samsung_mob = "<5"
+samsung_mob = "<5.0"

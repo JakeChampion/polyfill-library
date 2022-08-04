@@ -31,7 +31,7 @@ opera = "<64"
 op_mob = "<55"
 safari = "<14.1"
 ios_saf = "<14.5"
-samsung_mob = "<12"
+samsung_mob = "<12.0"
 
 [install]
 module = "@formatjs/intl-numberformat"

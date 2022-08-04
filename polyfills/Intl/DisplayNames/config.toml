@@ -26,7 +26,7 @@ opera = "<68"
 op_mob = "<58"
 safari = "<14.1"
 ios_saf = "<14.5"
-samsung_mob = "<13"
+samsung_mob = "<13.0"
 
 [install]
 module = "@formatjs/intl-displaynames"

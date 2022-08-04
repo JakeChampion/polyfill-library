@@ -7,6 +7,7 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 [browsers]
 chrome = "<19"
 firefox = "<16"
+firefox_mob = "<16"
 ie = "*"
 opera = "<15"
 op_mob = "<14"

@@ -25,7 +25,7 @@ opera = "<62"
 op_mob = "<53"
 safari = "<14.0"
 ios_saf = "<14.0"
-samsung_mob = "<11"
+samsung_mob = "<11.0"
 
 [install]
 module = "@formatjs/intl-locale"

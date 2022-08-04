@@ -26,7 +26,7 @@ opera = "<53"
 op_mob = "<47"
 safari = "<12.0"
 ios_saf = "<12.0"
-samsung_mob = "<9"
+samsung_mob = "<9.0"
 
 [install]
 module = "whatwg-fetch"

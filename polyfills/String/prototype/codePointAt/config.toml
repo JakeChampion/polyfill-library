@@ -13,8 +13,10 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global
 [browsers]
 chrome = "<41"
 firefox = "<29"
+firefox_mob = "<29"
 ie = "*"
 opera = "<28"
+op_mob = "<28"
 safari = "<10.0"
 ios_saf = "<10.0"
-samsung_mob = "<4"
+samsung_mob = "<4.0"

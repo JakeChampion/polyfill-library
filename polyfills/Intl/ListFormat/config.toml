@@ -28,7 +28,7 @@ opera = "<60"
 op_mob = "<51"
 safari = "*"
 ios_saf = "<14.5"
-samsung_mob = "<11"
+samsung_mob = "<11.0"
 
 [install]
 module = "@formatjs/intl-listformat"
