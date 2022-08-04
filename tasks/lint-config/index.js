@@ -42,6 +42,16 @@ function processLog(logs) {
 
 fetchMCD().then((browserData) => {
 	return forEachPolyfillConfigPath((configPath) => {
+		if (configPath === 'polyfills/IntersectionObserverEntry/config.toml') {
+			// Very specific polyfill and doesn't fit the config linter.
+			return;
+		}
+
+		if (configPath === 'polyfills/Function/prototype/name/config.toml') {
+			// Very old polyfill with only a few data points.
+			return;
+		}
+
 		if (configPath.includes('~locale')) {
 			// These are dynamically generated configs.
 			return;
@@ -54,8 +64,7 @@ fetchMCD().then((browserData) => {
 		}
 
 		const logBuffer = [];
-
-		logBuffer.push([`Linting "${configPath}"...`, 'info']);
+		logBuffer.push([`Linting "${configPath}"...`, '']);
 
 		let config = {};
 
@@ -91,12 +100,6 @@ fetchMCD().then((browserData) => {
 		}
 
 		const originalBrowsers = JSON.parse(JSON.stringify(config.browsers));
-
-		if (configPath === 'polyfills/IntersectionObserverEntry/config.toml') {
-			logBuffer.push(['Skipping IntersectionObserverEntry', 'info']);
-			processLog(logBuffer);
-			return;
-		}
 
 		let configTemplate = {};
 
@@ -258,10 +261,12 @@ fetchMCD().then((browserData) => {
 					browserData.browsers[mdnBrowserKey(browser)] &&
 					!browserData.browsers[mdnBrowserKey(browser)].release_versions.includes(semver.coerce(parsedRange.versions[0]).toString())
 				) {
-					if (browser === 'ios_saf' || browser === 'firefox_mob') {
-						logBuffer.push([`- error : unknown version for "${browser}" - "${config.browsers[browser]}"`, 'error']);
-					} else {
-						logBuffer.push([`- info : unknown version for "${browser}" - "${config.browsers[browser]}"`, 'info']);
+					if (!deadBrowsers.has(browser)) {
+						if (browser === 'ios_saf' || browser === 'firefox_mob') {
+							logBuffer.push([`- error : unknown version for "${browser}" - "${config.browsers[browser]}"`, 'error']);
+						} else {
+							logBuffer.push([`- info : unknown version for "${browser}" - "${config.browsers[browser]}"`, 'info']);
+						}
 					}
 					continue;
 				}
@@ -274,7 +279,7 @@ fetchMCD().then((browserData) => {
 
 				const versions = browserData.browsers[mdnBrowserKey(browser)].release_versions.map((x) => semver.coerce(x));
 
-				if (unknownVersions.length > 0) {
+				if (unknownVersions.length > 0 && !deadBrowsers.has(browser)) {
 					// Warn when a version is not found in MDN data.
 					logBuffer.push([`- info : unknown versions for "${browser}" - ${JSON.stringify(unknownVersions)} `, 'info']);
 					stats.unknownVersions++;
