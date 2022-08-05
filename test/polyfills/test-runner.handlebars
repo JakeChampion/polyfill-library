@@ -7,7 +7,7 @@
 
 	<link rel="stylesheet" type="text/css" href="/mocha.css">
 	<meta id="test-iframe-src" name="test-iframe-src" content="/iframe.html?includePolyfills={{{includePolyfills}}}&always={{{always}}}&polyfillCombinations={{{polyfillCombinations}}}&feature={{features}}">
-	<script src="/polyfill.js?includePolyfills={{{includePolyfills}}}&always={{{always}}}&polyfillCombinations={{{polyfillCombinations}}}&feature={{features}}"></script>
+	<script src="/polyfill.js?includePolyfills={{{includePolyfills}}}&always={{{always}}}&polyfillCombinations={{{polyfillCombinations}}}{{#unless requestedPolyfillCombinations}}&feature={{features}}{{/unless}}"></script>
 	<script src="/mocha.js"></script>
 	<script src="/proclaim.js"></script>
 	<script>mocha.setup('bdd');</script>

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Test Iframe</title>
-	<script src="/polyfill.js?includePolyfills={{{includePolyfills}}}&always={{{always}}}&polyfillCombinations={{{polyfillCombinations}}}&feature={{features}}"></script>
+	<script src="/polyfill.js?includePolyfills={{{includePolyfills}}}&always={{{always}}}&polyfillCombinations={{{polyfillCombinations}}}{{#unless requestedPolyfillCombinations}}&feature={{features}}{{/unless}}"></script>
 </head>
 <body>
 	{{!-- Possibly add fixtures here --}}
