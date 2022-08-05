@@ -4179,18 +4179,3 @@ it("should fix dayperiod bug in chrome", function () {
 	proclaim.ok(dayPeriod);
 	proclaim.notOk(dayperiod);
 });
-
-it("toLocaleString should return 'Invalid Date'", function () {
-	var date = new Date('').toLocaleString('en-US');
-	proclaim.equal(date, 'Invalid Date');
-});
-
-it("toLocaleTimeString should return 'Invalid Date'", function () {
-	var date = new Date('').toLocaleTimeString('en-US');
-	proclaim.equal(date, 'Invalid Date');
-});
-
-it("toLocaleDateString should return 'Invalid Date'", function () {
-	var date = new Date('').toLocaleDateString('en-US');
-	proclaim.equal(date, 'Invalid Date');
-});
