@@ -133,10 +133,10 @@ async function main() {
 	const testBrowserTimeout = 10 * 60 * 1000;
 	const mode =
 		["all", "control", "targeted"].find(x => process.argv.includes(x)) || "all";
-	const testResultsFile = path.join(__dirname, `results-${mode}.json`);
+	const testResultsFile = browser ? path.join(__dirname, `results-${mode}-${browser}.json`) : path.join(__dirname, `results-${mode}.json`);
 
 	const director = process.argv.includes("director");
-	const always = "always=" + (mode === "all" ? "yes" : "no");
+	const always = "always=" + ((mode === "all" || mode === 'control') ? "yes" : "no");
 
 	let feature = '';
 	if (!modified.testEverything) {
@@ -146,7 +146,7 @@ async function main() {
 		feature = `&feature=${Object.keys(modified.affectedPolyfills).join(',')}`;
 	}
 
-	const includePolyfills = "includePolyfills=" + (mode !== "control" ? "yes" : "no");
+	const includePolyfills = "includePolyfills=" + (mode === "control" ? "no" : "yes");
 	// https://www.browserstack.com/question/759
 	const url = `http://bs-local.com:9876/${director ? '' : 'test'}?${includePolyfills}&${always}${feature}`;
 	const tunnelId =

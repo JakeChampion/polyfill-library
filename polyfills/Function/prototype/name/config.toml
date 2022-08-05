@@ -12,5 +12,5 @@ notes = [
 ]
 
 [browsers]
-ie = "9 - 11"
 chrome = "<15"
+ie = ">=9"

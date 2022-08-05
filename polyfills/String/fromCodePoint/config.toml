@@ -14,11 +14,12 @@ notes = [ ]
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint"
 
 [browsers]
+chrome = "<47"
+firefox = "<38"
+firefox_mob = "<38"
 ie = "*"
 ie_mob = "*"
-firefox = "<38"
 opera = "<34"
-safari = "<9"
-chrome = "<47"
-ios_saf = "<9"
-firefox_mob = "<38"
+safari = "<9.0"
+ios_saf = "<9.0"
+samsung_mob = "<5"

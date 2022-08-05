@@ -1,5 +1,5 @@
 
-/* globals proclaim, Promise */
+/* globals proclaim, Promise, Symbol */
 
 it('is a function', function () {
 	proclaim.isFunction(Promise);
@@ -230,4 +230,8 @@ it('should resolve Promise.all when all promises resolve', function(done) {
 	}).catch(function(e) {
 		done(e);
 	});
+});
+
+it('Promise.prototype[Symbol.toStringTag]', function () {
+	proclaim.strictEqual(Promise.prototype[Symbol.toStringTag], 'Promise');
 });

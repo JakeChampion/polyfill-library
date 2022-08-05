@@ -479,6 +479,12 @@
 	// 23.1.3.13. Map.prototype [ @@toStringTag ]
 	// The initial value of the @@toStringTag property is the String value "Map".
 	// This property has the attributes { [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]: true }.
+	Object.defineProperty(Map.prototype, Symbol.toStringTag, {
+		value: 'Map',
+		writable: false,
+		enumerable: false,
+		configurable: true
+	});
 
 	// Polyfill.io - Safari 8 implements Map.name but as a non-configurable property, which means it would throw an error if we try and configure it here.
 	if (!('name' in Map)) {
@@ -613,6 +619,12 @@
 	// 23.1.5.2.2 %MapIteratorPrototype% [ @@toStringTag ]
 	// The initial value of the @@toStringTag property is the String value "Map Iterator".
 	// This property has the attributes { [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]: true }.
+	Object.defineProperty(MapIteratorPrototype, Symbol.toStringTag, {
+		value: 'Map Iterator',
+		writable: false,
+		enumerable: false,
+		configurable: true
+	});
 
 	CreateMethodProperty(MapIteratorPrototype, Symbol.iterator, function iterator() {
 			return this;

@@ -208,6 +208,22 @@ describe('Map', function () {
 		proclaim.isUndefined(descriptor.set);
 		proclaim.doesNotInclude(descriptor, 'value');
 	});
+	it('has correct descriptors defined for Map.prototype[Symbol.toStringTag]', function () {
+		var descriptor = Object.getOwnPropertyDescriptor(Map.prototype, Symbol.toStringTag);
+
+		proclaim.isTrue(descriptor.configurable);
+		proclaim.isFalse(descriptor.enumerable);
+		proclaim.isFalse(descriptor.writable);
+		proclaim.equal(descriptor.value, 'Map');
+	});
+	it('has correct descriptors defined for Map[Symbol.iterator][Symbol.toStringTag]', function () {
+		var descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(new Map()[Symbol.iterator]()), Symbol.toStringTag);
+
+		proclaim.isTrue(descriptor.configurable);
+		proclaim.isFalse(descriptor.enumerable);
+		proclaim.isFalse(descriptor.writable);
+		proclaim.equal(descriptor.value, 'Map Iterator');
+	});
 
 	describe('constructor', function () {
 		it('has 0 length', function () {

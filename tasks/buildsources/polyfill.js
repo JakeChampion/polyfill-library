@@ -17,6 +17,10 @@ const readFile = promisify(fs.readFile);
 const validateSource = require('./validate-source');
 const semver = require('semver');
 
+const uaBaselines = UA.getBaselines();
+delete uaBaselines.ios_chr; // https://github.com/Financial-Times/polyfill-library/issues/1202#issuecomment-1193403165
+const supportedBrowsers = Object.keys(uaBaselines).sort((a, b) => a.localeCompare(b));
+
 /**
  * Polyfill represents a single polyfill directory.
  */
@@ -151,13 +155,10 @@ module.exports = class Polyfill {
 				this.config = TOML.parse(data);
 
 				// Each internal polyfill needs to target all supported browsers at all versions.
-				if (this.path.relative.startsWith('_')) {
-					const supportedBrowsers = Object.keys(UA.getBaselines()).sort((a, b) => a.localeCompare(b));
-					if (!supportedBrowsers.every(browser => this.config.browsers[browser] === "*")) {
-						const browserSupport = {};
-						for (const browser of supportedBrowsers)  browserSupport[browser] = "*";
-						throw new Error("Internal polyfill called " + this.name + " is not targeting all supported browsers correctly. It should be: \n" + TOML.stringify(browserSupport));
-					}
+				if (this.path.relative.startsWith('_') && !supportedBrowsers.every(browser => this.config.browsers[browser] === "*")) {
+					const browserSupport = {};
+					for (const browser of supportedBrowsers)  browserSupport[browser] = "*";
+					throw new Error("Internal polyfill called " + this.name + " is not targeting all supported browsers correctly. It should be: \n" + TOML.stringify(browserSupport));
 				}
 
 				if (this.config.browsers) {

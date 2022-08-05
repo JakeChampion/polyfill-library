@@ -1,6 +1,7 @@
 dependencies = [
 	"_Iterator",
-	"Object.setPrototypeOf"
+	"Object.setPrototypeOf",
+	"Symbol.toStringTag",
 ]
 license = "MIT"
 repo = "https://github.com/medikoo/es6-iterator"
@@ -15,10 +16,9 @@ firefox = "*"
 firefox_mob = "*"
 ie = "*"
 ie_mob = "*"
-ios_chr = "*"
-ios_saf = "*"
-op_mini = "*"
-op_mob = "*"
 opera = "*"
+op_mob = "*"
+op_mini = "*"
 safari = "*"
+ios_saf = "*"
 samsung_mob = "*"

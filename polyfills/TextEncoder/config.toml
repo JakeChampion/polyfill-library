@@ -10,18 +10,18 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder"
 repo = "https://github.com/anonyco/FastestSmallestTextEncoderDecoder"
 
 [browsers]
+android = "*"
 chrome = "<38"
+edge = "*"
+edge_mob = "*"
 firefox = "<19"
 firefox_mob = "<19"
-edge = "<79"
-edge_mob = "<79"
 ie = "*"
 ie_mob = "*"
+opera = "<25"
 safari = "<10.1"
 ios_saf = "<10.3"
-opera = "<25"
-android = "38"
-samsung_mob = "<3.0"
+samsung_mob = "<3"
 
 # [install]
 # module = "fastestsmallesttextencoderdecoder"

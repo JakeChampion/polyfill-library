@@ -4,7 +4,7 @@ spec = "https://console.spec.whatwg.org"
 docs = "https://developer.mozilla.org/en/docs/Web/API/console"
 
 [browsers]
-ie = "*"
-firefox = "1 - 4"
-samsung_mob = "*"
 chrome = "*"
+firefox = "<5"
+ie = "*"
+samsung_mob = "*"

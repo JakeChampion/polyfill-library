@@ -16,23 +16,27 @@ dependencies = [
 	"Symbol",
 	"Symbol.iterator",
 	"Symbol.species",
+	"Symbol.toStringTag",
 	"Object.isExtensible"
 ]
 notes = [
 	"The test suite for this polyfill is derived from work of Andrea Giammarchi which is [published under an MIT licence](https://github.com/WebReflection/es6-collections)"
 ]
 
+docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"
+
 [browsers]
-ie = "*"
-safari = "<9"
-edge = "<13"
-firefox = "<36"
-chrome = "<49"
 android = "<5.1"
-firefox_mob = "<29"
-ie_mob = "*"
-opera = "<25"
-op_mob = "*"
-op_mini = "*"
-ios_saf = "<9"
 bb = "10 - *"
+chrome = "<49"
+edge = "<15"
+firefox = "<51"
+firefox_mob = "<51"
+ie = "*"
+ie_mob = "*"
+opera = "<36"
+op_mob = "<36"
+op_mini = "*"
+safari = "<10.0"
+ios_saf = "<10.0"
+samsung_mob = "<5"

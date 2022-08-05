@@ -1,7 +1,7 @@
 // A modification of https://github.com/medikoo/es6-iterator
 // Copyright (C) 2013-2015 Mariusz Nowak (www.medikoo.com)
 
-/* global Iterator */
+/* global Iterator, Symbol */
 
 var StringIterator = (function() { // eslint-disable-line no-unused-vars
 
@@ -55,6 +55,13 @@ var StringIterator = (function() { // eslint-disable-line no-unused-vars
 			enumerable: false,
 			writable: true
 		}
+	});
+
+	Object.defineProperty(StringIterator.prototype, Symbol.toStringTag, {
+		value: 'String Iterator',
+		writable: false,
+		enumerable: false,
+		configurable: true
 	});
 
 	return StringIterator;

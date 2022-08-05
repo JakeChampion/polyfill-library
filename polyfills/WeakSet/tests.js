@@ -1,5 +1,5 @@
 
-/* globals proclaim, WeakSet */
+/* globals proclaim, WeakSet, Symbol */
 
 it('is a function', function () {
 	proclaim.isFunction(WeakSet);
@@ -90,4 +90,8 @@ it('should be possible to prepopulate the set', function() {
 	proclaim.equal(ws.has({}), false);
 	proclaim.equal(ws.has(o1), true);
 	proclaim.equal(ws.has(window), true);
+});
+
+it('WeakSet.prototype[Symbol.toStringTag]', function () {
+	proclaim.strictEqual(WeakSet.prototype[Symbol.toStringTag], 'WeakSet');
 });

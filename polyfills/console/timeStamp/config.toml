@@ -5,7 +5,6 @@ docs = "https://developer.mozilla.org/en-US/docs/Web/API/Console/timeStamp"
 
 [browsers]
 edge = "<16.15063"
-edge_mob = "<12"
-ie = "<11"
 firefox = "<39"
 firefox_mob = "<10"
+ie = "<11"

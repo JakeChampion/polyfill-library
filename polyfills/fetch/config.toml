@@ -13,18 +13,20 @@ notes = [
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/GlobalFetch/fetch"
 
 [browsers]
-android = "<67"
+android = "*"
 bb = "10 - *"
+chrome = "<66"
 edge = "<16"
 edge_mob = "<16"
+firefox = "<57"
+firefox_mob = "<64"
 ie = "*"
 ie_mob = "*"
-firefox = "<57"
 opera = "<53"
-safari = "<12"
-chrome = "<66"
-ios_saf = "<12"
-firefox_mob = "<64"
+op_mob = "<47"
+safari = "<12.0"
+ios_saf = "<12.0"
+samsung_mob = "<9"
 
 [install]
 module = "whatwg-fetch"
