@@ -272,6 +272,7 @@ function createEndpoint(template) {
 				requestedFeature: features.length > 0,
 				features: features.map(f => f.feature).join(','),
 				includePolyfills: includePolyfills,
+				requestedPolyfillCombinations: polyfillCombinations === 'yes',
 				polyfillCombinations: polyfillCombinations,
 				always: always,
 				afterTestSuite: `
