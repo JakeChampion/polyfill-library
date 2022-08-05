@@ -67,7 +67,7 @@
     "toposort": "^2.0.2"
   },
   "devDependencies": {
-    "@formatjs/intl-datetimeformat": "5.0.2",
+    "@formatjs/intl-datetimeformat": "4.1.0",
     "@formatjs/intl-displaynames": "5.1.0",
     "@formatjs/intl-getcanonicallocales": "1.6.0",
     "@formatjs/intl-listformat": "6.1.0",
