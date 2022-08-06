@@ -245,11 +245,11 @@ browsers = [
   "safari/6.2",
   "safari/7.1",
   "safari/8.0",
-  "safari/9.1"
+  "safari/9.1",
   "safari/10.1",
   "safari/11.1",
   "safari/12.1",
   "safari/13.1",
   "safari/14.1",
-  "safari/15.3",
+  "safari/15.3"
 ]
