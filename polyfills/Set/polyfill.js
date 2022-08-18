@@ -11,6 +11,7 @@
 		// 2. Let set be ? OrdinaryCreateFromConstructor(NewTarget, "%SetPrototype%", « [[SetData]] »).
 		var set = OrdinaryCreateFromConstructor(this, Set.prototype, {
 			_values: [],
+			_hashMap: new global.Map(),
 			_size: 0,
 			_es6Set: true
 		});
@@ -104,23 +105,18 @@
 			if (S._es6Set !== true) {
 				throw new TypeError('Method Set.prototype.add called on incompatible receiver ' + Object.prototype.toString.call(S));
 			}
-			// 4. Let entries be the List that is S.[[SetData]].
-			var entries = S._values;
-			// 5. For each e that is an element of entries, do
-			for (var i = 0; i < entries.length; i++) {
-				var e = entries[i];
-				// a. If e is not empty and SameValueZero(e, value) is true, then
-				if (e !== undefMarker && SameValueZero(e, value)) {
-					// i. Return S.
-					return S;
-				}
+
+			if (S._hashMap.has(value)) {
+				return S;
 			}
+
 			// 6. If value is -0, let value be +0.
-			if (value === 0 && 1/value === -Infinity) {
+			if (value === 0 && 1 / value === -Infinity) {
 				value = 0;
 			}
 			// 7. Append value as the last element of entries.
 			S._values.push(value);
+			S._hashMap.set(value, true);
 
 			this._size = ++this._size;
 			// 8. Return S.
@@ -139,6 +135,9 @@
 			if (S._es6Set !== true) {
 				throw new TypeError('Method Set.prototype.clear called on incompatible receiver ' + Object.prototype.toString.call(S));
 			}
+
+			S._hashMap.clear();
+
 			// 4. Let entries be the List that is S.[[SetData]].
 			var entries = S._values;
 			// 5. For each e that is an element of entries, do
@@ -166,6 +165,13 @@
 			if (S._es6Set !== true) {
 				throw new TypeError('Method Set.prototype.delete called on incompatible receiver ' + Object.prototype.toString.call(S));
 			}
+
+			if (!S._hashMap.has(value)) {
+				return false;
+			}
+
+			S._hashMap.delete(value);
+
 			// 4. Let entries be the List that is S.[[SetData]].
 			var entries = S._values;
 			// 5. For each e that is an element of entries, do
@@ -243,18 +249,8 @@
 			if (S._es6Set !== true) {
 				throw new TypeError('Method Set.prototype.forEach called on incompatible receiver ' + Object.prototype.toString.call(S));
 			}
-			// 4. Let entries be the List that is S.[[SetData]].
-			var entries = S._values;
-			// 5. For each e that is an element of entries, do
-			for (var i = 0; i < entries.length; i++) {
-				var e = entries[i];
-				// a. If e is not empty and SameValueZero(e, value) is true, return true.
-				if (e !== undefMarker && SameValueZero(e, value)) {
-					return true;
-				}
-			}
-			// 6. Return false.
-			return false;
+
+			return S._hashMap.has(value);
 		}
 	);
 

@@ -16,6 +16,7 @@ dependencies = [
 	"Symbol.iterator",
 	"Symbol.species",
 	"Symbol.toStringTag",
+	"Map",
 ]
 notes = [
 	"The test suite for this polyfill is derived from work of Andrea Giammarchi which is [published under an MIT licence](https://github.com/WebReflection/es6-collections)"
