@@ -115,7 +115,7 @@
     "karma-summary-optional-console-reporter": "^1.6.1",
     "lodash": "^4.17.14",
     "mkdirp": "^1.0.4",
-    "mocha": "^3.5.3",
+    "mocha": "^10.0.0",
     "mockery": "^2.1.0",
     "mutationobserver-shim": "^0.3.2",
     "nyc": "^15.0.0",
