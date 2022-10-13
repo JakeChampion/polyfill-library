@@ -36,6 +36,14 @@ testCases.forEach(function (testCase) {
 			proclaim.isNotEnumerable(self, name);
 		});
 
+		it('has the right prototype', function () {
+			if (name === 'Error') {
+				proclaim.equal(Object.getPrototypeOf(_Error), Function.prototype);
+			} else {
+				proclaim.equal(Object.getPrototypeOf(_Error), Error);
+			}
+		});
+
 		if (name !== 'AggregateError') {
 			it('creates an object without a cause', function () {
 				proclaim.equal(new _Error('m').name, name);

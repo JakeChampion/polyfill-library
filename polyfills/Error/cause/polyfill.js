@@ -67,6 +67,10 @@
 		var name = _errorNames[i];
 		_nativeErrors[name] = self[name];
 		_errorConstructors[name] = _makeErrorConstructor(name, _newErrors[name]);
-		CreateMethodProperty(self, name, _inheritErrorPrototype(name, _newErrors[name]));
+		if (name === 'Error') {
+			CreateMethodProperty(self, name, _newErrors[name]);
+		} else {
+			CreateMethodProperty(self, name, _inheritErrorPrototype(name, _newErrors[name]));
+		}
 	}
 })();
