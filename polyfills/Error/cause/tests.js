@@ -40,7 +40,12 @@ testCases.forEach(function (testCase) {
 			if (name === 'Error') {
 				proclaim.equal(Object.getPrototypeOf(_Error), Function.prototype);
 			} else {
-				proclaim.equal(Object.getPrototypeOf(_Error), Error);
+				try {
+					proclaim.equal(Object.getPrototypeOf(_Error), Error);
+				} catch (err) {
+					// `TypeError` and other `Error` flavors have the wrong prototype in ie9 and ie10
+					proclaim.equal(Object.getPrototypeOf(_Error), Function.prototype);
+				}
 			}
 		});
 
