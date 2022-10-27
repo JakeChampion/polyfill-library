@@ -21,6 +21,27 @@ it('is a function', function () {
 	proclaim.isFunction(AggregateError);
 });
 
+it('has correct arity', function () {
+	proclaim.arity(AggregateError, 2);
+});
+
+it('has correct name', function () {
+	proclaim.hasName(AggregateError, 'AggregateError');
+});
+
+it('is not enumerable', function () {
+	proclaim.isNotEnumerable(self, 'AggregateError');
+});
+
+it('has the right prototype', function () {
+	try {
+		proclaim.equal(Object.getPrototypeOf(AggregateError), Error);
+	} catch (err) {
+		// `Error` flavors have the wrong prototype in ie9 and ie10
+		proclaim.equal(Object.getPrototypeOf(AggregateError), Function.prototype);
+	}
+});
+
 describe('AggregateError', function () {
 	it("returns an AggregateError", function () {
 		var aggregateError = AggregateError([]);

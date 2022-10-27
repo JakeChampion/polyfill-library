@@ -1,4 +1,4 @@
-/* global CreateDataPropertyOrThrow, IterableToList */
+/* global CreateDataPropertyOrThrow, CreateMethodProperty, IterableToList */
 (function () {
 	function AggregateError (errors, message) {
 		if (!(this instanceof AggregateError)) return new AggregateError(errors, message);
@@ -26,5 +26,5 @@
 	AggregateError.prototype = Object.create(Error.prototype);
 	AggregateError.prototype.constructor = AggregateError;
 
-	self.AggregateError = AggregateError;
+	CreateMethodProperty(self, 'AggregateError', AggregateError);
 })();
