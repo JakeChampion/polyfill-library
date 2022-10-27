@@ -17,6 +17,14 @@ function makeArrayIterator (array) {
 	return iterator;
 }
 
+var hasErrorCause = (function () {
+	try {
+		return new Error('m', { cause: 'c' }).cause === 'c';
+	} catch (e) {
+		return false;
+	}
+})();
+
 it('is a function', function () {
 	proclaim.isFunction(AggregateError);
 });
@@ -87,4 +95,15 @@ describe('AggregateError', function () {
 			new AggregateError(0)
 		}, /is not iterable/);
 	});
+
+	if (hasErrorCause) {
+		it('creates an AggregateError with a cause', function () {
+			var error = new AggregateError([], 'm', { cause: 'c' });
+			proclaim.equal(error.name, 'AggregateError');
+			proclaim.deepEqual(error.errors, []);
+			proclaim.equal(error.message, 'm');
+			proclaim.equal(error.cause, 'c');
+			proclaim.isNotEnumerable(error, 'cause');
+		});
+	}
 });

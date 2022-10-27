@@ -1,7 +1,9 @@
 aliases = [ "es2021" ]
 dependencies = [
 	"_ESAbstract.CreateDataPropertyOrThrow",
+	"_ESAbstract.CreateMethodProperty",
 	"_ESAbstract.IterableToList",
+	"_InstallErrorCause",
 ]
 license = "MIT"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError"
