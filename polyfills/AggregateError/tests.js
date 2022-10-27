@@ -22,6 +22,13 @@ it('is a function', function () {
 });
 
 describe('AggregateError', function () {
+	it("returns an AggregateError", function () {
+		var aggregateError = AggregateError([]);
+		proclaim.ok(aggregateError instanceof Error);
+		proclaim.ok(aggregateError instanceof AggregateError);
+		proclaim.equal(aggregateError.name, 'AggregateError');
+	});
+
 	it("constructs an AggregateError", function () {
 		var aggregateError = new AggregateError([]);
 		proclaim.ok(aggregateError instanceof Error);

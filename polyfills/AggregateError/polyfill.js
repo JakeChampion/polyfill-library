@@ -1,6 +1,8 @@
 /* global CreateDataPropertyOrThrow, IterableToList */
 (function () {
 	function AggregateError (errors, message) {
+		if (!(this instanceof AggregateError)) return new AggregateError(errors, message);
+
 		var temp = typeof message === 'undefined' ? new Error() : new Error(message);
 
 		CreateDataPropertyOrThrow(this, 'name', 'AggregateError');
