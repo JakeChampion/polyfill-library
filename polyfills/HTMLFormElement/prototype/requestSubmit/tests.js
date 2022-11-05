@@ -13,36 +13,28 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	it("Passing an element which is not a submit button should throw", function () {
 		document.body.insertAdjacentHTML(
 			"afterbegin",
-			`<form>
-				<input type="reset">
-				<input type="text">
-				<button type="reset"></button>
-				<button type="button"></button>
-			</form>`
+			'<form><input type="reset"><input type="text"><button type="reset"></button><button type="button"></button></form>'
 		);
-		let form = document.querySelector("form");
+		var form = document.querySelector("form");
 		proclaim.throws(function () {
 			form.requestSubmit(document.body);
 		}, TypeError);
-		for (let control of form.elements) {
+		// These inputs/buttons are not type="submit", so they should throw when used as submitter
+		for (var index = 0; index < form.elements.length; index++) {
+			var control = form.elements[index];
 			proclaim.throws(function () {
 				form.requestSubmit(control);
 			}, TypeError);
 		}
 	});
 
-	it("Passing a submit button not owned by the context object should throw", () => {
+	it("Passing a submit button not owned by the context object should throw", function () {
 		document.body.insertAdjacentHTML(
 			"afterbegin",
-			`<form>
-	      		<input form="" type="submit">
-	      		<button form="form2" type="submit"></button>
-	      		</form>
-	      	<form id="form2">
-      		</form>`
+			'<form><input form="" type="submit"><button form="form2" type="submit"></button></form><form id="form2"></form>'
 		);
-		let form = document.querySelector("form");
-		let submitButton = document.createElement("button");
+		var form = document.querySelector("form");
+		var submitButton = document.createElement("button");
 		submitButton.type = "submit";
 		proclaim.throws(
 			function () {
@@ -53,9 +45,10 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 			}
 		);
 
-		let buttons = form.querySelectorAll("input, button");
+		var buttons = form.querySelectorAll("input, button");
 		proclaim.strictEqual(buttons.length, 2);
-		for (let control of buttons) {
+		for (var index = 0; index < buttons.length; index++) {
+			var control = buttons[index];
 			proclaim.throws(
 				function () {
 					form.requestSubmit(control);
@@ -71,38 +64,32 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	it("requestSubmit() should accept button[type=submit], input[type=submit], and input[type=image]", function () {
 		document.body.insertAdjacentHTML(
 			"afterbegin",
-			`<input type=submit form="form1">
-			<form id="form1" target="_blank">
-				<button type="submit"></button>
-				<button></button>
-				<button type="invalid"></button>
-				<input type="submit">
-				<input type="image">
-			</form>`
+			'<input type=submit form="form1"><form id="form1" target="_blank"><button type="submit"></button><button></button><button type="invalid"></button><input type="submit"><input type="image"></form>'
 		);
-		let form = document.querySelector("form");
-		let didDispatchSubmit = false;
-		form.addEventListener("submit", (event) => {
+		var form = document.querySelector("form");
+		var didDispatchSubmit = false;
+		form.addEventListener("submit", function (event) {
 			event.preventDefault();
 			didDispatchSubmit = true;
 		});
 
 		proclaim.strictEqual(form.elements.length, 5);
-		for (let control of form.elements) {
+		for (var index = 0; index < form.elements.length; index++) {
+			var control = form.elements[index];
 			didDispatchSubmit = false;
 			form.requestSubmit(control);
 			proclaim.isTrue(
 				didDispatchSubmit,
-				`${control.outerHTML} should submit the form`
+				control.outerHTML + "should submit the form"
 			);
 		}
 		// <input type=image> is not in form.elements.
-		let control = form.querySelector("[type=image]");
+		var imageInput = form.querySelector("[type=image]");
 		didDispatchSubmit = false;
 		form.requestSubmit(control);
 		proclaim.isTrue(
 			didDispatchSubmit,
-			`${control.outerHTML} should submit the form`
+			imageInput.outerHTML + "should submit the form"
 		);
 	});
 
@@ -111,10 +98,10 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 			"afterbegin",
 			"<form><input required></form>"
 		);
-		let form = document.querySelector("form");
-		let invalidControl = form.querySelector("input:invalid");
-		let didDispatchInvalid = false;
-		invalidControl.addEventListener("invalid", (e) => {
+		var form = document.querySelector("form");
+		var invalidControl = form.querySelector("input:invalid");
+		var didDispatchInvalid = false;
+		invalidControl.addEventListener("invalid", function () {
 			didDispatchInvalid = true;
 		});
 
@@ -127,12 +114,12 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 			"afterbegin",
 			"<form><input type=submit></form>"
 		);
-		let form = document.querySelector("form");
-		let submitButton = form.elements[0];
-		let submitCounter = 0;
+		var form = document.querySelector("form");
+		var submitButton = form.elements[0];
+		var submitCounter = 0;
 		form.addEventListener(
 			"submit",
-			(e) => {
+			function (e) {
 				++submitCounter;
 				form.requestSubmit();
 				e.preventDefault();
@@ -145,7 +132,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		submitCounter = 0;
 		form.addEventListener(
 			"submit",
-			(e) => {
+			function (e) {
 				++submitCounter;
 				submitButton.click();
 				e.preventDefault();
@@ -158,7 +145,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		submitCounter = 0;
 		form.addEventListener(
 			"submit",
-			(e) => {
+			function (e) {
 				++submitCounter;
 				form.requestSubmit();
 				e.preventDefault();
@@ -174,13 +161,13 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 			"afterbegin",
 			"<form><input type=submit><input required></form>"
 		);
-		let form = document.querySelector("form");
-		let submitButton = form.elements[0];
-		let invalidControl = form.elements[1];
-		let invalidCounter = 0;
+		var form = document.querySelector("form");
+		var submitButton = form.elements[0];
+		var invalidControl = form.elements[1];
+		var invalidCounter = 0;
 		invalidControl.addEventListener(
 			"invalid",
-			(e) => {
+			function () {
 				++invalidCounter;
 				if (invalidCounter < 10) form.requestSubmit();
 			},
@@ -196,7 +183,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		invalidCounter = 0;
 		invalidControl.addEventListener(
 			"invalid",
-			(e) => {
+			function () {
 				++invalidCounter;
 				if (invalidCounter < 10) submitButton.click();
 			},
@@ -208,7 +195,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		invalidCounter = 0;
 		invalidControl.addEventListener(
 			"invalid",
-			(e) => {
+			function () {
 				++invalidCounter;
 				if (invalidCounter < 10) form.requestSubmit();
 			},
@@ -219,9 +206,9 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	});
 
 	it("requestSubmit() for a disconnected form should not submit the form", function () {
-		let form = document.createElement("form");
-		let submitCounter = 0;
-		form.addEventListener("submit", (e) => {
+		var form = document.createElement("form");
+		var submitCounter = 0;
+		form.addEventListener("submit", function (e) {
 			++submitCounter;
 			e.preventDefault();
 		});
@@ -232,25 +219,22 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	it("The value of the submitter should be appended, and form* attributes of the submitter should be handled.", function (done) {
 		document.body.insertAdjacentHTML(
 			"afterbegin",
-			`<iframe name="iframe" src="about:blank"></iframe>`
+			'<iframe name="iframe" src="about:blank"></iframe>'
 		);
 		document.body.insertAdjacentHTML(
 			"afterbegin",
-			`<form action="/common/blank.html">
-				<input required>
-				<input type=submit formnovalidate formtarget=iframe name=s value=v>
-			</form>`
+			'<form action="/common/blank.html"><input required><input type=submit formnovalidate formtarget=iframe name=s value=v></form>'
 		);
-		let form = document.body.querySelector("form");
-		let iframe = document.body.querySelector("iframe");
+		var form = document.body.querySelector("form");
+		var iframe = document.body.querySelector("iframe");
 		proclaim.isTrue(form.matches(":invalid"), "The form is invalid.");
 		// The form should be submitted though it is invalid.
 		iframe.addEventListener("load", function (event) {
-			const iframeFormSubmission = new URLSearchParams(
+			var iframeFormSubmissionUrl = new URLSearchParams(
 				event.currentTarget.contentWindow.location.search
 			);
-			proclaim.isTrue(iframeFormSubmission.has("s"));
-			proclaim.strictEqual(iframeFormSubmission.get("s"), "v");
+			proclaim.isTrue(iframeFormSubmissionUrl.has("s"));
+			proclaim.strictEqual(iframeFormSubmissionUrl.get("s"), "v");
 			done();
 		});
 		form.requestSubmit(form.querySelector("[type=submit]"));
@@ -259,16 +243,12 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	it("The constructed FormData object should not contain an entry for the submit button that was used to submit the form.", function () {
 		document.body.insertAdjacentHTML(
 			"afterbegin",
-			`<form>
-				<input name="n1" value="v1">
-				<button type="submit" name="n2" value="v2"></button>
-			</form>
-			<form id="form2"></form>`
+			'<form><input name="n1" value="v1"><button type="submit" name="n2" value="v2"></button></form><form id="form2"></form>'
 		);
-		let form = document.querySelector("form");
-		let formDataInEvent = null;
-		let submitter = form.querySelector("button[type=submit]");
-		form.addEventListener("submit", (e) => {
+		var form = document.querySelector("form");
+		var formDataInEvent = null;
+		var submitter = form.querySelector("button[type=submit]");
+		form.addEventListener("submit", function (e) {
 			e.preventDefault();
 			formDataInEvent = new FormData(e.target);
 		});
@@ -281,13 +261,11 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	it("Using requestSubmit on a disabled button (via disabled attribute) should trigger submit but not be visible in FormData", function (done) {
 		document.body.insertAdjacentHTML(
 			"afterbegin",
-			`<form>
-        		<button type="submit" name="n1" value="v1" disabled=""></button>
-      		</form>`
+			'<form><button type="submit" name="n1" value="v1" disabled=""></button></form>'
 		);
-		let form = document.querySelector("form");
-		let formDataInEvent = null;
-		let submitter = form.querySelector("button[type=submit]");
+		var form = document.querySelector("form");
+		var formDataInEvent = null;
+		var submitter = form.querySelector("button[type=submit]");
 
 		form.addEventListener("submit", function (ev) {
 			ev.preventDefault();
