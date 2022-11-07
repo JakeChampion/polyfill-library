@@ -1,0 +1,23 @@
+aliases = []
+dependencies = []
+spec = "https://html.spec.whatwg.org/multipage/structured-data.html#dom-structuredclone"
+docs = "https://developer.mozilla.org/en-US/docs/Web/API/structuredClone"
+license = "MIT"
+repo = "https://github.com/ungap/structured-clone/"
+
+[browsers]
+android = "<107"
+bb = "*"
+chrome = "<98"
+edge = "<98"
+edge_mob = "<98"
+firefox = "<94"
+firefox_mob = "<106"
+ie = "*"
+ie_mob = "*"
+opera = "<84"
+op_mob = "*"
+op_mini = "*"
+safari = "<15.4"
+ios_saf = "<15.4"
+samsung_mob = "<18"
