@@ -252,7 +252,29 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		form.requestSubmit(form.querySelector("[type=submit]"));
 	});
 
-	it("The constructed FormData object should not contain an entry for the submit button that was used to submit the form.", function () {
+	it("Using requestSubmit on a disabled button (via disabled attribute) should trigger submit", function (done) {
+		document.body.insertAdjacentHTML(
+			"afterbegin",
+			'<form><button type="submit" name="n1" value="v1" disabled=""></button></form>'
+		);
+		var form = document.querySelector("form");
+		var submitter = form.querySelector("button[type=submit]");
+
+		form.addEventListener("submit", function (ev) {
+			ev.preventDefault();
+			proclaim.strictEqual(ev.target, form);
+			done();
+		});
+
+		form.requestSubmit(submitter);
+	});
+
+	it("[Optional—Only applies if browser supports FormData] The constructed FormData object should not contain an entry for the submit button that was used to submit the form.", function () {
+		// If the browser does support FormData, skip this test because it is only about
+		// the behavior of the FormData constructor.
+		if (!("FormData" in window)) {
+			this.skip();
+		}
 		document.body.insertAdjacentHTML(
 			"afterbegin",
 			'<form><input name="n1" value="v1"><button type="submit" name="n2" value="v2"></button></form><form id="form2"></form>'
@@ -260,8 +282,12 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		var form = document.querySelector("form");
 		var formDataInEvent = null;
 		var submitter = form.querySelector("button[type=submit]");
+
 		form.addEventListener("submit", function (e) {
 			e.preventDefault();
+			// This FormData constructor doesn't know how the form was submitted,
+			// so the submitter is not present in this FormData, even though it
+			// would be present in POST submissions. Only the normally-included data is here.
 			formDataInEvent = new FormData(e.target);
 		});
 
@@ -270,7 +296,12 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		proclaim.isFalse(formDataInEvent.has("n2"));
 	});
 
-	it("Using requestSubmit on a disabled button (via disabled attribute) should trigger submit but not be visible in FormData", function (done) {
+	it("[Optional—Only applies if browser supports FormData] Using requestSubmit on a disabled button (via disabled attribute) should not be visible in constructed FormData", function (done) {
+		// If the browser does support FormData, skip this test because
+		// it is only about the behavior of the FormData constructor.
+		if (!("FormData" in window)) {
+			this.skip();
+		}
 		document.body.insertAdjacentHTML(
 			"afterbegin",
 			'<form><button type="submit" name="n1" value="v1" disabled=""></button></form>'
@@ -282,8 +313,8 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		form.addEventListener("submit", function (ev) {
 			ev.preventDefault();
 			formDataInEvent = new FormData(ev.target);
-			proclaim.isFalse(formDataInEvent.has("n1"));
 			proclaim.strictEqual(ev.target, form);
+			proclaim.isFalse(formDataInEvent.has("n1"));
 			done();
 		});
 
