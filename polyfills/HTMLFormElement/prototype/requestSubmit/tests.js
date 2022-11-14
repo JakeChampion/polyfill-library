@@ -21,6 +21,14 @@
 // eslint-disable-next-line no-unused-vars
 /* globals proclaim */
 describe("HTMLFormElement.prototype.requestSubmit", function () {
+	// Add <iframe> to DOM for use by several tests
+	this.beforeAll(function () {
+		document.body.insertAdjacentHTML(
+			"afterbegin",
+			'<iframe name="iframe" src="about:blank"></iframe>'
+		);
+	});
+
 	it("Passing an element which is not a submit button should throw", function () {
 		document.body.insertAdjacentHTML(
 			"afterbegin",
@@ -228,10 +236,6 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	});
 
 	it("The value of the submitter should be appended, and form* attributes of the submitter should be handled.", function (done) {
-		document.body.insertAdjacentHTML(
-			"afterbegin",
-			'<iframe name="iframe" src="about:blank"></iframe>'
-		);
 		document.body.insertAdjacentHTML(
 			"afterbegin",
 			'<form action="/common/blank.html"><input required><input type=submit formnovalidate formtarget=iframe name=s value=v></form>'
