@@ -222,7 +222,8 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		);
 		var form = document.body.querySelector("form");
 		var iframe = document.body.querySelector("iframe");
-		proclaim.isTrue(form.matches(":invalid"));
+		// There should be one :invalid input within the form
+		proclaim.strictEqual(form.querySelectorAll(":invalid").length, 1);
 		// The form should be submitted though it is invalid. Use <iframe> to accept the POST, and examine the submission there.
 		iframe.addEventListener("load", function () {
 			var formUrlencodedSubmission = iframe.contentWindow.location.search;
