@@ -81,24 +81,19 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 			didDispatchSubmit = true;
 		});
 
+		// Assert that button[type=submit] & input[type=submit] can submit the form
 		proclaim.strictEqual(form.elements.length, 5);
 		for (var index = 0; index < form.elements.length; index++) {
 			var control = form.elements[index];
 			didDispatchSubmit = false;
 			form.requestSubmit(control);
-			proclaim.isTrue(
-				didDispatchSubmit,
-				control.outerHTML + "should submit the form"
-			);
+			proclaim.isTrue(didDispatchSubmit);
 		}
-		// <input type=image> is not in form.elements.
+		// Assert that input[type=image] can submit the form
 		var imageInput = form.querySelector("[type=image]");
 		didDispatchSubmit = false;
-		form.requestSubmit(control);
-		proclaim.isTrue(
-			didDispatchSubmit,
-			imageInput.outerHTML + "should submit the form"
-		);
+		form.requestSubmit(imageInput);
+		proclaim.isTrue(didDispatchSubmit);
 	});
 
 	it("requestSubmit() should trigger interactive form validation", function () {
@@ -135,7 +130,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 			{ once: true }
 		);
 		form.requestSubmit();
-		proclaim.strictEqual(submitCounter, 1, "requestSubmit() + requestSubmit()");
+		proclaim.strictEqual(submitCounter, 1);
 
 		submitCounter = 0;
 		form.addEventListener(
@@ -148,7 +143,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 			{ once: true }
 		);
 		form.requestSubmit();
-		proclaim.strictEqual(submitCounter, 1, "requestSubmit() + click()");
+		proclaim.strictEqual(submitCounter, 1);
 
 		submitCounter = 0;
 		form.addEventListener(
@@ -161,7 +156,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 			{ once: true }
 		);
 		submitButton.click();
-		proclaim.strictEqual(submitCounter, 1, "click() + requestSubmit()");
+		proclaim.strictEqual(submitCounter, 1);
 	});
 
 	it("requestSubmit() doesn't run interactive validation reentrantly", function () {
@@ -182,11 +177,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 			{ once: true }
 		);
 		form.requestSubmit();
-		proclaim.strictEqual(
-			invalidCounter,
-			1,
-			"requestSubmit() + requestSubmit()"
-		);
+		proclaim.strictEqual(invalidCounter, 1);
 
 		invalidCounter = 0;
 		invalidControl.addEventListener(
@@ -198,7 +189,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 			{ once: true }
 		);
 		form.requestSubmit();
-		proclaim.strictEqual(invalidCounter, 1, "requestSubmit() + click()");
+		proclaim.strictEqual(invalidCounter, 1);
 
 		invalidCounter = 0;
 		invalidControl.addEventListener(
@@ -210,7 +201,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 			{ once: true }
 		);
 		submitButton.click();
-		proclaim.strictEqual(invalidCounter, 1, "click() + requestSubmit()");
+		proclaim.strictEqual(invalidCounter, 1);
 	});
 
 	it("requestSubmit() for a disconnected form should not submit the form", function () {
@@ -231,7 +222,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		);
 		var form = document.body.querySelector("form");
 		var iframe = document.body.querySelector("iframe");
-		proclaim.isTrue(form.matches(":invalid"), "The form is invalid.");
+		proclaim.isTrue(form.matches(":invalid"));
 		// The form should be submitted though it is invalid. Use <iframe> to accept the POST, and examine the submission there.
 		iframe.addEventListener("load", function () {
 			var formUrlencodedSubmission = iframe.contentWindow.location.search;
