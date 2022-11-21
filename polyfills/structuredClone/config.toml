@@ -4,6 +4,9 @@ spec = "https://html.spec.whatwg.org/multipage/structured-data.html#dom-structur
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/structuredClone"
 license = "MIT"
 repo = "https://github.com/ungap/structured-clone/"
+notes = [
+	"This polyfill currently does not support cloning: Blob, File, FileList, ImageBitmap, ImageData, and ArrayBuffer. TypedArrays are supported without major issues, but int and uint 8/16/32 are the only safely supported TypedArrays."
+]
 
 [browsers]
 android = "<107"
