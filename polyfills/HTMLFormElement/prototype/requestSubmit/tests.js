@@ -250,10 +250,10 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		form.requestSubmit(submitter);
 	});
 
-	it("[Optional—Only applies if browser supports FormData] The constructed FormData object should not contain an entry for the submit button that was used to submit the form.", function () {
+	it("[Optional: Only applies if browser supports FormData] The constructed FormData object should not contain an entry for the submit button that was used to submit the form.", function () {
 		// If the browser does support FormData, skip this test because it is only about
-		// the behavior of the FormData constructor.
-		if (!("FormData" in window)) {
+		// the behavior of the constructed FormData.
+		if (typeof window.FormData !== "function") {
 			this.skip();
 		}
 		document.body.insertAdjacentHTML(
@@ -279,8 +279,8 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 
 	it("[Optional: Only applies if browser supports FormData] Using requestSubmit on a disabled button (via disabled attribute) should not be visible in constructed FormData", function (done) {
 		// If the browser does support FormData, skip this test because
-		// it is only about the behavior of the FormData constructor.
-		if (!("FormData" in window)) {
+		// it is only about the behavior of the constructed FormData.
+		if (typeof window.FormData !== "function") {
 			this.skip();
 		}
 		document.body.insertAdjacentHTML(
