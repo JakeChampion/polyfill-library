@@ -1,5 +1,4 @@
-/* eslint-env mocha, browser */
-// eslint-disable-next-line no-unused-vars
+/* eslint-env es2020, mocha, browser */
 /* globals proclaim */
 
 describe('structuredClone', function () {
@@ -11,9 +10,9 @@ describe('structuredClone', function () {
 		proclaim.arity(structuredClone, 2);
 	});
 
-	const date = new Date;
+	var date = new Date();
 
-	const obj = {
+	var obj = {
 	  arr: [],
 	  bigint: 1n,
 	  boolean: true,
