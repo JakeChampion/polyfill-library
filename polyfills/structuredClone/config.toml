@@ -1,6 +1,8 @@
 dependencies = [
 	"Map",
-	"Set"
+	"Set",
+	"String.prototype.includes",
+	"Object.keys"
 ]
 spec = "https://html.spec.whatwg.org/multipage/structured-data.html#dom-structuredclone"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/structuredClone"
