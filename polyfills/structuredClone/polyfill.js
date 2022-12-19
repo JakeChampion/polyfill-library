@@ -263,7 +263,6 @@
 		return serializer(!(options.json || options.lossy), !!options.json, new Map(), _)(value), _;
 	}
 
-	// polyfill.js
 	env.structuredClone = function (any, options) {
 		return deserialize(serialize(any, options));
 	};

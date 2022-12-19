@@ -12,12 +12,13 @@ describe('structuredClone', function () {
 
 	var date = new Date();
 
-	var bi;
-	try {
-		bi = BigInt(1);
-	} catch (e){
-		//no BigInt support
-		bi = null;
+	var bi = null;
+	if ("BigInt" in window && typeof BigInt == "function"){
+		try {
+			bi = BigInt(1);
+		} catch (e) {
+			//no BigInt support
+		}
 	}
 
 	var obj = {
