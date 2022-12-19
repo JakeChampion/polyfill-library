@@ -60,16 +60,16 @@ describe('structuredClone', function () {
 	});
 
 	it('serializes values', function () {
-		proclaim.equal(deserialized.boolean, true);
+		proclaim.equal(deserialized['boolean'], true);
 		proclaim.equal(deserialized.number, 123);
 		proclaim.equal(deserialized.string, '');
 		proclaim.equal(deserialized.undefined, void 0);
-		proclaim.equal(deserialized.null, null);
+		proclaim.equal(deserialized['null'], null);
 
-		proclaim.equal(deserialized.int.length, 3);
-		proclaim.equal(deserialized.int[0], 1);
-		proclaim.equal(deserialized.int[1], 2);
-		proclaim.equal(deserialized.int[2], 3);
+		proclaim.equal(deserialized['int'].length, 3);
+		proclaim.equal(deserialized['int'][0], 1);
+		proclaim.equal(deserialized['int'][1], 2);
+		proclaim.equal(deserialized['int'][2], 3);
 
 		proclaim.equal(deserialized.map.size, 1);
 		proclaim.equal(deserialized.map.get('a'), 123);
