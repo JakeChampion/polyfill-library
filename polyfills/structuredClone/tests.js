@@ -60,15 +60,21 @@ describe('structuredClone', function () {
 	});
 
 	it('serializes values', function () {
+		/* eslint-disable-next-line dot-notation */
 		proclaim.equal(deserialized['boolean'], true);
 		proclaim.equal(deserialized.number, 123);
 		proclaim.equal(deserialized.string, '');
 		proclaim.equal(deserialized.undefined, void 0);
+		/* eslint-disable-next-line dot-notation */
 		proclaim.equal(deserialized['null'], null);
 
+		/* eslint-disable-next-line dot-notation */
 		proclaim.equal(deserialized['int'].length, 3);
+		/* eslint-disable-next-line dot-notation */
 		proclaim.equal(deserialized['int'][0], 1);
+		/* eslint-disable-next-line dot-notation */
 		proclaim.equal(deserialized['int'][1], 2);
+		/* eslint-disable-next-line dot-notation */
 		proclaim.equal(deserialized['int'][2], 3);
 
 		proclaim.equal(deserialized.map.size, 1);
