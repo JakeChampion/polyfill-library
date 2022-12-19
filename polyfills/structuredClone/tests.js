@@ -12,9 +12,17 @@ describe('structuredClone', function () {
 
 	var date = new Date();
 
+	var bi;
+	try {
+		bi = BigInt(1);
+	} catch (e){
+		//no BigInt support
+		bi = null;
+	}
+
 	var obj = {
 		arr: [],
-		bigint: BigInt(1),
+		bigint: bi,
 		"boolean": true,
 		number: 123,
 		string: '',
@@ -28,7 +36,7 @@ describe('structuredClone', function () {
 		Str: new String(''),
 		re: new RegExp('test', 'gim'),
 		error: new Error('test'),
-		BI: Object(BigInt(1)),
+		BI: Object(bi),
 		date: date
 	};
 
@@ -43,12 +51,14 @@ describe('structuredClone', function () {
 		proclaim.isInstanceOf(deserialized.Str, String);
 		proclaim.isInstanceOf(deserialized.re, RegExp);
 		proclaim.isInstanceOf(deserialized.error, Error);
-		proclaim.isInstanceOf(deserialized.BI, BigInt);
 		proclaim.isInstanceOf(deserialized.date, Date);
+
+		if (bi){
+			proclaim.isInstanceOf(deserialized.BI, BigInt);
+		}
 	});
 
 	it('serializes values', function () {
-		proclaim.equal(deserialized.bigint, BigInt(1));
 		proclaim.equal(deserialized.boolean, true);
 		proclaim.equal(deserialized.number, 123);
 		proclaim.equal(deserialized.string, '');
@@ -73,8 +83,12 @@ describe('structuredClone', function () {
 		proclaim.equal(deserialized.re.source, 'test');
 		proclaim.equal(deserialized.re.flags, 'gim');
 		proclaim.equal(deserialized.error.message, 'test');
-		proclaim.equal(deserialized.BI.valueOf(), BigInt(1));
 		proclaim.equal(deserialized.date.toISOString(), date.toISOString());
+
+		if (bi) {
+			proclaim.equal(deserialized.bigint, bi);
+			proclaim.equal(deserialized.BI.valueOf(), bi);
+		}
 	});
 
 	it('preserves references', function () {
