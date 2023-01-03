@@ -12,7 +12,7 @@ const { parseRange, replaceInRange } = require('./parse-range');
 const { forEachPolyfillConfigPath } = require('./for-each-polyfill-config');
 const assert = require('assert');
 const { fetchMCD } = require('./mcd');
-const { ChromeToOpera, ChromeToOperaMobile, SafariToIOS, ChromeToSamsung } = require('./static-mapping');
+const { ChromeToOpera, ChromeAndroidToOperaAndroid, SafariToIOS, ChromeAndroidToSamsung } = require('./static-mapping');
 
 const deadBrowsers = new Set(['ie', 'ie_mob', 'android', 'bb', 'op_mini', 'edge', 'edge_mob']);
 
@@ -185,7 +185,7 @@ fetchMCD().then((browserData) => {
 					break;
 				case 'op_mob':
 					if (config.browsers['chrome'] && config.browsers['chrome'] !== '*') {
-						const mapped = ChromeToOperaMobile.map((pair) => {
+						const mapped = ChromeAndroidToOperaAndroid.map((pair) => {
 							if (semver.satisfies(semver.coerce(pair[0]), config.browsers['chrome'])) {
 								return pair[1];
 							}
@@ -203,7 +203,7 @@ fetchMCD().then((browserData) => {
 					break;
 				case 'samsung_mob':
 					if (config.browsers['chrome'] && config.browsers['chrome'] !== '*') {
-						const mapped = ChromeToSamsung.map((pair) => {
+						const mapped = ChromeAndroidToSamsung.map((pair) => {
 							if (semver.satisfies(semver.coerce(pair[0]), config.browsers['chrome'])) {
 								return pair[1];
 							}

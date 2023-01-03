@@ -1,4 +1,4 @@
-// see : https://github.com/zloirock/core-js/blob/85b8998d2e32073d3aa1d648a6fbb3f88987fff9/packages/core-js-compat/src/mapping.mjs
+// see : https://github.com/zloirock/core-js/blob/e4ae23deb531980c69596e3bd2121ecac7b835ab/packages/core-js-compat/src/mapping.mjs
 // https://github.com/zloirock/core-js/blob/master/LICENSE
 // We will need to update this from time to time.
 
@@ -86,6 +86,8 @@ module.exports = {
 		[96, '17.2'],
 		[101, '18.0'],
 		[102, '18.3'],
+		[107, '19.0'],
+		[108, '19.2'],
 	],
 	// https://github.com/mdn/browser-compat-data/blob/main/browsers/deno.json
 	ChromeToDeno: [
@@ -105,9 +107,12 @@ module.exports = {
 		[98, '1.18'],
 		[99, '1.19'],
 		[100, '1.20'],
-		[100, '1.21'],
-		[100, '1.22'],
 		[104, '1.23'],
+		[106, '1.25'],
+		[107, '1.26'],
+		[108, '1.27'],
+		[109, '1.28'],
+		[109, '1.29'],
 	],
 	// https://github.com/Kilian/electron-to-chromium/blob/master/chromium-versions.js
 	// Maybe also required to handle used Node versions?
@@ -147,10 +152,33 @@ module.exports = {
 		[100, '18.0'],
 		[102, '19.0'],
 		[104, '20.0'],
+		[106, '21.0'],
+		[108, '22.0'],
 	],
+	// https://github.com/mdn/browser-compat-data/blob/main/browsers/opera.json
+	ChromeToOpera(chrome) {
+		return chrome <= 28 ? 15
+			: (chrome <= 82 ? chrome - 13
+				: chrome - 14);
+	},
+	ChromeToAndroid: [
+		[9, '3.0'],
+		[12, '4.0'],
+		[30, '4.4'],
+		[33, '4.4.3'],
+	],
+	// https://github.com/mdn/browser-compat-data/blob/main/browsers/chrome_android.json
+	// https://github.com/mdn/browser-compat-data/blob/main/docs/matching-browser-releases/index.md#version-numbers-for-chrome-for-android
+	ChromeToChromeAndroid(chrome) {
+		return chrome <= 18 ? 18
+			: (chrome <= 25 ? 25
+				: chrome);
+	},
 	// https://medium.com/samsung-internet-dev
 	// https://github.com/mdn/browser-compat-data/blob/main/browsers/samsunginternet_android.json
-	ChromeToSamsung: [
+	// https://en.wikipedia.org/wiki/Samsung_Internet#History
+	// https://github.com/mdn/browser-compat-data/blob/main/docs/matching-browser-releases/index.md#samsung-internet
+	ChromeAndroidToSamsung: [
 		[18, '1.0'],
 		[28, '1.5'],
 		[34, '2.0'],
@@ -171,39 +199,10 @@ module.exports = {
 		[92, '16.0'],
 		[96, '17.0'],
 		[99, '18.0'],
+		[102, '19.0'],
 	],
-	// https://github.com/mdn/browser-compat-data/blob/main/browsers/opera.json
-	ChromeToOpera(chrome) {
-		return chrome <= 23 ? 15
-			: (chrome <= 29 ? 16
-				// eslint-disable-next-line unicorn/no-nested-ternary
-				: chrome <= 82 ? chrome - 13
-					: chrome - 14);
-	},
 	// https://github.com/mdn/browser-compat-data/blob/main/browsers/opera_android.json
-	ChromeToOperaMobile: [
-		[28, 15],
-		[29, 16],
-		[31, 18],
-		[32, 19],
-		[33, 20],
-		[34, 21],
-		[35, 22],
-		[37, 24],
-		[38, 25],
-		[39, 26],
-		[40, 27],
-		[41, 28],
-		[42, 29],
-		[43, 30],
-		[45, 32],
-		[46, 33],
-		[47, 34],
-		[48, 35],
-		[49, 36],
-		[50, 37],
-		[54, 41],
-		[55, 42],
+	ChromeAndroidToOperaAndroid: [
 		[59, 43],
 		[60, 44],
 		[61, 45],
@@ -232,17 +231,14 @@ module.exports = {
 		[99, 68],
 		[100, 69],
 		[102, 70],
-	],
-	ChromeToAndroid: [
-		[9, '3.0'],
-		[12, '4.0'],
-		[30, '4.4'],
-		[33, '4.4.3'],
+		[104, 71],
+		[106, 72],
 	],
 	// https://developer.oculus.com/documentation/web/browser-release-notes/
 	// Need to find another data source since release notes are not available for new versions.
 	// https://github.com/mdn/browser-compat-data/blob/main/browsers/oculus.json
-	AndroidToOculus: [
+	// https://whatmyuseragent.com/browser/oc/oculus-browser
+	ChromeAndroidToQuest: [
 		[57, '3.0'],
 		[61, '4.0'],
 		[66, '5.0'],
@@ -263,15 +259,28 @@ module.exports = {
 		[98, '20.0'],
 		[100, '21.0'],
 		[102, '22.0'],
+		[104, '23.0'],
+		[106, '24.0'],
+	],
+	// https://github.com/mdn/browser-compat-data/blob/main/browsers/opera.json
+	FirefoxToFirefoxAndroid(firefox) {
+		return firefox <= 4 ? 4 : firefox;
+	},
+	// This is the base data. Since it have no direct Safari equals by the
+	// WebKit / JavaScriptCore version, don't use mapping for future releases.
+	// https://github.com/oven-sh/bun/issues/396
+	SafariToBun: [
+		['16.0', '0.1.1'],
 	],
 	// https://github.com/mdn/browser-compat-data/blob/main/browsers/safari_ios.json
+	// https://en.wikipedia.org/wiki/Safari_version_history
 	SafariToIOS: [
 		['3.0', '1.0'],
 		['3.1', '2.0'],
-		['3.2', '3.0'],
-		['4.0', '3.2'],
-		['4.1', '4.2'],
-		['5.1', '5.1'],
+		['4.0', '3.0'],
+		['4.1', '3.2'],
+		['5.0', '4.2'],
+		['5.1', '5.0'],
 		['6.0', '6.0'],
 		['6.1', '7.0'],
 		['7.1', '8.0'],
@@ -294,9 +303,16 @@ module.exports = {
 		['15.4', '15.4'],
 		['15.5', '15.5'],
 		['15.6', '15.6'],
+		['16.0', '16.0'],
+		['16.1', '16.1'],
 	],
 	SafariToPhantom: [
 		['4.1', '1.9'],
 		['6.0', '2.0'],
+	],
+	// This is the base data. Since it have no direct Hermes version equals,
+	// don't use mapping for future releases.
+	HermesToReactNative: [
+		['0.11', '0.69'],
 	],
 };
