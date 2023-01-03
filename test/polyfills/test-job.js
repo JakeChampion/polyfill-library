@@ -38,7 +38,7 @@ module.exports = class TestJob {
 				"browserstack.video": "true",
 				"browserstack.debug": "true",
 				"browserstack.console": "errors",
-				"browserstack.networkLogs": "errors",
+				"browserstack.networkLogs": "true",
 				timeout: 180000
 			},
 			capability
