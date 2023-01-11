@@ -32,7 +32,9 @@ var _GetErrorConstructorWithCauseInstalled;
 
 	// based on https://github.com/es-shims/error-cause/blob/de17ea05/Error/implementation.js#L22-L29
 	function _inheritErrorPrototype (name, _Error) {
-		Object.setPrototypeOf(_Error, self.Error);
+		if (name !== 'Error') {
+			Object.setPrototypeOf(_Error, self.Error);
+		}
 		_Error.prototype = _nativeErrors[name].prototype;
 		Object.defineProperty(_Error, 'prototype', { writable: false });
 		return _Error;
@@ -55,9 +57,7 @@ var _GetErrorConstructorWithCauseInstalled;
 	_GetErrorConstructorWithCauseInstalled = function (name) {
 		_nativeErrors[name] = self[name];
 		_errorConstructors[name] = _makeErrorConstructor(name, _newErrors[name]);
-		if (name !== 'Error') {
-			_inheritErrorPrototype(name, _newErrors[name]);
-		}
+		_inheritErrorPrototype(name, _newErrors[name]);
 		return _newErrors[name];
 	}
 })();

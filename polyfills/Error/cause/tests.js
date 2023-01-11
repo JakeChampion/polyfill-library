@@ -50,6 +50,10 @@ testCases.forEach(function (testCase) {
 		});
 
 		if (name !== 'AggregateError') {
+			it('is instance of Error', function () {
+				proclaim.isInstanceOf(new _Error('m'), Error);
+			})
+
 			it('creates an object without a cause', function () {
 				proclaim.equal(new _Error('m').name, name);
 				proclaim.equal(new _Error('m').message, 'm');
@@ -70,6 +74,10 @@ testCases.forEach(function (testCase) {
 				proclaim.isObject(_Error());
 			});
 		} else {
+			it('is instance of Error', function () {
+				proclaim.isInstanceOf(new _Error([], 'm'), Error);
+			})
+
 			it('creates an object without a cause', function () {
 				proclaim.equal(new _Error([], 'm').name, name);
 				proclaim.deepEqual(new _Error([], 'm').errors, []);
