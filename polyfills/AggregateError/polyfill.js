@@ -1,13 +1,5 @@
-/* global _InstallErrorCause, CreateDataPropertyOrThrow, CreateMethodProperty, IterableToList */
+/* global CreateDataPropertyOrThrow, CreateMethodProperty, IterableToList */
 (function () {
-	var hasErrorCause = (function () {
-		try {
-			return new Error('m', { cause: 'c' }).cause === 'c';
-		} catch (e) {
-			return false;
-		}
-	})();
-
 	function AggregateError (errors, message) {
 		if (!(this instanceof AggregateError)) return new AggregateError(errors, message);
 
@@ -35,9 +27,4 @@
 	AggregateError.prototype.constructor = AggregateError;
 
 	CreateMethodProperty(self, 'AggregateError', AggregateError);
-
-	// If `Error.cause` is available, add it to `AggregateError`
-	if (hasErrorCause) {
-		CreateMethodProperty(self, 'AggregateError', _InstallErrorCause('AggregateError'));
-	}
 })();

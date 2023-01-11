@@ -11,10 +11,6 @@ var testCases = [
 	{_Error: URIError, name: 'URIError', arity: 1}
 ];
 
-if ('AggregateError' in self) {
-	testCases.push({_Error: self.AggregateError, name: 'AggregateError', arity: 2});
-}
-
 testCases.forEach(function (testCase) {
 	var _Error = testCase._Error;
 	var name = testCase.name;
@@ -49,48 +45,30 @@ testCases.forEach(function (testCase) {
 			}
 		});
 
-		if (name !== 'AggregateError') {
-			it('creates an object without a cause', function () {
-				proclaim.equal(new _Error('m').name, name);
-				proclaim.equal(new _Error('m').message, 'm');
-				proclaim.doesNotInclude(new _Error('m'), 'cause');
-				proclaim.doesNotInclude(new _Error('m', null), 'cause');
-				proclaim.doesNotInclude(new _Error('m', {}), 'cause');
-			});
+		it("is instance of", function () {
+			var error = new _Error('m', { cause: 'c' });
+			proclaim.ok(error instanceof Error);
+			proclaim.ok(error instanceof _Error);
+		});
 
-			it('creates an object with a cause', function () {
-				var error = new _Error('m', { cause: 'c' });
-				proclaim.equal(error.name, name);
-				proclaim.equal(error.message, 'm');
-				proclaim.equal(error.cause, 'c');
-				proclaim.isNotEnumerable(error, 'cause');
-			});
+		it('creates an object without a cause', function () {
+			proclaim.equal(new _Error('m').name, name);
+			proclaim.equal(new _Error('m').message, 'm');
+			proclaim.doesNotInclude(new _Error('m'), 'cause');
+			proclaim.doesNotInclude(new _Error('m', null), 'cause');
+			proclaim.doesNotInclude(new _Error('m', {}), 'cause');
+		});
 
-			it('creates an object without new', function () {
-				proclaim.isObject(_Error());
-			});
-		} else {
-			it('creates an object without a cause', function () {
-				proclaim.equal(new _Error([], 'm').name, name);
-				proclaim.deepEqual(new _Error([], 'm').errors, []);
-				proclaim.equal(new _Error([], 'm').message, 'm');
-				proclaim.doesNotInclude(new _Error([], 'm'), 'cause');
-				proclaim.doesNotInclude(new _Error([], 'm', null), 'cause');
-				proclaim.doesNotInclude(new _Error([], 'm', {}), 'cause');
-			});
+		it('creates an object with a cause', function () {
+			var error = new _Error('m', { cause: 'c' });
+			proclaim.equal(error.name, name);
+			proclaim.equal(error.message, 'm');
+			proclaim.equal(error.cause, 'c');
+			proclaim.isNotEnumerable(error, 'cause');
+		});
 
-			it('creates an object with a cause', function () {
-				var error = new _Error([], 'm', { cause: 'c' });
-				proclaim.equal(error.name, name);
-				proclaim.deepEqual(error.errors, []);
-				proclaim.equal(error.message, 'm');
-				proclaim.equal(error.cause, 'c');
-				proclaim.isNotEnumerable(error, 'cause');
-			});
-
-			it('creates an object without new', function () {
-				proclaim.isObject(_Error([]));
-			});
-		}
+		it('creates an object without new', function () {
+			proclaim.isObject(_Error());
+		});
 	});
 });
