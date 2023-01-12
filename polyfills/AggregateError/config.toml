@@ -3,7 +3,7 @@ dependencies = [
 	"_ESAbstract.CreateDataPropertyOrThrow",
 	"_ESAbstract.CreateMethodProperty",
 	"_ESAbstract.IterableToList",
-	"_InstallErrorCause",
+	"_ErrorConstructor",
 ]
 license = "MIT"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError"
