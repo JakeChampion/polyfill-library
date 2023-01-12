@@ -37,6 +37,10 @@ var _GetErrorConstructorWithCauseInstalled;
 		}
 		_Error.prototype = _nativeErrors[name].prototype;
 		Object.defineProperty(_Error, 'prototype', { writable: false });
+		// in IE11, the constructor name needs to be corrected
+		if (_Error.name !== name) {
+			Object.defineProperty(_Error, 'name', { value: name, configurable: true });
+		}
 		return _Error;
 	}
 
