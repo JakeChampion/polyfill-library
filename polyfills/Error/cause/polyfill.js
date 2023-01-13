@@ -1,4 +1,4 @@
-/* global _GetErrorConstructorWithCauseInstalled, CreateMethodProperty */
+/* global _ErrorConstructor, CreateMethodProperty */
 
 (function () {
 	var _errorNames = [
@@ -17,6 +17,6 @@
 
 	for (var i = 0; i < _errorNames.length; i++) {
 		var name = _errorNames[i];
-		CreateMethodProperty(self, name, _GetErrorConstructorWithCauseInstalled(name));
+		CreateMethodProperty(self, name, _ErrorConstructor(name));
 	}
 })();

@@ -1,7 +1,7 @@
 /* global CreateMethodProperty, CreateNonEnumerableDataPropertyOrThrow, Get, HasProperty, Type */
 
 // eslint-disable-next-line no-unused-vars
-var _GetErrorConstructorWithCauseInstalled;
+var _ErrorConstructor;
 
 (function () {
 	// 20.5.8.1 InstallErrorCause ( O, options )
@@ -58,7 +58,7 @@ var _GetErrorConstructorWithCauseInstalled;
 	var _nativeErrors = {};
 	var _errorConstructors = {};
 
-	_GetErrorConstructorWithCauseInstalled = function (name) {
+	_ErrorConstructor = function (name) {
 		_nativeErrors[name] = self[name];
 		_errorConstructors[name] = _makeErrorConstructor(name, _newErrors[name]);
 		_inheritErrorPrototype(name, _newErrors[name]);

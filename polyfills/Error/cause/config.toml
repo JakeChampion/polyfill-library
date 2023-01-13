@@ -1,7 +1,7 @@
 aliases = [ "es2022" ]
 dependencies = [
 	"_ESAbstract.CreateMethodProperty",
-	"_InstallErrorCause",
+	"_ErrorConstructor",
 ]
 spec = "https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-installerrorcause"
 docs = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause"

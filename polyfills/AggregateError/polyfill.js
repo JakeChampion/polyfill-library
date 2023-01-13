@@ -1,4 +1,4 @@
-/* global _GetErrorConstructorWithCauseInstalled, CreateDataPropertyOrThrow, CreateMethodProperty, IterableToList */
+/* global _ErrorConstructor, CreateDataPropertyOrThrow, CreateMethodProperty, IterableToList */
 (function () {
 	var hasErrorCause = (function () {
 		try {
@@ -38,6 +38,6 @@
 
 	// If `Error.cause` is available, add it to `AggregateError`
 	if (hasErrorCause) {
-		CreateMethodProperty(self, 'AggregateError', _GetErrorConstructorWithCauseInstalled('AggregateError'));
+		CreateMethodProperty(self, 'AggregateError', _ErrorConstructor('AggregateError'));
 	}
 })();
