@@ -225,7 +225,7 @@
 					return as([TYPE, value.toISOString()], value);
 
 				case REGEXP: {
-					return as([TYPE, {source: value.source, flags: value.flags}], value);
+					return as([TYPE, {source: value.source, flags: (value.global ? "g" : "") + (value.ignoreCase ? "i" : "") + (value.multiline ? "m" : "")}], value);
 				}
 
 				case MAP: {

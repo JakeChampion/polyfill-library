@@ -88,7 +88,9 @@ describe('structuredClone', function () {
 		proclaim.equal(deserialized.Num.valueOf(), 0);
 		proclaim.equal(deserialized.Str.valueOf(), '');
 		proclaim.equal(deserialized.re.source, 'test');
-		proclaim.equal(deserialized.re.flags, 'gim');
+		proclaim.equal(deserialized.re.multiline, true);
+		proclaim.equal(deserialized.re.ignoreCase, true);
+		proclaim.equal(deserialized.re.global, true);
 		proclaim.equal(deserialized.error.message, 'test');
 		proclaim.equal(deserialized.date.toISOString(), date.toISOString());
 
