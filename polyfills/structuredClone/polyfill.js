@@ -139,7 +139,7 @@
 		return type[0] === PRIMITIVE && (type[1] === "function" || type[1] === "symbol");
 	}
 
-	function serializer(strict, json, $, _) {
+	function serializer($, _) {
 		function as(out, value) {
 			var index = _.push(out) - 1;
 			$.set(value, index);
@@ -167,10 +167,7 @@
 
 						case "function":
 						case "symbol":
-							if (strict)
-								throw new TypeError("unable to serialize " + typeName);
-							primitiveValue = null;
-							break;
+							throw new TypeError("unable to serialize " + typeName);
 
 						case "undefined":
 							return as([VOID], value);
@@ -207,15 +204,12 @@
 						}
 					}
 
-					if (json && "toJSON" in value)
-						return pair(value.toJSON());
-
 					var objectEntries = [];
 					var index = as([TYPE, objectEntries], value);
 					keys = Object.keys(value);
 					for (i = 0, l = keys.length; i < l; ++i) {
 						var objectKey = keys[i];
-						if (strict || !shouldSkip(typeOf(value[objectKey])))
+						if (!shouldSkip(typeOf(value[objectKey])))
 							objectEntries.push([pair(objectKey), pair(value[objectKey])]);
 					}
 					return index;
@@ -232,7 +226,7 @@
 					var mapEntries = [];
 					var mapIndex = as([TYPE, mapEntries], value);
 					value.forEach(function (value, key){
-						if (strict || !(shouldSkip(typeOf(key)) || shouldSkip(typeOf(value))))
+						if (!(shouldSkip(typeOf(key)) || shouldSkip(typeOf(value))))
 							mapEntries.push([pair(key), pair(value)]);
 					})
 
@@ -243,7 +237,7 @@
 					var setEntries = [];
 					var setIndex = as([TYPE, setEntries], value);
 					value.forEach(function (value){
-						if (strict || !shouldSkip(typeOf(value)))
+						if (!shouldSkip(typeOf(value)))
 							setEntries.push(pair(value));
 					})
 
@@ -257,14 +251,13 @@
 		return pair;
 	}
 
-	function serialize(value, options) {
+	function serialize(value) {
 		var _ = [];
-		options = options || {};
-		return serializer(!(options.json || options.lossy), !!options.json, new Map(), _)(value), _;
+		return serializer(new Map(), _)(value), _;
 	}
 
-	env.structuredClone = function (any, options) {
-		return deserialize(serialize(any, options));
+	env.structuredClone = function (any) {
+		return deserialize(serialize(any));
 	};
 
 })(self);

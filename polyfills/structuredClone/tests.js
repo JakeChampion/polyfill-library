@@ -7,7 +7,7 @@ describe('structuredClone', function () {
 	});
 
 	it('has correct arity', function () {
-		proclaim.arity(structuredClone, 2);
+		proclaim.arity(structuredClone, 1);
 	});
 
 	var date = new Date();
@@ -17,7 +17,7 @@ describe('structuredClone', function () {
 		try {
 			bi = BigInt(1);
 		} catch (e) {
-			//no BigInt support
+			//no BigInt support.
 		}
 	}
 
