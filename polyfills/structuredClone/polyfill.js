@@ -126,10 +126,10 @@
 				return [SET, EMPTY];
 		}
 
-		if (asString.includes("Array"))
+		if (asString.indexOf("Array") !== -1)
 			return [ARRAY, asString];
 
-		if (asString.includes("Error"))
+		if (asString.indexOf("Error") !== -1)
 			return [ERROR, asString];
 
 		return [OBJECT, asString];
