@@ -100,6 +100,12 @@
 	var emptyObject = {};
 
 	function typeOf(value) {
+		if (value instanceof Map)
+			return [MAP, EMPTY];
+
+		if (value instanceof Set)
+			return [SET, EMPTY];
+
 		var type = typeof value;
 		if (type !== "object" || !value)
 			return [PRIMITIVE, type];
@@ -118,12 +124,6 @@
 
 			case "RegExp":
 				return [REGEXP, EMPTY];
-
-			case "Map":
-				return [MAP, EMPTY];
-
-			case "Set":
-				return [SET, EMPTY];
 		}
 
 		if (asString.indexOf("Array") !== -1)
