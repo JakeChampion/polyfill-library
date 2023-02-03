@@ -22,8 +22,9 @@
 		function unpair(index) {
 			var i, l;
 
-			if ($.has(index))
+			if ($.has(index)) {
 				return $.get(index);
+			}
 
 			var type = _[index][0];
 			var value = _[index][1];
@@ -35,15 +36,16 @@
 
 				case ARRAY: {
 					var arr = as([], index);
-					for (i = 0, l = value.length; i < l; ++i)
+					for (i = 0, l = value.length; i < l; ++i) {
 						arr.push(unpair(value[i]));
+					}
 					return arr;
 				}
 
 				case OBJECT: {
 					var object = as({}, index);
 					var keys = Object.keys(value);
-					for (i = 0, l = keys.length; i < l; ++i){
+					for (i = 0, l = keys.length; i < l; ++i) {
 						var entry = value[keys[i]];
 						object[unpair(entry[0])] = unpair(entry[1]);
 					}
@@ -60,7 +62,7 @@
 
 				case MAP: {
 					var map = as(new Map(), index);
-					for (i = 0, l = value.length; i < l; ++i){
+					for (i = 0, l = value.length; i < l; ++i) {
 						var mapEntry = value[i];
 						map.set(unpair(mapEntry[0]), unpair(mapEntry[1]));
 					}
@@ -70,8 +72,9 @@
 
 				case SET: {
 					var set = as(new Set(), index);
-					for (i = 0, l = value.length; i < l; ++i)
+					for (i = 0, l = value.length; i < l; ++i) {
 						set.add(unpair(value[i]));
+					}
 					return set;
 				}
 
@@ -100,15 +103,18 @@
 	var emptyObject = {};
 
 	function typeOf(value) {
-		if (value instanceof Map)
+		if (value instanceof Map) {
 			return [MAP, EMPTY];
+		}
 
-		if (value instanceof Set)
+		if (value instanceof Set) {
 			return [SET, EMPTY];
+		}
 
 		var type = typeof value;
-		if (type !== "object" || !value)
+		if (type !== "object" || !value) {
 			return [PRIMITIVE, type];
+		}
 
 		var asString = emptyObject.toString.call(value).slice(8, -1);
 
@@ -126,11 +132,13 @@
 				return [REGEXP, EMPTY];
 		}
 
-		if (asString.indexOf("Array") !== -1)
+		if (asString.indexOf("Array") !== -1) {
 			return [ARRAY, asString];
+		}
 
-		if (asString.indexOf("Error") !== -1)
+		if (asString.indexOf("Error") !== -1) {
 			return [ERROR, asString];
+		}
 
 		return [OBJECT, asString];
 	}
@@ -147,8 +155,9 @@
 		}
 
 		function pair(value) {
-			if ($.has(value))
+			if ($.has(value)) {
 				return $.get(value);
+			}
 
 			var i, l, keys;
 			var to = typeOf(value);
@@ -181,12 +190,14 @@
 					var arrayIndex = as([typeName || TYPE, arr], value);
 
 					if (typeName) {
-						for (i = 0, l = value.length; i < l; ++i)
+						for (i = 0, l = value.length; i < l; ++i) {
 							arr.push(value[i]);
+						}
 
 					} else {
-						for (i = 0, l = value.length; i < l; ++i)
+						for (i = 0, l = value.length; i < l; ++i) {
 							arr.push(pair(value[i]));
+						}
 					}
 					return arrayIndex;
 				}
@@ -209,8 +220,9 @@
 					keys = Object.keys(value);
 					for (i = 0, l = keys.length; i < l; ++i) {
 						var objectKey = keys[i];
-						if (!shouldSkip(typeOf(value[objectKey])))
+						if (!shouldSkip(typeOf(value[objectKey]))) {
 							objectEntries.push([pair(objectKey), pair(value[objectKey])]);
+						}
 					}
 					return index;
 				}
@@ -225,9 +237,10 @@
 				case MAP: {
 					var mapEntries = [];
 					var mapIndex = as([TYPE, mapEntries], value);
-					value.forEach(function (value, key){
-						if (!(shouldSkip(typeOf(key)) || shouldSkip(typeOf(value))))
+					value.forEach(function (value, key) {
+						if (!(shouldSkip(typeOf(key)) || shouldSkip(typeOf(value)))) {
 							mapEntries.push([pair(key), pair(value)]);
+						}
 					})
 
 					return mapIndex;
@@ -236,9 +249,10 @@
 				case SET: {
 					var setEntries = [];
 					var setIndex = as([TYPE, setEntries], value);
-					value.forEach(function (value){
-						if (!shouldSkip(typeOf(value)))
+					value.forEach(function (value) {
+						if (!shouldSkip(typeOf(value))) {
 							setEntries.push(pair(value));
+						}
 					})
 
 					return setIndex;
@@ -256,7 +270,7 @@
 		return serializer(new Map(), _)(value), _;
 	}
 
-	env.structuredClone = function (any) {
+	env.structuredClone = function structuredClone(any) {
 		return deserialize(serialize(any));
 	};
 

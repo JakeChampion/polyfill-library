@@ -28,7 +28,7 @@ describe('structuredClone', function () {
 		number: 123,
 		string: '',
 		undefined: void 0,
-		nullValue: null,
+		"null": null,
 		"int": new Uint32Array([1, 2, 3]),
 		map: new Map([['a', 123]]),
 		set: new Set(['a', 'b']),
@@ -44,6 +44,10 @@ describe('structuredClone', function () {
 	obj.arr.push(obj, obj, obj);
 
 	var deserialized = structuredClone(obj);
+
+	it('has correct name', function () {
+		proclaim.hasName(structuredClone, 'structuredClone');
+	});
 
 	it('serializes correct types', function () {
 		proclaim.isInstanceOf(deserialized.int, Uint32Array);
@@ -66,7 +70,7 @@ describe('structuredClone', function () {
 		proclaim.equal(deserialized.string, '');
 		proclaim.equal(deserialized.undefined, void 0);
 		/* eslint-disable-next-line dot-notation */
-		proclaim.equal(deserialized.nullValue, null);
+		proclaim.equal(deserialized["null"], null);
 
 		/* eslint-disable-next-line dot-notation */
 		proclaim.equal(deserialized['int'].length, 3);
