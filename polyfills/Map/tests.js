@@ -746,4 +746,111 @@ describe('Map', function () {
 		}
 		operateOnMap(map, operations);
 	});
+
+	it('can use null as a key', function () {
+		var map1 = new Map();
+		map1.set(null, 1);
+		proclaim.equal(map1.get(null), 1);
+
+		var map2 = new Map();
+		map2.set('null', 1);
+		map2.set(null, 2);
+		proclaim.equal(map2.get('null'), 1);
+		proclaim.equal(map2.get(null), 2);
+
+		var map3 = new Map();
+		map3.set(null, 1);
+		map3.set(null, 3);
+		proclaim.equal(map3.get(null), 3);
+	});
+
+	it('can use undefined as a key', function () {
+		var map1 = new Map();
+		map1.set(undefined, 1);
+		proclaim.equal(map1.get(undefined), 1);
+
+		var map2 = new Map();
+		map2.set('undefined', 1);
+		map2.set(undefined, 2);
+		proclaim.equal(map2.get('undefined'), 1);
+		proclaim.equal(map2.get(undefined), 2);
+
+		var map3 = new Map();
+		map3.set(undefined, 1);
+		map3.set(undefined, 3);
+		proclaim.equal(map3.get(undefined), 3);
+
+		var map4 = new Map();
+		map4.set(undefined, 1);
+		map4.set(undefined, 3);
+		proclaim.equal(map4.get(this._this_was_not_defined), 3);
+	});
+
+	it('can use void 0 as a key', function () {
+		var map1 = new Map();
+		map1.set(void 0, 1);
+		proclaim.equal(map1.get(void 0), 1);
+
+		var map2 = new Map();
+		map2.set('void 0', 1);
+		map2.set(void 0, 2);
+		proclaim.equal(map2.get('void 0'), 1);
+		proclaim.equal(map2.get(void 0), 2);
+
+		var map3 = new Map();
+		map3.set(void 0, 1);
+		map3.set(void 0, 3);
+		proclaim.equal(map3.get(void 0), 3);
+	});
+
+	it('can use true as a key', function () {
+		var map1 = new Map();
+		map1.set(true, 1);
+		proclaim.equal(map1.get(true), 1);
+
+		var map2 = new Map();
+		map2.set('true', 1);
+		map2.set(true, 2);
+		proclaim.equal(map2.get('true'), 1);
+		proclaim.equal(map2.get(true), 2);
+
+		var map3 = new Map();
+		map3.set(true, 1);
+		map3.set(true, 3);
+		proclaim.equal(map3.get(true), 3);
+	});
+
+	it('can use false as a key', function () {
+		var map1 = new Map();
+		map1.set(false, 1);
+		proclaim.equal(map1.get(false), 1);
+
+		var map2 = new Map();
+		map2.set('false', 1);
+		map2.set(false, 2);
+		proclaim.equal(map2.get('false'), 1);
+		proclaim.equal(map2.get(false), 2);
+
+		var map3 = new Map();
+		map3.set(false, 1);
+		map3.set(false, 3);
+		proclaim.equal(map3.get(false), 3);
+	});
+
+	it('can use numbers as a key', function () {
+		var map1 = new Map();
+		map1.set(99, 1);
+		proclaim.equal(map1.get(99), 1);
+
+		var map2 = new Map();
+		map2.set('99', 1);
+		map2.set(99, 2);
+		proclaim.equal(map2.get('99'), 1);
+		proclaim.equal(map2.get(99), 2);
+
+		var map3 = new Map();
+		map3.set(99, 1);
+		map3.set(99, 3);
+		proclaim.equal(map3.get(99), 3);
+	});
 });
