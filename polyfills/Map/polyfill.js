@@ -31,8 +31,11 @@
 			// Return previously defined hashed key
 			return recordKey[_metaKey];
 		}
-		// If this is just a primitive, we can cast it to a string and return it
-		return ''+recordKey;
+		// If this is just a primitive:
+		// - prepend the type
+		// - add a unique marker
+		// - cast to a string
+		return (typeof recordKey) + '_f1cc2551-7df7-4319-ba53-5b263a78a257_' + recordKey;
 	};
 
 	/**
