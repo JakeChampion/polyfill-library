@@ -24,21 +24,18 @@ it('is not enumerable', function () {
 });
 
 describe('toSorted', function () {
-	var typedArray = new Int8Array(5);
-	typedArray[0] = 6;
-	typedArray[1] = 4;
-	typedArray[2] = 5;
-	typedArray[4] = 3;
+	// eslint-disable-next-line no-sparse-arrays
+	var typedArray = new Int8Array([6, 4, 5, , 3]);
 
 	it('should sort with no comparefn (by copy)', function () {
-		proclaim.equal(typedArray.toSorted().toString(), [0, 3, 4, 5, 6].toString());
+		proclaim.deepStrictEqual(typedArray.toSorted(), new Int8Array([0, 3, 4, 5, 6]));
 		proclaim.equal(typedArray[0], 6);
 	});
 
 	it('should sort with comparefn (by copy)', function () {
 		proclaim.deepStrictEqual(typedArray.toSorted(function (a, b) {
 			return a - b;
-		}).toString(), [0, 3, 4, 5, 6].toString());
+		}), new Int8Array([0, 3, 4, 5, 6]));
 		proclaim.equal(typedArray[0], 6);
 	});
 

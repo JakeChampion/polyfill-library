@@ -24,14 +24,10 @@ it('is not enumerable', function () {
 });
 
 describe('toReversed', function () {
-	var typedArray = new Int8Array(4);
-	typedArray[0] = 3;
-	typedArray[1] = 4;
-	typedArray[2] = 5;
-	typedArray[3] = 6;
+	var typedArray = new Int8Array([3, 4, 5, 6]);
 
 	it('should reverse (by copy)', function () {
-		proclaim.equal(typedArray.toReversed().toString(), [6, 5, 4, 3].toString());
+		proclaim.deepStrictEqual(typedArray.toReversed(), new Int8Array([6, 5, 4, 3]));
 		proclaim.equal(typedArray[0], 3);
 	});
 });

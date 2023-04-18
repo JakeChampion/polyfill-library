@@ -40,19 +40,15 @@ it('is not enumerable', function () {
 });
 
 describe('with', function () {
-	var typedArray = new Int8Array(4);
-	typedArray[0] = 3;
-	typedArray[1] = 4;
-	typedArray[2] = 5;
-	typedArray[3] = 6;
+	var typedArray = new Int8Array([3, 4, 5, 6]);
 
 	it('should modify a value (by copy)', function () {
-		proclaim.deepStrictEqual(typedArray.with(0, 1).toString(), [1, 4, 5, 6].toString());
+		proclaim.deepStrictEqual(typedArray.with(0, 1), new Int8Array([1, 4, 5, 6]));
 		proclaim.equal(typedArray[0], 3);
 	});
 
 	it('should modify a value for negative index (by copy)', function () {
-		proclaim.deepStrictEqual(typedArray.with(-4, 1).toString(), [1, 4, 5, 6].toString());
+		proclaim.deepStrictEqual(typedArray.with(-4, 1), new Int8Array([1, 4, 5, 6]));
 		proclaim.equal(typedArray[0], 3);
 	});
 
