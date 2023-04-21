@@ -12,7 +12,7 @@ function TypedArrayCreateSameType(exemplar, argumentList) { // eslint-disable-li
 		Uint32Array: self.Uint32Array,
 		Float32Array: self.Float32Array,
 		Float64Array: self.Float64Array
-	}[exemplar.constructor.name];
+	}[exemplar && exemplar.constructor && exemplar.constructor.name];
 	// 2. Let result be ? TypedArrayCreate(constructor, argumentList).
 	var result = TypedArrayCreate(constructor, argumentList);
 	// 3. Assert: result has [[TypedArrayName]] and [[ContentType]] internal slots.
