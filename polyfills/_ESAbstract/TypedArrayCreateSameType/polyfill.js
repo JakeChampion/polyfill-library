@@ -13,6 +13,22 @@ function TypedArrayCreateSameType(exemplar, argumentList) { // eslint-disable-li
 		Float32Array: self.Float32Array,
 		Float64Array: self.Float64Array
 	}[exemplar && exemplar.constructor && exemplar.constructor.name];
+
+	// Polyfill.io - the `ArrayBuffer` polyfill does not expose a proper `constructor.name`
+	if (!constructor && exemplar && exemplar.__proto__ && exemplar.__proto__._pack) {
+		constructor = {
+			packI8: self.Int8Array,
+			packU8: self.Uint8Array,
+			packU8Clamped: self.Uint8ClampedArray,
+			packI16: self.Int16Array,
+			packU16: self.Uint16Array,
+			packI32: self.Int32Array,
+			packU32: self.Uint32Array,
+			packF32: self.Float32Array,
+			packF64: self.Float64Array
+		}[exemplar.__proto__._pack.name]
+	}
+
 	// 2. Let result be ? TypedArrayCreate(constructor, argumentList).
 	var result = TypedArrayCreate(constructor, argumentList);
 	// 3. Assert: result has [[TypedArrayName]] and [[ContentType]] internal slots.
