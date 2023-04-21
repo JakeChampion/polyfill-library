@@ -28,7 +28,7 @@ CreateMethodProperty(Array.prototype, 'toSorted', function toSorted(comparefn) {
 	// 5. Let SortCompare be a new Abstract Closure with parameters (x, y) that captures comparefn and performs the following steps when called:
 	// a. Return ? CompareArrayElements(x, y, comparefn).
 	// 6. Let sortedList be ? SortIndexedProperties(O, len, SortCompare, read-through-holes).
-	A.sort(comparefn);
+	comparefn !== undefined ? A.sort(comparefn) : A.sort();
 
 	// 9. Return A.
 	return A;

@@ -32,7 +32,7 @@
 		// 7. Let SortCompare be a new Abstract Closure with parameters (x, y) that captures comparefn and performs the following steps when called:
 		// a. Return ? CompareTypedArrayElements(x, y, comparefn).
 		// 8. Let sortedList be ? SortIndexedProperties(O, len, SortCompare, read-through-holes).
-		A.sort(comparefn);
+		comparefn !== undefined ? A.sort(comparefn) : A.sort();
 
 		// 11. Return A.
 		return A;
