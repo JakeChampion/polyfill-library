@@ -9,6 +9,7 @@ dependencies = [
 	"_ESAbstract.ToString",
 	"_ESAbstract.TypedArrayCreateSameType",
 	"ArrayBuffer",
+	"Function.prototype.name",
 ]
 license = "MIT"
 spec = "https://tc39.es/ecma262/#sec-%typedarray%.prototype.with"
