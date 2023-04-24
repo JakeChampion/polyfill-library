@@ -5,6 +5,7 @@ dependencies = [
 	"_ESAbstract.ToString",
 	"_ESAbstract.TypedArrayCreateSameType",
 	"ArrayBuffer",
+	"TypedArray.prototype.sort",
 ]
 license = "MIT"
 spec = "https://tc39.es/ecma262/#sec-%typedarray%.prototype.tosorted"
