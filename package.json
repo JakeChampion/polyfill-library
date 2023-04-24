@@ -134,7 +134,7 @@
     "webdriverio": "^6.1.14",
     "whatwg-fetch": "^3.6.2",
     "yaku": "1.0.1",
-    "yaml": "^1.1.0"
+    "yaml": "^2.2.2"
   },
   "volta": {
     "node": "12.22.12",
