@@ -15,7 +15,8 @@ function TypedArrayCreateSameType(exemplar, argumentList) { // eslint-disable-li
 	}[exemplar && exemplar.constructor && exemplar.constructor.name];
 
 	// Polyfill.io - the `ArrayBuffer` polyfill does not expose a proper `constructor.name`
-	if (!constructor && exemplar && exemplar.__proto__ && exemplar.__proto__._pack) {
+	if (!constructor) {
+		var proto = Object.getPrototypeOf(Object(exemplar));
 		constructor = {
 			packI8: self.Int8Array,
 			packU8: self.Uint8Array,
@@ -26,7 +27,7 @@ function TypedArrayCreateSameType(exemplar, argumentList) { // eslint-disable-li
 			packU32: self.Uint32Array,
 			packF32: self.Float32Array,
 			packF64: self.Float64Array
-		}[exemplar.__proto__._pack.name]
+		}[proto && proto._pack && proto._pack.name];
 	}
 
 	// 2. Let result be ? TypedArrayCreate(constructor, argumentList).
