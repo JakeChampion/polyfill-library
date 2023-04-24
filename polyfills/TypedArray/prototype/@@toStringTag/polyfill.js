@@ -71,7 +71,7 @@
 	defineNameInternalSlot(self.Float64Array.prototype, 'Float64Array');
 
 	// IE11, and potentially other browsers, have `Int8Array.prototype` inherit directly from `Object.prototype`
-	// in that case, don't define `Symbol.toStringTag` on the parent; define it directly on the prototype
+	// in that case, don't define it on the parent; define it directly on the prototype
 	if ('__proto__' in self.Int8Array.prototype && self.Int8Array.prototype.__proto__ !== Object.prototype) {
 		// set this on the underlying "TypedArrayPrototype", which is shared with all "TypedArray" subclasses
 		defineToStringTag(self.Int8Array.prototype.__proto__);

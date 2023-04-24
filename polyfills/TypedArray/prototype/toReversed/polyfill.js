@@ -30,7 +30,7 @@
 	}
 
 	// in IE11, `Int8Array.prototype` inherits directly from `Object.prototype`
-	// in that case, don't define `at` on the parent; define it directly on the prototype
+	// in that case, don't define it on the parent; define it directly on the prototype
 	if ('__proto__' in self.Int8Array.prototype && self.Int8Array.prototype.__proto__ !== Object.prototype) {
 		// set this on the underlying "TypedArrayPrototype", which is shared with all "TypedArray" subclasses
 		CreateMethodProperty(self.Int8Array.prototype.__proto__, 'toReversed', toReversed);
