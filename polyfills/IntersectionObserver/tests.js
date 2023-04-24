@@ -1,7 +1,7 @@
 /* eslint-env mocha, browser */
 /* global proclaim */
 
-describe('IntersectionObserverEntry', function () {
+describe('IntersectionObserver', function () {
 	var scrollArea;
 	var childElement;
 
@@ -22,14 +22,14 @@ describe('IntersectionObserverEntry', function () {
 		document.body.removeChild(scrollArea);
 	});
 
-	it('has an isIntersecting property', function () {
-		proclaim.ok('isIntersecting' in IntersectionObserverEntry.prototype);
+	it('exists', function () {
+		proclaim.ok('IntersectionObserver' in self);
 	});
 
-	it('isIntersecting property can be true', function (done) {
+	it('detects elements as intersecting', function (done) {
 		var observer = new IntersectionObserver(function (entries) {
 			proclaim.equal(entries.length, 1);
-			proclaim.equal(entries[0].isIntersecting, true);
+			proclaim.equal(entries[0].intersectionRatio > 0, true);
 			done();
 			observer.unobserve(childElement);
 		}, {});
