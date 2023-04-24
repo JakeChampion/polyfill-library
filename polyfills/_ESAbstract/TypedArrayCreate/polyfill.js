@@ -2,7 +2,10 @@
 // 23.2.4.2 TypedArrayCreate ( constructor, argumentList )
 function TypedArrayCreate(constructor, argumentList) { // eslint-disable-line no-unused-vars
 	// 1. Let newTypedArray be ? Construct(constructor, argumentList).
-	var newTypedArray = Construct(constructor, argumentList);
+	var newTypedArray = typeof constructor === 'object'
+		// TODO: Remove this once we drop support for Safari <10, which does not consider `Int8Array` as a constructor (`typeof Int8Array === 'object'`)
+		? new constructor(argumentList[0])
+		: Construct(constructor, argumentList);
 	// 2. Perform ? ValidateTypedArray(newTypedArray).
 	// TODO: Add ValidateTypedArray
 	// 3. If the number of elements in argumentList is 1 and argumentList[0] is a Number, then
