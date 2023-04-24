@@ -25,12 +25,21 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	this.beforeAll(function () {
 		document.body.insertAdjacentHTML(
 			"afterbegin",
+			"<div id=\"test-container\"></div>"
+		);
+
+		document.body.insertAdjacentHTML(
+			"afterbegin",
 			'<iframe name="iframe" src="about:blank"></iframe>'
 		);
 	});
 
+	this.beforeEach(function () {
+		document.getElementById("test-container").innerHTML = "";
+	});
+
 	it("Passing an element which is not a submit button should throw", function () {
-		document.body.insertAdjacentHTML(
+		document.getElementById("test-container").insertAdjacentHTML(
 			"afterbegin",
 			'<form><input type="reset"><input type="text"><button type="reset"></button><button type="button"></button></form>'
 		);
@@ -48,7 +57,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	});
 
 	it("Passing a submit button not owned by the context object should throw", function () {
-		document.body.insertAdjacentHTML(
+		document.getElementById("test-container").insertAdjacentHTML(
 			"afterbegin",
 			'<form><input form="" type="submit"><button form="form2" type="submit"></button></form><form id="form2"></form>'
 		);
@@ -70,7 +79,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	});
 
 	it("requestSubmit() should accept button[type=submit], input[type=submit], and input[type=image]", function () {
-		document.body.insertAdjacentHTML(
+		document.getElementById("test-container").insertAdjacentHTML(
 			"afterbegin",
 			'<input type=submit form="form1"><form id="form1" target="_blank"><button type="submit"></button><button></button><button type="invalid"></button><input type="submit"><input type="image"></form>'
 		);
@@ -97,7 +106,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	});
 
 	it("requestSubmit() should trigger interactive form validation", function () {
-		document.body.insertAdjacentHTML(
+		document.getElementById("test-container").insertAdjacentHTML(
 			"afterbegin",
 			"<form><input required></form>"
 		);
@@ -113,7 +122,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	});
 
 	it("requestSubmit() doesn't run form submission reentrantly", function () {
-		document.body.insertAdjacentHTML(
+		document.getElementById("test-container").insertAdjacentHTML(
 			"afterbegin",
 			"<form><input type=submit></form>"
 		);
@@ -160,7 +169,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	});
 
 	it("requestSubmit() doesn't run interactive validation reentrantly", function () {
-		document.body.insertAdjacentHTML(
+		document.getElementById("test-container").insertAdjacentHTML(
 			"afterbegin",
 			"<form><input type=submit><input required></form>"
 		);
@@ -216,7 +225,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	});
 
 	it("The value of the submitter should be appended, and form* attributes of the submitter should be handled.", function (done) {
-		document.body.insertAdjacentHTML(
+		document.getElementById("test-container").insertAdjacentHTML(
 			"afterbegin",
 			'<form action="/common/blank.html"><input required><input type=submit formnovalidate formtarget=iframe name=s value=v></form>'
 		);
@@ -234,7 +243,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 	});
 
 	it("Using requestSubmit on a disabled button (via disabled attribute) should trigger submit", function (done) {
-		document.body.insertAdjacentHTML(
+		document.getElementById("test-container").insertAdjacentHTML(
 			"afterbegin",
 			'<form><button type="submit" name="n1" value="v1" disabled=""></button></form>'
 		);
@@ -256,7 +265,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		if (typeof window.FormData !== "function") {
 			this.skip();
 		}
-		document.body.insertAdjacentHTML(
+		document.getElementById("test-container").insertAdjacentHTML(
 			"afterbegin",
 			'<form><input name="n1" value="v1"><button type="submit" name="n2" value="v2"></button></form><form id="form2"></form>'
 		);
@@ -283,7 +292,7 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		if (typeof window.FormData !== "function") {
 			this.skip();
 		}
-		document.body.insertAdjacentHTML(
+		document.getElementById("test-container").insertAdjacentHTML(
 			"afterbegin",
 			'<form><button type="submit" name="n1" value="v1" disabled=""></button></form>'
 		);

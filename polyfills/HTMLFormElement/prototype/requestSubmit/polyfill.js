@@ -34,36 +34,55 @@
 	prototype.requestSubmit = function (submitter) {
 		if (submitter) {
 			validateSubmitter(submitter, this);
-			submitter.click();
-		} else {
-			submitter = document.createElement("input");
-			submitter.type = "submit";
-			submitter.hidden = true;
-			this.appendChild(submitter);
-			submitter.click();
-			this.removeChild(submitter);
 		}
+
+		if (submitter && !submitter.disabled) {
+			submitter.click();
+			return;
+		}
+
+		submitter = document.createElement("input");
+		submitter.type = "submit";
+		submitter.hidden = true;
+		this.appendChild(submitter);
+		submitter.click();
+		this.removeChild(submitter);
 	};
 
 	function validateSubmitter(submitter, form) {
-		submitter instanceof HTMLElement ||
-			raise(TypeError, "parameter 1 is not of type 'HTMLElement'");
-		submitter.type == "submit" ||
-			raise(TypeError, "The specified element is not a submit button");
-		submitter.form == form ||
-			raise(
-				DOMException,
-				"The specified element is not owned by this form element",
+		if (!(submitter instanceof HTMLElement)) {
+			throw new TypeError(
+				"Failed to execute 'requestSubmit' on 'HTMLFormElement': " +
+				"parameter 1 is not of type 'HTMLElement'" +
+				"."
+			);
+		}
+
+		if (submitter.form !== form) {
+			throw new DOMException(
+				"Failed to execute 'requestSubmit' on 'HTMLFormElement': " +
+				"The specified element is not owned by this form element" +
+				".",
 				"NotFoundError"
 			);
-	}
+		}
 
-	function raise(errorConstructor, message, name) {
-		throw new errorConstructor(
+		if (submitter.type === "submit" && submitter.tagName === "BUTTON") {
+			return;
+		}
+
+		if (submitter.type === "submit" && submitter.tagName === "INPUT") {
+			return;
+		}
+
+		if (submitter.type === "image" && submitter.tagName === "INPUT") {
+			return;
+		}
+
+		throw new TypeError(
 			"Failed to execute 'requestSubmit' on 'HTMLFormElement': " +
-				message +
-				".",
-			name
+			"The specified element is not a submit button" +
+			"."
 		);
 	}
 })(HTMLFormElement.prototype);
