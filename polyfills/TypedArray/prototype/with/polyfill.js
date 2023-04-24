@@ -22,7 +22,7 @@
 			throw new RangeError('Invalid index');
 		}
 		// 10. Let A be ? TypedArrayCreateSameType(O, « 𝔽(len) »).
-		var A = TypedArrayCreateSameType(O, len);
+		var A = TypedArrayCreateSameType(O, [ len ]);
 		// 11. Let k be 0.
 		var k = 0;
 		// 12. Repeat, while k < len,

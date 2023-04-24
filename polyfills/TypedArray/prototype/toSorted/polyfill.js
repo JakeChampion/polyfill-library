@@ -15,7 +15,7 @@
 		// 4. Let len be O.[[ArrayLength]].
 		var len = O.length;
 		// 5. Let A be ? TypedArrayCreateSameType(O, « 𝔽(len) »).
-		var A = TypedArrayCreateSameType(O, len);
+		var A = TypedArrayCreateSameType(O, [ len ]);
 
 		// 9. Let j be 0.
 		var j = 0;

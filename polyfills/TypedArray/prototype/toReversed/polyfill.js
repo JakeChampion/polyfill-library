@@ -9,7 +9,7 @@
 		// 3. Let length be O.[[ArrayLength]].
 		var length = O.length;
 		// 4. Let A be ? TypedArrayCreateSameType(O, « 𝔽(length) »).
-		var A = TypedArrayCreateSameType(O, length);
+		var A = TypedArrayCreateSameType(O, [ length ]);
 		// 5. Let k be 0.
 		var k = 0;
 		// 6. Repeat, while k < length,
