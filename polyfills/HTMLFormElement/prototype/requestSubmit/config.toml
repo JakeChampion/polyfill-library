@@ -1,5 +1,7 @@
 aliases = []
-dependencies = []
+dependencies = [
+	"Node.prototype.isConnected"
+]
 spec = "https://html.spec.whatwg.org/multipage/forms.html#dom-form-requestsubmit-dev"
 docs = "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/requestSubmit"
 license = "MIT"

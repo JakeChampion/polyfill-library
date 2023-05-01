@@ -29,9 +29,20 @@
 
 (function (prototype) {
 	// Place all polyfill code within this function.
-	if (typeof prototype.requestSubmit == "function") return;
+	if (typeof prototype.requestSubmit === "function") return;
 
-	prototype.requestSubmit = function (submitter) {
+	var supportsDomExceptionConstructor = false;
+	try {
+		new DOMException();
+		supportsDomExceptionConstructor = true;
+	} catch (e) { /* noop */ }
+
+	prototype.requestSubmit = function requestSubmit() {
+		if (!this.isConnected) {
+			return;
+		}
+
+		var submitter = arguments[0];
 		if (submitter) {
 			validateSubmitter(submitter, this);
 		}
@@ -58,13 +69,28 @@
 			);
 		}
 
-		if (submitter.form !== form) {
-			throw new DOMException(
-				"Failed to execute 'requestSubmit' on 'HTMLFormElement': " +
-				"The specified element is not owned by this form element" +
-				".",
-				"NotFoundError"
-			);
+		if (
+			(submitter.form !== form) ||
+			// Older browsers have incorrect implementations for the "form" attribute
+			(submitter.hasAttribute('form') && (
+				submitter.getAttribute('form') === '' ||
+				submitter.getAttribute('form') !== form.id
+			))
+		) {
+			if (supportsDomExceptionConstructor) {
+				throw new DOMException(
+					"Failed to execute 'requestSubmit' on 'HTMLFormElement': " +
+					"The specified element is not owned by this form element" +
+					".",
+					"NotFoundError"
+				);
+			} else {
+				throw new Error(
+					"NotFoundError: Failed to execute 'requestSubmit' on 'HTMLFormElement': " +
+					"The specified element is not owned by this form element" +
+					"."
+				);
+			}
 		}
 
 		if (submitter.type === "submit" && submitter.tagName === "BUTTON") {
