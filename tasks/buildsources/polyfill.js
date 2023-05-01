@@ -3,7 +3,7 @@
 const fs = require('graceful-fs');
 const path = require('path');
 const uglify = require('uglify-js');
-const makeDirectory = require('mkdirp');
+const makeDirectory = require('mkdirp').mkdirp;
 const {
 	promisify
 } = require('util');

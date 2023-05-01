@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const makeDirectory = require('mkdirp');
+const makeDirectory = require('mkdirp').mkdirp;
 const child_process = require('child_process');
 
 const source = path.join(__dirname, '../../polyfills');
