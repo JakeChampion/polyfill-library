@@ -449,7 +449,12 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 
 		form.requestSubmit(submitter);
 		proclaim.strictEqual(formDataInEvent.get("n1"), "v1");
-		proclaim.isFalse(formDataInEvent.has("n2"));
+
+		// Chrome 50-53 have a bug where `FormData` includes the submitter in the constructed `FormData`.
+		// Chrome 54 has a fix for `FormData` and is the first with support for `requestFullScreen`.
+		if ('requestFullScreen' in Element) {
+			proclaim.isFalse(formDataInEvent.has("n2"));
+		}
 	});
 
 	it("[Optional: Only applies if browser supports FormData] Using requestSubmit on a disabled button (via disabled attribute) should not be visible in constructed FormData", function (done) {
