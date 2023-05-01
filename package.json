@@ -91,7 +91,6 @@
     "chai": "^4.3.4",
     "cli-color": "^2.0.0",
     "compression": "^1.7.4",
-    "current-script-polyfill": "^1.0.0",
     "diff": "4.0.2",
     "dotenv": "^8.2.0",
     "eslint": "^7.0.0",
@@ -99,7 +98,6 @@
     "eslint-plugin-unicorn": "^27.0.0",
     "execa": "^5.0.0",
     "express": "^4.17.3",
-    "fastestsmallesttextencoderdecoder": "1.0.22",
     "fs-extra": "^9.0.1",
     "glob": "^7.1.1",
     "globby": "^11.0.0",
@@ -120,7 +118,6 @@
     "mutationobserver-shim": "^0.3.2",
     "nyc": "^15.0.0",
     "picturefill": "^3.0.1",
-    "prettier": "^2.0.5",
     "proclaim": "^3.6.0",
     "rimraf": "^3.0.0",
     "seamless-scroll-polyfill": "1.2.4",
@@ -132,9 +129,7 @@
     "usertiming": "^0.1.8",
     "web-animations-js": "^2.2.5",
     "webdriverio": "^6.1.14",
-    "whatwg-fetch": "^3.6.2",
-    "yaku": "1.0.1",
-    "yaml": "^2.2.2"
+    "whatwg-fetch": "^3.6.2"
   },
   "volta": {
     "node": "12.22.12",
