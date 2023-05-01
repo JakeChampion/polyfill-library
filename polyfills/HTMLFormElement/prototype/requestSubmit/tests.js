@@ -70,6 +70,18 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		document.getElementById("test-container").innerHTML = "";
 	});
 
+	it('is a function', function () {
+		proclaim.isFunction(HTMLFormElement.prototype.requestSubmit);
+	});
+
+	it('has correct arity', function () {
+		proclaim.arity(HTMLFormElement.prototype.requestSubmit, 0);
+	});
+
+	it('has correct name', function () {
+		proclaim.hasName(HTMLFormElement.prototype.requestSubmit, 'requestSubmit');
+	});
+
 	it("Passing anything other than an HTMLElement should throw", function () {
 		document.getElementById("test-container").insertAdjacentHTML(
 			"afterbegin",
@@ -250,6 +262,116 @@ describe("HTMLFormElement.prototype.requestSubmit", function () {
 		didDispatchInvalid = false;
 		form.requestSubmit();
 		proclaim.isTrue(didDispatchInvalid);
+	});
+
+	// We can't implement this because we can't detect when a submission process ends.
+	it.skip("requestSubmit() doesn't run form submission reentrantly", function () {
+		document.getElementById("test-container").insertAdjacentHTML(
+			"afterbegin",
+			'<form action="/empty-document.html" target="iframe">' +
+			'  <input type=submit>' +
+			'</form>'
+		);
+		var form = document.querySelector("form");
+		var submitButton = form.elements[0];
+		var submitCounter = 0;
+
+		function handler1(e) {
+			++submitCounter;
+			if (submitCounter > 1) { // not all browsers support "once"
+				e.preventDefault();
+				return;
+			}
+
+			form.requestSubmit();
+			e.preventDefault();
+		}
+
+		submitCounter = 0;
+		form.addEventListener("submit", handler1);
+		form.requestSubmit();
+		proclaim.strictEqual(submitCounter, 1, "handler 1 fired only once");
+		form.removeEventListener("submit", handler1);
+
+		function handler2(e) {
+			++submitCounter;
+			if (submitCounter > 1) {
+				e.preventDefault();
+				return;
+			}
+
+			submitButton.click();
+			e.preventDefault();
+		}
+
+		submitCounter = 0;
+		form.addEventListener("submit", handler2);
+		form.requestSubmit();
+		proclaim.strictEqual(submitCounter, 1, "handler 2 fired only once");
+		form.removeEventListener("submit", handler2);
+
+		function handler3(e) {
+			++submitCounter;
+			if (submitCounter > 1) {
+				e.preventDefault();
+				return;
+			}
+
+			form.requestSubmit();
+			e.preventDefault();
+		}
+
+		submitCounter = 0;
+		form.addEventListener("submit", handler3);
+		submitButton.click();
+		proclaim.strictEqual(submitCounter, 1, "handler 3 fired only once");
+		form.removeEventListener("submit", handler3);
+	});
+
+	// We can't implement this because we can't detect when a submission process ends.
+	it.skip("requestSubmit() doesn't run interactive validation reentrantly", function () {
+		document.getElementById("test-container").insertAdjacentHTML(
+			"afterbegin",
+			'<form action="/empty-document.html" target="iframe"><input type=submit><input required></form>'
+		);
+		var form = document.querySelector("form");
+		var submitButton = form.elements[0];
+		var invalidControl = form.elements[1];
+		var invalidCounter = 0;
+		invalidControl.addEventListener(
+			"invalid",
+			function () {
+				++invalidCounter;
+				if (invalidCounter < 10) form.requestSubmit();
+			},
+			{ once: true }
+		);
+		form.requestSubmit();
+		proclaim.strictEqual(invalidCounter, 1);
+
+		invalidCounter = 0;
+		invalidControl.addEventListener(
+			"invalid",
+			function () {
+				++invalidCounter;
+				if (invalidCounter < 10) submitButton.click();
+			},
+			{ once: true }
+		);
+		form.requestSubmit();
+		proclaim.strictEqual(invalidCounter, 1);
+
+		invalidCounter = 0;
+		invalidControl.addEventListener(
+			"invalid",
+			function () {
+				++invalidCounter;
+				if (invalidCounter < 10) form.requestSubmit();
+			},
+			{ once: true }
+		);
+		submitButton.click();
+		proclaim.strictEqual(invalidCounter, 1);
 	});
 
 	it("requestSubmit() for a disconnected form should not submit the form", function () {
