@@ -381,7 +381,7 @@ async function main() {
 				}
 			});
 
-			await fs.writeFile(testResultsFile, JSON.stringify(testResults));
+			fs.writeFileSync(testResultsFile, JSON.stringify(testResults));
 
 			clearTimeout(cliFeedbackTimer);
 
