@@ -1,6 +1,6 @@
 "use strict";
 
-const fs = require("fs-extra");
+const fs = require("fs");
 const path = require("path");
 const semver = require("semver");
 const polyfillLibrary = require('../../lib');
@@ -14,7 +14,7 @@ async function main() {
 			"Compat results file does not exists, to create the file you need to run the command: `node ./test/polyfills/compat.js`."
 		);
 	}
-	const compat = await fs.readJSON(file);
+	const compat = JSON.parse(fs.readFileSync(file));
 	const changes = [];
 	for (const [feature, featureResults] of Object.entries(compat)) {
 		const featureMetadata = await polyfillLibrary.describePolyfill(feature);

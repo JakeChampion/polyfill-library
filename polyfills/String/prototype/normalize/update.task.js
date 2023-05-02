@@ -2,7 +2,7 @@
 
 'use strict';
 
-var fs = require('graceful-fs');
+var fs = require('fs');
 var diff = require('diff');
 var process = require('process');
 var path = require('path');

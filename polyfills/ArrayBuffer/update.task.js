@@ -2,7 +2,7 @@
 
 'use strict';
 
-var fs = require('graceful-fs');
+var fs = require('fs');
 var path = require('path');
 var arrayBufferPolyfillOutput = path.resolve('polyfills/ArrayBuffer/polyfill.js');
 
