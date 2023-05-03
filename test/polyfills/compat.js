@@ -1,6 +1,6 @@
 "use strict";
 
-const fs = require("fs-extra");
+const fs = require("fs");
 const path = require("path");
 const _ = require('lodash');
 
@@ -16,8 +16,8 @@ const browser = (process.argv
 	.replace("browser=", "");
 
 console.log("Reading test result data");
-const control = fs.readJSONSync(path.join(__dirname, browser ? `results-control-${browser}.json` : "results-control.json"));
-const all = fs.readJSONSync(path.join(__dirname, browser ? `results-all-${browser}.json` : "results-all.json"));
+const control = JSON.parse(fs.readFileSync(path.join(__dirname, browser ? `results-control-${browser}.json` : "results-control.json")));
+const all = JSON.parse(fs.readFileSync(path.join(__dirname, browser ? `results-all-${browser}.json` : "results-all.json")));
 
 const compat = _.merge({}, control, all);
 const builtCompatTable = {};

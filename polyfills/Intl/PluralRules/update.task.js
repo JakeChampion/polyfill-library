@@ -15,31 +15,18 @@
 
 'use strict';
 
-var fs = require('graceful-fs');
+var fs = require('fs');
 var path = require('path');
 var LocalesPath = path.dirname(require.resolve('@formatjs/intl-pluralrules/locale-data/en.js'));
 var IntlPolyfillOutput = path.resolve('polyfills/Intl/PluralRules');
 var LocalesPolyfillOutput = path.resolve('polyfills/Intl/PluralRules/~locale');
-var mkdirp = require('mkdirp');
 var TOML = require('@iarna/toml');
-
-function writeFileIfChanged (filePath, newFile) {
-	if (fs.existsSync(filePath)) {
-		var currentFile = fs.readFileSync(filePath);
-
-		if (newFile !== currentFile) {
-			fs.writeFileSync(filePath, newFile);
-		}
-	} else {
-		fs.writeFileSync(filePath, newFile);
-	}
-}
 
 var configSource = TOML.parse(fs.readFileSync(path.join(IntlPolyfillOutput, 'config.toml'), 'utf-8'));
 delete configSource.install;
 
 if (!fs.existsSync(LocalesPolyfillOutput)) {
-	mkdirp.sync(LocalesPolyfillOutput);
+	fs.mkdirSync(LocalesPolyfillOutput, { recursive: true });
 }
 
 // customizing the config to add intl as a dependency
@@ -62,16 +49,16 @@ locales.forEach(function (file) {
 	var localeOutputPath = path.join(LocalesPolyfillOutput, locale);
 
 	if (!fs.existsSync(localeOutputPath)) {
-		mkdirp.sync(localeOutputPath);
+		fs.mkdirSync(localeOutputPath, { recursive: true });
 	}
 
 	var localePolyfillSource = fs.readFileSync(path.join(LocalesPath, file));
 	var polyfillOutputPath = path.join(localeOutputPath, 'polyfill.js');
 	var detectOutputPath = path.join(localeOutputPath, 'detect.js');
 	var configOutputPath = path.join(localeOutputPath, 'config.toml');
-	writeFileIfChanged(polyfillOutputPath, localePolyfillSource);
-	writeFileIfChanged(detectOutputPath, intlLocaleDetectFor(locale));
-	writeFileIfChanged(configOutputPath, TOML.stringify({...configSource, aliases: [`Intl.~locale.${locale}`].concat(locale === 'en' ? ['Intl'] : [])}));
+	fs.writeFileSync(polyfillOutputPath, localePolyfillSource);
+	fs.writeFileSync(detectOutputPath, intlLocaleDetectFor(locale));
+	fs.writeFileSync(configOutputPath, TOML.stringify({...configSource, aliases: [`Intl.~locale.${locale}`].concat(locale === 'en' ? ['Intl'] : [])}));
 });
 
 

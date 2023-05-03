@@ -34,7 +34,7 @@ jobs:
     # <insert integration tests needing secrets>
     - uses: actions/setup-node@v2.2.0
       with:
-        node-version: 12.x
+        node-version: 16.x
         cache: 'npm'
 
     - name: env
@@ -89,7 +89,7 @@ jobs:
       # <insert integration tests needing secrets>
       - uses: actions/setup-node@v2.2.0
         with:
-          node-version: 12.x
+          node-version: 16.x
           cache: 'npm'
 
       - name: env

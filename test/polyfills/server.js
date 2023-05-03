@@ -61,6 +61,9 @@ const cacheFor1Day = cache("1 day", () => true, {
 
 app.get(["/test"], createEndpoint(runnerTemplate));
 app.get(["/iframe.html"], createEndpoint(testIframeTemplate));
+app.get(["/empty-document.html"], cacheFor1Day, (request, response) => {
+	response.sendFile(path.resolve(__dirname, "./empty-document.html"));
+});
 app.get(["/"], createEndpoint(directorTemplate));
 app.get("/mocha.js", cacheFor1Day,(request, response) => {
 	response.sendFile(require.resolve("mocha/mocha.js"));

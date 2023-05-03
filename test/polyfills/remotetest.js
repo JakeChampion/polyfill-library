@@ -16,7 +16,7 @@ hardRejection();
 
 const promisify = require("util").promisify;
 const path = require("path");
-const fs = require("fs-extra");
+const fs = require("fs");
 const cli = require("cli-color");
 const _ = require("lodash");
 const normalizeUserAgent = require('../../lib').normalizeUserAgent;
@@ -381,7 +381,7 @@ async function main() {
 				}
 			});
 
-			await fs.outputJSON(testResultsFile, testResults);
+			fs.writeFileSync(testResultsFile, JSON.stringify(testResults));
 
 			clearTimeout(cliFeedbackTimer);
 

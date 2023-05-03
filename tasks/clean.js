@@ -1,13 +1,15 @@
 'use strict';
 
-const fs = require('graceful-fs');
+const fs = require('fs');
 const path = require('path');
 const {promisify} = require('util');
 const glob = promisify(require('glob'));
 const TOML = require('@iarna/toml');
 const cwd = path.join(__dirname, '../');
 const globOptions = { cwd: cwd };
-const rimraf = require('rimraf');
+
+console.log('Cleaning dist...');
+fs.rmSync('./polyfills/__dist', { recursive: true, force: true });
 
 console.log('Cleaning polyfills...');
 glob('polyfills/**/config.toml', globOptions).then((files) => {
@@ -26,7 +28,7 @@ glob('polyfills/**/config.toml', globOptions).then((files) => {
 
 			for (const toClean of config.install.clean) {
 				console.log(' * Removing ' + path.join(path.dirname(config.src), toClean));
-				rimraf.sync(path.resolve(polyfillOutputFolder, toClean));
+				fs.rmSync(path.resolve(polyfillOutputFolder, toClean), { recursive: true, force: true });
 			}
 		}
 	}
