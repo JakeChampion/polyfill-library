@@ -2,7 +2,7 @@
 
 const path = require('path');
 const child_process = require('child_process');
-const fs = require('graceful-fs');
+const fs = require('fs');
 
 const source = path.join(__dirname, '../../polyfills');
 

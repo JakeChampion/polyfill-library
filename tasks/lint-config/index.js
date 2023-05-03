@@ -3,7 +3,7 @@
 
 /* eslint-disable unicorn/no-process-exit */
 
-const fs = require('graceful-fs');
+const fs = require('fs');
 const TOML = require('@iarna/toml');
 const semver = require('semver');
 const { simplifyRange } = require('./simplify-versions');

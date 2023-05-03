@@ -15,28 +15,15 @@
 
 'use strict';
 
-var fs = require('graceful-fs');
+var fs = require('fs');
 var path = require('path');
 var LocalesPath = path.dirname(require.resolve('@formatjs/intl-relativetimeformat/locale-data/en.js'));
 var PluralRulesLocalesPath = path.dirname(require.resolve('@formatjs/intl-pluralrules/locale-data/en.js'));
 var NumberFormatLocalesPath = path.dirname(require.resolve('@formatjs/intl-numberformat/locale-data/en.js'));
 var IntlPolyfillOutput = path.resolve('polyfills/Intl/RelativeTimeFormat');
 var LocalesPolyfillOutput = path.resolve('polyfills/Intl/RelativeTimeFormat/~locale');
-var mkdirp = require('mkdirp');
 var TOML = require('@iarna/toml');
 var localeMatcher = require('@formatjs/intl-localematcher');
-
-function writeFileIfChanged (filePath, newFile) {
-	if (fs.existsSync(filePath)) {
-		var currentFile = fs.readFileSync(filePath);
-
-		if (newFile !== currentFile) {
-			fs.writeFileSync(filePath, newFile);
-		}
-	} else {
-		fs.writeFileSync(filePath, newFile);
-	}
-}
 
 var pluralRulesLocales = new Set(
 	fs.readdirSync(PluralRulesLocalesPath).filter(function(f)  {
@@ -74,7 +61,7 @@ var configSource = TOML.parse(fs.readFileSync(path.join(IntlPolyfillOutput, 'con
 delete configSource.install;
 
 if (!fs.existsSync(LocalesPolyfillOutput)) {
-	mkdirp.sync(LocalesPolyfillOutput);
+	fs.mkdirSync(LocalesPolyfillOutput, { recursive: true });
 }
 
 // customizing the config to add intl as a dependency
@@ -99,16 +86,16 @@ locales.filter(function(f)  {
 	var localeOutputPath = path.join(LocalesPolyfillOutput, locale);
 
 	if (!fs.existsSync(localeOutputPath)) {
-		mkdirp.sync(localeOutputPath);
+		fs.mkdirSync(localeOutputPath, { recursive: true });
 	}
 
 	var localePolyfillSource = fs.readFileSync(path.join(LocalesPath, file));
 	var polyfillOutputPath = path.join(localeOutputPath, 'polyfill.js');
 	var detectOutputPath = path.join(localeOutputPath, 'detect.js');
 	var configOutputPath = path.join(localeOutputPath, 'config.toml');
-	writeFileIfChanged(polyfillOutputPath, localePolyfillSource);
-	writeFileIfChanged(detectOutputPath, intlLocaleDetectFor(locale));
-	writeFileIfChanged(
+	fs.writeFileSync(polyfillOutputPath, localePolyfillSource);
+	fs.writeFileSync(detectOutputPath, intlLocaleDetectFor(locale));
+	fs.writeFileSync(
 		configOutputPath,
 		TOML.stringify({
 			...configSource,

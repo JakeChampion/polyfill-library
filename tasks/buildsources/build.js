@@ -1,7 +1,7 @@
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
-const makeDirectory = require('mkdirp');
 const child_process = require('child_process');
 
 const source = path.join(__dirname, '../../polyfills');
@@ -22,7 +22,7 @@ const writeAliasFile = require('./write-alias-file');
 module.exports = function build(feature) {
 	return Promise.resolve()
 		.then(async () => {
-			await makeDirectory(destination);
+			fs.mkdirSync(destination, { recursive: true });
 
 			const queues = [];
 

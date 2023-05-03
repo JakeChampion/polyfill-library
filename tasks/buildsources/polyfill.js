@@ -1,9 +1,8 @@
 'use strict';
 
-const fs = require('graceful-fs');
+const fs = require('fs');
 const path = require('path');
 const uglify = require('uglify-js');
-const makeDirectory = require('mkdirp');
 const {
 	promisify
 } = require('util');
@@ -357,9 +356,10 @@ module.exports = class Polyfill {
 			['min.js', this.sources.min]
 		];
 
-		return makeDirectory(destination)
-			.then(() => Promise.all(files
-				.map(([name, contents]) => [path.join(destination, name), contents])
-				.map(([path, contents]) => writeFile(path, contents))));
+		fs.mkdirSync(destination, { recursive: true });
+
+		return Promise.all(files
+			.map(([name, contents]) => [path.join(destination, name), contents])
+			.map(([path, contents]) => writeFile(path, contents)));
 	}
 }

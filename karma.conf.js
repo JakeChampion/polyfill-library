@@ -117,7 +117,6 @@ module.exports = async function (config) {
 			'karma-mocha-reporter',
 			'karma-firefox-launcher',
 			karmaPolyfillLibraryPlugin,
-			'karma-summary-optional-console-reporter'
 		],
 		logLevel: config.LOG_WARN,
 		client: {
