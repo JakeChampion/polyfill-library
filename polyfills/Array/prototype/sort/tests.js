@@ -31,6 +31,13 @@ it("sorts", function () {
 it("sorts sparse arrays", function () {
 	proclaim.deepStrictEqual(
 		// eslint-disable-next-line no-sparse-arrays
+		[6, 4, 5, , 3].sort(),
+		// eslint-disable-next-line no-sparse-arrays
+		[3, 4, 5, 6, , ]
+	);
+
+	proclaim.deepStrictEqual(
+		// eslint-disable-next-line no-sparse-arrays
 		[6, 4, 5, , 3].sort(function (a, b) {
 			return a - b;
 		}),
@@ -41,6 +48,11 @@ it("sorts sparse arrays", function () {
 
 it("sorts arrays with undefined", function () {
 	proclaim.deepStrictEqual(
+		[6, 4, 5, undefined, 3].sort(),
+		[3, 4, 5, 6, undefined]
+	);
+
+	proclaim.deepStrictEqual(
 		[6, 4, 5, undefined, 3].sort(function (a, b) {
 			return a - b;
 		}),
@@ -48,11 +60,29 @@ it("sorts arrays with undefined", function () {
 	);
 });
 
-it("sorts arrays with comparefn that returns invalid results", function () {
+it("sorts arrays with comparefn that returns non-number results", function () {
 	proclaim.deepStrictEqual(
 		// eslint-disable-next-line no-sparse-arrays
 		[6, 4, 5, , 3].sort(function () {
 			return 'x';
+		}),
+		// eslint-disable-next-line no-sparse-arrays
+		[6, 4, 5, 3, , ]
+	);
+
+	proclaim.deepStrictEqual(
+		// eslint-disable-next-line no-sparse-arrays
+		[6, 4, 5, , 3].sort(function (a, b) {
+			return (a - b).toString();
+		}),
+		// eslint-disable-next-line no-sparse-arrays
+		[3, 4, 5, 6, , ]
+	);
+
+	proclaim.deepStrictEqual(
+		// eslint-disable-next-line no-sparse-arrays
+		[6, 4, 5, , 3].sort(function () {
+			return '0';
 		}),
 		// eslint-disable-next-line no-sparse-arrays
 		[6, 4, 5, 3, , ]
