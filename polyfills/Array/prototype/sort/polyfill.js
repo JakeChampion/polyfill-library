@@ -41,10 +41,11 @@ CreateMethodProperty(Array.prototype, "sort", function sort(compareFn) {
 			}
 		}
 		origSort.call(that, function(a, b) {
+			// this implementation is based on https://github.com/zloirock/core-js/blob/master/packages/core-js/modules/es.array.sort.js#L69-L76
 			if (b.item === undefined) return -1;
 			if (a.item === undefined) return 1;
-			var compareResult = compareFn.call(undefined, a.item, b.item);
-			return (compareResult === 0 || Number.isNaN(compareResult)) ? a.index - b.index : compareResult;
+			var compareResult = +(compareFn.call(undefined, a.item, b.item)) || 0;
+			return compareResult === 0 ? a.index - b.index : compareResult;
 		});
 		// update the original object (`this`) with the new position for the items
 		// which were moved.
