@@ -28,6 +28,37 @@ it("sorts", function () {
 	);
 });
 
+it("sorts sparse arrays", function () {
+	proclaim.deepStrictEqual(
+		// eslint-disable-next-line no-sparse-arrays
+		[6, 4, 5, , 3].sort(function (a, b) {
+			return a - b;
+		}),
+		// eslint-disable-next-line no-sparse-arrays
+		[3, 4, 5, 6, , ]
+	);
+});
+
+it("sorts arrays with undefined", function () {
+	proclaim.deepStrictEqual(
+		[6, 4, 5, undefined, 3].sort(function (a, b) {
+			return a - b;
+		}),
+		[3, 4, 5, 6, undefined]
+	);
+});
+
+it("sorts arrays with comparefn that returns invalid results", function () {
+	proclaim.deepStrictEqual(
+		// eslint-disable-next-line no-sparse-arrays
+		[6, 4, 5, , 3].sort(function () {
+			return 'x';
+		}),
+		// eslint-disable-next-line no-sparse-arrays
+		[6, 4, 5, 3, , ]
+	);
+});
+
 it("has a stable sort", function () {
 	var obj = {length:3, 0:2, 1:1,2:3};
 	proclaim.deepStrictEqual(
