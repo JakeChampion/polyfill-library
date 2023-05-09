@@ -117,12 +117,14 @@ it("has a stable sort with arrays that contain duplicate values", function () {
 		return a.sortValue - b.sortValue;
 	});
 
-	proclaim.equal(array[0].unique, 'c');
-	proclaim.equal(array[1].unique, 'a');
-	proclaim.equal(array[2].unique, 'b');
-	proclaim.equal(array[3].unique, 'e');
-	proclaim.equal(array[4].unique, 'f');
-	proclaim.equal(array[5].unique, 'd');
+	proclaim.deepStrictEqual(array, [
+		{ unique: 'c', sortValue: 0 },
+		{ unique: 'a', sortValue: 1 },
+		{ unique: 'b', sortValue: 2 },
+		{ unique: 'e', sortValue: 2 },
+		{ unique: 'f', sortValue: 2 },
+		{ unique: 'd', sortValue: 4 }
+	]);
 });
 
 it("has a stable sort with arrays that contain duplicate values and comparefn occasionally returns NaN", function () {
@@ -139,10 +141,42 @@ it("has a stable sort with arrays that contain duplicate values and comparefn oc
 		return a.sortValue - b.sortValue;
 	});
 
-	proclaim.equal(array[0].unique, 'c');
-	proclaim.equal(array[1].unique, 'a');
-	proclaim.equal(array[2].unique, 'b');
-	proclaim.equal(array[3].unique, 'd');
-	proclaim.equal(array[4].unique, 'e');
-	proclaim.equal(array[5].unique, 'f');
+	proclaim.deepStrictEqual(array, [
+		{ unique: 'c', sortValue: 0 },
+		{ unique: 'a', sortValue: 1 },
+		{ unique: 'b', sortValue: 2 },
+		{ unique: 'd', sortValue: 4 },
+		{ unique: 'e', sortValue: undefined },
+		{ unique: 'f', sortValue: 2 }
+	]);
+});
+
+it("has a stable sort with arrays that contain duplicate values and is sparse", function () {
+	// eslint-disable-next-line no-sparse-arrays
+	var array = [
+		{ unique: 'a', sortValue: 1 },
+		{ unique: 'b', sortValue: 2 },
+		{ unique: 'c', sortValue: 0 },
+		,
+		{ unique: 'd', sortValue: 4 },
+		{ unique: 'e', sortValue: 2 },
+		{ unique: 'f', sortValue: 2 }
+	];
+
+	array.sort(function (a, b) {
+		return a.sortValue - b.sortValue;
+	});
+
+	// eslint-disable-next-line no-sparse-arrays
+	proclaim.deepStrictEqual(array, [
+		{ unique: 'c', sortValue: 0 },
+		{ unique: 'a', sortValue: 1 },
+		{ unique: 'b', sortValue: 2 },
+		{ unique: 'e', sortValue: 2 },
+		{ unique: 'f', sortValue: 2 },
+		{ unique: 'd', sortValue: 4 },
+		,
+	]);
+
+	proclaim.equal(array.length, 7);
 });
