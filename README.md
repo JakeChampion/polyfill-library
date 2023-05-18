@@ -90,16 +90,23 @@ To use this package in an AWS Lambda function, you need to include the distribut
 
 ### Example of a script to copy files
 
+The following snippet will allow us to copy the polyfills to our already compiled Lambda. To do this, we will first install the necessary dependencies.
+
 ```bash
 yarn add -D make-dir fs-extra
 ```
+
+Once the dependencies are installed, we will create the file with the script at `/scripts/polyfills-serverless.mjs` and replace `YOUR_BUNDELED_LAMBDA_DIRECTORY` with the directory that contains our packaged Lambda.
+
+In the example, we will use the directory `./.serverless_nextjs/api-lambda`, which is the one used when using Serverless Next.js.
 
 ```js
 import { copySync } from 'fs-extra/esm';
 import makeDir from 'make-dir';
 
 const DIR_POLYFILLS = './node_modules/polyfill-library/polyfills/__dist';
-const DIR_SERVERLESS = 'LAMBDA_DIR/polyfills/__dist';
+// const DIR_SERVERLESS = 'YOUR_BUNDELED_LAMBDA_DIRECTORY/polyfills/__dist';
+const DIR_SERVERLESS = './.serverless_nextjs/api-lambda/polyfills/__dist';
 
 const paths = await makeDir(DIR_SERVERLESS);
 console.log(`The directory ${paths} is created successfully.`);
@@ -111,6 +118,12 @@ try {
 } catch (err) {
   console.error(err);
 }
+```
+
+To execute the script, you will need to run the following command:
+
+```bash
+node ./scripts/polyfills-serverless.mjs
 ```
 
 ## Contributing
