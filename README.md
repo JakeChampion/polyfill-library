@@ -84,6 +84,34 @@ Create a polyfill bundle.
 
 Returns a polyfill bundle as either a utf-8 ReadStream or as a Promise of a utf-8 String.
 
+## AWS Lambda
+
+To use this package in an AWS Lambda function, you need to include the distribution Polyfills located in `./node_modules/polyfill-library/polyfills/__dist` in the root directory of your Lambda. In AWS, Lambdas are executed in the `/var/task/...` directory. Therefore, during execution, the directory where the polyfills will be located will be `/var/task/polyfill-library/__dist`.
+
+### Example of a script to copy files
+
+```bash
+yarn add -D make-dir fs-extra
+```
+
+```js
+import { copySync } from 'fs-extra/esm';
+import makeDir from 'make-dir';
+
+const DIR_POLYFILLS = './node_modules/polyfill-library/polyfills/__dist';
+const DIR_SERVERLESS = 'LAMBDA_DIR/polyfills/__dist';
+
+const paths = await makeDir(DIR_SERVERLESS);
+console.log(`The directory ${paths} is created successfully.`);
+
+try {
+  console.log('Copying polyfills to serverless directory...');
+  copySync(DIR_POLYFILLS, DIR_SERVERLESS, { overwrite: false });
+  console.log('Polyfills copied successfully!');
+} catch (err) {
+  console.error(err);
+}
+```
 
 ## Contributing
 
