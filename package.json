@@ -108,7 +108,7 @@
     "karma-mocha": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
     "lodash": "^4.17.14",
-    "mocha": "^3.5.3",
+    "mocha": "^10.2.0",
     "mockery": "^2.1.0",
     "mutationobserver-shim": "^0.3.2",
     "nyc": "^15.0.0",
