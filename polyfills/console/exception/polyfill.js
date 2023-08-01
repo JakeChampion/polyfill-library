@@ -1,5 +1,5 @@
 console.exception = function exception() {
-  if ("error" in console) {
-    console.error.apply(this, arguments);
-  }
+    if ("error" in console) {
+        Function.prototype.apply.call(console.error, null, arguments);
+    }
 };
