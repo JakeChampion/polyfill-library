@@ -119,7 +119,7 @@
     "semver": "^7.3.7",
     "sinon": "^15.0.0",
     "spdx-licenses": "^1.0.0",
-    "uglify-js": "^2.7.5",
+    "uglify-js": "^3.17.4",
     "unorm": "^1.6.0",
     "usertiming": "^0.1.8",
     "web-animations-js": "^2.2.5",

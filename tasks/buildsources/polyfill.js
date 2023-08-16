@@ -269,7 +269,6 @@ module.exports = class Polyfill {
 			validateSource(source, `${this.name} from ${this.sourcePath}`);
 
 			const minified = uglify.minify(source, {
-				fromString: true,
 				compress: {
 					keep_fnames: true
 				},
@@ -308,10 +307,10 @@ module.exports = class Polyfill {
 			validateSource(source, `${this.name} from ${this.sourcePath}`);
 
 			const minified = uglify.minify(source, {
-				fromString: true,
 				compress: {
 					expression: true,
-					keep_fnames: true
+					keep_fnames: true,
+					inline: false,
 				},
 				mangle: {},
 				output: {
