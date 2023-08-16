@@ -267,7 +267,7 @@ browsers = [
   "firefox/114.0",
   "firefox/115.0",
   "firefox/116.0",
-  "firefox/117.0 beta",
+  # "firefox/117.0 beta",
   # "ie/6.0",
   # "ie/7.0",
   # "ie/8.0",
