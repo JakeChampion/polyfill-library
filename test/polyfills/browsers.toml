@@ -112,12 +112,12 @@ browsers = [
   "chrome/113.0",
   "chrome/114.0",
   "chrome/115.0",
-  "chrome/116.0 beta",
+  # "chrome/116.0 beta",
   "edge/15.0",
   "edge/16.0",
   "edge/17.0",
   "edge/18.0",
-  "edge/80.0", "edge/80.0", # oldest chromium edge version we can test
+  "edge/80.0", # oldest chromium edge version we can test
   # "edge/81.0",
   # "edge/83.0",
   # "edge/84.0",
