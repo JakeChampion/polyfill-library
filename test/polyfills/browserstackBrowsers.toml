@@ -21290,12 +21290,5 @@ real_mobile = true
 os = "android"
 os_version = "5.0"
 browser = "android"
-device = "Samsung Galaxy S6"
-real_mobile = true
-
-[[browsers]]
-os = "android"
-os_version = "5.0"
-browser = "android"
 device = "Motorola Moto X 2nd Gen"
 real_mobile = true
