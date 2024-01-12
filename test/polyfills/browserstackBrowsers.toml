@@ -22636,10 +22636,3 @@ os_version = "14.0"
 browser = "android"
 device = "Google Pixel 6 Pro"
 real_mobile = true
-
-[[browsers]]
-os = "android"
-os_version = "5.0"
-browser = "android"
-device = "Motorola Moto X 2nd Gen"
-real_mobile = true
