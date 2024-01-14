@@ -133,8 +133,7 @@ describe("polyfillio", () => {
 				minify: true,
 				unknown: 'polyfill',
 				features: {},
-				excludes: [],
-				rum: false
+				excludes: []
 			});
 		});
 
@@ -146,8 +145,7 @@ describe("polyfillio", () => {
 				minify: true,
 				unknown: 'polyfill',
 				features: {},
-				excludes: [],
-				rum: false
+				excludes: []
 			});
 			assert.deepStrictEqual(polyfillio.getOptions({
 				callback: 'app'
@@ -158,7 +156,6 @@ describe("polyfillio", () => {
 				unknown: 'polyfill',
 				features: {},
 				excludes: [],
-				rum: false
 			});
 			assert.deepStrictEqual(polyfillio.getOptions({
 				callback: ''
@@ -169,7 +166,6 @@ describe("polyfillio", () => {
 				unknown: 'polyfill',
 				features: {},
 				excludes: [],
-				rum: false
 			});
 			assert.deepStrictEqual(polyfillio.getOptions({
 				callback: 'hello world'
@@ -180,7 +176,6 @@ describe("polyfillio", () => {
 				unknown: 'polyfill',
 				features: {},
 				excludes: [],
-				rum: false
 			});
 			assert.deepStrictEqual(polyfillio.getOptions({
 				uaString: 'example'
@@ -191,7 +186,6 @@ describe("polyfillio", () => {
 				unknown: 'polyfill',
 				features: {},
 				excludes: [],
-				rum: false
 			});
 			assert.deepStrictEqual(polyfillio.getOptions({
 				minify: false
@@ -202,7 +196,6 @@ describe("polyfillio", () => {
 				unknown: 'polyfill',
 				features: {},
 				excludes: [],
-				rum: false
 			});
 			assert.deepStrictEqual(polyfillio.getOptions({
 				unknown: 'ignore'
@@ -213,7 +206,6 @@ describe("polyfillio", () => {
 				unknown: 'ignore',
 				features: {},
 				excludes: [],
-				rum: false
 			});
 			assert.deepStrictEqual(polyfillio.getOptions({
 				features: {
@@ -230,7 +222,6 @@ describe("polyfillio", () => {
 					}
 				},
 				excludes: [],
-				rum: false
 			});
 			assert.deepStrictEqual(polyfillio.getOptions({
 				excludes: ['Array.of']
@@ -241,18 +232,6 @@ describe("polyfillio", () => {
 				unknown: 'polyfill',
 				features: {},
 				excludes: ['Array.of'],
-				rum: false
-			});
-			assert.deepStrictEqual(polyfillio.getOptions({
-				rum: true
-			}), {
-				callback: false,
-				uaString: '',
-				minify: true,
-				unknown: 'polyfill',
-				features: {},
-				excludes: [],
-				rum: true
 			});
 		});
 
@@ -275,7 +254,6 @@ describe("polyfillio", () => {
 					}
 				},
 				excludes: [],
-				rum: false
 			});
 		});
 	});

@@ -3,24 +3,12 @@
   "version": "4.8.0",
   "description": "A polyfill combinator",
   "main": "lib/index.js",
-  "contributors": [
-    {
-      "name": "Jonathan Neal",
-      "email": "jonathantneal+github@gmail.com",
-      "url": "http://jonathantneal.com/"
-    },
-    {
-      "name": "FT Origami",
-      "email": "origami.support@ft.com",
-      "url": "https://origami.ft.com"
-    }
-  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/financial-times/polyfill-library.git"
+    "url": "https://github.com/JakeChampion/polyfill-library.git"
   },
   "bugs": {
-    "url": "https://github.com/financial-times/polyfill-library/issues"
+    "url": "https://github.com/JakeChampion/polyfill-library/issues"
   },
   "scripts": {
     "lint": "eslint polyfills lib tasks test",
@@ -43,7 +31,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=12"
+    "node": ">=18"
   },
   "files": [
     "/CHANGELOG.md",
@@ -57,11 +45,11 @@
   "dependencies": {
     "@financial-times/polyfill-useragent-normaliser": "^2.0.1",
     "from2-string": "^1.1.0",
-    "graceful-fs": "^4.2.10",
-    "merge2": "^1.0.3",
+    "graceful-fs": "^4.2.11",
+    "merge2": "^1.4.1",
     "mnemonist": "^0.39.2",
     "stream-from-promise": "^1.0.0",
-    "stream-to-string": "^1.1.0",
+    "stream-to-string": "^1.2.1",
     "toposort": "^2.0.2"
   },
   "devDependencies": {
@@ -74,59 +62,59 @@
     "@formatjs/intl-numberformat": "7.1.0",
     "@formatjs/intl-pluralrules": "4.0.20",
     "@formatjs/intl-relativetimeformat": "9.1.0",
-    "@iarna/toml": "^2.2.3",
+    "@iarna/toml": "^2.2.5",
     "@juggle/resize-observer": "^3.3.1",
     "@webcomponents/template": "^1.5.0",
     "abort-controller": "^3.0.0",
     "apicache": "^1.6.3",
     "array.prototype.flatmap": "^1.2.1",
     "audio-context-polyfill": "^1.0.0",
-    "auto-changelog": "^2.2.1",
+    "auto-changelog": "^2.4.0",
     "Base64": "^1.0.0",
     "bluebird": "^3.7.2",
     "browserstack": "1.6.1",
-    "browserstack-local": "^1.5.2",
-    "chai": "^4.3.4",
-    "cli-color": "^2.0.0",
+    "browserstack-local": "^1.5.4",
+    "chai": "^4.3.7",
+    "cli-color": "^2.0.3",
     "compression": "^1.7.4",
-    "diff": "^5.0.0",
+    "diff": "^5.1.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.0.0",
     "eslint-plugin-uncalled-iife": "^1.0.2",
     "eslint-plugin-unicorn": "^27.0.0",
     "execa": "^5.0.0",
-    "express": "^4.17.3",
+    "express": "^4.18.2",
     "glob": "^7.1.1",
     "globby": "^11.0.0",
-    "handlebars": "^4.7.2",
+    "handlebars": "^4.7.8",
     "hard-rejection": "^2.1.0",
     "html5shiv": "^3.7.3",
     "js-polyfills": "^0.1.40",
-    "karma": "^6.0.0",
+    "karma": "^6.4.2",
     "karma-browserstack-launcher": "^1.6.0",
     "karma-firefox-launcher": "^2.1.2",
     "karma-mocha": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.21",
     "mocha": "^3.5.3",
     "mockery": "^2.1.0",
     "mutationobserver-shim": "^0.3.2",
-    "nyc": "^15.0.0",
+    "nyc": "^15.1.0",
     "picturefill": "^3.0.1",
     "proclaim": "^3.6.0",
     "rimraf": "^3.0.0",
     "seamless-scroll-polyfill": "1.2.4",
-    "semver": "^7.3.7",
-    "sinon": "^15.0.0",
+    "semver": "^7.5.4",
+    "sinon": "^15.2.0",
     "spdx-licenses": "^1.0.0",
     "uglify-js": "^3.17.4",
     "unorm": "^1.6.0",
     "usertiming": "^0.1.8",
     "web-animations-js": "^2.2.5",
-    "webdriverio": "^8.0.0",
+    "webdriverio": "^8.15.4",
     "whatwg-fetch": "^3.6.2"
   },
   "volta": {
-    "node": "16.20.0"
+    "node": "18.17.1"
   }
 }

@@ -217,7 +217,7 @@ describe("polyfillio", function () {
 					uaString: 'chrome/30'
 				})
 			]).then(results => {
-				assert.notEqual(setsToArrays(results[0]), setsToArrays(results[1]));
+				assert.notEqual(results[0], results[1]);
 			});
 		});
 
