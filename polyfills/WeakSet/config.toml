@@ -12,6 +12,7 @@ dependencies = [
 	"_ESAbstract.IsArray",
 	"_ESAbstract.Type",
 	"_ESAbstract.SameValueZero",
+	"_ESAbstract.ThrowCompletion",
 	"Symbol",
 	"Symbol.toStringTag",
 ]

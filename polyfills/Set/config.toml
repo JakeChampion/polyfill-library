@@ -12,6 +12,7 @@ dependencies = [
 	"_ESAbstract.IteratorValue",
 	"_ESAbstract.OrdinaryCreateFromConstructor",
 	"_ESAbstract.SameValueZero",
+	"_ESAbstract.ThrowCompletion",
 	"Symbol",
 	"Symbol.iterator",
 	"Symbol.species",

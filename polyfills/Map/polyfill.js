@@ -1,4 +1,4 @@
-/* global CreateIterResultObject, CreateMethodProperty, GetIterator, IsCallable, IteratorClose, IteratorStep, IteratorValue, OrdinaryCreateFromConstructor, SameValueZero, Type, Symbol */
+/* global CreateIterResultObject, CreateMethodProperty, GetIterator, IsCallable, IteratorClose, IteratorStep, IteratorValue, OrdinaryCreateFromConstructor, SameValueZero, ThrowCompletion, Type, Symbol */
 (function (global) {
 	// Need an internal counter to assign unique IDs to a key map
 	var _uniqueHashId = 0;
@@ -149,12 +149,9 @@
 				// d. If Type(nextItem) is not Object, then
 				if (Type(nextItem) !== 'object') {
 					// i. Let error be Completion{[[Type]]: throw, [[Value]]: a newly created TypeError object, [[Target]]: empty}.
-					try {
-						throw new TypeError('Iterator value ' + nextItem + ' is not an entry object');
-					} catch (error) {
-						// ii. Return ? IteratorClose(iteratorRecord, error).
-						return IteratorClose(iteratorRecord, error);
-					}
+					var error = ThrowCompletion(new TypeError('Iterator value ' + nextItem + ' is not an entry object'));
+					// ii. Return ? IteratorClose(iteratorRecord, error).
+					return IteratorClose(iteratorRecord, error);
 				}
 				try {
 					// Polyfill.io - The try catch accounts for steps: f, h, and j.
@@ -169,7 +166,7 @@
 					adder.call(map, k, v);
 				} catch (e) {
 					// j. If status is an abrupt completion, return ? IteratorClose(iteratorRecord, status).
-					return IteratorClose(iteratorRecord, e);
+					return IteratorClose(iteratorRecord, ThrowCompletion(e));
 				}
 			}
 		} catch (e) {

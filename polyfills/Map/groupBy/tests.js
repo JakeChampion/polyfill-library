@@ -56,3 +56,11 @@ it("throws when callbackfn is not callable", function () {
 		Map.groupBy(iterable, null);
 	}, TypeError);
 });
+
+it("throws when callbackfn throws", function () {
+	proclaim.throws(function () {
+		Map.groupBy(iterable, function () {
+			throw new Error("uh oh");
+		});
+	}, /uh oh/);
+});

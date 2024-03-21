@@ -1,4 +1,4 @@
-/* global CreateIterResultObject, CreateMethodProperty, GetIterator, IsCallable, IteratorClose, IteratorStep, IteratorValue, OrdinaryCreateFromConstructor, SameValueZero, Symbol */
+/* global CreateIterResultObject, CreateMethodProperty, GetIterator, IsCallable, IteratorClose, IteratorStep, IteratorValue, OrdinaryCreateFromConstructor, SameValueZero, Symbol, ThrowCompletion */
 (function (global) {
 	// Deleted set items mess with iterator pointers, so rather than removing them mark them as deleted. Can't use undefined or null since those both valid keys so use a private symbol.
 	var undefMarker = Symbol('undef');
@@ -52,7 +52,7 @@
 					adder.call(set, nextValue);
 				} catch (e) {
 					// e. If status is an abrupt completion, return ? IteratorClose(iteratorRecord, status).
-					return IteratorClose(iteratorRecord, e);
+					return IteratorClose(iteratorRecord, ThrowCompletion(e));
 				}
 			}
 		} catch (e) {

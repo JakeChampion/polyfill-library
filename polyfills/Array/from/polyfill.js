@@ -1,5 +1,5 @@
 /* globals
-	IsCallable, GetMethod, Symbol, IsConstructor, Construct, ArrayCreate, GetIterator, IteratorClose,
+	IsCallable, GetMethod, Symbol, IsConstructor, Construct, ArrayCreate, GetIterator, IteratorClose, ThrowCompletion,
 	ToString, IteratorStep, IteratorValue, Call, CreateDataPropertyOrThrow, ToObject, ToLength, Get, CreateMethodProperty
 */
 (function () {
@@ -60,7 +60,7 @@
 				// i. If k ≥ 2^53-1, then
 				if (k >= (Math.pow(2, 53) - 1)) {
 					// 1. Let error be Completion{[[Type]]: throw, [[Value]]: a newly created TypeError object, [[Target]]: empty}.
-					var error = new TypeError('Iteration count can not be greater than or equal 9007199254740991.');
+					var error = ThrowCompletion(new TypeError('Iteration count can not be greater than or equal 9007199254740991.'));
 					// 2. Return ? IteratorClose(iteratorRecord, error).
 					return IteratorClose(iteratorRecord, error);
 				}
@@ -86,7 +86,7 @@
 						// 2. If mappedValue is an abrupt completion, return ? IteratorClose(iteratorRecord, mappedValue).
 						// 3. Let mappedValue be mappedValue.[[Value]].
 					} catch (e) {
-						return IteratorClose(iteratorRecord, e);
+						return IteratorClose(iteratorRecord, ThrowCompletion(e));
 					}
 
 					// vii. Else, let mappedValue be nextValue.
@@ -99,7 +99,7 @@
 					CreateDataPropertyOrThrow(A, Pk, mappedValue);
 					// ix. If defineStatus is an abrupt completion, return ? IteratorClose(iteratorRecord, defineStatus).
 				} catch (e) {
-					return IteratorClose(iteratorRecord, e);
+					return IteratorClose(iteratorRecord, ThrowCompletion(e));
 				}
 				// x. Increase k by 1.
 				k = k + 1;

@@ -234,4 +234,12 @@ describe('throws', function () {
 			Array.from([1, 2, 3], 3);
 		});
 	});
+
+	it("specified, mapping function throws", function () {
+		proclaim.throws(function () {
+			Array.from([1, 2, 3], function () {
+				throw new Error("uh oh");
+			});
+		}, /uh oh/);
+	});
 });

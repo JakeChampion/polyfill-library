@@ -26,6 +26,7 @@ dependencies = [
 	"_ESAbstract.ToObject",
 	"_ESAbstract.ToLength",
 	"_ESAbstract.Get",
+	"_ESAbstract.ThrowCompletion",
 	"Map",
 	"Set"
 ]

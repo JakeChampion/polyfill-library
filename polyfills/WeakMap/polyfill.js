@@ -1,4 +1,4 @@
-/* globals Symbol, OrdinaryCreateFromConstructor, IsCallable, GetIterator, IteratorStep, IteratorValue, IteratorClose, Get, Call, CreateMethodProperty, Type, SameValue */
+/* globals Symbol, OrdinaryCreateFromConstructor, IsCallable, GetIterator, IteratorStep, IteratorValue, IteratorClose, Get, Call, CreateMethodProperty, ThrowCompletion, Type, SameValue */
 (function (global) {
 	// Deleted map items mess with iterator pointers, so rather than removing them mark them as deleted. Can't use undefined or null since those both valid keys so use a private symbol.
 	var undefMarker = Symbol('undef');
@@ -51,12 +51,9 @@
 				// d. If Type(nextItem) is not Object, then
 				if (Type(nextItem) !== 'object') {
 					// i. Let error be Completion{[[Type]]: throw, [[Value]]: a newly created TypeError object, [[Target]]: empty}.
-					try {
-						throw new TypeError('Iterator value ' + nextItem + ' is not an entry object');
-					} catch (error) {
-						// ii. Return ? IteratorClose(iteratorRecord, error).
-						return IteratorClose(iteratorRecord, error);
-					}
+					var error = ThrowCompletion(new TypeError('Iterator value ' + nextItem + ' is not an entry object'));
+					// ii. Return ? IteratorClose(iteratorRecord, error).
+					return IteratorClose(iteratorRecord, error);
 				}
 				try {
 					// Polyfill.io - The try catch accounts for steps: f, h, and j.
@@ -71,7 +68,7 @@
 					Call(adder, map, [k, v]);
 				} catch (e) {
 					// j. If status is an abrupt completion, return ? IteratorClose(iteratorRecord, status).
-					return IteratorClose(iteratorRecord, e);
+					return IteratorClose(iteratorRecord, ThrowCompletion(e));
 				}
 			}
 		} catch (e) {
